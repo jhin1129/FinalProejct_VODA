@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랭킹 페이지</title>
+    <link rel="stylesheet" href="rangking.css">
+    <a href="https://www.flaticon.com/kr/free-icons/" title="공유 아이콘"></a>
+</head>
+<body>
+    <noscript data-n-head="ssr" data-hid="gtm-noscript" data-pbody="true"></noscript>
+    <div id="__nuxt" class="">
+        <div id="__layout">
+            <div data-v-5bc8cb78="" id="root">
+                <main data-v-0ee7a3d4="" data-v-5bc8cb78="" id="contents">
+                    <div data-v-0ee7a3d4="" class="header-wrap">
+                        <div data-v-52f5b8b6="" data-v-0ee7a3d4="" id="header" class="sub-header tit_page">
+                            <div data-v-52f5b8b6="" class="header-inner">
+                                <h1 data-v-52f5b8b6="" class="">오늘의 랭킹 차트</h1>
+                                <!---->
+                                <button data-v-52f5b8b6="" class="btn-back">
+                                    <i data-v-52f5b8b6="" class="kino-icon kino-icon--header-back"></i>
+                                </button>
+                                <button data-v-52f5b8b6="" class="btn-share">
+                                    <i data-v-52f5b8b6="" class="kino-icon kino-icon--header-share"></i>
+                                </button>
+                                <div data-v-52f5b8b6="" class="menu-search">
+                                    <a data-v-52f5b8b6="" href="/search" class="">
+                                        <i data-v-52f5b8b6="" class="kino-icon kino-icon--search-wh"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div data-v-0ee7a3d4="" class="editor-wrap">
+                            <div data-v-2cb0a2ac="" data-v-0ee7a3d4="" class="platform-btns-wrap">
+                                <button data-v-2cb0a2ac="" class="platform-btn-container">
+                                    <span data-v-2cb0a2ac="" class="platform-btn-icon">
+                                        <i data-v-2cb0a2ac="" class="kino-icon kino-icon--btn-movie" style="width: 24px; height: 24px;"></i>
+                                    </span>
+                                    <span data-v-2cb0a2ac="" class="platform-text">
+                                        &nbsp;MOVIE
+                                        <span data-v-2cb0a2ac=""></span>
+                                    </span>
+                                </button>
+                                <button data-v-2cb0a2ac="" class="platform-btn-container">
+                                    <span data-v-2cb0a2ac="" class="platform-btn-icon">
+                                        <i data-v-2cb0a2ac="" class="kino-icon kino-icon--btn-tv" style="width: 24px; height: 24px;"></i>
+                                    </span>
+                                    <span data-v-2cb0a2ac="" class="platform-text">
+                                        &nbsp;TV
+                                        <span data-v-2cb0a2ac=""></span>
+                                    </span>
+                                </button>
+                                <button data-v-2cb0a2ac="" class="platform-btn-container">
+                                    <span data-v-2cb0a2ac="" class="platform-btn-icon">
+                                        <i data-v-2cb0a2ac="" class="kino-icon kino-icon--btn-book" style="width: 24px; height: 24px;"></i>
+                                    </span>
+                                    <span data-v-2cb0a2ac="" class="platform-text">
+                                        &nbsp;BOOK
+                                        <span data-v-2cb0a2ac=""></span>
+                                    </span>
+                                </button>
+                                <button data-v-2cb0a2ac="" class="platform-btn-container">
+                                    <span data-v-2cb0a2ac="" class="platform-btn-icon">
+                                        <i data-v-2cb0a2ac="" class="kino-icon kino-icon--btn-webtoon" style="width: 24px; height: 24px;"></i>
+                                    </span>
+                                    <span data-v-2cb0a2ac="" class="platform-text">
+                                        &nbsp;WEBTOON
+                                        <span data-v-2cb0a2ac=""></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <!---->
+
+
+                        
+                        <hr>
+
+                        <div>
+                            <div class="nav">
+                                <div class="controls float-right lister-activated" style="display: block;">
+                                    <label class="lister-sort-by-label" for="lister-sort-by-options"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">정렬 기준:</font></font></label>
+                                    <select id="lister-sort-by-options" name="sort" class="lister-sort-by">
+                                        <option value="rk:ascending" selected="selected"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        통합
+                                        </font></font></option>
+                                        <option value="ir:descending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        여성
+                                        </font></font></option>
+                                        <option value="us:descending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        남성
+                                        </font></font></option>
+                                        <option value="nv:descending"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                                        조회수
+                                        </font></font></option>
+                                    </select>
+                                    <span class="global-sprite lister-sort-reverse descending" data-sort="rk:desc" title="오름차순">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                    <div data-v-0ee7a3d4="" class="contents-area" style="padding-top: 124px;">
+                        <div data-v-5438b1f8="" data-v-0ee7a3d4="">
+                            <div data-v-5438b1f8="" class="theme-wrapper fade--anim">
+                                <div data-v-359c2cf8="" data-v-5438b1f8="" class="chart-list-wrap">
+                                    <div data-v-359c2cf8="" class="home-title-wrapper">
+                                        <div data-v-359c2cf8="" class="home-title-container">
+                                            <h3 data-v-359c2cf8="" class="home-title">오늘의 ‘통합’ 랭킹</h3>
+                                            <!---->
+                                        </div>
+                                    </div>
+                                    <ul data-v-359c2cf8="" class="chart-list-container active" style="visibility: visible;">
+                                        <li data-v-359c2cf8="" data-title_id="106669" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/106669">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt="" data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_106669_1656295430.jpeg" src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_106669_1656295430.jpeg" lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number1"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">빅마우스</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--uppolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num up">1 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="102748" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/102748">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt="" data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102748_1660111269.jpeg" src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102748_1660111269.jpeg" lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number2"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">서울대작전</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--downpolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num down">1 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="95890" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/95890">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt="" data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_95890_1655076825.jpeg" src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_95890_1655076825.jpeg" lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number3"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">외계+인 1부</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <!---->
+                                                    <span data-v-359c2cf8="" class="rank-change-num hyphen">- </span>
+                                                </span>
+                                            </a>
+                                        </li>
+
+                                        
+                                        <li data-v-359c2cf8="" data-title_id="110784" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/110784">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_110784_1660883131.jpeg" src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_110784_1660883131.jpeg" lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number4"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">굿잡</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--uppolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num up">1 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="88701" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/88701">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_88701_1654737783.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_88701_1654737783.jpeg"
+                                                            lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number"><i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number5"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">헤어질 결심</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap"><i data-v-359c2cf8="" class="kino-icon kino-icon--uppolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num up">2 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="76722" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/76722">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_76722_1651460799.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_76722_1651460799.jpeg"
+                                                            lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number6"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">탑건: 매버릭</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--downpolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num down">2 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="102251" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/102251">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102251_1652443531.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102251_1652443531.jpg"
+                                                            lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number7"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">범죄도시2</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--uppolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num up">8 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="3709" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/3709">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_3709_1579661215.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_3709_1579661215.jpg"
+                                                            lazy="loaded">
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number8"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">공조</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--downpolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num down">2 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="106896" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/106896">
+                                                <span data-v-359c2cf8="" class="left-content-wrap">
+                                                    <span data-v-359c2cf8="" class="poster-img">
+                                                        <img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106896_1658973909.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106896_1658973909.jpg"
+                                                            lazy="loaded">
+                                                        </span>
+                                                    <span data-v-359c2cf8="" class="rank-number">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--rank-number9"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="title-text">육사오(6/45)</span>
+                                                </span>
+                                                <span data-v-359c2cf8="" class="right-content-wrap">
+                                                    <span data-v-359c2cf8="" class="polygon-wrap">
+                                                        <i data-v-359c2cf8="" class="kino-icon kino-icon--downpolygon"></i>
+                                                    </span>
+                                                    <span data-v-359c2cf8="" class="rank-change-num down">1 </span>
+                                                </span>
+                                            </a>
+                                        </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li data-v-359c2cf8="" data-title_id="81758" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/81758"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_81758_1591200588.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_81758_1591200588.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number10"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">업로드
+                                                        시즌
+                                                        1</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--uppolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num up">4
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="79765" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/79765"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_79765_1657865072.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_79765_1657865072.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number11"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">한산:
+                                                        용의
+                                                        출현</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--uppolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num up">2
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="106663" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/106663"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106663_1656293365.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106663_1656293365.jpeg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number12"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">신병
+                                                        PART.
+                                                        1</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap">
+                                                    <!----><span data-v-359c2cf8="" class="rank-change-num hyphen">-
+                                                    </span>
+                                                </span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="102315" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/102315"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102315_1661129241.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_102315_1661129241.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number13"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">헌트</span></span><span
+                                                    data-v-359c2cf8="" class="right-content-wrap"><span
+                                                        data-v-359c2cf8="" class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--downpolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num down">4
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="99814" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/99814"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_99814_1659000294.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_99814_1659000294.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number14"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">하우스
+                                                        오브
+                                                        드래곤</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--downpolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num down">4
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="106847" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/106847"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_106847_1658328237.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/drama_poster_images/280x400/drama_106847_1658328237.jpeg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number15"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">모범형사
+                                                        2</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--uppolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num up">6
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="99560" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/99560"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_99560_1658973944.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_99560_1658973944.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number16"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">사랑할
+                                                        땐
+                                                        누구나
+                                                        최악이
+                                                        된다</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--uppolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num up">23
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="98065" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/98065"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_98065_1660203451.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_98065_1660203451.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number17"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">놉</span></span><span
+                                                    data-v-359c2cf8="" class="right-content-wrap"><span
+                                                        data-v-359c2cf8="" class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--downpolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num down">6
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="106009" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/106009"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106009_1654770829.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_106009_1654770829.jpeg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number18"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">이상한
+                                                        변호사
+                                                        우영우</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--uppolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num up">19
+                                                    </span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="100248" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/100248"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_100248_1659541402.jpeg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_100248_1659541402.jpeg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number19"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">9명의
+                                                        번역가</span></span><span data-v-359c2cf8=""
+                                                    class="right-content-wrap"><span data-v-359c2cf8=""
+                                                        class="new"><span
+                                                            data-v-359c2cf8="">NEW</span></span></span></a>
+                                        </li>
+                                        <li data-v-359c2cf8="" data-title_id="38343" class="rank">
+                                            <a data-v-359c2cf8="" href="/title/38343"><span data-v-359c2cf8=""
+                                                    class="left-content-wrap"><span data-v-359c2cf8=""
+                                                        class="poster-img"><img data-v-359c2cf8="" alt=""
+                                                            data-src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_38343_1531792439.jpg"
+                                                            src="https://nujhrcqkiwag1408085.cdn.ntruss.com/static/upload/movie_poster_images/280x400/movie_38343_1531792439.jpg"
+                                                            lazy="loaded"></span><span data-v-359c2cf8=""
+                                                        class="rank-number"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--rank-number20"></i></span><span
+                                                        data-v-359c2cf8="" class="title-text">탑건</span></span><span
+                                                    data-v-359c2cf8="" class="right-content-wrap"><span
+                                                        data-v-359c2cf8="" class="polygon-wrap"><i data-v-359c2cf8=""
+                                                            class="kino-icon kino-icon--downpolygon"></i></span><span
+                                                        data-v-359c2cf8="" class="rank-change-num down">1
+                                                    </span></span></a>
+                                        </li>
+                                        </ul>
+
+
+    
+</body>
+</html>
