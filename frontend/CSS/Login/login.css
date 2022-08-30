@@ -23,8 +23,10 @@ body {
 
 #forgot {
     min-width: 100px;
-    margin-left: auto;
-    text-decoration: none
+    margin-left: 130px;
+    text-decoration: none;
+    text-align: center;
+    
 }
 
 a:hover {
@@ -34,7 +36,8 @@ a:hover {
 .form-inline label {
     padding-left: 10px;
     margin: 0;
-    cursor: pointer
+    cursor: pointer;
+    font-size: 15px;
 }
 
 .btn.btn-primary {
@@ -55,7 +58,7 @@ a:hover {
     align-items: center;
     cursor: pointer;
     border: 1px solid #ddd;
-    color: #4343ff
+    color: #495FE9
 }
 
 input[type='text'],
@@ -109,8 +112,17 @@ a[target='_blank'] {
     padding: 0;
     text-align: center;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 28px;
-    color: #a5a5a5;
-    margin-bottom: 28px;
+    color: #858282;
+    margin-bottom: 0px;
+}
+
+.panel {
+    width: 450px;
+
+}
+
+.form-group {
+    margin-bottom: 0px;
 }
