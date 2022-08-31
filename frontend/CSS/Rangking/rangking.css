@@ -157,19 +157,19 @@ h1 {
 .kino-icon--header-back {
     width: 32px;
     height: 32px;
-    background-image: url(back.png);
+    background-image: url(../../IMG/Rangking/back.png);
 }
 
 .kino-icon--header-share {
     width: 32px;
     height: 32px;
-    background-image: url(share.png);
+    background-image: url(../../IMG/Rangking/share.png);
 }
 
 .kino-icon--search-wh {
     width: 32px;
     height: 32px;
-    background-image: url(search.png);
+    background-image: url(../../IMG/Rangking/search.png);
 }
 
 .kino-icon {
@@ -189,22 +189,22 @@ h1 {
 
 
 .kino-icon--btn-movie {
-    background: url(movie.png) 50% no-repeat;
+    background: url(../../IMG/Rangking/movie.png) 50% no-repeat;
     background-size: 100% 100%;
 }
 
 .kino-icon--btn-tv {
-    background: url(tv.png) 50% no-repeat;
+    background: url(../../IMG/Rangking/tv.png) 50% no-repeat;
     background-size: 100% 100%;
 }
 
 .kino-icon--btn-book {
-    background: url(book.png) 50% no-repeat;
+    background: url(../../IMG/Rangking/book.png) 50% no-repeat;
     background-size: 100% 100%;
 }
 
 .kino-icon--btn-webtoon {
-    background: url(webtoon.png) 50% no-repeat;
+    background: url(../../IMG/Rangking/webtoon.png) 50% no-repeat;
     background-size: 100% 100%;
 }
 
@@ -250,6 +250,14 @@ h1 {
 .platform-btns-wrap .platform-btn-container .platform-text span[data-v-2cb0a2ac] {
     height: 15px;
     display: inline-block;
+}
+
+.contents-area[data-v-0ee7a3d4] {
+    padding: 0 0px;
+}
+
+.theme-wrapper[data-v-5438b1f8] {
+    position: relative;
 }
 
 a[data-v-52f5b8b6] {
