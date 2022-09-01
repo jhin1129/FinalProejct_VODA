@@ -34,7 +34,7 @@ a:hover {
 }
 
 .form-inline label {
-    padding-left: 10px;
+    padding-left: 0px;
     margin: 0;
     cursor: pointer;
     font-size: 15px;
@@ -76,12 +76,23 @@ input[type='password'] {
 }
 
 img {
-    width: 40px;
+    width: 280px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 30px;
+
+}
+
+/* img {
+    width: 222px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
     position: relative
-}
+} */
 
 a[target='_blank'] {
     position: relative;
@@ -90,14 +101,20 @@ a[target='_blank'] {
 
 .bordert {
     border-top: 1px solid #aaa;
-    position: relative
+    position: relative;
+    text-align: center;
 }
 
 .bordert:after {
-    content: "or connect with";
+    /* content: "or connect with"; */
+    color:  #858282;
+    content: "다른 서비스 계정으로 로그인";
+    font-size: 15px;
+    font-weight: normal;
     position: absolute;
     top: -13px;
-    left: 33%;
+    /* left: 33%; */
+    left: 25%;
     background-color: #fff;
     padding: 0px 8px
 }
@@ -125,4 +142,55 @@ a[target='_blank'] {
 
 .form-group {
     margin-bottom: 0px;
+}
+
+.form-inline {
+    display: inline-block;
+    width: 110px;
+    height: 5px;
+
+}
+
+.form-inline label {
+    display: inline-block;
+}
+
+.mt-3, .my-3 {
+    margin-top: 30px!important;
+    margin-bottom: 20px;
+}
+
+ul.join-find {
+    margin: 20px auto 30px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+ul.join-find li {
+    display: inline-block;
+    position: relative;
+    padding: 3px;
+
+
+}
+
+ul.join-find li a {
+    display: block;
+    padding: 10px 5px;
+    font-size: 14px;
+    color: #8a8989;
+    
+}
+
+ul.join-find li:after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    content: "";
+    transform: translateY(-50%);
+    width: 1px;
+    height: 16px;
+    background-color: #a5a5a5;
+
 }

@@ -37,14 +37,45 @@
                             <span class="form-inline"> <input type="checkbox" name="remember" id="remember"> <label for="remember" class="text-muted">아이디 저장</label> </span>
                             <span class="form-inline"> <input type="checkbox" name="autoLogin" id="autoLogin"> <label for="autoLogin" class="text-muted">자동 로그인</label></span>
                             <div class="btn btn-primary btn-block mt-3">로그인</div>
-                            <div class="text-center pt-4 text-muted">Don't have an account? <a href="#">Sign up</a> </div>
-                            <a href="#" id="forgot" class="font-weight-bold">Forgot password?</a>
+                            <ul class="join-find">
+                                <li>
+                                    <a href="#" id="forgotId" class="">아이디 찾기</a>
+                                    <li:after/>
+                                </li>
+                                <li>
+                                    <a href="#" id="forgotPwd" class="">비밀번호 재설정</a>
+                                </li>
+                                <li>
+                                    <a href="#" id="enroll" class="">회원가입</a>
+                                </li>
+                            </ul>
                         </form>
                     </div>
                     
                     <div class="mx-3 my-2 py-2 bordert">
-                        <div class="text-center py-3"> <a href="https://wwww.facebook.com" target="_blank" class="px-2"> <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt=""> </a> <a href="https://www.google.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt=""> </a> <a href="https://www.github.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png" alt=""> </a> </div>
-                        
+                        <a id="custom-login-btn" href="javascript:loginWithKakao()">
+                            <img
+                                src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg"
+                                width="222"
+                                alt="카카오 로그인 버튼"
+                                />
+                            </a>
+                            <script type="text/javascript">
+                                function loginWithKakao() {
+                                Kakao.Auth.login({
+                                    success: function(authObj) {
+                                    alert(JSON.stringify(authObj))
+                                    },
+                                    fail: function(err) {
+                                    alert(JSON.stringify(err))
+                                    },
+                                })
+                                }
+                            </script>
+                        <!-- <div class="text-center py-3"> <a href="https://wwww.facebook.com" target="_blank" class="px-2"> <img src="https://www.dpreview.com/files/p/articles/4698742202/facebook.jpeg" alt="">  -->
+                        <!-- </a> <a href="https://www.google.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png" alt="">  -->
+                        <!-- </a> <a href="https://www.github.com" target="_blank" class="px-2"> <img src="https://www.freepnglogos.com/uploads/512x512-logo-png/512x512-logo-github-icon-35.png" alt=""> </a>  -->
+                    </div>
                             </script>
                     </div>
                 </div>
