@@ -106,9 +106,9 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">Subject</th>
-                            <td style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요." style="width: 80%;">
-                            </td>
-
+                            <td style="width: 50%;">제목1</td>
+                            <td style="width: 15%;"></td>
+                            <td style="width: 15%;"></td>
                         </tr>
                     </thead>
 
@@ -116,14 +116,8 @@
                         <tr>
                             <th class="table-active">Poster</th>
                             <td>VODA</td>
-                        </tr>
- 
-                        <tr>
-                            <th class="table-active">File</th>
-                            <td>
-                                <button class="btn btn-light py-0" style="color: #55585c">파일 선택</button>
-                                <label>선택된 파일이 없습니다.</label>
-                            </td>
+                            <th class="table-active">Date</th>
+                            <td>2022.09.02</td>
                         </tr>
                     </tbody>
 
@@ -131,45 +125,76 @@
             </div>
 
 
+            <!-- 이미지 -->
+            <div>
+            <!--    <img style="background: black; width: 100%; height: 500px;"> -->
+            </div>
             <!-- 내용 -->
-            <div class="my-2 px-2">
+            <div class="my-3 px-3">
+                <p>
+                    형님덜 ~ <br>
+                    헌트보셨나요~?<br>
+                    무진장 재미지던데 ㅋ<br>
+                    이정재, 정우성 행님<br>
+                    한 까리 하대요~ ㅋ<br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                <div id="summernote"></div>
-                <script>
-                    $('#summernote').summernote({
-                        placeholder: '내용을 입력해주세요',
-                        focus: true,
-                        height: 400,
-                        toolbar: [
-                            // [groupName, [list of button]]
-                            ['fontname', ['fontname']],
-                            ['fontsize', ['fontsize']],
-                            ['color', ['color']],
-                            ['style', ['bold', 'italic', 'underline', 'clear']],
-                            ['para', ['ul', 'ol', 'paragraph']],
-                            ['insert', ['picture', 'video']],
-                            ['height', ['height']]
-                        ],
-                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋음체', '바탕체'],
-                        // 추가한 폰트사이즈
-                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'],
-                        // 줄간격
-                        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0']
 
-                    });
-                </script>
-
-                <div class="text-right mt-2">
-                    <button class="btn btn-info py-1" style="color: #fff; width: 100px">Post</button>
-                    <button class="btn btn-light py-1" style="color: #55585c; width: 100px;">Cancle</button>
+                </p>
+                <div class="text-right">
+                    <button class="btn btn-secondary py-0" style="color: #fff; width: 100px; height: 34px;">Modify</button>
+                    <button class="btn btn-light py-0" style="color: #777777; width: 100px;  height: 34px;">Delete</button>
                 </div>
             </div>
-        </div>
 
-        <div class="mb-5">
+
+            <hr style="border-style: dotted;">
+            <!-- 댓글 -->
+            <div class="px-3">
+                <h4 style="color: #444343;">comment</h4>
+
+                <div id="comment">
+                    <hr>
+                    <p style="font-weight: bold; color: #777777b7;">USER1</p>
+                    <p style="color: #777777b7;">댓글을 작성합니다.</p>
+                    <div class="row m-0">
+                        <p class="mt-2 col p-0" style="font-size: 11px; color: #777777b7;">2022.09.01 05:30</p>
+                        <div>
+                            <button class="btn btn-secondary py-0" style="font-size: 12px;" >Modify</button>
+                            <button class="btn btn-light py-0" style="font-size: 12px; color: #55585c;">Delete</button>
+                        </div>
+                    </div>
+
+                    <hr>
+                </div>
+
+                <div class="mb-3">
+                    <form action="">
+                        <div class="form-control" style="height: 85px;">
+                            <p style="font-weight: bold; margin: 0px; color: #444343;">USER2</p>
+                            <hr style="margin: 0px;">
+                            <textarea style="border: none; resize: none; width: 100%; color: #444343;"
+                                placeholder="댓글을 작성해주세요"></textarea>
+                        </div>
+                        <div class="text-right mt-1">
+                            <button class="btn btn-secondary py-0">Post</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- 목록버튼 -->
+        <div class="text-center mt-3 mb-5">
+            <button class="btn btn-light text-nowrap" style="color: #55585c; width: 100px;">List</button>
         </div>
     </div>
-
 
     <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
