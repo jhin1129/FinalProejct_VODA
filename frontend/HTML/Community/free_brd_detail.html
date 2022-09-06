@@ -14,6 +14,10 @@
             -apple-system, BlinkMacSystemFont, 
             system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
         }
+
+        input:focus {
+            outline: none;
+        }
     </style>
 
     <!-- common CSS-->
@@ -29,11 +33,6 @@
 
     <title>Document</title>
 
-    <style>
-        input:focus {
-            outline: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -118,11 +117,20 @@
                     <tbody>
                         <tr>
                             <th class="table-active">Poster</th>
-                            <td>VODA</td>
+                            <td style="width: 50%;">VODA</td>
+                            <td style="width: 15%;"></td>
+                            <td style="width: 15%;"></td>
+                        </tr>
+
+                        <tr>
                             <th class="table-active">Date</th>
                             <td>2022.09.02</td>
+                            <th class="table-active">Hit</th>
+                            <td>64,215</td>
                         </tr>
                     </tbody>
+
+                    
 
                 </table>
             </div>
@@ -150,8 +158,8 @@
 
                 </p>
                 <div class="text-right">
-                    <button class="btn btn-secondary py-0" style="color: #fff; width: 100px; height: 34px;">Modify</button>
-                    <button class="btn btn-light py-0" style="color: #777777; width: 100px;  height: 34px;">Delete</button>
+                    <button class="btn btn-light py-0" style="color: #55585c; width: 100px; height: 34px;">Modify</button>
+                    <button class="btn btn-light py-0" style="color: #55585c; width: 100px;  height: 34px;">Delete</button>
                 </div>
             </div>
 
@@ -168,7 +176,7 @@
                     <div class="row m-0">
                         <p class="mt-2 col p-0" style="font-size: 11px; color: #777777b7;">2022.09.02 05:30</p>
                         <div>
-                            <button class="btn btn-secondary py-0" style="font-size: 14px; height: 28px;" >Modify</button>
+                            <button class="btn btn-light py-0" style="font-size: 14px; color: #55585c; height: 28px;" >Modify</button>
                             <button class="btn btn-light py-0" style="font-size: 14px; color: #55585c; height: 28px;">Delete</button>
                         </div>
                     </div>
