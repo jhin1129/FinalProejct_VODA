@@ -1,20 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/* 기존 폰트*/
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+
+/* 폰트 */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+* { font-family: Pretendard, 
+    -apple-system, BlinkMacSystemFont, 
+    system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
 
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif
+    /* box-sizing: border-box; */
+    /* font-family: 'Poppins', sans-serif */
 }
 
-body {
+/* body {
     height: 100vh;
     background: white;
+} */
+
+.row {
+    margin-top: 30px;
 }
 
-.container {
+/* .container {
     margin: 50px auto
-}
+} */
 
 .panel-heading {
     text-align: center;
@@ -42,7 +54,13 @@ a:hover {
 
 .btn.btn-primary {
     margin-top: 20px;
-    border-radius: 15px
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin-left: 60px;
+
+
 }
 
 /* .panel {
@@ -61,8 +79,9 @@ a:hover {
     color: #495FE9
 }
 
-input[type='text'],
-input[type='password'] {
+/* input[type='text'],
+input[type='password'] { */
+    #loginId, #loginPwd {
     border: none;
     outline: none;
     box-shadow: none;
@@ -75,7 +94,8 @@ input[type='password'] {
     box-shadow: none
 }
 
-img {
+/* 카카오 간편 로그인*/
+#kakao {
     width: 280px;
     height: 40px;
     object-fit: cover;
@@ -160,11 +180,14 @@ a[target='_blank'] {
     margin-bottom: 20px;
 }
 
+/* 아이디 찾기, 비밀번호 재설정, 회원가입 설정 */
 ul.join-find {
     margin: 20px auto 30px;
     text-align: center;
     font-size: 13px;
     font-weight: 400;
+    padding-left: 0px;
+
 }
 
 ul.join-find li {

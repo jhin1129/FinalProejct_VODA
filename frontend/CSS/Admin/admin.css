@@ -1,0 +1,11 @@
+#admin_sidebar {overflow: auto;}
+a:hover {color:#495FE9 ;}
+ul .card-body {padding: 0px;}
+.nav-item li {line-height: 21px;}
+ul{list-style:none; padding-left: 3rem; color:#495FE9 ;}
+ul li {line-height: 21px;}
+svg {width: 21px; height: 21px;}
+
+.border-left-primary {border-left: 0.25rem solid #4e73df!important;}
+.border-left-success {border-left: 0.25rem solid #1cc88a!important;}
+.border-left-info {border-left: 0.25rem solid #36b9cc!important;}

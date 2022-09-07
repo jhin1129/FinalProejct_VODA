@@ -1,91 +1,10 @@
-    /* 폰트 */
-    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-    * { font-family: Pretendard, 
-        -apple-system, BlinkMacSystemFont, 
-        system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    }
-
-    /* 로고 이미지 간격 조절 */
-    img {
-        padding-right: 8px;
-    }
-    
-    /* 컨테이너 너비 조절 
-    .container {
-    max-width: 1320px;
-    padding-left: 12px;
-    padding-right: 12px;
-    }
-    */
-
-    /* 컨테이너 너비 조절 */
-    .container-fluid {
-        padding-left: 0px;
-        padding-right: 0px;
-    }
-
-    .navbar {
-        padding-left: 0px;
-        padding-right: 0px;
-    } 
-
-    /* 호버 메뉴 밑 선 굵기 */
-    .line {
-        border: 0;
-        background: #ccc;
-    }
-
-    /* 메뉴 호버 기능 */
-    .dropdown:hover .dropdown-menu {
-        background-color: rgba(255, 255, 255, 0.8);
-        border-radius: 2.5%; 
-        display: block;
-        margin-top: 0;
-        border: none;
-        /* box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1); */
-        /* border-top: none; */
-        /* border-bottom: none; */ 
-        /* opacity : 0.5; */ 
-    }
-
-    /* 드롭다운 메뉴 글자색상 지정 */
-    .dropdown-item {
-        color: rgba(0, 0, 0, 0.5);
-    }
-
-    /* 오른쪽 헤더 메뉴 간격 조정 */
-    .right {
-        color: rgba(0, 0, 0, 0.5);
-        margin-left: 20px;
-    }
-
-    #join {
-        margin-right: 0px;
-    }
-
-    #login {
-        margin-right: 16px;
-    }
-
-    /* input 돋보기 */
-    .sc input {
-        background-image: 
-        url(https://cdn-icons-png.flaticon.com/512/149/149852.png);
-        opacity: 0.4;
-        padding-left: 40px;
-        background-size: 18px;
-        background-position: 12px 10px ;
-        background-repeat: no-repeat
-    } 
-
     /* 영상 자식요소 정보 */
-    .info { position: absolute; top: 40%; width: 100%; }
+    .info { position: absolute; top: 45%; width: 100%; }
 
     .title{ margin-top: -24px; font-size: 24px; color: #ffffff; }
 
     .outline { color: rgba(255, 255, 255, 0.5);}
 
-    
     /* 숨기려는 버튼을 골라서 쓰자 */
     /* 전체화면 버튼 */
     video::-webkit-media-controls-fullscreen-button {display: none !important;}
@@ -118,27 +37,6 @@
         Width:100%;
     }
 
-    /* 링크 파랑색 밑줄 효과 삭제 */
-    a:link {
-        color : black;
-        text-decoration: none;
-    }
-
-    a:visited {
-        color : black;
-        text-decoration: none;
-    }
-
-    a:hover {
-        color : black;
-        text-decoration: none;
-    }
-
-    a:active {
-        color : black;
-        text-decoration: none;
-    }	
-
     .videowrapper {
         z-index: 1;
         position: relative;
@@ -149,12 +47,20 @@
         margin: 0px;
         width: 1140px;
         position: absolute;
-        top: 450px;
+        top: 70%;
     }
+    
+    @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackObliqueA.woff');
+    .rankingnumber {
+        font-family: 'LeferiPoint-BlackObliqueA';
+        font-weight: normal;
+        font-style: italic;
+    }
+    
 
     .mainrank {
         position: relative;
-        height: 315px;
+        height: 300px;
         border-radius: 2.5%; 
         overflow: hidden;
         margin: 7px;
@@ -172,12 +78,7 @@
         padding: 0px;
     }
 
-    .mainrank:hover {
-        transform: translate(0,-15px);
-        box-shadow: 0 32px 54px 0 rgba(73, 95, 233, 0.5);
-    }
-
-    img:hover {
+    .poster:hover {
         filter: brightness(0.15);
         transition: .6s ease;
     }
@@ -186,11 +87,6 @@
         position: absolute;
         margin-top: 10px;
         margin-left: 17px;
-    }
-
-    .rankinginfo:hover {
-        opacity: 1;
-        color: rgb(73, 95, 233);
     }
 
     .rankingnumber {
@@ -205,5 +101,15 @@
     .rankingdetail:hover {
         color: #ffffff;
         opacity: 1;
+    }
+
+    .mainrank:hover {
+        transform: translate(0,-15px);
+        box-shadow: 0 32px 54px 0 rgba(73, 95, 233, 0.5);
+    }
+
+    .rankinginfo:hover {
+        opacity: 1;
+        color: rgb(73, 95, 233);
     }
 
