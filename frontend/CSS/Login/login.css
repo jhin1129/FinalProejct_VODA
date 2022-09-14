@@ -98,8 +98,8 @@ input[type='password'] { */
 
 /* 카카오 간편 로그인*/
 #kakao {
-    width: 280px;
-    height: 40px;
+    width: 300px;
+    height: 50px;
     object-fit: cover;
     border-radius: 5px;
     position: relative;
@@ -182,7 +182,7 @@ a[target='_blank'] {
     margin-bottom: 20px;
 }
 
-/* 아이디 찾기, 비밀번호 재설정, 회원가입 설정 */
+/* 아이디 찾기, 비밀번호 찾기, 회원가입 설정 */
 ul.join-find {
     margin: 20px auto 30px;
     text-align: center;
@@ -283,7 +283,7 @@ ul.join-find li:after {
 
 .container {
     min-width: 1050px;
-    padding: 50px 0px;
+    padding: 0px 0px;
     background-color: white;
 }
 
@@ -305,7 +305,7 @@ ul.join-find li:after {
     background-color: white;
     padding: 0 15px 0 15px;
     margin: 0;
-    box-shadow: inset 0 -0.5px 0 0 #ddd;
+    /* box-shadow: inset 0 -0.5px 0 0 #ddd; */
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -329,7 +329,7 @@ ul.join-find li:after {
     font-size: 16px;
     color: #5f0080;
     line-height: 18px;
-    box-shadow: inset 0px -2px 0px 0px #5f0080;
+    box-shadow: inset 0px -2px 0px 0px #007bff;
     overflow: visible;
     background-color: transparent;
     border: none;
@@ -348,7 +348,7 @@ ul.join-find li:after {
     font-size: 16px;
     color: #5f0080;
     line-height: 18px;
-    box-shadow: inset 0px -2px 0px 0px #5f0080;
+    box-shadow: inset 0px -2px 0px 0px #007bff;
     overflow: visible;
     background-color: transparent;
     border: none;
@@ -395,15 +395,15 @@ ul.join-find li:after {
     box-sizing: border-box;
 }
 
-.find_id_phoneNumber1:not(:first-of-type) {
+.find_id_email1:not(:first-of-type) {
     margin-top: 8px;
 }
 
-.find_id_phoneNumber2 {
+.find_id_email2 {
     padding-bottom: 12px;
 }
 
-.find_id_phoneNumber3 {
+.find_id_email3 {
     display: inline-block;
     padding: 8px 0 11px;
     font-size: 14px;
@@ -412,12 +412,12 @@ ul.join-find li:after {
     color: #333;
 }
 
-.find_id_phoneNumber4 {
+.find_id_email4 {
     position: relative;
     height: 46px;
 }
 
-.find_id_phoneNumber5 {
+.find_id_email5 {
     width: 100%;
     height: 46px;
     padding: 0 11px 1px 15px;
@@ -454,9 +454,192 @@ button[disabled], input[disabled] {
     color: #fff;
     background-color: #5f0080;
     border: 0 none;
+    cursor: pointer;
+}
+
+.verification_code2.on {
+    /* display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 4px;
+    color: #fff; */
+    background-color: #5f0080;
+    /* border: 0 none; */
 }
 
 .verification_code3 {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.find_id_phone:checked:nth-child(1),
+.find_id_email:checked:nth-child(2) {
+    box-shadow: none;
+}
+
+    /*이메일 인증*/
+    .css_email1 {
+        min-width: 1050px;
+        padding: 50px 0;
+        background-color: white;
+    }
+
+    .css_email2 {
+        max-width: 400px;
+        padding: 60px 30px;
+        margin: auto;
+        position: relative;
+        background-color: white;
+    }
+
+    .css_email3 {
+        text-align: center;
+    }
+
+    .css_email4 {
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    /* .css_email4::before {
+        content: "";
+        display: block;
+        width: 54px;
+        height: 54px;
+        margin: 0px auto 20px;
+        background-image: url(../../IMG/Login/email.png);
+    } */
+
+    #email_img {
+        width: 138px;
+        display: block;
+        width: 60px;
+        margin: 0px auto 20px;
+    }
+
+    .css_email5 {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .css_email6 {
+        padding-top: 12px;
+        font-size: 16px;
+        color: rgb(153, 153, 153);
+        line-height: 19px;
+    }
+    
+    /*비밀번호 재설정*/
+    #requiredPassword {
+        font-size: 13px;
+        color: rgb(102, 102, 102);
+        line-height: 18px;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
+    }
+
+    #requiredPassword::before {
+        content: "✓";
+        display: inline-block;
+        padding: 0px 4px 0px 2px;
+        font-size: 12px;
+        vertical-align: 0px;
+}
+
+/*아이디 찾기 확인*/
+.find_account1 {
+    min-width: 1050px;
+    padding: 50px 0px;
+    background-color: white;
+}
+
+.find_account2 {
+    max-width: 400px;
+    padding: 0px 30px 30px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+}
+
+.find_account3 {
+    padding-top: 30px;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 23px;
+}
+
+.find_account4 {
+    display: block;
+    padding-top: 4px;
+    font-weight: 400;
+    font-size: 13px;
+    color: rgb(153, 153, 153);
+    line-height: 18px;
+}
+
+.find_account5 {
+    padding: 12px 0px;
+}
+
+.find_account6 {
+    display: flex;
+}
+
+.find_account6:first-of-type > div {
+    border: none;
+}
+
+
+.find_account7 {
+    width: 60px;
+    display: block;
+    margin: 17px 12px 16px 0px;
+}
+
+.find_account8 {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    /* border-top: 1px solid rgb(238, 238, 238); */
+}
+
+.find_account9 {
+    padding-top: 18px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.find_account10 {
+    display: block;
+    padding-top: 4px;
+    font-size: 16px;
+    color: rgb(153, 153, 153);
+}
+
+.find_account11 {
+    margin-top: 60px;
+}
+
+.find_account12 {
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 56px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #495FE9;
+    border: 0 none;
+}
+
+.find_account13 {
     display: inline-block;
     font-size: 16px;
     font-weight: 500;

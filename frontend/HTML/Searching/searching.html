@@ -15,11 +15,11 @@
     <!-- mainstyle CSS -->
     <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
-    <!-- login CSS -->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Login/login.css">
+    <!-- searching CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Searching/searching.css">
 
     <!-- Bootswatch  -->
-    <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css"> -->
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -85,90 +85,60 @@
         <hr class="mt-1 mb-0 line">
         <!-- 헤더 끝 -->
 
-    <div class="container">
-        <div class="member_tit">
-            아이디 찾기
-        </div>    
-        <div class="find_id_wrap">
-            <div class="find_id_choose">
-                <!-- <button type="button" class="find_id_phone">
-                    휴대폰 인증
-                </button> -->
-                <button type="button" class="find_id_email">
-                    이메일 인증
-                </button>
+    <section class="searching1">
+        <section>
+            <header class="searching3">
+                <div class="searching4">
+                    <button class="searching5"></button>
+                </div>
+                <em class="searching6"></em>
+                <div class="searching7"></div>
+            </header>
+            <div class="searching8">
+                <section class="searching9">
+                    <div class="searching10">
+                        <div class="searching11">
+                            <div class="searching12">
+                                <div class="searching13">
+                                    <!-- <div class="seazrching14"></div> -->
+                                    <img src="../../IMG/Searching/actor1.jpg" alt="" class="searching14">
+                                </div> 
+                            </div>
+                            <div class="searching15">
+                                <h1>탕웨이</h1>
+                                <p>배우</p>
+                            </div>      
+                        </div>
+                        <hr class="searching16">  
+                    </div>
+                </section>
+                <div class="searching_movie1">
+                    <div class="searching_movie2">
+                        <div class="searching_movie3">
+                            <div class="searching_movie4">
+                                <div class="searching_movie5">
+                                    <div class="searching_movie6">영화</div>           
+                                    <div class="searching_movie7">TV프로그램</div>    
+                                </div>
+                            </div>
+                            <div class="searching_movie8">
+                                <div class="searching_movie9">
+                                    <button class="searching_movie10" >출연</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form class="find_id_form">
-                <div class="find_id_name1">
-                    <div class="find_id_name2">
-                        <label for="name" class="find_id_name3">이름</label>
-                        <div class="find_id_name4">
-                            <input type="text" data-testid="input-box" name="name" id="name" 
-                            placeholder="이름을 입력해 주세요" class="find_id_name5">
-                        </div>
-                    </div>
-                </div>
-                <div class="find_id_email1">
-                    <div class="find_id_email2">
-                        <label for="email" class="find_id_email3">이메일</label>
-                        <div class="find_id_email4">
-                            <input type="email" data-testid="input-box" name="email" id="email" 
-                            placeholder="이메일을 입력해 주세요" class="find_id_email5">
-                        </div>
-                    </div>
-                </div>
-                <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">확인</span>
-                    </button>
-                </div>
-                <!-- <div class="find_id_phoneNumber1">
-                    <div class="find_id_phoneNumber2">
-                        <label for="phone" class="find_id_phoneNumber3">휴대폰 번호</label>
-                        <div class="find_id_phoneNumber4">
-                            <input type="tel" data-testid="input-box" name="phone" id="phone" 
-                            placeholder="휴대폰 번호를 입력해 주세요" class="find_id_phoneNumber5">
-                        </div>
-                    </div>
-                </div>
-                <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">인증번호 받기</span>
-                    </button>
-                </div> -->
-            </form>
-        </div> 
-    </div>
+        </section>
+    </section>
+
+
+
+
 
 <br><br><br><br><br><br>
 
-<script>
-    
-    $('.find_id_name5').on('input', checkInput);
-    $('.find_id_email5').on('input', checkInput);
-
-    // input 입력 시에 checkInput 함수실행
-    function checkInput() {
-        var nameCheck = $('.find_id_name5').val();   
-        var emailCheck = $('.find_id_email5').val();  
-        var btnCheck = $('.verification_code2');
-
-        if (nameCheck === '' || emailCheck === '') {
-        // // 기본 버튼 색상
-        // btnCheck.removeClass('on');
-        // } else {
-        // // 입력 시에 버튼 배경색 변경
-        // btnCheck.addClass('on');
-        // }
-        
-            btnCheck.css('background-color', '#ddd');
-        } else {
-            btnCheck.css('background-color', '#007bff');
-            btnCheck.css('cursor', 'pointer');
-        }
-    }
-
-</script>
 
         <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">

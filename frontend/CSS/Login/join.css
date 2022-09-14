@@ -152,7 +152,18 @@
     #requiredPassword {
         font-size: 13px;
         color: rgb(102, 102, 102);
+        line-height: 18px;
+        letter-spacing: -0.3px;
+        margin-bottom: 2px;
     }
+
+    #requiredPassword::before {
+        content: "✓";
+        display: inline-block;
+        padding: 0px 4px 0px 2px;
+        font-size: 12px;
+        vertical-align: 0px;
+}
 
     /*생년월일*/
     .birth1 {
@@ -400,3 +411,28 @@
         height: 9px;
         background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjExIiB2aWV3Qm94PSIwIDAgNiAxMSI+CiAgICA8cGF0aCBmaWxsPSIjNUYwMDgwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xIDExTDYgNS41IDEgMCAwIDEuMSA0IDUuNSAwIDkuOXoiLz4KPC9zdmc+Cg==") 50% 50% / 6px 9px no-repeat;
     }
+
+    /*회원가입 완료 페이지*/
+    #check_img {
+        margin-bottom: 50px;
+        width: 138px;
+
+    }
+
+    .join_completion {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 20vh;
+        
+    }
+
+    #btn_join_completion {
+        width: 20%;
+        height: 100%;
+        margin: 0;
+        padding: 10px;
+        position: relative;
+    }
+
+

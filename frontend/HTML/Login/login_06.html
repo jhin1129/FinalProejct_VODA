@@ -85,90 +85,37 @@
         <hr class="mt-1 mb-0 line">
         <!-- 헤더 끝 -->
 
-    <div class="container">
-        <div class="member_tit">
-            아이디 찾기
-        </div>    
-        <div class="find_id_wrap">
-            <div class="find_id_choose">
-                <!-- <button type="button" class="find_id_phone">
-                    휴대폰 인증
-                </button> -->
-                <button type="button" class="find_id_email">
-                    이메일 인증
+    <div class="find_account1">
+        <div class="find_account2">
+            <div class="find_account3">
+                고객님의 VODA 계정을 찾았습니다.
+                <div class="find_account4">
+                    아이디 확인 후 로그인해 주세요.
+                </div>
+            </div>
+            <ul class="find_account5">
+                <li class="find_account6">
+                    <img class="find_account7" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0Y1RjVGNSIgY3g9IjIwIiBjeT0iMjAiIHI9IjIwIi8+CiAgICAgICAgPHBhdGggZD0iTTIwIDE5YzQuNjUzIDAgOC41IDMuNDc2IDguNSA3LjcyIDAgLjQzLS4zNDYuNzgtLjc3My43OEgxMi4yNzNhLjc3Ni43NzYgMCAwIDEtLjc3My0uNzhjMC00LjI4NSAzLjgyNC03LjcyIDguNS03Ljcyem0wLTguNWEzLjQgMy40IDAgMSAxIDAgNi44IDMuNCAzLjQgMCAwIDEgMC02Ljh6IiBzdHJva2U9IiNDQ0MiIGZpbGw9IiNDQ0MiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="정보보기">
+                    <div class="find_account8">
+                        <div class="find_account9">예) voda1234 </div>
+                        <div class="find_account10">가입일 2022.09.10</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="find_account11">
+                <button class="find_account12" type="button">
+                    <span class="find_account13">로그인</span>
                 </button>
             </div>
-            <form class="find_id_form">
-                <div class="find_id_name1">
-                    <div class="find_id_name2">
-                        <label for="name" class="find_id_name3">이름</label>
-                        <div class="find_id_name4">
-                            <input type="text" data-testid="input-box" name="name" id="name" 
-                            placeholder="이름을 입력해 주세요" class="find_id_name5">
-                        </div>
-                    </div>
-                </div>
-                <div class="find_id_email1">
-                    <div class="find_id_email2">
-                        <label for="email" class="find_id_email3">이메일</label>
-                        <div class="find_id_email4">
-                            <input type="email" data-testid="input-box" name="email" id="email" 
-                            placeholder="이메일을 입력해 주세요" class="find_id_email5">
-                        </div>
-                    </div>
-                </div>
-                <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">확인</span>
-                    </button>
-                </div>
-                <!-- <div class="find_id_phoneNumber1">
-                    <div class="find_id_phoneNumber2">
-                        <label for="phone" class="find_id_phoneNumber3">휴대폰 번호</label>
-                        <div class="find_id_phoneNumber4">
-                            <input type="tel" data-testid="input-box" name="phone" id="phone" 
-                            placeholder="휴대폰 번호를 입력해 주세요" class="find_id_phoneNumber5">
-                        </div>
-                    </div>
-                </div>
-                <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">인증번호 받기</span>
-                    </button>
-                </div> -->
-            </form>
-        </div> 
+        </div>
     </div>
+
+
+
+
 
 <br><br><br><br><br><br>
 
-<script>
-    
-    $('.find_id_name5').on('input', checkInput);
-    $('.find_id_email5').on('input', checkInput);
-
-    // input 입력 시에 checkInput 함수실행
-    function checkInput() {
-        var nameCheck = $('.find_id_name5').val();   
-        var emailCheck = $('.find_id_email5').val();  
-        var btnCheck = $('.verification_code2');
-
-        if (nameCheck === '' || emailCheck === '') {
-        // // 기본 버튼 색상
-        // btnCheck.removeClass('on');
-        // } else {
-        // // 입력 시에 버튼 배경색 변경
-        // btnCheck.addClass('on');
-        // }
-        
-            btnCheck.css('background-color', '#ddd');
-        } else {
-            btnCheck.css('background-color', '#007bff');
-            btnCheck.css('cursor', 'pointer');
-        }
-    }
-
-</script>
 
         <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">

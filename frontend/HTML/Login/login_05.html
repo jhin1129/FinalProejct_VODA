@@ -87,55 +87,39 @@
 
     <div class="container">
         <div class="member_tit">
-            아이디 찾기
+            비밀번호 재설정
         </div>    
         <div class="find_id_wrap">
-            <div class="find_id_choose">
-                <!-- <button type="button" class="find_id_phone">
-                    휴대폰 인증
-                </button> -->
-                <button type="button" class="find_id_email">
-                    이메일 인증
-                </button>
-            </div>
+
             <form class="find_id_form">
                 <div class="find_id_name1">
                     <div class="find_id_name2">
-                        <label for="name" class="find_id_name3">이름</label>
+                        <label for="newPwd" class="find_id_name3">새 비밀번호 등록</label>
                         <div class="find_id_name4">
-                            <input type="text" data-testid="input-box" name="name" id="name" 
-                            placeholder="이름을 입력해 주세요" class="find_id_name5">
+                            <input type="text" data-testid="input-box" name="newPwd" id="newPwd" 
+                            placeholder="새 비밀번호를 입력해주세요." class="find_id_name5">
                         </div>
                     </div>
+                    <p id="requiredPassword">10자 이상 입력</p>
+                    <p id="requiredPassword">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</p>
+                    <p id="requiredPassword">동일한 숫자 3개 이상 연속 사용 불가</p>
                 </div>
                 <div class="find_id_email1">
                     <div class="find_id_email2">
-                        <label for="email" class="find_id_email3">이메일</label>
+                        <label for="newPwd2" class="find_id_email3">새 비밀번호 확인</label>
                         <div class="find_id_email4">
-                            <input type="email" data-testid="input-box" name="email" id="email" 
-                            placeholder="이메일을 입력해 주세요" class="find_id_email5">
+                            <input type="email" data-testid="input-box" name="newPwd2" id="newPwd2" 
+                            placeholder="새 비밀번호를 한 번 더 입력해주세요." class="find_id_email5">
                         </div>
                     </div>
+                    <p id="requiredPassword">동일한 비밀번호를 입력해 주세요.</p>
                 </div>
                 <div class="verification_code1">
                     <button class="verification_code2" type="submit" disabled radius="4">
                         <span class="verification_code3">확인</span>
+                        <!-- 비밀번호 변경 완료 팝업이 뜨고 로그인 화면으로 이동! -->
                     </button>
                 </div>
-                <!-- <div class="find_id_phoneNumber1">
-                    <div class="find_id_phoneNumber2">
-                        <label for="phone" class="find_id_phoneNumber3">휴대폰 번호</label>
-                        <div class="find_id_phoneNumber4">
-                            <input type="tel" data-testid="input-box" name="phone" id="phone" 
-                            placeholder="휴대폰 번호를 입력해 주세요" class="find_id_phoneNumber5">
-                        </div>
-                    </div>
-                </div>
-                <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">인증번호 받기</span>
-                    </button>
-                </div> -->
             </form>
         </div> 
     </div>
