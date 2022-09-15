@@ -18,6 +18,9 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
 
+    <!-- join CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/join.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -82,6 +85,7 @@
 
     <div class="container">
         <div class="row">
+            <!-- 왼쪽 사이드메뉴 -->
             <div class="col-sm-2">
                 <div class="mySideMenu">
                     <h5 style="font-weight: 600;" >마이 페이지</h5>
@@ -102,153 +106,156 @@
                 </div>
             </div>
 
+            <!-- 오른쪽 컨텐츠 -->
             <div class="col-sm-10">
                 <!-- 컨테이너 -->
                 <div class="container">
       
                     <!-- 첫번째 행 -->
                     <div class="row">
-                        <div class="col-sm-12">
-                            <!-- 카드 그룹 -->
-                            <div class="card-group">
-                                <!-- 첫번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">ooo 님</h5>
-                                        <p class="card-text">
-                                            환영합니다.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- 두번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">마일리지</h5>
-                                        <p class="card-text"> 
-                                            <a href="../mypage/mileage.php">1,000 원</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- 세번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">내가 쓴 리뷰</h5>
-                                        <p class="card-text">
-                                            <a href="../mypage/money.php">0 개</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- 카드그룹 끝 -->
+                        <div class="col-sm-12" style="margin-top: 40px;">
+                            <form style="margin-bottom: 3px;">
+                                <h5 style="font-weight: 600;" >자유게시글 조회</h5>
+                                <hr>
+                            </form>
                         </div>
                     </div>
-                    <!-- 행 끝 -->
-      
+
+
                     <!-- 두번째 행 -->
+                    
+                    <div class="">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr style="text-align: center">
+                                    <th id="th" style="width: 5%;">No.</th>
+                                    <th id="th" style="width: 55%;">Subject</th>
+                                    <th id="th" style="width: 15%;">Poster</th>
+                                    <th id="th" style="width: 15%;">Date</th>
+                                    <th id="th" style="width: 10%;">Hit</th>
+                                </tr>
+                            </thead>
+            
+                            <tbody>
+                                <tr style="text-align: center">
+                                    <td id="td">1</td>
+                                    <td id="td">제목1</td>
+                                    <td id="td">작성자1</td>
+                                    <td id="td">날짜1</td>
+                                    <td id="td">조회수1</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">2</td>
+                                    <td id="td">제목2</td>
+                                    <td id="td">작성자2</td>
+                                    <td id="td">날짜2</td>
+                                    <td id="td">조회수2</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">3</td>
+                                    <td id="td">제목3</td>
+                                    <td id="td">작성자3</td>
+                                    <td id="td">날짜3</td>
+                                    <td id="td">조회수3</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">4</td>
+                                    <td id="td">제목4</td>
+                                    <td id="td">작성자4</td>
+                                    <td id="td">날짜4</td>
+                                    <td id="td">조회수4</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">5</td>
+                                    <td id="td">제목5</td>
+                                    <td id="td">작성자5</td>
+                                    <td id="td">날짜5</td>
+                                    <td id="td">조회수5</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">6</td>
+                                    <td id="td">제목6</td>
+                                    <td id="td">작성자6</td>
+                                    <td id="td">날짜6</td>
+                                    <td id="td">조회수6</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">7</td>
+                                    <td id="td">제목7</td>
+                                    <td id="td">작성자7</td>
+                                    <td id="td">날짜7</td>
+                                    <td id="td">조회수7</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">8</td>
+                                    <td id="td">제목8</td>
+                                    <td id="td">작성자8</td>
+                                    <td id="td">날짜8</td>
+                                    <td id="td">조회수8</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">9</td>
+                                    <td id="td">제목9</td>
+                                    <td id="td">작성자9</td>
+                                    <td id="td">날짜9</td>
+                                    <td id="td">조회수9</td>
+                                </tr>
+            
+                                <tr style="text-align: center">
+                                    <td id="td">10</td>
+                                    <td id="td">제목10</td>
+                                    <td id="td">작성자10</td>
+                                    <td id="td">날짜10</td>
+                                    <td id="td">조회수10</td>
+                                </tr>
+            
+                            </tbody>
+            
+                        </table>
+                    </div>
+                        
                     <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">최근 주문 정보</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">날짜/주문번호</th>
-                                        <th class="my_th" style="width: 45%;">상품명</th>
-                                        <th class="my_th" style="width: 15%;">포인트</th>
-                                        <th class="my_th" style="width: 15%;">주문상태</th>
-                                        <th class="my_th" style="width: 10%;">주문취소</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/07/06 <br>
-                                            <a href="../mypage/order_list.php" id="my_td02">2207069324820</a> <br>
-                                        </td> 
-                                        <td id="my_td01">상품 01</td>
-                                        <td id="my_td01">42,000P</td>
-                                        <td id="my_td01">승인 대기중</td>
-                                        <td id="my_td01">
-                                            <button type="button" class="btn btn-outline-secondary" id="mycbtn">주문 취소</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <ul class="pagination justify-content-center">
+                            <li class="page-item disabled" >
+                                <a class="page-link" href="#" >&laquo;</a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >4</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >5</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" style="color: #777777;" >&raquo;</a>
+                            </li>
+                            </ul>
+                        </div>
+            
+                        <div class="col-4 text-right">
+                            <button class="btn btn-light text-nowrap"><img src="../../IMG/Community/edit.png" style="height: 23px;"></button>
                         </div>
                     </div>
-                    <!-- 두번째 행 끝 -->
-
-                    <!-- 세번째 행 -->
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">내가 쓴 리뷰</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">작성일</th>
-                                        <th class="my_th" style="width: 45%;">컨텐츠명</th>
-                                        <th class="my_th" style="width: 30%;">내용</th>
-                                        <th class="my_th" style="width: 10%;">별점</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/09/01</td> 
-                                        <td id="my_td01">컨텐츠 01</td>
-                                        <td id="my_td01">내용~~~</td>
-                                        <td id="my_td01">4.0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- 세번째 행 끝 -->
-
-                    <!-- 네번째 행 -->
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">문의사항</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">작성일</th>
-                                        <th class="my_th" style="width: 45%;">제목</th>
-                                        <th class="my_th" style="width: 30%;">내용</th>
-                                        <th class="my_th" style="width: 10%;">답변여부</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/09/01</td> 
-                                        <td id="my_td01">제목 01</td>
-                                        <td id="my_td01">내용~~~</td>
-                                        <td id="my_td01">Y</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- 네번째 행 끝 -->
+            
+      
                 </div>
                 <!-- 컨테이너 끝 -->
             </div>
