@@ -18,6 +18,9 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
 
+    <!-- join CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/join.css">
+
     <title>Document</title>
 </head>
 <body>
@@ -82,6 +85,7 @@
 
     <div class="container">
         <div class="row">
+            <!-- 왼쪽 사이드메뉴 -->
             <div class="col-sm-2">
                 <div class="mySideMenu">
                     <h5 style="font-weight: 600;" >마이 페이지</h5>
@@ -102,153 +106,137 @@
                 </div>
             </div>
 
+            <!-- 오른쪽 컨텐츠 -->
             <div class="col-sm-10">
                 <!-- 컨테이너 -->
                 <div class="container">
       
                     <!-- 첫번째 행 -->
                     <div class="row">
-                        <div class="col-sm-12">
-                            <!-- 카드 그룹 -->
-                            <div class="card-group">
-                                <!-- 첫번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">ooo 님</h5>
-                                        <p class="card-text">
-                                            환영합니다.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- 두번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">마일리지</h5>
-                                        <p class="card-text"> 
-                                            <a href="../mypage/mileage.php">1,000 원</a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- 세번째 카드 -->
-                                <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
-                                    <div class="card-body">
-                                        <h5 class="card-title">내가 쓴 리뷰</h5>
-                                        <p class="card-text">
-                                            <a href="../mypage/money.php">0 개</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- 카드그룹 끝 -->
+                        <div class="col-sm-12" style="margin-top: 40px;">
+                            <form style="margin-bottom: 3px;">
+                                <h5 style="font-weight: 600;" >개인 정보 변경</h5>
+                                <hr>
+                            </form>
                         </div>
+                    </div>
+
+
+                    <div class="base_info_sec px-4">
+                        <table>
+                            <colgroup >
+                                <col width="25%">
+                                <col width="75%">
+                            </colgroup>
+                            <tbody>
+                            <tr>
+                                <th><span>아이디</span></th>
+                                <td>아이디</td>
+                            
+                            </tr>
+                            <tr class="">
+                                <th><span>비밀번호</span></th>
+                                <td>
+                                    <div class="member_warning">
+                                        <input type="password" id="newPassword" name="memPw" autocomplete="off" placeholder="" required><br>(영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
+                                        <label for="" id="pwd_chk1"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="">
+                                <th><span class="important">비밀번호 확인</span></th>
+                                <td>
+                                    <div>
+                                        <input type="password" id="checkPassword" class="check-id" name="memPwRe" autocomplete="off" required>
+                                        <label for="" id="pwd_chk2"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><span class="important">이름</span></th>
+                                <td>
+                                    <div class="member_warning">
+                                        <input type="text" name="memNm" data-pattern="gdEngKor" maxlength="30" required>
+                                        <label for="" id="name_chk"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td class="member_email">
+                                    <div>
+                                        <input type="text" name="email" id="email" tabindex="-1" required>
+                                        <select id="emailDomain" name="emailDomain" class="chosen_select">
+                                            <option value="self" selected="selected">직접입력</option>
+                                            <option value="naver.com">naver.com</option>
+                                            <option value="hanmail.net">hanmail.net</option>
+                                            <option value="daum.net">daum.net</option>
+                                            <option value="nate.com">nate.com</option>
+                                            <option value="hotmail.com">hotmail.com</option>
+                                            <option value="gmail.com">gmail.com</option>
+                                            <option value="icloud.com">icloud.com</option>
+                                        </select>
+                                        <label for="" id="email_chk"></label>
+                                        <input type="button" name="emailCheck" id="emailCheck" value="인증하기" style="background-color: white; border: 1px solid lightgrey; height:31px;"/>
+                                          <br>
+                                          <input
+                                            type="text"
+                                            name="emailConfirm"
+                                            id="emailConfirm"
+                                            placeholder="인증번호를 입력해주세요."
+                                            style="visibility: hidden"
+                                          />
+                                          <input
+                                            type="button"
+                                            name="btnEmailConfirm"
+                                            id="btnEmailConfirm"
+                                            value="인증번호확인"
+                                            style="visibility: hidden;"
+                                          />
+                                          <input type="hidden" name="emailTest" value="0" />
+                                          <br />
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>휴대폰번호</th>
+                                <td class="member_address">
+                                    <div class="address_postcode">
+                                        <input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" required>
+                                        <label for="" id="phone_chk"></label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td class="member_address">
+                                    <div class="address_postcode">
+                                        <input type="text" name="zonecode" readonly="readonly" value="" required>
+                                        <button type="button" id="btnPostcode" class="btn_post_search" style="background-color: white; border: 1px solid lightgrey;" >우편번호검색</button>
+                                        <input type="hidden" name="zipcode" value="">
+                                    </div>
+                                    <div class="address_input">
+                                        <div class="member_warning">
+                                            <input type="text" id="address" name="address" required>
+                                        </div>
+                                        <div class="member_warning js_address_sub">
+                                            <input type="text" name="addressSub" value="">
+                                            <label for="" id="address_chk"></label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary">수정하기</button>
+                        <button class="btn btn-primary">취소하기</button>
+
                     </div>
                     <!-- 행 끝 -->
       
-                    <!-- 두번째 행 -->
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">최근 주문 정보</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">날짜/주문번호</th>
-                                        <th class="my_th" style="width: 45%;">상품명</th>
-                                        <th class="my_th" style="width: 15%;">포인트</th>
-                                        <th class="my_th" style="width: 15%;">주문상태</th>
-                                        <th class="my_th" style="width: 10%;">주문취소</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/07/06 <br>
-                                            <a href="../mypage/order_list.php" id="my_td02">2207069324820</a> <br>
-                                        </td> 
-                                        <td id="my_td01">상품 01</td>
-                                        <td id="my_td01">42,000P</td>
-                                        <td id="my_td01">승인 대기중</td>
-                                        <td id="my_td01">
-                                            <button type="button" class="btn btn-outline-secondary" id="mycbtn">주문 취소</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- 두번째 행 끝 -->
-
-                    <!-- 세번째 행 -->
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">내가 쓴 리뷰</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">작성일</th>
-                                        <th class="my_th" style="width: 45%;">컨텐츠명</th>
-                                        <th class="my_th" style="width: 30%;">내용</th>
-                                        <th class="my_th" style="width: 10%;">별점</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/09/01</td> 
-                                        <td id="my_td01">컨텐츠 01</td>
-                                        <td id="my_td01">내용~~~</td>
-                                        <td id="my_td01">4.0</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- 세번째 행 끝 -->
-
-                    <!-- 네번째 행 -->
-                    <div class="row">
-                        <div class="col-sm-12" style="margin-top: 50px;">
-                            <form id="myForm01">
-                                <div class="row">
-                                    <div id="mySpan01" class="col-4">문의사항</div>
-                                    <div id="mySpan02" class="col-8 text-right pt-1">더 보기</div>
-                                </div>
-                            </form>
-                            <!-- 조회 테이블 -->
-                            <table class="ordertable">
-                                <thead id="my_thead01">
-                                    <tr>
-                                        <th class="my_th" style="width: 15%;">작성일</th>
-                                        <th class="my_th" style="width: 45%;">제목</th>
-                                        <th class="my_th" style="width: 30%;">내용</th>
-                                        <th class="my_th" style="width: 10%;">답변여부</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td id="my_td01">2022/09/01</td> 
-                                        <td id="my_td01">제목 01</td>
-                                        <td id="my_td01">내용~~~</td>
-                                        <td id="my_td01">Y</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- 네번째 행 끝 -->
                 </div>
                 <!-- 컨테이너 끝 -->
             </div>
