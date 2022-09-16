@@ -6,17 +6,10 @@
     }
 
     /* 로고 이미지 간격 조절 */
-    img {
+    .logoimg {
         padding-right: 8px;
+        width: 200px;
     }
-    
-    /* 컨테이너 너비 조절 
-    .container {
-    max-width: 1320px;
-    padding-left: 12px;
-    padding-right: 12px;
-    }
-    */
 
     /* 컨테이너 너비 조절 */
     .container-fluid {
@@ -77,6 +70,10 @@
         background-position: 12px 10px ;
         background-repeat: no-repeat
     } 
+
+    .form-control me-sm-2 {
+        width: 200px;
+    }
 
     /* 링크 파랑색 밑줄 효과 삭제 */
     a:link {
