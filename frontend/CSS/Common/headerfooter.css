@@ -5,6 +5,14 @@
         system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     }
 
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+* { font-family: 'Noto Sans KR', sans-serif; } */
+
+/* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;400;500;600;700;800;900&display=swap');
+* { font-family: 'Gothic A1', sans-serif;}  */
+
+* { font-size: 17px;}
+
     /* 로고 이미지 간격 조절 */
     .logoimg {
         padding-right: 8px;
