@@ -262,3 +262,351 @@ REFERENCES MEMBER (
 	M_NO
 );
 
+-- 테스트 값 
+CREATE SEQUENCE CONTENTS_SEQ
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+       
+CREATE SEQUENCE RATE_SEQ
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'공조2: 인터내셔날', 
+'영화',
+'액션',
+2022,
+'한국', 
+'개요',
+'공조 이즈 백! 이번엔 삼각 공조다! 남한으로 숨어든 글로벌 범죄 조직을 잡기 위해 새로운 공조 수사에 투입된 북한 형사 ‘림철령’(현빈).',
+'rgb(155,155,155)',
+'공조 포스터 원본명',
+'공조 포스터 변경명',
+'공조 프로필 포스터 원본명',
+'공조 프로필 포스터 변경명',
+'http:dfjkdsjfl.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'모가디슈', 
+'영화',
+'액션',
+2022,
+'한국', 
+'개요',
+'내전으로 고립된 낯선 도시, 모가디슈 지금부터 우리의 목표는 오로지 생존이다! 대한민국이 UN가입을 위해 동분서주하던 시기 1991년 소말리아의 수도 모가디슈에서는 일촉즉발의 내전이 일어난다.',
+'rgb(120,120,120)',
+'모가디슈 포스터 원본명',
+'모가디슈 포스터 변경명',
+'모가디슈 프로필 포스터 원본명',
+'모가디슈 프로필 포스터 변경명',
+'http:htorejwlj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'놉', 
+'영화',
+'미스터리',
+2022,
+'미국', 
+'개요',
+'거대하고, 주목받길 원하고, 미쳤다. 나쁜 기적이라는 것도 있을까? ',
+'rgb(100,100,100)',
+'놉 포스터 원본명',
+'놉 포스터 변경명',
+'놉 프로필 포스터 원본명',
+'놉 프로필 포스터 변경명',
+'http:dkfjsldj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'외모지상주의', 
+'웹툰',
+'드라마',
+2022,
+'한국', 
+'개요',
+'못생기고 뚱뚱하다고 괴롭힘을 당하며 루저 인생만 살아온 내가 잘생겨졌다는 이유로 인싸가 됐다.',
+'rgb(50,50,50)',
+'외모지상주의 포스터 원본명',
+'외모지상주의 포스터 변경명',
+'외모지상주의 프로필 포스터 원본명',
+'외모지상주의 프로필 포스터 변경명',
+'http:djfdskjflsd.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'외모지상주의', 
+'웹툰',
+'드라마',
+2022,
+'한국', 
+'개요',
+'못생기고 뚱뚱하다고 괴롭힘을 당하며 루저 인생만 살아온 내가 잘생겨졌다는 이유로 인싸가 됐다.',
+'rgb(50,50,50)',
+'외모지상주의 포스터 원본명',
+'외모지상주의 포스터 변경명',
+'외모지상주의 프로필 포스터 원본명',
+'외모지상주의 프로필 포스터 변경명',
+'http:djfdskjflsd.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'99강화나무몽둥이', 
+'웹툰',
+'판타지',
+2022,
+'한국', 
+'개요',
+'약육강식이 진리인 가상 현실 게임 '크로노 라이프'. 허접이라며 무시만 당하던 '나'는 우연히 얻은 초보용 기본 무기 '나무 뭉둥이' 를 +99 강화까지 성공하게 되고,',
+'rgb(70,70,70)',
+'강화나무몽둥이 포스터 원본명',
+'강화나무몽둥이 포스터 변경명',
+'강화나무몽둥이 프로필 포스터 원본명',
+'강화나무몽둥이 프로필 포스터 변경명',
+'http:wqjklldf.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'으라차차내인생', 
+'드라마',
+'드라마',
+2022,
+'한국', 
+'개요',
+'조카의 엄마가 되기로 선택한 싱글맘, 서동희가 세상을 향해 펼치는 고군분투기를 담은 드라마',
+'rgb(50,50,50)',
+'으라차차내인생 포스터 원본명',
+'으라차차내인생 포스터 변경명',
+'으라차차내인생 프로필 포스터 원본명',
+'으라차차내인생 프로필 포스터 변경명',
+'http:wqjklldf.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'황금가면', 
+'드라마',
+'드라마',
+2022,
+'한국', 
+'개요',
+'그릇된 욕망과 탐욕이 빚어낸 비극으로, 세 여자의 광기 어린 싸움 속에서 삶의 해답을 찾아가는 이야기',
+'rgb(50,50,50)',
+'황금가면 포스터 원본명',
+'황금가면 포스터 변경명',
+'황금가면 프로필 포스터 원본명',
+'황금가면 프로필 포스터 변경명',
+'http:dkfjsldj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'아버지의해방일지', 
+'도서',
+'소설',
+2022,
+'한국', 
+'개요',
+'소설은 ‘전직 빨치산’ 아버지의 죽음 이후 3일간의 시간만을 현재적 배경으로 다루지만, 장례식장에서 얽히고설킨 이야기를 따라가다보면 해방 이후 70년 현대사의 질곡이 생생하게 드러난다.',
+'rgb(50,50,50)',
+'아버지의해방일지 포스터 원본명',
+'아버지의해방일지 포스터 변경명',
+'아버지의해방일지 프로필 포스터 원본명',
+'아버지의해방일지 프로필 포스터 변경명',
+'http:dsjfjdsfj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'역행자', 
+'도서',
+'자기계발서',
+2022,
+'한국', 
+'개요',
+'대부분의 사람들은 유전자와 본성의 명령을 그대로 따르기 때문에 평범함을 벗어날 수 없다. 하지만 정작 자신은 이를 모른 채 ‘나는 달라’ 하는 자의식에 사로잡혀서 무한 합리화에 빠져 살아간다. ',
+'rgb(50,50,50)',
+'역행자 포스터 원본명',
+'역행자 포스터 변경명',
+'역행자 프로필 포스터 원본명',
+'역행자 프로필 포스터 변경명',
+'http:dsjfjdsfj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO CONTENTS
+VALUES 
+(CONTENTS_SEQ.NEXTVAL, 
+'하얼빈', 
+'도서',
+'역사소설',
+2022,
+'한국', 
+'개요',
+'"나는 안중근의 대의보다도 실탄 일곱 발과 여비 백 루블을 지니고 블라디보스토크에서 하얼빈으로 향하는 그의 가난과 청춘과 그의 살아 있는 몸에 관하여 말하려 했다." ',
+'rgb(50,50,50)',
+'하얼빈 포스터 원본명',
+'하얼빈 포스터 변경명',
+'하얼빈 프로필 포스터 원본명',
+'하얼빈 프로필 포스터 변경명',
+'http:dsjfjdsfj.com',
+SYSDATE,
+'Y'
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+01,
+01,
+3.5,
+'너무 재미있다.',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+01,
+02,
+3.5,
+'매우 재미있다.',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+01,
+03,
+3.5,
+'아주 재미있다.',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+02,
+04,
+3.5,
+'그냥 그렇다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+02,
+05,
+3.5,
+'그냥 그렇다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+02,
+06,
+3.5,
+'그냥 그렇다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+03,
+07,
+3.5,
+'재밌다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+03,
+08,
+3.5,
+'재밌다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+03,
+09,
+3.5,
+'재밌다',
+SYSDATE,
+7
+);
+
+INSERT INTO RATE
+VALUES 
+(RATE_SEQ.NEXTVAL, 
+04,
+10,
+3.5,
+'유익',
+SYSDATE,
+7
+);
