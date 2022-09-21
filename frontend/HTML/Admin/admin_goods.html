@@ -143,119 +143,35 @@
 
         <!-- 관리자 페이지 메인화면 -->
         <div class="col-10 p-4">
-          <h1><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 회원관리</font></font></h1>
+          <h1><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 상품관리</font></font></h1>
           <hr>
           <!-- 카드 리스트 Row -->
             <div class="row">
-              <table class="table table-sm table-hover">
+              <table class="table table-hover">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">가입일</th>
-                    <th scope="col">회원상태</th>
-                    <th scope="col">회원정보수정</th>
-                    <th scope="col">회원 비활성화 적용</th>
+                    <th scope="col">상품번호</th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">상품이미지</th>
+                    <th scope="col">상품리뷰관리</th>
+                    <th scope="col">상품상태 수정</th>
+                    <th scope="col">상품판매 비활성화 적용</th>
                   </tr>
                 </thead>
-                
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
+                    <th scope="row" class="align-middle">1</th>
+                    <td class="align-middle">테스트상품</td>
+                    <td><div id="admin_goods_imgbox"><img src="../../IMG/Admin/good1.jpg"></div></td>
+                    <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">리뷰관리</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">수정</button></td>
+                    <td class="align-middle"><button<div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                       </label>
                     </div></td>
                   </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button type="button" class="btn btn-primary btn-sm">수정</button></td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
+
                 </tbody>
               </table>
             </div>
@@ -267,6 +183,7 @@
 </div>
 
 <hr>
+
 
     <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
