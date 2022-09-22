@@ -4,7 +4,6 @@ body {
 
 * {
     box-sizing: border-box;
-    margin-left: 5px;
 }
 
 p,
@@ -16,7 +15,7 @@ a {
     color: black;
 }
 
-img {
+.cart img {
     display: block;
     width: 80%;
     height: 80px;
@@ -120,14 +119,15 @@ td {
     text-align: center;
 }
 
-.cart__list__detail :nth-child(5) button {
+.orderbtn {
     background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
     padding: 4px 8px;
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 5px;
+    margin-bottom: 1px;
 }
 
 .price {
