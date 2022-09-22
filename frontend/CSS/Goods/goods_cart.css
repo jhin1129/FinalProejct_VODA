@@ -15,7 +15,7 @@ a {
     color: black;
 }
 
-img {
+.cart img {
     display: block;
     width: 80%;
     height: 80px;
@@ -158,4 +158,5 @@ td {
     background-color: black;
     color: white;
     border: none;
+    margin-left: 1px;
 }
