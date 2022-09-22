@@ -4,7 +4,7 @@
 }
 
 #sidebar_col {    
-    max-height: 100vh;}
+    max-height: 100%;}
 
 /* 메뉴 호버 색상 */
 nav-link {color:#495FE9 ;}
@@ -25,11 +25,15 @@ svg {width: 21px; height: 21px;}
 .border-left-info {border-left: 0.25rem solid #36b9cc!important;}
 
 /* 게시판 테이블 관련 */
-tr {text-align: center;}
-td {text-align: center;}
+tr {text-align: center; vertical-align: middle;}
+td {text-align: center; vertical-align: middle;}
+
 
 /* 상품관리페이지 관련 */
-#admin_goods_imgbox img {width: 100px; height: 100px;}
+#admin_goods_imgbox img {width: 50px; height: 50px;}
 
 /* 파이차트 관련 */
 #pie_chart {font-size: 1px;}
+
+/* 통계 관련 */
+.total_table {display: inline;}
