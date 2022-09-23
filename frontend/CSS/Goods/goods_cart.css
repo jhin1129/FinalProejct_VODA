@@ -63,6 +63,11 @@ td {
     border-bottom: 1px solid lightgrey;
 }
 
+.number_input {
+    width: 45px;
+    height: 20px;
+}
+
 .cart__list__detail :nth-child(3) {
     vertical-align: top;
 }
