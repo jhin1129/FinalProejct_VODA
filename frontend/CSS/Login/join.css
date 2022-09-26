@@ -401,6 +401,7 @@
         background-color: transparent;
         text-decoration: none;
         color: inherit;
+        border: 0;
     }
 
     .terms-view::after {
