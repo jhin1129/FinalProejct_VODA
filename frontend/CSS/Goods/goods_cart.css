@@ -29,10 +29,10 @@ a {
 }
 
 .cart ul {
-    background-color: whitesmoke;
+    background-color: rgb(235, 236, 240);
     padding: 30px;
     margin-bottom: 50px;
-    border: whitesmoke solid 1px;
+    border: rgb(235, 236, 240) solid 1px;
     border-radius: 5px;
     font-size: 13px;
     font-weight: 300;
@@ -53,6 +53,7 @@ thead {
     text-align: center;
     font-weight: bold;
 }
+
 
 tbody {
     font-size: 12px;
@@ -144,12 +145,13 @@ td {
     padding-top: 40px;
     display: block;
     margin: auto;
+    margin-left: 35%;
 }
 
 .cart__bigorderbtn {
     width: 200px;
     height: 50px;
-    font-size: 16px;
+    font-size: 15px;
     margin: auto;
     border-radius: 5px;
 }
@@ -164,4 +166,84 @@ td {
     color: white;
     border: none;
     margin-left: 1px;
+}
+
+
+.btn-primary {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    width: 200px;
+    height: 50px;
+    
+}
+
+.btn-primary:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-primary1 {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    font-size: 12px;
+    
+}
+
+.btn-primary1:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-primary2 {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    font-size: 12px;
+    
+}
+
+.btn-primary2:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-back {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+    width: 200px;
+    height: 50px;
+
+    
+}
+
+.btn-back:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+}
+
+.btn {
+
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+}
+
+.btn-light:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+    
+
 }

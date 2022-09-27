@@ -59,6 +59,8 @@ button:focus {
     background-color: #f8f9fa;
     border: #f8f9fa;
     color: #55585c;
+    width: 180px;
+    height: 50px;
 }
 
 .btn-light:hover {
