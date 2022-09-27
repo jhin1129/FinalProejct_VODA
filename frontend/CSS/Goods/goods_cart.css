@@ -141,11 +141,11 @@ td {
 
 .cart__mainbtns {
     width: 420px;
-    height: 200px;
-    padding-top: 40px;
-    display: block;
+    height: 150px;
+    display: flex;
     margin: auto;
-    margin-left: 35%;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart__bigorderbtn {
@@ -175,7 +175,7 @@ td {
     background-color: #495FE9;
     width: 200px;
     height: 50px;
-    
+    margin-left: 5px;
 }
 
 .btn-primary:hover {

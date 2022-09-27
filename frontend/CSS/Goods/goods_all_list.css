@@ -104,11 +104,11 @@ header, footer, main, article, section, aside, nav {
 
 strong {
   font-weight: 600; }
- 
+
 #carouselExampleIndicators {
   width: 73%;
-  margin-left: 206px;
-  margin-top: 30px;
+  margin: 0 auto;
+  margin-top: 50px;
 
 }
 #crs {
