@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/spacelab/bootstrap.min.css" integrity="sha384-F1AY0h4TrtJ8OCUQYOzhcFzUTxSOxuaaJ4BeagvyQL8N9mE4hrXjdDsNx249NpEc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         
@@ -19,15 +19,46 @@
             outline: none;
         }
 
-
         button:focus {
-        box-shadow: none !important;
-        }
-
-        .page-link, .form-control {
-
             box-shadow: none !important;
         }
+
+        .btn-primary {
+            color: #fff;
+            border-color: #495FE9;
+            background-color: #495FE9;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b27db !important;
+            border-color: #0b27db;
+            color: #fff !important;
+        }
+
+        .btn {
+
+            transition: background 0.2s ease-in-out,
+                        color 0.2s ease-in-out;
+        }
+
+        .btn-light {
+            background-color: #f8f9fa;
+            border: #f8f9fa;
+            color: #55585c;
+        }
+
+        .btn-light:hover {
+            background-color: #e6e6e6 !important;
+            border-color: #e6e6e6 !important;
+            color: #55585c !important;
+            
+
+        }
+
+        .table-active, .table-active>td, .table-active>th {
+            background-color: rgb(235, 236, 240);
+        }
+
 
 
     </style>
@@ -39,8 +70,12 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
     
+    <!-- summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>question_brd_list</title>
+    <title>free_brd_crud</title>
+
 
 </head>
 <body>
@@ -104,166 +139,103 @@
         <!-- 헤더 끝 -->
 
     <!-- 내용 전체 컨테이너 -->
-    <div class="container my-5">
+    <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #444343; font-size: 1.5rem;">Q&A</h3>
+            <h3 style="text-align: center; color: #444343; font-size: 1.5rem;">상품 등록</h3>
         </div>
+        <!-- 후기글 전체 -->
+        <div class="mt-5" style="border: 1px solid rgb(238, 233, 233);">
 
-        <div class="mt-5">
-            <table class="table table-hover">
-                <thead>
-                    <tr  style="text-align: center">
-                        <th id="th" style="width: 5%;">No.</th>
-                        <th id="th" style="width: 45%;">Subject</th>
-                        <th id="th" style="width: 10%;">Answer</th>
-                        <th id="th" style="width: 15%;">Poster</th>
-                        <th id="th" style="width: 15%;">Date</th>
-                    </tr>
-                </thead>
+            <div>
+                <table class="table m-0">
+                    <thead>
+                        <tr>
+                            <th class="table-active" style="width: 20%;">상품명</th>
+                            <td style="width: 80%;"><input type="text" placeholder="상품명을 입력해주세요." style="width: 80%;">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="table-active">카테고리</th>
+                            <td><input type="text" placeholder="상품 카테고리를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">상품번호</th>
+                            <td><input type="text" placeholder="상품 번호를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">배송예정일</th>
+                            <td>SYSDATE + 2 값 넣기</td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">제조사</th>
+                            <td><input type="text" placeholder="제조사를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">원산지</th>
+                            <td><input type="text" placeholder="원산지를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">상품 전체 수량</th>
+                            <td><input type="text" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">상품 가격</th>
+                            <td><input type="text" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">File</th>
+                            <td>
+                                <button class="btn btn-light py-0" style="color: #55585c">파일 선택</button>
+                                <label>선택된 파일이 없습니다.</label>
+                            </td>
+                        </tr>
+                    </tbody>
 
-                <tbody>
-                    <tr  style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td">제목1</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">admin</td>
-                        <td id="td">2022-09-06</td>
-                    </tr>
-
-                    <tr  style="text-align: center; cursor:pointer;">
-                        <td id="td">2</td>
-                        <td id="td">제목2</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">작성자2</td>
-                        <td id="td">날짜2</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">3</td>
-                        <td id="td">제목3</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">작성자3</td>
-                        <td id="td">날짜3</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">4</td>
-                        <td id="td">제목4</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자4</td>
-                        <td id="td">날짜4</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">5</td>
-                        <td id="td">제목5</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자5</td>
-                        <td id="td">날짜5</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">6</td>
-                        <td id="td">제목6</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자6</td>
-                        <td id="td">날짜6</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">7</td>
-                        <td id="td">제목7</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자7</td>
-                        <td id="td">날짜7</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">8</td>
-                        <td id="td">제목8</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자8</td>
-                        <td id="td">날짜8</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">9</td>
-                        <td id="td">제목9</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자9</td>
-                        <td id="td">날짜9</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td">제목10</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-        </div>
-
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <ul class="pagination justify-content-center">
-                <li class="page-item disabled" >
-                    <a class="page-link" href="#" >&laquo;</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >4</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >5</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >&raquo;</a>
-                </li>
-                </ul>
+                </table>
             </div>
 
-            <div class="col-4 text-right">
-                <button class="btn btn-light text-nowrap"><img src="../../IMG/Community/edit.png" style="height: 23px;"></button>
-            </div>
-        </div>
 
+            <!-- 내용 -->
+            <div class="my-2 px-2">
 
-        <div class="search row mb-5">
-            <div class="col-xs-2 col-sm-2">
-                <select name="searchType" class="form-control">
-                    <option value="title" selected>Subject</option>
-                    <option value="title">Poster</option>
-                    <option value="title">Contents</option>
-                    <option value="title">Subject+Contents</option>
-                </select>
-            </div>
+                <div id="summernote"></div>
+                <script>
+                    $('#summernote').summernote({
+                        placeholder: '내용을 입력해주세요',
+                        focus: true,
+                        height: 400,
+                        toolbar: [
+                            // [groupName, [list of button]]
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['insert', ['picture', 'video']],
+                            ['height', ['height']]
+                        ],
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋음체', '바탕체'],
+                        // 추가한 폰트사이즈
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'],
+                        // 줄간격
+                        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0']
 
-            <div class="col-xs-10 col-sm-10">
-                <div class="input-group">
-                    <input type="text" name="searchInput" id="searchInput" class="form-control">
-                    <span class="input-group-btn" >
-                        <button id="searchBtn" class="btn btn-light text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
-                    </span>
+                    });
+                </script>
+
+                <div class="text-right mt-2">
+                    <button class="btn btn-primary py-1" style="width: 100px">Post</button>
+                    <button class="btn btn-light py-1" style="width: 100px; height: 36px;">Cancle</button>
                 </div>
-
             </div>
+        </div>
+
+        <div class="mb-5">
         </div>
     </div>
-
 
 
     <!-- 푸터 -->
@@ -315,4 +287,3 @@
     <!-- 푸터 끝-->
 </body>
 </html>
-
