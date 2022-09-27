@@ -55,9 +55,9 @@
 }
 
 /* 주문 테이블 */
-.ordertable{
+.mytable{
     width: 100%;
-    height: 90px;
+    margin-top: 5px;
     border: 1px solid lightgray;
     border-left: none;
     border-right: none;
@@ -65,66 +65,54 @@
     word-break: break-all;
 }
 
-.my_th{
+.table_thead{
+    height: 35px;
+}
+
+.table_th{
     background-color: rgba(238, 233, 233, 0.6);
     border-bottom: 1px solid lightgrey;
     font-size: 0.8em;
     font-weight: 600;
 }
 
+.table_td{
+    height: 55px;
+    text-align: center;
+    font-size: 0.8em;
+}
+/* 회원탈퇴 테이블 */
+.table_td label{
+    text-align: center;
+    font-size: 0.8em;
+}
+
 /* 컨네이너 폰트 */
-#mySpan01{
+.tabletitle{
     font-weight: 500;
     font-size: 1em;
 }
 
-#mySpan02{
+.tablesubtitle{
     color: grey;
     font-size: 0.75em;
     text-align: right;
 }
 
-#myForm01{
-    margin-bottom: 3px;
-}
-
-
-/* 조회 표 */
-#my_thead01{
-    height: 40px;
-}
-
-/* #my_th01{
-    width: 15%
-}
-
-#my_th02{
-    width: 50%
-}
-
-#my_th03{
-    width: 13%
-}
-
-#my_th04{
-    width: 13%
-}
-
-#my_th05{
-    width: 10%
-} */
-
-#my_td01{
-    padding-top: 5px;
-    height: 40px;
+.mycategory{
+    padding-top: 7px;
+    border: 1px solid grey;
+    border-right: none;
     text-align: center;
-    font-size: 0.8em;
 }
 
-#my_td02{
-    /* font-size: 0.9em; */
-    color: rgb(219, 156, 156);
-    text-decoration: underline;
+.base_info_sec *{
+    font-size: 1.0em;
+}
+
+.boardtable *{
+    font-size: 0.95em;
+    white-space: nowrap;
 }
 
 #mycbtn{
@@ -198,16 +186,6 @@
     border-right: none;
     text-align: center;
     word-break: break-all;
-}
-
-/* 문의 테이블 */
-.myinputtable{
-    width: 100%;
-    height: 90px;
-    border: 1px solid lightgray;
-    border-left: none;
-    border-right: none;
-    text-align: center;
 }
 
 #my_td03{

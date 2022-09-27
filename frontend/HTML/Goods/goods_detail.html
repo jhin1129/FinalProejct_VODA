@@ -13,6 +13,8 @@
     
     <!-- mainstyle CSS -->
     <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <link rel="stylesheet" type="text/css" href="../../CSS/Goods/goods_detail.css">
     <title>Document</title>
 </head>
 <body>
@@ -37,8 +39,15 @@
                         <li><a class="dropdown-item" href="#">WEBTOON</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">GOODS</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        GOODS
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
+                        <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">RANKING</a>
@@ -76,31 +85,31 @@
                 <div class="row g-0 p-5">
                     <!-- 이미지 -->
                     <div class="col-6" style="min-width: 254px; width: 100%;">
-                        <img style="background-color: black; width: 445px; height: 445px;" class="rounded-start">
+                        <img src="http://dwmdotori.godohosting.com/data/goods/22/06/25/1000001970/1000001970_detail_078.jpg" class="rounded-start">
                     </div>
                     <div class="col-1"></div>
                     <!-- 이미지 상세내용 -->
                     <div id="div1" class="col-5">
                         <div class="card-body py-0">
-                            <h4 class="card-title">상품명</h4>
-                            <p class="my-0">관련 영화</p>
+                            <h4 class="card-title">[이웃집 토토로]소품케이스(버스와토토로)</h4>
+                            <p class="my-0">이웃집 토토로</p>
                             <hr class="my-2">
                             <table style="width: 100%;">
                                 <tr>
                                     <td style="width: 30%;">자체상품코드</td>
-                                    <td>2-P-CB7788</td>
+                                    <td>12345678</td>
                                 </tr>
                                 <tr>
-                                    <td>상품평</td>
-                                    <td>5.0</td>
-                                </tr>
-                                <tr>
-                                    <td>택배 배송</td>
-                                    <td>2500원</td>
+                                    <td>제조사</td>
+                                    <td>ZEZOCOMPANY</td>
                                 </tr>
                                 <tr>
                                     <td>원산지</td>
-                                    <td>한국</td>
+                                    <td>수리남</td>
+                                </tr>
+                                <tr>
+                                    <td>배송예정일</td>
+                                    <td>SYSDATE + 2</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -138,18 +147,16 @@
                             <table class="my-2" style="width: 100%;">
                                 <tr>
                                     <td style="width: 50%;">
-                                        <div class="py-2 text-center"
-                                            style="border: 1px solid; width: 100%; height: 100%;">리뷰 확인</div>
+                                        <div class="py-2 text-center"><button class="btn-review">리뷰확인</button></div>
                                     </td>
                                     <td style="width: 50%;">
-                                        <div class="py-2 text-center"
-                                            style="border: 1px solid; width: 100%; height: 100%;">장바구니</div>
+                                        <div class="py-2 text-center"><button class="btn-cart">장바구니</button></div>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td colspan="2">
-                                        <div class="col-12 my-2 py-2 text-center" style="border: 1px solid;">구매하기</div>
+                                        <div><button class="btn btn-primary py-1">구매하기</button></div>
                                     </td>
                                 </tr>
                             </table>

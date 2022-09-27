@@ -23,9 +23,9 @@ a {
 }
 
 .cart {
-    width: 80%;
+    width: 100%;
     margin: auto;
-    padding: 30px;
+    margin-top: 20px;
 }
 
 .cart ul {
@@ -61,6 +61,11 @@ tbody {
 td {
     padding: 15px 0px;
     border-bottom: 1px solid lightgrey;
+}
+
+.number_input {
+    width: 45px;
+    height: 20px;
 }
 
 .cart__list__detail :nth-child(3) {
@@ -120,7 +125,7 @@ td {
 }
 
 .cart__list__detail :nth-child(5) button {
-    background-color: black;
+    background-color: rgb(90, 97, 224);
     color: white;
     border: none;
     border-radius: 5px;
@@ -155,7 +160,7 @@ td {
 }
 
 .cart__bigorderbtn.right {
-    background-color: black;
+    background-color: rgb(90, 97, 224);
     color: white;
     border: none;
     margin-left: 1px;
