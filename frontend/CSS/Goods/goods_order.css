@@ -138,8 +138,9 @@ td {
     width: 420px;
     height: 200px;
     padding-top: 40px;
-    display: block;
     margin: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .cart__bigorderbtn {
@@ -159,4 +160,99 @@ td {
     background-color: rgb(90, 97, 224);
     color: white;
     border: none;
+}
+
+.btn-primary {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    width: 200px;
+    height: 50px;
+    
+}
+
+.btn-primary:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-search {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    width: 110px;
+    height: 32px;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+
+.btn-search:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-back {
+    background-color: #f8f9fa;
+            border: #f8f9fa;
+            color: #55585c;
+    width: 200px;
+    height: 50px;
+
+    
+}
+
+.btn-back:hover {
+    background-color: #e6e6e6 !important;
+            border-color: #e6e6e6 !important;
+            color: #55585c !important;
+}
+
+.btn {
+
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+}
+
+.btn-light:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+    
+
+}
+
+.btn-primary1 {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    font-size: 12px;
+    
+}
+
+.btn-primary1:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-primary2 {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    font-size: 12px;
+    
+}
+
+.btn-primary2:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
 }
