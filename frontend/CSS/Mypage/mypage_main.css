@@ -5,20 +5,21 @@
     margin-bottom: 500px;
 }
 
-#myListMain{
+.mySideMenuTitle{
     font-weight: 700;
+    padding-left: 0px;
+}
+.mySideMenuTitle:hover{
+    color:#495FE9;
 }
 
-#mylist{
-    font-size: .9em;
+.mySideMenuSubTitle *{
+    font-size: 0.82em;
     list-style-type: none;
-    margin: 8px;
 }
 
-#sublist{
-    font-size: .85em;
-    color: black;
-    text-decoration-line: none;
+.mySideMenuSubTitle *:hover{
+    color:#495FE9;
 }
 
 /* 카드 */
