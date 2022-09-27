@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <!--BootStrap CSS-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <!--BootStrap JS-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    
+        <!-- mainstyle CSS -->
+        <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+    
+        <!-- join CSS -->
+        <link rel="stylesheet" type="text/css" href="../../CSS/People/peopleEnroll.css">
+    
+        <!-- Bootswatch  -->
+        <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script type="text/javascript">
+        $(function() {
+            $("#imgInp").on('change', function(){
+                readURL(this);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+            reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</head>
+<body>
+
+<br><br><br><b><br>
+
+<button class="terms-view" type="button" data-toggle="modal" data-target="#staticBackdrop3">인물 등록 버튼 클릭</button>
+<!-- Modal -->
+<div>
+    <style>
+        html {
+        line-height: 1.15;
+        }
+    
+        *,
+        :after,
+        :before,
+        legend,
+        td,
+        th {
+        padding: 0;
+        }
+        *,
+        :after,
+        :before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        }
+        canvas,
+        img,
+        video {
+        max-width: 100%;
+        }
+        [type='submit'] {
+        border-radius: 0;
+        }
+        img,
+        legend {
+        border: 0;
+        vertical-align: top;
+        }
+        html {
+        height: 100%;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        }
+        body {
+        height: 100%;
+        margin: 0;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: white;
+        }
+    
+    
+        .wrapper {
+        padding: 30px;
+        font-size: 14px;
+        line-height: 19px;
+        letter-spacing: -0.5px;
+        color: #666;
+        }
+
+
+
+        .base_info_sec table th {
+        text-align: left;
+        border-bottom: 1px solid #dcdcdc;
+        font-size: 14px;
+        }
+
+        .base_info_sec table th:first-child,
+        .base_info_sec table td:first-child {
+            border-left: none;
+        }
+
+        .base_info_sec table td {
+            padding: 15px 0 15px 15px;
+            border-bottom: 1px solid #dcdcdc;
+        }
+    
+
+        .base_info_sec table .form_element {
+            display: block;
+            margin-top: 5px;
+        }
+
+    </style>
+            <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">      
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="wrapper">
+                <main class="kakao_content">
+                    <article id="mainContent" class="kakao_article" style="padding-bottom: 0px;">
+                    <h2 class="screen_out">영화인 본문</h2>
+                    <div class="section_star">
+                            <div class="box_basic" data-tiara-layer="main" style="padding-left: 50px;">
+                        <div class="info_poster">
+                            <div class="thumb_img">
+                                <img  class="bg_img" id="blah" src="#" alt="" />
+                                <!-- <span class="bg_img" style="background-image:url(https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951)"></span> -->
+                            </div>
+                            <input type='file' id="imgInp" style="margin-top: 30px; width: 220px;"/>
+                        </div>
+
+                        <div class="base_info_sec">
+                            <table border="0" cellpadding="0" cellspacing="0" style="margin-left: 400px;">
+                                <colgroup>
+                                    <col width="25%">
+                                    <col width="75%">
+                                </colgroup>
+                                <tbody>
+                                <tr>
+                                    <th>
+                                        <span class="important">이름</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputName" class="sr-only">PeopleName</label>
+                                                <input type="text" class="form-control" id="inputName" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="important">직업</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputJob" class="sr-only">PeopleJob</label>
+                                                <input type="text" class="form-control" id="inputJob" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="important">데뷔</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputDebut" class="sr-only">PeopleDebut</label>
+                                                <input type="text" class="form-control" id="inputDebut" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="important">출생일</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputBirth" class="sr-only">PeopleBirth</label>
+                                                <input type="text" class="form-control" id="inputBirth" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="important">수상</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputAward" class="sr-only">PeopleAward</label>
+                                                <input type="text" class="form-control" id="inputAward" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span class="important">성별</span>
+                                    </th>
+                                    <td>
+                                        <form class="form-inline">
+                                            <div class="form-group mx-sm-3 mb-2">
+                                                <label for="inputGender" class="sr-only">PeopleGender</label>
+                                                <input type="text" class="form-control" id="inputGender" placeholder="">
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                
+                            </table>
+                        </div>  
+                        
+                        <div class="box_detailinfo">
+                    <div class="contents">
+                        <h4 class="screen_out">주요정보</h4>
+                        <div class="detail_filmoinfo" data-tiara-layer="filmo">
+                            <h5 class="tit_section" style="width: 950px;">필모그래피</h5>
+                            <ul class="list_thumbsub">
+                                <li>
+                                    <div class="item_thumbsub">
+                                        <div class="thumb_item" data-tiara-layer="thumb">
+                                            <img  class="contentsImg" id="contents" src="" alt="" />
+                                            <!-- <img src="https://img1.daumcdn.net/thumb/C256x376/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d" alt="늑대사냥" class="img_thumb"> -->
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <select class="custom-select custom-select-sm">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item_thumbsub">
+                                        <div class="thumb_item" data-tiara-layer="thumb">
+                                            <img  class="contentsImg" id="contents" src="" alt="" />
+                                            <!-- <img src="https://img1.daumcdn.net/thumb/C256x376/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d" alt="늑대사냥" class="img_thumb"> -->
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <select class="custom-select custom-select-sm">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item_thumbsub">
+                                        <div class="thumb_item" data-tiara-layer="thumb">
+                                            <img  class="contentsImg" id="contents" src="" alt="" />
+                                            <!-- <img src="https://img1.daumcdn.net/thumb/C256x376/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d" alt="늑대사냥" class="img_thumb"> -->
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <select class="custom-select custom-select-sm">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item_thumbsub">
+                                        <div class="thumb_item" data-tiara-layer="thumb">
+                                            <img  class="contentsImg" id="contents" src="" alt="" />
+                                            <!-- <img src="https://img1.daumcdn.net/thumb/C256x376/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d" alt="늑대사냥" class="img_thumb"> -->
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <select class="custom-select custom-select-sm">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item_thumbsub">
+                                        <div class="thumb_item" data-tiara-layer="thumb">
+                                            <img  class="contentsImg" id="contents" src="" alt="" />
+                                            <!-- <img src="https://img1.daumcdn.net/thumb/C256x376/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Fe3c34791317eefee49caec94c87a3b1bb24b0e8d" alt="늑대사냥" class="img_thumb"> -->
+                                        </div>
+                                        <div class="thumb_cont">
+                                            <select class="custom-select custom-select-sm">
+                                                <option selected>Open this select menu</option>
+                                                <option value="1">One</option>
+                                                <option value="2">Two</option>
+                                                <option value="3">Three</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    <div class="modal-footer" style="width: 950px;">
+                        <div class="text-right mt-2">
+                        <button type="button" class="btn btn-primary py-1" data-dismiss="modal" style="width: 100px">등록</button>
+                        <button type="button" class="btn btn-light py-1" data-dismiss="modal" style="width: 100px; height: 36px;">취소</button>
+                </div> 
+            </div>
+
+            </div>
+</div>
+
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+})
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
