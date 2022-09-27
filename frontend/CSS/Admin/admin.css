@@ -1,15 +1,34 @@
 /* 전체 컨테이너 */
-
 #admin_sidebar {  
 }
 
+
+/* 사이드메뉴 폰트 크기 및 옵션*/
+#admin_nav_title {
+    font-weight: 700;
+}
+#admin_nav_subtitle{
+    font-size: .9em;
+    list-style-type: none;
+    margin: 8px;
+    color: black;
+}
+#admin_nav_sublist{
+    font-size: .85em;
+    color: black;
+    text-decoration-line: none;
+}
 #sidebar_col {    
     max-height: 100%;}
 
 /* 메뉴 호버 색상 */
-nav-link {color:#495FE9 ;}
 a:hover {color:#495FE9 ;}
+#admin_nav_subtitle:hover {color:#495FE9 ;}
 ul .card-body {padding: 0px;}
+
+.nav-link {
+    padding: 0;
+}
 
 /* 네이게이션 줄높이 */
 .nav-item li {line-height: 21px;}
