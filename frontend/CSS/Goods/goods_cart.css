@@ -23,9 +23,9 @@ a {
 }
 
 .cart {
-    width: 80%;
+    width: 100%;
     margin: auto;
-    padding: 30px;
+    margin-top: 20px;
 }
 
 .cart ul {
@@ -61,6 +61,11 @@ tbody {
 td {
     padding: 15px 0px;
     border-bottom: 1px solid lightgrey;
+}
+
+.number_input {
+    width: 45px;
+    height: 20px;
 }
 
 .cart__list__detail :nth-child(3) {

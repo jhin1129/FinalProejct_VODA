@@ -25,6 +25,7 @@
 
         .btn-primary {
             color: #fff;
+            border-color: #495FE9;
             background-color: #495FE9;
         }
 
@@ -35,18 +36,20 @@
         }
 
         .btn {
+
             transition: background 0.2s ease-in-out,
                         color 0.2s ease-in-out;
         }
 
         .btn-light {
             background-color: #f8f9fa;
+            border: #f8f9fa;
             color: #55585c;
         }
 
         .btn-light:hover {
             background-color: #e6e6e6 !important;
-            border-color: #f8f9fa !important;
+            border-color: #e6e6e6 !important;
             color: #55585c !important;
             
 
@@ -56,11 +59,7 @@
             background-color: rgb(235, 236, 240);
         }
 
-        select {
-            outline: none;
-        }
 
-        
 
     </style>
 
@@ -75,7 +74,8 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>question_brd_crud</title>
+    <title>free_brd_crud</title>
+
 
 </head>
 <body>
@@ -131,6 +131,7 @@
                 <a class="text-nowrap" id="login" href="#">로그인</a>
                 <a class="text-nowrap" id="join"href="#">회원가입</a>
                 </div>
+    
             </div>
         </nav>
         </div>
@@ -141,7 +142,7 @@
     <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #444343; font-size: 1.5rem;">Q&A</h3>
+            <h3 style="text-align: center; color: #444343; font-size: 1.5rem;">상품 등록</h3>
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-5" style="border: 1px solid rgb(238, 233, 233);">
@@ -150,35 +151,44 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th class="table-active" style="width: 20%;">Overview</th>
-                            <td style="width: 80%;">
-                                <select style="width: 80%; height: 30px; color: gray;">
-                                    <option value="">회원/정보관리</option>
-                                    <option value="">주문/결제</option>
-                                    <option value="">배송</option>
-                                    <option value="">환불</option>
-                                    <option value="">컨텐츠 요청</option>
-                                    <option value="">기타</option>
-                                </select>
+                            <th class="table-active" style="width: 20%;">상품명</th>
+                            <td style="width: 80%;"><input type="text" placeholder="상품명을 입력해주세요." style="width: 80%;">
                             </td>
-
                         </tr>
                     </thead>
-
                     <tbody>
                         <tr>
-                            <th class="table-active">Subject</th>
-                            <td style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요." style="width: 80%;">
+                            <th class="table-active">카테고리</th>
+                            <td><input type="text" placeholder="상품 카테고리를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
-                            <th class="table-active">Poster</th>
-                            <td>마동석</td>
+                            <th class="table-active">상품번호</th>
+                            <td><input type="text" placeholder="상품 번호를 입력해주세요" style="width: 50%;"></td>
                         </tr>
-
+                        <tr>
+                            <th class="table-active">배송예정일</th>
+                            <td>SYSDATE + 2 값 넣기</td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">제조사</th>
+                            <td><input type="text" placeholder="제조사를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">원산지</th>
+                            <td><input type="text" placeholder="원산지를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">상품 전체 수량</th>
+                            <td><input type="text" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
+                        </tr>
+                        <tr>
+                            <th class="table-active">상품 가격</th>
+                            <td><input type="text" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
+                        </tr>
                         <tr>
                             <th class="table-active">File</th>
                             <td>
-                                <button class="btn btn-light py-0">파일 선택</button>
+                                <button class="btn btn-light py-0" style="color: #55585c">파일 선택</button>
                                 <label>선택된 파일이 없습니다.</label>
                             </td>
                         </tr>
@@ -217,8 +227,8 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-primary py-1" style="width: 100px">Save</button>
-                    <button class="btn btn-light py-1" style=" width: 100px;">Cancle</button>
+                    <button class="btn btn-primary py-1" style="width: 100px">Post</button>
+                    <button class="btn btn-light py-1" style="width: 100px; height: 36px;">Cancle</button>
                 </div>
             </div>
         </div>
@@ -226,6 +236,7 @@
         <div class="mb-5">
         </div>
     </div>
+
 
     <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
@@ -276,4 +287,3 @@
     <!-- 푸터 끝-->
 </body>
 </html>
-
