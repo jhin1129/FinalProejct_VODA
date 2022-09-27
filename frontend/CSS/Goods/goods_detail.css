@@ -1,28 +1,70 @@
-.reviewbtn {
-    background-color: rgb(90, 97, 224);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 60px;
-    font-size: 15px;
-}
-.cartbtn {
-    background-color: rgb(90, 97, 224);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 15px 60px;
-    font-size: 15px;
-}
-.orderbtn {
-    background-color: rgb(90, 97, 224);
-    color: white;
-    border: none;
-    border-radius: 5px;
 
-    font-size: 15px;
-    width: 353px;
-    margin-left: 2px;
-    text-align: center;
+button:focus {
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    width: 363px;
     height: 50px;
+}
+
+.btn-primary:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-review {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    font-size: 15px;
+}
+
+.btn-review:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn-cart {
+    color: #fff;
+    border-color: #495FE9;
+    background-color: #495FE9;
+    width: 180px;
+    height: 50px;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+.btn-cart:hover {
+    background-color: #0b27db !important;
+    border-color: #0b27db;
+    color: #fff !important;
+}
+
+.btn {
+
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+}
+
+.btn-light {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+}
+
+.btn-light:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+    
+
 }
