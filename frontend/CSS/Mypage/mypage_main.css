@@ -5,25 +5,26 @@
     margin-bottom: 500px;
 }
 
-#myListMain{
+.mySideMenuTitle{
     font-weight: 700;
+    padding-left: 0px;
+}
+.mySideMenuTitle:hover{
+    color:#495FE9;
 }
 
-#mylist{
-    font-size: .9em;
+.mySideMenuSubTitle *{
+    font-size: 0.82em;
     list-style-type: none;
-    margin: 8px;
 }
 
-#sublist{
-    font-size: .85em;
-    color: black;
-    text-decoration-line: none;
+.mySideMenuSubTitle *:hover{
+    color:#495FE9;
 }
 
 /* 카드 */
 .card-group{
-    margin-top: 40px;
+    margin-top: 20px;
     color: black;
 }
 
@@ -31,7 +32,7 @@
     height: 40px;
     width: 40px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 0px;
 }
 
@@ -42,7 +43,7 @@
     margin-top: 15px;
 }
 
-.card{
+.card{  
     text-align: center;
 }
 
@@ -54,7 +55,11 @@
     font-size: 0.9em;
 }
 
-/* 주문 테이블 */
+.card-text *{
+    font-size: 0.9em;
+}
+
+/* 테이블 */
 .mytable{
     width: 100%;
     margin-top: 5px;
@@ -70,24 +75,45 @@
 }
 
 .table_th{
-    background-color: rgba(238, 233, 233, 0.6);
+    /* background-color: rgba(238, 233, 233, 0.6); */
     border-bottom: 1px solid lightgrey;
     font-size: 0.8em;
     font-weight: 600;
 }
 
 .table_td{
+    border-bottom: 1px solid lightgrey;
     height: 55px;
-    text-align: center;
     font-size: 0.8em;
 }
-/* 회원탈퇴 테이블 */
-.table_td label{
+/* 구매내역 테이블 */
+.paytable{
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid lightgray;
+    border-left: none;
+    border-right: none;
     text-align: center;
+    word-break: break-all;
+}
+
+.paytable_thead{
+    height: 35px;
+}
+
+.paytable_th{
+    /* background-color: rgba(238, 233, 233, 0.6); */
+    border-bottom: 1px solid lightgrey;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.paytable_td{
+    height: 55px;
     font-size: 0.8em;
 }
 
-/* 컨네이너 폰트 */
+/* 테이블 제목 폰트 */
 .tabletitle{
     font-weight: 500;
     font-size: 1em;
@@ -99,22 +125,8 @@
     text-align: right;
 }
 
-.mycategory{
-    padding-top: 7px;
-    border: 1px solid grey;
-    border-right: none;
-    text-align: center;
-}
 
-.base_info_sec *{
-    font-size: 1.0em;
-}
-
-.boardtable *{
-    font-size: 0.95em;
-    white-space: nowrap;
-}
-
+/* 주문취소버튼 */
 #mycbtn{
     background-color: rgb(255, 255, 255); 
     color: black; 
@@ -123,77 +135,13 @@
     padding: 3px;
 }
 
-/* 진행 중인 주문 */
-#mying1{
-    padding: 10px;
-}
-
-#mying2{
-    /* margin-inline: 40px; */
-    /* border: 1px solid lightpink; */
-    background-color: rgba(238, 233, 233, 0.6);
-    border-radius: 40px;
-    height: 50px;
-    padding: 15px;
-}
-
-#mying3{
-    /* margin-inline: 40px; */
-    border: 1px dotted rgb(238, 233, 233);;
-    height: 1px;
-    margin-block: 23px;
-}
-
-/* 기간 검색 */
-.mySearchDate{
-    border: 1px solid lightgray;
-    height: 100px;
+/* 회원탈퇴 테이블 */
+.table_td label{
     text-align: center;
-    font-size: 0.85em;
-    padding-top: 30px;
-}
-
-.mySearchDate2{
-    border: 1px solid lightgray;
-    height: 140px;
-    text-align: center;
-    font-size: 0.85em;
-    padding-top: 20px;
-}
-
-/* 기간 검색 구간 */
-.btnsearch{
-    text-align: center;
-    background-color: white;
-    font-size: 1em;
-    margin-bottom: 40px;
-}
-
-/* 기간 검색 버튼 */
-.btn-outline-secondary{
-    border: 1px solid lightgray;
-    margin-bottom: 3px;
-    border-radius: 1px;
-    height: 34px;
-}
-
-/* 문의 테이블 */
-.qnatable{
-    width: 100%;
-    height: 90px;
-    border: 1px solid lightgray;
-    border-left: none;
-    border-right: none;
-    text-align: center;
-    word-break: break-all;
-}
-
-#my_td03{
-    height: 70px;
     font-size: 0.8em;
-    border-bottom: 1px solid lightgray;
 }
 
+/* 회원탈퇴 남기실말씀 */
 .mytextarea{
     width: 98%; 
     height: 90%; 
@@ -201,34 +149,16 @@
     margin-top: 5px;
 }
 
-/* 주문 상세 테이블 */
-.mydetailtable{
-    width: 100%;
-    height: 70px;
-    border: 1px solid lightgray;
-    border-left: none;
+/* 컨텐츠 카테고리 */
+.mycategory{
+    padding-top: 7px;
+    border: 1px solid grey;
     border-right: none;
-    text-align: left;
+    text-align: center;
 }
 
-#my_th06{
-    width : 13%;
-    padding-left: 10px;
+.boardtable *{
+    font-size: 0.95em;
+    white-space: nowrap;
 }
 
-#my_td04{
-    height: 50px;
-    line-height: 25px;
-    font-size: 0.8em;
-    border-bottom: 1px solid lightgray;
-    padding-left: 10px;
-}
-
-/* 기타 */
-
-#my_td00{
-    height: 50px;
-    line-height: 25px;
-    font-size: 0.8em;
-    border-bottom: 1px solid lightgray;
-}
