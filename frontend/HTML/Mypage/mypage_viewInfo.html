@@ -18,6 +18,9 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
 
+    <!-- my CSS -->
+    <link rel="stylesheet" href="../../CSS/Common/btn.css">
+
 
     <title>Document</title>
 </head>
@@ -88,19 +91,64 @@
                 <div class="mySideMenu">
                     <h5 style="font-weight: 600;" >마이 페이지</h5>
                     <hr>
-                    <p id="myListMain"> 구매 정보 </p> 
-                        <li id="mylist"><a id="sublist">- 주문 / 배송 조회</a></li>
-                        <li id="mylist"><a id="sublist">- 취소 / 반품 내역</a></li><br>
-                    <p id="myListMain"> 회원 정보 </p> 
-                        <li id="mylist"><a id="sublist">- 포인트 조회</a></li>
-                        <li id="mylist"><a id="sublist">- 회원 정보 조회 / 변경 </a></li>
-                        <li id="mylist"><a id="sublist">- 회원 탈퇴 </a></li><br>
-                    <p id="myListMain"> 나의 컨텐츠</p> 
-                        <li id="mylist"><a id="sublist">- 찜한 컨텐츠</a></li>
-                        <li id="mylist"><a id="sublist">- 리뷰한 컨텐츠</a></li><br>
-                    <p id="myListMain"> 내가 쓴 글 </p> 
-                        <li id="mylist"><a id="sublist">- 자유게시글 조회</a></li>     
-                        <li id="mylist"><a id="sublist">- 문의사항 조회</a></li>
+                    <nav id="sidebarMenu" class="d-md-block sidebar collapse">
+                        <div>
+                            <ul class="nav flex-column">
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#pay_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">구매 정보</p>
+                                    </a>
+                                </li>
+                            
+                                <div class="collapse show multi-collapse" id="pay_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 주문 / 배송 조회</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 취소 / 환불 내역</li></a>
+                                </div>
+                            
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#member_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">회원 정보</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="member_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 회원 정보 조회 / 변경</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 회원 탈퇴</li></a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#contents_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">나의 컨텐츠</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="contents_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 찜한 컨텐츠</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 리뷰한 컨텐츠</li></a>
+                                </div>
+
+                                <li class="nav-item mt-2">
+                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse" href="#board_collapse" role="button" aria-expanded="false" aria-controls="admin_goods_collapse">
+                                        <p class="mb-1">내가 쓴 글</p>
+                                    </a>
+                                </li>
+
+                                <div class="collapse show multi-collapse" id="board_collapse">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 자유게시글 조회</li></a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#"><li>
+                                    - 문의사항 조회</li></a>
+                                </div>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
             </div>
 
@@ -114,8 +162,13 @@
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
                                 <h5 style="font-weight: 600; margin-bottom: 17px;" >개인 정보 조회</h5>
+                                <hr>
                             </form>
                         </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <p class="mySideMenuTitle">기본 정보</p>
                     </div>
 
                     <!-- 두번째 행 -->
@@ -157,7 +210,7 @@
                     </div>
                     <!-- 세번째 행 -->
                     <div class="text-center">
-                        <button class="btn btn-primary">수정하기</button>
+                        <button class="btn btn-logoC">수정하기</button>
                     </div>
 
                     <!-- 행 끝 -->
