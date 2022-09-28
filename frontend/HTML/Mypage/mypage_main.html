@@ -150,17 +150,19 @@
             <div class="col-sm-10">
                 <!-- 컨테이너 -->
                 <div class="container">
-      
+                    <div style="margin-top: 82px;"></div>
+                    <hr>
+
                     <!-- 첫번째 행 -->
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mt-0">
                             <!-- 카드 그룹 -->
                             <div class="card-group">
                                 <!-- 첫번째 카드 -->
                                 <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
+                                    <img src="../../IMG/Mypage/member.png" class="card-img-top" >
                                     <div class="card-body">
-                                        <h5 class="card-title">ooo 님</h5>
+                                        <h5 class="card-title">정진식 님</h5>
                                         <p class="card-text">
                                             환영합니다.
                                         </p>
@@ -168,21 +170,21 @@
                                 </div>
                                 <!-- 두번째 카드 -->
                                 <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
+                                    <img src="../../IMG/Mypage/contents.png" class="card-img-top" >
                                     <div class="card-body">
-                                        <h5 class="card-title">마일리지</h5>
-                                        <p class="card-text"> 
-                                            <a href="../mypage/mileage.php">1,000 원</a>
+                                        <h5 class="card-title">나의 컨텐츠</h5>
+                                        <p class="card-text">
+                                            <a href="../mypage/mileage.php">찜(0) / 리뷰(0)</a>
                                         </p>
                                     </div>
                                 </div>
                                 <!-- 세번째 카드 -->
                                 <div class="card">
-                                    <img style="background-color: black;" class="card-img-top" >
+                                    <img src="../../IMG/Mypage/board.png" class="card-img-top" >
                                     <div class="card-body">
-                                        <h5 class="card-title">내가 쓴 리뷰</h5>
+                                        <h5 class="card-title">내가 쓴 글</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/money.php">0 개</a>
+                                            <a href="../mypage/money.php">자유글(0) / 문의글(0)</a>
                                         </p>
                                     </div>
                                 </div>
@@ -201,26 +203,36 @@
                                     <div class="col-8 pt-1 tablesubtitle">더 보기</div>
                                 </div>
                             </form>
-                            <!-- 조회 테이블 -->
-                            <table class="mytable">
-                                <thead class="table_thead">
+                            <!-- 주문내역 테이블 -->
+                            <table class="paytable">
+                                <thead class="paytable_thead">
                                     <tr>
-                                        <th class="table_th" style="width: 15%;">주문번호</th>
-                                        <th class="table_th" style="width: 45%;">상품명</th>
-                                        <th class="table_th" style="width: 15%;">포인트</th>
-                                        <th class="table_th" style="width: 15%;">주문상태</th>
-                                        <th class="table_th" style="width: 10%;">주문취소</th>
+                                        <th class="paytable_th" style="width: 10%;">주문번호</th>
+                                        <th class="paytable_th" colspan="2">상품정보</th>
+                                        <th class="paytable_th" style="width: 10%;">금액</th>
+                                        <th class="paytable_th" style="width: 10%;">주문일자</th>
+                                        <th class="paytable_th" style="width: 10%;">주문상태</th>
+                                        <th class="paytable_th" style="width: 10%;">환불</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="table_td">2207069324820</td> 
-                                        <td class="table_td">상품 01</td>
-                                        <td class="table_td">42,000P</td>
-                                        <td class="table_td">승인 대기중</td>
-                                        <td class="table_td">
-                                            <button class="btn btn-outline-secondary" id="mycbtn">주문 취소</button>
-                                        </td>
+                                    <tr style="border-bottom: 1px solid lightgrey">
+                                        <td class="paytable_td">11111111</td>
+                                        <td class="paytable_td" style="width: 15%;"><img class="my-1" style="height: 80px; width: 80px;" src="https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL14957584354.jpg%3Fut%3D20211005180923"></td>
+                                        <td class="paytable_td" style="text-align: left;">카카오프렌즈 라이언 인형 포근포근쿠션 라이언굿즈 <br>외 2종</td>
+                                        <td class="paytable_td">100000원</td>
+                                        <td class="paytable_td">22-09-27</td>
+                                        <td class="paytable_td">배송준비중</td>
+                                        <td class="paytable_td"><button>환불</button></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid lightgrey">
+                                        <td class="paytable_td">11111112</td>
+                                        <td class="paytable_td"><img class="my-1" style="height: 80px; width: 80px;" src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg" alt="magic mouse"></td>
+                                        <td class="paytable_td" style="text-align: left;">짱구는 식기 세트 그릇 굿즈 못말려 머그컵 귀여운 수입 밥그릇 짱구<br>외 2종</td>
+                                        <td class="paytable_td">100000원</td>
+                                        <td class="paytable_td">22-09-27</td>
+                                        <td class="paytable_td">배송준비중</td>
+                                        <td class="paytable_td"><button>환불</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -237,22 +249,22 @@
                                     <div class="col-8 text-right pt-1 tablesubtitle">더 보기</div>
                                 </div>
                             </form>
-                            <!-- 조회 테이블 -->
+                            <!-- 자유게시판 테이블 -->
                             <table class="mytable">
                                 <thead class="table_thead">
                                     <tr>
-                                        <th class="table_th" style="width: 15%;">작성일</th>
-                                        <th class="table_th" style="width: 45%;">컨텐츠명</th>
-                                        <th class="table_th" style="width: 30%;">내용</th>
-                                        <th class="table_th" style="width: 10%;">별점</th>
+                                        <th class="table_th" style="width: 10%;">번호</th>
+                                        <th class="table_th" style="width: 50%;">제목</th>
+                                        <th class="table_th" style="width: 20;">작성일자</th>
+                                        <th class="table_th" style="width: 10%;">조회수</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="table_td">2022/09/01</td> 
-                                        <td class="table_td">컨텐츠 01</td>
-                                        <td class="table_td">내용~~~</td>
-                                        <td class="table_td">4.0</td>
+                                        <td class="table_td">111</td> 
+                                        <td class="table_td" style="padding-left: 30px; text-align: left;">마이페이지에서 보여줄 자유게시판 111번 글입니다.</td>
+                                        <td class="table_td">22-09-07</td>
+                                        <td class="table_td">10</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -269,21 +281,21 @@
                                     <div class="col-8 text-right pt-1 tablesubtitle">더 보기</div>
                                 </div>
                             </form>
-                            <!-- 조회 테이블 -->
+                            <!-- 자유게시판 테이블 -->
                             <table class="mytable">
                                 <thead class="table_thead">
                                     <tr>
-                                        <th class="table_th" style="width: 15%;">작성일</th>
-                                        <th class="table_th" style="width: 45%;">제목</th>
-                                        <th class="table_th" style="width: 30%;">내용</th>
-                                        <th class="table_th" style="width: 10%;">답변여부</th>
+                                        <th class="table_th" style="width: 10%;">번호</th>
+                                        <th class="table_th" style="width: 50%;">제목</th>
+                                        <th class="table_th" style="width: 20;">작성일자</th>
+                                        <th class="table_th" style="width: 10%;">답변 여부</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="table_td">2022/09/01</td> 
-                                        <td class="table_td">제목 01</td>
-                                        <td class="table_td">내용~~~</td>
+                                        <td class="table_td">111</td> 
+                                        <td class="table_td" style="padding-left: 30px; text-align: left;">마이페이지에서 보여줄 문의게시판 111번 글입니다.</td>
+                                        <td class="table_td">22-09-07</td>
                                         <td class="table_td">Y</td>
                                     </tr>
                                 </tbody>
