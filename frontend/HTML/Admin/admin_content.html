@@ -114,7 +114,7 @@
                 <div class="collapse multi-collapse" id="admin_content_collapse">
                   <a class="nav-link" role="button" href="admin_content.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 컨텐츠 정보 관리</li></a>
-                  <a class="nav-link" role="button" href="../Searching/searching.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                    <a class="nav-link" role="button" href="admin_people.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 인물페이지 관리</li></a>
                   <br>
                 </div>
@@ -179,20 +179,29 @@
               <table class="table table-hover">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">컨텐츠번호</th>
-                    <th scope="col">컨텐츠명</th>
-                    <th scope="col">컨텐츠이미지</th>
-                    <th scope="col">컨텐츠리뷰관리</th>
-                    <th scope="col">컨텐츠상태 수정</th>
-                    <th scope="col">컨텐츠 노출 비활성화 적용</th>
+                    <th scope="col" style="width: 5%">No</th>
+                    <th scope="col" style="width: 30%">제목</th>
+                    <th scope="col">이미지</th>
+                    <th scope="col" style="width: 15%">리뷰관리</th>
+                    <th scope="col" style="width: 10%">상태수정</th>
+                    <th scope="col" style="width: 20%">컨텐츠 비활성화</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                      <th colspan="5"></th>
+                    <th colspan="5">            
+                      <div class="col-xs-5 col-sm-5">
+                      <div class="input-group">
+                          <input type="text" name="searchInput" id="searchInput" class="form-control">
+                          <span class="input-group-btn" >
+                              <button id="searchBtn" class="btn btn-light text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
+                          </span>
+                      </div>
+                      </div>
+                    </th>
                       <th colspan="1">
-                        <button type="button" class="btn btn-primary btn-sm">비활성화</button>
-                        <button type="button" class="btn btn-danger btn-sm">취소</button></th>
+                        <button type="button" class="btn btn-primary btn-sm">적용</button>
+                        <button type="button" class="btn btn-secondary btn-sm">취소</button></th>
                   </tr>
               </tfoot>
                 <tbody>
@@ -211,21 +220,20 @@
 
                 </tbody>
               </table>
-              
-              <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                  <li class="page-item disabled">
-                    <a class="page-link">＜</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">＞</a>
-                  </li>
-                </ul>
-              </nav>
             </div>
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link">＜</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">＞</a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </div>

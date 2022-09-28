@@ -14,9 +14,13 @@
     
     <!-- common CSS-->
     <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
+    
+    <!-- Mypage CSS -->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Mypage/mypage_list.css">
+    <link rel="stylesheet" href="../../CSS/Mypage/mypage_main.css">
     <!-- Admin CSS -->
     <link rel="stylesheet" href="../../CSS/Admin/admin.css">
+
 
     <title>Document</title>
 </head>
@@ -78,7 +82,6 @@
     </div>
     <hr class="mt-1 mb-0 line">
     <!-- 헤더 끝 -->
-
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
       <div class="row">
@@ -172,75 +175,139 @@
 
         <!-- 관리자 페이지 메인화면 -->
         <div class="col-10 p-4">
-          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-data" viewBox="0 0 16 16">
-            <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"/>
-            <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z"/>
-            <path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z"/>
-          </svg> 통계 확인 
-          <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
-            <option value="admin_total_views.html">조회수</option>
-            <option value="admin_total_sales.html" selected>매출액</option>
-            <option value="admin_total_join.html">가입자수</option>
-          </select>
+          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            인물페이지 관리
           <hr>
-          <!-- 카드 리스트 Row -->
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
 
-                  <!-- DataTales Example -->
+        <div class="pl-3 pr-4 row" style="height: 40px;" >
+            <div class="col-6 mycategory" style="background-color: rgb(90, 97, 224); color: white;">
+                배우
+            </div>
+            <div class="col-6 mycategory" >
+                작가
+            </div>
+        </div>
 
 
-                  <div class="card shadow mb-4 col-12">
-                      <div class="card-header py-3 total_table" style="line-height: 3rem;">
-                          <h6 class="m-0 font-weight-bold text-primary">매출액
-                            <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
-                              <option value="">--</option>
-                              <option value="">09월</option>
-                            </select>
-                          </h6>
-                      </div>
-                      <div class="card-body">
-                          <div class="table">
-                              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                  <thead>
-                                      <tr>
-                                          <th>번호</th>
-                                          <th>날짜</th>
-                                          <th>매출액</th>
-                                      </tr>
-                                  </thead>
-                                  <tfoot>
-                                      <tr>
-                                          <th colspan="2">총</th>
-                                          <th colspan="4">50,000</th>
-                                      </tr>
-                                  </tfoot>
-                                  <tbody>
-                                      <tr>
-                                          <td>1</td>
-                                          <td>2022/09/20</td>
-                                          <td>20,000</td>
-                                      </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td>2022/09/21</td>
-                                        <td>30,000</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
+          <div class="section_ranking">
+            <div class="box_ranking" data-tiara-layer="list">
+                <ol class="list_movieranking">
+                    <li>
+                        <div class="item_poster">
+                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
+                            <input type="checkbox" style="width: 17px; height: 17px;">
                           </div>
-                      </div>
-                  </div>
+                            <div class="thumb_item">
+                                <div class="poster_movie" style="position: absolute;">
+                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
+                                </div>
+                                <div class="poster_info" style="text-align: center; line-height: 300px;">
+                                <a href="" class="link_story" data-tiara-layer="poster">
+                                  수정하기
+                                </a>
+                                </div>
+                                </div>
+                                <div class="thumb_cont">
+                                <strong class="tit_item">
+                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item_poster">
+                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
+                            <input type="checkbox" style="width: 17px; height: 17px;">
+                          </div>
+                            <div class="thumb_item">
+                                <div class="poster_movie" style="position: absolute;">
+                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
+                                </div>
+                                <div class="poster_info" style="text-align: center; line-height: 300px;">
+                                <a href="" class="link_story" data-tiara-layer="poster">
+                                  수정하기
+                                </a>
+                                </div>
+                                </div>
+                                <div class="thumb_cont">
+                                <strong class="tit_item">
+                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item_poster">
+                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
+                            <input type="checkbox" style="width: 17px; height: 17px;">
+                          </div>
+                            <div class="thumb_item">
+                                <div class="poster_movie" style="position: absolute;">
+                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
+                                </div>
+                                <div class="poster_info" style="text-align: center; line-height: 300px;">
+                                <a href="" class="link_story" data-tiara-layer="poster">
+                                  수정하기
+                                </a>
+                                </div>
+                                </div>
+                                <div class="thumb_cont">
+                                <strong class="tit_item">
+                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item_poster">
+                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
+                            <input type="checkbox" style="width: 17px; height: 17px;">
+                          </div>
+                            <div class="thumb_item">
+                                <div class="poster_movie" style="position: absolute;">
+                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
+                                </div>
+                                <div class="poster_info" style="text-align: center; line-height: 300px;">
+                                <a href="" class="link_story" data-tiara-layer="poster">
+                                  수정하기
+                                </a>
+                                </div>
+                                </div>
+                                <div class="thumb_cont">
+                                <strong class="tit_item">
+                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <hr>
+            <div style="float: right;">
+              <button type="button" class="btn btn-primary btn-sm">인물등록</button>
+              <button type="button" class="btn btn-secondary btn-sm">인물삭제</button>
+            </div>
+            <nav aria-label="Page navigation">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link">＜</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">＞</a>
+                </li>
+              </ul>
+            </nav>
 
-
-
-              </div>
-              <!-- /.container-fluid -->
-
-          </div>
-          <!-- End of Main Content -->
-  </div>
+    </div>
+    <!-- 컨테이너 끝 -->
 </div>
+<!-- 오른쪽 그리드 끝 -->
+</div>
+</div>
+<!-- 내용 전체 컨테이너 끝 -->
 <hr>
 
 
@@ -300,4 +367,10 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
+
+    <!-- Page level custom scripts -->
+    <script src="../../JS/Admin/Chart.js"></script>
+    <script src="../../JS/Admin/chart-pie.js"></script>
+    <script src="../../JS/Admin/chart-area.js"></script>
+</body>
 </html>
