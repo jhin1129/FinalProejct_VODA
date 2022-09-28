@@ -119,7 +119,7 @@
                 <div class="collapse multi-collapse" id="admin_content_collapse">
                   <a class="nav-link" role="button" href="admin_content.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 컨텐츠 정보 관리</li></a>
-                  <a class="nav-link" role="button" href="../Searching/searching.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                    <a class="nav-link" role="button" href="admin_people.html" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 인물페이지 관리</li></a>
                   <br>
                 </div>
@@ -196,27 +196,41 @@
                               <table id="table_idd" class="table table-bordered" style="width:100%">
                                   <thead>
                                       <tr>
-                                          <th>번호</th>
-                                          <th>날짜</th>
-                                          <th>제목</th>
-                                          <th>작성자</th>
-                                          <th>댓글관리</th>
-                                          <th>삭제</th>
+                                          <th style="width: 5%;">No</th>
+                                          <th style="width: 50%;">제목</th>
+                                          <th style="width: 10%;">날짜</th>
+                                          <th style="width: 15%;">작성자</th>
+                                          <th style="width: 10%;">댓글</th>
+                                          <th style="width: 10%;">삭제</th>
                                       </tr>
                                   </thead>
+                                  <tfoot>
+                                    <tr>
+                                        <th colspan="6">
+                                          <div class="col-xs-5 col-sm-5">
+                                            <div class="input-group">
+                                                <input type="text" name="searchInput" id="searchInput" class="form-control">
+                                                <span class="input-group-btn" >
+                                                    <button id="searchBtn" class="btn btn-light text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
+                                                </span>
+                                            </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tfoot>
                                   <tbody>
                                       <tr>
                                           <td class="align-middle">1</td>
-                                          <td class="align-middle">2022/09/20</td>
                                           <td class="align-middle">게시글1</td>
+                                          <td class="align-middle">2022/09/20</td>
                                           <td class="align-middle">user1</td>
                                           <td><button type="button" class="btn btn-primary btn-sm">확인</button></td>
                                           <td><button type="button" class="btn btn-primary btn-sm">삭제</button></td>
                                       </tr>
                                       <tr>
                                         <td class="align-middle">2</td>
-                                        <td class="align-middle">2022/09/21</td>
                                         <td class="align-middle">게시글2</td>
+                                        <td class="align-middle">2022/09/21</td>
                                         <td class="align-middle">user1</td>
                                         <td><button type="button" class="btn btn-primary btn-sm">확인</button></td>
                                         <td><button type="button" class="btn btn-primary btn-sm">삭제</button></td>
