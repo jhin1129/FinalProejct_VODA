@@ -36,13 +36,13 @@
             box-shadow: none !important;
         }
 
-        .btn-primary {
+        .btn-logoc {
             color: #fff;
             border-color: #495FE9;
             background-color: #495FE9;
         }
 
-        .btn-primary:hover {
+        .btn-logoc:hover {
             background-color: #0b27db !important;
             border-color: #0b27db;
             color: #fff !important;
@@ -54,25 +54,46 @@
                         color 0.2s ease-in-out;
         }
 
-        .btn-light {
-            background-color: #f8f9fa;
-            border: #f8f9fa;
-            color: #55585c;
+        .btn-greyc {
+        background-color: rgb(235, 236, 240);
+        border: rgb(235, 236, 240);
+        color: #55585c;
+        
+        }
+    
+        .btn-greyc:hover {
+        background-color: #c3c3c4b7 !important;
+        border-color: #c3c3c4b7 !important;
+        color: #55585c !important;
+        
+    
         }
 
-        .btn-light:hover {
-            background-color: #e6e6e6 !important;
-            border-color: #e6e6e6 !important;
-            color: #55585c !important;
-            
-
-        }
         .table-active, .table-active>td, .table-active>th {
             background-color: rgb(235, 236, 240);
         }
         
         textarea {
             outline-color:rgb(235, 236, 240);
+        }
+
+
+        table * {
+            font-size: 0.9em;
+            color: #555555;
+        }
+
+        .table thead th {
+        border-bottom: 1px;
+        }
+    
+        .table {
+            margin-bottom: 0rem;
+        }
+    
+    
+        .table td, .table th {
+        padding: 0.60rem;
         }
 
     </style>
@@ -141,16 +162,16 @@
     <div class="container mt-5">    
 
         <div>
-            <h3 style="text-align: center;  color: #444343; font-size: 1.5rem;">Q&A</h3>
+            <h3  style="text-align: center;  color: #555555; font-size: 1.0rem;">문의게시판</h3>
         </div>
         <!-- 후기글 전체 -->
-        <div class="mt-5" style="border: 1px solid rgb(238, 233, 233);">
+        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
 
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th class="table-active" style="width: 20%;">Subject</th>
+                            <th class="table-active" style="width: 20%;">제목</th>
                             <td style="width: 50%;">제목1</td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
@@ -159,16 +180,16 @@
 
                     <tbody>
                         <tr>
-                            <th class="table-active">Poster</th>
+                            <th class="table-active">작성자</th>
                             <td style="width: 50%;">qnflqnfl1004</td>
-                            <th class="table-active">Date</th>
+                            <th class="table-active">작성일</th>
                             <td>2022.09.02</td>
                         </tr>
 
                         <tr>
-                            <th class="table-active">File</th>
+                            <th class="table-active">파일</th>
                             <td></td>
-                            <th class="table-active">Hit</th>
+                            <th class="table-active">조회수</th>
                             <td>64,215</td>
                         </tr>
                     </tbody>
@@ -198,8 +219,8 @@
 
                 </p>
                 <div class="text-right">
-                    <button class="btn btn-primary py-0" style="width: 100px; height: 34px;">Modify</button>
-                    <button class="btn btn-light py-0" style="width: 100px;  height: 34px;">Delete</button>
+                    <button class="btn btn-logoc py-0" style="width: 100px; height: 34px; font-size: 12.393px;">수정</button>
+                    <button class="btn btn-greyc py-0" style="width: 100px;  height: 34px; font-size: 12.393px;">삭제</button>
                 </div>
             </div>
 
@@ -216,8 +237,8 @@
                     <div class="row m-0">
                         <p class="mt-2 col p-0" style="font-size: 11px; color: #777777b7;">2022.09.02 05:30</p>
                         <div>
-                            <button class="btn btn-light py-0" style="font-size: 14px; height: 28px;" >Modify</button>
-                            <button class="btn btn-light py-0" style="font-size: 14px; height: 28px;">Delete</button>
+                            <button class="btn btn-greyc py-0" style="font-size: 12.393px; height: 28px;" >수정</button>
+                            <button class="btn btn-greyc py-0" style="font-size: 12.393px; height: 28px;">삭제</button>
                         </div>
                     </div>
 
@@ -233,7 +254,7 @@
                                 placeholder="댓글을 작성해주세요"></textarea>
                         </div>
                         <div class="text-right mt-1">
-                            <button class="btn btn-primary py-1" style="font-size: 14px">Post</button>
+                            <button class="btn btn-logoc py-1" style="font-size: 14px">등록</button>
                         </div>
                     </form>
 
@@ -243,7 +264,7 @@
         </div>
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
-            <button class="btn btn-light text-nowrap" style="color: #55585c; width: 100px;">List</button>
+            <button class="btn btn-greyc text-nowrap" style="color: #55585c; width: 100px; font-size: 12.393px;">목록</button>
         </div>
     </div>
 
