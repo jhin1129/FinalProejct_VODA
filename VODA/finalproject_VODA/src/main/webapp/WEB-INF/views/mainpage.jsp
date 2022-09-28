@@ -51,7 +51,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">GOODS</a>
+              <a class="nav-link" href="#" onclick="location.href='${path}/product/product_all_list'">GOODS</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">RANKING</a>
