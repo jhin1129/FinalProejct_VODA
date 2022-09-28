@@ -37,9 +37,88 @@
     box-shadow: none !important;
     }
 
+    .btn {
+
+    transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+
+    }
+
+    .btn-greyc {
+    background-color: #f8f9fa;
+    border: #f8f9fa;
+    color: #55585c;
+    
+    }
+
+    .btn-greyc:hover {
+    background-color: #e6e6e6 !important;
+    border-color: #e6e6e6 !important;
+    color: #55585c !important;
+
+    }
+
+    /* img {
+        width: 30px;
+        height: 30px;
+    } */
+
     table * {
         font-size: 0.9em;
+        color: #555555;
     }
+
+    .table thead th {
+    border-bottom: 1px;
+    }
+
+    .table {
+        margin-bottom: 0rem;
+    }
+
+
+    .table td, .table th {
+    padding: 0.60rem;
+    }
+
+    .page-link {
+        color: #555555;
+        font-size: 0.9em;
+    }
+
+    /* pagination */
+    #pagination {
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    text-align: center
+    
+    }
+    #pagination li {
+    display: inline
+    }
+    #pagination li a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 3px 7px;
+    color: #555555;
+    font-size: 0.9em;
+    }
+
+    /* Active and Hoverable Pagination */
+    #pagination li a {
+    border-radius: 5px;
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s
+        
+    }
+    #pagination li a.active {
+    background-color: rgb(73,95,233);
+    color: #fff
+    }
+    #pagination li a:hover:not(.active) {
+    background-color: #ddd;
+    } 
 
     </style>
 </head>
@@ -107,18 +186,18 @@
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #444343; font-size: 1.3rem;">자유게시판</h3>
+            <h3 style="text-align: center;  color: #555555; font-size: 1.1rem;">자유게시판</h3>
         </div>
 
-        <div class="mt-5">
+        <div class="mt-4">
             <table class="table table-hover">
                 <thead>
                     <tr style="text-align: center">
                         <th id="th" style="width: 5%;">번호</th>
-                        <th id="th" style="width: 55%;">Subject</th>
-                        <th id="th" style="width: 15%;">Poster</th>
-                        <th id="th" style="width: 15%;">Date</th>
-                        <th id="th" style="width: 10%;">Hit</th>
+                        <th id="th" style="width: 55%;">제목</th>
+                        <th id="th" style="width: 15%;">작성자</th>
+                        <th id="th" style="width: 15%;">작성일</th>
+                        <th id="th" style="width: 10%;">조회수</th>
                     </tr>
                 </thead>
 
@@ -132,131 +211,162 @@
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
                         <td id="td">2</td>
-                        <td id="td">제목2</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">3</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">4</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">5</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">6</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">7</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">8</td>
+                        <td id="td" style="text-align: left;">제목1</td>
+                        <td id="td">작성자1</td>
+                        <td id="td">날짜1</td>
+                        <td id="td">조회수1</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">9</td>
+                        <td id="td" style="text-align: left;">제목2</td>
                         <td id="td">작성자2</td>
                         <td id="td">날짜2</td>
                         <td id="td">조회수2</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">3</td>
-                        <td id="td">제목3</td>
+                        <td id="td">10</td>
+                        <td id="td" style="text-align: left;">제목3</td>
                         <td id="td">작성자3</td>
                         <td id="td">날짜3</td>
                         <td id="td">조회수3</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">4</td>
-                        <td id="td">제목4</td>
+                        <td id="td">11</td>
+                        <td id="td" style="text-align: left;">제목4</td>
                         <td id="td">작성자4</td>
                         <td id="td">날짜4</td>
                         <td id="td">조회수4</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">5</td>
-                        <td id="td">제목5</td>
+                        <td id="td">12</td>
+                        <td id="td" style="text-align: left;">제목5</td>
                         <td id="td">작성자5</td>
                         <td id="td">날짜5</td>
                         <td id="td">조회수5</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">6</td>
-                        <td id="td">제목6</td>
+                        <td id="td">13</td>
+                        <td id="td" style="text-align: left;">제목6</td>
                         <td id="td">작성자6</td>
                         <td id="td">날짜6</td>
                         <td id="td">조회수6</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">7</td>
-                        <td id="td">제목7</td>
+                        <td id="td">14</td>
+                        <td id="td" style="text-align: left;">제목7</td>
                         <td id="td">작성자7</td>
                         <td id="td">날짜7</td>
                         <td id="td">조회수7</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">8</td>
-                        <td id="td">제목8</td>
+                        <td id="td">15</td>
+                        <td id="td" style="text-align: left;">제목8</td>
                         <td id="td">작성자8</td>
                         <td id="td">날짜8</td>
                         <td id="td">조회수8</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">9</td>
-                        <td id="td">제목9</td>
+                        <td id="td">16</td>
+                        <td id="td" style="text-align: left;">제목9</td>
                         <td id="td">작성자9</td>
                         <td id="td">날짜9</td>
                         <td id="td">조회수9</td>
                     </tr>
 
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td">제목10</td>
+                        <td id="td">17</td>
+                        <td id="td" style="text-align: left;">제목10</td>
                         <td id="td">작성자10</td>
                         <td id="td">날짜10</td>
                         <td id="td">조회수10</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">18</td>
+                        <td id="td" style="text-align: left;">제목10</td>
+                        <td id="td">작성자10</td>
+                        <td id="td">날짜10</td>
+                        <td id="td">조회수10</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">19</td>
+                        <td id="td" style="text-align: left;">제목10</td>
+                        <td id="td">작성자10</td>
+                        <td id="td">날짜10</td>
+                        <td id="td">조회수10</td>
+                    </tr>
+
+                    <tr style="text-align: center; cursor:pointer;">
+                        <td id="td">20</td>
+                        <td id="td" style="text-align: left;">제목10</td>
+                        <td id="td">작성자10</td>
+                        <td id="td">날짜10</td>
+                        <td id="td">조회수10</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
 
                 </tbody>
@@ -264,47 +374,32 @@
             </table>
         </div>
 
-        <div class="row mt-5">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <ul class="pagination justify-content-center">
-                <li class="page-item disabled" >
-                    <a class="page-link" href="#" >&laquo;</a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >4</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >5</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#" style="color: #777777;" >&raquo;</a>
-                </li>
-                </ul>
-            </div>
+        <!--Active and Hoverable Pagination-->
+        <ul id="pagination">
+            <li><a class="" href="#">«</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#" class="active">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">»</a></li>
+        </ul> 
 
             <div class="col-4 text-right">
-                <button class="btn btn-light text-nowrap"><img src="../../IMG/Community/edit.png" style="height: 23px;"></button>
+                <button class="btn btn-greyc text-nowrap"><img src="../../IMG/Community/edit.png" style="box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;"></button>
             </div>
-        </div>
 
 
-        <div class="search row m-3">
+
+        <div class="search row m-5" style="">
             <div class="col-xs-2 col-sm-2">
                 <select name="searchType" class="form-control">
-                    <option value="title" selected>Subject</option>
-                    <option value="title">Poster</option>
-                    <option value="title">Contents</option>
-                    <option value="title">Subject+Contents</option>
+                    <option value="title" selected>제목</option>
+                    <option value="title">작성자</option>
+                    <option value="title">내용</option>
+                    <option value="title">제목+내용</option>
                 </select>
             </div>
 
@@ -319,6 +414,7 @@
             </div>
         </div>
     </div>
+</div>
 
     <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
