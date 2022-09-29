@@ -86,6 +86,58 @@
     height: 55px;
     font-size: 0.8em;
 }
+
+/* 개인정보 테이블 */
+.infotable_th{
+    font-size: 0.8em;
+    font-weight: 700;
+}
+
+.infotable_td{
+    vertical-align: middle;
+    font-size: 0.85em;
+    font-weight: 450;
+    height: 54.16px;
+}
+
+.infotable input[type=text]{
+    width: 200px;
+    outline: none;
+}
+
+.infotable label {
+    font-size: 0.9em;
+    font-weight: 450;
+}
+
+/*생년월일*/
+.birth1 {
+    font-size: 0.9em;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 3px;
+    padding: 0px 15px;
+    
+}
+
+#css-birth1, #css-birth2 {
+    width: 50%;
+    border: none;
+    color: rgb(51, 51, 51);
+    outline: none;
+    box-sizing: border-box;
+    text-align: center;
+
+}
+
+.birth3::after {
+    content: "/";
+    color: rgb(204, 204, 204);
+    text-align: center;
+}
+
 /* 구매내역 테이블 */
 .paytable{
     width: 100%;
