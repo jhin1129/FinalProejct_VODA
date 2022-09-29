@@ -1,17 +1,11 @@
-    /* 폰트 */
+	/* 폰트 */
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
     * { font-family: Pretendard, 
         -apple-system, BlinkMacSystemFont, 
         system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-* { font-family: 'Noto Sans KR', sans-serif; } */
-
-/* @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@200;300;400;500;600;700;800;900&display=swap');
-* { font-family: 'Gothic A1', sans-serif;}  */
-
-* { font-size: 17px;}
+    * { font-size: 16px;}
 
     /* 로고 이미지 간격 조절 */
     .logoimg {
@@ -32,8 +26,7 @@
 
     /* 호버 메뉴 밑 선 굵기 */
     .line {
-        border: 0;
-        background: #ccc;
+        margin-top:-2.9px;
     }
 
     /* 메뉴 호버 기능 */
@@ -41,9 +34,9 @@
         background-color: rgba(255, 255, 255, 0.8);
         border-radius: 2.5%; 
         display: block;
-        margin-top: 0;
         border: none;
-        /* box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1); */
+        /* margin-top: 2px; */
+        /* box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.05); */
         /* border-top: none; */
         /* border-bottom: none; */ 
         /* opacity : 0.5; */ 
