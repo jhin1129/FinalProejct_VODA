@@ -50,8 +50,15 @@
                   <li><a class="dropdown-item" href="#">WEBTOON</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" onclick="location.href='${path}/product/product_all_list'">GOODS</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" onclick="location.href='${path}/product/product_all_list'">
+                    GOODS
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
+                    <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
+                </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">RANKING</a>

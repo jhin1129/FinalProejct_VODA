@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.product.model.service.ProductService;
-import com.finalproject.voda.product.moodel.vo.Product;
+import com.finalproject.voda.product.model.vo.Product;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -27,12 +27,27 @@ public class ProductController {
 			@RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Product> product_all_list = null;
 		PageInfo pageInfo = null;
-		System.out.println(service.getProductAllCount());
+		
 		pageInfo = new PageInfo(page, 10, service.getProductAllCount(), 10);
+		product_all_list = service.getProductList(pageInfo);
+				
+		model.addObject("product_all_list", product_all_list);
+		model.addObject("pageInfo", pageInfo);
 		model.setViewName("product/product_all_list");
+		
 		return model;
 	}
-	
+	@GetMapping("/product_detail")
+	public ModelAndView view(ModelAndView model, @RequestParam int pno) {
+		Product product = null;
+		
+		product = service.findProductByNo(pno);
+		
+		model.addObject("product", product);
+		model.setViewName("product/product_detail");
+		
+		return model;
+	}
 	
 	
 }

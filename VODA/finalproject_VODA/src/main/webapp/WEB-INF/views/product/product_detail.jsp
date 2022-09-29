@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path" value="${ pageContext.request.contextPath }"/>
+<%@page import="java.util.Calendar" %>
+<%
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+		cal.add(Calendar.DATE, +2);
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +31,9 @@
         crossorigin="anonymous"></script>
 
     <!-- mainstyle CSS -->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
 
-    <link rel="stylesheet" type="text/css" href="../../CSS/Goods/goods_detail.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/product/product_detail.css">
     <title>Document</title>
     <!-- Demo styles -->
     <style>
@@ -106,7 +117,7 @@
     <div class="container p-0">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
+                <a class="navbar-brand mr-1" href="#"><img src="${ path }/resources/img/common/VODA.png" width="200px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
                     aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -126,15 +137,15 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                GOODS
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
-                                <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
-                            </ul>
-                        </li>
+			                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+			                    aria-expanded="false" onclick="location.href='${path}/product/product_all_list'">
+			                    GOODS
+			                </a>
+			                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+			                    <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
+			                    <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
+			                </ul>
+			            </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">RANKING</a>
                         </li>
@@ -170,7 +181,7 @@
             <div class="card" style="border: none;">
                 <div class="row g-0 p-5">
                     <!-- 이미지 -->
-                    <div class="col-6" style="min-width: 254px; width: 100%;">
+                    <div class="col-6" style="width: 100%;">
                         <!-- Swiper -->
 
                         <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
@@ -221,32 +232,36 @@
                     <!-- 이미지 상세내용 -->
                     <div id="div1" class="col-5">
                         <div class="card-body py-0">
-                            <h4 class="card-title">[이웃집 토토로]소품케이스(버스와토토로)</h4>
+                            <h4 class="card-title">[${ product.pcategory }]${ product.pname }</h4>
                             <p class="my-0">이웃집 토토로</p>
                             <hr class="my-2">
                             <table style="width: 100%;">
                                 <tr>
-                                    <td style="width: 30%;">자체상품코드</td>
-                                    <td>12345678</td>
+                                    <td style="width: 30%;">상품번호</td>
+                                    <td>${ product.pno }</td>
                                 </tr>
                                 <tr>
                                     <td>제조사</td>
-                                    <td>ZEZOCOMPANY</td>
+                                    <td>${ product.pmadecompany }</td>
                                 </tr>
                                 <tr>
                                     <td>원산지</td>
-                                    <td>수리남</td>
+                                    <td>${ product.pmadelocal }</td>
                                 </tr>
                                 <tr>
                                     <td>배송예정일</td>
-                                    <td>SYSDATE + 2</td>
+                                    <td> 
+	                                    <%= cal.get(java.util.Calendar.YEAR) %>년
+									    <%= cal.get(java.util.Calendar.MONTH) + 1 %>월
+									    <%= cal.get(java.util.Calendar.DATE) %>일
+								    </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class="mb-2">수량</div>
                                     </td>
                                     <td>
-                                        <div class="mb-2">3</div>
+                                        <div class="mb-2">${ product.pqtt }</div>
                                     </td>
                                 </tr>
                                 <tr
@@ -254,14 +269,14 @@
                                     <td>
                                         <div class="my-2">판매가</div>
                                     </td>
-                                    <td>999999</td>
+                                    <td>${ product.pprice }원</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <div class="mt-2">수량선택</div>
                                     </td>
                                     <td>
-                                        <input class="mt-2" type="number" min="1" max="3" value="1">
+                                        <input class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1">
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
@@ -269,7 +284,7 @@
                                         <div class="mb-2">총 합계금액</div>
                                     </td>
                                     <td>
-                                        <div class="mb-2">999999</div>
+                                        <div class="mb-2">${ product.pprice }원</div>
                                     </td>
                                 </tr>
                             </table>

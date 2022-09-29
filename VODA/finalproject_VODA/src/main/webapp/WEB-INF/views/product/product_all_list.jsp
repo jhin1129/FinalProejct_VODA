@@ -49,7 +49,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    aria-expanded="false" onclick="location.href='${path}/product/product_all_list'">
                     GOODS
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -124,31 +124,33 @@
             </div>
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
-                            <li>
+                        <c:forEach var="product" items="${product_all_list}">
+                        <li>
                             <div class="item_poster">
                                 <div class="thumb_item">
                                     <div class="poster_movie">
                                             <img src="http://dwmdotori.godohosting.com/data/goods/20/06/24/1000000847/1000000847_detail_055.jpg" class="img_thumb" alt="공조2: 인터내셔날">
-                                        <span class="rank_num">1</span>
-                                            
+                                        <span class="rank_num">${product.pno}</span>
+                                           
                                     </div>
                                     <div class="poster_info">
                                         <a href="/moviedb/main?movieId=147615" class="link_story" data-tiara-layer="poster">
-                                            센과 치히로의 행방불명
+                                            ${product.pcategory}
                                         </a>
                                     </div>
                                 </div>
                                 <div class="thumb_cont">
                                     <strong class="tit_item">
-                                        <a href="" class="link_txt" data-tiara-layer="moviename">[지브리] 지브리 더 아트 시리즈</a>
+                                        <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
                                     </strong>
                                     <span class="txt_append">
-                                        <span class="info_txt">가격<span class="txt_grade">72,000</span></span>
+                                        <span class="info_txt">가격<span class="txt_grade">${ product.pprice }</span></span>
                                     </span>
                                 </div>
                             </div>
                         </li>
-                        <li>
+                        </c:forEach>
+                        <!-- <li>
                             <div class="item_poster">
                                 <div class="thumb_item">
                                     <div class="poster_movie">
@@ -364,6 +366,7 @@
                                 </div>
                             </div>
                         </li>
+                         -->
                     </ol>
             </div>
     </article>
@@ -388,16 +391,23 @@
         </div>
         
     </div>
+    <div id="pageBar">
     <ul class="pagination justify-content-center">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">4</a></li>
-        <li class="page-item"><a class="page-link" href="#">5</a></li>
+        <c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+				<c:if test="${ status.current == pageInfo.currentPage }">
+					<li class="page-item disabled"><a class="page-link" href="#">${ status.current }</a></li>
+				</c:if>
+				<c:if test="${ status.current != pageInfo.currentPage }">
+					<li class="page-item"><a class="page-link" href="${ path }/product/product_all_list?page=${ status.current }">${ status.current }</a></li>
+				</c:if>
+	</c:forEach>
         <li class="page-item"><a class="page-link" href="#">Next</a></li>
     </ul>
+    
+    
     <br><br><br>
+    
 <!-- 푸터 -->
 <footer class="bg-light text-center text-lg-start">
     <div style="background-color: rgb(235, 236, 240);">
