@@ -181,7 +181,7 @@
             <div class="card" style="border: none;">
                 <div class="row g-0 p-5">
                     <!-- 이미지 -->
-                    <div class="col-6" style="min-width: 254px; width: 100%;">
+                    <div class="col-6" style="width: 100%;">
                         <!-- Swiper -->
 
                         <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"

@@ -141,10 +141,10 @@
                                 </div>
                                 <div class="thumb_cont">
                                     <strong class="tit_item">
-                                        <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[지브리] 지브리 더 아트 시리즈</a>
+                                        <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
                                     </strong>
                                     <span class="txt_append">
-                                        <span class="info_txt">가격<span class="txt_grade">72,000</span></span>
+                                        <span class="info_txt">가격<span class="txt_grade">${ product.pprice }</span></span>
                                     </span>
                                 </div>
                             </div>
