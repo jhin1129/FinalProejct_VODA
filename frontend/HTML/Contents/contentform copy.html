@@ -15,13 +15,28 @@
   <!-- common CSS-->
   <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
+  <!-- Jquery-->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+
+<style>
+/* :root {
+  --main-bg-color: white;
+}
+.dd {
+  background: var(--main-bg-color);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+} */
+</style>
+
 </head>
 <body>
 
   <div class="row" id="posterbg">
     <div class="col-2 d-none d-lg-block LeftGradient p-0">
     </div>
-    <div class="col p-0" class="image-show" id="image-show" >
+    <div class="col-8 p-0" class="image-show" id="image-show" >
     </div>
     <div class="col-2 d-none d-lg-block RightGradient p-0">
     </div>
@@ -74,7 +89,8 @@
     
 
     <p class="purple" type="배경 컬러 선택"></p> 
-    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color"
+    data-css-var="--main-bg-color">
 
     <p class="purple" type="제목"><input placeholder="컨텐츠의 제목을 작성하세요"></input></p>
     <p class="purple" type="컨텐츠 타입">
@@ -102,6 +118,20 @@
   </form>
   </div>
   <!-- partial -->
+
+  <!-- partial:index.partial.html -->
+
+  <!-- <input type="color" class="color" data-css-var="--main-bg-color">
+  <div class="dd"></div> -->
+
+<!-- partial -->
+  
+  
+  <script>
+    $('input[type="color"]').on("change", function() {
+  document.body.style.setProperty($(this).attr("data-css-var"), this.value);
+});
+  </script>
 
   <script>
     var submit = document.getElementById('submitButton');
