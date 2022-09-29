@@ -27,11 +27,6 @@
         system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
     }
 
-
-    button:focus {
-        box-shadow: none !important;
-    }
-
     .page-link, .form-control {
 
     box-shadow: none !important;
@@ -41,27 +36,26 @@
 
     transition: background 0.2s ease-in-out,
                 color 0.2s ease-in-out;
+    /* 패딩은 주석하쇼 */
+    padding: 1px 0.38rem;
+    
 
     }
 
     .btn-greyc {
-    background-color: #f8f9fa;
-    border: #f8f9fa;
+    background-color: rgb(235, 236, 240);
+    border: rgb(235, 236, 240);
     color: #55585c;
     
     }
 
     .btn-greyc:hover {
-    background-color: #e6e6e6 !important;
-    border-color: #e6e6e6 !important;
+    background-color: #c3c3c4b7 !important;
+    border-color: #c3c3c4b7 !important;
     color: #55585c !important;
+    
 
     }
-
-    /* img {
-        width: 30px;
-        height: 30px;
-    } */
 
     table * {
         font-size: 0.9em;
@@ -91,7 +85,7 @@
     margin: 0;
     margin-top: 20px;
     padding: 0;
-    text-align: center
+    text-align: center;
     
     }
     #pagination li {
@@ -119,6 +113,32 @@
     #pagination li a:hover:not(.active) {
     background-color: #ddd;
     } 
+
+    .display1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .display2 {
+        float:right;
+        margin-top: -90px;
+    }
+
+
+    /* 인풋, 폼태그 */
+    option {
+        font-size: 12px;
+    }
+
+    .form-control {
+        height: 27.8px;
+        padding: 0.2rem 0.7rem;
+    }
+
+    .td-hr{
+        pointer-events: none;
+    }
 
     </style>
 </head>
@@ -186,7 +206,7 @@
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #555555; font-size: 1.1rem;">자유게시판</h3>
+            <h3 style="text-align: center;  color: #555555; font-size: 1.0rem;">자유게시판</h3>
         </div>
 
         <div class="mt-4">
@@ -321,96 +341,60 @@
                         <td id="td">날짜8</td>
                         <td id="td">조회수8</td>
                     </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">16</td>
-                        <td id="td" style="text-align: left;">제목9</td>
-                        <td id="td">작성자9</td>
-                        <td id="td">날짜9</td>
-                        <td id="td">조회수9</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">17</td>
-                        <td id="td" style="text-align: left;">제목10</td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                        <td id="td">조회수10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">18</td>
-                        <td id="td" style="text-align: left;">제목10</td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                        <td id="td">조회수10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">19</td>
-                        <td id="td" style="text-align: left;">제목10</td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                        <td id="td">조회수10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">20</td>
-                        <td id="td" style="text-align: left;">제목10</td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                        <td id="td">조회수10</td>
-                    </tr>
+                    
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td class="td-hr"></td>
+                        <td class="td-hr"></td>
+                        <td class="td-hr"></td>
+                        <td class="td-hr"></td>
+                        <td class="td-hr"></td>
                     </tr>
-
                 </tbody>
 
             </table>
         </div>
-
-        <!--Active and Hoverable Pagination-->
-        <ul id="pagination">
-            <li><a class="" href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#" class="active">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">»</a></li>
-        </ul> 
+        <div class="display1 row my-3">
+            <!--Active and Hoverable Pagination-->
+            <ul id="pagination">
+                <li><a class="" href="#">«</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#" class="active">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">»</a></li>
+            </ul> 
+            
+        </div>
+        
+        <div class="display2">
+            <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img src="../../IMG/Community/edit.png" style="height: 20px;"></button>
+        </div>
 
             <div class="col-4 text-right">
-                <button class="btn btn-greyc text-nowrap"><img src="../../IMG/Community/edit.png" style="box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;"></button>
-            </div>
+        </div>
 
 
-
-        <div class="search row m-5" style="">
-            <div class="col-xs-2 col-sm-2">
-                <select name="searchType" class="form-control">
-                    <option value="title" selected>제목</option>
-                    <option value="title">작성자</option>
-                    <option value="title">내용</option>
-                    <option value="title">제목+내용</option>
-                </select>
-            </div>
-
-            <div class="col-xs-10 col-sm-10">
-                <div class="input-group">
-                    <input type="text" name="searchInput" id="searchInput" class="form-control">
-                    <span class="input-group-btn" >
-                        <button id="searchBtn" class="btn btn-light text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
-                    </span>
+        <div class="search1 row my-4">
+            <div class="col-6 row">
+                <div class="col-xs-3 col-sm-3">
+                    <select name="searchType" class="form-control" style="font-size: 12px;">
+                        <option value="title" selected>제목</option>
+                        <option value="title">작성자</option>
+                        <option value="title">내용</option>
+                        <option value="title">제목+내용</option>
+                    </select>
                 </div>
 
+                <div class="col-xs-7 col-sm-7 pl-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control" style="font-size: 12px;">
+                        <span class="input-group-btn" >
+                            <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;" ><img src="../../IMG/Community/search.png" style="height: 18px;"></button>
+                        </span>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

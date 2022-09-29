@@ -7,14 +7,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.test.model.service.ContentsService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 public class TestController {
 	@Autowired
-	
 	ContentsService service;
 	
 	@GetMapping("/test")
-	
 	public ModelAndView test(ModelAndView model) {
 		int count = 0;
 		

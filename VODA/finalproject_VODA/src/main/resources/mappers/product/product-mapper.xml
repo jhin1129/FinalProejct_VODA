@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.product.model.mapper.ProductMapper">
+	<resultMap type="Product" id="ProductListResultMap">
+		<id property="pNo" column="P_NO"/>
+		<result property="pName" column="P_NAME"/>
+		<result property="pPrice" column="P_PRICE"/>
+		<result property="pQtt" column="P_QTT"/>
+		<result property="pContents" column="P_CONTENTS"/>
+		<result property="pView" column="P_VIEW"/>
+		<result property="pDate" column="P_DATE"/>
+		<result property="pStatus" column="P_STATUS"/>
+		<result property="pOriginFile" column="P_ORIGINFILE"/>
+		<result property="pRenameFile" column="P_RENAMEFILE"/>
+	</resultMap>
+	
+	<select id="getProductAllCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT
+	</select>
+</mapper>
