@@ -28,7 +28,7 @@
 	<div class="container p-0">
 	  <nav class="navbar navbar-expand-lg navbar-light">
 	    <div class="container-fluid">
-	        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="../../IMG/Common/VODA.png"></a>
+	        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="${path}/resources/img/common/VODA.png"></a>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
@@ -97,5 +97,3 @@
 	</div>
 	<hr class="line">
 	<!-- 헤더 끝 -->
-</body>
-</html>

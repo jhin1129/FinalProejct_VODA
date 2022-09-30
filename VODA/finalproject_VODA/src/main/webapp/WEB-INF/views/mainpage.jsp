@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
 
     <!-- mainpage CSS-->
-    <link rel="stylesheet" href="../../CSS/Main/mainpagestyle.css">
+    <link rel="stylesheet" href="${path}/resources/css/main/mainpage.css">
     
     <title>Document</title>
 </head>
