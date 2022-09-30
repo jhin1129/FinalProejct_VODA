@@ -102,6 +102,7 @@
 
 .infotable input[type=text]{
     width: 200px;
+    height: 27.66px;
     outline: none;
     border: 1px solid #ced4da;
 }
@@ -112,9 +113,14 @@
 }
 /* 이메일 주소 콤보박스 */
 select {
-    height: 26px;
+    height: 27.66px;
     border: 1px solid #ced4da;
 }
+
+select:focus {
+	outline: none;
+}
+
 select * {
     font-size: 1em;
 }
@@ -145,6 +151,7 @@ select * {
     color: rgb(204, 204, 204);
     text-align: center;
 }
+
 
 /* 구매내역 테이블 */
 .paytable{

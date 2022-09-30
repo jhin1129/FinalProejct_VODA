@@ -16,7 +16,7 @@
 
 	<style>
         .item {
-            padding-right: 41px;
+            padding-right: 50px;
         }
 
         .item_poster {
@@ -29,92 +29,7 @@
     <div class="container p-0 mb-5">
         <div class="row">
             <div class="col-sm-2">
-                <div class="mySideMenu">
-                    <h5 style="font-weight: 600;">마이 페이지</h5>
-                    <hr>
-                    <nav id="sidebarMenu" class="d-md-block sidebar collapse">
-                        <div>
-                            <ul class="nav flex-column">
-
-                                <li class="nav-item mt-2">
-                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
-                                        href="#pay_collapse" role="button" aria-expanded="false"
-                                        aria-controls="admin_goods_collapse">
-                                        <p class="mb-1">구매 정보</p>
-                                    </a>
-                                </li>
-
-                                <div class="collapse show multi-collapse" id="pay_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 주문 / 배송 조회</li>
-                                    </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 취소 / 환불 내역</li>
-                                    </a>
-                                </div>
-
-                                <li class="nav-item mt-2">
-                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
-                                        href="#member_collapse" role="button" aria-expanded="false"
-                                        aria-controls="admin_goods_collapse">
-                                        <p class="mb-1">회원 정보</p>
-                                    </a>
-                                </li>
-
-                                <div class="collapse show multi-collapse" id="member_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 회원 정보 조회 / 변경</li>
-                                    </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 회원 탈퇴</li>
-                                    </a>
-                                </div>
-
-                                <li class="nav-item mt-2">
-                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
-                                        href="#contents_collapse" role="button" aria-expanded="false"
-                                        aria-controls="admin_goods_collapse">
-                                        <p class="mb-1">나의 컨텐츠</p>
-                                    </a>
-                                </li>
-
-                                <div class="collapse show multi-collapse" id="contents_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 찜한 컨텐츠</li>
-                                    </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 리뷰한 컨텐츠</li>
-                                    </a>
-                                </div>
-
-                                <li class="nav-item mt-2">
-                                    <a class="nav-link mySideMenuTitle" role="button" data-toggle="collapse"
-                                        href="#board_collapse" role="button" aria-expanded="false"
-                                        aria-controls="admin_goods_collapse">
-                                        <p class="mb-1">내가 쓴 글</p>
-                                    </a>
-                                </li>
-
-                                <div class="collapse show multi-collapse" id="board_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 자유게시글 조회</li>
-                                    </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
-                                        <li>
-                                            - 문의사항 조회</li>
-                                    </a>
-                                </div>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <jsp:include page="/WEB-INF/views/mypage/mypage_sideMenu.jsp"/>
             </div>
 
             <div class="col-sm-10">
@@ -138,7 +53,7 @@
                                 </div>
                                 <!-- 두번째 카드 -->
                                 <div class="card">
-                                    <img src="../../IMG/Mypage/contents.png" class="card-img-top">
+                                    <img src="${path}/resources/img/mypage/contents.png" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">나의 컨텐츠</h5>
                                         <p class="card-text">
@@ -148,7 +63,7 @@
                                 </div>
                                 <!-- 세번째 카드 -->
                                 <div class="card">
-                                    <img src="../../IMG/Mypage/board.png" class="card-img-top">
+                                    <img src="${path}/resources/img/mypage/board.png" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">내가 쓴 글</h5>
                                         <p class="card-text">

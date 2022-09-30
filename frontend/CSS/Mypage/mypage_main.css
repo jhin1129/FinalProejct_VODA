@@ -115,6 +115,11 @@ select {
     height: 26px;
     border: 1px solid #ced4da;
 }
+
+select:focus{
+    outline: none;
+}
+
 select * {
     font-size: 1em;
 }
