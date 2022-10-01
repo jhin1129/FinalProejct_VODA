@@ -71,6 +71,7 @@ public class ProductController {
 			model.addObject("msg", "게시글 등록을 실패하였습니다.");
 			model.addObject("location", "/product/product_create");
 		}
+		System.out.println(result);
 		return model;
 	}
 	

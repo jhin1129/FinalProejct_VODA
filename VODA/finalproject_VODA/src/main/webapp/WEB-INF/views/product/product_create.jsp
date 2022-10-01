@@ -68,14 +68,14 @@
             <h3 style="text-align: center; color: #444343; font-size: 1.5rem;">상품 등록</h3>
         </div>
         <!-- 후기글 전체 -->
+		<form action="${path}/product/product_create" method="post" enctype="multipart/form-data">
         <div class="mt-5" style="border: 1px solid rgb(238, 233, 233);">
-
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">상품명</th>
-                            <td style="width: 80%;"><input type="text" placeholder="상품명을 입력해주세요." style="width: 80%;">
+                            <td style="width: 80%;"><input type="text" name="pname" placeholder="상품명을 입력해주세요." style="width: 80%;">
                             </td>
                         </tr>
                     </thead>
@@ -156,6 +156,7 @@
                 </div>
             </div>
         </div>
+        </form>
 
         <div class="mb-5">
         </div>

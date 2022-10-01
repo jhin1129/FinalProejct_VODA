@@ -53,7 +53,7 @@
 	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="pno" keyColumn="P_NO">
 	INSERT INTO PRODUCT VALUES 
 						(SEQ_PNO.NEXTVAL, 
-						#{ptitle}, 
+						#{pname}, 
 						#{pprice}, 
 						#{pqtt}, 
 						#{pcontents}, 
