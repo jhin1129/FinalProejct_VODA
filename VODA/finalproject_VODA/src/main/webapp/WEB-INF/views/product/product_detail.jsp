@@ -233,7 +233,7 @@
                     <div id="div1" class="col-5">
                         <div class="card-body py-0">
                             <h4 class="card-title">[${ product.pcategory }]${ product.pname }</h4>
-                            <p class="my-0">이웃집 토토로</p>
+                            <p class="my-0">${ product.pcategory }</p>
                             <hr class="my-2">
                             <table style="width: 100%;">
                                 <tr>
