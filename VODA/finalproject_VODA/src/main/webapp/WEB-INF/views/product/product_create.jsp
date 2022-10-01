@@ -103,8 +103,9 @@
                         <tr>
                             <th class="table-active">File</th>
                             <td>
-                                <button class="btn btn-light py-0" style="color: #55585c">파일 선택</button>
-                                <label>선택된 파일이 없습니다.</label>
+							<input multiple="multiple" type="file" name="upfile" />
+
+                                
                             </td>
                         </tr>
                     </tbody>
