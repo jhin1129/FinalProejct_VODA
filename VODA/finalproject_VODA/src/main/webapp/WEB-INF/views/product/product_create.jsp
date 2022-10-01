@@ -82,31 +82,23 @@
                     <tbody>
                         <tr>
                             <th class="table-active">카테고리</th>
-                            <td><input type="text" placeholder="상품 카테고리를 입력해주세요" style="width: 50%;"></td>
-                        </tr>
-                        <tr>
-                            <th class="table-active">상품번호</th>
-                            <td><input type="text" placeholder="상품 번호를 입력해주세요" style="width: 50%;"></td>
-                        </tr>
-                        <tr>
-                            <th class="table-active">배송예정일</th>
-                            <td>SYSDATE + 2 값 넣기</td>
+                            <td><input type="text" name="pcategory" placeholder="상품 카테고리를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">제조사</th>
-                            <td><input type="text" placeholder="제조사를 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="text" name="pmadecompany" placeholder="제조사를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">원산지</th>
-                            <td><input type="text" placeholder="원산지를 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="text" name="pmadelocal" placeholder="원산지를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">상품 전체 수량</th>
-                            <td><input type="text" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="text" name="pqtt" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">상품 가격</th>
-                            <td><input type="text" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="text" name="pprice" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">File</th>

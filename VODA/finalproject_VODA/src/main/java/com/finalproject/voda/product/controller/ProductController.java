@@ -75,4 +75,27 @@ public class ProductController {
 		return model;
 	}
 	
+	@GetMapping("/product_delete")
+	public ModelAndView ProductDelete(
+						ModelAndView model,
+						@RequestParam int pno) {
+		int result = 0;
+		Product product = null;
+		
+		product = service.findProductByNo(pno);
+		
+		result = service.deleteProduct(pno);
+		
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
+			model.addObject("location", "/product/product_all_list");
+		} else {
+			model.addObject("msg", "게시글 삭제를 실패하였습니다.");
+			model.addObject("location", "/product/product_detail?pno=" + pno);
+		}
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+	
 }

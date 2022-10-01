@@ -44,4 +44,11 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	@Override
+	public int deleteProduct(int pno) {
+		int result = 0;
+		result = productMapper.deleteProduct(pno);
+		return result;
+	}
+
 }

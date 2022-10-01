@@ -323,8 +323,10 @@
                 </div>
             </div>
         </div>
-
+        <input type="hidden" name="pno" value="${ product.pno }">
+	<button id="btnDelete">상품 삭제</button>
     </div>
+    
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
     <!-- Swiper JS -->
@@ -348,5 +350,13 @@
                 swiper: swiper,
             },
         });
+        $(document).ready(() => {
+			$("#btnDelete").on("click", () => {
+				if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
+					location.replace("${ path }/product/product_delete?pno=${ product.pno }");
+				}
+			});
+		});
+        
     </script>
 

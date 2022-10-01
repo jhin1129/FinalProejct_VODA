@@ -66,4 +66,8 @@
 						#{pmadelocal}, 
 						#{pmadecompany})
 	</insert>
+	<delete id="deleteProduct" parameterType="Product">
+		DELETE FROM PRODUCT
+		WHERE P_NO = #{pno}
+	</delete>
 </mapper>
