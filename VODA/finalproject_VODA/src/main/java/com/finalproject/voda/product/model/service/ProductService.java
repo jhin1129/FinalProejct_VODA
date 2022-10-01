@@ -12,5 +12,7 @@ public interface ProductService {
 	List<Product> getProductList(PageInfo pageInfo);
 
 	Product findProductByNo(int pno);
+
+	int saveProduct(Product product);
 	
 }
