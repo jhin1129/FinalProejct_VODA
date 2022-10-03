@@ -44,14 +44,14 @@
         .btn-greyc {
         background-color: rgb(235, 236, 240);
         border: rgb(235, 236, 240);
-        color: #55585c;
+        color: #000000;
         
         }
     
         .btn-greyc:hover {
         background-color: #c3c3c4b7 !important;
         border-color: #c3c3c4b7 !important;
-        color: #55585c !important;
+        color: #000000 !important;
         
     
         }
@@ -61,8 +61,8 @@
         }
 
         table * {
-            font-size: 0.9em;
-            color: #555555;
+            font-size: 14.45px;
+            color: #000000;
         }
 
         .table thead th {
@@ -73,15 +73,22 @@
             margin-bottom: 0rem;
         }
     
-    
         .table td, .table th {
         padding: 0.60rem;
         }
 
-        .note-placeholder {
-        font-size: 12.393px;
+        .table th {
+            padding-left: 13px;
         }
 
+        .note-placeholder {
+        font-size: 14.45px;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+            
+        }
     </style>
 
     
@@ -163,7 +170,7 @@
     <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #555555; font-size: 1.0rem;">문의게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;">문의게시판</h3>
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
@@ -173,8 +180,8 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">카테고리</th>
-                            <td style="width: 80%;">
-                                <select style="width: 80%; height: 22.7px; color: gray; font-size: 12.393px;">
+                            <td class="p-0" style="width: 80%;">
+                                <select style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                                     <option value="">회원/정보관리</option>
                                     <option value="">주문/결제</option>
                                     <option value="">배송</option>
@@ -188,19 +195,19 @@
 
                     <tbody>
                         <tr>
-                            <th class="table-active">제목</th>
-                            <td style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요." style="width: 80%;">
+                            <th class="table-active" style="width: 20%;">제목</th>
+                            <td class="p-0" style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요." style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                         </tr>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td>마동석</td>
+                            <td style="margin-left: 10px;">마동석</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
                             <td class="p-0">
-                                <button class="btn btn-greyc py-1" style="color: #55585c; font-size: 1.0em; padding: 10.2px; margin-left: 10px;">파일 선택</button>
-                                <label style="font-size: 12.393px; padding: 10.2px; margin: 0px;"> 선택된 파일이 없습니다.</label>
+                                <button class="btn btn-greyc p-0" style="color: #000000; font-size: 14.45px; height: 27px; width: 80px; margin-left: 10px; margin-right: 8px;" >파일 선택</button>
+                                <label style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;"> 선택된 파일이 없습니다.</label>
                             </td>
                         </tr>
                     </tbody>

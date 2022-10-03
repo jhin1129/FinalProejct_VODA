@@ -32,6 +32,11 @@
     box-shadow: none !important;
     }
 
+    input:focus {
+            outline: none !important;
+        }
+
+
     .btn {
 
     transition: background 0.2s ease-in-out,
@@ -43,27 +48,28 @@
     }
 
     .btn-greyc {
-    background-color: rgb(235, 236, 240);
-    border: rgb(235, 236, 240);
-    color: #55585c;
+        background-color: rgb(235, 236, 240);
+        border: rgb(235, 236, 240);
+        color: #000000;
+        
+        }
     
-    }
-
     .btn-greyc:hover {
-    background-color: #c3c3c4b7 !important;
-    border-color: #c3c3c4b7 !important;
-    color: #55585c !important;
+        background-color: #c3c3c4b7 !important;
+        border-color: #c3c3c4b7 !important;
+        color: #000000 !important;
+            
     
 
     }
 
     table * {
-        font-size: 0.9em;
-        color: #555555;
+        font-size: 14.45px;
+        color: #000000;
     }
 
     .table thead th {
-    border-bottom: 1px;
+        border-bottom: 1px;
     }
 
     .table {
@@ -72,20 +78,20 @@
 
 
     .table td, .table th {
-    padding: 0.60rem;
+        padding: 0.60rem;
     }
 
     .page-link {
-        color: #555555;
-        font-size: 0.9em;
+        color: #000000;
+        font-size: 14.45px;
     }
 
     /* pagination */
     #pagination {
-    margin: 0;
-    margin-top: 20px;
-    padding: 0;
-    text-align: center;
+        margin: 0;
+        margin-top: 20px;
+        padding: 0;
+        text-align: center;
     
     }
     #pagination li {
@@ -95,8 +101,8 @@
     display: inline-block;
     text-decoration: none;
     padding: 3px 7px;
-    color: #555555;
-    font-size: 0.9em;
+    color: #000000;
+    font-size: 14.45px;
     }
 
     /* Active and Hoverable Pagination */
@@ -128,13 +134,24 @@
 
     /* 인풋, 폼태그 */
     option {
-        font-size: 12px;
+        font-size: 14.5px;
     }
 
-    .form-control {
+    .form-control1 {
+        display: block;
         height: 27.8px;
         padding: 0.2rem 0.7rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
     }
+
 
     .td-hr{
         pointer-events: none;
@@ -206,7 +223,7 @@
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #555555; font-size: 1.0rem;">자유게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;">자유게시판</h3>
         </div>
 
         <div class="mt-4">
@@ -378,7 +395,7 @@
         <div class="search1 row my-4">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
-                    <select name="searchType" class="form-control" style="font-size: 12px;">
+                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
                         <option value="title">작성자</option>
                         <option value="title">내용</option>
@@ -388,7 +405,7 @@
 
                 <div class="col-xs-7 col-sm-7 pl-0">
                     <div class="input-group">
-                        <input type="text" class="form-control" style="font-size: 12px;">
+                        <input type="text" class="form-control1" style="font-size: 14.45px;">
                         <span class="input-group-btn" >
                             <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;" ><img src="../../IMG/Community/search.png" style="height: 18px;"></button>
                         </span>
