@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 
 .member_wrap {
     margin: auto;
@@ -62,6 +64,7 @@
     /*기본정보*/
     .base_info_box .important {
         /* background: url("../../IMG/Login/icon_dot_03.png") no-repeat 0 center; */
+		font-size: 14px;
         
     }
 
@@ -137,7 +140,6 @@
         left: 150px; 
         margin-top: 8px;
         border-radius: 3px;
-
     }
 
     /*회원가입 버튼*/
@@ -148,9 +150,8 @@
         padding: 10px;
         position: relative;
         left: 150px;
-        font-size: 20px;
+        font-size: 18px;
         border-radius: 3px;
-
     }
 
     .member_password {
@@ -454,12 +455,12 @@
     }
 
     #btn_join_completion {
-        width: 15%;
+        width: 20%;
         height: 100%;
         margin: 0;
         padding: 10px;
         position: relative;
-        font-size: 20px;
+		font-size: 20px;    
         border-radius: 3px;
     }
 
