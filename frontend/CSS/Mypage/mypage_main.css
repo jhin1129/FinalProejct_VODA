@@ -96,23 +96,36 @@
 .infotable_td{
     vertical-align: middle;
     font-size: 0.85em;
-    font-weight: 450;
+    font-weight: 400;
     height: 54.16px;
 }
 
 .infotable input[type=text]{
     width: 200px;
     outline: none;
+    border: 1px solid #ced4da;
 }
 
 .infotable label {
     font-size: 0.9em;
     font-weight: 450;
 }
+/* 이메일 주소 콤보박스 */
+select {
+    height: 26px;
+    border: 1px solid #ced4da;
+}
 
+select:focus{
+    outline: none;
+}
+
+select * {
+    font-size: 1em;
+}
 /*생년월일*/
 .birth1 {
-    font-size: 0.9em;
+    font-size: 0.85em;
     display: flex;
     -webkit-box-align: center;
     align-items: center;

@@ -15,271 +15,127 @@
   <!-- common CSS-->
   <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
-  <style>
-  /* @charset "UTF-8";
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  } */
-
-  /* html,
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  } */
-
-  /* body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: normal 15px/1.5 "Open Sans", sans-serif;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    color: #4C4C4C;
-    background: #3f44a5;
-  } */
-
-  .clear {
-    clear: both;
-  }
-
-  h1 {
-    text-align: center;
-    font-size: 22px;
-    color: white;
-  }
-
-  .select-wrapper {
-    position: relative;
-    width: 350px;
-  }
-  .select-wrapper::after {
-    color: black;
-    content: "▾";
-    margin-right: 10px;
-    pointer-events: none;
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 20px;
-  }
-
-  .select {
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    background: white;
-    border: none;
-    border-radius: 0;
-    cursor: pointer;
-    padding: 12px;
-    width: 100%;
-    font-size: 18px;
-  }
-  .select:focus {
-    color: black;
-  }
-  .select::-ms-expand {
-    display: none;
-  }
-
-  html {
-    height: 100%;
-}
-
-body {
-    font-family: sans-serif;
-    height: 100%;
-    margin: 0;
-}
-
-.container {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-}
-
-.image-upload {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.button {
-    display: flex;
-    justify-content: center;
-}
-
-label {
-    cursor: pointer;
-    font-size: 1em;
-}
-
-#chooseFile {
-    visibility: hidden;
-}
-
-.fileContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fileInput {
-    display: flex;
-    align-items: center;
-    border-bottom: solid 2px black;
-    width: 60%;
-    height: 30px;
-}
-
-#fileName {
-    margin-left: 5px;
-}
-
-.buttonContainer {
-    width: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
-    background-color: black;
-    color: white;
-    border-radius: 30px;
-    padding: 10px;
-    font-size: 0.8em;
-
-    cursor: pointer;
-}
-
-.image-show {
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-  </style>
-
-
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<form class="form">
-  <h2>컨텐츠 등록</h2>
-  <p type="제목"><input placeholder="컨텐츠의 제목을 작성하세요"></input></p>
-  <p type="컨텐츠 타입"><div class="select-wrapper">
-    <select class="select">
-      <option value="value1">MOVIE</option>
-      <option value="value1">TV</option>
-      <option value="value2">BOOK</option>
-      <option value="value3">WEBTOON</option>
-    </select>
-  <p type="컨텐츠 장르"><input placeholder="컨텐츠의 장르를 작성하세요"></input></p>
-  <p type="컨텐츠 연도"><input placeholder="컨텐츠의 연도를 작성하세요"></input></p>
-  <p type="컨텐츠 국적"><input placeholder="컨텐츠의 국적을 작성하세요"></input></p>
-  <p type="컨텐츠 정보"><input placeholder="컨텐츠 기본정보 러닝타임/연재중/책페이지"></input></p>
-  <p type="컨텐츠 연령가"><div class="select-wrapper">
-    <select class="select">
-      <option value="value1">전체 관람가</option>
-      <option value="value1">12세 관람가</option>
-      <option value="value2">15세 관람가</option>
-      <option value="value3">18세 관람가</option>
-    </select>
-    <div class="mb-3">
-      <label for="exampleFormControlTextarea1" class="form-label">컨텐츠 줄거리</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+
+  <div class="row" id="posterbg">
+    <div class="col-2 d-none d-lg-block LeftGradient p-0">
     </div>
-  <label for="exampleColorInput" class="form-label">Color picker</label>
-  <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
-
-  <div class="container">
-    <div class="image-upload" id="image-upload">
-
-        <form method="post" enctype="multipart/form-data">
-            <div class="button">
-                <label for="chooseFile">
-                    👉 CLICK HERE! 👈
-                </label>
-            </div>
-            <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
-        </form>
-
-        <div class="fileContainer">
-            <div class="fileInput">
-                <p>FILE NAME: </p>
-                <p id="fileName"></p>
-            </div>
-            <div class="buttonContainer">
-                <div class="submitButton" id="submitButton">SUBMIT</div>
-            </div>
-        </div>
+    <div class="col p-0" class="image-show" id="image-show" >
     </div>
-    
-    <div class="image-show" id="image-show"></div>
-</div>
-
-<script>
-  var submit = document.getElementById('submitButton');
-submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
-
-function showImage() {
-    var newImage = document.getElementById('image-show').lastElementChild;
-    newImage.style.visibility = "visible";
-    
-    document.getElementById('image-upload').style.visibility = 'hidden';
-
-    document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
-}
-
-
-function loadFile(input) {
-    var file = input.files[0];
-
-    var name = document.getElementById('fileName');
-    name.textContent = file.name;
-
-    var newImage = document.createElement("img");
-    newImage.setAttribute("class", 'img');
-
-    newImage.src = URL.createObjectURL(file);   
-
-    newImage.style.width = "70%";
-    newImage.style.height = "70%";
-    newImage.style.visibility = "hidden";   //버튼을 누르기 전까지는 이미지 숨기기
-    newImage.style.objectFit = "contain";
-
-    var container = document.getElementById('image-show');
-    container.appendChild(newImage);
-};
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-  <button>Send Message</button>
-</form>
-<!-- partial -->
-
-
- 
-  <form>
-    
+    <div class="col-2 d-none d-lg-block RightGradient p-0">
     </div>
+  </div>
 
+  <!-- <div class="image-show bg-light" id="image-show"></div> -->
+
+  <div class="container" id="formbackground">
+  <!-- partial:index.partial.html -->
   
+  <!-- <div class="image-upload" id="image-upload"> -->
+    <!-- <form method="post" enctype="multipart/form-data">
+      <label for="chooseFile" class="click">
+        파일 첨부하기
+      </label>
+      <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+    </form>
+        
+        <div class="fileContainer">
+          <div class="fileInput">
+            <p type="파일 첨부"></p>
+            <p id="fileName"></p>
+          </div>
+          <div class="buttonContainer">
+            <div class="submitButton" id="submitButton">SUBMIT</div>
+          </div>
+        </div> -->
+        
+  <!-- </div> -->
+      
+  <form class="form">
+    
+    <p class="purple" type="프로필 파일 업로드"></p> 
+    <!-- <label for="profileFile">업로드</label> -->
+    <div class="filebox">
+      <input type="file" id="profileFile"> 
+    </div>
+
+    <p class="purple" type="배경 파일 업로드"></p> 
+    <!-- <label for="chooseFile" class="click">
+      <div class="attachbutton">파일 첨부하기</div>
+    </label> -->
+    <!-- <label for="chooseFile">업로드</label> -->
+    <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+    
+    <div class="fileInput">
+      <p type="파일 첨부" class="m-0" ></p>
+      <p id="fileName" class="m-0"></p>
+    </div>
+    
+
+    <p class="purple" type="배경 컬러 선택"></p> 
+    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+
+    <p class="purple" type="제목"><input placeholder="컨텐츠의 제목을 작성하세요"></input></p>
+    <p class="purple" type="컨텐츠 타입">
+      <select class="select">
+        <option value="value1">MOVIE</option>
+        <option value="value1">TV</option>
+        <option value="value2">BOOK</option>
+        <option value="value3">WEBTOON</option>
+      </select>
+    <p class="purple" type="컨텐츠 장르"><input placeholder="컨텐츠의 장르를 작성하세요"></input></p>
+    <p class="purple" type="컨텐츠 연도"><input placeholder="컨텐츠의 연도를 작성하세요"></input></p>
+    <p class="purple" type="컨텐츠 국적"><input placeholder="컨텐츠의 국적을 작성하세요"></input></p>
+    <p class="purple" type="컨텐츠 정보"><input placeholder="컨텐츠 기본정보 러닝타임/연재중/책페이지"></input></p>
+    <p class="purple" type="컨텐츠 연령가">
+      <select class="select">
+        <option value="value1">전체 관람가</option>
+        <option value="value1">12세 관람가</option>
+        <option value="value2">15세 관람가</option>
+        <option value="value3">18세 관람가</option>
+      </select>
+    <p class="purple" type="컨텐츠 줄거리"></p>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+
+
+  </form>
+  </div>
+  <!-- partial -->
+
+  <script>
+    var submit = document.getElementById('submitButton');
+    submit.onclick = showImage;     //Submit 버튼 클릭시 이미지 보여주기
+    
+    function showImage() {
+        var newImage = document.getElementById('image-show').lastElementChild;
+        newImage.style.visibility = "visible";
+        
+        document.getElementById('image-upload').style.visibility = 'hidden';
+    
+        document.getElementById('fileName').textContent = null;     //기존 파일 이름 지우기
+    }
+    
+    function loadFile(input) {
+        var file = input.files[0];
+    
+        var name = document.getElementById('fileName');
+        name.textContent = file.name;
+    
+        var newImage = document.createElement("img");
+        newImage.setAttribute("class", 'img');
+        newImage.setAttribute("id", 'graposter');
+    
+        newImage.src = URL.createObjectURL(file);   
+    
+        newImage.style.width = "100%";
+        newImage.style.height = "100%";
+        newImage.style.visibility = "visible";   //버튼을 누르기 전까지는 이미지 숨기기
+        newImage.style.objectFit = "contain";
+    
+        var container = document.getElementById('image-show');
+        container.appendChild(newImage);
+    };
+  </script>
 </body>
 </html>

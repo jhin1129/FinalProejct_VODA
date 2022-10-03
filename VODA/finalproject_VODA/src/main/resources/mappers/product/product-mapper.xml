@@ -3,19 +3,67 @@
 
 <mapper namespace="com.finalproject.voda.product.model.mapper.ProductMapper">
 	<resultMap type="Product" id="ProductListResultMap">
-		<id property="pNo" column="P_NO"/>
-		<result property="pName" column="P_NAME"/>
-		<result property="pPrice" column="P_PRICE"/>
-		<result property="pQtt" column="P_QTT"/>
-		<result property="pContents" column="P_CONTENTS"/>
-		<result property="pView" column="P_VIEW"/>
-		<result property="pDate" column="P_DATE"/>
-		<result property="pStatus" column="P_STATUS"/>
-		<result property="pOriginFile" column="P_ORIGINFILE"/>
-		<result property="pRenameFile" column="P_RENAMEFILE"/>
+		<id property="pno" column="P_NO"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pprice" column="P_PRICE"/>
+		<result property="pqtt" column="P_QTT"/>
+		<result property="pcontents" column="P_CONTENTS"/>
+		<result property="pview" column="P_VIEW"/>
+		<result property="pdate" column="P_DATE"/>
+		<result property="pstatus" column="P_STATUS"/>
+		<result property="poriginfile" column="P_ORIGINFILE"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadelocal" column="P_MADELOCAL"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
 	</resultMap>
 	
 	<select id="getProductAllCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT
 	</select>
+	
+	<select id="getProductList" resultMap="ProductListResultMap">
+		SELECT P_NO,
+		       P_NAME,
+		       P_PRICE,
+		       P_STATUS,
+		       P_ORIGINFILE,
+		       P_RENAMEFILE,
+		       P_CATEGORY
+		FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+		ORDER BY P_NO DESC
+	</select>
+	<select id="findProductByNo" parameterType="_int" resultMap="ProductListResultMap">
+		SELECT P_NO,
+		       P_NAME,
+		       P_PRICE,
+		       P_QTT,
+		       P_CONTENTS,
+		       P_DATE,
+		       P_ORIGINFILE,
+		       P_RENAMEFILE,
+		       P_CATEGORY,
+		       P_MADELOCAL,
+		       P_MADECOMPANY
+		FROM PRODUCT
+		WHERE P_NO = #{pno}
+	</select>
+	
+	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="pno" keyColumn="P_NO">
+	INSERT INTO PRODUCT VALUES 
+						(SEQ_PNO.NEXTVAL, 
+						#{pname}, 
+						#{pprice}, 
+						#{pqtt}, 
+						#{pcontents}, 
+						1, 
+						SYSDATE, 
+						'Y', 
+						'원래파일이름', 
+						'바뀐파일이름', 
+						#{pcategory}, 
+						#{pmadelocal}, 
+						#{pmadecompany})
+	</insert>
 </mapper>

@@ -18,11 +18,11 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
     
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+ 	<!-- common CSS-->
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
 
     <!-- mainpage CSS-->
-    <link rel="stylesheet" href="../../CSS/Main/mainpagestyle.css">
+    <link rel="stylesheet" href="${path}/resources/css/main/mainpage.css">
     
     <title>Document</title>
 </head>
@@ -50,8 +50,15 @@
                   <li><a class="dropdown-item" href="#">WEBTOON</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" onclick="location.href='${path}/product/product_all_list'">GOODS</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" onclick="location.href='${path}/product/product_all_list'">
+                    GOODS
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_all_list'">ALL GOODS</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_popular_list'">POPULAR GOODS</a></li>
+                </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">RANKING</a>
@@ -83,7 +90,7 @@
     </div>
   </nav>
 </div>
-<hr class="mt-1 mb-0 line">
+
 <!-- 헤더 끝 -->
     
     <div class="videowrapper">
