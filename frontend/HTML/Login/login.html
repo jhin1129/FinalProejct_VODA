@@ -15,8 +15,9 @@
     <!-- mainstyle CSS -->
     <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
-    <!-- Bootswatch  -->
-    <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+    <!-- Bootswatch  
+        <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+    -->
 
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="../../CSS/Login/login.css">
@@ -93,10 +94,10 @@
                     </div>
                     <div class="panel-body p-3">
                         <form action="login_script.php" method="POST">
-                            <div class="form-group py-2">
+                            <div class="form-group py-2" style="margin-bottom: 0px;">
                                 <div class="input-field">
                                     <span class="far fa-user p-2"></span> 
-                                    <input id="loginId" type="text" placeholder="이메일 주소 또는 아이디" required> 
+                                    <input id="userId" type="text" placeholder="이메일 주소 또는 아이디" required> 
                                 </div>
                             </div>
                             <div class="form-group py-1 pb-2">
@@ -117,7 +118,7 @@
                                 <label for="autoLogin" class="text-muted">자동 로그인</label>
                             </span>
                             <br>
-                            <div class="btn btn-primary btn-block mt-3">로그인</div>
+                            <button type="submit" class="btn-logoc">로그인</button>
                             <ul class="join-find">
                                 <li>
                                     <a href="#" id="forgotId" class="">아이디 찾기</a>
@@ -210,8 +211,9 @@
         </footer>
         <!-- 푸터 끝-->
     
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+    <!-- jQuery 
+        <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+    -->
     <!-- Popper JS -->
     <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script> -->
 

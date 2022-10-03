@@ -1,98 +1,53 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>enroll</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-    <!--BootStrap CSS-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>enroll</title>
+	
+	<!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!--BootStrap JS-->
+    <!--BootStrap JS
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
-    <!-- mainstyle CSS -->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
     <!-- join CSS -->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Login/enroll.css">
-
-    <!-- Bootswatch  -->
-    <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/enroll.css">
+    
+    <!-- 
+    <script src="${ path }/js/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+     -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
+    
 </head>
 <body>
-        <!-- 헤더 시작 -->
-<div class="container p-0">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand mr-1" href="#"><img src="../../IMG/Common/VODA.png" width="200px"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav me-auto mt-1">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        CONTENTS
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">MOVIE</a></li>
-                        <li><a class="dropdown-item" href="#">TV</a></li>
-                        <li><a class="dropdown-item" href="#">BOOK</a></li>
-                        <li><a class="dropdown-item" href="#">WEBTOON</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">GOODS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">RANKING</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        COMMUNITY
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
-                        <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
-                    </ul>
-                </li>
-                </ul>
-            </div>
-    
-                <div class="search">
-                <form class="d-flex">
-                <input class="form-control me-sm-2" type="text">
-                </form>
-                </div>
-    
-                <div class="right">
-                <a class="text-nowrap" id="login" href="#">로그인</a>
-                <a class="text-nowrap" id="join"href="#">회원가입</a>
-                </div>
-    
-            </div>
-        </nav>
-        </div>
-        <hr class="mt-1 mb-0 line">
-        <!-- 헤더 끝 -->
-        
-        <div class="container">
+
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+       <div class="container">
             <div class="join_base_wrap">
                 <div class="member_tit">
                     <h2>회원가입</h2>
                 </div>    
             </div> 
         </div>
-        <form name="memberEnrollForm" action="${path}/memeber/enroll.do" method="post">
+        
+        <form name="memberEnrollForm" action="${path}/member/enroll" method="post">
         <div class="base_info_box">
             <div class="row">
                 <div class="col"></div>
-                <div class="col-8" style="width: 620px;">  
+                <div class="col-8">  
                     <div class="important" id="base_info_p">
                         <span class="important_star">*</span>
                         필수입력사항</div>
@@ -114,7 +69,7 @@
                                                         <label for="user_id" class="sr-only">memId</label>
                                                         <input type="text" name="m_id" class="form-control" id="user_id" placeholder="아이디를 입력해주세요" required>
                                                     </div>
-                                                        <input id="btn_duplicate" name="duplication_check" type="button" class="btn-logoc" value="중복확인">
+                                                        <button id="btn_duplicate" name="duplication_check" type="button" class="btn-logoc" value="중복확인">중복확인</button>
                                                 </div>
                                                 <div class="check_font" id="id_check"
                                                 style="padding-left: 15px; padding-top: 10px"></div>
@@ -208,31 +163,30 @@
                                                 <div class="address_input">
                                                     <div class="form-inline">
                                                         <div class="form-group mx-sm-3 mb-2">
-                                                            <label for="inputEmail" class="sr-only">memEmail</label>
-                                                            <input name="m_postnum" readonly="readonly" type="text" class="form-control" id="inputDefault">
+                                                            <label for="inputAddress" class="sr-only">memAddress</label>
+                                                            <input name="m_postNum" id="sample6_postcode" readonly="readonly" type="number" class="form-control">
                                                         </div>
-                                                        <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                                                        <!-- <button id="btn_address" type="button" class="btn-logoc">주소 검색</button> -->
-                                                        <input name="m_address" readonly="readonly" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;" required >
-                                                        <input name="m_detailaddress" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;margin-top: 3px;" required>
+                                                        <button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
+                                                        <input name="m_address" id="sample6_address" readonly="readonly" type="text" class="form-control" id="inputDefault" style="margin-left: 16px; width: 235px !important;" required >
+                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;margin-top: 3px; width: 235px !important;" required>
                                                     </div>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr>                                       
                                         <tr>
                                             <th><span class="important">성별</span>
                                             </th>
                                             <td class="member_gender" style="padding: 30px;">
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="men">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="M">
                                                     <label class="form-check-label" for="optionsRadios1">남자</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="women">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="W">
                                                     <label class="form-check-label" for="optionsRadios2">여자</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="none" checked="">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="N" checked="">
                                                     <label class="form-check-label" for="optionsRadios3">선택안함</label>
                                                 </div>
                                             </td>
@@ -245,14 +199,6 @@
                                                     <div class="birth1" style="width: 250px;">
                                                             <input data-testid="input-box" name="m_birth" maxlength='8'
                                                             placeholder="예: 20001225" type="text" height="40" id="css-birth1">
-                                                        <!-- <span class="birth3">
-                                                        </span>
-                                                            <input data-testid="input-box" name="birthMonth" maxlength='2'
-                                                            placeholder="MM" type="text" height="40" id="css-birth2">
-                                                        <span class="birth3">
-                                                        </span>
-                                                            <input data-testid="input-box" name="birthDay" maxlength='2'
-                                                            placeholder="DD" type="text" height="40" id="css-birth2"> -->
                                                     </div>    
                                                 </div>
                                                 <div class="check_font" id="birth_check"
@@ -345,7 +291,6 @@
                             
                             <div class="btn_center_box">
                                 <input id="btn_final_join" type="submit" class="btn-logoc" value="회원가입">
-                                <!--<button type="button" class="btn_comfirm js_btn_join" value="회원가입">회원가입</button> -->
                             </div>
                         </div>
                     <div class="col"></div>  
@@ -353,8 +298,8 @@
             </div>
         </form>
         <br><br><br><br><br><br>
+        
 
-    <!-- Modal -->
 <div>
     <style>
         html {
@@ -1234,62 +1179,18 @@
     
 </div>
 
-        <!-- 푸터 -->
-    <footer class="bg-light text-center text-lg-start">
-        <div style="background-color: rgb(235, 236, 240);">
-            <!-- Grid container -->
-            <div class="container p-4" style="background-color: rgb(235, 236, 240);">
-                <!--Grid row-->
-                <div class="row">
-                    <!--Left Grid column-->
-                    <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
-                        style="text-align:center; background-color: rgb(235, 236, 240);">
-                        <h5 class="text-uppercase">Project</h5>
-                        <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
-                            <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
-                        </div>
-                    </div>
-                    <!--Left Grid column-->
-    
-                    <!--Right Grid column-->
-                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0"
-                        style="text-align:center; background-color: rgb(235, 236, 240);">
-                        <h5 class="text-uppercase">contact us</h5>
-                        <div class="cul my-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                            </svg> &nbsp; 02-123-4567 &nbsp;
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-                            </svg> &nbsp; vodaofficial@gmail.com <br><br>
-                            <p>
-                                <a href="#!">이용안내</a> &nbsp;
-                                <a href="#!">이용약관</a> &nbsp;
-                                <a href="#!">개인정보처리방침</a>
-                            </p>
-                            <div>Business license : 706-20-01181 <br> Mall-order license : 2022-서울시-0334</div>
-                        </div>
-                    </div>
-                    <!--Right Grid column-->
-                </div>
-                <!--Grid row-->
-            </div>
-            <!-- Grid container -->
-    </footer>
-    <!-- 푸터 끝-->
-    
 
-<!-- 모달 -->
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<!-- 모달 script -->
     <script>
         $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
     </script>
 
+<!-- 약관 동의 체크 (전체 항목 체크 시 모두 체크 버튼 활성화) -->
     <script>
         window.onload = function(){
             var checkWrap = document.getElementById('checkWrap'),
@@ -1397,7 +1298,6 @@
 </script>
 
 <!-- 비밀번호 재확인 -->
-
 <script>
 $(document).ready(function () {
     $("#user_password_retype").change(function(){
@@ -1405,7 +1305,7 @@ $(document).ready(function () {
 		var p2 = $("#user_password_retype");
 		
 		if(p1.val() != p2.val()){
-			$(".mismatch-message").text("비밀번호가 일치하지 않습니다.");
+			$(".mismatch-message").text("동일한 비밀번호를 입력해 주세요.");
 			$(".mismatch-message").attr('style', 'visibility:visible;');
             $(".mismatch-message").attr('style', 'color: red');
 
@@ -1415,7 +1315,6 @@ $(document).ready(function () {
 		}
 	});
 });
-
 
 </script>
 
@@ -1503,26 +1402,66 @@ var birthJ = false;
 </script>
 
 
-
-<!-- 회원가입 버튼 클릭 시 중복 체크 여부 확인 (구현 중)
+<!-- 주소 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-$(document).ready(function () {
-	$("#btn_final_join").submit(function(){
-		
-		//중복검사 실시 유무
-		if($("[name=duplication_check]").val() != "1"){
-			alert("아이디 중복 체크를 해주세요");
-			$("#newMemId").focus();
-			return false;
-		}
-		
-	});
-});
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
 </script>
--->
+
+<!--  아이디 중복 체크 -->
+<script>
+	$(document).ready(() => {
+		$("#btn_duplicate").on("click", () => {
+			let userId = $("#user_id").val().trim();			
+			
+			$.ajax({
+				type: "POST",
+				url: "${ path }/member/idCheck",
+				dataType: "json",
+				data: {
+					userId // "userId": userId
+				},
+				success: (obj) => {
+					console.log(obj);
+					
+					if(obj.duplicate === true) {
+						alert("이미 사용중인 아이디 입니다.")
+					} else {
+						alert("사용 가능한 아이디 입니다.")
+					}
+				}, 
+				error: (error) => {
+					console.log(error);
+				}
+			});
+		});
+	});
+</script>
 
 
 </body>
 </html>
-

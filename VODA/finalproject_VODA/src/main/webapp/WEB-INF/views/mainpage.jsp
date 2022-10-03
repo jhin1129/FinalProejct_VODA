@@ -83,8 +83,10 @@
       </div>
 
       <div class="right">
-        <a class="text-nowrap" id="login" href="#">로그인</a>
-        <a class="text-nowrap" id="join"href="#">회원가입</a>
+        <a class="text-nowrap" id="login" href="#"
+        onclick="location.href='${path}/member/login'">로그인</a>
+        <a class="text-nowrap" id="join"href="#"
+        onclick="location.href='${path}/member/enroll'">회원가입</a>
       </div>
 
     </div>
