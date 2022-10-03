@@ -94,16 +94,16 @@
                         </tr>
                         <tr>
                             <th class="table-active">상품 전체 수량</th>
-                            <td><input type="text" name="pqtt" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="number" name="pqtt" placeholder="수량를 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">상품 가격</th>
-                            <td><input type="text" name="pprice" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
+                            <td><input type="number" name="pprice" placeholder="상품 가격을 입력해주세요" style="width: 50%;"></td>
                         </tr>
                         <tr>
                             <th class="table-active">File</th>
                             <td>
-							<input multiple="multiple" type="file" name="upfile" />
+							<input multiple="multiple" type="file" name="multiFile" />
 
                                 
                             </td>
@@ -117,7 +117,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote" name="pcontents"></textarea>
                 <script>
                     $('#summernote').summernote({
                         placeholder: '내용을 입력해주세요',
