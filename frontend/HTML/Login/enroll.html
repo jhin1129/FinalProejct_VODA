@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>join1</title>
+    <title>enroll</title>
 
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
     <!-- join CSS -->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Login/join.css">
+    <link rel="stylesheet" type="text/css" href="../../CSS/Login/enroll.css">
 
     <!-- Bootswatch  -->
     <link rel="stylesheet" href="../../CSS/Login/bootstrap.min.css">
@@ -80,7 +80,7 @@
         </div>
         <hr class="mt-1 mb-0 line">
         <!-- 헤더 끝 -->
-
+        
         <div class="container">
             <div class="join_base_wrap">
                 <div class="member_tit">
@@ -88,20 +88,20 @@
                 </div>    
             </div> 
         </div>
-        
-            <div class="base_info_box">
-                <div class="row">
-                    <div class="col"></div>
-                        <div class="col-8" style="width: 620px;">  
-                            <div class="important" id="base_info_p">
-                                <span class="important_star">*</span>
-                                필수입력사항</div>
-                                <div class="base_info_sec">
-                                    <table border="0" cellpadding="0" cellspacing="0">
-                                        <colgroup>
-                                            <col width="25%">
-                                            <col width="75%">
-                                        </colgroup>
+        <form name="memberEnrollForm" action="${path}/memeber/enroll.do" method="post">
+        <div class="base_info_box">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-8" style="width: 620px;">  
+                    <div class="important" id="base_info_p">
+                        <span class="important_star">*</span>
+                        필수입력사항</div>
+                        <div class="base_info_sec">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <colgroup>
+                                    <col width="25%">
+                                    <col width="75%">
+                                </colgroup>
                                         <tbody>
                                         <tr>
                                             <th><span class="important">
@@ -109,17 +109,16 @@
                                                 아이디</span>
                                             </th>
                                             <td>
-                                                <span>
-                                                </span>
-                                                <form class="form-inline">
+                                                <div class="form-inline">
                                                     <div class="form-group mx-sm-3 mb-2">
-                                                        <label for="inputId" class="sr-only">memId</label>
-                                                        <input type="text" class="form-control" id="inputPassword2" placeholder="아이디를 입력해주세요">
+                                                        <label for="user_id" class="sr-only">memId</label>
+                                                        <input type="text" name="m_id" class="form-control" id="user_id" placeholder="아이디를 입력해주세요" required>
                                                     </div>
-                                                        <button id="btn_duplicate" type="button" class="btn btn-outline-primary">중복확인</button>
-                                                </form>
+                                                        <button id="btn_duplicate" name="duplication_check" type="button" class="btn btn-outline-primary">중복확인</button>
+                                                </div>
+                                                <div class="check_font" id="id_check"
+                                                style="padding-left: 15px; padding-top: 10px"></div>
                                             </td>
-                            
                                         </tr>
                                         <tr class="">
                                             <th><span class="important">
@@ -127,15 +126,14 @@
                                                 비밀번호</span>
                                             </th>
                                             <td class="member_password" style="padding-left: 30px;">
-                                                <!-- <div class="member_warning">
-                                                    <input type="password" id="newPassword" name="memPw" autocomplete="off" placeholder=""> (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-                                                </div> -->
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요">
+                                                    <input type="password" name="m_password" class="form-control" id="user_password" placeholder="비밀번호를 입력해주세요" required>
                                                 </div>
+                                                <div class="check_font" id="password_check"
+                                                style="padding-bottom: 10px;"></div>
                                                 <p id="requiredPassword">10자 이상 입력</p>
-                                                <p id="requiredPassword">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</p>
-                                                <p id="requiredPassword">동일한 숫자 3개 이상 연속 사용 불가</p>
+                                                <p id="requiredPassword">영문/숫자/특수문자만 허용하며, 2개 이상 조합</p>
+                                                <!-- <p id="requiredPassword">동일한 숫자 3개 이상 연속 사용 불가</p> -->
                                         </tr>
                                         <tr class="">
                                             <th><span class="important">
@@ -143,12 +141,11 @@
                                                 비밀번호 확인</span>
                                             </th>
                                             <td style="padding-left: 30px;">
-                                                <!-- <div class="member_warning">
-                                                    <input type="password" class="check-id" name="memPwRe" autocomplete="off">
-                                                </div> -->
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="한번 더 입력해주세요">
+                                                    <input type="password" class="form-control" id="user_password_retype" placeholder="한번 더 입력해주세요" required>
                                                 </div>
+                                                <div class="mismatch-message"
+                                                style="color: red;"></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -157,12 +154,10 @@
                                                 이름</span>
                                             </th>
                                             <td style="padding-left: 30px;">
-                                                <!-- <div class="member_warning">
-                                                    <input type="text" name="memNm" data-pattern="gdEngKor" value="" maxlength="30">
-                                                </div> -->
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="이름을 입력해주세요" id="inputDefault">
+                                                    <input type="text" name="m_name" class="form-control" placeholder="이름을 입력해주세요" id="user_name" required>
                                                 </div>
+                                                <div class="check_font" id="name_check"></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -172,37 +167,16 @@
                                             </th>
                                             <td class="member_email">
                                                 <div class="member_warning">
-                                                    <!-- <input type="text" name="email" id="email" value="" tabindex="-1"> -->
-                                                    <!-- <span class="form-group">
-                                                        <input id="memEmail" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="예:voda1234@voda.com">
-                                                    </span>
-                                                    <span>
-                                                        <button id="btn_duplicate" type="button" class="btn btn-outline-primary">중복확인</button>
-                                                    </span> -->
-                                                    <form class="form-inline">
+                                                    <div class="form-inline">
                                                         <div class="form-group mx-sm-3 mb-2">
-                                                            <label for="inputEmail" class="sr-only">memEmail</label>
-                                                            <!-- <input id="memEmail" type="text" class="form-control" id="exampleInputEmail1" placeholder="예:voda1234@voda.com"> -->
-                                                            <input type="text" class="form-control" id="inputEmail" placeholder="예:voda1234@voda.com">
+                                                            <label for="user_email" class="sr-only">memEmail</label> 
+                                                            <input type="text" name="m_email" class="form-control" id="user_email" placeholder="예: voda1234@voda.com" required>
                                                         </div>
                                                         <button id="btn_duplicate" type="button" class="btn btn-outline-primary">중복확인</button>
-                                                    </form>
-                                                    <!-- <select id="emailDomain" name="emailDomain" class="chosen_select">
-                                                        <option value="self">직접입력</option>
-                                                        <option value="naver.com">naver.com</option>
-                                                        <option value="hanmail.net">hanmail.net</option>
-                                                        <option value="daum.net">daum.net</option>
-                                                        <option value="nate.com">nate.com</option>
-                                                        <option value="hotmail.com">hotmail.com</option>
-                                                        <option value="gmail.com">gmail.com</option>
-                                                        <option value="icloud.com">icloud.com</option>
-                                                    </select> -->
+                                                    </div>
                                                 </div>
-                                                <!-- <div class="member_warning js_email"></div>
-                                                <div class="form_element">
-                                                    <input type="checkbox" id="maillingFl" name="maillingFl" value="y">
-                                                    <label for="maillingFl" class="check_s ">정보/이벤트 메일 수신에 동의하시면 1,000 포인트가 추가 지급됩니다.</label>
-                                                </div> -->
+                                                <div class="check_font" id="email_check" 
+                                                style="padding-left: 15px; padding-top: 10px"></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -211,22 +185,15 @@
                                                 휴대폰번호</span>
                                             </th>
                                             <td class="member_address">
-                                                <!-- <div class="address_postcode">
-                                                    <input type="text" id="cellPhone" name="cellPhone" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="">
-                                                </div>
-                                                <div class="form_element">
-                                                    <input type="checkbox" id="smsFl" name="smsFl" value="y">
-                                                    <label for="smsFl" class="check_s ">정보/이벤트 SMS 수신에 동의하시면 1,000 포인트가 추가 지급됩니다.</label>
-                                                </div> -->
-                                                <form class="form-inline">
+                                                <div class="form-inline">
                                                     <div class="form-group mx-sm-3 mb-2">
-                                                        <label for="inputPhone" class="sr-only">memPhone</label>
-                                                        <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" 
-                                                        maxlength='11' class="form-control" placeholder="숫자만 입력해주세요" id="inputDefault">
+                                                        <label for="user_phone" class="sr-only">memPhone</label>
+                                                        <input type="text" name="m_phone" 
+                                                        maxlength='11' class="form-control" placeholder="숫자만 입력해주세요" id="user_phone" required>
                                                     </div>
-                                                        <!-- <button id="btn_duplicate" type="button" class="btn btn-outline-primary">인증번호 받기</button> -->
-                                                        <!-- <button type="submit" class="btn btn-primary mb-2">Confirm identity</button> -->
-                                                </form>
+                                                </div>
+                                                <div class="check_font" id="phone_check" 
+                                                style="padding-left: 15px; padding-top: 10px"></div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -236,26 +203,18 @@
                                             </th>
                                             <td class="member_address">
                                                 <div class="address_postcode">
-                                                    <!-- <input type="text" name="zonecode" readonly="readonly" value=""> -->
-                                                    <!-- <button type="button" id="btnPostcode" class="btn_post_search">우편번호검색</button> -->
                                                     <input type="hidden" name="zipcode" value="">
                                                 </div>
                                                 <div class="address_input">
-                                                    <!-- <div class="member_warning">
-                                                        <input type="text" name="address" readonly="readonly" value="">
-                                                    </div>
-                                                    <div class="member_warning js_address_sub">
-                                                        <input type="text" name="addressSub" value="">
-                                                    </div> -->
-                                                    <form class="form-inline">
+                                                    <div class="form-inline">
                                                         <div class="form-group mx-sm-3 mb-2">
                                                             <label for="inputEmail" class="sr-only">memEmail</label>
-                                                            <!-- <input id="memEmail" type="text" class="form-control" id="exampleInputEmail1" placeholder="예:voda1234@voda.com"> -->
-                                                            <input name="address" readonly="readonly" type="text" class="form-control" id="inputDefault">
+                                                            <input name="m_postnum" readonly="readonly" type="text" class="form-control" id="inputDefault">
                                                         </div>
                                                         <button id="btn_address" type="button" class="btn btn-outline-primary">주소 검색</button>
-                                                            <input name="addressSub" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;" >
-                                                    </form>
+                                                        <input name="m_address" readonly="readonly" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;" required >
+                                                        <input name="m_detailaddress" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;margin-top: 3px;" required>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>
@@ -264,15 +223,15 @@
                                             </th>
                                             <td class="member_gender" style="padding: 30px;">
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="men">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="men">
                                                     <label class="form-check-label" for="optionsRadios1">남자</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="women">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="women">
                                                     <label class="form-check-label" for="optionsRadios2">여자</label>
                                                 </div>
                                                 <div class="form-check form-check-inline" style="margin-right: 30px;">
-                                                    <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="none" checked="">
+                                                    <input class="form-check-input" type="radio" name="m_gender" id="optionsRadios2" value="none" checked="">
                                                     <label class="form-check-label" for="optionsRadios3">선택안함</label>
                                                 </div>
                                             </td>
@@ -282,19 +241,21 @@
                                             </th>
                                             <td class="member_birth" style="padding-left: 30px;">
                                                 <div style="flex: 1 1 0%">
-                                                    <div class="birth1" style="width: 240px;">
-                                                            <input data-testid="input-box" name="birthYear" maxlength='4'
-                                                            placeholder="YYYY" type="text" height="40" id="css-birth1">
-                                                        <span class="birth3">
+                                                    <div class="birth1" style="width: 250px;">
+                                                            <input data-testid="input-box" name="m_birth" maxlength='8'
+                                                            placeholder="예: 20001225" type="text" height="40" id="css-birth1">
+                                                        <!-- <span class="birth3">
                                                         </span>
                                                             <input data-testid="input-box" name="birthMonth" maxlength='2'
                                                             placeholder="MM" type="text" height="40" id="css-birth2">
                                                         <span class="birth3">
                                                         </span>
-                                                            <input data-testid="input-box" name="birthMonth" maxlength='2'
-                                                            placeholder="DD" type="text" height="40" id="css-birth2">
+                                                            <input data-testid="input-box" name="birthDay" maxlength='2'
+                                                            placeholder="DD" type="text" height="40" id="css-birth2"> -->
                                                     </div>    
                                                 </div>
+                                                <div class="check_font" id="birth_check"
+                                                style="padding-top: 10px"></div>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -382,17 +343,15 @@
                                 </div>
                             
                             <div class="btn_center_box">
-                                <button id="btn_final_join" type="button" class="btn btn-primary btn-lg" value="가입하기">회원가입</button>
-                                <!-- <button type="button" id="btnCancel" class="btn_member_cancel">취소</button>
-                                <button type="button" class="btn_comfirm js_btn_join" value="회원가입">회원가입</button> -->
+                                <input id="btn_final_join" type="submit" class="btn btn-primary btn-lg" value="회원가입">
+                                <!--<button type="button" class="btn_comfirm js_btn_join" value="회원가입">회원가입</button> -->
                             </div>
                         </div>
                     <div class="col"></div>  
                 </div>          
             </div>
-        
+        </form>
         <br><br><br><br><br><br>
-        <div class="container">
 
     <!-- Modal -->
 <div>
@@ -1274,49 +1233,6 @@
     
 </div>
 
-<script>
-    $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-})
-</script>
-
-
-<script>
-    window.onload = function(){
-        var checkWrap = document.getElementById('checkWrap'),
-            check = checkWrap.getElementsByTagName('input');
-        checkWrap.addEventListener('click', function(e){
-            var target = e.target,
-                checkNum = 0;
-            if(target === check[0]){
-                if(target.checked){
-                    for(var i = 1;i < check.length;i++){
-                        check[i].checked = true;
-                    };
-                }else{
-                    for(var i = 1;i < check.length;i++){
-                        check[i].checked = false;
-                    };
-                };
-            }else{
-                for(var i = 1;i < check.length;i++){
-                    if(check[i].checked){
-                        checkNum++;
-                    };
-                };
-                if(checkNum >= check.length - 1){
-                    check[0].checked = true;
-                }else{
-                    check[0].checked = false;
-                };
-            };
-        });
-    };
-
-
-</script>
-
-
         <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
         <div style="background-color: rgb(235, 236, 240);">
@@ -1365,6 +1281,247 @@
     </footer>
     <!-- 푸터 끝-->
     
+
+<!-- 모달 -->
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+    </script>
+
+    <script>
+        window.onload = function(){
+            var checkWrap = document.getElementById('checkWrap'),
+                check = checkWrap.getElementsByTagName('input');
+            checkWrap.addEventListener('click', function(e){
+                var target = e.target,
+                    checkNum = 0;
+                if(target === check[0]){
+                    if(target.checked){
+                        for(var i = 1;i < check.length;i++){
+                            check[i].checked = true;
+                        };
+                    }else{
+                        for(var i = 1;i < check.length;i++){
+                            check[i].checked = false;
+                        };
+                    };
+                }else{
+                    for(var i = 1;i < check.length;i++){
+                        if(check[i].checked){
+                            checkNum++;
+                        };
+                    };
+                    if(checkNum >= check.length - 1){
+                        check[0].checked = true;
+                    }else{
+                        check[0].checked = false;
+                    };
+                };
+            });
+        };
+    </script>
+
+<!-- 유효성 검사 -->
+<script>
+//모든 공백 체크 정규식
+    var empJ = /\s/g;
+	//아이디 정규식
+	var idJ = /^[a-z0-9]{6,16}$/;
+	// 비밀번호 정규식
+    var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,}$/; 
+	// var pwJ = /^[A-Za-z0-9][~!@#$%^&*()_+|<>?:{}]{10,}$/; 
+	// 이름 정규식
+	var nameJ = /^[가-힣]{2,6}$/;
+	// 이메일 검사 정규식
+	var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	// 휴대폰 번호 정규식
+	var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+
+    // 이름
+    $("#user_name").blur(function() {
+		if (nameJ.test($(this).val())) {
+				console.log(nameJ.test($(this).val()));
+				$("#name_check").text('');
+		} else {
+			$('#name_check').text('이름을 입력해주세요');
+			$('#name_check').css('color', 'red');
+		}
+	});
+
+    // 휴대전화
+    $('#user_phone').blur(function(){
+		if(phoneJ.test($(this).val())){
+			console.log(phoneJ.test($(this).val()));
+			$("#phone_check").text('');
+		} else {
+			$('#phone_check').text('휴대폰 번호를 확인해주세요');
+			$('#phone_check').css('color', 'red');
+		}
+	});
+
+    // 이메일
+    $('#user_email').blur(function(){
+        if(mailJ.test($(this).val())){
+            console.log(nameJ.test($(this).val()));
+            $("#email_check").text('');
+        } else {
+            $('#email_check').text('이메일 형식으로 입력해 주세요');
+            $('#email_check').css('color', 'red');
+        }
+    });
+
+    // 아이디
+    $('#user_id').blur(function(){
+		if(idJ.test($(this).val())){
+			console.log(idJ.test($(this).val()));
+			$("#id_check").text('');
+		} else {
+			$('#id_check').text('6자 이상 16자 이하 영문 혹은 영문과 숫자를 조합');
+			$('#id_check').css('color', 'red');
+		}
+	});
+    
+    // 비밀번호
+    $('#user_password').blur(function(){
+		if(pwJ.test($(this).val())){
+			console.log(pwJ.test($(this).val()));
+			$("#password_check").text('');
+		} else {
+			$('#password_check').text('비밀번호를 확인해 주세요');
+			$('#password_check').css('color', 'red');
+		}
+	});
+        
+</script>
+
+<!-- 비밀번호 재확인 -->
+
+<script>
+$(document).ready(function () {
+    $("#user_password_retype").change(function(){
+		var p1 = $("#user_password");
+		var p2 = $("#user_password_retype");
+		
+		if(p1.val() != p2.val()){
+			$(".mismatch-message").text("비밀번호가 일치하지 않습니다.");
+			$(".mismatch-message").attr('style', 'visibility:visible;');
+            $(".mismatch-message").attr('style', 'color: red');
+
+		}else{
+			$(".mismatch-message").text("");
+			$(".mismatch-message").attr('style', 'visibility:hidden;');
+		}
+	});
+});
+
+
+</script>
+
+    
+<!-- 생일 유효성 검사 -->
+<script>
+var birthJ = false;
+	
+	// 생년월일	birthJ 유효성 검사
+	$('#css-birth1').blur(function(){
+		var dateStr = $(this).val();		
+	    var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+	    var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
+	    var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일)
+	    var today = new Date(); // 날짜 변수 선언
+	    var yearNow = today.getFullYear(); // 올해 연도 가져옴
+		
+            if (dateStr.length <=8) {
+                // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+                if (1900 > year || year > yearNow){
+                    
+                    $('#birth_check').text('생년월일을 확인해주세요');
+                    $('#birth_check').css('color', 'red');
+                    
+                }else if (month < 1 || month > 12) {
+                        
+                    $('#birth_check').text('생년월일을 확인해주세요');
+                    $('#birth_check').css('color', 'red'); 
+                
+                }else if (day < 1 || day > 31) {
+                    
+                    $('#birth_check').text('생년월일을 확인해주세요');
+                    $('#birth_check').css('color', 'red'); 
+                    
+                }else if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+                    
+                    $('#birth_check').text('생년월일을 확인해주세요');
+                    $('#birth_check').css('color', 'red'); 
+                    
+                }else if (month == 2) {
+                    
+                    var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+                    
+                    if (day>29 || (day==29 && !isleap)) {
+                        
+                        $('#birth_check').text('생년월일을 확인해주세요');
+                        $('#birth_check').css('color', 'red'); 
+                    
+                    }else{
+                        $('#birth_check').text('');
+                        birthJ = true;
+                    }//end of if (day>29 || (day==29 && !isleap))
+                    
+                }else{
+                    
+                    $('#birth_check').text(''); 
+                    birthJ = true;
+                }//end of if
+                
+                }else{
+                    //1.입력된 생년월일이 8자 초과할때 :  auth:false
+                    $('#birth_check').text('생년월일을 확인해주세요');
+                    $('#birth_check').css('color', 'red');  
+                }
+		}); //End of method /*
+</script>
+
+<!-- 회원 가입 버튼 : 필수 이용 약관 동의-->
+<script>
+    $(document).ready(function(){
+
+        $("#btn_final_join").click(function(){    
+            if($("#flexCheckDefault1").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }else if($("#flexCheckDefault2").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }else if($("#flexCheckDefault4").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }
+        });    
+    });
+</script>
+
+
+
+<!-- 회원가입 버튼 클릭 시 중복 체크 여부 확인 (구현 중)
+<script>
+$(document).ready(function () {
+	$("#btn_final_join").submit(function(){
+		
+		//중복검사 실시 유무
+		if($("[name=duplication_check]").val() != "1"){
+			alert("아이디 중복 체크를 해주세요");
+			$("#newMemId").focus();
+			return false;
+		}
+		
+	});
+});
+
+</script>
+-->
+
+
 </body>
 </html>
 

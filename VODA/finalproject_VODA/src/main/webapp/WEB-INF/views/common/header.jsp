@@ -28,7 +28,7 @@
 	<div class="container p-0">
 	  <nav class="navbar navbar-expand-lg navbar-light">
 	    <div class="container-fluid">
-	        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="../../IMG/Common/VODA.png"></a>
+	        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="${path}/resources/img/common/VODA.png"></a>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
@@ -47,15 +47,16 @@
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">
-	              <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-	                  aria-expanded="false">
-	                  GOODS
-	              </a>
-	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                  <li><a class="dropdown-item" href="#">ALL GOODS</a></li>
-	                  <li><a class="dropdown-item" href="#">POPULAR GOODS</a></li>
-	              </ul>
-	            </li>
+	                <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+	                    aria-expanded="false" onclick="location.href='${path}/product/product_all_list'">
+	                    GOODS
+	                </a>
+	                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_all_list'">ALL GOODS</a></li>
+	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_popular_list'">POPULAR GOODS</a></li>
+	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_cart'">CART</a></li>
+	                </ul>
+            	</li>
 	            <li class="nav-item dropdown">
 	              <a class="nav-link dropdown" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
 	                  aria-expanded="false">
@@ -97,5 +98,3 @@
 	</div>
 	<hr class="line">
 	<!-- 헤더 끝 -->
-</body>
-</html>

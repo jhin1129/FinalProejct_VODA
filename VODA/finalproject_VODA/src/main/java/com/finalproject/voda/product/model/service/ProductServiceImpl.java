@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.product.model.mapper.ProductMapper;
@@ -33,6 +34,14 @@ public class ProductServiceImpl implements ProductService {
 	public Product findProductByNo(int pno) {
 		// TODO Auto-generated method stub
 		return productMapper.findProductByNo(pno);
+	}
+
+	@Override
+	@Transactional
+	public int saveProduct(Product product) {
+		int result = 0;
+		result =  productMapper.insertProduct(product);
+		return result;
 	}
 
 }

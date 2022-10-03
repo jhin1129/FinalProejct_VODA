@@ -14,4 +14,6 @@ public interface ProductMapper {
 
 	Product findProductByNo(int pno);
 
+	int insertProduct(Product product);
+
 }
