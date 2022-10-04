@@ -107,3 +107,24 @@ video[poster] {
     transform: translate(0,-15px);
     box-shadow: 0 32px 54px 0 rgba(73, 95, 233, 0.5);
 }
+
+/* 최신 컨텐츠 */
+#new-contents {
+    /* width: 1140px; */
+    margin:0px;
+}
+
+#new-contents-container {
+    margin-top: 200px;
+}
+
+.contents-line {
+    background-color: rgba(73, 95, 233, 0.5);
+    height: 2px;
+}
+
+.new-contents-info {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
