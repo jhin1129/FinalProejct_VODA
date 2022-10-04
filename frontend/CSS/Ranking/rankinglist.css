@@ -1,51 +1,3 @@
-
-
-@charset "UTF-8";
-/* font */
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 100;
-  src: local("SF-UI-Display-Thin"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Thin.woff) format("woff"); }
-
-/* 2021-03-24 수정 시작 */
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 200;
-  src: local("SF-Pro-Display-Light"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Light.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/SF-Pro-Display-Light.otf) format("opentype"); }
-
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 400;
-  src: local("SF-Pro-Display-Regular"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Regular.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/SF-Pro-Display-Regular.otf) format("opentype"); }
-
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 500;
-  src: local("SF-Pro-Display-Medium"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Medium.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/SF-Pro-Display-Medium.otf) format("opentype"); }
-
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 600;
-  src: local("SF-Pro-Display-Semibold"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Semibold.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/SF-Pro-Display-Semibold.otf) format("opentype"); }
-
-@font-face {
-  font-family: 'SF Pro Display';
-  font-style: normal;
-  font-weight: 700;
-  src: local("SF-Pro-Display-Bold"), url(//t1.daumcdn.net/media/common/font/SF-UI-Display-Bold.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/SF-Pro-Display-Bold.otf) format("opentype"); }
-
-/* //2021-03-24 수정 끝 */
-@font-face {
-  font-family: 'Nanum Myeongjo';
-  font-style: normal;
-  font-weight: 400;
-  src: local("NanumMyeongjo"), url(//t1.daumcdn.net/media/common/font/NanumMyeongjo-Regular.eot), url(//t1.daumcdn.net/media/common/font/NanumMyeongjo-Regular.eot?#iefix) format("embedded-opentype"), url(//t1.daumcdn.net/media/common/font/NanumMyeongjo-Regular.woff2) format("woff2"), url(//t1.daumcdn.net/media/common/font/NanumMyeongjo-Regular.woff) format("woff"), url(//t1.daumcdn.net/media/common/font/NanumMyeongjo-Regular.ttf) format("truetype"); }
-
 /* reset */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, button {
   margin: 0;
@@ -1307,20 +1259,3 @@ html, body {
   color: #fff;
   text-align: right;
   background-color: #121212; }
-
-/* 2021-09-01 POPCORN-2092 수정 */
-.photoview_layer .item_photolist .bg_adult:before {
-  margin: 20px 20px 0 0;
-  vertical-align: top; }
-
-/* 레티나 이미지 */
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi), only screen and (min-resolution: 1.5dppx) {
-  .ico_movie, .ico_logo, .kakao_head .tit_service {
-    background-image: url(https://t1.daumcdn.net/movie/movie2020/pc/rtn/ico_movie_220818.png); }
-  /* 2022-08-18 수정 */
-  .thumb_img, .thumb_item {
-    background-image: url(https://t1.daumcdn.net/movie/movie2020/pc/rtn/ico_noimage.png); }
-  .data_graph .inner_datagraph {
-    background-image: url(https://t1.daumcdn.net/movie/movie2020/pc/rtn/bg_graph.png); }
-  .movieweek_visual .txt_feature {
-    background-image: url(https://t1.daumcdn.net/movie/movie2020/pc/rtn/bg_feature.png); } }

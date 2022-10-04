@@ -118,9 +118,8 @@ video[poster] {
     margin-top: 200px;
 }
 
-.new-contents-line {
+.contents-line {
     background-color: rgba(73, 95, 233, 0.5);
-    margin-top: 0.7em;
     height: 2px;
 }
 

@@ -5,8 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-	<!-- 푸터 -->
+   <!-- 푸터 -->
     <footer class="bg-light text-center text-lg-start">
+        <!-- Grid container back ground -->
         <div style="background-color: rgb(235, 236, 240);">
             <!-- Grid container -->
             <div class="container p-4" style="background-color: rgb(235, 236, 240);">
@@ -16,7 +17,7 @@
                     <div class="col-lg-6 col-md-12 mb-1 mb-md-0"
                         style="text-align:center; background-color: rgb(235, 236, 240);">
                         <h5 class="text-uppercase">Project</h5>
-                        <div style="text-align:center;"><img id="footerlogo" src="../../IMG/Common/VODA.png" class="cul my-3"> <br><br>
+                        <div style="text-align:center;"><img id="footerlogo" src="${path}/resources/img/common/VODA.png" class="cul my-3"> <br><br>
                             <a class="text-dark" href="#">© 2022 Copyright: voda.com</a>
                         </div>
                     </div>
@@ -50,6 +51,8 @@
                 <!--Grid row-->
             </div>
             <!-- Grid container -->
+        </div>
+        <!-- Grid container back ground -->
     </footer>
     <!-- 푸터 끝-->
 </body>
