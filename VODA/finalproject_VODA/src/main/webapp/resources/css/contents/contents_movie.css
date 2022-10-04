@@ -554,7 +554,7 @@ html, body {
 
 .item_poster .thumb_cont .txt_grade {
   padding-left: 5px;
-  color: #E92130; }
+  color: rgb(73,95,233); }
 
 .item_poster .thumb_cont .txt_info {
   display: block;

@@ -353,12 +353,12 @@ html, body {
 .item_poster {
   display: block;
   width: 212px; }
-  
+
 .item_poster .thumb_item {
   display: block;
   overflow: hidden;
   position: relative;
-  height: 306px;
+  height: 212px;
   border-radius: 8px;
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
@@ -554,7 +554,7 @@ html, body {
 
 .item_poster .thumb_cont .txt_grade {
   padding-left: 5px;
-  color: #E92130; }
+  color: rgb(73,95,233); }
 
 .item_poster .thumb_cont .txt_info {
   display: block;
