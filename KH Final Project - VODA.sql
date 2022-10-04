@@ -8,13 +8,13 @@
 	M_NAME	VARCHAR2(500)		NULL,
 	M_EMAIL	VARCHAR2(500)		NULL,
 	M_PHONE	NUMBER		NULL,
-	M_ADDRESS	VARCHAR2(1000)		NULL,
+	M_ADDRESS	VARCHAR2(1000)	NULL,
 	M_GENDER	CHAR(1)		NULL,
 	M_BIRTH	DATE		NULL,
 	M_JOINDATE	DATE		NULL,
 	M_AUTHORIZATION	CHAR(1)		NULL,
 	M_STATUS	CHAR(1)		NULL,
-	M_JOINWAY	VARCHAR2(20)		NULL
+	M_JOINWAY	VARCHAR2(20)		NULL,
 );
 
 COMMENT ON COLUMN MEMBER.M_NO IS '회원 번호';
@@ -31,13 +31,217 @@ COMMENT ON COLUMN MEMBER.M_STATUS IS '계정상태';
 COMMENT ON COLUMN MEMBER.M_AUTHORIZATION IS '계정권한';
 COMMENT ON COLUMN MEMBER.M_JOINWAY IS '가입방법';
 
--- MEMBER 시퀀스
-CREATE SEQUENCE SEQ_MEMBER_NO;
+ALTER TABLE MEMBER ADD M_POSTNUM NUMBER	NULL;
+ALTER TABLE MEMBER ADD M_DETAILADDRESS	VARCHAR2(1000)	NULL;
 
+COMMENT ON COLUMN MEMBER.M_POSTNUM IS '우편번호';
+COMMENT ON COLUMN MEMBER.M_DETAILADDRESS IS '상세주소';
+
+-- MEMBER 시퀀스
+CREATE SEQUENCE MEMBER_SEQ
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+       
 -- MEMBER PK
 ALTER TABLE MEMBER ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	M_NO
 );
+
+-- 테스트 값 --
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'test1', 
+    '1234', 
+    'test이름', 
+    'voda1234@gmail.com', 
+    '01012341234', 
+    '서울시 강남구 역삼동', 
+    'W',
+    '2022-09-20',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_POSTNUM = '12345', M_DETAILADDRESS ='테스트 변경';
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'happiness1234', 
+    '1234', 
+    '이행복', 
+    'happiness1234@gmail.com', 
+    '01012343506', 
+    '서울 강남구 선릉로 8, 래미안블레스티지아파트 201동 611호', 
+    'W',
+    '2000-10-29',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '서울 강남구 선릉로 8', M_POSTNUM = '06326', M_DETAILADDRESS = '래미안블레스티지아파트 201동 611호' WHERE M_NO = 3;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'inkpad1234', 
+    '1234', 
+    '오인주', 
+    'inkpad1234@gmail.com', 
+    '01020220929', 
+    '서울 용산구 서빙고로 413, 현대하이페리온 아파트' , 
+    'W',
+    '1991-07-02',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '서울 용산구 서빙고로 413', M_POSTNUM = '04416', M_DETAILADDRESS = '현대하이페리온 아파트' WHERE M_NO = 4;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'boundary0917', 
+    '1234', 
+    '오인경', 
+    'boundary0917@gmail.com', 
+    '01020210726', 
+    '인천 미추홀구 소성로 120, 동아풍림아파트' , 
+    'W',
+    '1995-09-17',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '인천 미추홀구 소성로 120', M_POSTNUM = '22202', M_DETAILADDRESS = '동아풍림아파트' WHERE M_NO = 5;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'mercy1107', 
+    '1234', 
+    '오인혜', 
+    'mercy1107@gmail.com', 
+    '01011232020', 
+    '대구 동구 큰고개로 23, 신암보성타운1차아파트' , 
+    'W',
+    '1995-09-17',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    'SNS'
+);
+
+UPDATE MEMBER SET M_ADDRESS = '대구 동구 큰고개로 23', M_POSTNUM = '41193', M_DETAILADDRESS = '신암보성타운1차아파트' WHERE M_NO = 6;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'visit0805', 
+    '1234', 
+    '최도일', 
+    'visit0805@naver.com', 
+    '01018006800', 
+    '경기 안양시 만안구 안양로 186, 안양 센트럴 헤센 2차' , 
+    'M',
+    '1991-08-05',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    'SNS'
+);
+
+UPDATE MEMBER SET M_ADDRESS = '경기 안양시 만안구 안양로 186', M_POSTNUM = '14033', M_DETAILADDRESS = '안양 센트럴 헤센 2차' WHERE M_NO = 7;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'flowerglume1234', 
+    '1234', 
+    '진화영', 
+    'flowerglume1234@naver.com', 
+    '01017004700', 
+    '경상북도 대구시 서구 비산동 , 만평 아파트' , 
+    'W',
+    '1979-01-20',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '경상북도 대구시 서구 비산동', M_POSTNUM = '41719', M_DETAILADDRESS = '만평 아파트' WHERE M_NO = 8;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'premier66', 
+    '1234', 
+    '박재상', 
+    'premier66@naver.com', 
+    '01020181234', 
+    '서울 송파구 올림픽로 300, 롯데월드타워 101층' , 
+    'M',
+    '1976-03-23',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '서울 송파구 올림픽로 300', M_POSTNUM = '05551', M_DETAILADDRESS = '롯데월드타워 101층' WHERE M_NO = 9;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'wiregauge77', 
+    '1234', 
+    '진선규', 
+    'wiregauge77@gmail.com', 
+    '01077770303', 
+    '경남 창원시 진해구 웅천동로 16, 남문1차 시티프라디움' , 
+    'M',
+    '1977-09-13',
+    DEFAULT,
+    DEFAULT,
+    DEFAULT,
+    DEFAULT
+);
+
+UPDATE MEMBER SET M_ADDRESS = '경남 창원시 진해구 웅천동로 16', M_POSTNUM = '51618', M_DETAILADDRESS = '남문1차 시티프라디움' WHERE M_NO = 10;
+
+
+INSERT INTO MEMBER VALUES(
+    MEMBER_SEQ.NEXTVAL,
+    'admin1234', 
+    '1234', 
+    '진규님', 
+    'admin1234@gmail.com', 
+    '01012341234', 
+    '서울 강남구 테헤란로14길 6 남도빌딩 2층, 3층, 4층' , 
+    'M',
+    '2000-09-29',
+    DEFAULT,
+    'M',
+    DEFAULT,
+    DEFAULT
+);
+
+
+
 
 ------------------------------------------------
 -------------- NOTICE 관련 테이블 ---------------

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* 기존 폰트*/
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
 
@@ -47,9 +49,23 @@ a:hover {
     text-decoration: none
 }
 
+.form-inline label {
+    padding-left: 0px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn.btn-primary {
+    margin-top: 20px;
+    border-radius: 15px;
+    width: 300px;
+    text-align: center;
+    display: block;
+    margin-left: 60px;
 
 
-
+}
 
 /* .panel {
     min-height: 380px;
@@ -69,7 +85,7 @@ a:hover {
 
 /* input[type='text'],
 input[type='password'] { */
-    #userId, #loginPwd {
+    #userId, #userPwd {
     border: none;
     outline: none;
     box-shadow: none;
@@ -148,26 +164,17 @@ a[target='_blank'] {
 
 }
 
-.form-group {
-    margin-bottom: 0px;
-}
 
 .form-inline {
-    display: inline-block;
+    display: inline-block !important;
     width: 110px;
     height: 5px;
 
 }
 
 .form-inline label {
-    display: inline-block;
-    padding-left: 0px;
-    margin: 0;
-    cursor: pointer;
-    font-size: 15px;
+    display: inline-block !important;
 }
-
-
 
 .mt-3, .my-3 {
     margin-top: 30px!important;
@@ -266,7 +273,7 @@ ul.join-find li:after {
 /*아이디 찾기*/
 
 .member_tit {
-    padding-top: 80px;
+	padding-top: 80px;
     padding-bottom: 30px;
     font-weight: 500;
     font-size: 28px;
@@ -339,7 +346,6 @@ ul.join-find li:after {
     height: 48px;
     font-weight: 500;
     font-size: 16px;
-    color: #5f0080;
     line-height: 18px;
     box-shadow: inset 0px -2px 0px 0px #007bff;
     overflow: visible;
@@ -445,28 +451,17 @@ button[disabled], input[disabled] {
     height: 52px;
     border-radius: 4px;
     color: #fff;
-    background-color: #5f0080;
     border: 0 none;
     cursor: pointer;
-}
-
-.verification_code2.on {
-    /* display: block;
-    padding: 0 10px;
-    text-align: center;
-    overflow: hidden;
-    width: 100%;
-    height: 52px;
-    border-radius: 4px;
-    color: #fff; */
-    background-color: #5f0080;
-    /* border: 0 none; */
+    background-color: #495FE9;
 }
 
 .verification_code3 {
     display: inline-block;
     font-size: 16px;
     font-weight: 500;
+    color: #fff;
+    
 }
 
 .find_id_phone:checked:nth-child(1),
@@ -638,26 +633,31 @@ button[disabled], input[disabled] {
     font-weight: 500;
 }
 
-.btn-logoc {
-    color: #fff;
-    border-color: #495FE9;
-    background-color: #495FE9;
-}
-
-.btn-logoc:hover {
-    background-color: #0b27db !important;
-    border-color: #0b27db;
-    color: #fff !important;
-}
 
 .btn-logoc {
+      color: #fff;
+      border-color: #495FE9;
+      background-color: #495FE9;
+  }
+
+  .btn-logoc:hover {
+      background-color: #0b27db !important;
+      border-color: #0b27db;
+      color: #fff !important;
+  }
+
+  .btn-logoc {
     margin-top: 20px;
     border-radius: 3px;
     width: 300px;
-    height: 38px;
+    height: 40px;
     text-align: center;
     display: block;
     margin-left: 60px;
 
 
 }
+
+    .check_font, .mismatch-message {
+        font-size: 14px;
+    }
