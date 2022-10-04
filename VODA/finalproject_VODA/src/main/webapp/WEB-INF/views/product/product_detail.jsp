@@ -91,7 +91,7 @@
         }
     </style>
 
- 
+
     <div class="container my-5">
         <div>
             <div class="card" style="border: none;">
@@ -103,11 +103,12 @@
                         <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
                             class="swiper mySwiper2">
                             <div class="swiper-wrapper">
+                            <c:forEach items="${ imgList }" var="imgList">
                                 <div class="swiper-slide">
                                     <img
-                                        src="http://dwmdotori.godohosting.com/data/goods/22/08/32/1000001996/1000001996_main_040.jpg" />
+                                        src="${ path }/resources/uploadFiles/${imgList}" />
                                 </div>
-                                <div class="swiper-slide">
+                                <!--<div class="swiper-slide">
                                     <img
                                         src="http://dwmdotori.godohosting.com/data/goods/22/08/32/1000001997/1000001997_main_063.jpg" />
                                 </div>
@@ -118,18 +119,20 @@
                                 <div class="swiper-slide">
                                     <img
                                         src="http://dwmdotori.godohosting.com/data/goods/22/07/30/1000001990/1000001990_main_039.jpg" />
-                                </div>
+                                </div> -->
+                            </c:forEach>
                             </div>
                             <div class="swiper-button-next"></div>
                             <div class="swiper-button-prev"></div>
                         </div>
                         <div thumbsSlider="" class="swiper mySwiper">
                             <div class="swiper-wrapper">
+                            <c:forEach items="${ imgList }" var="imgList">
                                 <div class="swiper-slide">
                                     <img
-                                        src="http://dwmdotori.godohosting.com/data/goods/22/08/32/1000001996/1000001996_main_040.jpg" />
+                                        src="${ path }/resources/uploadFiles/${imgList}" />
                                 </div>
-                                <div class="swiper-slide">
+                                <!--<div class="swiper-slide">
                                     <img
                                         src="http://dwmdotori.godohosting.com/data/goods/22/08/32/1000001997/1000001997_main_063.jpg" />
                                 </div>
@@ -140,7 +143,8 @@
                                 <div class="swiper-slide">
                                     <img
                                         src="http://dwmdotori.godohosting.com/data/goods/22/07/30/1000001990/1000001990_main_039.jpg" />
-                                </div>
+                                </div> -->
+                            </c:forEach>
                             </div>
                         </div>
                     </div>
@@ -201,7 +205,7 @@
                                         <div class="mb-2">총 합계금액</div>
                                     </td>
                                     <td>
-                                        <div class="mb-2">${ product.pprice }원</div>
+                                        <div class="mb-2">${product.pprice}원</div>
                                     </td>
                                 </tr>
                             </table>
@@ -314,17 +318,21 @@
 
                     </div>
                 </div>
-
+				
                 <div class="p-5">
-                    <img style="background-color: black; width: 100%; height: 700px;">
+                	<c:forEach items="${ imgList }" var="imgList">
+                    <img style="width: 100%; height: 700px;" src="${ path }/resources/uploadFiles/${imgList}">
+                    </c:forEach>
                     <p>
-                        상품 소개<br>
+                        ${ product.pcontents }
                     </p>
                 </div>
             </div>
         </div>
-
+        <input type="hidden" name="pno" value="${ product.pno }">
+	<button id="btnDelete">상품 삭제</button>
     </div>
+    
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
     <!-- Swiper JS -->
@@ -348,5 +356,13 @@
                 swiper: swiper,
             },
         });
+        $(document).ready(() => {
+			$("#btnDelete").on("click", () => {
+				if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
+					location.replace("${ path }/product/product_delete?pno=${ product.pno }");
+				}
+			});
+		});
+        
     </script>
 

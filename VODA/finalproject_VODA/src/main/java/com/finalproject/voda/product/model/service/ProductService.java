@@ -13,6 +13,8 @@ public interface ProductService {
 
 	Product findProductByNo(int pno);
 
-	int saveProduct(Product product);
+	int insertProduct(Product product);
+
+	int deleteProduct(int pno);
 	
 }

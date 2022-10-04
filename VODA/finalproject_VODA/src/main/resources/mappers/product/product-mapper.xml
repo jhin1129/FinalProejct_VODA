@@ -51,19 +51,23 @@
 	</select>
 	
 	<insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="pno" keyColumn="P_NO">
-	INSERT INTO PRODUCT VALUES 
-						(SEQ_PNO.NEXTVAL, 
-						#{pname}, 
-						#{pprice}, 
-						#{pqtt}, 
-						#{pcontents}, 
-						1, 
-						SYSDATE, 
-						'Y', 
-						'원래파일이름', 
-						'바뀐파일이름', 
-						#{pcategory}, 
-						#{pmadelocal}, 
-						#{pmadecompany})
+		INSERT INTO PRODUCT VALUES 
+							(SEQ_PNO.NEXTVAL, 
+							#{pname}, 
+							#{pprice}, 
+							#{pqtt}, 
+							#{pcontents}, 
+							1, 
+							SYSDATE, 
+							'Y', 
+							#{poriginfile}, 
+							#{prenamefile}, 
+							#{pcategory}, 
+							#{pmadelocal}, 
+							#{pmadecompany})
 	</insert>
+	<delete id="deleteProduct" parameterType="Product">
+		DELETE FROM PRODUCT
+		WHERE P_NO = #{pno}
+	</delete>
 </mapper>

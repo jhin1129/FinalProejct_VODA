@@ -38,9 +38,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	@Transactional
-	public int saveProduct(Product product) {
+	public int insertProduct(Product product) {
 		int result = 0;
 		result =  productMapper.insertProduct(product);
+		return result;
+	}
+
+	@Override
+	public int deleteProduct(int pno) {
+		int result = 0;
+		result = productMapper.deleteProduct(pno);
 		return result;
 	}
 

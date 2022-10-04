@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- goods_all_list CSS-->
@@ -44,12 +45,13 @@
             </div>
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
-                        <c:forEach var="product" items="${product_all_list}">
+                        <c:forEach var="product" items="${product}">
+                        <c:set var="rename" value="${ product.prenamefile }" />
                         <li>
                             <div class="item_poster">
                                 <div class="thumb_item">
                                     <div class="poster_movie">
-                                            <img src="http://dwmdotori.godohosting.com/data/goods/20/06/24/1000000847/1000000847_detail_055.jpg" class="img_thumb" alt="공조2: 인터내셔날">
+                                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="공조2: 인터내셔날">
                                         <span class="rank_num">${product.pno}</span>
                                            
                                     </div>
@@ -64,7 +66,7 @@
                                         <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
                                     </strong>
                                     <span class="txt_append">
-                                        <span class="info_txt">가격<span class="txt_grade">${ product.pprice }</span></span>
+                                        <span class="info_txt">가격<span class="txt_grade">${ product.pprice } </span></span>
                                     </span>
                                 </div>
                             </div>
