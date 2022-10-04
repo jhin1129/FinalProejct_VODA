@@ -132,7 +132,7 @@
         padding-right: 30px;
     }
 
-    #btn_duplicate, #btn_address {
+    #btn_duplicate, #btn_duplicate_email, #btn_address {
         width: 30%;
         height: 100%;
         padding: 8px;

@@ -12,4 +12,8 @@ public interface MemberService {
 
 	Member login(String id, String password);
 
+	Boolean isDuplicateEmail(String email);
+
+	Member findMemberByEmail(String email);
+
 }

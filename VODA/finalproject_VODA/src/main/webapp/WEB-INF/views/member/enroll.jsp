@@ -68,6 +68,7 @@
                                                     <div class="form-group mx-sm-3 mb-2">
                                                         <label for="user_id" class="sr-only">memId</label>
                                                         <input type="text" name="m_id" class="form-control" id="user_id" placeholder="아이디를 입력해주세요" required>
+                                                        <input type="hidden" name="idTest" value="0" />
                                                     </div>
                                                         <button id="btn_duplicate" name="duplication_check" type="button" class="btn-logoc" value="중복확인">중복확인</button>
                                                 </div>
@@ -99,7 +100,7 @@
                                                 <div class="form-group">
                                                     <input type="password" class="form-control" id="user_password_retype" placeholder="한번 더 입력해주세요" required>
                                                 </div>
-                                                <div class="mismatch-message"
+                                                <div class="mismatch-message" id="password_check2"
                                                 style="color: red;"></div>
                                             </td>
                                         </tr>
@@ -126,8 +127,9 @@
                                                         <div class="form-group mx-sm-3 mb-2">
                                                             <label for="user_email" class="sr-only">memEmail</label> 
                                                             <input type="text" name="m_email" class="form-control" id="user_email" placeholder="예: voda1234@voda.com" required>
+	                                                        <input type="hidden" name="emailTest" value="0" />
                                                         </div>
-                                                        <button id="btn_duplicate" type="button" class="btn-logoc">중복확인</button>
+                                                        <button id="btn_duplicate_email" type="button" class="btn-logoc">중복확인</button>
                                                     </div>
                                                 </div>
                                                 <div class="check_font" id="email_check" 
@@ -167,8 +169,8 @@
                                                             <input name="m_postNum" id="sample6_postcode" readonly="readonly" type="number" class="form-control">
                                                         </div>
                                                         <button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
-                                                        <input name="m_address" id="sample6_address" readonly="readonly" type="text" class="form-control" id="inputDefault" style="margin-left: 16px; width: 235px !important;" required >
-                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" id="inputDefault" style="margin-left: 16px;margin-top: 3px; width: 235px !important;" required>
+                                                        <input name="m_address" id="sample6_address" readonly="readonly" type="text" class="form-control" style="margin-left: 16px; width: 235px !important;" required >
+                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" style="margin-left: 16px;margin-top: 3px; width: 235px !important;" required>
                                                     </div>
                                                 </div>
                                             </td>
@@ -1245,8 +1247,10 @@
 		if (nameJ.test($(this).val())) {
 				console.log(nameJ.test($(this).val()));
 				$("#name_check").text('');
+				$("#name_check").attr('style', 'visibility:hidden;');
 		} else {
 			$('#name_check').text('이름을 입력해주세요');
+			$("#name_check").attr('style', 'visibility:visible;');
 			$('#name_check').css('color', 'red');
 		}
 	});
@@ -1256,8 +1260,11 @@
 		if(phoneJ.test($(this).val())){
 			console.log(phoneJ.test($(this).val()));
 			$("#phone_check").text('');
+			$('#phone_check').attr('style', 'visibility:hidden;');
+
 		} else {
 			$('#phone_check').text('휴대폰 번호를 확인해주세요');
+			$('#phone_check').attr('style', 'visibility:visible;');
 			$('#phone_check').css('color', 'red');
 		}
 	});
@@ -1289,8 +1296,10 @@
 		if(pwJ.test($(this).val())){
 			console.log(pwJ.test($(this).val()));
 			$("#password_check").text('');
+			$('#password_check').attr('style', 'visibility:hidden;');
 		} else {
 			$('#password_check').text('비밀번호를 확인해 주세요');
+			$('#password_check').attr('style', 'visibility:visible;');
 			$('#password_check').css('color', 'red');
 		}
 	});
@@ -1382,26 +1391,6 @@ var birthJ = false;
 		}); //End of method /*
 </script>
 
-<!-- 회원 가입 버튼 : 필수 이용 약관 동의-->
-<script>
-    $(document).ready(function(){
-
-        $("#btn_final_join").click(function(){    
-            if($("#flexCheckDefault1").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }else if($("#flexCheckDefault2").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }else if($("#flexCheckDefault4").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }
-        });    
-    });
-</script>
-
-
 <!-- 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -1436,21 +1425,30 @@ var birthJ = false;
 <script>
 	$(document).ready(() => {
 		$("#btn_duplicate").on("click", () => {
-			let userId = $("#user_id").val().trim();			
+			let user_id = $("#user_id").val().trim();
+			
+			var $user_id = $("#user_id");
+			if (/^[a-z0-9]{6,16}$/.test($user_id.val()) == false) {
+				alert("6자 이상 16자 이하 영문 혹은 영문과 숫자를 조합");
+				return;
+			} 
 			
 			$.ajax({
 				type: "POST",
 				url: "${ path }/member/idCheck",
 				dataType: "json",
 				data: {
-					userId // "userId": userId
+					user_id // "userId": userId
 				},
 				success: (obj) => {
 					console.log(obj);
 					
 					if(obj.duplicate === true) {
 						alert("이미 사용중인 아이디 입니다.")
+					} else if(obj = "") {
+						alert("아이디를 입력해 주세요.")
 					} else {
+						$("[name=idTest]").val("1");
 						alert("사용 가능한 아이디 입니다.")
 					}
 				}, 
@@ -1460,8 +1458,147 @@ var birthJ = false;
 			});
 		});
 	});
+	
 </script>
 
 
+
+<!--  이메일 중복 체크 -->
+<script>
+	$(document).ready(() => {
+		$("#btn_duplicate_email").on("click", () => {
+			let user_email = $("#user_email").val().trim();
+			
+			var $user_email = $("#user_email");
+			if (/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test($user_email.val()) == false) {
+				alert("이메일 형식으로 입력해 주세요");
+				return;
+			} 
+			
+			$.ajax({
+				type: "POST",
+				url: "${ path }/member/emailCheck",
+				dataType: "json",
+				data: {
+					user_email 
+				},
+				success: (obj) => {
+					console.log(obj);
+					
+					if(obj.duplicate === true) {
+						alert("이미 사용중인 이메일 입니다.")
+					} else {
+						$("[name=emailTest]").val("1");
+						alert("사용 가능한 이메일 입니다.")
+					}
+				}, 
+				error: (error) => {
+					console.log(error);
+				}
+			});
+		});
+	});
+	
+</script>
+
+<!-- 회원 가입 클릭 시 값 체크  -->
+<script>
+$(document).ready(function(){
+	$("#btn_final_join").click(function(){
+		
+		//아이디 중복검사
+		if($("[name=idTest]").val() != "1"){
+			alert("아이디 중복 체크를 해주세요");
+			$("#m_id").focus();
+			
+			return false;
+		}
+		
+		//비밀번호 작성 여부(유효성 검사 여부)
+		if($("#password_check").css("visibility") != "hidden"){
+			alert("비밀번호를 입력해 주세요");
+			$("#user_password").focus();
+			
+			return false;
+		}
+		
+		if($("#password_check2").css("visibility") != "hidden"){
+			alert("비밀번호를 입력해 주세요");
+			$("#user_password_retype").focus();
+			
+			return false;
+		}
+		
+		//이름 작성 여부(유효성 검사 여부)
+		if($("#name_check").css("visibility") != "hidden"){
+			alert("이름을 입력해 주세요");
+			$("#user_name").focus();
+			
+			return false;
+		}
+		
+		//이메일 중복검사
+		if($("[name=emailTest]").val() != "1"){
+			alert("이메일 중복 체크를 해주세요");
+			
+			return false;
+		}
+		
+		
+		//휴대폰 작성 여부(유효성 검사 여부)
+		if($("#phone_check").css("visibility") != "hidden"){
+			alert("휴대폰번호를 입력 해주세요");
+			$("#user_phone").focus();
+			
+			return false;
+		}
+		
+		//주소 작성 여부
+		if($("#sample6_detailAddress").val == '') {
+			alert("주소를 검색하여 입력해주세요");
+			$("#sample6_detailAddress").focus();
+			
+			return false;
+		}
+
+		if($("#flexCheckDefault1").is(":checked") == false){
+            alert("필수 이용 약관을 동의해 주세요.");
+            
+            return;
+        
+		}else if($("#flexCheckDefault2").is(":checked") == false){
+            alert("필수 이용 약관을 동의해 주세요.");
+            
+            return;
+        
+		}else if($("#flexCheckDefault4").is(":checked") == false){
+            alert("필수 이용 약관을 동의해 주세요.");
+            
+            return;
+        }
+	});
+});
+
+</script>
+<!-- 회원 가입 버튼 : 필수 이용 약관 동의
+
+<script>
+    $(document).ready(function(){
+
+        $("#btn_final_join").click(function(){    
+            if($("#flexCheckDefault1").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }else if($("#flexCheckDefault2").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }else if($("#flexCheckDefault4").is(":checked") == false){
+                alert("필수 이용 약관을 동의해 주세요.");
+                return;
+            }
+        });    
+    });
+</script>
+-->
 </body>
 </html>
