@@ -179,6 +179,8 @@
     </style>
 </head>
 <body>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
@@ -380,8 +382,8 @@
         </div>
     </div>
     
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>
-<!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

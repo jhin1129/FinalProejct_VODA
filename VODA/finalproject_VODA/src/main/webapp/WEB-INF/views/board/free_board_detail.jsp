@@ -4,8 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,6 +132,8 @@
 </head>
 
 <body>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -259,8 +260,8 @@
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>
         </div>
     </div>
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
 </html>
-<!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
