@@ -117,7 +117,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <textarea id="summernote" name="pcontents"></textarea>
+                <div id="summernote"></div>
                 <script>
                     $('#summernote').summernote({
                         placeholder: '내용을 입력해주세요',
