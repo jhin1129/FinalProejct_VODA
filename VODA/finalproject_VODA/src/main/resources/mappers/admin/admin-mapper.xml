@@ -10,7 +10,6 @@
 		    CV_COUNT 
 		FROM CVIEW
 	</sql>	
-
 	<sql id="selectVisitSql">
 		SELECT
 		    V_NO,
@@ -79,4 +78,3 @@
 		ORDER BY N.N_NO DESC
 	</select>
 </mapper>
-
