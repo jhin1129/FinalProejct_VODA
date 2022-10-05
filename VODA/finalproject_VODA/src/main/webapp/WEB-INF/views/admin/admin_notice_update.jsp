@@ -153,7 +153,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">마동석</td>
+                            <td style="margin-left: 10px;">${ notice.noticeWriterId }</td>
                         </tr>
 
                         <tr>
