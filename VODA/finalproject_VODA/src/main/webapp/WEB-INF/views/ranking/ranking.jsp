@@ -5,8 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
 <!doctype html>
 <html lang="ko">
@@ -51,6 +50,9 @@
 </head>
 
 <body class="">
+
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <article id="mainContent" class="kakao_article">
         <h2 class="screen_out">영화 랭킹 본문</h2>
@@ -2273,9 +2275,8 @@
 <script src="//t1.daumcdn.net/media/kraken/movie/272060b/PcCommonEventBundle.merged.js"></script>     -->
     </div>
 
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 
 </html>
-
-<!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
