@@ -240,7 +240,7 @@ INSERT INTO MEMBER VALUES(
     DEFAULT
 );
 
-
+-- x
 
 
 ------------------------------------------------
@@ -408,6 +408,10 @@ CREATE TABLE PEOPLE (
 	PEOPLE_GENDER	VARCHAR2(50)		NULL
 );
 
+ALTER TABLE PEOPLE MODIFY PEOPLE_DEBUT VARCHAR2(500);
+ALTER TABLE PEOPLE MODIFY PEOPLE_BIRTH VARCHAR2(500);
+
+
 COMMENT ON COLUMN PEOPLE.PEOPLE_NO IS '인물 번호';
 COMMENT ON COLUMN PEOPLE.PEOPLE_ORIGINAL_FILENAME IS '인물 기존 파일명';
 COMMENT ON COLUMN PEOPLE.PEOPLE_RENAMED_FILENAME IS '인물 변경 파일명';
@@ -424,6 +428,142 @@ CREATE SEQUENCE SEQ_PEOPLE_NO;
 -- PEOPLE PK
 ALTER TABLE PEOPLE ADD CONSTRAINT PK_PEOPLE PRIMARY KEY (
 	PEOPLE_NO
+);
+
+
+-- 테스트 값 -- 
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '기존 파일명', 
+    '변경 파일명', 
+    '서인국', 
+    '가수, 탤런트', 
+    '2009년 EP 앨범 ''부른다''', 
+    '1987.10.23', 
+    '2016.12.30 MBC 연기대상 외',
+    '남성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '최우식 기존 파일명', 
+    '최우식 변경 파일명', 
+    '최우식', 
+    '영화배우, 탤런트', 
+    '2011년 MBC 드라마 ''짝패''', 
+    '1990.3.26', 
+    '2021.12.31 SBS 연기대상 외',
+    '남성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '아이유 기존 파일명', 
+    '아이유 변경 파일명', 
+    '아이유', 
+    '가수, 탤런트', 
+    '2008년 EP 앨범 ''Lost And Found''', 
+    '1993.05.16', 
+    '2022.08.25 2022 K 글로벌 하트 드림 어워즈 외',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '염정아 기존 파일명', 
+    '염정아 변경 파일명', 
+    '염정아', 
+    '탤런트, 영화배우', 
+    '1991년 MBC 드라마 ''우리들의 천국''', 
+    '1972.7.28', 
+    '2019.07 제3회 申필름예술영화제 외 ',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '라미란 기존 파일명', 
+    '라미란 변경 파일명', 
+    '라미란', 
+    '탤런트, 영화배우', 
+    '2005년 영화 ''친절한 금자씨''', 
+    '1975.03.06', 
+    '2021.02 제41회 청룡영화상 외',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '장유정 기존 파일명', 
+    '장유정 변경 파일명', 
+    '장유정', 
+    '영화감독, 감독/연출', 
+    '2010년 영화 ''김종욱 찾기''', 
+    '1976', 
+    '2013.10.07 제19회 한국 뮤지컬대상 시상식 외',
+    '여성'
+);
+
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '박진주 기존 파일명', 
+    '박진주 변경 파일명', 
+    '박진주', 
+    '영화배우, 뮤지컬배우', 
+    '2011년 영화 ''써니''', 
+    '1988.12.24', 
+    '2017.12.31 SBS 연기대상',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '레아 세두 기존 파일명', 
+    '레아 세두 변경 파일명', 
+    '레아 세두', 
+    '영화배우, 모델', 
+    '	2006년 영화 ''나의 친구들''', 
+    '1985.07.01', 
+    '2013 칸 영화제',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '김태리 기존 파일명', 
+    '김태리 변경 파일명', 
+    '김태리', 
+    '영화배우', 
+    '2014년 더바디샵 CF', 
+    '1990.04.24', 
+    '2022년 제58회 백상예술대상 TV부문 여자 최우수연기상 외',
+    '여성'
+);
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '하정우 기존 파일명', 
+    '하정우 변경 파일명', 
+    '하정우', 
+    '영화배우, 영화감독', 
+    '2003년 영화 ''마들렌''', 
+    '1978.03.11', 
+    '2019.11.25 제3회 한중국제영화제 외',
+    '남성'
+);
+
+
+INSERT INTO PEOPLE VALUES(
+    SEQ_PEOPLE_NO.NEXTVAL,
+    '조진웅 기존 파일명', 
+    '조진웅 변경 파일명', 
+    '조진웅', 
+    '영화배우, 탤런트', 
+    '2004년 영화 ''말죽거리 잔혹사''', 
+    '1976.04.02', 
+    '2021.03.11 제40회 황금촬영상 외',
+    '남성'
 );
 
 ------------------------------------------------

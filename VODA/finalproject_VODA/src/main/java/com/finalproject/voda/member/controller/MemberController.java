@@ -69,15 +69,28 @@ public class MemberController {
 	
 	
 	@PostMapping("/idCheck")
-	public ResponseEntity<Map<String, Boolean>> idCheck(@RequestParam String userId) {
-		log.info("{}", userId);
+	public ResponseEntity<Map<String, Boolean>> idCheck(@RequestParam String user_id) {
+		log.info("{}", user_id);
 		
 		Map<String, Boolean> map = new HashMap<>();
 		
-		map.put("duplicate", service.isDuplicateID(userId));
+		map.put("duplicate", service.isDuplicateID(user_id));
 		
 		return new ResponseEntity<Map<String, Boolean>>(map, HttpStatus.OK);
 	}
+	
+	
+	@PostMapping("/emailCheck")
+	public ResponseEntity<Map<String, Boolean>> emailCheck(@RequestParam String user_email) {
+		log.info("{}", user_email);
+		
+		Map<String, Boolean> map = new HashMap<>();
+		
+		map.put("duplicate", service.isDuplicateEmail(user_email));
+		
+		return new ResponseEntity<Map<String, Boolean>>(map, HttpStatus.OK);
+	}
+	
 	
 	
 	@GetMapping("/login") 
