@@ -19,8 +19,11 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
     <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
+    
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
+    
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -58,7 +61,7 @@
             transition: background 0.2s ease-in-out,
                 color 0.2s ease-in-out;
             /* 패딩은 주석하쇼 */
-            padding: 1px 0.38rem;
+            /*padding: 1px 0.38rem;  */
 
 
         }
@@ -192,133 +195,45 @@
                 <thead>
                     <tr style="text-align: center">
                         <th id="th" style="width: 5%;">번호</th>
-                        <th id="th" style="width: 55%;">제목</th>
+                        <th id="th" style="width: 30%;">제목</th>
                         <th id="th" style="width: 15%;">작성자</th>
                         <th id="th" style="width: 15%;">작성일</th>
+                        <th id="th" style="width: 15%;">첨부파일</th>
                         <th id="th" style="width: 10%;">조회수</th>
                     </tr>
                 </thead>
-
+				
+				
                 <tbody>
+ 	             <c:if test="${ empty list }">
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							조회된 게시글이 없습니다.
+						</td>
+					</tr>	
+				 </c:if> 
+                  <c:if test="${ not empty list }"> 	 
+	                <c:forEach var="notice" items="${ list }">
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
+                        <td>${ notice.noticeno }</td>
+						<td>
+							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
+								${ notice.noticeTitle }
+							</a>
+						</td>
+						<td>${ notice.noticeWriterId }</td>
+						<td><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
+						<td>
+							<c:if test="${ empty notice.noticeOriginalFileName }">
+								<span> - </span>
+							</c:if>
+							<c:if test="${ not empty notice.noticeRenamedFileName }">
+								<img src="${ path }/images/file.png" width="20px" height="20px">
+							</c:if>
+						</td>
+						<td>${ notice.noticeReadCount }</td>
                     </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">2</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">3</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">4</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">5</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">6</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">7</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">8</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">9</td>
-                        <td id="td" style="text-align: left;">제목2</td>
-                        <td id="td">작성자2</td>
-                        <td id="td">날짜2</td>
-                        <td id="td">조회수2</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목3</td>
-                        <td id="td">작성자3</td>
-                        <td id="td">날짜3</td>
-                        <td id="td">조회수3</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">11</td>
-                        <td id="td" style="text-align: left;">제목4</td>
-                        <td id="td">작성자4</td>
-                        <td id="td">날짜4</td>
-                        <td id="td">조회수4</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">12</td>
-                        <td id="td" style="text-align: left;">제목5</td>
-                        <td id="td">작성자5</td>
-                        <td id="td">날짜5</td>
-                        <td id="td">조회수5</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">13</td>
-                        <td id="td" style="text-align: left;">제목6</td>
-                        <td id="td">작성자6</td>
-                        <td id="td">날짜6</td>
-                        <td id="td">조회수6</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">14</td>
-                        <td id="td" style="text-align: left;">제목7</td>
-                        <td id="td">작성자7</td>
-                        <td id="td">날짜7</td>
-                        <td id="td">조회수7</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">15</td>
-                        <td id="td" style="text-align: left;">제목8</td>
-                        <td id="td">작성자8</td>
-                        <td id="td">날짜8</td>
-                        <td id="td">조회수8</td>
-                    </tr>
+                    </c:forEach>
 
                     <tr>
                         <td class="td-hr"></td>
@@ -326,7 +241,9 @@
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
+                        <td class="td-hr"></td>
                     </tr>
+                    </c:if> 
                 </tbody>
 
             </table>
@@ -334,20 +251,34 @@
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
-                <li><a class="" href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+            <!-- 맨 첫 페이지로 -->
+                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+			
+			<!-- 이전 페이지로 -->
+				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				           
+            <!--  10개 페이지 목록 -->
+				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+					<c:if test="${ status.current == pageInfo.currentPage }">
+						<li>${ status.current }</li>
+					</c:if>
+					
+					<c:if test="${ status.current != pageInfo.currentPage }">
+                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+					</c:if>
+				</c:forEach>
+				
+			<!-- 다음 페이지로 -->
+				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+			<!-- 맨 끝 페이지로 -->
+                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
 
         </div>
 
         <div class="display2">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="../../IMG/Community/edit.png" style="height: 20px;"></button>
+                    src="../../IMG/Community/edit.png" style="height: 20px;" onclick="location.href='${path}/admin/admin_notice_crud'"></button>
         </div>
 
         <div class="col-4 text-right">
@@ -359,7 +290,6 @@
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
-                        <option value="title">작성자</option>
                         <option value="title">내용</option>
                         <option value="title">제목+내용</option>
                     </select>
@@ -370,8 +300,10 @@
                         <input type="text" class="form-control1" style="font-size: 14.45px;">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
-                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                                    src="../../IMG/Community/search.png" style="height: 18px;"></button>
+                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
+                                >
+                                <img src="../../IMG/Community/search.png" style="height: 18px;">
+                            </button>
                         </span>
                     </div>
 

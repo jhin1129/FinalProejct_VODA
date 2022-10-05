@@ -148,7 +148,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">제목1</td>
+                            <td style="width: 50%;">%{ notice.</td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
                         </tr>
@@ -157,7 +157,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="width: 50%;">admin</td>
+                            <td style="width: 50%;">${ notice.noticeWriterId }</td>
                             <th class="table-active">작성일</th>
                             <td>2022.09.02</td>
                         </tr>
@@ -202,7 +202,8 @@
                 </p>
                 <div class="text-right mt-3">
                     <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">수정</button>
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
+                        onclick="location.href='${path}/admin/admin_notice_update'">수정</button>
                     <button class="btn btn-greyc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
                 </div>
@@ -210,46 +211,7 @@
 
 
             <hr style="border-style: dotted;">
-            <!-- 댓글 -->
-            <div class="px-3">
-                <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글 1</strong>
 
-                <div id="comment">
-                    <hr>
-                    <div style="padding: 0px; margin:10px">
-                        <strong style="color: #000000; font-size: 14.45px;">user1</strong>
-                        <span class="id"></span>
-                        <span class="mt-1 col p-0" style="font-size: 11px; color: #000000;">2022.09.02 05:30</span>
-                        <div style="margin-top: 10px;">
-                            <p style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">이정재 연기ㄷㄷㄷㄷ
-                            <div style="float:right; margin-top: -33px;">
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">수정</button>
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
-                            </div>
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-
-                <div class="mb-3">
-                    <form action="">
-                        <div class="form-control" style="height: 105px; margin-top: 10px; margin-bottom: 5px;">
-                            <strong class="p-1" style="color: #000000; font-size: 14.45px;">user2</strong>
-                            <hr style="margin: 0px;">
-                            <textarea class="p-1"
-                                style="border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;"
-                                placeholder="댓글을 작성해주세요"></textarea>
-                        </div>
-                        <div class="text-right mt-1">
-                            <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">등록</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-
-        </div>
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>

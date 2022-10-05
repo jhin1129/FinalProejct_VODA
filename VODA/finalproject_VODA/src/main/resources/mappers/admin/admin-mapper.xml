@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.admin.model.mapper.AdminMapper">
+
+<!-- 	<sql id="selectCviewSql">
+		SELECT
+		    CV_NO,
+		    CV_DATE,
+		    CV_COUNT 
+		FROM CVIEW
+	</sql>	
+
+	<sql id="selectVisitSql">
+		SELECT
+		    V_NO,
+		    V_DATE,
+		    V_COUNT 
+		FROM VISIT
+	</sql>	-->
+
+	<sql id="NoticeListSql">
+		SELECT
+		    N.N_NO, 
+		    N.N_TITLE, 
+		    N.N_WRITERNO, 
+		    N.N_ID, 
+		    N.N_CONTENT, 
+		    N.N_ORIGINAL_FILENAME, 
+		    N.N_RENAMED_FILENAME, 
+		    N.N_READCOUNT, 
+		    N.N_STATUS, 
+		    N.N_CREATE_DATE, 
+		    N.N_TOPTITLE
+		FROM NOTICE N
+		JOIN MEMBER M ON (N.N_WRITERNO = M.M_NO)
+		WHERE N.N_STATUS = 'Y'
+	</sql>	 
+	
+	<resultMap type="Cview" id="CviewResultMap">
+		<id property="cViewNo" column="CV_NO"/>
+		<result property="cViewDate" column="CV_DATE"/>
+		<result property="cViewCount" column="CV_COUNT"/>
+	</resultMap>
+
+	<resultMap type="Visit" id="VisitResultMap">
+		<id property="visitNo" column="V_NO"/>
+		<result property="visitDate" column="V_DATE"/>
+		<result property="visitCount" column="V_COUNT"/>
+	</resultMap>
+
+	<resultMap type="Notice" id="NoticeResultMap">
+		<id property="noticeno" column="N_NO"/>
+		<result property="noticeTitle" column="N_TITLE"/>
+		<result property="noticeWriterNo" column="N_WRITERNO"/>
+		<result property="noticeWriterId" column="N_ID"/>
+		<result property="noticeContent" column="N_CONTENT"/>
+		<result property="noticeOriginalFileName" column="N_ORIGINAL_FILENAME"/>
+		<result property="noticeRenamedFileName" column="N_RENAMED_FILENAME"/>
+		<result property="noticeReadCount" column="N_READCOUNT"/>
+		<result property="noticeStatus" column="N_STATUS"/>
+		<result property="noticeCreateDate" column="N_CREATE_DATE"/>
+		<result property="noticeTopTitle" column="N_TOPTITLE"/>
+	</resultMap>
+	
+	<!-- 조회수 전체 조회 (테스트용 컬럼수별) -->
+	<select id="selectViewCount" resultType="_int">
+		SELECT COUNT(*) FROM CVIEW
+	</select>
+	
+	<!-- 공지사항 전체 조회 -->
+	<select id="selectNoticeCount" resultType="_int">
+		SELECT COUNT(*) FROM NOTICE WHERE N_STATUS='Y'
+	</select>
+	
+	<!-- 공지사항 전체 조회 정렬 -->
+	<select id="selectAllNotice" resultMap="NoticeResultMap">
+		<include refid="NoticeListSql"></include>
+		ORDER BY N.N_NO DESC
+	</select>
+</mapper>
+
