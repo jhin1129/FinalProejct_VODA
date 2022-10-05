@@ -23,4 +23,21 @@ public class ContentsController {
 		return model;
 	}
 	
+	@GetMapping("/contents/contents_comments")
+	public ModelAndView commentPlus(ModelAndView model) {
+		
+		model.setViewName("contents/contents_comments");
+		
+		return model;
+	}
+	
+	@GetMapping("/contents/contents_detail")
+	public ModelAndView commentDetail(ModelAndView model) {
+		
+		model.setViewName("contents/contents_detail");
+		
+		return model;
+	}
+	
+	
 }

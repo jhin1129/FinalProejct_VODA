@@ -1,18 +1,3 @@
-/* *,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  display: grid;
-  font-family: arial, helvetica, sans-serif;
-  min-height: 100vh;
-  place-items: center;
-} */
-
 .chart {
   gap: var(--__chart_gap, 0.5em);
   display: flex;
