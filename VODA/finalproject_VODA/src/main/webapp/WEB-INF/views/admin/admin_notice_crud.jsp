@@ -109,7 +109,7 @@
     </style>
 
     <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
 
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -123,7 +123,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>free_brd_crud</title>
+    <title>공지사항 등록</title>
 
 
 </head>
@@ -153,7 +153,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">운영자</td>
+                            <td style="margin-left: 10px;">로그인멤버 작성자아이디</td>
                         </tr>
 
                         <tr>

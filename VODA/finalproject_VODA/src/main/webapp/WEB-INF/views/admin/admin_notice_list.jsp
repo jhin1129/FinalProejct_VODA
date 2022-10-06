@@ -260,7 +260,7 @@
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 					<c:if test="${ status.current == pageInfo.currentPage }">
-						<li>${ status.current }</li>
+						<li><a class="active">${ status.current }</a></li>
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">

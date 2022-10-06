@@ -114,7 +114,7 @@
     </style>
 
     <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
 
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -128,7 +128,8 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>free_brd_detail</title>
+
+    <title>공지사항</title>
 
 </head>
 
@@ -148,7 +149,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">%{ notice.</td>
+                            <td style="width: 50%;">${ notice.noticeTitle} </td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
                         </tr>
@@ -159,14 +160,14 @@
                             <th class="table-active">작성자</th>
                             <td style="width: 50%;">${ notice.noticeWriterId }</td>
                             <th class="table-active">작성일</th>
-                            <td>2022.09.02</td>
+                            <td><fmt:formatDate value="${ notice.noticeCreateDate }" dateStyle="long"/></td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
                             <td></td>
                             <th class="table-active">조회수</th>
-                            <td>64,215</td>
+                            <td>${ notice.noticeReadCount }</td>
                         </tr>
 
                         <tr>
@@ -190,7 +191,7 @@
             <!-- 내용 -->
             <div class="my-3 px-3">
                 <p style="font-size: 14.45px;">
-                    공지사항입니다.<br>
+                    ${ notice.noticeContent }<br>
                     <br>
                     <br>
                     <br>
@@ -203,8 +204,8 @@
                 <div class="text-right mt-3">
                     <button class="btn btn-logoc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;"
-                        onclick="location.href='${path}/admin/admin_notice_update'">수정</button>
-                    <button class="btn btn-greyc py-0"
+                        onclick="location.href='${path}/admin/admin_notice_update?no=${ notice.noticeno }'">수정</button>
+                    <button class="btn btn-greyc py-0" id="btnDelete"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
                 </div>
             </div>
@@ -217,6 +218,15 @@
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>
         </div>
     </div>
+	    <script>
+		$(document).ready(() => {
+			$("#btnDelete").on("click", () => {
+				if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
+					location.replace("${ path }/admin/admin_notice_delete?no=${ notice.noticeno }");
+				}
+			})
+			});
+		</script>
 
 </body>
 </html>

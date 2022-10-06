@@ -47,7 +47,21 @@
 		<result property="visitDate" column="V_DATE"/>
 		<result property="visitCount" column="V_COUNT"/>
 	</resultMap>
-
+	
+	<resultMap type="Member" id="MemberResultMap">
+		<id property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="m_joinDate" column="M_JOINDATE"/>
+		<result property="m_status" column="M_STATUS"/>
+	</resultMap>
+	
+	<resultMap type="Product" id="ProductResultMap">
+		<id property="pno" column="P_NO"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+		<result property="pstatus" column="P_STATUS"/>
+	</resultMap>
+	
 	<resultMap type="Notice" id="NoticeResultMap">
 		<id property="noticeno" column="N_NO"/>
 		<result property="noticeTitle" column="N_TITLE"/>
@@ -67,6 +81,35 @@
 		SELECT COUNT(*) FROM CVIEW
 	</select>
 	
+	<!-- 회원관리테이블 전체 조회 -->
+	<select id="selectMemberCount" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER
+	</select>
+
+	<!-- 회원관리테이블 전체 조회 정렬 -->
+	<select id="selectAllMember" resultMap="MemberResultMap">
+		SELECT M_NO, 
+			   M_ID, 
+			   M_JOINDATE, 
+			   M_STATUS
+		FROM MEMBER
+	</select>
+
+	<!-- 상품관리테이블 전체 조회 -->
+	<select id="selectProductCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT
+	</select>
+
+	<!-- 상품관리테이블 전체 조회 정렬 -->
+	<select id="selectAllProduct" resultMap="ProductResultMap">
+		SELECT P_NO, 
+			   P_NAME, 
+			   P_RENAMEFILE, 
+			   P_STATUS
+		FROM PRODUCT
+		WHERE P_STATUS = 'Y'
+	</select>
+	
 	<!-- 공지사항 전체 조회 -->
 	<select id="selectNoticeCount" resultType="_int">
 		SELECT COUNT(*) FROM NOTICE WHERE N_STATUS='Y'
@@ -77,4 +120,45 @@
 		<include refid="NoticeListSql"></include>
 		ORDER BY N.N_NO DESC
 	</select>
+	
+	<!-- 공지사항 상세 조회 -->
+		<select id="selectNoticeByNo" parameterType="_int" resultMap="NoticeResultMap">
+		<include refid="NoticeListSql"></include>
+		AND N.N_NO = #{no}
+	</select>	
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="noticeno" keyColumn="N_NO">
+		INSERT INTO NOTICE (
+			N_NO,
+			N_TITLE,
+			N_WRITERNO,
+			N_ID,
+			N_CONTENT,
+			N_ORIGINAL_FILENAME,
+			N_RENAMED_FILENAME,
+			N_READCOUNT,
+			N_STATUS,
+			N_CREATE_DATE,
+			N_TOPTITLE
+		)
+		VALUES (
+			SEQ_NOTICE_NO.NEXTVAL,
+			#{noticeTitle},
+			#{noticeWriterNo},
+			#{noticeWriterId},
+			#{noticeContent},
+			#{noticeOriginalFileName},
+			#{noticeRenamedFileName},
+			#{noticeReadCount},
+			#{noticeStatus},
+			DEFAULT,
+			#{noticeTopTitle}
+		)
+	</insert>
+	
+	<!-- 공지사항 삭제 (STATUS = 'N')-->
+	<update id="updateNoticeStatus" parameterType="map">
+		UPDATE NOTICE SET N_STATUS = #{noticeStatus} WHERE N_NO = #{noticeno}
+	</update>
 </mapper>
