@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 <!-- HEADER -->
+
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <style>
     @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -58,9 +59,11 @@
         background-color: rgb(235, 236, 240);
     }
 </style>
+<!-- <script src="${ path }/resources/js/jquery-3.6.0.min.js"></script> -->
 <!-- summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="${ path }/resources/js/summernote-0.8.18-dist/summernote-lite.js"></script>
+<link rel="stylesheet" href="${ path }/resources/css/summernote-0.8.18-dist/summernote-lite.css">
+<body>
 <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
 
@@ -154,6 +157,6 @@
         <div class="mb-5">
         </div>
     </div>
-    
+    </body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
