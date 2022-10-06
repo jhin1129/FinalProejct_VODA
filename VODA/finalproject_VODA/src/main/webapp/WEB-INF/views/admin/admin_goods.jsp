@@ -71,8 +71,8 @@
               </tfoot>
                 <tbody>
                   <tr>
-                    <th scope="row" class="align-middle">1</th>
-                    <td class="align-middle">테스트상품</td>
+                    <th scope="row" class="align-middle">${ product.pno }</th>
+                    <td class="align-middle">${ product.pname }</td>
                     <td><div id="admin_goods_imgbox"><img src="../../IMG/Admin/good1.jpg"></div></td>
                     <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">리뷰관리</button></td>
                     <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">수정</button></td>

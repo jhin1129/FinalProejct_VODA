@@ -11,6 +11,10 @@
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
+    <!-- Mypage CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_list.css">
+    <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_main.css">
+
     <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
     

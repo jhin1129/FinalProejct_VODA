@@ -133,17 +133,22 @@
     <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">공지사항</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;">공지사항 수정</h3>
         </div>
-        <!-- 후기글 전체 -->
+        <!-- 공지사항 내용 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
 
+
+			<form action="${ path }/admin/admin_notice_update" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${ notice.noticeno }">
+				<input type="hidden" name="originalFileName" value="${ notice.noticeOriginalFileName }">
+				<input type="hidden" name="renamedFileName" value="${ notice.noticeRenamedFileName }">
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요."
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ notice.noticeTitle }"
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
@@ -176,7 +181,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote">${ notice.noticeContent }</textarea>
 
                 <script>
                     $('#summernote').summernote({
@@ -205,11 +210,12 @@
 
                 <div class="text-right mt-2">
                     <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;">수정</button>
                     <button class="btn btn-greyc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">취소</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="mb-5 row my-5">

@@ -5,27 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	
-    <!-- Admin CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-    
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/mypage/join.css"> 
-
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <!--BootStrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
 
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
@@ -33,6 +16,7 @@
       
 	    <!-- 관리자 페이지 사이드바 -->
         <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
+        
         <!-- 관리자 페이지 메인화면 -->
           <div class="col-10 p-4">
             <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -68,38 +52,22 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>user</td>
-                    <td>2022/07/22</td>
-                    <td>정상</td>
-                    <td><button<div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                      <label class="form-check-label" for="defaultCheck1">
-                      </label>
-                    </div></td>
+                  <tr>                    <th scope="row">${ member.m_no }</th>
+
+                    <td>${ member.m_id }</td>
+                    <td>${ member.m_joinDate }</td>
+                    <td>
+                    	<c:choose> 
+                    		<c:when test="${ member.m_status == 'L'}">정상</c:when>
+                    		<c:when test="${ member.m_status == 'N'}">탈퇴</c:when>
+                    	</c:choose>
+                    </td>
+                    <td><div class="form-check">
+                      	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    	  <label class="form-check-label" for="defaultCheck1">
+                      	  </label>
+                    	</div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -128,6 +96,6 @@
 </div>
 
 <hr>
-
+</body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
