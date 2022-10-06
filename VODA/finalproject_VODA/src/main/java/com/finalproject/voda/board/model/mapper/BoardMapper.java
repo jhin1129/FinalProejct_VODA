@@ -12,4 +12,6 @@ public interface BoardMapper {
 	int selectBoardCount();
 
 	List<Board> selectAllBoard(RowBounds rowBounds);
+
+	Board selectBoardByNo(int no);
 }

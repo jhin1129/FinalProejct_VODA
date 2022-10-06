@@ -21,6 +21,7 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectBoardCount();
 	}
 
+	// 자유게시판 리스트 조회
 	@Override
 	public List<Board> getBoardList(PageInfo pageInfo) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
@@ -28,6 +29,13 @@ public class BoardServiceImpl implements BoardService {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return mapper.selectAllBoard(rowBounds);
+	}
+	
+	// 자유게시판 상세 조회
+	@Override
+	public Board findBoardByNo(int no) {
+
+		return mapper.selectBoardByNo(no);
 	}
 
 }
