@@ -58,7 +58,7 @@
 	                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_all_list'">ALL GOODS</a></li>
 	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_popular_list'">POPULAR GOODS</a></li>
-	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_cart'">CART</a></li>
+	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/cart/cart_list'">CART</a></li>
 	                </ul>
             	</li>
 	            <li class="nav-item dropdown">

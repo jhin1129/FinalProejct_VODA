@@ -28,23 +28,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <c:forEach var="cart" items="${ cart }">
+                    <c:set var="rename" value="${ cart.prenamefile }" />
                         <tr class="cart__list__detail">
-                            <td><input type="checkbox"></td>
-                            <td><img src="https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL14957584354.jpg%3Fut%3D20211005180923"></td>
-                            <td><a href="#">카카오 공식 브랜드스토어</a>
-                                <p>카카오프렌즈 라이언 인형 포근포근쿠션 라이언굿즈</p>
+                            <td style="width: 2%;"><input type="checkbox"></td>
+                            <td style="width: 13%;">
+                            	<img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" style="height: 80%;">
                             </td>
-                            <td class="cart__list__option">
-                                <p>잔여 상품 수량: 10개</p>
+                            <td style="width: 27%;"><a href="#">${ cart.pmadecompany }</a>
+                                <p>${ cart.pname }</p>
+                            </td>
+                            <td class="cart__list__option" style="width: 27%;">
+                                <p>잔여 상품 수량: ${ cart.pqtt }개</p>
                                 <p>상품 주문 수량: <input class="number_input" type="number" min="1" max="10" value="1">개</p>
                                 <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
                             </td>
-                            <td><span class="price">116,620원</span><br>
+                            <td style="width: 15%;"><span class="price">${ cart.pprice }</span><br>
                                 
                             </td>
-                            <td>무료</td>
+                            <td style="width: 15%;">무료</td>
                         </tr>
-                        <tr class="cart__list__detail">
+                    </c:forEach>
+                        <!-- <tr class="cart__list__detail">
                             <td style="width: 2%;"><input type="checkbox"></td>
                             <td style="width: 13%;">
                                 <img src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg" alt="magic mouse">
@@ -61,7 +66,7 @@
                                 
                             </td>
                             <td style="width: 15%;">무료</td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                     <tfoot>
                         <tr>

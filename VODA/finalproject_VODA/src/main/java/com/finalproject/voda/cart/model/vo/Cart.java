@@ -11,4 +11,16 @@ public class Cart {
 	private int pno;
 	
 	private int mno;
+	
+	private String pname;
+	
+	private String pmadecompany;
+	
+	private int pqtt;
+	
+	private int pprice;
+
+	private String pcategory;
+	
+	private String prenamefile;
 }
