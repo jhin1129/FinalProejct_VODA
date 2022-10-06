@@ -212,17 +212,20 @@
 				 <c:forEach var="board" items="${ list }">
                     <tr style="text-align: center; cursor:pointer;">
                         <td id="td">${ board.bno }</td>
-                        <td id="td" style="text-align: left;">
-                        	<a href="${ path }/board/free_board_detail?no=${ board.bno }">
-								${ board.bTitle }
-							</a>
-							<c:if test="${ not empty board.bRenamedFileName }">
-								<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
-							</c:if>
-                        </td>
-                        <td id="td">${ board.bWriterId }</td>
-                        <td id="td"><fmt:formatDate value="${ board.bCreateDate }" type="date"></fmt:formatDate></td>
-                        <td id="td">${ board.bView }</td>
+                           <td id="td" style="text-align: left;">
+	                        	<a href="${ path }/board/free_board_detail?no=${ board.bno }">
+									${ board.btitle }
+								</a>
+								<c:if test="${ empty board.boriginalfilename }">
+										<span> </span>
+								</c:if>
+								<c:if test="${ not empty board.boriginalfilename }">
+										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+								</c:if>
+                        	</td>
+                        <td id="td">${ board.mid }</td>
+                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
+                         <td id="td">${ board.bview }</td>
                     </tr>
                     </c:forEach>
 
@@ -251,7 +254,7 @@
 				<!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
 					<c:if test="${ status.current == pageInfo.currentPage }">
-						<li>${ status.current }</li>
+						<li><a class="active">${ status.current }</a></li>
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">

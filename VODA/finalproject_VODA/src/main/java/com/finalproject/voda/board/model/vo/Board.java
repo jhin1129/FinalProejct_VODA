@@ -16,28 +16,28 @@ public class Board {
 	
 	private int bno;
 	
-	private int bWriterNo; // M_NO
+	private int mno; // M_NO
 	
-	private String bWriterId;
+	private String mid; // M_ID
 	
-	private String bType;
+	private String btype;
 	
-	private String bTitle;
+	private String btitle;
 	
 	@DateTimeFormat(pattern = "yyyyMMdd")	
-	private Date bCreateDate;
+	private Date bcreatedate;
 	
-	private String bContent;
+	private String bcontent;
 	
-	private String bOriginalFileName;
+	private String boriginalfilename;
 	
-	private String bRenamedFileName;
+	private String brenamedfilename;
 	
-	private int bView;
+	private int bview;
 	
-	private String bStatus;
+	private String bstatus;
 	
-	private String bAnswerStatus;
+	private String banswerstatus;
 	
 	
 }
