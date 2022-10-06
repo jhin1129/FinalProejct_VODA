@@ -6,7 +6,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<!-- contents_all_list CSS-->
+<!-- contents_movie CSS-->
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/contents/contents_movie.css">
 
     <article id="mainContent" class="kakao_article">
@@ -495,6 +495,9 @@
         </ul>
         
     </article>
+
+<div style="height: 5em;">
+</div>
    
 <!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>1
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

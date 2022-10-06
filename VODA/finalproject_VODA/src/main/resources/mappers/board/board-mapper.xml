@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.board.model.mapper.BoardMapper">
+
+	<sql id="BoardListSql">
+		SELECT
+		    B.B_NO, 
+		    B.B_WRITERNO, 
+		    B.B_TYPE, 
+		    B.B_TITLE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_RENAMED_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS,
+		    B.B_WRITERID
+		FROM BOARD B
+		JOIN MEMBER M ON (B.B_WRITERNO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+	</sql>	 
+	
+
+	<resultMap type="Board" id="BoardResultMap">
+		<id property="bno" column="B_NO"/>
+		<result property="bWriterNo" column="B_WRITERNO"/>
+		<result property="bType" column="B_TYPE"/>
+		<result property="bTitle" column="B_TITLE"/>
+		<result property="bCreateDate" column="B_DATE"/>
+		<result property="bContent" column="B_CONTENT"/>
+		<result property="bOriginalFileName" column="B_ORIGINAL_FILENAME"/>
+		<result property="bRenamedFileName" column="B_RENAMED_FILENAME"/>
+		<result property="bView" column="B_VIEW"/>
+		<result property="bStatus" column="B_STATUS"/>
+		<result property="bAnswerStatus" column="B_ANSWER_STATUS"/>
+		<result property="bWriterId" column="B_WRITERID"/>
+	</resultMap>
+	
+	<!-- 게시판 전체 조회 -->
+	<select id="selectBoardCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE B_STATUS='Y'
+	</select>
+	
+	<!-- 게시판 전체 조회 정렬 -->
+	<select id="selectAllBoard" resultMap="BoardResultMap">
+		<include refid="BoardListSql"></include>
+		ORDER BY B.B_NO DESC
+	</select>
+</mapper>
+

@@ -1,3 +1,327 @@
+#posterbg {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 400px;
+    background-color:  rgba(43, 1, 103, 1);
+    justify-content: center; }
+
+#graposter {
+    z-index: 1;
+    position: absolute;
+    height: 400px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    object-fit: cover; }
+
+.RightGradient {
+    position: absolute;
+    z-index: 2;
+    height: 400px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: -5%;
+    background-image: linear-gradient( to left,    
+    rgba(43, 1, 103, 1) 70%,
+    rgba(43, 1, 103, 0) 100%);
+    width: 100px; }
+
+.LeftGradient {
+    position: absolute;
+    z-index: 2;
+    height: 400px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: -5%;
+    background-image: linear-gradient( to right,    
+    rgba(43, 1, 103, 1) 70%,
+    rgba(43, 1, 103, 0) 100%);
+    width: 100px; }
+
+.profile {
+    z-index: 3;
+    width: 230px;
+    height: 326px;
+    position: absolute;
+    top:-80px;
+    left: 0px;
+    border-radius: 2.5%; 
+    overflow: hidden;
+    margin: 7px;
+    padding: 0px; }
+
+.profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0px; }
+
+.contentsdetail {
+    position: relative;
+    margin-bottom: 35px;
+    margin-top: 35px;
+    margin-left: 275.3px; }
+
+#profilecontainer {
+    position: relative; }
+
+.profiletitle {
+    font-weight: 600; font-size:2.35em; margin-bottom: 5px; }
+
+.profiledetailnum {
+    font-weight: 400; font-size:1.2em; margin-bottom: 5px; color: rgb(145, 145, 145); }
+
+.profiledetail {
+    font-weight: 500; font-size:1.2em; margin-bottom: 5px; color: rgb(145, 145, 145); }
+
+.profileavr {
+    font-weight: 500; font-size:1.2em; }
+
+/* 링크 파랑색 밑줄 효과 삭제 */
+a:link {
+    color : black;
+    text-decoration: none; }
+
+a:visited {
+    color : black;
+    text-decoration: none; }
+
+a:hover {
+    color : black;
+    text-decoration: none; }
+
+a:active {
+    color : black;
+    text-decoration: none; }
+
+#basicinformation-container {
+    width: 1122px;
+    height: 1950px;
+    margin-top: 30px; 
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px; }
+
+#half-stars-example {
+position: absolute;
+    top: 5px;
+    left: -3px; }
+
+#bookmarktext {
+    position: absolute;
+    top: 4px;
+    left: 70px;
+    margin-bottom: 15px;
+    width: 50px;
+    font-weight: 500; } 
+
+#comment {
+    position: absolute; 
+    margin-top: 25px;
+    margin-left: 0px;
+    width: 100px;
+    font-weight: 500; 
+    margin-bottom: 5px; }
+    
+#gibonjungbo {
+    font-weight: 600;   
+    font-size:1.2em;
+    margin-top: 30px;
+    margin-bottom: 30px; }
+
+#gibonjungbotext {
+    line-height: 160%; }
+
+#julgury {
+    border-left: rgb(166, 166, 166) solid 0.5px;
+    padding-left: 50px; }
+
+#contentinfo {
+    text-align:center;
+    margin-top: 10px;
+    font-weight: 500; }
+
+.sajin{
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border-radius: 10%;
+    overflow: hidden; }
+
+.sajin img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0px; }
+
+.col-actor {
+    padding: 18px; }
+
+.col-name {
+    padding-top: 20px;
+    width: 437px; }
+
+.trailerwrapper {
+    text-align: center; }
+
+#commentbox {
+    margin-top: 10px; 
+    width: 1062px; 
+    height: 80px; 
+    background-color: rgb(235, 236, 240); 
+    border-radius: 7px; 
+    padding-left: 20px; 
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    clear: both; }
+
+.popup-link{
+    display:flex;
+    flex-wrap:wrap; }
+
+.popup-link a{
+    background: #333;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size:17px;
+    cursor:pointer;
+    margin:20px;
+    text-decoration:none; }
+
+.popup-container {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.3);
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 17, 17, 0.61);
+    display: flex;
+    align-items: center; }
+
+.popup-content {
+    background-color: white;
+    margin: auto;
+    border: 1px solid #888;
+    width: 50%;
+    width: 500px;
+    height: 540px;
+    border-radius: 2.5%;
+    text-align: center; }
+
+.popup-content p{
+    font-size: 17px;
+    padding: 10px;
+    line-height: 20px; }
+
+.popup-content a.close{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    background: none;
+    padding: 0;
+    margin-right: 10px;
+    text-decoration:none; }
+
+.popup-content a.close:hover{
+    color:#333; }
+
+.popup-content span:hover,
+.popup-content span:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer; }
+
+.popup-container:target{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1); }
+
+.popup-container h3{
+    margin:10px; }
+/*End popup styles*/
+
+#commentinput {
+    width: 420px;
+    margin-top: 30px;
+    height: 260px;
+    border-radius: 2.5%;
+    border-style: none;
+    padding: 10px;
+    text-align:left;
+    resize: none; }
+
+#commentinput:focus {
+    outline: 1px solid rgb(73,95,233); }
+
+#commentinputbox {
+    background-color: rgb(233, 236, 246);
+    width: 100%;
+    height: 395px;
+    text-align: center; }
+
+.gamsang {
+    clear : both;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: gray;
+    text-align: center;
+    font-weight: 600;
+    color: rgb(73,95,233); }
+
+.commentsubmit {
+    width: 420px;
+    height: 55px;
+    border-radius: 5px;
+    border-style: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0px;
+    color: white;
+    background-color: rgb(73,95,233); 
+    background-image: linear-gradient( to right,    
+    rgb(148, 116, 231) 20%,
+    rgba(43, 1, 103, 0) 100%); }
+
+.commenttypecount {
+    margin-top: 20px;
+    color: gray; }
+
+.commentbox {
+    width: 265px;
+    height: 300px;
+    background-color: rgb(233, 236, 246);
+    margin: auto;
+    border-radius: 2.5%;
+    position: relative;
+    padding: 20px; }
+
+.next {
+display: inline-block;
+overflow: hidden;
+font-size: 0;
+line-height: 0;
+text-indent: -9999px;
+vertical-align: top;
+background-size: 500px auto; }
+
 /* ---------- STAR AVERAGE START ---------- */
 
 /* Base setup */

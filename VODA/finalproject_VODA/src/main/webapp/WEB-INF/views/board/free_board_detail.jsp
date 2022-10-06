@@ -149,7 +149,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">제목1</td>
+                            <td style="width: 50%;">%{ board.bTitle }</td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
                         </tr>
@@ -158,7 +158,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="width: 50%;">ewr****</td>
+                            <td style="width: 50%;">${ board.bWriterId }</td>
                             <th class="table-active">작성일</th>
                             <td>2022.09.02</td>
                         </tr>
@@ -207,7 +207,8 @@
                 </p>
                 <div class="text-right mt-3">
                     <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">수정</button>
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
+                        onclick="location.href='${path}/board/free_board_update'">수정</button>
                     <button class="btn btn-greyc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
                 </div>

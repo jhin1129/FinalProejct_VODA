@@ -6,456 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bootstrap</title>
 
-  <style>
-  #posterbg {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 400px;
-    background-color:  rgba(43, 1, 103, 1);
-    justify-content: center;
-  }
+  <!-- contentsDetail CSS-->
+  <link rel="stylesheet" href="../../CSS/Contents/contentsdetail.css">
 
-  #graposter {
-    z-index: 1;
-    position: absolute;
-    height: 400px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    object-fit: cover;
-  }
+  <!-- star rating CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  .RightGradient {
-    position: absolute;
-    z-index: 2;
-    height: 400px;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: -5%;
-    background-image: linear-gradient( to left,    
-    rgba(43, 1, 103, 1) 70%,
-    rgba(43, 1, 103, 0) 100%);
-    width: 100px;
-  }
-  
-  .LeftGradient {
-    position: absolute;
-    z-index: 2;
-    height: 400px;
-    display: block;
-    top: 0;
-    bottom: 0;
-    right: -5%;
-    background-image: linear-gradient( to right,    
-    rgba(43, 1, 103, 1) 70%,
-    rgba(43, 1, 103, 0) 100%);
-    width: 100px;
-  }
+  <!--BootStrap CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-  .profile {
-    z-index: 3;
-    width: 230px;
-    height: 326px;
-    position: absolute;
-    top:-80px;
-    left: 0px;
-    border-radius: 2.5%; 
-    overflow: hidden;
-    margin: 7px;
-    padding: 0px;
-  }
+  <!--BootStrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 
-  .profile img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      padding: 0px;
-  }
+  <!-- commentplus CSS-->
+  <link rel="stylesheet" href="../../CSS/Contents/commentplus.css">
 
-  .contentsdetail {
-    position: relative;
-    margin-bottom: 35px;
-    margin-top: 35px;
-    margin-left: 275.3px;
-  }
+  <!-- common CSS-->
+  <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
-  #profilecontainer {
-    position: relative; 
-  }
-      
-  .profiletitle {
-    font-weight: 600; font-size:2.35em; margin-bottom: 5px;
-  }
-
-  .profiledetailnum {
-    font-weight: 400; font-size:1.2em; margin-bottom: 5px; color: rgb(145, 145, 145);
-  }
-  
-  .profiledetail {
-    font-weight: 500; font-size:1.2em; margin-bottom: 5px; color: rgb(145, 145, 145);
-  }
-
-  .profileavr {
-    font-weight: 500; font-size:1.2em;
-  }
-
-  /* 링크 파랑색 밑줄 효과 삭제 */
-  a:link {
-    color : black;
-    text-decoration: none;
-  }
-
-  a:visited {
-      color : black;
-      text-decoration: none;
-  }
-
-  a:hover {
-      color : black;
-      text-decoration: none;
-  }
-  
-  a:active {
-    color : black;
-    text-decoration: none;
-  }
-
-  #basicinformation-container {
-    width: 1122px;
-    height: 1950px;
-    margin-top: 30px; 
-    border-radius: 10px;
-    padding-top: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-
-  #half-stars-example {
-    position: absolute;
-      top: 5px;
-      left: -3px;
-    }
-    
-  #bookmarktext {
-    position: absolute;
-    top: 10px;
-    margin-top: 15px;
-    margin-right: 50px;
-    width: 50px;
-  }
-
-  #comment {
-    position: absolute;
-    margin-top: 25px;
-    margin-left: 0px;
-    width: 100px;
-    font-weight: 500; 
-    margin-bottom: 5px;
-  }
-      
-  #gibonjungbo {
-    font-weight: 600;
-    font-size:1.2em;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  #gibonjungbotext {
-    line-height: 160%;
-  }
-
-  #julgury {
-    border-left: black solid 1px;
-    padding-left: 50px;
-  }
-
-  #contentinfo {
-    text-align:center;
-    margin-top: 10px;
-  }
-
-  .sajin{
-    position: relative;
-    width: 70px;
-    height: 70px;
-    border-radius: 10%;
-    overflow: hidden;
-  }
-
-  .sajin img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    padding: 0px;
-  }
-
-  .col-actor {
-    padding: 18px;
-  }
-
-  .col-name {
-    padding-top: 20px;
-    width: 437px;
-  }
-
-  .trailerwrapper {
-    text-align: center;
-  }
-
-  #commentbox {
-    margin-top: 10px; 
-    width: 1062px; 
-    height: 80px; 
-    background-color: rgb(235, 236, 240); 
-    border-radius: 7px; 
-    padding-left: 20px; 
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    clear: both;
-  }
-
-  .popup-link{
-  display:flex;
-  flex-wrap:wrap;
-}
-
-.popup-link a{
-    background: #333;
-    color: #fff;
-    padding: 10px 30px;
-    border-radius: 5px;
-    font-size:17px;
-    cursor:pointer;
-    margin:20px;
-    text-decoration:none;
-}
-
-.popup-container {
-    visibility: hidden;
-    opacity: 0;
-    transition: all 0.3s ease-in-out;
-    transform: scale(1.3);
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(21, 17, 17, 0.61);
-    display: flex;
-    align-items: center;
-}
-.popup-content {
-    background-color: white;
-    margin: auto;
-    border: 1px solid #888;
-    width: 50%;
-    width: 500px;
-    height: 540px;
-    border-radius: 2.5%;
-    text-align: center;
-}
-.popup-content p{
-    font-size: 17px;
-    padding: 10px;
-    line-height: 20px;
-}
-.popup-content a.close{
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    background: none;
-    padding: 0;
-    margin-right: 10px;
-    text-decoration:none;
-}
-
-.popup-content a.close:hover{
-    color:#333;
-}
-
-.popup-content span:hover,
-.popup-content span:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.popup-container:target{
-    visibility: visible;
-    opacity: 1;
-    transform: scale(1);
-}
-
-.popup-container h3{
-    margin:10px;
-}
-/*End popup styles*/
-
-#commentinput {
-    width: 420px;
-    margin-top: 30px;
-    height: 260px;
-    border-radius: 2.5%;
-    border-style: none;
-    padding: 10px;
-    text-align:left;
-    resize: none;
-}
-
-#commentinput:focus {
-  outline: 1px solid rgb(73,95,233);
-}
-
-#commentinputbox {
-    background-color: rgb(233, 236, 246);
-    width: 100%;
-    height: 395px;
-    text-align: center;
-}
-
-.gamsang {
-    clear : both;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    color: gray;
-    text-align: center;
-    font-weight: 600;
-    color: rgb(73,95,233);;
-}
-
-.commentsubmit {
-    width: 420px;
-    height: 55px;
-    border-radius: 5px;
-    border-style: none;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 0px;
-    color: white;
-    background-color: rgb(73,95,233); 
-    background-image: linear-gradient( to right,    
-    rgb(148, 116, 231) 20%,
-    rgba(43, 1, 103, 0) 100%);
-}
-
-.commenttypecount {
-    margin-top: 20px;
-    color: gray;
-}
-
-/* 코멘트 박스 */
-.commentbox {
-    width: 270px;
-    height: 300px;
-    background-color: rgb(233, 236, 246);;
-    margin: auto;
-    border-radius: 2.5%;
-    position: relative;
-    padding: 20px;
-}
-
-.userimg {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: aliceblue;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    margin-right: 10px;
-}
-
-.userimg img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.nickname {
-    position: absolute;
-    top: 18px;
-    left: 80px;
-    margin-left: 10px;
-}
-
-.likecount {
-    margin-top: 5px;
-    margin-left: 42px;
-}
-
-.update {
-    position: absolute;
-    top: 260px; 
-    left: 175px;
-    font-size: 0.9em;
-}
-
-.delete {
-    position: absolute;
-    top: 260px;
-    left: 215px;
-    font-size: 0.9em;
-}
-
-.commentinner {
-    position: absolute;
-    top: 90px;
-    height: 150px;
-    width: 230px;
-}
-
-.center {
-    margin: auto;
-}
-
-.ds {
-    margin: auto;
-}
-
-.bi {
-    position: absolute;
-    top: 255px;
-    left: 25px;
-}
-
-</style>
-
-<!-- star rating CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="style.css">
-
-<!-- bookmark CSS-->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"> -->
-<link rel="stylesheet" href="bookmarkstyle.css">
-
-
-<!--BootStrap CSS-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-<!--BootStrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-<!-- styleaverage CSS-->
-<link rel="stylesheet" href="../../CSS/Contents/staraverage.css">
-
-<!-- common CSS-->
-<link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
 
 <body>
   <!-- 헤더 시작 -->
@@ -528,7 +99,7 @@
         
   <div class="container" id="profilecontainer">
     <div class="profile">
-        <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" alt="">\dn\bVWNXg\btqBs0rlmaO\7z3GiCy6IS0HydFtKUKxMk\img.jpg
+        <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" alt="">
     </div>
     <div class="contentsdetail">
       <div class="profiletitle"> 알라딘</div>
@@ -569,8 +140,8 @@
               <!-- partial -->
             </div>
           </div>
-          <div class="col">
-            <button class="bookmark" style="margin-top: 25px;">
+          <div class="col" style="margin-top: 23px;">
+            <button class="bookmark">
               <svg viewBox="0 0 36 36">
               <path class="filled" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
               <path class="default" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
@@ -594,10 +165,24 @@
     <!--popup1-->
   <div id="popup1" class="popup-container">
     <div class="popup-content">
-        <a href="#" class="close">&times;</a>
-        <div class="gamsang">COMMENT</div>
-        <form action="">
-            <div id="commentinputbox">
+      <a href="#" class="close">&times;</a>
+      <div class="gamsang">COMMENT</div>
+      <form action="">
+        <div class="staraverage" style="text-align: center;">
+          <fieldset class="rate">
+            <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
+            <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
+            <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
+            <input type="radio" id="rating7" name="rating" value="7" /><label class="half" for="rating7" title="3 1/2 stars"></label>
+            <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6" title="3 stars"></label>
+            <input type="radio" id="rating5" name="rating" value="5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
+            <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="2 stars"></label>
+            <input type="radio" id="rating3" name="rating" value="3" /><label class="half" for="rating3" title="1 1/2 stars"></label>
+            <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="1 star"></label>
+            <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
+          </fieldset>
+        </div>
+        <div id="commentinputbox">
                 <textarea name="commentinput" id="commentinput" type="text" placeholder="당신의 감상을 적어보세요"></textarea> <br>
                 <button class="commentsubmit">
                     평가하기
@@ -640,27 +225,6 @@
     </div>
 
     <div id="gibonjungbo" style="margin-bottom: 5px;"> 출연 제작 </div>
-      <!-- <div class="row" id="inmul">
-        <div class="col-actor">
-          <div class="sajin" >
-            <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
-          </div>
-        </div>
-        <div class="col-name">
-          <div style="font-size:1.1em; margin-top: 5px;">가이리치</div>
-          <div style="color:gray; font-size:0.9em;">감독</div>
-        </div>
-        <div class="col-actor" style="padding-left: 0px">
-          <div class="sajin">
-            <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
-          </div>
-        </div>
-        <div class="col-name">
-          <div style="font-size:1.1em; margin-top: 5px;">가이리치</div>
-          <div style="color:gray; font-size:0.9em;">감독</div>
-        </div>
-      </div> 
-    <hr style="margin: 0px;"> -->
 
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel"> <!--carousel-->
         <div class="carousel-inner">
@@ -672,7 +236,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -681,7 +245,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -693,7 +257,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -702,7 +266,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -714,7 +278,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -723,7 +287,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -737,7 +301,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -746,7 +310,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -758,7 +322,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -767,7 +331,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -779,7 +343,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">가이 리치</div>
+                <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
                 <div style="color:gray; font-size:0.9em;">감독</div>
               </div>
               <div class="col-actor" style="padding-left: 0px">
@@ -788,7 +352,7 @@
                 </div>
               </div>
               <div class="col-name">
-                <div style="font-size:1.1em; margin-top: 5px;">윌 스미스</div>
+                <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
                 <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
               </div>
             </div> 
@@ -806,90 +370,202 @@
 
     <div id="gibonjungbo"> 평균 별점 </div>
     
-    <div class="staraverage" style="text-align: center;">
-      <fieldset class="rate">
-        <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
-        <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
-        <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
-        <input type="radio" id="rating7" name="rating" value="7" /><label class="half" for="rating7" title="3 1/2 stars"></label>
-        <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6" title="3 stars"></label>
-        <input type="radio" id="rating5" name="rating" value="5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
-        <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="2 stars"></label>
-        <input type="radio" id="rating3" name="rating" value="3" /><label class="half" for="rating3" title="1 1/2 stars"></label>
-        <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="1 star"></label>
-        <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
-      </fieldset>
+    <div class="chart"  style="margin:auto;">
+      <div class="bar" data-bar-value="17.45"><span class="bar__name"></span></div>
+      <div class="bar" data-bar-value="34.91"><span class="bar__name">1</span></div>
+      <div class="bar" data-bar-value="70.36"><span class="bar__name"></span></div>
+      <div class="bar" data-bar-value="31.07"><span class="bar__name">2</span></div>
+      <div class="bar" data-bar-value="23.39"><span class="bar__name"></span></div>
+      <div class="bar" data-bar-value="43.28"><span class="bar__name">3</span></div>
+      <div class="bar" data-bar-value="25.48"><span class="bar__name"></span></div>
+      <div class="bar" data-bar-value="23.39"><span class="bar__name">4</span></div>
+      <div class="bar" data-bar-value="43.28"><span class="bar__name"></span></div>
+      <div class="bar" data-bar-value="25.48"><span class="bar__name">5</span></div>
     </div>
+
+
     <span id="gibonjungbo"> 코멘트 </span>
 
     <span style="font-size: 1em; color: gray;">1000+</span>
 
     <span style="color: rgb(73,95,233); float: right; font-weight: 600;">더보기</span>
 
-    <div class="container p-0">
-      <div class="row center" >
-          <div class="col-lg-3 col-md-6 col-sm-12 bg-dark ds">
-              <div class="commentbox">
-                  <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
-                  <div class="nickname">강아지</div>
-                  <hr style="margin-top: 45px;">
-                  <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                  <hr style="margin-top: 172px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                  </svg> 
-                  <span class="likecount">7</span>
-                  <a class="update">수정</a>
-                  <a class="delete">삭제</a>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 bg-dark ds">
-              <div class="commentbox">
-                  <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
-                  <div class="nickname">강아지</div>
-                  <hr style="margin-top: 45px;">
-                  <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                  <hr style="margin-top: 172px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                  </svg> 
-                  <span class="likecount">7</span>
-                  <a class="update">수정</a>
-                  <a class="delete">삭제</a>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 bg-dark ds">
-              <div class="commentbox">
-                  <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
-                  <div class="nickname">강아지</div>
-                  <hr style="margin-top: 45px;">
-                  <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                  <hr style="margin-top: 172px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                  </svg> 
-                  <span class="likecount">7</span>
-                  <a class="update">수정</a>
-                  <a class="delete">삭제</a>
-              </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-sm-12 bg-dark ds">
-              <div class="commentbox">
-                  <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
-                  <div class="nickname">강아지</div>
-                  <hr style="margin-top: 45px;">
-                  <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-                  <hr style="margin-top: 172px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                  <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                  </svg> 
-                  <span class="likecount">7</span>
-                  <a class="update">수정</a>
-                  <a class="delete">삭제</a>
-              </div>
-          </div>
-      </div>
-  </div>
+    <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false"
+    data-interval="false">
+    <!--carousel-->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+        <!--carousel page 1 start-->
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox" style="width: 168px;">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>            
+                </div>
+            </div>    
+        </div>
+        <!--carousel page 1 end-->
+
+        <div class="carousel-item">
+            <!--carousel page 2 start-->
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="innercommentbox" style="width: 168px;">
+                        <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+                        <div class="nickname">강아지</div>
+                        <div class="commentstar">★ 3.5</div>
+                        <hr style="margin-top: 42px;">
+                        <div class="commentinner">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                        <a href="#" class="like-button">
+                            <?xml version="1.0" encoding="utf-8"?>
+                            <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+                        </a>
+                        <div class="likecount">7</div>
+                        <a class="update">수정</a>
+                        <a class="delete">삭제</a>
+                    </div>            
+                </div>
+            </div>    
+        </div>
+        <!--carousel page 2 end-->
+    </div>
+    <!--carousel-inner end-->
+    <div style="width: 5%;" class="my-5">
+        <button style="width: 5%; height:100px; margin-top:100px; margin-left: -29px;"
+            class="carousel-control-prev" type="button"
+            data-target="#carouselExampleControlsNoTouching" data-slide="prev">
+            <img class="next" src="../../IMG/Ranking/slide-left.png" alt=""
+                style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </button>
+        <button style="width: 5%; height:100px; margin-top:100px; margin-right: -29px;"
+            class="carousel-control-next" type="button"
+            data-target="#carouselExampleControlsNoTouching" data-slide="next">
+            <img class="next" src="../../IMG/Ranking/slide-right.png" alt=""
+                style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </button>
+    </div>
+</div>
+
+<script>
+  const allBars = document.querySelectorAll(".bar");
+allBars.forEach(bar => {
+const barValue = bar.getAttribute("data-bar-value");
+bar.setAttribute('style', `--__bar_ht: ${barValue}px;`);
+})
+</script>
+<!--carousel-->
+
   </div> <!--회색 박스 끝 -->
 
   <!-- 푸터 -->

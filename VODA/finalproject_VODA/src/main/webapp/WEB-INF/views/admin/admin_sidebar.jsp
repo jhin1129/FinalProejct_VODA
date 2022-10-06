@@ -15,7 +15,7 @@
             <div class="sidebar-sticky pt-5">
               <ul class="nav flex-column">
                 <li class="nav-item">
-                  <a class="nav-link" role="button" href="${path}/resources/WEB-INF/views/admin/admin_dashboard.jsp">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_dashboard">
                     <h5>
                       관리자 페이지
                     </h5>
@@ -25,7 +25,7 @@
 
 
                 <li class="nav-item">
-                  <a class="nav-link" role="button" href="/admin_member.jsp">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_member">
                       <p id="admin_nav_title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                         회원 관리</p>
                     </a>
@@ -40,9 +40,9 @@
                 </li>
                 
                 <div>
-                  <a class="nav-link" role="button" href="/admin_content.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_content" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 컨텐츠 정보 관리</li></a>
-                  <a class="nav-link" role="button" href="/admin_people.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_people" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 인물페이지 관리</li></a>
                   <br>
                 </div>
@@ -55,9 +55,9 @@
                       </a>
                     </li>
                 <div>
-                  <a class="nav-link" role="button"  href="/admin_goods.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button"  href="${path}/admin/admin_goods" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 상품 정보 관리</li></a>
-                  <a class="nav-link" role="button" href="/admin_goods_order.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_goods_order" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 상품 주문 관리</li></a>
                   <br>
                 </div>
@@ -73,18 +73,18 @@
                       </a>
                     </li>
                 <div>
-                  <a class="nav-link" role="button"  href="/admin_freeboard.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button"  href="${path}/admin/admin_freeboard" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 자유게시판 관리</li></a>
-                  <a class="nav-link" role="button" href="/admin_qna.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_qna" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 문의게시판 관리</li></a>
-                  <a class="nav-link" role="button" href="/admin_notice.jsp" id="admin_nav_sublist"><li id="admin_nav_subtitle">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_notice_list" id="admin_nav_sublist"><li id="admin_nav_subtitle">
                     - 공지사항 관리</li></a>
 
                   <br>
                 </div>
                   
                 <li class="nav-item">
-                  <a class="nav-link" role="button" href="/admin_total_views.jsp">
+                  <a class="nav-link" role="button" href="${path}/admin/admin_total_views">
                     <p id="admin_nav_title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-data" viewBox="0 0 16 16">
                       <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5h3Z"/>
                       <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z"/>

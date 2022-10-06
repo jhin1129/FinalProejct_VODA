@@ -2,6 +2,8 @@ package com.finalproject.voda.admin.model.vo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.finalproject.voda.product.model.vo.Product;
 
 import lombok.AllArgsConstructor;
@@ -14,10 +16,12 @@ import lombok.NoArgsConstructor;
 public class Notice {
 	
 	private int noticeno;
-	
-	private int memberno;
-	
+
 	private String noticeTitle;
+	
+	private int noticeWriterNo;
+	
+	private String noticeWriterId;
 	
 	private String noticeContent;
 	
@@ -29,6 +33,7 @@ public class Notice {
 	
 	private String noticeStatus;
 	
+	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date noticeCreateDate;
 	
 	private String noticeTopTitle;
