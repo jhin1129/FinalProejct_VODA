@@ -27,12 +27,12 @@
         </div>    
         <div class="find_id_wrap">
 
-            <form class="find_id_form">
+            <form class="find_id_form" action="${path}/member/pwdReset" method="post">
                 <div class="find_id_name1">
                     <div class="find_id_name2">
                         <label for="newPwd" class="find_id_name3">새 비밀번호 등록</label>
                         <div class="find_id_name4">
-                            <input type="password" data-testid="input-box" name="newPwd" id="newPwd" 
+                            <input type="password" data-testid="input-box" name="m_password" id="m_password" 
                             placeholder="새 비밀번호를 입력해주세요." class="find_id_name5" required>
                         </div>
                         <div class="check_font" id="password_check"></div>
@@ -51,10 +51,9 @@
                     <div class="mismatch-message" style="color: red;"></div>
                 </div>
                 <div class="verification_code1">
-                    <button class="verification_code2" type="submit" disabled radius="4">
-                        <span class="verification_code3">확인</span>
-                        <!-- 비밀번호 변경 완료 팝업이 뜨고 로그인 화면으로 이동! -->
-                    </button>
+                    <button type="submit" class="verification_code2" id="code_onclick">
+                   	확인
+                  	</button>
                 </div>
             </form>
         </div> 

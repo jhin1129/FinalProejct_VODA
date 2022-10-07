@@ -1,5 +1,7 @@
 package com.finalproject.voda.member.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,4 +18,13 @@ public interface MemberMapper {
 	int deleteMember(int no);
 
 	Member selectMemberByEmail(String email);
+
+	int findIdCheck(String m_email);
+
+	List<Member> findId(String m_email);
+
+	Member findPwd(String m_email);
+
+	int passwordUpdate(Member member);
+
 }

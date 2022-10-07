@@ -29,7 +29,7 @@
                         <img src="${path}/resources/img/member/email.png" id="email_img">
                         <span class="css_email5">'가입 시 이메일 주소'</span>로
                         <br>
-                        비밀번호 재설정 메일이 발송되었어요.
+                        인증번호 메일이 발송되었어요.
                     </p>
                     <p class="css_email6">
                         5분 후에도 메일이 오지 않는다면
