@@ -1554,7 +1554,7 @@ $(document).ready(function(){
 		}
 		
 		//주소 작성 여부
-		if($("#sample6_detailAddress").val == '') {
+		if($("#sample6_detailAddress").val != '') {
 			alert("주소를 검색하여 입력해주세요");
 			$("#sample6_detailAddress").focus();
 			

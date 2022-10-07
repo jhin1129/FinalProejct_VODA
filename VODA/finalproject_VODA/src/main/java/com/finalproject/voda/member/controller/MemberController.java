@@ -1,17 +1,28 @@
 package com.finalproject.voda.member.controller;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.member.model.service.MemberService;
@@ -22,7 +33,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller 
 @RequestMapping("/member")
+//@SessionAttributes("loginMember")
 public class MemberController {
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	@Autowired 
 	private MemberService service;
 	
@@ -123,11 +139,26 @@ public class MemberController {
 	@GetMapping("/findId") 
 	public String findId() {
 		
-		
-		
 		return "member/findId"; 
 		
 	}
+	
+	
+	@PostMapping("/findId") 
+	public String findId(Member member, Model model) {
+      
+		if(service.findIdCheck(member.getM_email()) == 0) {
+          model.addAttribute("msg", "이메일을 확인해주세요.");
+          
+          return "member/findId";
+          
+       }  else {
+          model.addAttribute("member", service.findId(member.getM_email()));
+          return "member/idVerify";
+       }
+	}
+	
+	
 	
 	@GetMapping("/idVerify") 
 	public String idVerify() {
@@ -136,6 +167,8 @@ public class MemberController {
 		
 	}
 	
+	
+	
 	@GetMapping("/findPwd") 
 	public String findPwd() {
 		
@@ -143,8 +176,91 @@ public class MemberController {
 		
 	}
 	
+	@PostMapping("/findPwd") 
+	public ModelAndView findPwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		String m_email = (String)request.getParameter("m_email");
+		String m_id = (String)request.getParameter("m_id");
+
+		Member member = service.findPwd(m_email);
+		
+		if(member != null) {
+			Random r = new Random();
+			int num = r.nextInt(999999); // 랜덤난수설정
+		
+			if (member.getM_id().equals(m_id)) {
+				session.setAttribute("email", member.getM_email());
+
+				String setfrom = "VODA"; // naver 
+				String tomail = m_email; //받는사람
+				String title = "[VODA] 인증번호를 보내드립니다. 비밀번호를 재설정 해주세요."; 
+				String content = System.getProperty("line.separator") 
+						+ "안녕하세요 회원님" 
+						+ System.getProperty("line.separator")
+						+ "[VODA] 비밀번호 찾기(변경) 인증번호는 " + num + " 입니다." 
+						+ System.getProperty("line.separator"); 
+
+				try {
+					MimeMessage message = mailSender.createMimeMessage();
+					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
+
+					messageHelper.setFrom(setfrom); 
+					messageHelper.setTo(tomail); 
+					messageHelper.setSubject(title);
+					messageHelper.setText(content); 
+
+					mailSender.send(message);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
+
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/verifyCode");
+				mv.addObject("num", num);
+				return mv;
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/findPwd");
+				return mv;
+			}
+			}else {
+				ModelAndView mv = new ModelAndView();
+				mv.setViewName("member/findPwd");
+				return mv;
+			}
+		
+	}
+	
+	
+	@PostMapping("/verifyCode")  //이메일 인증번호 확인
+	public String verifyCode(@RequestParam(value="code") String code,
+							 @RequestParam(value = "num") String num){
+		
+		if(code.equals(num)) {
+			return "member/pwdReset";
+		}
+		else {
+			return "member/verifyCode";
+		}
+	} 
+	
+	@PostMapping("/pwdReset") // (DB 비밀번호 업데이트)
+	public String pwdReset(Member member, HttpSession session){
+		int result = service.passwordUpdate(member);
+		if(result == 1) {
+			return "member/login";
+		}
+		else {
+			System.out.println("passwordUpdate"+ result);
+			return "member/pwdReset";
+		}
+	}
+	
+	
+	
 	@GetMapping("/findPwdSendEmail") 
 	public String findPwdSendEmail() {
+		
+		
 		
 		return "member/findPwdSendEmail"; 
 		

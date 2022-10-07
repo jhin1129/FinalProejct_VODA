@@ -1,5 +1,7 @@
 package com.finalproject.voda.member.model.service;
 
+import java.util.List;
+
 import com.finalproject.voda.member.model.vo.Member;
 
 public interface MemberService {
@@ -15,5 +17,15 @@ public interface MemberService {
 	Boolean isDuplicateEmail(String email);
 
 	Member findMemberByEmail(String email);
+
+	int findIdCheck(String m_email);
+
+	List<Member> findId(String m_email);
+
+	Member findPwd(String m_email);
+
+	int passwordUpdate(Member member);
+
+
 
 }

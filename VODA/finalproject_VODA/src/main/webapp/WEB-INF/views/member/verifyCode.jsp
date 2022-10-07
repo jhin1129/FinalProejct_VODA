@@ -5,26 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>findPwd</title>
-
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">
 
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    
-</head>
-
-<body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <div class="container">
         <div class="member_tit">
@@ -33,31 +19,22 @@
         <div class="find_id_wrap">
             <div class="find_id_choose">
                 <div class="find_id_email">
-                    이메일 인증
+                    인증번호 입력
                 </div>
             </div>
-            <form class="find_id_form" action="${path}/member/findPwd" method="post">
+            <form class="find_id_form" action="${path}/member/verifyCode" method="post">
+            <input type="hidden" name ="num" value="${num}">
                 <div class="find_id_name1">
                     <div class="find_id_name2">
-                        <label for="memId" class="find_id_name3">아이디</label>
+                        <label for="memId" class="find_id_name3">인증번호</label>
                         <div class="find_id_name4">
-                            <input type="text" data-testid="input-box" name="m_id" id="m_id" 
-                            placeholder="아이디를 입력해 주세요" class="find_id_name5">
+                            <input type="text" data-testid="input-box" name="code" id="code" 
+                            placeholder="인증번호를 입력해 주세요" class="find_id_name5">
                         </div>
-                    </div>
-                </div>
-                <div class="find_id_email1">
-                    <div class="find_id_email2">
-                        <label for="email" class="find_id_email3">이메일</label>
-                        <div class="find_id_email4">
-                            <input type="email" data-testid="input-box" name="m_email" id="m_email" 
-                            placeholder="이메일을 입력해 주세요" class="find_id_email5">
-                        </div>
-                        <div class="check_font" id="email_check"></div>
                     </div>
                 </div>
                 <div class="verification_code1">
-                    <button class="verification_code2" id="findId_onclick">
+                    <button type="submit" class="verification_code2" id="code_onclick">
                    	확인
                   	</button>
                 </div>
@@ -73,6 +50,17 @@
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 
+<script>
+$(document).ready(function(){
+	$("#findId_onclick").click(function(){
+	var msg="${msg}"
+	   if(msg != null) {
+	      alert(msg);
+	   }
+	});
+});
+	
+</script>
  
 <script>
     $('.find_id_name5').on('input', checkInput);
@@ -112,11 +100,7 @@ $('#m_email').blur(function(){
     } else {
         $('#email_check').text('이메일 형식으로 입력해 주세요');
         $('#email_check').css('color', 'red');
-    }
+    
 });
 
 </script>
-
-
-</body>
-</html>
