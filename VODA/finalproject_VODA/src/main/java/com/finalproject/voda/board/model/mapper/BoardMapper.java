@@ -9,9 +9,9 @@ import com.finalproject.voda.board.model.vo.Board;
 
 @Mapper
 public interface BoardMapper {
-	int selectBoardCount();
+	int selectBoardCount(String type);
 
-	List<Board> selectAllBoard(RowBounds rowBounds);
+	List<Board> selectAllBoard(RowBounds rowBounds, String type);
 
 	Board selectBoardByNo(int no);
 }

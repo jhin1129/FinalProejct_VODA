@@ -16,19 +16,19 @@ public class BoardServiceImpl implements BoardService {
 	private BoardMapper mapper;
 	
 	@Override
-	public int getBoardCount() {
+	public int getBoardCount(String type) {
 		
-		return mapper.selectBoardCount();
+		return mapper.selectBoardCount(type);
 	}
 
 	// 자유게시판 리스트 조회
 	@Override
-	public List<Board> getBoardList(PageInfo pageInfo) {
+	public List<Board> getBoardList(PageInfo pageInfo, String type) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		return mapper.selectAllBoard(rowBounds);
+		return mapper.selectAllBoard(rowBounds, type);
 	}
 	
 	// 자유게시판 상세 조회

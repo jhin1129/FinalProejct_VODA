@@ -32,8 +32,8 @@ public class BoardController {
 		List<Board> list = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getBoardCount(), 10);
-		list = service.getBoardList(pageInfo);
+		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 10);
+		list = service.getBoardList(pageInfo, "FREE");
 		
 		System.out.println(list);
 		

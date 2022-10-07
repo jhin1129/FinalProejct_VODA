@@ -7,9 +7,9 @@ import com.finalproject.voda.common.util.PageInfo;
 
 public interface BoardService {
 
-	int getBoardCount();
+	int getBoardCount(String type);
 
-	List<Board> getBoardList(PageInfo pageInfo);
+	List<Board> getBoardList(PageInfo pageInfo, String type);
 
 	Board findBoardByNo(int no);
 
