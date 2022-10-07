@@ -23,11 +23,12 @@ public class ContentsController {
 		List<Contents> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getContentsCount(), 10);
-				
-		System.out.println(pageInfo);
+		pageInfo = new PageInfo(page, 15, service.getContentsCount(), 10);
+		list = service.getContentsList(pageInfo);
 		
+		System.out.println(list);
 		
+		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_movie");
 		

@@ -2,7 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.finalproject.voda.contents.model.mapper.ContentsMapper">
+	<sql id="contentsListSql">
+		SELECT C_NO,
+			   C_TITLE,
+			   C_TYPE,
+			   C_GENRE,
+			   C_YEAR,
+			   C_NATION,
+			   C_AGE,
+			   C_INFO,
+			   C_SYNOP,
+			   C_BRGB,
+			   C_OBIMG,
+			   C_BIMG,
+			   C_OPIMG,
+			   C_PIMG,
+			   C_VIDEO,
+			   C_DATE
+		FROM CONTENTS
+		WHERE C_STATUS = 'Y'
+	</sql>
+	
+	<resultMap type="Contents" id="contentsListResultMap">
+		<id property="c_no" column="C_NO"/>
+		<result property="c_title" column="C_TITLE"/>
+		<result property="c_type" column="C_TYPE"/>
+		<result property="c_genre" column="C_GENRE"/>
+		<result property="c_year" column="C_YEAR"/>
+		<result property="c_nation" column="C_NATION"/>
+		<result property="c_age" column="C_AGE"/>
+		<result property="c_info" column="C_INFO"/>
+		<result property="c_synop" column="C_SYNOP"/>
+		<result property="c_brgb" column="C_BRGB"/>
+		<result property="c_obimg" column="C_OBIMG"/>
+		<result property="c_bimg" column="C_BIMG"/>
+		<result property="c_opimg" column="C_OPIMG"/>
+		<result property="c_pimg" column="C_PIMG"/>
+		<result property="c_video" column="C_VIDEO"/>
+		<result property="c_date" column="C_DATE"/>
+		<result property="c_status" column="C_STATUS"/>
+		
+	</resultMap>
+	
 	<select id="selectContentsCount" resultType="_int">
 		SELECT COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
 	</select>
+
+	<select id="selectAll" resultMap="contentsListResultMap">
+		<include refid="contentsListSql" />
+		AND C_TYPE = '영화'
+		ORDER BY C_NO DESC
+	</select>
+	
 </mapper>
