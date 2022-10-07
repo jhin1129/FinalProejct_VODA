@@ -57,6 +57,7 @@ public class ProductController {
 		
 		return model;
 	}
+	
 	@GetMapping("/product_detail")
 	public ModelAndView view(ModelAndView model, @RequestParam int pno) {
 		Product product = null;

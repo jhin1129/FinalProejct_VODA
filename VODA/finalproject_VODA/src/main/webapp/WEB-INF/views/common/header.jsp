@@ -79,6 +79,8 @@
 	                  COMMUNITY
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_notice_list'">NOTICE</a></li>
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_dashboard'">ADMINPAGE</a></li>
 	                  <li><a class="dropdown-item" href="#">FREE BOARD</a></li>
 	                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
 	              </ul>

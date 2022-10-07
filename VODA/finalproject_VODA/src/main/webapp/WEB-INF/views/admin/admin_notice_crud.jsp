@@ -135,9 +135,12 @@
         <div>
             <h3 style="text-align: center;  color: #000000; font-size: 17px;">공지사항</h3>
         </div>
-        <!-- 후기글 전체 -->
+        <!-- 공지사항 등록 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
-
+			<form action="${ path }/admin/admin_notice_update" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${ notice.noticeno }">
+				<input type="hidden" name="originalFileName" value="${ notice.noticeOriginalFileName }">
+				<input type="hidden" name="renamedFileName" value="${ notice.noticeRenamedFileName }">
             <div>
                 <table class="table m-0">
                     <thead>
@@ -153,13 +156,13 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">로그인멤버 작성자아이디</td>
+                            <td style="margin-left: 10px;">${ loginMember.m_id }</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
                             <td class="p-0">
-                                <button class="btn btn-greyc p-0"
+                                <input type="file" name="upfile" ><button class="btn btn-greyc p-0"
                                     style="color: #000000; font-size: 14.45px; height: 27px; width: 80px; margin-left: 10px; margin-right: 8px;">파일
                                     선택</button>
                                 <label
@@ -210,6 +213,7 @@
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">취소</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="mb-5 row my-5">

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -57,15 +58,15 @@ public class AdminController {
 //	회원 관리 페이지
 	@GetMapping("/admin_member")
 	public ModelAndView adminMember(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Member> member = null;
+		List<Member> list = null;
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getMemberCount(), 10);
-		member = service.getMemberList(pageInfo);
+		list = service.getMemberList(pageInfo);
 		
-		System.out.println(member);
+		System.out.println(list);
 		
-		model.addObject("member", member);
+		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
 		model.setViewName("/admin/admin_member");
 		
@@ -75,15 +76,15 @@ public class AdminController {
 //	상품 관리 페이지
 	@GetMapping("/admin_goods")
 	public ModelAndView adminGoods(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Product> product = null;
+		List<Product> list = null;
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getProductCount(), 10);
-		product = service.getProductList(pageInfo);
+		list = service.getProductList(pageInfo);
 		
-		System.out.println(product);
+		System.out.println(list);
 		
-		model.addObject("product", product);
+		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
 		model.setViewName("/admin/admin_goods");
 		
@@ -163,13 +164,14 @@ public class AdminController {
 	}
 	
 	
-//	공지사항 작성
+//	공지사항 작성 (접근)
 	@GetMapping("/admin_notice_crud")
 	public String Noticewrite() {
 
 		return "/admin/admin_notice_crud";
 	}
 	
+//	공지사항 작성 (등록 버튼 시)
 	@PostMapping("/admin_notice_crud")
 	public ModelAndView Noticewrite(
 			ModelAndView model,
@@ -212,10 +214,10 @@ public class AdminController {
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글 등록 성공");
-			model.addObject("location", "/board/view?no=" + notice.getNoticeno());	
+			model.addObject("location", "/admin/admin_notice_detail?no=" + notice.getNoticeno());	
 		} else {
 			model.addObject("msg", "게시글 등록 실패");
-			model.addObject("location", "/board/write");	
+			model.addObject("location", "/admin/admin_notice_crud");	
 		}
 		
 		model.setViewName("common/msg");
@@ -256,7 +258,7 @@ public class AdminController {
 		}
 	}
 	
-//	공지사항 수정
+//	공지사항 수정 (접근)
 	@GetMapping("/admin_notice_update")
 	public ModelAndView noticeUpdate(
 			ModelAndView model, 
@@ -278,6 +280,69 @@ public class AdminController {
 //			model.setViewName("common/msg");
 //		}
 
+		return model;
+	}
+	
+//	공지사항 수정 (수정버튼 클릭 시)
+	@PostMapping("/admin_notice_update")
+	public ModelAndView noticeUpdate(
+			ModelAndView model,
+			@ModelAttribute Notice notice,
+			@RequestParam("upfile") MultipartFile upfile)
+//			,@SessionAttribute("loginMember") Member loginMember) 
+	{
+		
+		int result = 0;
+
+//		if (service.findNoticeByNo(notice.getNoticeno()).getNoticeWriterId().equals(loginMember.getId())) {
+			
+			if (upfile != null && !upfile.isEmpty()) {
+				String location = null;
+				String renamedFileName = null;
+				
+				try {
+					
+					location = resourceLoader.getResource("resources/upload/board").getFile().getPath();
+					
+					if(notice.getNoticeRenamedFileName() != null) {
+						// 이전에 업로드 된 첨부파일이 존재하면 삭제
+						MultipartFileUtil.delete(location + "/" + notice.getNoticeRenamedFileName());
+					}
+					
+					renamedFileName = MultipartFileUtil.save(upfile, location);
+					
+					if(renamedFileName != null) {
+						notice.setNoticeOriginalFileName(upfile.getOriginalFilename());
+						notice.setNoticeRenamedFileName(renamedFileName);
+					}
+					
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
+			result = service.saveNotice(notice);
+			
+			if(result > 0) { 
+				model.addObject("msg","게시글이 정상적으로 수정되었습니다..");
+				model.addObject("location","/admin/admin_notice_detail?no=" + notice.getNoticeno());
+				
+			} else {
+				model.addObject("msg","게시글이 수정 실패.");
+				model.addObject("location","/board/update?no" + notice.getNoticeno());
+				
+			}
+			
+		 
+//	else {
+//			model.addObject("msg","잘못된 접근입니다.");
+//			model.addObject("location","/admin/admin_notice_list");
+//		}
+		
+		model.setViewName("common/msg");
+		
 		return model;
 	}
 
