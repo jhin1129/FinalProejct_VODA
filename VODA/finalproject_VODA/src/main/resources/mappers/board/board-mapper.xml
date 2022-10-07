@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.board.model.mapper.BoardMapper">
+
+	<sql id="BoardListSql">
+		SELECT
+		    B.B_NO, 
+		    M.M_NO, 
+		    B.B_TITLE, 
+		    B.B_TYPE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS, 
+		    M.M_ID
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
+	</sql>	 
+	
+
+	<resultMap type="Board" id="BoardResultMap">
+		<id property="bno" column="B_NO"/>
+		<result property="mno" column="M_NO"/>
+		<result property="btitle" column="B_TITLE"/>
+		<result property="btype" column="B_TYPE"/>
+		<result property="bcreatedate" column="B_DATE"/>
+		<result property="bcontent" column="B_CONTENT"/>
+		<result property="boriginalfilename" column="B_ORIGINAL_FILENAME"/>
+		<result property="bview" column="B_VIEW"/>
+		<result property="banswerstatus" column="B_ANSWER_STATUS"/>
+		<result property="bstatus" column="B_STATUS"/>
+		<result property="mid" column="M_ID"/>
+	</resultMap>
+	
+	<!-- 게시판 전체 조회 -->
+	<select id="selectBoardCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE B_STATUS='Y'
+		AND B_TYPE = #{type}
+	</select>
+	
+	<!-- 게시판 전체 조회 정렬 -->
+	<select id="selectAllBoard" resultMap="BoardResultMap">
+		<include refid="BoardListSql"></include>
+		AND B.B_TYPE = #{type}
+		ORDER BY B.B_NO DESC
+	</select>
+	
+		<!-- 게시판 상세 조회 -->
+	<select id="selectBoardByNo" parameterType="_int" resultMap="BoardResultMap">
+		<include refid="BoardListSql"></include>
+		AND B.B_NO = #{no}
+	</select>	
+	
+	
+	
+	
+	
+</mapper>
+

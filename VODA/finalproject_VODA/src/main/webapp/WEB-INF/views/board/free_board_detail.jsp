@@ -4,11 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -129,11 +126,8 @@
 
     <title>free_brd_detail</title>
 
-</head>
-
 <body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -149,7 +143,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">제목1</td>
+                            <td style="width: 50%;">%{ board.btitle }</td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
                         </tr>
@@ -158,16 +152,16 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="width: 50%;">ewr****</td>
+                            <td style="width: 50%;">${ board.mid }</td>
                             <th class="table-active">작성일</th>
-                            <td>2022.09.02</td>
+                            <td><fmt:formatDate value="${ board.bcreatedate }" dateStyle="long"/></td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
                             <td></td>
                             <th class="table-active">조회수</th>
-                            <td>64,215</td>
+                            <td>${ board.bview }</td>
                         </tr>
 
                         <tr>
@@ -191,11 +185,7 @@
             <!-- 내용 -->
             <div class="my-3 px-3">
                 <p style="font-size: 14.45px;">
-                    형님덜 ~ <br>
-                    헌트보셨나요~?<br>
-                    무진장 재미지던데 ㅋ<br>
-                    이정재, 정우성 행님<br>
-                    한 까리 하대요~ ㅋ<br>
+                    ${ board.bcontent }<br>
                     <br>
                     <br>
                     <br>
@@ -207,7 +197,8 @@
                 </p>
                 <div class="text-right mt-3">
                     <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">수정</button>
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
+                        onclick="location.href='${path}/board/free_board_update'?no=${ board.bno }">수정</button>
                     <button class="btn btn-greyc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
                 </div>
@@ -260,8 +251,27 @@
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>
         </div>
     </div>
+    	<script>
+		$(document).ready(() => {
+				$("#btnDelete").on("click", () => {
+					if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
+						location.replace("${ path }/board/free_board_delete?no=${ board.bno }");
+					}
+				})
+				
+				$("#fileDown").on("click", () => {
+					location.assign("${ path }/board/fileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
+				});
+				
+				$("#replyContent").on("focus", (e) => {
+					if(${ empty loginMember }) {
+						alert("로그인 후 이용해주세요!");
+						
+						$("#userId").focus();				
+					}
+				});
+				
+			});
+		</script>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-
-</body>
-</html>

@@ -4,63 +4,130 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-<style>
-    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-    
-    * { font-family: Pretendard, 
-        -apple-system, BlinkMacSystemFont, 
-        system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-    }
 
-    input:focus {
-        outline: none;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    button:focus {
-        box-shadow: none !important;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .btn-primary {
-        color: #fff;
-        border-color: #495FE9;
-        background-color: #495FE9;
-    }
+    <!--BootStrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
-    .btn-primary:hover {
-        background-color: #0b27db !important;
-        border-color: #0b27db;
-        color: #fff !important;
-    }
+        * {
+            font-family: Pretendard,
+                -apple-system, BlinkMacSystemFont,
+                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        }
 
-    .btn {
+        input:focus {
+            outline: none;
+        }
 
-        transition: background 0.2s ease-in-out,
-                    color 0.2s ease-in-out;
-    }
+        button:focus {
+            box-shadow: none !important;
+        }
 
-    .btn-light {
-        background-color: #f8f9fa;
-        border: #f8f9fa;
-        color: #55585c;
-    }
+        .btn-logoc {
+            color: #fff;
+            border-color: #495FE9;
+            background-color: #495FE9;
+        }
 
-    .btn-light:hover {
-        background-color: #e6e6e6 !important;
-        border-color: #e6e6e6 !important;
-        color: #55585c !important;
-        
+        .btn-logoc:hover {
+            background-color: #0b27db !important;
+            border-color: #0b27db;
+            color: #fff !important;
+        }
 
-    }
+        .btn {
 
-    .table-active, .table-active>td, .table-active>th {
-        background-color: rgb(235, 236, 240);
-    }
-</style>
-<!-- summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+        }
+
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+
+        }
+
+        .table-active,
+        .table-active>td,
+        .table-active>th {
+            background-color: rgb(235, 236, 240);
+        }
+
+        table * {
+            font-size: 14.45px;
+            color: #000000;
+        }
+
+        .table thead th {
+            border-bottom: 1px;
+        }
+
+        .table {
+            margin-bottom: 0rem;
+        }
+
+
+        .table td,
+        .table th {
+            padding: 10px;
+        }
+
+        .table th {
+            padding-left: 13px;
+        }
+
+        .note-placeholder {
+            font-size: 14.45px;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+
+        }
+    </style>
+
+    <!-- common CSS-->
+    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <!-- summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <title>product_create</title>
+
+
+</head>
+<body>
 <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
 
@@ -117,7 +184,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote" name="pcontents"></textarea>
                 <script>
                     $('#summernote').summernote({
                         placeholder: '내용을 입력해주세요',
@@ -154,6 +221,6 @@
         <div class="mb-5">
         </div>
     </div>
-    
+    </body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

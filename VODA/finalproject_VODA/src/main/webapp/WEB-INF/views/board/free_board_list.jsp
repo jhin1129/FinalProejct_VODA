@@ -7,9 +7,6 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -177,16 +174,15 @@
             pointer-events: none;
         }
     </style>
-</head>
+    
 <body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">자유게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${path }/board/free_board_list?type=FREE">자유 게시판</a></h3>
         </div>
 
         <div class="mt-4">
@@ -202,125 +198,33 @@
                 </thead>
 
                 <tbody>
+ 	             <c:if test="${ empty list }">
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							조회된 게시글이 없습니다.
+						</td>
+					</tr>	
+				 </c:if> 
+				 <c:if test="${ not empty list }"> 
+				 <c:forEach var="board" items="${ list }">
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
+                        <td id="td">${ board.bno }</td>
+                           <td id="td" style="text-align: left;">
+	                        	<a href="${ path }/board/free_board_detail?no=${ board.bno }">
+									${ board.btitle }
+								</a>
+								<c:if test="${ empty board.boriginalfilename }">
+										<span> </span>
+								</c:if>
+								<c:if test="${ not empty board.boriginalfilename }">
+										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+								</c:if>
+                        	</td>
+                        <td id="td">${ board.mid }</td>
+                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
+                         <td id="td">${ board.bview }</td>
                     </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">2</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">3</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">4</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">5</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">6</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">7</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">8</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">작성자1</td>
-                        <td id="td">날짜1</td>
-                        <td id="td">조회수1</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">9</td>
-                        <td id="td" style="text-align: left;">제목2</td>
-                        <td id="td">작성자2</td>
-                        <td id="td">날짜2</td>
-                        <td id="td">조회수2</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목3</td>
-                        <td id="td">작성자3</td>
-                        <td id="td">날짜3</td>
-                        <td id="td">조회수3</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">11</td>
-                        <td id="td" style="text-align: left;">제목4</td>
-                        <td id="td">작성자4</td>
-                        <td id="td">날짜4</td>
-                        <td id="td">조회수4</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">12</td>
-                        <td id="td" style="text-align: left;">제목5</td>
-                        <td id="td">작성자5</td>
-                        <td id="td">날짜5</td>
-                        <td id="td">조회수5</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">13</td>
-                        <td id="td" style="text-align: left;">제목6</td>
-                        <td id="td">작성자6</td>
-                        <td id="td">날짜6</td>
-                        <td id="td">조회수6</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">14</td>
-                        <td id="td" style="text-align: left;">제목7</td>
-                        <td id="td">작성자7</td>
-                        <td id="td">날짜7</td>
-                        <td id="td">조회수7</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">15</td>
-                        <td id="td" style="text-align: left;">제목8</td>
-                        <td id="td">작성자8</td>
-                        <td id="td">날짜8</td>
-                        <td id="td">조회수8</td>
-                    </tr>
+                    </c:forEach>
 
                     <tr>
                         <td class="td-hr"></td>
@@ -328,7 +232,9 @@
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
+                        <td class="td-hr"></td>
                     </tr>
+                    </c:if> 
                 </tbody>
 
             </table>
@@ -336,20 +242,34 @@
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
-                <li><a class="" href="#">«</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">»</a></li>
+            	<!-- 맨 처음으로 -->
+                <li><a href="${ path }/board/free_board_list?page=1">«</a></li>
+                
+                <!-- 이전 페이지로 -->
+                <li><a href="${ path }/board/free_board_list?page=${ pageInfo.prevPage }">‹</a></li>
+                
+				<!--  10개 페이지 목록 -->
+				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+					<c:if test="${ status.current == pageInfo.currentPage }">
+						<li><a class="active">${ status.current }</a></li>
+					</c:if>
+					
+					<c:if test="${ status.current != pageInfo.currentPage }">
+                		<li><a href="${ path }/board/free_board_list?page=${ status.current }">${ status.current }</a></li>
+					</c:if>
+				</c:forEach>
+				
+				<!-- 다음 페이지로 -->
+					<li><a href="${ path }/board/free_board_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<!-- 맨 끝 페이지로 -->
+	                <li><a href="${ path }/board/free_board_list?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-
+            
         </div>
 
         <div class="display2">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="../../IMG/Community/edit.png" style="height: 20px;"></button>
+                    src="${path}/resources/img/community/edit.png" style="height: 20px;"></button>
         </div>
 
         <div class="col-4 text-right">
@@ -373,7 +293,7 @@
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                                    src="../../IMG/Community/search.png" style="height: 18px;"></button>
+                                     src="${path}/resources/img/community/search.png" style="height: 18px;"></button>
                         </span>
                     </div>
 
@@ -382,8 +302,7 @@
         </div>
     </div>
     
-<!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
 </body>
-</html>
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
