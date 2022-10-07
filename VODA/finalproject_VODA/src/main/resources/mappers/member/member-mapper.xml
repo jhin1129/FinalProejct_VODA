@@ -58,6 +58,8 @@
 		WHERE M_EMAIL = #{m_email} AND M_STATUS = 'L'
 	</select>
 	
+	
+	
 	<insert id="insertMember" parameterType="Member"
 		useGeneratedKeys="true" keyColumn="M_NO" keyProperty="m_no">
 		INSERT INTO MEMBER (
@@ -94,4 +96,27 @@
 			#{m_detailAddress}
 			)	
 	</insert>
+	
+	
+	<select id="findIdCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<select id="findId" resultMap="memberResultMap">
+		<include refid="selectMemberSql"/>
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	
+		
+	<select id="findPwd" resultType="Member" parameterType="String">
+		<include refid="selectMemberSql"/>
+		WHERE M_EMAIL = #{m_email}
+	</select>
+	
+	<update id="passwordUpdate" parameterType="Member">
+		UPDATE MEMBER SET M_PW = #{m_password}
+		WHERE M_EMAIL = #{m_email}
+	</update>
 </mapper>

@@ -17,8 +17,11 @@
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">
 
-    <!-- jquery -->
+    <!-- jquery 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    -->
+    <script src="${ path }/js/jquery-3.6.0.min.js"></script>
+    
     
 </head>
 
@@ -32,11 +35,11 @@
         </div>    
         <div class="find_id_wrap">
             <div class="find_id_choose">
-                <button type="button" class="find_id_email">
+                <div class="find_id_email">
                     이메일 인증
-                </button>
+                </div>
             </div>
-            <form class="find_id_form">
+            <form class="find_id_form" action="${path}/member/findId" method="post">
                 <div class="find_id_name1">
                     <div class="find_id_name2">
                         <label for="m_name" class="find_id_name3">이름</label>
@@ -58,7 +61,7 @@
                     </div>
                 </div>
                 <div class="verification_code1">
-                   <button class="verification_code2" onclick="idSearch_click()">
+                   <button type="submit" class="verification_code2" id="idSearch">
                    확인
                    </button>
                 </div>
@@ -69,6 +72,20 @@
 <br><br><br><br><br><br>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
+
+<!-- 
+ -->
+<script>
+$(document).ready(function(){
+	$("#idSearch").click(function(){
+	var msg="${msg}"
+	   if(msg != null) {
+	      alert(msg);
+	   }
+	});
+});
+	
+</script>
 
 <script>
     
@@ -82,21 +99,22 @@
         var btnCheck = $('.verification_code2');
 
         if (nameCheck === '' || emailCheck === '') {
-        // // 기본 버튼 색상
-        // btnCheck.removeClass('on');
+        // 기본 버튼 색상
+        btnCheck.removeClass('on');
         // } else {
         // // 입력 시에 버튼 배경색 변경
         // btnCheck.addClass('on');
         // }
         
             btnCheck.css('background-color', '#ddd');
+            btnCheck.css('cursor', 'Default');
         } else {
             btnCheck.css('background-color', ' #495FE9');
             btnCheck.css('cursor', 'pointer');
         }
     }
-
 </script>
+
 
 <!-- 이름 유효성 검사 -->
 <script>
@@ -104,54 +122,62 @@ var nameJ = /^[가-힣]{2,6}$/;
 var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 
-$("#name").blur(function() {
+$("#m_name").blur(function() {
 	if (nameJ.test($(this).val())) {
 			console.log(nameJ.test($(this).val()));
 			$("#name_check").text('');
+			$("#name_check").attr('style', 'visibility:hidden;');
+
 	} else {
-		$('#name_check').text('이름을 입력해주세요');
+		$('#name_check').text('가입 시 등록한 이름을 입력해 주세요');
+		$("#name_check").attr('style', 'visibility:visible;');
 		$('#name_check').css('color', 'red');
 	}
 });
 
 // 이메일
-$('#email').blur(function(){
+$('#m_email').blur(function(){
     if(mailJ.test($(this).val())){
         console.log(nameJ.test($(this).val()));
         $("#email_check").text('');
+		$("#email_check").attr('style', 'visibility:hidden;');
+
     } else {
-        $('#email_check').text('이메일 형식으로 입력해 주세요');
+        $('#email_check').text('가입 시 등록한 이메일을 입력해 주세요');
+		$("#email_check").attr('style', 'visibility:visible;');
         $('#email_check').css('color', 'red');
     }
 });
 
 </script>
 
+<!-- 확인 버튼 클릭 시 유효성 검사 -->
 <script>
+$(document).ready(function(){
+	$("#idSearch").click(function(){
+	
+		//이름 작성 여부(유효성 검사 여부)
+		if($("#name_check").css("visibility") != "hidden"){
+			alert("이름을 입력해 주세요");
+			$("#m_name").focus();
+			
+			return false;
+		}
+		
+		//이메일 중복검사
+		if($("#email_check").css("visibility") != "hidden"){
+			alert("이메일 형식으로 입력해 주세요");
+			$("#m_email").focus();
 
-var idV = "";
-// 아이디 값 받고 출력하는 ajax
-var idSearch_click = function(){
-	$.ajax({
-		type:"POST",
-		url:"${ path }/member/findId?m_name="
-				+$('#m_name').val()+"&m_email="+$('#m_email').val(),
-		success:function(data){
-			if(data == 0){
-				$('#m_id').text("회원 정보를 확인해주세요!");	
-			} else {
-				$('#m_id').text(data);
-				// 아이디값 별도로 저장
-				idV = data;
-			}
+			return false;
 		}
 	});
-}
+	
+
+});
 
 
 </script>
-
-
 
 </body>
 </html>

@@ -1,10 +1,17 @@
 package com.finalproject.voda.member.model.service;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.finalproject.voda.member.email.MailUtils;
 import com.finalproject.voda.member.model.mapper.MemberMapper;
 import com.finalproject.voda.member.model.vo.Member;
 
@@ -78,6 +85,34 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 
+	@Override
+	public int findIdCheck(String m_email) {
 
+		return mapper.findIdCheck(m_email);
+	}
+
+	@Override
+	public List<Member> findId(String m_id) {
+
+		return mapper.findId(m_id);
+	}
+
+	@Override
+	public Member findPwd(String m_email) {
+
+		return mapper.findPwd(m_email);
+	}
+
+	@Override
+	public int passwordUpdate(Member member) {
+		int result = 0;
+				
+		 member.setM_password(passwordEncoder.encode(member.getM_password()));
+	     result = mapper.passwordUpdate(member);
+	    
+	     System.out.println("result + : " + result);
+		
+		return result;
+	}
 
 }

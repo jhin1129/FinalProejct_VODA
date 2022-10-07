@@ -343,7 +343,7 @@ ul.join-find li:after {
     -ms-flex-positive: 1;
     flex-grow: 1;
     position: relative;
-    height: 48px;
+    height: 30px;
     font-weight: 500;
     font-size: 16px;
     line-height: 18px;
@@ -452,8 +452,8 @@ button[disabled], input[disabled] {
     border-radius: 4px;
     color: #fff;
     border: 0 none;
-    cursor: pointer;
-    background-color: #495FE9;
+    cursor: Default;
+    background-color: #ddd;
 }
 
 .verification_code3 {
