@@ -1,15 +1,35 @@
 package com.finalproject.voda.contents.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.contents.model.service.ContentsService;
+import com.finalproject.voda.contents.model.vo.Contents;
 
 @Controller
 public class ContentsController {
+	@Autowired
+	private ContentsService service;
 	
 	@GetMapping("/contents/contents_movie")
-	public ModelAndView movieList(ModelAndView model) {
+	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		
+		List<Contents> list = null;  
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 15, service.getContentsCount(), 10);
+		list = service.getContentsList(pageInfo);
+		
+		System.out.println(list);
+		
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_movie");
 		
 		return model;
