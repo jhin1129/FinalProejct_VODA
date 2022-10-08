@@ -1,6 +1,5 @@
 package com.finalproject.voda.member.controller;
 
-import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -22,7 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.member.model.service.MemberService;
@@ -33,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller 
 @RequestMapping("/member")
-//@SessionAttributes("loginMember")
+@SessionAttributes("loginMember")
 public class MemberController {
 	
 	@Autowired
@@ -59,7 +60,7 @@ public class MemberController {
 	}
 	
 
-	@PostMapping("/enroll") 
+	@PostMapping("/enroll")  // 회원가입
 	public ModelAndView enroll(ModelAndView model,
 								@ModelAttribute Member memeber)
 								{
@@ -84,7 +85,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/idCheck")
+	@PostMapping("/idCheck") // id 중복검사
 	public ResponseEntity<Map<String, Boolean>> idCheck(@RequestParam String user_id) {
 		log.info("{}", user_id);
 		
@@ -96,7 +97,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/emailCheck")
+	@PostMapping("/emailCheck") // email 중복검사
 	public ResponseEntity<Map<String, Boolean>> emailCheck(@RequestParam String user_email) {
 		log.info("{}", user_email);
 		
@@ -116,9 +117,10 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/login") 
+	@PostMapping("/login") // 로그인
 	public ModelAndView login(ModelAndView model,
-			@RequestParam("m_id") String id, @RequestParam("m_password") String password) {	
+			@RequestParam("m_id") String id, @RequestParam("m_password") String password
+			) {	
 	
 		log.info("{}, {}", id, password);
 		
@@ -136,6 +138,17 @@ public class MemberController {
 		return model;
 	}	
 	
+	
+	@GetMapping("/logout") // 로그아웃 처리 
+	public String logout(SessionStatus status) {
+		
+		status.setComplete(); 
+		
+		return "redirect:/";
+	}
+	
+	
+	
 	@GetMapping("/findId") 
 	public String findId() {
 		
@@ -144,7 +157,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/findId") 
+	@PostMapping("/findId") // 아이디 찾기
 	public String findId(Member member, Model model) {
       
 		if(service.findIdCheck(member.getM_email()) == 0) {
@@ -176,7 +189,7 @@ public class MemberController {
 		
 	}
 	
-	@PostMapping("/findPwd") 
+	@PostMapping("/findPwd") // 비밀번호 찾기
 	public ModelAndView findPwd(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		String m_email = (String)request.getParameter("m_email");
 		String m_id = (String)request.getParameter("m_id");
@@ -231,7 +244,7 @@ public class MemberController {
 	}
 	
 	
-	@PostMapping("/verifyCode")  //이메일 인증번호 확인
+	@PostMapping("/verifyCode")  // 이메일 인증번호 확인
 	public String verifyCode(@RequestParam(value="code") String code,
 							 @RequestParam(value = "num") String num){
 		
@@ -243,7 +256,7 @@ public class MemberController {
 		}
 	} 
 	
-	@PostMapping("/pwdReset") // (DB 비밀번호 업데이트)
+	@PostMapping("/pwdReset") // DB 비밀번호 업데이트
 	public String pwdReset(Member member, HttpSession session){
 		int result = service.passwordUpdate(member);
 		if(result == 1) {
@@ -287,6 +300,7 @@ public class MemberController {
 		return "member/teatApi"; 
 		
 	}
+	
 //	@GetMapping("/people/peopleEnroll") 
 //	public String peopleEnroll() {
 //		
