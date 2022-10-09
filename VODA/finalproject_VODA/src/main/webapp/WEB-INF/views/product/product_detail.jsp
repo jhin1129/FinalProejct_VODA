@@ -217,8 +217,10 @@
                                         </div>
                                     </td>
                                     <td style="width: 50%;">
-                                        <div class="py-2 text-center"><button class="btn btn-light py-1">장바구니</button>
-                                        </div>
+                                    	<form action="${ path }/product/cart_insert">
+                                    	<input type="hidden" name="pno" value="${ product.pno }">
+                                        <div class="py-2 text-center"><button class="btn btn-light py-1">장바구니</button></div>
+                                        </form>
                                     </td>
                                 </tr>
 
