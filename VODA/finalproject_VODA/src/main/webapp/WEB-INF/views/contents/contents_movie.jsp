@@ -28,24 +28,29 @@
 		                    <li>
 		                        <div class="item_poster">
 		                            <div class="thumb_item">
-		                                <div class="poster_movie">
-		                                    <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="img_thumb" alt="이미지가 없습니다">
+		                                <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
+		                                    <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="img_thumb">
 		                                    <span class="txt_tag">
 		                                        <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
 		                                    </span>
 		                                </div>
 		                                <div class="poster_info">
-		                                    <a href="#" class="link_story" data-tiara-layer="poster">
+		                                    <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story" data-tiara-layer="poster">
 		                                        ${ contents.c_synop }
 		                                    </a>
 		                                </div>
 		                            </div>
 		                            <div class="thumb_cont">
 		                                <strong class="tit_item">
-		                                    <a href="#" class="link_txt" data-tiara-layer="moviename"> ${ contents.c_title }</a>
+		                                    <a href="#" class="link_txt" data-tiara-layer="moviename">${ contents.c_title }</a>
 		                                </strong>
 		                                <span class="txt_append">
-		                                    <span class="info_txt">평점<span class="txt_grade">8.1</span></span>
+		                                	 <c:if test="${ contents.rate_star == 0 }">
+		                                	 	<span class="info_txt">등록 된 평점이 없어요</span>
+		                                	 </c:if>
+		                                	 <c:if test="${ contents.rate_star > 0 }">
+		                                    <span class="info_txt">평점<span class="txt_grade">${ contents.rate_star }</span></span>
+		                                   	 </c:if>
 		                                </span>
 		                            </div>
 		                        </div>

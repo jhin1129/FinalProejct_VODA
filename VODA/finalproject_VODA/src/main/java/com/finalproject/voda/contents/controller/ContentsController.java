@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.service.ContentsService;
 import com.finalproject.voda.contents.model.vo.Contents;
+import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.RateResult;
 
 @Controller
 public class ContentsController {
@@ -23,8 +26,8 @@ public class ContentsController {
 		List<Contents> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 15, service.getContentsCount(), 10);
-		list = service.getContentsList(pageInfo);
+		pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
+		list = service.getContentsList(pageInfo, "영화");
 		
 		System.out.println(list);
 		
@@ -52,8 +55,18 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/contents/contents_detail")
-	public ModelAndView commentDetail(ModelAndView model) {
+	public ModelAndView commentDetail(ModelAndView model, @RequestParam int no) {
+		Contents contents = null;
+		RateResult rateResult = null;
+		List<ContentsPeople> contentsPeople = null;
 		
+		contentsPeople = service.getContentsPeopleByNo(no);
+		rateResult = service.getContentsRateByNo(no);
+		contents = service.findContentsByNo(no);
+		
+		model.addObject("contentsPeople", contentsPeople);
+		model.addObject("rateResult", rateResult);
+		model.addObject("contents", contents);
 		model.setViewName("contents/contents_detail");
 		
 		return model;

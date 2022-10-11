@@ -3,24 +3,23 @@
 
 <mapper namespace="com.finalproject.voda.contents.model.mapper.ContentsMapper">
 	<sql id="contentsListSql">
-		SELECT C_NO,
-			   C_TITLE,
-			   C_TYPE,
-			   C_GENRE,
-			   C_YEAR,
-			   C_NATION,
-			   C_AGE,
-			   C_INFO,
-			   C_SYNOP,
-			   C_BRGB,
-			   C_OBIMG,
-			   C_BIMG,
-			   C_OPIMG,
-			   C_PIMG,
-			   C_VIDEO,
-			   C_DATE
-		FROM CONTENTS
-		WHERE C_STATUS = 'Y'
+		C.C_NO,
+		C.C_TITLE,
+		C.C_TYPE,
+		C.C_GENRE,
+		C.C_YEAR,
+		C.C_NATION,
+		C.C_AGE,
+		C.C_INFO,
+		C.C_SYNOP,
+		C.C_OBIMG,
+		C.C_BIMG,
+		C.C_OPIMG,
+		C.C_PIMG,
+		C.C_VIDEO,
+		C.C_DATE,
+		C.C_LEFTCOLOR,
+		C.C_RIGHTCOLOR
 	</sql>
 	
 	<resultMap type="Contents" id="contentsListResultMap">
@@ -33,25 +32,123 @@
 		<result property="c_age" column="C_AGE"/>
 		<result property="c_info" column="C_INFO"/>
 		<result property="c_synop" column="C_SYNOP"/>
-		<result property="c_brgb" column="C_BRGB"/>
 		<result property="c_obimg" column="C_OBIMG"/>
 		<result property="c_bimg" column="C_BIMG"/>
 		<result property="c_opimg" column="C_OPIMG"/>
 		<result property="c_pimg" column="C_PIMG"/>
 		<result property="c_video" column="C_VIDEO"/>
 		<result property="c_date" column="C_DATE"/>
-		<result property="c_status" column="C_STATUS"/>
-		
+		<result property="c_status" column="C_STATUS"/>	
+		<result property="rate_star" column="AVG(R.RATE_STAR)"/>
+	</resultMap>
+	
+	<resultMap type="Contents" id="contentsDetailResultMap" extends="contentsListResultMap">
+		<result property="rate_star" column="AVG(R.RATE_STAR)"/>
+		<collection property="rates" javaType="arraylist" resultMap="rateResultMap"/>
+	</resultMap>
+	
+	<resultMap type="Rate" id="rateResultMap">
+		<id property="rate_no" column="RATE_NO"/>
+		<result property="c_no" column="C_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="rate_star" column="RATE_STAR"/>
+		<result property="rate_comment" column="RATE_COMMENT"/>
+		<result property="rate_date" column="RATE_DATE"/>
+		<result property="rate_like" column="RATE_LIKE"/>
+	</resultMap>
+	
+	<resultMap type="RateResult" id="contentsRateResultMap">
+		<result property="rate_count" column="RATE_COUNT"/>
+		<result property="_05" column="_05"/>
+		<result property="_1" column="_1"/>
+		<result property="_15" column="_15"/>
+		<result property="_2" column="_2"/>
+		<result property="_25" column="_25"/>
+		<result property="_3" column="_3"/>
+		<result property="_35" column="_35"/>
+		<result property="_4" column="_04"/>
+		<result property="_45" column="_45"/>
+		<result property="_5" column="_5"/>
+		<result property="rate_avg" column="RATE_AVG"/>
+	</resultMap>
+	
+	<resultMap type="ContentsPeople" id="contentsPeopleResultMap">
+		<result property="c_no" column="C_NO"/>
+		<result property="people_no" column="PEOPLE_NO"/>
+		<result property="cp_role" column="CP_ROLE"/>
+		<result property="cp_img" column="CP_IMG"/>
+		<result property="cp_oimg" column="CP_OIMG"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
 	</resultMap>
 	
 	<select id="selectContentsCount" resultType="_int">
 		SELECT COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
+		AND  C_TYPE = #{type}
 	</select>
 
 	<select id="selectAll" resultMap="contentsListResultMap">
-		<include refid="contentsListSql" />
-		AND C_TYPE = '영화'
-		ORDER BY C_NO DESC
+		SELECT
+		<include refid="contentsListSql"/>
+		,AVG(R.RATE_STAR)
+		FROM CONTENTS C
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y'
+        AND C.C_TYPE = #{type}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
 	</select>
 	
+	 <select id="selectContentsByNo" parameterType="_int" resultMap="contentsDetailResultMap">
+		SELECT <include refid="contentsListSql"/>,
+		      R.RATE_NO,
+		      R.M_NO,
+		      R.RATE_STAR,
+		      R.RATE_COMMENT,
+		      R.RATE_DATE,
+		      R.RATE_LIKE,
+		      M.M_ID
+		      FROM CONTENTS C
+		LEFT OUTER JOIN RATE R
+		      ON C.C_NO = R.C_NO
+		LEFT OUTER JOIN MEMBER M
+              ON M.M_NO = R.M_NO
+		      WHERE C.C_STATUS = 'Y'
+		      AND C.C_NO = #{ no }
+       ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectContentsRateByNo" parameterType="int" resultMap="contentsRateResultMap">				
+		SELECT
+		COUNT(RATE_STAR) as "RATE_COUNT"
+		,COUNT(CASE WHEN RATE_STAR=0.5 then 1 end ) AS "_05"
+		,COUNT(CASE WHEN RATE_STAR=1 then 1 end ) AS "_1"
+		,COUNT(CASE WHEN RATE_STAR=1.5 then 1 end ) AS "_15" 
+		,COUNT(CASE WHEN RATE_STAR=2 then 1 end ) AS "_2" 
+		,COUNT(CASE WHEN RATE_STAR=2.5 then 1 end ) AS "_25" 
+		,COUNT(CASE WHEN RATE_STAR=3 then 1 end ) AS "_3" 
+		,COUNT(CASE WHEN RATE_STAR=3.5 then 1 end ) AS "_35" 
+		,COUNT(CASE WHEN RATE_STAR=4 then 1 end ) AS "_4"
+		,COUNT(CASE WHEN RATE_STAR=4.5 then 1 end ) AS "_45"
+		,COUNT(CASE WHEN RATE_STAR=5 then 1 end ) AS "_5"
+		,ROUND(AVG(RATE_STAR),1) as "RATE_AVG"
+		FROM RATE
+		WHERE C_NO = #{ no }
+	</select>
+	
+	<select id="selectContentsPeopleByNo" parameterType="int" resultMap="contentsPeopleResultMap">	
+	   SELECT
+	   CP.C_NO,
+       CP.PEOPLE_NO,
+       CP.CP_ROLE,
+       CP.CP_IMG,
+       CP.CP_OIMG,
+       P.PEOPLE_NAME
+       FROM CONTENTSPEOPLE CP
+       JOIN PEOPLE P
+       ON CP.PEOPLE_NO = P.PEOPLE_NO
+       WHERE C_NO = #{ no }
+     </select>  
 </mapper>
