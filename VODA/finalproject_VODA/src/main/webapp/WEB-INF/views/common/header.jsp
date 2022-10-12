@@ -107,7 +107,7 @@
 		<c:if test="${ !empty loginMember }">
 		  <div class="right">
 	        <a href="${ path }/member/mypage_main" class="text-nowrap">
-				${ loginMember.name }
+				${ loginMember.m_name }
 			</a>
 	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
 	      </div>	
