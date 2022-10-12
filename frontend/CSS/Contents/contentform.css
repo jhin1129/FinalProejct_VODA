@@ -271,9 +271,10 @@ form input::file-selector-button {
     --main-bg-color: gray;
 }
 
-.dd {
+
+/* .dd {
     background: var(--main-bg-color);
     width:100px;
     height:1000px;
     text-align: center;
-}
+} */

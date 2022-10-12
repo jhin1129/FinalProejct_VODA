@@ -70,4 +70,17 @@
 		DELETE FROM PRODUCT
 		WHERE P_NO = #{pno}
 	</delete>
+	<update id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT SET P_NAME = #{pname},
+	                   P_PRICE = #{pprice},
+	                   P_QTT = #{pqtt},
+	                   P_CONTENTS = #{pcontents},
+	                   P_ORIGINFILE = #{poriginfile},
+	                   P_RENAMEFILE = #{prenamefile},
+	                   P_MADELOCAL = #{pmadelocal},
+	                   P_CATEGORY = #{pcategory},
+	                   P_MADECOMPANY = #{pmadecompany}
+		WHERE P_NO = #{pno}
+	</update>
+
 </mapper>

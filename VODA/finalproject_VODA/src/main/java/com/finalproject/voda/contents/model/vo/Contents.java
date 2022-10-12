@@ -1,6 +1,7 @@
 package com.finalproject.voda.contents.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +20,6 @@ public class Contents {
 	private int c_age;
 	private	String c_info;
 	private String c_synop;
-	private	String c_brgb;
 	private String c_obimg;
 	private String c_bimg;
 	private	String c_opimg;
@@ -27,4 +27,8 @@ public class Contents {
 	private String c_video;
 	private Date c_date;
 	private String c_status;
+	private double rate_star;
+	private List<Rate> rates;
+	private String c_leftcolor;
+	private String c_rightcolor;
 }

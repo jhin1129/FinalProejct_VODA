@@ -6,6 +6,10 @@
   background-color:  rgba(43, 1, 103, 1);
   justify-content: center; }
 
+.grabox {
+  position: relative; }
+
+
 #graposter {
   z-index: 1;
   position: absolute;
@@ -22,11 +26,11 @@
   display: block;
   top: 0;
   bottom: 0;
-  left: -5%;
+  right: -2.5%;
   background-image: linear-gradient( to left,    
-  rgba(43, 1, 103, 1) 70%,
-  rgba(43, 1, 103, 0) 100%);
-  width: 100px; }
+  rgba(26, 11, 73) 40%,
+  rgba(26, 11, 73, 0) 100%);
+  width: 200px; }
 
 .LeftGradient {
   position: absolute;
@@ -35,11 +39,11 @@
   display: block;
   top: 0;
   bottom: 0;
-  right: -5%;
+  left: -2.5%;
   background-image: linear-gradient( to right,    
-  rgba(43, 1, 103, 1) 70%,
-  rgba(43, 1, 103, 0) 100%);
-  width: 100px; }
+  rgba(14, 8, 39) 40%,
+  rgba(14, 8, 39, 0) 100%);
+  width: 200px; }
 
 .profile {
   z-index: 3;
@@ -301,26 +305,26 @@ position: absolute;
   rgba(43, 1, 103, 0) 100%); }
 
 .commenttypecount {
-margin-top: 20px;
-color: gray; }
+  margin-top: 20px;
+  color: gray; }
 
 .commentbox {
-width: 265px;
-height: 300px;
-background-color: rgb(233, 236, 246);
-margin: auto;
-border-radius: 2.5%;
-position: relative;
-padding: 20px; }
+  width: 265px;
+  height: 300px;
+  background-color: rgb(233, 236, 246);
+  margin: auto;
+  border-radius: 2.5%;
+  position: relative;
+  padding: 20px; }
 
 .next {
-display: inline-block;
-overflow: hidden;
-font-size: 0;
-line-height: 0;
-text-indent: -9999px;
-vertical-align: top;
-background-size: 500px auto; }
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+  vertical-align: top;
+  background-size: 500px auto; }
 
 /* ---------- STAR RATE START ---------- */
 /* Base setup */

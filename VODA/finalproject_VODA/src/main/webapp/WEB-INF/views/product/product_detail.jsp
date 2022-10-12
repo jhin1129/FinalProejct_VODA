@@ -217,8 +217,10 @@
                                         </div>
                                     </td>
                                     <td style="width: 50%;">
-                                        <div class="py-2 text-center"><button class="btn btn-light py-1">장바구니</button>
-                                        </div>
+                                    	<form action="${ path }/product/cart_insert">
+                                    	<input type="hidden" name="pno" value="${ product.pno }">
+                                        <div class="py-2 text-center"><button class="btn btn-light py-1">장바구니</button></div>
+                                        </form>
                                     </td>
                                 </tr>
 
@@ -331,6 +333,10 @@
         </div>
         <input type="hidden" name="pno" value="${ product.pno }">
 	<button id="btnDelete">상품 삭제</button>
+
+	    <button onclick="location.href='${ path }/product/product_update?pno=${ product.pno }'">상품 수정</button>
+	
+	
     </div>
     
 <!-- FOOTER -->

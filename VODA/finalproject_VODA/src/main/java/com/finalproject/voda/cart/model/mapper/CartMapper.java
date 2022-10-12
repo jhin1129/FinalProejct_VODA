@@ -9,6 +9,8 @@ public interface CartMapper {
 
 	List<Cart> getCartList(PageInfo pageInfo);
 
+	int insertCart(Cart cart);
+
 
 	
 }

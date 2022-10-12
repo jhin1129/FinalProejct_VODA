@@ -19,6 +19,12 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.getCartList(pageInfo);
 	}
 
+	@Override
+	public int insertCart(Cart cart) {
+		// TODO Auto-generated method stub
+		return cartMapper.insertCart(cart);
+	}
+
 	
 
 	

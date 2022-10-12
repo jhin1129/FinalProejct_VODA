@@ -18,4 +18,7 @@ public interface ProductMapper {
 
 	int deleteProduct(int pno);
 
+	int updateProduct(Product product);
+
+
 }

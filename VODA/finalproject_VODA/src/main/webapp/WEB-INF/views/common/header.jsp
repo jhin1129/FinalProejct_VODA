@@ -94,14 +94,24 @@
 	          <input class="form-control me-sm-2" type="text">
 	        </form>
 	      </div>
-	
+	      
+		<c:if test="${ empty loginMember }">
 	      <div class="right">
 	        <a class="text-nowrap" id="login" href="#"
 	        onclick="location.href='${path}/member/login'">로그인</a>
-	        <a class="text-nowrap" id="join"href="#"
+	        <a class="text-nowrap" id="join" href="#"
 	        onclick="location.href='${path}/member/enroll'">회원가입</a>
 	      </div>
-	
+		</c:if>
+		<c:if test="${ !empty loginMember }">
+		  <div class="right">
+	        <a href="${ path }/member/mypage_main" class="text-nowrap">
+				${ loginMember.name }
+			</a>
+	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
+	      </div>	
+		</c:if>
+		
 	    </div>
 	  </nav>
 	</div>
