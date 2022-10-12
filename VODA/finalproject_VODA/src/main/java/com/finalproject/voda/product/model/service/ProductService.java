@@ -19,6 +19,8 @@ public interface ProductService {
 
 	int updateProduct(Product product);
 
+	List<Product> getProductSearch(PageInfo pageInfo);
+
 
 
 	
