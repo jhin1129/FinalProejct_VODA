@@ -158,8 +158,6 @@ position: absolute;
   padding-left: 45px; }
 
 #contentinfo {
-  width: 200px;
-  padding-top: 20px;
   text-align:center;
   margin-top: 10px;
   font-weight: 500; }
@@ -296,6 +294,19 @@ position: absolute;
   box-shadow: 0 0 5px rgb(73,95,233);
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px; }
+
+  /* #commentinput {
+    width: 420px;
+    margin-top: 30px;
+    height: 260px;
+    border-radius: 2.5%;
+    border-style: none;
+    padding: 10px;
+    text-align:left;
+    resize: none; }
+  
+  #commentinput:focus {
+    outline: 1px solid rgb(73,95,233); } */
 
 #commentinputbox {
   background-color: rgb(233, 236, 246);
@@ -700,7 +711,7 @@ color: rgb(235, 236, 240);
   position: absolute;
   font-weight: 500;
   top: 18px;
-  left: 75px;
+  left: 90px;
 }
 
 .commentstar {

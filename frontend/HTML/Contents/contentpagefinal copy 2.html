@@ -5,9 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bootstrap</title>
-
-  <!-- contentsDetail CSS-->
-  <link rel="stylesheet" href="../../CSS/Contents/contentsdetail.css">
+ <!-- contentsDetail CSS-->
+ <link rel="stylesheet" href="../../CSS/Contents/contentsdetail.css">
 
   <!-- star rating CSS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -87,16 +86,38 @@
 <hr class="mt-1 mb-0 line">
 <!-- 헤더 끝 -->
 
-  <div class="row" id="posterbg">
-      <div class="col-2 d-none d-lg-block LeftGradient p-0">
-      </div>
-      <div class="col p-0">
+<!-- <table style="width: 100%;">
+  <tr class="row" id="posterbg" style="background-color: white;">
+      <td class="col d-none d-lg-block p-0" style="background-color: royalblue; height: 400px;"></td>
+      <td class="p-0" style="width: 1140px;">
+        <table style="width: 100%;">
+          <tr class="row">
+            <div class="bg-black grabox">
+              <div class="RightGradient" style="width: 200px;" ></div>
+              <div class="LeftGradient" style="width: 200px;"></div>
+              <img id="graposter" src="https://i.pinimg.com/736x/14/90/6a/14906a3dbc5cae4d1f3a6a1f582936ae.jpg" class="" alt="..." />
+            </div>
+          </tr>
+        </table>
+      </td>
+      <td class="col d-none d-lg-block p-0" style="background-color: royalblue; height: 400px;"></td>
+  </tr>
+</table> -->
+
+<table style="width: 100%;">
+  <tr class="row" id="posterbg">
+      <td class="col d-none d-lg-block p-0" style="background-color:rgb(14, 8, 39);"></td>
+      <td class="p-0" style="width: 1140px;">
+        <div class="bg-black grabox">
+          <div class="LeftGradient"></div>
+          <div class="RightGradient"></div>
           <img id="graposter" src="https://i.pinimg.com/736x/14/90/6a/14906a3dbc5cae4d1f3a6a1f582936ae.jpg" class="" alt="..." />
-      </div>
-      <div class="col-2 d-none d-lg-block RightGradient p-0">
-      </div>
-  </div>
-        
+        </div>
+      </td>
+      <td class="col d-none d-lg-block p-0" style="background-color: rgb(26, 11, 73)"></td>
+  </tr>
+</table>
+
   <div class="container" id="profilecontainer">
     <div class="profile">
         <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" alt="">
@@ -369,6 +390,7 @@
       </div> <!--carousel-->
 
     <div id="gibonjungbo"> 평균 별점 </div>
+    
     
     <div class="chart"  style="margin:auto;">
       <div class="bar" data-bar-value="17.45"><span class="bar__name"></span></div>
