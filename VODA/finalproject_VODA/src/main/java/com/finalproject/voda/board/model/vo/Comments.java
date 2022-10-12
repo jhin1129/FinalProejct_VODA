@@ -11,18 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Comments {
 
-	int cmNo;
+	int cmno;
 	
-	int bNo;
+	int bno;
 	
-	String cmContent;
+	String cmcontent;
 	
-	Date cmDate;
+	Date cmdate;
 	
-//	String cmWriterNo; 컬럼추가
+	String cmwriterno;
 	
-//	String cmWriterId; 컬럼추가
+	String cmwriterid;
 	
-//	String cmStatus; 컬럼추가
+	String cmstatus;
 	
 }
