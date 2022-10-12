@@ -51,4 +51,12 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	@Override
+	@Transactional
+	public int updateProduct(Product product) {
+		int result = 0;
+		result = productMapper.updateProduct(product);
+		return result;
+	}
+
 }

@@ -333,6 +333,10 @@
         </div>
         <input type="hidden" name="pno" value="${ product.pno }">
 	<button id="btnDelete">상품 삭제</button>
+
+	    <button onclick="location.href='${ path }/product/product_update?pno=${ product.pno }'">상품 수정</button>
+	
+	
     </div>
     
 <!-- FOOTER -->

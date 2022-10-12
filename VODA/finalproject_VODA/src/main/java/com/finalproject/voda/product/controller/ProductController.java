@@ -187,4 +187,102 @@ public class ProductController {
 		return model;
 	}
 	
+	@GetMapping("/product_update")
+	public ModelAndView update(
+			ModelAndView model, 
+			@RequestParam int pno) {
+		Product product = null;
+		
+		product = service.findProductByNo(pno);
+		
+			model.addObject("product", product);
+			model.setViewName("product/product_update");
+		
+		return model;
+	}
+	
+	@PostMapping("/product_update")
+	public ModelAndView ProductUpdate(
+						ModelAndView model,
+						@RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
+//						@RequestParam("upfile") MultipartFile upfile,
+						@ModelAttribute Product product) {
+		int result = 0;
+		// 받아온것 출력 확인
+				System.out.println("multiFileList : " + multiFileList);
+
+				// path 가져오기
+				String path = request.getSession().getServletContext().getRealPath("resources");
+				String root = path + "\\" + "uploadFiles";
+				
+				File fileCheck = new File(root);
+				
+				if(!fileCheck.exists()) fileCheck.mkdirs();
+				
+				String file1 = "";
+				String file2 = "";
+				
+				Map<String, String> map = new HashMap<>();
+				
+				for(int i = 0; i < multiFileList.size(); i++) {
+					String poriginfile = multiFileList.get(i).getOriginalFilename();
+					
+					String prenamefile = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS")) + 
+							poriginfile.substring(poriginfile.lastIndexOf("."));
+					int subFileName = Integer.parseInt(prenamefile.substring(9, 18)) + i;
+					prenamefile = prenamefile.substring(0, 9) + subFileName + prenamefile.substring(18, prenamefile.length());
+
+					if(i == 0) {
+		                map.put("poriginfile", poriginfile);
+		                map.put("prenamefile", prenamefile);
+		            }
+		            else {
+		                map.put("poriginfile", map.get("poriginfile") + ", " + poriginfile);
+		                map.put("prenamefile", map.get("prenamefile") + ", " + prenamefile);
+		            }
+					
+				}
+				
+				file1 = map.get("poriginfile");
+				file2 = map.get("prenamefile");
+				
+				product.setPoriginfile(file1);
+				product.setPrenamefile(file2);
+				
+				String[] fileList = map.get("prenamefile").split(", ");
+				
+				try {
+					for(int i = 0; i < multiFileList.size(); i++) {
+						File uploadFile = new File(root + "\\" + fileList[i]);
+						multiFileList.get(i).transferTo(uploadFile);
+					}
+					System.out.println("다중 파일 업로드 성공!");
+					System.out.println("파일" + multiFileList);
+					
+				} catch (IllegalStateException | IOException e) {
+					System.out.println("다중 파일 업로드 실패 ㅠㅠ");
+					// 만약 업로드 실패하면 파일 삭제
+					for(int i = 0; i < multiFileList.size(); i++) {
+						new File(root + "\\" + fileList[i]).delete();
+					}
+					e.printStackTrace();
+				}
+		
+		result = service.updateProduct(product);
+		
+		// 게시글 관련 DB 저장
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 수정되었습니다.");
+			model.addObject("location", "/product/product_detail?pno=" + product.getPno());
+		} else {
+			model.addObject("msg", "게시글 수정을 실패하였습니다.");
+			model.addObject("location", "/product/product_create");
+		}
+		model.setViewName("common/msg");
+		System.out.println(result);
+		return model;
+	}
+	
+	
+	
 }

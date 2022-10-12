@@ -16,5 +16,10 @@ public interface ProductService {
 	int insertProduct(Product product);
 
 	int deleteProduct(int pno);
+
+	int updateProduct(Product product);
+
+
+
 	
 }
