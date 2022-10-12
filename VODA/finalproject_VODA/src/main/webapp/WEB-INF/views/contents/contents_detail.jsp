@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="col">
-                    <a id="comment" href="#popup1">
+                    <a id="comment" href="#${ path }/contents/comment_form?no=${ contents.c_no }">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                         </svg>
@@ -105,27 +105,27 @@
                 </div>
 
                 <!--popup1-->
-                <div id="popup1" class="popup-container">
+                <div id="${ path }/contents/comment_form?no=${ contents.c_no }" class="popup-container">
                     <div class="popup-content">
                         <a href="#" class="close">&times;</a>
                         <div class="gamsang">COMMENT</div>
-                        <form action="" style="background-color: rgb(235,236,246);">
+                        <form action="${ path }/contents/comment_write?no=${ contents.c_no }" method="post" "background-color: rgb(235,236,246);">
                             <div class="staraverage" style="text-align: center; height: 110px;">
                                 <fieldset class="rate">
-                                    <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
-                                    <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
-                                    <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
-                                    <input type="radio" id="rating7" name="rating" value="7" /><label class="half" for="rating7" title="3 1/2 stars"></label>
-                                    <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6" title="3 stars"></label>
-                                    <input type="radio" id="rating5" name="rating" value="5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
-                                    <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="2 stars"></label>
-                                    <input type="radio" id="rating3" name="rating" value="3" /><label class="half" for="rating3" title="1 1/2 stars"></label>
-                                    <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="1 star"></label>
-                                    <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
+                                    <input type="radio" id="rating10" name="rate_star" value="5" /><label for="rating10" title="5 stars"></label>
+                                    <input type="radio" id="rating9" name="rate_star" value="4.5" /><label class="half" for="rating9" title="4 1/2 stars"></label>
+                                    <input type="radio" id="rating8" name="rate_star" value="4" /><label for="rating8" title="4 stars"></label>
+                                    <input type="radio" id="rating7" name="rate_star" value="3.5" /><label class="half" for="rating7" title="3 1/2 stars"></label>
+                                    <input type="radio" id="rating6" name="rate_star" value="3" /><label for="rating6" title="3 stars"></label>
+                                    <input type="radio" id="rating5" name="rate_star" value="2.5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
+                                    <input type="radio" id="rating4" name="rate_star" value="2" /><label for="rating4" title="2 stars"></label>
+                                    <input type="radio" id="rating3" name="rate_star" value="1.5" /><label class="half" for="rating3" title="1 1/2 stars"></label>
+                                    <input type="radio" id="rating2" name="rate_star" value="1" /><label for="rating2" title="1 star"></label>
+                                    <input type="radio" id="rating1" name="rate_star" value="0.5" /><label class="half" for="rating1" title="1/2 star"></label>
                                 </fieldset>
                             </div>
                             <div id="commentinputbox">
-                                <textarea name="commentinput" id="commentinput" type="text" placeholder="당신의 감상을 적어보세요"></textarea> <br>
+                                <textarea name="rate_comment" id="commentinput" type="text" placeholder="당신의 감상을 적어보세요"></textarea> <br>
                                 <button class="commentsubmit">
                                     평가하기
                                 </button>
@@ -366,7 +366,8 @@
 
         <span style="font-size: 1em; color: gray;">${ rateResult.rate_count }+</span>
 
-        <span style="color: rgb(73,95,233); float: right; font-weight: 600; font-size:1.2em;">더보기</span>
+        <span OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }'" 
+        style="color: rgb(73,95,233); float: right; font-weight: 600; font-size:1.2em;">더보기</span>
 
         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
             <!--carousel-->

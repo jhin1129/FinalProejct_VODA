@@ -39,11 +39,10 @@
 		<result property="c_video" column="C_VIDEO"/>
 		<result property="c_date" column="C_DATE"/>
 		<result property="c_status" column="C_STATUS"/>	
-		<result property="rate_star" column="AVG(R.RATE_STAR)"/>
+		<result property="rate_star" column="ROUND(AVG(RATE_STAR),1)"/>
 	</resultMap>
 	
 	<resultMap type="Contents" id="contentsDetailResultMap" extends="contentsListResultMap">
-		<result property="rate_star" column="AVG(R.RATE_STAR)"/>
 		<collection property="rates" javaType="arraylist" resultMap="rateResultMap"/>
 	</resultMap>
 	
@@ -82,6 +81,17 @@
 		<result property="people_name" column="PEOPLE_NAME"/>
 	</resultMap>
 	
+	<resultMap type="Rate" id="contentsRate">
+		<id property="rate_no" column="RATE_NO"/>
+		<result property="c_no" column="C_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="rate_star" column="RATE_STAR"/>
+		<result property="rate_comment" column="RATE_COMMENT"/>
+		<result property="rate_date" column="RATE_DATE"/>
+		<result property="rate_like" column="RATE_LIKE"/>
+	</resultMap>
+	
 	<select id="selectContentsCount" resultType="_int">
 		SELECT COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
 		AND  C_TYPE = #{type}
@@ -90,7 +100,7 @@
 	<select id="selectAll" resultMap="contentsListResultMap">
 		SELECT
 		<include refid="contentsListSql"/>
-		,AVG(R.RATE_STAR)
+		,ROUND(AVG(RATE_STAR),1)
 		FROM CONTENTS C
         LEFT OUTER JOIN RATE R
         ON C.C_NO = R.C_NO      
@@ -150,5 +160,44 @@
        JOIN PEOPLE P
        ON CP.PEOPLE_NO = P.PEOPLE_NO
        WHERE C_NO = #{ no }
-     </select>  
+     </select> 
+     
+	<insert id="insertRate" parameterType="Rate"
+		useGeneratedKeys="true" keyProperty="rate_no" keyColumn="RATE_NO">
+		INSERT INTO RATE ( 
+        RATE_NO,
+        C_NO,
+        M_NO,
+        RATE_STAR,
+        RATE_COMMENT,
+        RATE_DATE,
+        RATE_LIKE)
+        VALUES
+        (RATE_SEQ.NEXTVAL,
+        #{ c_no },
+        3,
+        #{ rate_star },
+        #{ rate_comment },
+        SYSDATE,
+        0
+        )
+	</insert> 
+	
+	<select id="selectCommentsCount" resultType="_int">
+		SELECT COUNT(*) FROM RATE WHERE C_NO = #{ no }
+	</select>
+	
+	<select id="selectCommentsByNo" parameterType="_int" resultMap="contentsRate">
+		SELECT 
+			RATE_NO,
+			C_NO,
+			M_NO,
+			RATE_STAR,
+			RATE_COMMENT, 
+			RATE_DATE,
+			RATE_LIKE 
+		FROM RATE WHERE C_NO = #{ no } ORDER BY RATE_LIKE DESC
+	</select>
+	
+	
 </mapper>

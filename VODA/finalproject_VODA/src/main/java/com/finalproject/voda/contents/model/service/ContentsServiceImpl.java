@@ -11,6 +11,7 @@ import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.mapper.ContentsMapper;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
 
 @Service
@@ -50,5 +51,37 @@ public class ContentsServiceImpl implements ContentsService {
 		 
 		return mapper.selectContentsPeopleByNo(no);
 	}
+
+	@Override
+	public int save(Rate rate) {
+		int result = 0;
+		
+		if(rate.getRate_no() != 0) {
+			// update
+			// result = mapper.updateRate(rate);
+		} else {
+			// insert
+			result = mapper.insertRate(rate);
+		}
+				
+		return result;
+	}
+
+	@Override
+	public int getCommentsCount(int no) {
+		
+		return mapper.selectCommentsCount(no);
+	}
+
+	@Override
+	public List<Rate> getCommentsList(PageInfo pageInfo, int no) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);	
+		
+		return mapper.selectCommentsByNo(rowBounds, no);
+		
+	}
+
 
 }

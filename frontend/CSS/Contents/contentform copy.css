@@ -1,4 +1,5 @@
 #formbackground {
+    position: relative;
     width: 1122px;
     height: 1950px;
     background: rgb(235, 236, 240);
@@ -226,55 +227,91 @@ form input::file-selector-button {
     top: 0;
     left: 0;
     height: 400px;
-    background: var(--main-bg-color);
-    /* background: var(--main-bg-color); */
-    justify-content: center;
-}
-
-#graposter {
+    background-color:  white;
+    justify-content: center; }
+  
+  .grabox {
+    position: relative; }
+  
+  #graposter {
     z-index: 1;
     position: absolute;
     height: 400px;
     top: 0;
     left: 0;
     width: 100%;
-    object-fit: cover;
-    }
-
-.RightGradient {
+    object-fit: cover; }
+  
+  .RightGradient {
     position: absolute;
     z-index: 2;
     height: 400px;
     display: block;
     top: 0;
     bottom: 0;
-    left: -5%;
-    color: black;
-    width: 100px;
-    }
-
-.LeftGradient {
+    right: -2.5%;
+    width: 200px; }
+  
+  .LeftGradient {
     position: absolute;
     z-index: 2;
     height: 400px;
     display: block;
     top: 0;
     bottom: 0;
-    right: -5%;
-    color: black;
-    width: 100px;
-}
+    left: -2.5%;
+    width: 200px; }
 
 /* color input */
 
-:root {
-    --main-bg-color: gray;
-}
-
-
-/* .dd {
-    background: var(--main-bg-color);
-    width:100px;
-    height:1000px;
-    text-align: center;
+/* :root {
+    --main-bg-color: rgb(235,236,246);
+    --right-bg-color: rgb(235,236,246);
 } */
+
+.profile {
+    z-index: 3;
+    width: 230px;
+    height: 326px;
+    position: absolute;
+    top:-80px;
+    left: 0px;
+    border-radius: 2.5%; 
+    overflow: hidden;
+    margin: 7px;
+    margin-left: 45px;
+    padding: 0px; 
+    /* border: 0.25px solid gray;  */
+    background-color: white;}
+    /* box-shadow: 2.5px 2.5px 5px 0;} */
+  
+  .profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 0px; }
+
+
+
+
+    .contentssubmit {
+        width: 420px;
+        height: 55px;
+        border-radius: 5px;
+        border-style: none;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 0px;
+        color: white;
+        background-color: rgb(73,95,233); 
+        background-image: linear-gradient( to right,    
+        rgb(148, 116, 231) 20%,
+        rgba(43, 1, 103, 0) 100%); }
+
+        .contentssubmit:hover {
+            transition: all, 0.5s;
+            background-color: rgb(73,95,233); 
+        }
