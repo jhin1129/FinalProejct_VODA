@@ -20,5 +20,7 @@ public interface ProductMapper {
 
 	int updateProduct(Product product);
 
+	List<Product> getProductSearch(RowBounds rowBounds);
+
 
 }

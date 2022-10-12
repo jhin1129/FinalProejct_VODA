@@ -284,6 +284,22 @@ public class ProductController {
 		return model;
 	}
 	
+	@GetMapping("/product_search")
+	public ModelAndView all_list_search(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Product> product = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getProductAllCount(), 10);
+		product = service.getProductSearch(pageInfo);
+		
+		model.addObject("product", product);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("product/product_search");
+		
+		return model;
+	}
+	
 	
 	
 }
