@@ -73,21 +73,6 @@
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 
-<!--  
-
-<script>
-	$(document).ready(function(){
-		$("#idSearch").click(function(){
-		var msg="${ msg }"
-		   if(msg != null) {
-		      alert(msg);
-		   }
-		});
-	});
-	
-</script>
--->
-
 
 <script>
     

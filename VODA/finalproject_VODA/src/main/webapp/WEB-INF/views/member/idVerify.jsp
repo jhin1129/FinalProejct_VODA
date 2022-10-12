@@ -46,7 +46,7 @@
                         -->
                         <div class="find_account10" id="m_joinDate">
                        		 <c:forEach items="${ member }" var="member">
-                        		 가입일 ${member.m_joinDate}
+								가입일 <fmt:formatDate value="${member.m_joinDate}" pattern="yyyy-MM-dd"/>
                         	 </c:forEach>	
                         </div>
                     </div>

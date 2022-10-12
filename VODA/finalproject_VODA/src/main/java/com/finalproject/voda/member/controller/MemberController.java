@@ -160,42 +160,22 @@ public class MemberController {
 		
 	
 	@PostMapping("/findId") // 아이디 찾기
-	public ModelAndView findId(ModelAndView model, @ModelAttribute Member member) {
+	public String findId(Member member, Model model) {
       
 		if(service.findIdCheck(member.getM_email()) == 0) {
-          model.addObject("msg", "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요.");
-		  model.addObject("location", "/member/findId");
-
+          model.addAttribute("msg", "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요.");
+          model.addAttribute("location", "/member/findId");
+          
+          return "common/msg";
           
        }  else {
-          model.addObject("member", service.findId(member.getM_email()));
-          model.addObject("msg", "확인되었습니다.");
-		  model.addObject("location", "/member/idVerify");
+          model.addAttribute("member", service.findId(member.getM_email()));
 
+          return "member/idVerify";
        }
-		System.out.println(member);
 		
-        model.setViewName("common/msg");	
-
-		return model;
+		
 	}
-	
-	
-//	@PostMapping("/findId") // 아이디 찾기
-//	public String findId(Member member, Model model) {
-//      
-//		if(service.findIdCheck(member.getM_email()) == 0) {
-//          model.addAttribute("msg", "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요.");
-//          
-//          
-//          return "member/findId";
-//          
-//       }  else {
-//          model.addAttribute("member", service.findId(member.getM_email()));
-//
-//          return "member/idVerify";
-//       }
-//	}
 	
 	
 	
@@ -375,32 +355,7 @@ public class MemberController {
 		return "redirect:/";
 	}
     
-
-//	@PostMapping("/enroll")  // 회원가입
-//	public ModelAndView enroll(ModelAndView model,
-//								@ModelAttribute Member memeber)
-//								{
-//		
-//		int result = 0;
-//		
-//		result = service.save(memeber);
-//		
-//		if(result > 0) {
-//			model.addObject("msg", "회원 가입이 완료되었습니다.");
-//			model.addObject("location", "/member/enrollComplete");
-//		} else {
-//			model.addObject("msg", "회원가입을 실패하였습니다. 가입 페이지로 돌아갑니다.");
-//			model.addObject("location", "/member/enroll");
-//		}
-//		
-//		System.out.println(memeber);
-//
-//		model.setViewName("common/msg");
-//		
-//		return model;
-//	}
 	 
-	
 	
 //	@GetMapping("/people/peopleEnroll") 
 //	public String peopleEnroll() {
