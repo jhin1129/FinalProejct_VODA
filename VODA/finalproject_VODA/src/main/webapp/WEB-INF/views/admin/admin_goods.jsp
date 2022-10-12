@@ -97,8 +97,8 @@
         </div>
                       </th>
                       <th colspan="1">
-                        <button type="button" class="btn btn-primary btn-sm">적용</button>
-                        <button type="button" class="btn btn-secondary btn-sm">취소</button></th>
+                        <button type="button" class="btn btn-logoC btn-sm">적용</button>
+                        <button type="button" class="btn btn-greyC btn-sm">취소</button></th>
                   </tr>
               </tfoot>
                 <tbody>
@@ -107,8 +107,8 @@
                     <th scope="row" class="align-middle">${ product.pno }</th>
                     <td class="align-middle">${ product.pname }</td>
                     <td><div id="admin_goods_imgbox"><img src="../../IMG/Admin/good1.jpg"></div></td>
-                    <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">리뷰관리</button></td>
-                    <td class="align-middle"><button type="button" class="btn btn-primary btn-sm">수정</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">리뷰관리</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">수정</button></td>
                     <td class="align-middle">
                     	<div class="form-check">
                       	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
@@ -125,10 +125,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_good?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_goods?page=1">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_good?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_goods?page=${ pageInfo.prevPage }">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -137,7 +137,7 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_good?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_goods?page=${ status.current }">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				

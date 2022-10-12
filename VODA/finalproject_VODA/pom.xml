@@ -47,7 +47,7 @@
 		    <version>${org.springframework-version}</version>
 		    <scope>test</scope>
 		</dependency>
-		
+
 		<!-- Spring Security -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>

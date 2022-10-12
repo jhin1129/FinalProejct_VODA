@@ -43,24 +43,38 @@
 
 </head>
 <body>
+    <!-- 관리자 페이지 메인헤드 -->
+    <div class="container">
+      <div class="row">
+      
+	    <!-- 관리자 페이지 사이드바 -->
+        <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
+
+        <!-- 관리자 페이지 메인화면 -->
+        <div class="col-10 p-4">
+          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+          </svg> 공지사항 관리
+        </h1>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">공지사항</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${ path }/admin/admin_notice_list">공지사항</a></h3>
         </div>
 
         <div class="mt-4">
             <table class="table table-hover">
                 <thead>
                     <tr style="text-align: center">
-                        <th id="th" style="width: 5%;">번호</th>
-                        <th id="th" style="width: 30%;">제목</th>
+                        <th id="th" style="width: 10%;">번호</th>
+                        <th id="th" style="width: 45%;">제목</th>
                         <th id="th" style="width: 15%;">작성자</th>
                         <th id="th" style="width: 15%;">작성일</th>
-                        <th id="th" style="width: 15%;">첨부파일</th>
-                        <th id="th" style="width: 10%;">조회수</th>
+                        <th id="th" style="width: 15%;">조회수</th>
                     </tr>
                 </thead>
 				
@@ -76,28 +90,25 @@
                   <c:if test="${ not empty list }"> 	 
 	                <c:forEach var="notice" items="${ list }">
                     <tr style="text-align: center; cursor:pointer;">
-                        <td>${ notice.noticeno }</td>
-						<td>
+                        <td id="td">${ notice.noticeno }</td>
+						<td id="td" style="text-align: left;">
 							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
 								${ notice.noticeTitle }
 							</a>
-						</td>
-						<td>${ notice.noticeWriterId }</td>
-						<td><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
-						<td>
 							<c:if test="${ empty notice.noticeOriginalFileName }">
 								<span> - </span>
 							</c:if>
 							<c:if test="${ not empty notice.noticeRenamedFileName }">
-								<img src="${ path }/resources/img/community/file.png" width="20px" height="20px">
+								<img src="${ path }/resources/img/community/attachment.png" width="20px" height="20px">
 							</c:if>
 						</td>
-						<td>${ notice.noticeReadCount }</td>
+						<td id="td">${ notice.noticeWriterId }</td>
+						<td id="td"><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
+						<td id="td">${ notice.noticeReadCount }</td>
                     </tr>
                     </c:forEach>
 
                     <tr>
-                        <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
@@ -109,6 +120,42 @@
 
             </table>
         </div>
+
+
+        <div class="display2">
+            <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
+                    src="${ path }/resources/img/community/edit.png" style="height: 20px;" onclick="location.href='${path}/admin/admin_notice_crud'"></button>
+        </div>
+
+        <div class="col-4 text-right">
+        </div>
+
+
+        <div class="search1 row my-4">
+            <div class="col-7 row">
+                <div class="col-xs-3 col-sm-3">
+                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
+                        <option value="title" selected>제목</option>
+                        <option value="title">내용</option>
+                        <option value="title">제목+내용</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 pl-0">
+                    <div class="input-group">
+                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
+                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
+                                >
+                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
+                            </button>
+                        </span>
+                    </div>
+                </div>   
+            </div>
+        </div>
+        
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
@@ -136,43 +183,10 @@
             </ul>
 
         </div>
-
-        <div class="display2">
-            <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="${ path }/resources/img/community/edit.png" style="height: 20px;" onclick="location.href='${path}/admin/admin_notice_crud'"></button>
-        </div>
-
-        <div class="col-4 text-right">
-        </div>
-
-
-        <div class="search1 row my-4">
-            <div class="col-6 row">
-                <div class="col-xs-3 col-sm-3">
-                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
-                        <option value="title" selected>제목</option>
-                        <option value="title">내용</option>
-                        <option value="title">제목+내용</option>
-                    </select>
-                </div>
-
-                <div class="col-xs-7 col-sm-7 pl-0">
-                    <div class="input-group">
-                        <input type="text" class="form-control1" style="font-size: 14.45px;">
-                        <span class="input-group-btn">
-                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
-                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
-                                >
-                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
-                            </button>
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
+        
+        
     </div>
-    
+    </div></div></div>
 
 </body>
 </html>
