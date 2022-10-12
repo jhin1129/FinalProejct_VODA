@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +22,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.finalproject.voda.member.kakao.KakaoLoginBO;
 import com.finalproject.voda.member.model.service.MemberService;
 import com.finalproject.voda.member.model.vo.Member;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,6 +47,10 @@ public class MemberController {
 	@Autowired 
 	private MemberService service;
 	
+	@Autowired
+	private KakaoLoginBO kakaoLoginBO;
+	
+	private String apiResult = null;
 
 
 	@GetMapping("/enroll") 
@@ -110,13 +118,6 @@ public class MemberController {
 	
 	
 	
-	@GetMapping("/login") 
-	public String login() {
-		
-		return "member/login"; 		
-	}
-	
-	
 	@PostMapping("/login") // 로그인
 	public ModelAndView login(ModelAndView model,
 			@RequestParam("m_id") String id, @RequestParam("m_password") String password
@@ -156,20 +157,45 @@ public class MemberController {
 		
 	}
 	
+		
 	
 	@PostMapping("/findId") // 아이디 찾기
-	public String findId(Member member, Model model) {
+	public ModelAndView findId(ModelAndView model, @ModelAttribute Member member) {
       
 		if(service.findIdCheck(member.getM_email()) == 0) {
-          model.addAttribute("msg", "이메일을 확인해주세요.");
-          
-          return "member/findId";
+          model.addObject("msg", "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요.");
+		  model.addObject("location", "/member/findId");
+
           
        }  else {
-          model.addAttribute("member", service.findId(member.getM_email()));
-          return "member/idVerify";
+          model.addObject("member", service.findId(member.getM_email()));
+          model.addObject("msg", "확인되었습니다.");
+		  model.addObject("location", "/member/idVerify");
+
        }
+		System.out.println(member);
+		
+        model.setViewName("common/msg");	
+
+		return model;
 	}
+	
+	
+//	@PostMapping("/findId") // 아이디 찾기
+//	public String findId(Member member, Model model) {
+//      
+//		if(service.findIdCheck(member.getM_email()) == 0) {
+//          model.addAttribute("msg", "가입 시 입력하신 회원 정보가 맞는지 다시 한번 확인해 주세요.");
+//          
+//          
+//          return "member/findId";
+//          
+//       }  else {
+//          model.addAttribute("member", service.findId(member.getM_email()));
+//
+//          return "member/idVerify";
+//       }
+//	}
 	
 	
 	
@@ -205,13 +231,14 @@ public class MemberController {
 
 				String setfrom = "VODA"; // naver 
 				String tomail = m_email; //받는사람
-				String title = "[VODA] 인증번호를 보내드립니다. 비밀번호를 재설정 해주세요."; 
+				String title = "[VODA] 인증번호를 보내드립니다. 인증 후 비밀번호를 재설정 해주세요."; 
 				String content = System.getProperty("line.separator") 
-						+ "안녕하세요 회원님" 
+						+ "안녕하세요. VODA 입니다." 
+						+ System.getProperty("line.separator")
+						+ "아래 인증번호를 입력하여 비밀번호를 재설정 해주세요." 
 						+ System.getProperty("line.separator")
 						+ "[VODA] 비밀번호 찾기(변경) 인증번호는 " + num + " 입니다." 
-						+ System.getProperty("line.separator"); 
-
+						+ System.getProperty("line.separator");		
 				try {
 					MimeMessage message = mailSender.createMimeMessage();
 					MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "utf-8");
@@ -300,6 +327,80 @@ public class MemberController {
 		return "member/teatApi"; 
 		
 	}
+	
+	
+	
+	
+	// 카카오 로그인
+	@GetMapping("/login") 
+	public String login(Model model, HttpSession session) {
+		
+		/* 카카오 URL */
+		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
+		System.out.println("카카오:" + kakaoAuthUrl);		
+		model.addAttribute("urlKakao", kakaoAuthUrl);	
+		
+		
+		return "member/login"; 		
+	}
+
+	
+	// 카카오 로그인 성공시 callback
+	@RequestMapping(value = "/kakaologin", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callbackKakao(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) 
+			throws Exception {
+		System.out.println("로그인 성공 callbackKako");
+		OAuth2AccessToken oauthToken;
+		oauthToken = kakaoLoginBO.getAccessToken(session, code, state);	
+		// 로그인 사용자 정보를 읽어온다
+		apiResult = kakaoLoginBO.getUserProfile(oauthToken);
+		
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObj;
+		
+		jsonObj = (JSONObject) jsonParser.parse(apiResult);
+		JSONObject response_obj = (JSONObject) jsonObj.get("kakao_account");	
+		JSONObject response_obj2 = (JSONObject) response_obj.get("profile");
+		// 프로필 조회
+		String email = (String) response_obj.get("email");
+		String name = (String) response_obj2.get("nickname");
+		
+		// 세션에 사용자 정보 등록
+		// session.setAttribute("islogin_r", "Y");
+		session.setAttribute("signIn", apiResult);
+		session.setAttribute("email", email);
+		session.setAttribute("name", name);
+		System.out.println(email + name + apiResult);
+
+		return "redirect:/";
+	}
+    
+
+//	@PostMapping("/enroll")  // 회원가입
+//	public ModelAndView enroll(ModelAndView model,
+//								@ModelAttribute Member memeber)
+//								{
+//		
+//		int result = 0;
+//		
+//		result = service.save(memeber);
+//		
+//		if(result > 0) {
+//			model.addObject("msg", "회원 가입이 완료되었습니다.");
+//			model.addObject("location", "/member/enrollComplete");
+//		} else {
+//			model.addObject("msg", "회원가입을 실패하였습니다. 가입 페이지로 돌아갑니다.");
+//			model.addObject("location", "/member/enroll");
+//		}
+//		
+//		System.out.println(memeber);
+//
+//		model.setViewName("common/msg");
+//		
+//		return model;
+//	}
+	 
+	
 	
 //	@GetMapping("/people/peopleEnroll") 
 //	public String peopleEnroll() {

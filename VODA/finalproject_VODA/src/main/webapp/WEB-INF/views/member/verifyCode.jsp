@@ -13,9 +13,30 @@
 
 
     <div class="container">
+    <!-- 
         <div class="member_tit">
             비밀번호 찾기
-        </div>    
+        </div>  
+     -->
+        <div class="css_email1">
+            <div class="css_email2">
+                <div class="css_email3">
+                    <p class="css_email4">
+                        <img src="${path}/resources/img/member/email.png" id="email_img">
+                        <span class="css_email5">'가입 시 이메일 주소'</span>로
+                        <br>
+                        메일이 발송되었어요.
+                        <br>
+                        확인 후 인증번호를 입력해 주세요.
+                    </p>
+                    <p class="css_email6">
+                        5분 후에도 메일이 오지 않는다면
+                        <br>
+                        스팸함을 확인해 주세요.
+                    </p>
+                </div>
+            </div>
+        </div>  
         <div class="find_id_wrap">
             <div class="find_id_choose">
                 <div class="find_id_email">

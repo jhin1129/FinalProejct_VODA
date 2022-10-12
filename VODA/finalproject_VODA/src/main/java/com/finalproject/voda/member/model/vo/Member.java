@@ -31,6 +31,7 @@ public class Member {
 	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date m_birth;
 
+	@DateTimeFormat(pattern = "yyyyMMdd")
 	private Date m_joinDate;
 
 	private String m_authorization;
