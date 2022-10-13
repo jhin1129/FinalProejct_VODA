@@ -55,7 +55,10 @@
 		AND B.B_NO = #{no}
 	</select>	
 	
-	
+		<!-- 게시판 삭제 (STATUS = 'N')-->
+	<update id="updateBoardStatus" parameterType="map">
+		UPDATE BOARD SET B_STATUS = #{bstatus} WHERE B_NO = #{bno}
+	</update>
 	
 	
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.board.model.mapper.BoardMapper;
 import com.finalproject.voda.board.model.vo.Board;
@@ -36,6 +37,17 @@ public class BoardServiceImpl implements BoardService {
 	public Board findBoardByNo(int no) {
 
 		return mapper.selectBoardByNo(no);
+	}
+
+	// 자유게시판 삭제
+	@Transactional
+	@Override
+	public int deleteFree(int no) {
+		int result = 0;
+		
+		result = mapper.updateBoardStatus(no, "N");
+		
+		return result;
 	}
 
 }

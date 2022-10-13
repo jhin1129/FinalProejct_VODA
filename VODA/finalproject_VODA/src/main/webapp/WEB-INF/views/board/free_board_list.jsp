@@ -269,7 +269,7 @@
 
         <div class="display2">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="${path}/resources/img/community/edit.png" style="height: 20px;"></button>
+                    src="${path}/resources/img/community/edit.png" onclick="location.href='${path}/board/free_board_crud'" style="height: 20px;"></button>
         </div>
 
         <div class="col-4 text-right">

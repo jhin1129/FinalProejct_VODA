@@ -139,7 +139,13 @@
             <h3 style="text-align: center;  color: #000000; font-size: 17px;">자유게시판</h3>
         </div>
         <!-- 후기글 전체 -->
-        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
+        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">			
+        	<form action="${ path }/board/free_board_crud" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="bno" value="${ board.bno }">
+				<input type="hidden" name="boriginalfilename" value="${ board.boriginalfilename }">
+				<input type="hidden" name="brenamedfilename" value="${ board.brenamedfilename }">
+				<input type="hidden" name="bstatus" value="Y">
+				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
 
             <div>
                 <table class="table m-0">
@@ -156,18 +162,13 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">마동석</td>
+                            <td style="margin-left: 10px;">${ board.mid }</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
-                            <td class="p-0">
-                                <button class="btn btn-greyc p-0"
-                                    style="color: #000000; font-size: 14.45px; height: 27px; width: 80px; margin-left: 10px; margin-right: 8px;">파일
-                                    선택</button>
-                                <label
-                                    style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;">
-                                    선택된 파일이 없습니다.</label>
+                            <td class="p-0"  style="margin-left: 10px; text-align: left;">
+                                 &nbsp;&nbsp;<input type="file" name="upfile" style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;" >
                             </td>
                         </tr>
                     </tbody>
@@ -210,9 +211,10 @@
                     <button class="btn btn-logoc py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
                     <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">취소</button>
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" onclick="history.back()">취소</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="mb-5 row my-5">

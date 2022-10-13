@@ -193,19 +193,22 @@
                     <br>
                     <br>
 
-
                 </p>
-                <div class="text-right mt-3">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
-                        onclick="location.href='${path}/board/free_board_update?no=${ board.bno }">수정</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
-                </div>
+                <c:if test="${ loginMember.m_authorization == 'M' } ">
+	                <div class="text-right mt-3">
+	                    <button class="btn btn-logoc py-0"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
+	                        onclick="location.href='${path}/board/free_board_update?no=${ board.bno }">수정</button>
+	                    <button class="btn btn-greyc py-0" id="btnDelete"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
+	                </div>
+	            </c:if>
             </div>
 
 
             <hr style="border-style: dotted;">
+            
+            
             <!-- 댓글 -->
             <div id="comment-container" class="px-3">
                 <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글</strong>
@@ -219,7 +222,7 @@
                         <strong style="color: #000000; font-size: 14.45px;">${comments.cmwriterid }</strong>
                         <span class="id"></span>
                         <span class="mt-1 col p-0" style="font-size: 11px; color: #000000;">${comments.cmdate }</span>
-                        <c:if test='${ member.m_no == comments.cmwriterno }'>
+                        <c:if test='${ loginMember.m_no == comments.cmwriterno }'>
 	                        <div style="margin-top: 10px;">
 	                            <p  class="commentsContent" style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">${comments.cmcontent }
 		                            <div style="float:right; margin-top: -33px;">
@@ -243,6 +246,7 @@
                                 style="border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;"
                                 placeholder="댓글을 작성해주세요"></textarea>
                         </div>
+
                         <div class="text-right mt-1">
                             <button  onclick="updateCommentsCancel(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">취소</button>
                             <button  onclick="updateCommentsCommit(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">작성</button>
@@ -289,15 +293,17 @@
 					location.assign("${ path }/board/fileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
 				});
 				
-				$("#replyContent").on("focus", (e) => {
-					if(${ empty loginMember }) {
-						alert("로그인 후 이용해주세요!");
-						
-						$("#userId").focus();				
-					}
-				});
 				
 			});
+		
+		function loginCheck(){
+			if(${ empty loginMember }) {
+				alert("로그인 후 이용해주세요");
+				
+				$("#commentsContent").blur();
+			}
+		}	
+		
 		
 		function writeComments() {
 			
