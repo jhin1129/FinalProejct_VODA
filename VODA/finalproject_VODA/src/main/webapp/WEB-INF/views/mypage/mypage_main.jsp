@@ -375,7 +375,7 @@
                                         <button style="width: 5%; height:100px; margin-top:100px; margin-left: -17px;"
                                             class="carousel-control-prev" type="button"
                                             data-target="#carouselExampleControlsNoTouching" data-slide="prev">
-                                            <img src="../../IMG/Ranking/slide-left.png" alt=""
+                                            <img src="${path}/resources/img/ranking/slide-left.png" alt=""
                                                 style="width: 100%; box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Previous</span>
@@ -383,7 +383,7 @@
                                         <button style="width: 5%; height:100px; margin-top:100px; margin-right: -10px;"
                                             class="carousel-control-next" type="button"
                                             data-target="#carouselExampleControlsNoTouching" data-slide="next">
-                                            <img src="../../IMG/Ranking/slide-right.png" alt=""
+                                            <img src="${path}/resources/img/ranking/slide-right.png" alt=""
                                                 style="width: 100%; box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                             <span class="sr-only">Next</span>
