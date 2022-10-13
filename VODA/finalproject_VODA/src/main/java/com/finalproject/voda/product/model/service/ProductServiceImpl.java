@@ -60,11 +60,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getProductSearch(PageInfo pageInfo) {
+	public int getProductSearchCount(String searchtype, String searchname) {
+		// TODO Auto-generated method stub
+		return productMapper.getProductSearchCount(searchtype, searchname);
+	}
+
+	@Override
+	public List<Product> getProductSearchList(PageInfo pageInfo, String searchtype, String searchname) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return productMapper.getProductSearch(rowBounds);
+		return productMapper.getProductSearchList(rowBounds, searchtype, searchname);
 	}
+
 
 }
