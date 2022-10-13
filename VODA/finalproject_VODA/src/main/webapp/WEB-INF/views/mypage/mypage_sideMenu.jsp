@@ -40,11 +40,11 @@
                                 </li>
 
                                 <div class="collapse show multi-collapse" id="member_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/memberInfo">
                                         <li>
                                             - 회원 정보 조회 / 변경</li>
                                     </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/deleteMember">
                                         <li>
                                             - 회원 탈퇴</li>
                                     </a>
@@ -59,11 +59,11 @@
                                 </li>
 
                                 <div class="collapse show multi-collapse" id="contents_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/dibsContent">
                                         <li>
                                             - 찜한 컨텐츠</li>
                                     </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/reviewContent">
                                         <li>
                                             - 리뷰한 컨텐츠</li>
                                     </a>

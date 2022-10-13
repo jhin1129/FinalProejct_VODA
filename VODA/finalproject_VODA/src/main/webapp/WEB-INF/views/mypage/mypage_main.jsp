@@ -45,7 +45,7 @@
                                 <div class="card">
                                     <img src="${path}/resources/img/mypage/member.png" class="card-img-top">
                                     <div class="card-body">
-                                        <h5 class="card-title">정진식 님</h5>
+                                        <h5 class="card-title">${loginMember.m_name } 님</h5>
                                         <p class="card-text">
                                             환영합니다.
                                         </p>
@@ -57,7 +57,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">나의 컨텐츠</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/mileage.php">찜(0) / 리뷰(0)</a>
+                                            <a href="../mypage/mileage.php">찜(${likesListCount}) / 리뷰(${reviewListCount})</a>
                                         </p>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">내가 쓴 글</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/money.php">자유글(0) / 문의글(0)</a>
+                                            <a href="../mypage/money.php">자유글(${freeBoardListCount }) / 문의글(${qnaBoardListCount })</a>
                                         </p>
                                     </div>
                                 </div>

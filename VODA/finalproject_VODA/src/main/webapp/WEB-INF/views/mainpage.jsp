@@ -90,12 +90,29 @@
 	        </form>
 	      </div>
 	
-          <div class="right">
-            <a class="text-nowrap" id="login" href="#"
-            onclick="location.href='${path}/member/login'">로그인</a>
-            <a class="text-nowrap" id="join"href="#"
-            onclick="location.href='${path}/member/enroll'">회원가입</a>
-          </div>
+        <c:if test="${ empty loginMember }">
+	      <div class="right">
+	        <a class="text-nowrap" id="login" href="#"
+	        onclick="location.href='${path}/member/login'">로그인</a>
+	        <a class="text-nowrap" id="join" href="#"
+	        onclick="location.href='${path}/member/enroll'">회원가입</a>
+	      </div>
+		</c:if>
+		<c:if test="${ !empty loginMember }">
+		  <div class="right">
+		  	<c:if test="${ loginMember.m_authorization == 'U' }">
+		        <a href="${ path }/mypage/main" class="text-nowrap">
+					마이페이지
+				</a>
+			</c:if>
+		  	<c:if test="${ loginMember.m_authorization == 'M' }">
+		        <a href="#" class="text-nowrap">
+					관리자페이지
+				</a>
+			</c:if>
+	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
+	      </div>	
+		</c:if>
 	
 	    </div>
 	  </nav>

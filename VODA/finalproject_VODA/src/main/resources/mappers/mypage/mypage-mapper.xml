@@ -78,6 +78,10 @@
 		SELECT C_NO FROM LIKES WHERE M_NO = ${mNo}
 	</select>
 
+	<select id="selectReviewCNoList" parameterType="_int" resultType="_int">
+		SELECT C_NO FROM RATE WHERE M_NO = ${mNo}
+	</select>
+
 	<select id="selectContentsByCNo" parameterType="_int" resultMap="contentsListResultMap">
 		<include refid="contentsSql" />
 		AND C_NO = ${cNo}

@@ -106,9 +106,16 @@
 		</c:if>
 		<c:if test="${ !empty loginMember }">
 		  <div class="right">
-	        <a href="${ path }/member/mypage_main" class="text-nowrap">
-				${ loginMember.m_name }
-			</a>
+		  	<c:if test="${ loginMember.m_authorization == 'U' }">
+		        <a href="${ path }/mypage/main" class="text-nowrap">
+					마이페이지
+				</a>
+			</c:if>
+		  	<c:if test="${ loginMember.m_authorization == 'M' }">
+		        <a href="#" class="text-nowrap">
+					관리자페이지
+				</a>
+			</c:if>
 	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
 	      </div>	
 		</c:if>

@@ -9,8 +9,11 @@ public interface MypageService {
 
 	List<Contents> getLikesList(int mNo);
 
+	List<Contents> getreviewList(int mNo);
+	
 	List<Board> getfreeBoardList(int mNo);
 
 	List<Board> getqnaBoardList(int mNo);
+
 
 }

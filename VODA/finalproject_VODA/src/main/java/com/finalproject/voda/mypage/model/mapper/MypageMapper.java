@@ -9,10 +9,13 @@ public interface MypageMapper {
 
 	List<Integer> selectLikesCNoList(int mNo);
 
+	List<Integer> selectReviewCNoList(int mNo);
+	
 	Contents selectContentsByCNo(Integer integer);
 
 	List<Board> selectFreeBoardList(int mNo);
 
 	List<Board> selectQnaBoardList(int mNo);
+
 
 }

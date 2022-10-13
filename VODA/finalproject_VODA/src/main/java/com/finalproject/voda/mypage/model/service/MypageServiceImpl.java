@@ -30,6 +30,20 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
+	public List<Contents> getreviewList(int mNo) {
+		
+		List<Integer> reviewListCno = mapper.selectReviewCNoList(mNo);
+		
+		List<Contents> reviewList = new ArrayList<Contents>();
+		
+		for(int i = 0; i < reviewListCno.size(); i++) {
+			reviewList.add(mapper.selectContentsByCNo(reviewListCno.get(i)));
+		}
+		
+		return reviewList;
+	}
+	
+	@Override
 	public List<Board> getfreeBoardList(int mNo) {
 		// TODO Auto-generated method stub
 		return mapper.selectFreeBoardList(mNo);
@@ -40,5 +54,6 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectQnaBoardList(mNo);
 	}
+
 
 }
