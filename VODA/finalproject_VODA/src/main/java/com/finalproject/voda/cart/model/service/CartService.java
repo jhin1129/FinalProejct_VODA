@@ -8,6 +8,8 @@ import com.finalproject.voda.common.util.PageInfo;
 public interface CartService {
 	List<Cart> getCartList(PageInfo pageInfo);
 
+	int insertCart(Cart cart);
+
 	
 
 	

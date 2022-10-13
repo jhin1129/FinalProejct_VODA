@@ -31,6 +31,10 @@
 		<include refid="getCartListSql" />
 		ORDER BY C.P_NO DESC
 	</select>
+	
+	<insert id="insertCart" parameterType="Cart">
+	INSERT INTO CART VALUES (15, #{pno})
+	</insert>
 
 
 </mapper>

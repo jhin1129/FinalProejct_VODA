@@ -38,12 +38,17 @@
                     <img class="find_account7" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0Y1RjVGNSIgY3g9IjIwIiBjeT0iMjAiIHI9IjIwIi8+CiAgICAgICAgPHBhdGggZD0iTTIwIDE5YzQuNjUzIDAgOC41IDMuNDc2IDguNSA3LjcyIDAgLjQzLS4zNDYuNzgtLjc3My43OEgxMi4yNzNhLjc3Ni43NzYgMCAwIDEtLjc3My0uNzhjMC00LjI4NSAzLjgyNC03LjcyIDguNS03Ljcyem0wLTguNWEzLjQgMy40IDAgMSAxIDAgNi44IDMuNCAzLjQgMCAwIDEgMC02Ljh6IiBzdHJva2U9IiNDQ0MiIGZpbGw9IiNDQ0MiLz4KICAgIDwvZz4KPC9zdmc+Cg==" alt="정보보기">
                     <div class="find_account8">
                         <div class="find_account9" id="m_id">
-                        	 <c:forEach items="${member}" var="member">
+                        	 <c:forEach items="${ member }" var="member">
                         		  ${member.m_id}
                         	 </c:forEach>	
                         </div>
-                        <!-- <div class="find_account10" id="m_joinDate">가입일 2022.09.10</div>
+                        <!-- 
                         -->
+                        <div class="find_account10" id="m_joinDate">
+                       		 <c:forEach items="${ member }" var="member">
+								가입일 <fmt:formatDate value="${member.m_joinDate}" pattern="yyyy-MM-dd"/>
+                        	 </c:forEach>	
+                        </div>
                     </div>
                 </li>
             </ul>

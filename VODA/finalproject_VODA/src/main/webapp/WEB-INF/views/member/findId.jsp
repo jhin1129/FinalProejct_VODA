@@ -73,19 +73,6 @@
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 
-<!-- 
- -->
-<script>
-$(document).ready(function(){
-	$("#idSearch").click(function(){
-	var msg="${msg}"
-	   if(msg != null) {
-	      alert(msg);
-	   }
-	});
-});
-	
-</script>
 
 <script>
     
@@ -116,12 +103,12 @@ $(document).ready(function(){
 </script>
 
 
-<!-- 이름 유효성 검사 -->
+<!-- 유효성 검사 -->
 <script>
 var nameJ = /^[가-힣]{2,6}$/;
 var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-
+// 이름
 $("#m_name").blur(function() {
 	if (nameJ.test($(this).val())) {
 			console.log(nameJ.test($(this).val()));
@@ -151,14 +138,14 @@ $('#m_email').blur(function(){
 
 </script>
 
-<!-- 확인 버튼 클릭 시 유효성 검사 -->
+<!-- 확인 버튼 클릭 시 유효성 검사 
 <script>
 $(document).ready(function(){
 	$("#idSearch").click(function(){
 	
 		//이름 작성 여부(유효성 검사 여부)
 		if($("#name_check").css("visibility") != "hidden"){
-			alert("이름을 입력해 주세요");
+			alert("가입 시 등록한 이름을 입력해 주세요");
 			$("#m_name").focus();
 			
 			return false;
@@ -166,7 +153,7 @@ $(document).ready(function(){
 		
 		//이메일 중복검사
 		if($("#email_check").css("visibility") != "hidden"){
-			alert("이메일 형식으로 입력해 주세요");
+			alert("가입 시 등록한 이메일을 입력해 주세요");
 			$("#m_email").focus();
 
 			return false;
@@ -176,8 +163,8 @@ $(document).ready(function(){
 
 });
 
-
 </script>
+-->
 
 </body>
 </html>

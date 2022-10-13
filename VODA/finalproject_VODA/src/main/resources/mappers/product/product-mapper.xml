@@ -70,4 +70,38 @@
 		DELETE FROM PRODUCT
 		WHERE P_NO = #{pno}
 	</delete>
+	<update id="updateProduct" parameterType="Product">
+		UPDATE PRODUCT SET P_NAME = #{pname},
+	                   P_PRICE = #{pprice},
+	                   P_QTT = #{pqtt},
+	                   P_CONTENTS = #{pcontents},
+	                   P_ORIGINFILE = #{poriginfile},
+	                   P_RENAMEFILE = #{prenamefile},
+	                   P_MADELOCAL = #{pmadelocal},
+	                   P_CATEGORY = #{pcategory},
+	                   P_MADECOMPANY = #{pmadecompany}
+		WHERE P_NO = #{pno}
+	</update>
+	
+	<select id="getProductSearch" resultMap="ProductListResultMap">
+		SELECT P_NO,
+		       P_NAME,
+		       P_PRICE,
+		       P_STATUS,
+		       P_ORIGINFILE,
+		       P_RENAMEFILE,
+		       P_CATEGORY
+		FROM PRODUCT
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="pname != null">
+				P_NAME LIKE '%' || #{pname} || '%'
+			</if>
+			<if test="pcategory != null">
+				AND P_CATEGORY LIKE '%' || #{pcategory} || '%'
+			</if>
+			AND P_STATUS = 'Y'
+		</trim>
+		ORDER BY P_NO DESC
+	</select>
+
 </mapper>

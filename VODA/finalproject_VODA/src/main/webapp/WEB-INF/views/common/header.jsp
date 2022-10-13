@@ -14,6 +14,8 @@
 	<!--BootStrap CSS-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 	<!--BootStrap JS
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	-->
@@ -22,7 +24,6 @@
  	<!-- common CSS-->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
     
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     
 	
 	<title>Insert title here</title>
@@ -79,6 +80,9 @@
 	                  COMMUNITY
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_notice_list'">NOTICE</a></li>
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_dashboard'">ADMINPAGE</a></li>
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/free_board_list'">FREE BOARD</a></li>
 	                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
 	              </ul>
@@ -103,7 +107,7 @@
 		<c:if test="${ !empty loginMember }">
 		  <div class="right">
 	        <a href="${ path }/member/mypage_main" class="text-nowrap">
-				${ loginMember.name }
+				${ loginMember.m_name }
 			</a>
 	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
 	      </div>	

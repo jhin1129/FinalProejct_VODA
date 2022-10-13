@@ -16,5 +16,12 @@ public interface ProductService {
 	int insertProduct(Product product);
 
 	int deleteProduct(int pno);
+
+	int updateProduct(Product product);
+
+	List<Product> getProductSearch(PageInfo pageInfo);
+
+
+
 	
 }

@@ -51,4 +51,20 @@ public class ProductServiceImpl implements ProductService {
 		return result;
 	}
 
+	@Override
+	@Transactional
+	public int updateProduct(Product product) {
+		int result = 0;
+		result = productMapper.updateProduct(product);
+		return result;
+	}
+
+	@Override
+	public List<Product> getProductSearch(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return productMapper.getProductSearch(rowBounds);
+	}
+
 }

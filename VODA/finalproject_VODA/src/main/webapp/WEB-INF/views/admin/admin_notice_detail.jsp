@@ -13,105 +13,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
+    <!-- Board CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
+    
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-
-        * {
-            font-family: Pretendard,
-                -apple-system, BlinkMacSystemFont,
-                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
-        }
-
-        input:focus {
-            outline: none;
-        }
-
-
-
-        button:focus {
-            box-shadow: none !important;
-        }
-
-        .btn-logoc {
-            color: #fff;
-            border-color: #495FE9;
-            background-color: #495FE9;
-        }
-
-        .btn-logoc:hover {
-            background-color: #0b27db !important;
-            border-color: #0b27db;
-            color: #fff !important;
-        }
-
-        .btn {
-
-            transition: background 0.2s ease-in-out,
-                color 0.2s ease-in-out;
-        }
-
-        .btn-greyc {
-            background-color: rgb(235, 236, 240);
-            border: rgb(235, 236, 240);
-            color: #000000;
-
-        }
-
-        .btn-greyc:hover {
-            background-color: #c3c3c4b7 !important;
-            border-color: #c3c3c4b7 !important;
-            color: #000000 !important;
-
-
-        }
-
-        .table-active,
-        .table-active>td,
-        .table-active>th {
-            background-color: rgb(235, 236, 240);
-        }
-
-        textarea {
-            outline-color: rgb(235, 236, 240);
-        }
-
-        table * {
-            font-size: 14.45px;
-            color: #000000;
-        }
-
-        .table thead th {
-            border-bottom: 1px;
-        }
-
-        .table {
-            margin-bottom: 0rem;
-        }
-
-
-        .table td,
-        .table th {
-            padding: 0.60rem;
-        }
-
-        .id {
-            display: inline-block;
-            content: "";
-            margin: 0 9px;
-            width: 1px;
-            height: 11px;
-            vertical-align: -2px;
-            background: #cfcfda;
-        }
-
-        hr {
-            margin: 0px;
-        }
-    </style>
 
     <!-- common CSS-->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
@@ -134,6 +45,21 @@
 </head>
 
 <body>
+    <!-- 관리자 페이지 메인헤드 -->
+    <div class="container">
+      <div class="row">
+      
+	    <!-- 관리자 페이지 사이드바 -->
+        <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
+
+        <!-- 관리자 페이지 메인화면 -->
+        <div class="col-10 p-4">
+          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+          </svg> 공지사항 관리
+        </h1>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -149,25 +75,29 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">${ notice.noticeTitle} </td>
-                            <td style="width: 15%;"></td>
-                            <td style="width: 15%;"></td>
+                            <td style="width: 40%; margin-left: 10px; text-align: left;">${ notice.noticeTitle} </td>
+                            <td style="width: 10%;"></td>
+                            <td style="width: 20%;"></td>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="width: 50%;">${ notice.noticeWriterId }</td>
+                            <td style="width: 50%; margin-left: 10px; text-align: left;">${ notice.noticeWriterId }</td>
                             <th class="table-active">작성일</th>
-                            <td><fmt:formatDate value="${ notice.noticeCreateDate }" dateStyle="long"/></td>
+                            <td style="margin-left: 10px; text-align: left;"><fmt:formatDate value="${ notice.noticeCreateDate }" dateStyle="long"/></td>
                         </tr>
 
                         <tr>
-                            <th class="table-active">파일</th>
-                            <td></td>
+                            <th class="table-active">파일</th>                 
+                            <td style="margin-left: 10px; text-align: left;"> 
+                            	<a href="javascript:" id="fileDown">
+                            		${ notice.noticeOriginalFileName }
+                            	</a>
+                            </td>
                             <th class="table-active">조회수</th>
-                            <td>${ notice.noticeReadCount }</td>
+                            <td style="margin-left: 10px; text-align: left;">${ notice.noticeReadCount }</td>
                         </tr>
 
                         <tr>
@@ -215,8 +145,10 @@
 
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
-            <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>
+            <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/admin/admin_notice_list'">목록</button>
         </div>
+    </div>
+    </div></div></div>
     </div>
 	    <script>
 		$(document).ready(() => {
@@ -224,8 +156,13 @@
 				if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
 					location.replace("${ path }/admin/admin_notice_delete?no=${ notice.noticeno }");
 				}
-			})
 			});
+			$("#fileDown").on("click", () => {
+				location.assign("${ path }/admin/admin_notice_detail/fileDown?oname=${ notice.noticeOriginalFileName }&rname=${ notice.noticeRenamedFileName }");
+			});	
+		
+		});
+		
 		</script>
 
 </body>

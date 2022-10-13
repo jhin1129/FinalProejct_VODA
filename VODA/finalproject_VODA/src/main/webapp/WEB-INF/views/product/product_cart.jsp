@@ -20,7 +20,7 @@
                 <form>
                     <thead>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="allCheck"></td>
                             <td colspan="2">상품정보</td>
                             <td>옵션</td>
                             <td>상품금액</td>
@@ -31,7 +31,7 @@
                     <c:forEach var="cart" items="${ cart }">
                     <c:set var="rename" value="${ cart.prenamefile }" />
                         <tr class="cart__list__detail">
-                            <td style="width: 2%;"><input type="checkbox"></td>
+                            <td style="width: 2%;"><input type="checkbox" class="check"></td>
                             <td style="width: 13%;">
                             	<img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" style="height: 80%;">
                             </td>
@@ -70,7 +70,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3"><input type="checkbox"> &nbsp;&nbsp;<button class="btn btn-primary2 py-1">선택상품 삭제</button>
+                            <td colspan="3">&nbsp;&nbsp;<button class="btn btn-primary2 py-1">선택상품 삭제</button>
                                 <button class="btn btn-primary2 py-1">전체상품 삭제</button>
                             </td>
                             <td></td>
@@ -86,5 +86,21 @@
             </div>
         </section>
     </div>
+    <script>
+    var allCheck = document.querySelector(".allCheck");
+    var list = document.querySelectorAll(".check");
+    allCheck.onclick = () => {
+        if(allCheck.checked){
+            for(var i = 0; i < list.length; i++){
+                list[i].checked = true;
+            }
+        } else {
+            for(var i = 0; i < list.length; i++){
+                list[i].checked = false;
+            }
+        }
+    }
+
+</script>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
