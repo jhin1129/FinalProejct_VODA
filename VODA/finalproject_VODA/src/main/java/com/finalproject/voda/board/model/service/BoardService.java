@@ -13,4 +13,6 @@ public interface BoardService {
 
 	Board findBoardByNo(int no);
 
+	int deleteFree(int no);
+
 }
