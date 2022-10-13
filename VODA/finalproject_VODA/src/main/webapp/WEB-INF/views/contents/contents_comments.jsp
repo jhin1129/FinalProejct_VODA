@@ -18,11 +18,11 @@
                 </td>
             </tr>
         </table>
+<div class="sort" style="margin-right:5px;">인기순</div><div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }?sort=new'" style="margin-right:10px;">최신순</div>
 </div>
+<div class="container" style="clear:both; margin-top:37px;">
 
-<div class="container">
-
-        <div class="row mt-3" style="margin-bottom: 10px;">
+        <div class="row" style="margin-bottom: 10px;">
         	<c:forEach var="rate" items="${ rates }">
             <div class="li" style="margin:5px;">
                 <div class="commentbox">
