@@ -267,7 +267,7 @@
 
                 <div class="col-xs-7 col-sm-7 pl-0">
                     <div class="input-group">
-                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+                        <input type="text" class="form-control1" style="font-size: 14.45px;" name="searchName">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
