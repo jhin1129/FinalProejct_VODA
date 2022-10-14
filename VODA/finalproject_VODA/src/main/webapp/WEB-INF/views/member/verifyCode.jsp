@@ -13,11 +13,6 @@
 
 
     <div class="container">
-    <!-- 
-        <div class="member_tit">
-            비밀번호 찾기
-        </div>  
-     -->
         <div class="css_email1">
             <div class="css_email2">
                 <div class="css_email3">
@@ -44,6 +39,7 @@
                 </div>
             </div>
             <form class="find_id_form" action="${path}/member/verifyCode" method="post">
+            <input type="hidden" name ="m_email" value="${m_email}">
             <input type="hidden" name ="num" value="${num}">
                 <div class="find_id_name1">
                     <div class="find_id_name2">

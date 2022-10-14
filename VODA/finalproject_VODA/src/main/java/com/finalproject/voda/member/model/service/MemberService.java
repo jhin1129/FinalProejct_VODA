@@ -25,7 +25,5 @@ public interface MemberService {
 	Member findPwd(String m_email);
 
 	int passwordUpdate(Member member);
-
-
-
+	
 }

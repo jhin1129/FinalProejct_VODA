@@ -105,12 +105,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int passwordUpdate(Member member) {
-		int result = 0;
-				
+		int result = 0;		
+		
 		 member.setM_password(passwordEncoder.encode(member.getM_password()));
 	     result = mapper.passwordUpdate(member);
 	    
-	     System.out.println("result + : " + result);
+	     System.out.println("result : " + result);
+	     System.out.println("member : " + member);
 		
 		return result;
 	}
