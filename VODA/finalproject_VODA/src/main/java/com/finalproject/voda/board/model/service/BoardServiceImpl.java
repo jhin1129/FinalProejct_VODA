@@ -50,4 +50,10 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	// 자유게시판 등록	
+	@Override
+	public int saveBoard(Board board) {
+		return 0;
+	}
+
 }
