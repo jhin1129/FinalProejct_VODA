@@ -54,6 +54,7 @@
                     <button type="submit" class="verification_code2" id="code_onclick">
                    	확인
                   	</button>
+                  	<input type="hidden" name="m_email" value= "${ m_email }" >
                 </div>
             </form>
         </div> 
@@ -97,7 +98,7 @@
 var pwJ = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{10,}$/; 
 
 // 비밀번호
-$('#newPwd').blur(function(){
+$('#m_password').blur(function(){
 	if(pwJ.test($(this).val())){
 		console.log(pwJ.test($(this).val()));
 		$("#password_check").text('');
@@ -115,7 +116,7 @@ $('#newPwd').blur(function(){
 <script>
 $(document).ready(function () {
     $("#newPwd2").change(function(){
-		var p1 = $("#newPwd");
+		var p1 = $("#m_password");
 		var p2 = $("#newPwd2");
 		
 		if(p1.val() != p2.val()){
