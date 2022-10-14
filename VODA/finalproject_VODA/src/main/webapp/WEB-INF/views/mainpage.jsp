@@ -86,14 +86,15 @@
 	
 	      <div class="search">
 	        <form class="d-flex">
-	          <input class="form-control me-sm-2" type="text">
+	          <input class="form-control me-sm-2" type="text" name="keyword" value="${keyword}">
+	       	  <button type="button" onclick="location.href='${path}/contents/contents_search?keyword=${keyword}'">검색</button>
 	        </form>
 	      </div>
 	
           <div class="right">
             <a class="text-nowrap" id="login" href="#"
             onclick="location.href='${path}/member/login'">로그인</a>
-            <a class="text-nowrap" id="join"href="#"
+            <a class="text-nowrap" id="join" href="#"
             onclick="location.href='${path}/member/enroll'">회원가입</a>
           </div>
 	

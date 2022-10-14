@@ -92,23 +92,31 @@
 		<result property="rate_like" column="RATE_LIKE"/>
 	</resultMap>
 	
+	<resultMap type="SearchResult" id="searchByKeywordResultMap" extends="contentsListResultMap">
+		<result property="people_no" column="PEOPLE_NO"/>
+		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
+	</resultMap>
+	
 	<select id="selectContentsCount" resultType="_int">
-		SELECT COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
-		AND  C_TYPE = #{type}
+		SELECT 
+			COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
+			AND  C_TYPE = #{type}
 	</select>
 
 	<select id="selectAll" resultMap="contentsListResultMap">
 		SELECT
-		<include refid="contentsListSql"/>
-		,ROUND(AVG(RATE_STAR),1)
-		FROM CONTENTS C
-        LEFT OUTER JOIN RATE R
-        ON C.C_NO = R.C_NO      
-       	WHERE C.C_STATUS = 'Y'
-        AND C.C_TYPE = #{type}
-        GROUP BY 
-        <include refid="contentsListSql"/>
-        ORDER BY C.C_NO DESC
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y'
+	        AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
 	</select>
 	
 	 <select id="selectContentsByNo" parameterType="_int" resultMap="contentsDetailResultMap">
@@ -132,30 +140,30 @@
 	
 	<select id="selectContentsRateByNo" parameterType="int" resultMap="contentsRateResultMap">				
 		SELECT
-		COUNT(RATE_STAR) as "RATE_COUNT"
-		,COUNT(CASE WHEN RATE_STAR=0.5 then 1 end ) AS "_05"
-		,COUNT(CASE WHEN RATE_STAR=1 then 1 end ) AS "_1"
-		,COUNT(CASE WHEN RATE_STAR=1.5 then 1 end ) AS "_15" 
-		,COUNT(CASE WHEN RATE_STAR=2 then 1 end ) AS "_2" 
-		,COUNT(CASE WHEN RATE_STAR=2.5 then 1 end ) AS "_25" 
-		,COUNT(CASE WHEN RATE_STAR=3 then 1 end ) AS "_3" 
-		,COUNT(CASE WHEN RATE_STAR=3.5 then 1 end ) AS "_35" 
-		,COUNT(CASE WHEN RATE_STAR=4 then 1 end ) AS "_4"
-		,COUNT(CASE WHEN RATE_STAR=4.5 then 1 end ) AS "_45"
-		,COUNT(CASE WHEN RATE_STAR=5 then 1 end ) AS "_5"
-		,ROUND(AVG(RATE_STAR),1) as "RATE_AVG"
+			COUNT(RATE_STAR) as "RATE_COUNT"
+			,COUNT(CASE WHEN RATE_STAR=0.5 then 1 end ) AS "_05"
+			,COUNT(CASE WHEN RATE_STAR=1 then 1 end ) AS "_1"
+			,COUNT(CASE WHEN RATE_STAR=1.5 then 1 end ) AS "_15" 
+			,COUNT(CASE WHEN RATE_STAR=2 then 1 end ) AS "_2" 
+			,COUNT(CASE WHEN RATE_STAR=2.5 then 1 end ) AS "_25" 
+			,COUNT(CASE WHEN RATE_STAR=3 then 1 end ) AS "_3" 
+			,COUNT(CASE WHEN RATE_STAR=3.5 then 1 end ) AS "_35" 
+			,COUNT(CASE WHEN RATE_STAR=4 then 1 end ) AS "_4"
+			,COUNT(CASE WHEN RATE_STAR=4.5 then 1 end ) AS "_45"
+			,COUNT(CASE WHEN RATE_STAR=5 then 1 end ) AS "_5"
+			,ROUND(AVG(RATE_STAR),1) as "RATE_AVG"
 		FROM RATE
 		WHERE C_NO = #{ no }
 	</select>
 	
 	<select id="selectContentsPeopleByNo" parameterType="int" resultMap="contentsPeopleResultMap">	
 	   SELECT
-	   CP.C_NO,
-       CP.PEOPLE_NO,
-       CP.CP_ROLE,
-       CP.CP_IMG,
-       CP.CP_OIMG,
-       P.PEOPLE_NAME
+		   CP.C_NO,
+	       CP.PEOPLE_NO,
+	       CP.CP_ROLE,
+	       CP.CP_IMG,
+	       CP.CP_OIMG,
+	       P.PEOPLE_NAME
        FROM CONTENTSPEOPLE CP
        JOIN PEOPLE P
        ON CP.PEOPLE_NO = P.PEOPLE_NO
@@ -165,21 +173,21 @@
 	<insert id="insertRate" parameterType="Rate"
 		useGeneratedKeys="true" keyProperty="rate_no" keyColumn="RATE_NO">
 		INSERT INTO RATE ( 
-        RATE_NO,
-        C_NO,
-        M_NO,
-        RATE_STAR,
-        RATE_COMMENT,
-        RATE_DATE,
-        RATE_LIKE)
+	        RATE_NO,
+	        C_NO,
+	        M_NO,
+	        RATE_STAR,
+	        RATE_COMMENT,
+	        RATE_DATE,
+	        RATE_LIKE)
         VALUES
-        (RATE_SEQ.NEXTVAL,
-        #{ c_no },
-        3,
-        #{ rate_star },
-        #{ rate_comment },
-        SYSDATE,
-        0
+	        (RATE_SEQ.NEXTVAL,
+	        #{ c_no },
+	        3,
+	        #{ rate_star },
+	        #{ rate_comment },
+	        SYSDATE,
+	        0
         )
 	</insert> 
 	
@@ -187,7 +195,7 @@
 		SELECT COUNT(*) FROM RATE WHERE C_NO = #{ no }
 	</select>
 	
-	<select id="selectCommentsByNo" parameterType="_int" resultMap="contentsRate">
+	<select id="selectCommentsByNo" parameterType="java.util.Map" resultMap="contentsRate">
 		SELECT 
 			RATE_NO,
 			C_NO,
@@ -195,9 +203,36 @@
 			RATE_STAR,
 			RATE_COMMENT, 
 			RATE_DATE,
-			RATE_LIKE 
-		FROM RATE WHERE C_NO = #{ no } ORDER BY RATE_LIKE DESC
+			RATE_LIKE		
+		<if test='sort == "like"'>
+		FROM RATE WHERE C_NO = #{ no }
+		ORDER BY RATE_LIKE DESC
+		</if>
+		<if test='sort == "new"'>
+		FROM RATE WHERE C_NO = #{ no }
+		</if>	
 	</select>
 	
-	
+	<select id="selectSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
+		SELECT 
+			C.C_NO, 
+			C.C_TITLE,
+			C.C_TYPE,
+			C.C_OBIMG,
+			C.C_BIMG,
+			C.C_OPIMG,
+			C.C_PIMG,
+			P.PEOPLE_NO,
+			P.PEOPLE_NAME,
+			P.PEOPLE_ORIGINAL_FILENAME,
+			P.PEOPLE_RENAMED_FILENAME
+		FROM CONTENTS C
+			left outer JOIN CONTENTSPEOPLE CP 
+			ON C.C_NO=CP.C_NO
+			left outer JOIN PEOPLE P ON 
+			CP.PEOPLE_NO = P.PEOPLE_NO
+			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
+			OR C_TITLE LIKE '%' || '${ keyword }' || '%'
+	</select>
+
 </mapper>

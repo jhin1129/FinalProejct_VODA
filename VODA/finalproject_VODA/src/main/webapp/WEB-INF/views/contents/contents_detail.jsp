@@ -366,7 +366,7 @@
 
         <span style="font-size: 1em; color: gray;">${ rateResult.rate_count }+</span>
 
-        <span OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }'" 
+        <span OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }&sort=like'" 
         style="color: rgb(73,95,233); float: right; font-weight: 600; font-size:1.2em;">더보기</span>
 
         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">

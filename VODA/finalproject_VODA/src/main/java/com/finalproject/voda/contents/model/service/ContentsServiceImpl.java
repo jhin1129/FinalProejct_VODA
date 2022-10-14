@@ -1,6 +1,8 @@
 package com.finalproject.voda.contents.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchResult;
 
 @Service
 public class ContentsServiceImpl implements ContentsService {
@@ -74,13 +77,28 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public List<Rate> getCommentsList(PageInfo pageInfo, int no) {
+	public List<Rate> getCommentsList(PageInfo pageInfo, int no, String sort) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.selectCommentsByNo(rowBounds, no);
+		Map<String, Object> map	= new HashMap<>();
 		
+		map.put("no",  no);
+		map.put("sort", sort);
+		
+		System.out.println(sort);
+		System.out.println(no);
+		System.out.println(map.get("sort"));
+		System.out.println(map.get("no"));
+		
+		return mapper.selectCommentsByNo(rowBounds, map);
+	}
+
+	@Override
+	public List<SearchResult> getContentsSearch(String keyword) {
+
+		return mapper.selectSearchByKeyword(keyword);
 	}
 
 

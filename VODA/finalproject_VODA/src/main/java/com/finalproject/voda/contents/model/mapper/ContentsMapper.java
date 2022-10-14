@@ -1,15 +1,17 @@
 package com.finalproject.voda.contents.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
-import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchResult;
 
 @Mapper
 public interface ContentsMapper {
@@ -26,6 +28,9 @@ public interface ContentsMapper {
 	int insertRate(Rate rate);
 
 	int selectCommentsCount(int no);
+		
+	List<Rate> selectCommentsByNo(RowBounds rowBounds, Map<String, Object> map);
 
-	List<Rate> selectCommentsByNo(RowBounds rowBounds, int no);
+	List<SearchResult> selectSearchByKeyword(String keyword);
+
 }

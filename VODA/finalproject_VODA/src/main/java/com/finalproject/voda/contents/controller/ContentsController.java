@@ -1,6 +1,8 @@
 package com.finalproject.voda.contents.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchResult;
 import com.finalproject.voda.member.model.vo.Member;
 
 @Controller
@@ -44,14 +47,18 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/contents/contents_comments")
-	public ModelAndView commentList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, @RequestParam int no) {
-		
+	public ModelAndView commentList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, 
+														@RequestParam int no, 
+														@RequestParam String sort) {
+					
 		List<Rate> rates = null;
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
-		rates = service.getCommentsList(pageInfo, no);
+		rates = service.getCommentsList(pageInfo, no, sort);
 		
+		model.addObject("no", no);
+		model.addObject("sort", sort);
 		model.addObject("rates", rates);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_comments");
@@ -98,6 +105,19 @@ public class ContentsController {
 		}
 		
 		model.setViewName("common/msg");
+		return model;
+	}
+	
+	@GetMapping("/contents/contents_search")
+	public ModelAndView contentsSearch(ModelAndView model,
+									   @RequestParam String keyword) { 
+	
+		List<SearchResult> searchResult = null;
+		
+		searchResult = service.getContentsSearch(keyword);
+		
+		model.addObject("searchResult", searchResult);
+		model.setViewName("contents/contents_search");
 		return model;
 	}
 	

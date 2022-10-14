@@ -80,10 +80,19 @@
     left: 60px;
 }
 
-.update {
+.date {
     position: absolute;
     top: 260px; 
-    left: 195px;
+    left: 190px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: gray;
+}
+
+.update {
+    position: absolute;
+    top: 235px; 
+    left: 210px;
     font-size: 0.9em;
     text-decoration: none;
     color: gray;
@@ -91,8 +100,8 @@
 
 .delete {
     position: absolute;
-    top: 260px;
-    left: 235px;
+    top: 235px;
+    left: 240px;
     font-size: 0.9em;
     text-decoration: none;
     color: gray;
