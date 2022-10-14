@@ -109,9 +109,6 @@
         }
     </style>
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -194,7 +191,7 @@
                     <br>
 
                 </p>
-                <c:if test="${ loginMember.m_authorization == 'M' } ">
+                <c:if test="${ loginMember.m_authorization == 'M' }">
 	                <div class="text-right mt-3">
 	                    <button class="btn btn-logoc py-0"
 	                        style="width: 80px; height: 29.05px; font-size: 14.45px;"

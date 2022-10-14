@@ -15,4 +15,6 @@ public interface BoardService {
 
 	int deleteFree(int no);
 
+	int saveBoard(Board board);
+
 }
