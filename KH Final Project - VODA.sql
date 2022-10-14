@@ -655,6 +655,190 @@ ALTER TABLE VISIT ADD CONSTRAINT PK_VISIT PRIMARY KEY (
 );
 
 ------------------------------------------------
+--------------- SALES 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE SALES (
+	S_NO	NUMBER		NOT NULL,
+	S_DATE	DATE		NOT NULL,
+	S_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN SALES.S_NO IS '매출액 번호';
+COMMENT ON COLUMN SALES.S_DATE IS '일별날짜';
+COMMENT ON COLUMN SALES.S_COUNT IS '당일총매출';
+
+-- SALES 시퀀스
+CREATE SEQUENCE SEQ_SALES_NO;
+
+-- SALES PK
+ALTER TABLE SALES ADD CONSTRAINT PK_SALES PRIMARY KEY (
+	S_NO
+);
+
+------------------------------------------------
+---------- JOINMEMBER 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE JOINMEMBER (
+	J_NO	NUMBER		NOT NULL,
+	J_DATE	DATE		NOT NULL,
+	J_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN JOINMEMBER.J_NO IS '회원가입수 번호';
+COMMENT ON COLUMN JOINMEMBER.J_DATE IS '일별날짜';
+COMMENT ON COLUMN JOINMEMBER.J_COUNT IS '당일 회원가입자수';
+
+-- JOINMEMBER 시퀀스
+CREATE SEQUENCE SEQ_JOINMEMBER_NO;
+
+-- JOINMEMBER PK
+ALTER TABLE JOINMEMBER ADD CONSTRAINT PK_JOINMEMBER PRIMARY KEY (
+	J_NO
+);
+
+------------------------------------------------
+--------------- CVIEW 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE CVIEW (
+	CV_NO	NUMBER		NOT NULL,
+	CV_DATE	DATE		NOT NULL,
+	CV_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN CVIEW.CV_NO IS '조회수 번호';
+COMMENT ON COLUMN CVIEW.CV_DATE IS '일별날짜';
+COMMENT ON COLUMN CVIEW.CV_COUNT IS '당일 총조회수';
+
+-- CVIEW 시퀀스
+CREATE SEQUENCE SEQ_CVIEW_NO;
+
+-- CVIEW PK
+ALTER TABLE CVIEW ADD CONSTRAINT PK_CVIEW PRIMARY KEY (
+	CV_NO
+);
+------------------------------------------------
+------------- 오라클 스케쥴러 관련 ---------------
+------------------------------------------------
+
+-- 조회수 삽입 프로시저
+CREATE OR REPLACE PROCEDURE INSERT_CVIEW AS 
+BEGIN
+INSERT INTO CVIEW VALUES(
+    SEQ_CVIEW_NO.NEXTVAL,
+    SYSDATE, 
+    0
+    );
+END INSERT_CVIEW;
+
+-- 방문자수 삽입 프로시저
+CREATE OR REPLACE PROCEDURE INSERT_VISIT AS 
+BEGIN
+INSERT INTO VISIT VALUES(
+    SEQ_VISIT_NO.NEXTVAL,
+    SYSDATE, 
+    0
+    );
+END INSERT_VISIT;
+
+-- 조회수 데이터 등록 프로시저 (수정해야함)
+CREATE OR REPLACE PROCEDURE UPDATE_CVIEW AS 
+BEGIN
+UPDATE CVIEW SET CV_COUNT = CV_COUNT + 1 
+WHERE CV_DATE = SYSDATE;
+END UPDATE_CVIEW;
+
+-- 방문자수 데이터 등록 프로시저 (수정해야함)
+CREATE OR REPLACE PROCEDURE UPDATE_VISIT AS 
+BEGIN
+UPDATE CVIEW SET CV_COUNT = CV_COUNT + 1 
+WHERE CV_DATE = SYSDATE;
+END UPDATE_VISIT;
+
+-- 조회수 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_INSERT_CVIEW',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'INSERT_CVIEW',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/14 12:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '조회수 테이블 삽입');
+END;
+
+-- 방문자수 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_INSERT_VISIT',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'INSERT_VISIT',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/14 12:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '방문자수 테이블 삽입');
+END;
+
+-- 조회수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_CVIEW',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_CVIEW',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/14 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '조회수 테이블 데이터 증가');
+END;
+
+-- 방문자수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_VISIT',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_VISIT',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/14 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '방문자수 테이블 데이터 증가');
+END;
+
+-- 스케쥴러 활성화
+BEGIN
+  DBMS_SCHEDULER.ENABLE(NAME=>'JOB_UPDATE_VISIT');
+END;
+
+-- 스케쥴러 비활성화
+BEGIN
+  DBMS_SCHEDULER.DISABLE(NAME=>'JOB_UPDATE_VISIT');
+END;
+
+-- 스케쥴러 로그 조회
+SELECT * FROM USER_SCHEDULER_JOBS;
+SELECT * FROM USER_SCHEDULER_JOB_LOG;
+SELECT * FROM USER_SCHEDULER_JOB_RUN_DETAILS;
+
+
+-- 스케쥴러 삭제
+--BEGIN
+--    DBMS_SCHEDULER.DROP_JOB(JOB_NAME => 'JOB_INSERT_CVIEW',
+--                                DEFER => FALSE,
+--                                FORCE => FALSE);
+--END;
+
+
+------------------------------------------------
 ---------- CONTENTSPEOPLE 관련 테이블 -----------
 ------------------------------------------------
 CREATE TABLE CONTENTSPEOPLE (
@@ -773,27 +957,6 @@ ALTER TABLE ORDERS ADD CONSTRAINT FK_PAY_TO_ORDERS_1 FOREIGN KEY (
 	PAY_NO
 ) REFERENCES PAY (
 	PAY_NO
-);
-
-------------------------------------------------
---------------- CVIEW 관련 테이블 ---------------
-------------------------------------------------
-CREATE TABLE CVIEW (
-	CV_NO	NUMBER		NOT NULL,
-	CV_DATE	DATE		NOT NULL,
-	CV_COUNT	NUMBER		NULL
-);
-
-COMMENT ON COLUMN CVIEW.CV_NO IS '조회수 번호';
-COMMENT ON COLUMN CVIEW.CV_DATE IS '일별날짜';
-COMMENT ON COLUMN CVIEW.CV_COUNT IS '당일 총조회수';
-
--- CVIEW 시퀀스
-CREATE SEQUENCE SEQ_CVIEW_NO;
-
--- CVIEW PK
-ALTER TABLE CVIEW ADD CONSTRAINT PK_CVIEW PRIMARY KEY (
-	CV_NO
 );
 
 ------------------------------------------------
