@@ -36,7 +36,7 @@ public class Product {
 	
 	private String pmadecompany;
 	
-	private String searchName;
+	private String searchname;
 	
-	private String searchType;
+	private String searchtype;
 }

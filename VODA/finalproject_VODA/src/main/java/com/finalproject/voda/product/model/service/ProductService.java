@@ -19,9 +19,9 @@ public interface ProductService {
 
 	int updateProduct(Product product);
 
-	List<Product> getProductSearch(PageInfo pageInfo);
+	int getProductSearchCount(String searchtype, String searchname);
 
-
+	List<Product> getProductSearchList(PageInfo pageInfo, String searchtype, String searchname);
 
 	
 }
