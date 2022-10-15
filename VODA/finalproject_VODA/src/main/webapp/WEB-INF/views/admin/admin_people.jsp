@@ -10,6 +10,9 @@
 	
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
+    
+    <!-- Board CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
 
     <!-- Mypage CSS -->
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_list.css">
@@ -17,8 +20,6 @@
 
     <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-    
-    <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/mypage/join.css"> 
 
     <!--BootStrap CSS-->
@@ -151,19 +152,34 @@
               <button type="button" class="btn btn-primary btn-sm">인물등록</button>
               <button type="button" class="btn btn-secondary btn-sm">인물삭제</button>
             </div>
-            <nav aria-label="Page navigation">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <a class="page-link">＜</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">＞</a>
-                </li>
-              </ul>
-            </nav>
+            
+        <div class="display1 row my-3">
+            <!--Active and Hoverable Pagination-->
+            <ul id="pagination">
+            <!-- 맨 첫 페이지로 -->
+                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+			
+			<!-- 이전 페이지로 -->
+				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				           
+            <!--  10개 페이지 목록 -->
+				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+					<c:if test="${ status.current == pageInfo.currentPage }">
+						<li><a class="active">${ status.current }</a></li>
+					</c:if>
+					
+					<c:if test="${ status.current != pageInfo.currentPage }">
+                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+					</c:if>
+				</c:forEach>
+				
+			<!-- 다음 페이지로 -->
+				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+			<!-- 맨 끝 페이지로 -->
+                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
+            </ul>
+
+        </div>
 
     </div>
     <!-- 컨테이너 끝 -->

@@ -77,15 +77,16 @@
 
 
 			<form action="${ path }/admin/admin_notice_update" method="POST" enctype="multipart/form-data">
-				<input type="hidden" name="no" value="${ notice.noticeno }">
+				<input type="hidden" name="noticeno" value="${ notice.noticeno }">
 				<input type="hidden" name="originalFileName" value="${ notice.noticeOriginalFileName }">
 				<input type="hidden" name="renamedFileName" value="${ notice.noticeRenamedFileName }">
+				
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" value="${ notice.noticeTitle }"
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ notice.noticeTitle }" name="noticeTitle"
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
@@ -116,7 +117,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <textarea id="summernote">${ notice.noticeContent }</textarea>
+                <textarea id="summernote" name="noticeContent">${ notice.noticeContent }</textarea>
 
                 <script>
                     $('#summernote').summernote({

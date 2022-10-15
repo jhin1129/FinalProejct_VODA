@@ -236,9 +236,38 @@
 	
 	<!-- 공지사항 전체 조회 정렬 -->
 	<select id="selectAllNotice" resultMap="NoticeResultMap">
-		<include refid="NoticeListSql"></include>
+	<include refid="NoticeListSql"></include>
 		ORDER BY N.N_NO DESC
 	</select>
+	
+	<!-- 공지사항 검색 조회 -->
+	<select id="selectSearchNotice" resultMap="NoticeResultMap">
+		SELECT
+		    N.N_NO, 
+		    N.N_TITLE, 
+		    N.N_WRITERNO, 
+		    N.N_ID, 
+		    N.N_CONTENT, 
+		    N.N_ORIGINAL_FILENAME, 
+		    N.N_RENAMED_FILENAME, 
+		    N.N_READCOUNT, 
+		    N.N_STATUS, 
+		    N.N_CREATE_DATE, 
+		    N.N_TOPTITLE
+		FROM NOTICE N
+		JOIN MEMBER M ON (N.N_WRITERNO = M.M_NO)
+		 <trim prefix="WHERE" prefixOverrides="AND|OR">	
+			<if test="title != null">
+				AND N.N_TITLE LIKE '%' || #{title} || '%'
+			</if>
+			<if test="content != null">
+				AND N.M_CONTENT LIKE '%' || #{content} || '%'
+			</if>
+		 	AND B.STATUS = 'Y'
+		</trim>
+		ORDER BY N.N_NO DESC
+	</select>
+	
 	
 	<!-- 공지사항 상세 조회 -->
 		<select id="selectNoticeByNo" parameterType="_int" resultMap="NoticeResultMap">
@@ -264,7 +293,7 @@
 		VALUES (
 			SEQ_NOTICE_NO.NEXTVAL,
 			#{noticeTitle},
-			999,
+			#{noticeWriterNo},
 			#{noticeWriterId},
 			#{noticeContent},
 			#{noticeOriginalFileName},
@@ -280,16 +309,16 @@
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE 
 		<trim prefix="SET" suffixOverrides=",">
-			<if test="title != null">
+			<if test="noticeTitle != null">
 				N_TITLE = #{noticeTitle},
 			</if>
-			<if test="content != null">
+			<if test="noticeContent != null">
 				N_CONTENT = #{noticeContent},
 			</if>
-			<if test="originalFileName != null">
+			<if test="noticeOriginalFileName != null">
 				N_ORIGINAL_FILENAME = #{noticeOriginalFileName},
 			</if>
-			<if test="renamedFileName != null">
+			<if test="noticeRenamedFileName != null">
 				N_RENAMED_FILENAME = #{noticeRenamedFileName},
 			</if>
 		</trim>

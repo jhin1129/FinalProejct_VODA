@@ -8,8 +8,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/default_layout">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,15 +107,15 @@
                 
                 <!-- 테이블 내용 -->
                 <tbody>
-                 <c:forEach var="list" items="${ list }">
-                  <tr th:each="list, index : ${list}">                   
-                    <th scope="row">${ list.m_no }</th>
-                    <td th:text="${list.m_id}"></td>
-                    <td><fmt:formatDate value="${ list.m_joinDate }" type="date"></fmt:formatDate></td>
+                 <c:forEach var="member" items="${ list }">
+                  <tr>             
+                    <th scope="row">${ member.m_no }</th>
+                    <td>${ member.m_id }"</td>
+                    <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
                     <td>
                     	<c:choose> 
-                    		<c:when test="${ list.m_status == 'L'}">정상</c:when>
-                    		<c:when test="${ list.m_status == 'N'}">탈퇴</c:when>
+                    		<c:when test="${ member.m_status == 'L'}">정상</c:when>
+                    		<c:when test="${ member.m_status == 'N'}">탈퇴</c:when>
                     	</c:choose>
                     </td>
                     <td>

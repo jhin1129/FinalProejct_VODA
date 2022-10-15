@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,6 +31,7 @@ import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.MultipartFileUtil;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -37,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping("/admin")
-//@SessionAttributes("loginMember")
+@SessionAttributes("loginMember")
 public class AdminController {
 
 	@Autowired
@@ -79,6 +82,8 @@ public class AdminController {
 	@PostMapping("/admin_member_delete")
     public String adminMemberDelete(@RequestParam List<String> memberIds){
 
+		System.out.println(memberIds);
+		
         for(int i=0; i<memberIds.size(); i++){
             Long id = Long.valueOf(memberIds.get(i));
             service.deleteMember(id);
@@ -179,23 +184,60 @@ public class AdminController {
 	
 //	공지사항 리스트
 	@GetMapping("/admin_notice_list") 
-	public ModelAndView noticeList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public ModelAndView noticeList(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "title") String searchType,
+			@RequestParam(required = false) String keyword) 
+					throws Exception {
+		
 		
 		List<Notice> list = null;
 		PageInfo pageInfo = null;
+		Search search = new Search();		
 		
 		pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10);
 		list = service.getNoticeList(pageInfo);
+
+		search.setSearchType(searchType);		
+		search.setKeyword(keyword);
 		
+		System.out.println(search);
 		System.out.println(list);
+		System.out.println(pageInfo);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
+		model.addObject("search", search);	
 		model.setViewName("/admin/admin_notice_list");
 		
 		return model; 
 	}
 
+	/*
+	 * // 공지사항 리스트 검색
+	 * 
+	 * @GetMapping("admin_notice_search") public ModelAndView
+	 * NoticeSearch(ModelAndView model,
+	 * 
+	 * @RequestParam(value = "page", defaultValue = "1") int page,
+	 * 
+	 * @RequestParam(value="title", required=false) String title,
+	 * 
+	 * @RequestParam(value="content", required=false) String content) {
+	 * 
+	 * List<Notice> list = null; PageInfo pageInfo = null;
+	 * 
+	 * pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10); list =
+	 * service.getNoticeList(title, content);
+	 * 
+	 * System.out.println("검색 제목"+title+"검색 내용"+content); System.out.println(list);
+	 * 
+	 * model.addObject("list",list); model.setViewName("/admin/admin_notice_list");
+	 * return model;
+	 * 
+	 * }
+	 */
+	
 	//	공지사항 조회
 	@GetMapping("/admin_notice_detail")
 	public ModelAndView noticeView(ModelAndView model, @RequestParam int no) {
@@ -225,8 +267,8 @@ public class AdminController {
 	public ModelAndView Noticewrite(
 			ModelAndView model,
 			@ModelAttribute Notice notice,
-			@RequestParam("upfile") MultipartFile upfile
-//			@SessionAttribute("loginMember") Member loginMember
+			@RequestParam("upfile") MultipartFile upfile,
+			@SessionAttribute("loginMember") Member loginMember
 			) {
 		int result = 0;
 
@@ -254,7 +296,7 @@ public class AdminController {
 			}
 						
 		}
-//		notice.setWriterNo(loginMember.getNo());
+		notice.setNoticeWriterNo(loginMember.getM_no());
 		result = service.saveNotice(notice);
 		
 		if(result > 0) {
@@ -308,8 +350,8 @@ public class AdminController {
 	@GetMapping("/admin_notice_update")
 	public ModelAndView noticeUpdate(
 			ModelAndView model, 
-			@RequestParam int no)
-			//@SessionAttribute("loginMember") Member loginMember)
+			@RequestParam int no,
+			@SessionAttribute("loginMember") Member loginMember)
 			{
 		
 		Notice notice = null;
@@ -319,12 +361,12 @@ public class AdminController {
 		
 		model.addObject("notice",notice);
 		model.setViewName("/admin/admin_notice_update");
-//		if(notice.getNoticeWriterId().equals(loginMember.getId())) {
-//		} else {
-//			model.addObject("msg","잘못된 접근입니다.");
-//			model.addObject("location","/admin/admin_notice_list");
-//			model.setViewName("common/msg");
-//		}
+		if(notice.getNoticeWriterId().equals(loginMember.getM_id())) {
+		} else {
+			model.addObject("msg","잘못된 접근입니다.");
+			model.addObject("location","/admin/admin_notice_list");
+			model.setViewName("common/msg");
+		}
 
 		return model;
 	}
@@ -334,13 +376,13 @@ public class AdminController {
 	public ModelAndView noticeUpdate(
 			ModelAndView model,
 			@ModelAttribute Notice notice,
-			@RequestParam("upfile") MultipartFile upfile)
-//			,@SessionAttribute("loginMember") Member loginMember) 
+			@RequestParam("upfile") MultipartFile upfile,
+			@SessionAttribute("loginMember") Member loginMember) 
 	{
 		
 		int result = 0;
 
-//		if (service.findNoticeByNo(notice.getNoticeno()).getNoticeWriterId().equals(loginMember.getId())) {
+		if (service.findNoticeByNo(notice.getNoticeno()).getNoticeWriterId().equals(loginMember.getM_id())) {
 			
 			if (upfile != null && !upfile.isEmpty()) {
 				String location = null;
@@ -351,7 +393,6 @@ public class AdminController {
 					location = resourceLoader.getResource("resources/upload/notice").getFile().getPath();
 					
 					if(notice.getNoticeRenamedFileName() != null) {
-						// 이전에 업로드 된 첨부파일이 존재하면 삭제
 						MultipartFileUtil.delete(location + "/" + notice.getNoticeRenamedFileName());
 					}
 					
@@ -368,8 +409,9 @@ public class AdminController {
 				}
 				
 			}
-			
 			result = service.saveNotice(notice);
+			System.out.println("업데이트"+notice);
+			System.out.println("업데이트"+notice.getNoticeno());
 			
 			if(result > 0) { 
 				model.addObject("msg","게시글이 정상적으로 수정되었습니다.");
@@ -380,12 +422,11 @@ public class AdminController {
 				model.addObject("location","/admin/admin_notice_detail?no" + notice.getNoticeno());
 				
 			}
-			
-		 
-//	else {
-//			model.addObject("msg","잘못된 접근입니다.");
-//			model.addObject("location","/admin/admin_notice_list");
-//		}
+		
+		} else {
+			model.addObject("msg","잘못된 접근입니다.");
+			model.addObject("location","/admin/admin_notice_list");
+			}
 		
 		model.setViewName("common/msg");
 		
@@ -395,13 +436,13 @@ public class AdminController {
 	
 	// 공지사항 삭제
 	@GetMapping("/admin_notice_delete")
-	public ModelAndView delete(ModelAndView model, @RequestParam int no) {
-//			,@SessionAttribute("loginMember") Member loginMamber){ 
+	public ModelAndView delete(ModelAndView model, @RequestParam int no,
+			@SessionAttribute("loginMember") Member loginMamber){ 
 		int result = 0;
 		Notice notice = null;
 		notice = service.findNoticeByNo(no);
 		
-//		if (notice.getNoticeWriterId().equals(loginMamber.getId())) {
+		if (notice.getNoticeWriterId().equals(loginMamber.getM_id())) {
 			result = service.deleteNotice(no);
 			
 			if(result > 0) {
@@ -411,10 +452,11 @@ public class AdminController {
 				model.addObject("msg", "게시글 삭제 실패");
 				model.addObject("location", "/admin/admin_notice_detail?no="+no);	
 			}
-//		} else {
-//			model.addObject("msg", "잘못된 접근입니다.");
-//			model.addObject("location", "/board/list");
-//			
+		} else {
+			model.addObject("msg", "잘못된 접근입니다.");
+			model.addObject("location", "/admin/admin_notice_list");
+		}
+		
 		model.setViewName("common/msg");
 		return model;
 	}

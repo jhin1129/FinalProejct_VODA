@@ -96,7 +96,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px; text-align: left;" name="noticeWriterId">admin</td>
+                            <td style="margin-left: 10px; text-align: left;"><input type="hidden" name="noticeWriterId" value="${ loginMember.m_id }">${ loginMember.m_id }</td>
                         </tr>
 
                         <tr>

@@ -28,21 +28,20 @@ public interface AdminMapper {
 	int selectProductCount();
 	List<Product> selectAllProduct(RowBounds rowBounds);
 
-	int selectNoticeCount();
-	List<Notice> selectAllNotice(RowBounds rowBounds);
-
 	int selectBoardCount();
 	List<Board> selectAllBoard(RowBounds rowBounds);
 
 	int selectQnaCount();
 	List<Board> selectAllQna(RowBounds rowBounds);
-
+	
+	int selectNoticeCount();
+	List<Notice> selectAllNotice(RowBounds rowBounds);
 	Notice selectNoticeByNo(int no);
-
+	// 공지사항검색
+	List<Notice> selectSearchNotice(String title, String content);
+	
 	int updateNotice(Notice notice);
-
 	int insertNotice(Notice notice);
-
 	int updateNoticeStatus(@Param("noticeno") int no, @Param("noticeStatus") String string);
 
 

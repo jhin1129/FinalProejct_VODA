@@ -1,6 +1,8 @@
 package com.finalproject.voda.admin.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.text.AbstractDocument.Content;
 
@@ -131,6 +133,20 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectAllNotice(rowBounds);	
 		}
+
+	// 공지사항 검색 조회
+	@Override
+	public List<Notice> getNoticeList(String title, String content) {
+		Map<String, String> map = new HashMap<>();
+		
+		map.put("title", title);
+		map.put("content", content);
+		
+		System.out.println(title);
+		System.out.println(content);
+		
+		return mapper.selectSearchNotice(title,content);
+	}
 
 	// 공지사항 상세 조회
 	@Override
