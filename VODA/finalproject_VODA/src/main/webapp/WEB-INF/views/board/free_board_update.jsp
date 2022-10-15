@@ -137,13 +137,18 @@
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
+        
+        <form action="${ path }/board/free_board_update" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${ board.bno }">
+				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
+				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
 
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요."
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
@@ -153,18 +158,16 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">마동석</td>
+                            <td style="margin-left: 10px;">${ board.mid }</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
-                            <td class="p-0">
-                                <button class="btn btn-greyc p-0"
-                                    style="color: #000000; font-size: 14.45px; height: 27px; width: 80px; margin-left: 10px; margin-right: 8px;">파일
-                                    선택</button>
-                                <label
+                            <td class="p-0" style="margin-left: 10px; text-align: left;">
+                            <label
                                     style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;">
-                                    선택된 파일이 없습니다.</label>
+                                     &nbsp;&nbsp;<input type="file" name="upfile" style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;" >
+                                     현재 파일 : ${ board.boriginalfilename }</label>
                             </td>
                         </tr>
                     </tbody>
@@ -176,7 +179,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote">${ board.bcontent }</textarea>
 
                 <script>
                     $('#summernote').summernote({
@@ -204,10 +207,10 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">취소</button>
+                    <input class="btn btn-logoc py-0" type="submit"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="수정">
+                    <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소">
                 </div>
             </div>
         </div>
@@ -215,8 +218,24 @@
         <div class="mb-5 row my-5">
         </div>
     </div>
-<!-- FOOTER -->
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+    
+    	<script>
+		$(document).ready(() => {
+		$("#btnCancel").on("click", () => {
+				if(confirm("게시글 수정을 취소하시겠습니까?")) {
+					location.replace("${ path }/board/free_board_list");
+				}
+			});
+		$("#fileDown").on("click", () => {
+				location.assign("${ path }/board/free_board_detail/fileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
+			});	
+		
+		});
+		
+	</script>
 </body>
 
 </html>
+
+<!-- FOOTER -->
+<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
