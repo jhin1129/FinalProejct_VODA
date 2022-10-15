@@ -40,6 +40,8 @@ public interface AdminService {
 
 	int deleteMember(Long id);
 
+	List<Notice> getNoticeList(String title, String content);
+
 
 
 
