@@ -2,6 +2,9 @@ package com.finalproject.voda.mypage.model.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.contents.model.vo.Contents;
 
@@ -11,11 +14,19 @@ public interface MypageMapper {
 
 	List<Integer> selectReviewCNoList(int mNo);
 	
-	Contents selectContentsByCNo(Integer integer);
+	Contents selectContentsByCNo(@Param("cNo") int cNo);
+	
+	Contents selectContentsByCNoType(@Param("cNo") int cNo, @Param("type") String type);
+	
+	int selectFreeBoardCount(int m_no);
+	
+	List<Board> selectFreeBoardList(RowBounds rowBounds, int mNo);
 
-	List<Board> selectFreeBoardList(int mNo);
+	int selectQnaBoardCount(int m_no);
+	
+	List<Board> selectQnaBoardList(RowBounds rowBounds, int mNo);
 
-	List<Board> selectQnaBoardList(int mNo);
+	List<Contents> selectdibsContentsList(int m_no, String type);
 
 
 }

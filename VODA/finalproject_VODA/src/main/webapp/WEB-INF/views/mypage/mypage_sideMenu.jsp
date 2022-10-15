@@ -78,11 +78,11 @@
                                 </li>
 
                                 <div class="collapse show multi-collapse" id="board_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/writeFreeBoard">
                                         <li>
                                             - 자유게시글 조회</li>
                                     </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/writeQuestionBoard">
                                         <li>
                                             - 문의사항 조회</li>
                                     </a>

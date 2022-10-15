@@ -47,23 +47,23 @@
                                 <tbody>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">아이디</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">아이디</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_id }</td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">이름</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">이름</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_name }</td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">이메일</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">이메일</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_email }</td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">휴대폰번호</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">휴대폰번호</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_phone }</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">주소</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">주소</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_address }</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -81,11 +81,11 @@
                                 <tbody>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">성별</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">남</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_gender }</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="padding-top: 16px;">생년월일</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">1995-11-29</td>
+                                        <td class="infotable_td" style="padding-top: 16px;"><fmt:formatDate value="${ loginMember.m_birth }" type="date"></fmt:formatDate></td>
                                     </tr>
 
                                 </tbody>
