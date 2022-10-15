@@ -255,11 +255,11 @@
         <div class="col-4 text-right">
     </div>
     
-    <div class="search1 row my-4">
+    <div class="search1 row my-4" style="margin: 0 auto">
     <form action="${ path }/product/product_search">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
-                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
+                    <select name="searchtype" class="form-control1" style="font-size: 14.45px; ">
                         <option value="pname" selected>상품명</option>
                         <option value="pcategory">영화명</option>
                     </select>
@@ -267,7 +267,7 @@
 
                 <div class="col-xs-7 col-sm-7 pl-0">
                     <div class="input-group">
-                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+                        <input type="text" class="form-control1" style="font-size: 14.45px;" name="searchname">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img

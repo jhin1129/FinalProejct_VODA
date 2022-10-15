@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -235,6 +236,7 @@ public class MemberController {
 
 				ModelAndView mv = new ModelAndView();
 				mv.setViewName("member/verifyCode");
+				mv.addObject("m_email", m_email);
 				mv.addObject("num", num);
 				return mv;
 			}else {
@@ -252,31 +254,49 @@ public class MemberController {
 	
 	
 	@PostMapping("/verifyCode")  // 이메일 인증번호 확인
-	public String verifyCode(@RequestParam(value="code") String code,
-							 @RequestParam(value = "num") String num){
+	public ModelAndView verifyCode(ModelAndView model,
+							 @RequestParam(value="code") String code,
+							 @RequestParam(value = "num") String num,
+							 @RequestParam(value = "m_email") String m_email){
 		
 		if(code.equals(num)) {
-			return "member/pwdReset";
+			
+			model.addObject("m_email", m_email);
+			model.setViewName("member/pwdReset");
+			return model;
 		}
 		else {
-			return "member/verifyCode";
+			model.setViewName("member/verifyCode");
+			return model;
 		}
 	} 
 	
+	
 	@PostMapping("/pwdReset") // DB 비밀번호 업데이트
-	public String pwdReset(Member member, HttpSession session){
+	public ModelAndView pwdReset(@RequestParam(value="m_email") String m_email, 
+								 ModelAndView model, Member member, HttpSession session){
+		
 		int result = service.passwordUpdate(member);
-		if(result == 1) {
-			return "member/login";
+		
+		System.out.println(member);
+		System.out.println(result);
+		
+		if(result > 0) {
+			model.addObject("msg", "비밀번호 수정이 완료되었습니다.");
+			model.addObject("location", "/member/login");
 		}
 		else {
 			System.out.println("passwordUpdate"+ result);
-			return "member/pwdReset";
+			model.addObject("msg", "비밀번호 수정을 실패했습니다.");
+			model.addObject("location", "/member/pwdReset");
 		}
+		
+		model.setViewName("common/msg");
+		return model;
 	}
 	
 	
-	
+		
 	@GetMapping("/findPwdSendEmail") 
 	public String findPwdSendEmail() {
 		

@@ -4,13 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,8 +104,6 @@
         }
     </style>
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -125,12 +120,9 @@
     <title>free_brd_crud</title>
 
 
-</head>
 
 <body>
 
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -141,9 +133,9 @@
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">			
         	<form action="${ path }/board/free_board_crud" method="POST" enctype="multipart/form-data">
-				<input type="hidden" name="bno" value="${ board.bno }">
-				<input type="hidden" name="boriginalfilename" value="${ board.boriginalfilename }">
-				<input type="hidden" name="brenamedfilename" value="${ board.brenamedfilename }">
+				<input type="hidden" name="no" value="${ board.bno }">
+				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
+				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
 				<input type="hidden" name="bstatus" value="Y">
 				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
 
@@ -162,7 +154,7 @@
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">${ board.mid }</td>
+                            <td style="margin-left: 10px;">${ loginMember.m_id }</td>
                         </tr>
 
                         <tr>
@@ -224,6 +216,3 @@
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
-</body>
-
-</html>

@@ -50,4 +50,22 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
+	// 자유게시판 등록	
+	@Override
+	public int saveBoard(Board board) {
+		int result = 0;
+		
+		System.out.println(board.getBno());
+		
+		if(board.getBno() != 0) {
+			// update
+			result = mapper.updateBoard(board);
+		} else {
+			// insert
+			result = mapper.insertBoard(board);
+		}
+		
+		return result;
+	}
+
 }

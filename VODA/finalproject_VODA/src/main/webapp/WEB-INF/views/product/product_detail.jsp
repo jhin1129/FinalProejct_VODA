@@ -91,7 +91,6 @@
         }
     </style>
 
-
     <div class="container my-5">
         <div>
             <div class="card" style="border: none;">
@@ -226,7 +225,7 @@
 
                                 <tr>
                                     <td colspan="2">
-                                        <div><button class="btn btn-primary py-1">구매하기</button></div>
+                                        <div><button class="btn btn-primary py-1" onclick="location.href='${ path }/product/product_order'">구매하기</button></div>
                                     </td>
                                 </tr>
                             </table>

@@ -30,5 +30,28 @@
 
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>	
 	
+
+	<!-- 인터셉터 설정 -->
+	<interceptors>
+		<interceptor>
+			<!-- 인터셉터를 적용시킬 요청 선택 
+			<mapping path="/member/myPage"/>
+			<mapping path="/member/update"/>
+			<mapping path="/member/delete"/>
+			-->
+
+			<mapping path="/mypage/**"/>		
+			
+			<!-- 인터셉터를 제외시킬 요청 선택 
+			<mapping path="/board/**"/>		
+			<exclude-mapping path="/board/free_board_list"/>
+			<exclude-mapping path="/board/question_board_list"/>
+			-->
+			
+			<!-- 인터셉터 등록 -->
+			<beans:bean id="loginCheckInterceptor" class="com.finalproject.voda.common.interceptor.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+
 	
 </beans:beans>

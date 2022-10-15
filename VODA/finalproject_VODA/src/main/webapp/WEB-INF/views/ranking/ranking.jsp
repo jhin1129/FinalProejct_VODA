@@ -5,12 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-
-<!doctype html>
-<html lang="ko">
-
-<head>
     <meta charset="utf-8">
 
     <title>랭킹copy | VODA</title>
@@ -29,9 +26,6 @@
         crossorigin="anonymous"></script>
 
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
-
     <!-- Ranking CSS-->
     <link rel="stylesheet" type="text/css" href="../../CSS/Ranking/rankinglist.css">
 
@@ -47,12 +41,9 @@
         }
     </style>
 
-</head>
 
 <body class="">
 
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <article id="mainContent" class="kakao_article">
         <h2 class="screen_out">영화 랭킹 본문</h2>
@@ -2277,6 +2268,3 @@
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-</body>
-
-</html>

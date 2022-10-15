@@ -83,25 +83,27 @@
 		WHERE P_NO = #{pno}
 	</update>
 	
-	<select id="getProductSearch" resultMap="ProductListResultMap">
-		SELECT P_NO,
-		       P_NAME,
-		       P_PRICE,
-		       P_STATUS,
-		       P_ORIGINFILE,
-		       P_RENAMEFILE,
-		       P_CATEGORY
-		FROM PRODUCT
-		<trim prefix="WHERE" prefixOverrides="AND|OR">
-			<if test="pname != null">
-				P_NAME LIKE '%' || #{pname} || '%'
-			</if>
-			<if test="pcategory != null">
-				AND P_CATEGORY LIKE '%' || #{pcategory} || '%'
-			</if>
-			AND P_STATUS = 'Y'
-		</trim>
-		ORDER BY P_NO DESC
+	<select id="getProductSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM PRODUCT
+		WHERE 
+		<if test='searchtype == "pname"'>
+			P_NAME LIKE '%' || #{searchname} || '%'
+		</if>
+		<if test='searchtype == "pcategory"'>
+			AND P_CATEGORY LIKE '%' || #{searchname} || '%'
+		</if>
 	</select>
+	
+	<select id="getProductSearchList" resultMap="ProductListResultMap" parameterType="String">
+		SELECT * FROM PRODUCT
+		WHERE 
+		<if test='searchtype == "pname"'>
+			P_NAME LIKE '%' || #{searchname} || '%'
+		</if>
+		<if test='searchtype == "pcategory"'>
+			AND P_CATEGORY LIKE '%' || #{searchname} || '%'
+		</if>
+	</select>
+	
 
 </mapper>

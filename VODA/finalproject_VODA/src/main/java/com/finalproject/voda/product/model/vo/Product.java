@@ -35,4 +35,8 @@ public class Product {
 	private String pmadelocal;
 	
 	private String pmadecompany;
+	
+	private String searchname;
+	
+	private String searchtype;
 }

@@ -286,20 +286,26 @@ public class ProductController {
 	
 	@GetMapping("/product_search")
 	public ModelAndView all_list_search(ModelAndView model, 
-			@RequestParam(value = "page", defaultValue = "1") int page) {
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchtype,
+			@RequestParam String searchname) {
 		List<Product> product = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getProductAllCount(), 10);
-		product = service.getProductSearch(pageInfo);
+		pageInfo = new PageInfo(page, 10, service.getProductSearchCount(searchtype, searchname), 10);
+		product = service.getProductSearchList(pageInfo, searchtype, searchname);
 		
 		model.addObject("product", product);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("product/product_search");
-		
+		System.out.println(product);
 		return model;
 	}
 	
-	
+	@GetMapping("/product_order")
+	public String ProductOrder() {
+		log.info("게시글 작성 페이지 요청");
+		return "product/product_order";
+	}
 	
 }
