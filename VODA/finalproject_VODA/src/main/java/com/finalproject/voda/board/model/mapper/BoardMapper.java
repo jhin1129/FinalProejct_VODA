@@ -17,4 +17,8 @@ public interface BoardMapper {
 	Board selectBoardByNo(int no);
 
 	int updateBoardStatus(@Param("bno")int no, @Param("bstatus") String string);
+
+	int updateBoard(Board board);
+
+	int insertBoard(Board board);
 }

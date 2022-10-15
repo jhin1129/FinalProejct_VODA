@@ -60,7 +60,57 @@
 		UPDATE BOARD SET B_STATUS = #{bstatus} WHERE B_NO = #{bno}
 	</update>
 	
+		<!-- 게시판 등록 -->
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="noticeno" keyColumn="N_NO">
+		INSERT INTO BOARD (
+			B_NO,
+			B_TITLE,
+			B_TYPE, 
+			M_NO,
+			M_ID,
+			B_CONTENT,
+			B_ORIGINAL_FILENAME, 
+			B_RENAMED_FILENAME,
+			B_VIEW,
+			B_STATUS,
+			B_ANSWER_STATUS, 
+			B_DATE
+		)
+		VALUES (
+			SEQ_BOARD_NO.NEXTVAL,
+			#{btitle},
+			#{btype},
+			#{mno},
+			#{mid},
+			#{bcontent},
+			#{boriginalfilename},
+			#{brenamedfilename},
+			#{bview},
+			#{bstatus},
+			#{banswerstatus},
+			DEFAULT
+		)
+	</insert>
 	
+		<!-- 자유게시판 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		UPDATE BOARD
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="btitle != null">
+				B_TITLE = #{btitle},
+			</if>
+			<if test="bcontent != null">
+				B_CONTENT = #{bcontent},
+			</if>
+			<if test="boriginalfilename != null">
+				B_ORIGINAL_FILENAME = #{boriginalfilename},
+			</if>
+			<if test="brenamedfilename != null">
+				B_RENAMED_FILENAME = #{brenamedfilename},
+			</if>
+		</trim>
+		WHERE B_NO = #{bno}
+	</update>
 	
 </mapper>
 
