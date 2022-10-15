@@ -101,5 +101,11 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.selectSearchByKeyword(keyword);
 	}
 
+	@Override
+	public Rate getMyrate(Rate rate) {
+		
+		return mapper.selectMyrate(rate);
+	}
+
 
 }

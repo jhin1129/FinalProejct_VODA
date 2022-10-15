@@ -30,4 +30,6 @@ public interface ContentsService {
 	int getCommentsCount(int no);
 
 	List<SearchResult> getContentsSearch(String keyword);
+
+	Rate getMyrate(Rate rate);
 }

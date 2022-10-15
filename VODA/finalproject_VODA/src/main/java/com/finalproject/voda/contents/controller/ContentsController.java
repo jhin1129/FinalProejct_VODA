@@ -46,6 +46,14 @@ public class ContentsController {
 		return model;
 	}
 	
+	@GetMapping("/contents/contents_webtoon")
+	public ModelAndView movieList(ModelAndView model) {
+		
+		model.setViewName("contents/contents_webtoon");
+		
+		return model;
+	}
+	
 	@GetMapping("/contents/contents_comments")
 	public ModelAndView commentList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, 
 														@RequestParam int no, 
@@ -87,11 +95,11 @@ public class ContentsController {
 	@PostMapping("/contents/comment_write")
 	public ModelAndView commentWrite(ModelAndView model, 
 									 @RequestParam int no,
-									 @ModelAttribute Rate rate 
-									/* @SessionAttribute("loginMember") Member loginMember */) {
+									 @ModelAttribute Rate rate, 
+									 @SessionAttribute("loginMember") Member loginMember) {
 		int result = 0;
 		
-//		rate.setM_no(loginMember.getM_no());
+		rate.setM_no(loginMember.getM_no());
 		rate.setC_no(no);
 		
 		result = service.save(rate);

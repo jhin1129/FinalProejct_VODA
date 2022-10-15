@@ -23,6 +23,9 @@
     <!-- goods_all_list CSS-->
 	<link rel="stylesheet" type="text/css" href="${path}/resources/css/main/mainpage.css">
 	
+	<!-- 제이쿼리 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 	<title>Insert title here</title>
 </head>
 <body>
@@ -85,9 +88,9 @@
 	        </div>
 	
 	      <div class="search">
-	        <form class="d-flex">
-	          <input class="form-control me-sm-2" type="text" name="keyword" value="${keyword}">
-	       	  <button type="button" onclick="location.href='${path}/contents/contents_search?keyword=${keyword}'">검색</button>
+	        <form class="d-flex" id="frm-foo">
+	          <input class="form-control me-sm-2" type="text" name="keyword" id="searchInput">
+	        	<button type="button" id="searchBtn" >검색</button> 
 	        </form>
 	      </div>
 	
@@ -184,6 +187,17 @@
     </div> <!-- 비디오래퍼 끝 -->
 
  <div style="height: 150px;"></div>
+ 
+<script>
+$(document).ready(() => {
+	$("#searchBtn").on("click", () => {
+
+		var searchVal = $("#searchInput").val();
+		
+		location.href="${path}/contents/contents_search?keyword="+searchVal+"";
+	});
+ });
+</script> 
  
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

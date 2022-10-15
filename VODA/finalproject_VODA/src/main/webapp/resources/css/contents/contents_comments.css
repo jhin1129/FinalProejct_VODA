@@ -43,8 +43,9 @@
 .nickname {
     position: absolute;
     font-weight: 500;
-    top: 18px;
-    left: 90px;
+    top: 19px;
+    left: 72px;
+    font-size:0.95em;
 }
 
 .commentstar {

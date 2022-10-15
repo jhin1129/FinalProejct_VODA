@@ -92,6 +92,17 @@
 		<result property="rate_like" column="RATE_LIKE"/>
 	</resultMap>
 	
+	<resultMap type="Rate" id="myrateResultMap">
+		<id property="rate_no" column="RATE_NO"/>
+		<result property="c_no" column="C_NO"/>
+		<result property="m_no" column="M_NO"/>
+		<result property="m_id" column="M_ID"/>
+		<result property="rate_star" column="RATE_STAR"/>
+		<result property="rate_comment" column="RATE_COMMENT"/>
+		<result property="rate_date" column="RATE_DATE"/>
+		<result property="rate_like" column="RATE_LIKE"/>
+	</resultMap>
+	
 	<resultMap type="SearchResult" id="searchByKeywordResultMap" extends="contentsListResultMap">
 		<result property="people_no" column="PEOPLE_NO"/>
 		<result property="people_name" column="PEOPLE_NAME"/>
@@ -135,7 +146,7 @@
               ON M.M_NO = R.M_NO
 		      WHERE C.C_STATUS = 'Y'
 		      AND C.C_NO = #{ no }
-       ORDER BY C.C_NO DESC
+       ORDER BY RATE_LIKE DESC
 	</select>
 	
 	<select id="selectContentsRateByNo" parameterType="int" resultMap="contentsRateResultMap">				
@@ -183,7 +194,7 @@
         VALUES
 	        (RATE_SEQ.NEXTVAL,
 	        #{ c_no },
-	        3,
+	        #{ m_no },
 	        #{ rate_star },
 	        #{ rate_comment },
 	        SYSDATE,
@@ -197,19 +208,24 @@
 	
 	<select id="selectCommentsByNo" parameterType="java.util.Map" resultMap="contentsRate">
 		SELECT 
-			RATE_NO,
-			C_NO,
-			M_NO,
-			RATE_STAR,
-			RATE_COMMENT, 
-			RATE_DATE,
-			RATE_LIKE		
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
 		<if test='sort == "like"'>
-		FROM RATE WHERE C_NO = #{ no }
+		WHERE C_NO = #{ no }
 		ORDER BY RATE_LIKE DESC
 		</if>
 		<if test='sort == "new"'>
-		FROM RATE WHERE C_NO = #{ no }
+		WHERE C_NO = #{ no }
+		ORDER BY RATE_DATE DESC
 		</if>	
 	</select>
 	
@@ -222,6 +238,8 @@
 			C.C_BIMG,
 			C.C_OPIMG,
 			C.C_PIMG,
+			C.C_YEAR,
+			C.C_NATION,
 			P.PEOPLE_NO,
 			P.PEOPLE_NAME,
 			P.PEOPLE_ORIGINAL_FILENAME,
@@ -234,5 +252,9 @@
 			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
 			OR C_TITLE LIKE '%' || '${ keyword }' || '%'
 	</select>
-
+	
+	<select id="selectMyrate" parameterType="Rate" resultMap="myrateResultMap">
+	
+	
+	</select>
 </mapper>

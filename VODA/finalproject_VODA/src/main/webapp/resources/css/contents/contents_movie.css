@@ -1321,3 +1321,18 @@ background: #ddd;
     margin-bottom: 20px;
     font-weight: 500;
 }
+
+.next {
+  display: inline-block;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+  vertical-align: top;
+  background-size: 500px auto; }
+
+/* 콘텐츠 더보기 */
+.box{display: none; }
+
+.box.active{display:block; }
+

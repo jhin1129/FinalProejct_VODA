@@ -1,6 +1,5 @@
 package com.finalproject.voda.contents.model.mapper;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,5 +31,7 @@ public interface ContentsMapper {
 	List<Rate> selectCommentsByNo(RowBounds rowBounds, Map<String, Object> map);
 
 	List<SearchResult> selectSearchByKeyword(String keyword);
+
+	Rate selectMyrate(Rate rate);
 
 }

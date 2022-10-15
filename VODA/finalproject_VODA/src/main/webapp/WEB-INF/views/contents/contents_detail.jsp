@@ -453,7 +453,7 @@
                 <div class="carousel-item">
                     <!--carousel page 2 start-->
                     <div class="row" style="margin: 0;">
-	                	<c:forEach var="rate" items="${ contents.rates }" begin="7" end="9">
+	                	<c:forEach var="rate" items="${ contents.rates }" begin="6" end="8">
                         <div class="innercommentbox">
                             <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
                             <div class="nickname"><c:out value="${ rate.m_id  }"/> </div>
@@ -469,7 +469,7 @@
                             <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
-                        <c:forEach var="rate" items="${ contents.rates }" begin="10" end="10">
+                        <c:forEach var="rate" items="${ contents.rates }" begin="9" end="9">
                         <div class="innercommentbox-right">
                             <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
                             <div class="nickname"><c:out value="${ rate.m_id }"/> </div>
@@ -510,8 +510,6 @@
     <div style="height: 35px;"></div>
      
 <!-- contents_detail JS --> 	
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/contents/contents_detail2.css">
-
 <script type="text/javascript" src="${path}/resources/js/contents/contents_detail.js"></script>
 
 <!-- FOOTER -->
