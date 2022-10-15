@@ -151,11 +151,11 @@ public class BoardController {
 			}
 						
 		}
-		board.setBno(loginMember.getM_no());
+		board.setMno(loginMember.getM_no());
 		result = service.saveBoard(board);
 		
 		System.out.println(result);
-		
+		System.out.println(board);
 		if(result > 0) {
 			model.addObject("msg", "게시글 등록 성공");
 			model.addObject("location", "/board/free_board_list?no=" + board.getBno());

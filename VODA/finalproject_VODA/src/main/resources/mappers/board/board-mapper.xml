@@ -67,7 +67,6 @@
 			B_TITLE,
 			B_TYPE, 
 			M_NO,
-			M_ID,
 			B_CONTENT,
 			B_ORIGINAL_FILENAME, 
 			B_RENAMED_FILENAME,
@@ -81,14 +80,13 @@
 			#{btitle},
 			#{btype},
 			#{mno},
-			#{mid},
 			#{bcontent},
 			#{boriginalfilename},
 			#{brenamedfilename},
 			#{bview},
 			#{bstatus},
 			#{banswerstatus},
-			DEFAULT
+			SYSDATE
 		)
 	</insert>
 	

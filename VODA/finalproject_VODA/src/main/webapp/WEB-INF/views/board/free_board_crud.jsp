@@ -139,16 +139,15 @@
 				<input type="hidden" name="bstatus" value="Y">
 				<input type="hidden" name="btype" value="FREE">
 				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
-
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
+
                             <td class="p-0" style="width: 80%;"><input type="text" name="btitle" placeholder="제목을 입력해주세요."
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
-
                         </tr>
                     </thead>
 
