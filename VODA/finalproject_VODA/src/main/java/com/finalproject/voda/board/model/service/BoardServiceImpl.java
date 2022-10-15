@@ -51,6 +51,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 자유게시판 등록	
+	@Transactional
 	@Override
 	public int saveBoard(Board board) {
 		int result = 0;

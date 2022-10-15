@@ -158,7 +158,7 @@ public class BoardController {
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글 등록 성공");
-			model.addObject("location", "/board/free_board_detail?no=" + board.getBno());
+			model.addObject("location", "/board/free_board_list?no=" + board.getBno());
 		} else {
 			model.addObject("msg", "게시글 등록 실패");
 			model.addObject("location", "/board/free_board_crud");	

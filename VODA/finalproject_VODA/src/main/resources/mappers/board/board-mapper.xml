@@ -61,7 +61,7 @@
 	</update>
 	
 		<!-- 게시판 등록 -->
-	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="noticeno" keyColumn="N_NO">
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="bno" keyColumn="B_NO">
 		INSERT INTO BOARD (
 			B_NO,
 			B_TITLE,
