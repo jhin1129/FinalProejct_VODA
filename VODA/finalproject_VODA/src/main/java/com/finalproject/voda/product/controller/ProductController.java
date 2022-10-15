@@ -302,4 +302,10 @@ public class ProductController {
 		return model;
 	}
 	
+	@GetMapping("/product_order")
+	public String ProductOrder() {
+		log.info("게시글 작성 페이지 요청");
+		return "product/product_order";
+	}
+	
 }

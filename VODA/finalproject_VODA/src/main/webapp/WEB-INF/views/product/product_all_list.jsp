@@ -255,7 +255,7 @@
         <div class="col-4 text-right">
     </div>
     
-    <div class="search1 row my-4">
+    <div class="search1 row my-4" style="margin: 0 auto">
     <form action="${ path }/product/product_search">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
