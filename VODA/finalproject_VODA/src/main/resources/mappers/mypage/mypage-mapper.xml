@@ -86,15 +86,28 @@
 		<include refid="contentsSql" />
 		AND C_NO = ${cNo}
 	</select>
+	
+	<select id="selectContentsByCNoType" parameterType="map" resultMap="contentsListResultMap">
+		<include refid="contentsSql" />
+		AND C_NO = ${cNo} AND C_TYPE = '${type}'
+	</select>
+	
+	<select id="selectFreeBoardCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = ${m_no} AND B_TYPE = 'FREE'
+	</select>
 
 	<select id="selectFreeBoardList" parameterType="_int" resultMap="BoardResultMap">
 		<include refid="boardSql" />
-		AND M.M_NO = ${mNo} AND B.B_TYPE='FREE'
+		AND M.M_NO = ${mNo} AND B.B_TYPE='FREE' ORDER BY B.B_NO DESC
+	</select>
+		
+	<select id="selectQnaBoardCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = ${m_no} AND B_TYPE = 'QNA'
 	</select>
 	
 	<select id="selectQnaBoardList" parameterType="_int" resultMap="BoardResultMap">
 		<include refid="boardSql" />
-		AND M.M_NO = ${mNo} AND B.B_TYPE='QNA'
+		AND M.M_NO = ${mNo} AND B.B_TYPE='QNA' ORDER BY B.B_NO DESC
 	</select>
 	
 </mapper>
