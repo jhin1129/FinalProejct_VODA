@@ -133,11 +133,7 @@
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">			
         	<form action="${ path }/board/free_board_crud" method="POST" enctype="multipart/form-data">
-				<input type="hidden" name="no" value="${ board.bno }">
-				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
-				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
-				<input type="hidden" name="bstatus" value="Y">
-				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
+			
 
             <div>
                 <table class="table m-0">
@@ -145,7 +141,7 @@
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
                             <td class="p-0" style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요."
-                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;" name="btitle">
                             </td>
 
                         </tr>
@@ -172,7 +168,7 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote" name="bcontent"></textarea>
 
                 <script>
                     $('#summernote').summernote({

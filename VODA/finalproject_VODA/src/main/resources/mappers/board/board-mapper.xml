@@ -61,35 +61,8 @@
 	</update>
 	
 		<!-- 게시판 등록 -->
-	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="noticeno" keyColumn="N_NO">
-		INSERT INTO BOARD (
-			B_NO,
-			B_TITLE,
-			B_TYPE, 
-			M_NO,
-			M_ID,
-			B_CONTENT,
-			B_ORIGINAL_FILENAME, 
-			B_RENAMED_FILENAME,
-			B_VIEW,
-			B_STATUS,
-			B_ANSWER_STATUS, 
-			B_DATE
-		)
-		VALUES (
-			SEQ_BOARD_NO.NEXTVAL,
-			#{btitle},
-			#{btype},
-			#{mno},
-			#{mid},
-			#{bcontent},
-			#{boriginalfilename},
-			#{brenamedfilename},
-			#{bview},
-			#{bstatus},
-			#{banswerstatus},
-			DEFAULT
-		)
+	<insert id="insertBoard" parameterType="Board" useGeneratedKeys="true" keyProperty="bno" keyColumn="B_NO">
+		INSERT INTO BOARD VALUES(SEQ_BOARD_NO.NEXTVAL, #{mno}, 'FREE', #{btitle}, SYSDATE, #{bcontent}, #{boriginalfilename}, #{brenamedfilename}, 1, 'Y', 'N')
 	</insert>
 	
 		<!-- 자유게시판 수정 -->
