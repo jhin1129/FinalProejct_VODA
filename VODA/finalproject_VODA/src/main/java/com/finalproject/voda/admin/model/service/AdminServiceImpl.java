@@ -15,6 +15,7 @@ import com.finalproject.voda.admin.model.mapper.AdminMapper;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -22,11 +23,6 @@ import com.finalproject.voda.product.model.vo.Product;
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminMapper mapper;
-	// 데이터 연결 테스트
-	@Override
-	public int getViewCount() {
-		return mapper.selectViewCount();
-	}
 	
 	// 회원관리 전체개수 카운트
 	@Override
@@ -133,24 +129,35 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectAllNotice(rowBounds);	
 		}
-
-	// 공지사항 검색 조회
+	
+	// 공지사항 검색 조회 (총개수)
 	@Override
-	public List<Notice> getNoticeList(String title, String content) {
-		Map<String, String> map = new HashMap<>();
+	public int getNoticeSearchCount(String searchType, String keyword) {
 		
-		map.put("title", title);
-		map.put("content", content);
+		return mapper.getNoticeSearchCount(searchType, keyword);
+	}
+
+	// 공지사항 검색 조회 (리스트)
+	@Override
+	public List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		System.out.println(title);
-		System.out.println(content);
-		
-		return mapper.selectSearchNotice(title,content);
+		return mapper.getNoticeSearchList(rowBounds, searchType, keyword);
 	}
 
 	// 공지사항 상세 조회
+	@Transactional
 	@Override
-	public Notice findNoticeByNo(int no) {
+	public Notice findNoticeByNo(int no, boolean hasRead) {
+		Notice notice = null;
+		
+		notice = mapper.selectNoticeByNo(no);
+		
+		if(notice != null && !hasRead) {
+			mapper.updateNoticeView(notice);
+		}
 		
 		return mapper.selectNoticeByNo(no);
 	}
@@ -182,7 +189,7 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 
-	
+
 
 
 

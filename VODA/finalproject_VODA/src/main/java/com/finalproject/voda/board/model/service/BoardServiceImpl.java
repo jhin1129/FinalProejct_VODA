@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.mapper.BoardMapper;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -56,7 +58,7 @@ public class BoardServiceImpl implements BoardService {
 	public int saveBoard(Board board) {
 		int result = 0;
 		
-		System.out.println(board.getBno());
+		System.out.println("보드넘버" + board.getBno());
 		
 		if(board.getBno() != 0) {
 			// update
@@ -68,5 +70,57 @@ public class BoardServiceImpl implements BoardService {
 		
 		return result;
 	}
+
+	
+	
+	// 일반회원용 공지사항 페이지
+	// 공지사항 전체개수 카운트
+	@Override
+	public int getNoticeCount() {
+		return mapper.selectNoticeCount();
+	}
+	
+	// 공지사항 리스트 조회
+	@Override
+	public List<Notice> getNoticeList(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return mapper.selectAllNotice(rowBounds);	
+		}
+	
+	// 공지사항 검색 조회 (총개수)
+	@Override
+	public int getNoticeSearchCount(String searchType, String keyword) {
+		
+		return mapper.getNoticeSearchCount(searchType, keyword);
+	}
+
+	// 공지사항 검색 조회 (리스트)
+	@Override
+	public List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getNoticeSearchList(rowBounds, searchType, keyword);
+	}
+
+	// 공지사항 상세 조회
+	@Transactional
+	@Override
+	public Notice findNoticeByNo(int no, boolean hasRead) {
+		Notice notice = null;
+		
+		notice = mapper.selectNoticeByNo(no);
+		
+		if(notice != null && !hasRead) {
+			mapper.updateNoticeView(notice);
+		}
+		
+		return mapper.selectNoticeByNo(no);
+	}
+
 
 }
