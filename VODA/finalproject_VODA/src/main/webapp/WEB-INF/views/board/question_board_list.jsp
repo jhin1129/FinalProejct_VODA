@@ -7,15 +7,27 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/spacelab/bootstrap.min.css"
-        integrity="sha384-F1AY0h4TrtJ8OCUQYOzhcFzUTxSOxuaaJ4BeagvyQL8N9mE4hrXjdDsNx249NpEc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+
+    <!--BootStrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+
+    <title>free_brd_list</title>
+
+
     <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
@@ -160,22 +172,8 @@
             pointer-events: none;
         }
     </style>
-
-
-    <!--BootStrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-        crossorigin="anonymous"></script>
-
-
-    <title>question_brd_list</title>
-
-
+    
 <body>
-
 
 
     <!-- 내용 전체 컨테이너 -->
@@ -193,130 +191,42 @@
                         <th id="th" style="width: 45%;">제목</th>
                         <th id="th" style="width: 10%;">답변</th>
                         <th id="th" style="width: 15%;">작성자</th>
-                        <th id="th" style="width: 15%;">날짜</th>
+                        <th id="th" style="width: 15%;">작성일</th>
                     </tr>
                 </thead>
 
                 <tbody>
+ 	             <c:if test="${ empty list }">
+					<tr>
+						<td colspan="6" style="text-align: center;">
+							조회된 게시글이 없습니다.
+						</td>
+					</tr>	
+				 </c:if> 
+				 <c:if test="${ not empty list }"> 
+				 <c:forEach var="board" items="${ list }">
                     <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">1</td>
-                        <td id="td" style="text-align: left;">제목1</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">admin</td>
-                        <td id="td">2022-09-06</td>
+                        <td id="td">${ board.bno }</td>
+                           <td id="td" style="text-align: left;">
+	                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
+									${ board.btitle }
+								</a>
+								<c:if test="${ empty board.boriginalfilename }">
+										<span> </span>
+								</c:if>
+								<c:if test="${ not empty board.boriginalfilename }">
+										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+								</c:if>
+                        	</td>
+                         <td id="td">
+							<c:choose> 
+                                <c:when test="${board.banswerstatus== 'Y'}">[답변완료]</c:when>
+                                <c:when test="${board.banswerstatus == 'N'}">[미답변]</c:when>
+                            </c:choose></td>
+                        <td id="td">${ board.mid }</td>
+                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
                     </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">2</td>
-                        <td id="td" style="text-align: left;">제목2</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">작성자2</td>
-                        <td id="td">날짜2</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">3</td>
-                        <td id="td" style="text-align: left;">제목3</td>
-                        <td id="td">[답변 완료]</td>
-                        <td id="td">작성자3</td>
-                        <td id="td">날짜3</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">4</td>
-                        <td id="td" style="text-align: left;">제목4</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자4</td>
-                        <td id="td">날짜4</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">5</td>
-                        <td id="td" style="text-align: left;">제목5</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자5</td>
-                        <td id="td">날짜5</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">6</td>
-                        <td id="td" style="text-align: left;">제목6</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자6</td>
-                        <td id="td">날짜6</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">7</td>
-                        <td id="td" style="text-align: left;">제목7</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자7</td>
-                        <td id="td">날짜7</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">8</td>
-                        <td id="td" style="text-align: left;">제목8</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자8</td>
-                        <td id="td">날짜8</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">9</td>
-                        <td id="td" style="text-align: left;">제목9</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자9</td>
-                        <td id="td">날짜9</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목10</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목11</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자11</td>
-                        <td id="td">날짜11</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목12</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목13</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목14</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
-
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">10</td>
-                        <td id="td" style="text-align: left;">제목15</td>
-                        <td id="td"> </td>
-                        <td id="td">작성자10</td>
-                        <td id="td">날짜10</td>
-                    </tr>
+                    </c:forEach>
 
                     <tr>
                         <td class="td-hr"></td>
@@ -325,31 +235,42 @@
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                     </tr>
-
+                    </c:if> 
                 </tbody>
 
             </table>
         </div>
-
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
-                <li><a class="" href="#">«</a></li>
-                <li><a class="" href="#">‹</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">›</a></li>
-                <li><a href="#">»</a></li>
+            	<!-- 맨 처음으로 -->
+                <li><a href="${ path }/board/question_board_list?page=1">«</a></li>
+                
+                <!-- 이전 페이지로 -->
+                <li><a href="${ path }/board/question_board_list?page=${ pageInfo.prevPage }">‹</a></li>
+                
+				<!--  10개 페이지 목록 -->
+				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+					<c:if test="${ status.current == pageInfo.currentPage }">
+						<li><a class="active">${ status.current }</a></li>
+					</c:if>
+					
+					<c:if test="${ status.current != pageInfo.currentPage }">
+                		<li><a href="${ path }/board/question_board_list?page=${ status.current }">${ status.current }</a></li>
+					</c:if>
+				</c:forEach>
+				
+				<!-- 다음 페이지로 -->
+					<li><a href="${ path }/board/question_board_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<!-- 맨 끝 페이지로 -->
+	                <li><a href="${ path }/board/question_board_list?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-
+            
         </div>
 
         <div class="display2">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="../../IMG/Community/edit.png" style="height: 20px;"></button>
+                    src="${path}/resources/img/community/edit.png" onclick="location.href='${path}/board/question_board_crud'" style="height: 20px;"></button>
         </div>
 
         <div class="col-4 text-right">
@@ -359,7 +280,7 @@
         <div class="search1 row my-4">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
-                    <select name="searchType" class="form-control1" style="font-size: 14.45px;">
+                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
                         <option value="title">작성자</option>
                         <option value="title">내용</option>
@@ -373,13 +294,16 @@
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                                    src="../../IMG/Community/search.png" style="height: 18px;"></button>
+                                     src="${path}/resources/img/community/search.png" style="height: 18px;"></button>
                         </span>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+    
 
+</body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

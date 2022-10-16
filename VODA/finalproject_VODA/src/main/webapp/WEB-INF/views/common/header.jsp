@@ -84,6 +84,7 @@
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_notice_list'">NOTICE</a></li>
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_dashboard'">ADMINPAGE</a></li>
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/free_board_list'">FREE BOARD</a></li>
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/question_board_list'">QNA</a></li>
 	                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
 	              </ul>
 	            </li>

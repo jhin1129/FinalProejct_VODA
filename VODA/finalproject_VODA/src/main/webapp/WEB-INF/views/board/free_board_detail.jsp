@@ -156,7 +156,11 @@
 
                         <tr>
                             <th class="table-active">파일</th>
-                            <td></td>
+                            <td style="margin-left: 10px; text-align: left;"> 
+                            	<a href="javascript:" id="fileDown">
+                            		${ board.boriginalfilename }
+                            	</a>
+                            </td>
                             <th class="table-active">조회수</th>
                             <td>${ board.bview }</td>
                         </tr>
@@ -287,7 +291,7 @@
 				})
 				
 				$("#fileDown").on("click", () => {
-					location.assign("${ path }/board/fileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
+					location.assign("${ path }/board/free_board_detail/fileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
 				});
 				
 				
