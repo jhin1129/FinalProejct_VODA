@@ -4,13 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -175,18 +173,16 @@
 
     <title>question_brd_list</title>
 
-</head>
 
 <body>
 
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">문의게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${path }/board/question_board_list?type=QNA">문의 게시판</a></h3>
         </div>
 
         <div class="mt-4">
@@ -384,10 +380,6 @@
             </div>
         </div>
     </div>
-    </div>
+
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-
-</body>
-
-</html>

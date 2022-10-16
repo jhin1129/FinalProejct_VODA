@@ -191,11 +191,11 @@
                     <br>
 
                 </p>
-                <c:if test="${ loginMember.m_authorization == 'M' }">
+                <c:if test="${ loginMember.m_id == board.mid || loginMember.m_authorization == 'M' }">
 	                <div class="text-right mt-3">
 	                    <button class="btn btn-logoc py-0"
 	                        style="width: 80px; height: 29.05px; font-size: 14.45px;"
-	                        onclick="location.href='${path}/board/free_board_update?no=${ board.bno }">수정</button>
+	                        onclick="location.href='${path}/board/free_board_update?no=${ board.bno }'">수정</button>
 	                    <button class="btn btn-greyc py-0" id="btnDelete"
 	                        style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
 	                </div>

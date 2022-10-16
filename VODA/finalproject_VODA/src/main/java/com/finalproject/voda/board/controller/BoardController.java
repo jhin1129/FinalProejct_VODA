@@ -51,7 +51,7 @@ public class BoardController {
 		List<Board> list = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 10);
+		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 15);
 		list = service.getBoardList(pageInfo, "FREE");
 		
 		System.out.println(list);
@@ -201,6 +201,97 @@ public class BoardController {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
+	}
+	
+//	자유게시판 수정 (접근)
+	@GetMapping("/free_board_update")
+	public ModelAndView boardUpdate(
+			ModelAndView model, 
+			@RequestParam int no,
+			@SessionAttribute("loginMember") Member loginMember)
+			{
+		
+		Board board = null;
+				
+		board = service.findBoardByNo(no);
+		
+		
+		model.addObject("board", board);
+		model.setViewName("/board/free_board_update");
+		if(board.getMid().equals(loginMember.getM_id())) {
+		} else {
+			model.addObject("msg","잘못된 접근입니다.");
+			model.addObject("location","/board/free_board_list");
+			model.setViewName("common/msg");
+		}
+
+		return model;
+	}
+	
+//	자유게시판 수정 (수정버튼 클릭 시)
+	@PostMapping("/free_board_update")
+	public ModelAndView boardUpdate(
+			ModelAndView model,
+			@ModelAttribute Board board,
+			@RequestParam("upfile") MultipartFile upfile,
+			@SessionAttribute("loginMember") Member loginMember) 
+	{
+		
+		int result = 0;
+
+		System.out.println(loginMember.getM_id());
+		System.out.println(board.getBno());
+		System.out.println(board.getMid());
+		
+		if (service.findBoardByNo(board.getBno()).getMid().equals(loginMember.getM_id())) {
+			
+			if (upfile != null && !upfile.isEmpty()) {
+				String location = null;
+				String renamedFileName = null;
+				
+				try {
+					
+					location = resourceLoader.getResource("resources/upload/board").getFile().getPath();
+					
+					if(board.getBrenamedfilename() != null) {
+						MultipartFileUtil.delete(location + "/" + board.getBrenamedfilename());
+					}
+					
+					renamedFileName = MultipartFileUtil.save(upfile, location);
+					
+					if(renamedFileName != null) {
+						board.setBoriginalfilename(upfile.getOriginalFilename());
+						board.setBrenamedfilename(renamedFileName);
+					}
+					
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+			result = service.saveBoard(board);
+			System.out.println("업데이트"+board);
+			System.out.println("업데이트"+board.getBno());
+			
+			if(result > 0) { 
+				model.addObject("msg","게시글이 정상적으로 수정되었습니다.");
+				model.addObject("location","/board/free_board_detail?no=" + board.getBno());
+				
+			} else {
+				model.addObject("msg","게시글이 수정 실패.");
+				model.addObject("location","/board/free_board_detail?no" + board.getBno());
+				
+			}
+		
+		} else {
+			model.addObject("msg","잘못된 접근입니다.");
+			model.addObject("location","/board/free_board_list");
+			}
+		
+		model.setViewName("common/msg");
+		
+		return model;
 	}
 	
 	
