@@ -4,13 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,9 +84,10 @@
             margin-bottom: 0rem;
         }
 
+
         .table td,
         .table th {
-            padding: 0.60rem;
+            padding: 10px;
         }
 
         .table th {
@@ -107,7 +105,6 @@
     </style>
 
 
-
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -120,13 +117,12 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>question_brd_crud</title>
+    <title>QNA 등록페이지</title>
 
-</head>
+
 
 <body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -135,47 +131,36 @@
             <h3 style="text-align: center;  color: #000000; font-size: 17px;">문의게시판</h3>
         </div>
         <!-- 후기글 전체 -->
-        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
-
+        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">			
+        	<form action="${ path }/board/question_board_crud" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="no" value="${ board.bno }">
+				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
+				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
+				<input type="hidden" name="bstatus" value="Y">
+				<input type="hidden" name="btype" value="QNA">
+				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th class="table-active" style="width: 20%;">카테고리</th>
-                            <td class="p-0" style="width: 80%;">
-                                <select
+                            <th class="table-active" style="width: 20%;">제목</th>
+
+                            <td class="p-0" style="width: 80%;"><input type="text" name="btitle" placeholder="제목을 입력해주세요."
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
-                                    <option value="">회원/정보관리</option>
-                                    <option value="">주문/결제</option>
-                                    <option value="">배송</option>
-                                    <option value="">환불</option>
-                                    <option value="">컨텐츠 요청</option>
-                                    <option value="">기타</option>
-                                </select>
                             </td>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
-                            <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" placeholder="제목을 입력해주세요."
-                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
-                        </tr>
-                        <tr>
                             <th class="table-active">작성자</th>
-                            <td style="margin-left: 10px;">마동석</td>
+                            <td style="margin-left: 10px; text-align: left;"><input type="hidden" name="mid" value="${ loginMember.m_id }">${ loginMember.m_id }</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
-                            <td class="p-0">
-                                <button class="btn btn-greyc p-0"
-                                    style="color: #000000; font-size: 14.45px; height: 27px; width: 80px; margin-left: 10px; margin-right: 8px;">파일
-                                    선택</button>
-                                <label
-                                    style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;">
-                                    선택된 파일이 없습니다.</label>
+                            <td class="p-0"  style="margin-left: 10px; text-align: left;">
+                                 &nbsp;&nbsp;<input type="file" name="upfile" style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;" >
                             </td>
                         </tr>
                     </tbody>
@@ -187,7 +172,8 @@
             <!-- 내용 -->
             <div class="my-2 px-2">
 
-                <div id="summernote"></div>
+                <textarea id="summernote" name="bcontent"></textarea>
+
                 <script>
                     $('#summernote').summernote({
                         placeholder: '내용을 입력해주세요',
@@ -208,26 +194,25 @@
                         fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'],
                         // 줄간격
                         lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0']
-
                     });
 
-                    $('#summernote').summernote('fontSize', 14);
+                    $('#summernote').summernote('fontSize', 14.45);
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-logoc py-1" style="width: 80px; font-size: 12.393px;">등록</button>
-                    <button class="btn btn-greyc py-1"
-                        style="width: 80px; height: 29.08px; font-size: 12.393px;">취소</button>
+                    <button class="btn btn-logoc py-0"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
+                    <button class="btn btn-greyc py-0"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" onclick="history.back()">취소</button>
                 </div>
             </div>
+            </form>
         </div>
 
         <div class="mb-5 row my-5">
         </div>
     </div>
+    
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
-</body>
-
-</html>

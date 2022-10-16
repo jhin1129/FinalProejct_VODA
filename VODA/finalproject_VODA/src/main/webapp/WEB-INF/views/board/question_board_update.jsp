@@ -4,13 +4,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,8 +27,6 @@
         input:focus {
             outline: none;
         }
-
-
 
         button:focus {
             box-shadow: none !important;
@@ -76,10 +71,6 @@
             background-color: rgb(235, 236, 240);
         }
 
-        textarea {
-            outline-color: rgb(235, 236, 240);
-        }
-
         table * {
             font-size: 14.45px;
             color: #000000;
@@ -96,21 +87,20 @@
 
         .table td,
         .table th {
-            padding: 0.60rem;
+            padding: 10px;
         }
 
-        .id {
-            display: inline-block;
-            content: "";
-            margin: 0 9px;
-            width: 1px;
-            height: 11px;
-            vertical-align: -2px;
-            background: #cfcfda;
+        .table th {
+            padding-left: 13px;
         }
 
-        hr {
-            margin: 0px;
+        .note-placeholder {
+            font-size: 14.45px;
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+
         }
     </style>
 
@@ -127,13 +117,12 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-    <title>question_brd_detail</title>
+    <title>free_brd_crud</title>
 
-</head>
+
 
 <body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container mt-5">
@@ -143,123 +132,103 @@
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
+        
+        <form action="${ path }/board/question_board_update" method="POST" enctype="multipart/form-data">
+				<input type="hidden" name="bno" value="${ board.bno }">
+				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
+				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
 
             <div>
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">제목1</td>
-                            <td style="width: 15%;"></td>
-                            <td style="width: 15%;"></td>
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" name="btitle"
+                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                            </td>
+
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
-                            <td style="width: 50%;">VODA</td>
-                            <th class="table-active">작성일</th>
-                            <td>2022.09.02</td>
+                            <td style="margin-left: 10px;">${ board.mid }</td>
                         </tr>
 
                         <tr>
                             <th class="table-active">파일</th>
-                            <td></td>
-                            <th class="table-active">조회수</th>
-                            <td>64,215</td>
-                        </tr>
-
-                        <tr>
-                            <td class="p-0"></td>
-                            <td class="p-0"></td>
-                            <td class="p-0"></td>
-                            <td class="p-0"></td>
+                            <td class="p-0" style="margin-left: 10px; text-align: left;">
+                            <label
+                                    style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;">
+                                     &nbsp;&nbsp;<input type="file" name="upfile" style="font-size: 14.45px; padding-left: 0px; padding-top: 10.2px; padding-bottom: 10.2px; margin: 0px;" >
+                                     현재 파일 : ${ board.boriginalfilename }</label>
+                            </td>
                         </tr>
                     </tbody>
-
-
 
                 </table>
             </div>
 
 
-            <!-- 이미지 -->
-            <div>
-                <!--    <img style="background: black; width: 100%; height: 500px;"> -->
-            </div>
             <!-- 내용 -->
-            <div class="my-3 px-3">
-                <p style="font-size: 14.45px;">
-                    문의드립니다~<br>
-                    나문희~~<br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+            <div class="my-2 px-2">
 
+                <textarea id="summernote" name="bcontent">${ board.bcontent }</textarea>
 
-                </p>
-                <div class="text-right mt-3">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">수정</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
+                <script>
+                    $('#summernote').summernote({
+                        placeholder: '내용을 입력해주세요',
+                        focus: true,
+                        height: 400,
+                        toolbar: [
+                            // [groupName, [list of button]]
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['insert', ['picture', 'video']],
+                            ['height', ['height']]
+                        ],
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋음체', '바탕체'],
+                        // 추가한 폰트사이즈
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'],
+                        // 줄간격
+                        lineHeights: ['0.2', '0.3', '0.4', '0.5', '0.6', '0.8', '1.0', '1.2', '1.4', '1.5', '2.0', '3.0']
+                    });
+
+                    $('#summernote').summernote('fontSize', 14.45);
+                </script>
+
+                <div class="text-right mt-2">
+                    <input class="btn btn-logoc py-0" type="submit"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="수정">
+                    <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소">
                 </div>
             </div>
-
-
-            <hr style="border-style: dotted;">
-            <!-- 댓글 -->
-            <div class="px-3">
-                <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글 1</strong>
-
-                <div id="comment">
-                    <hr>
-                    <div style="padding: 0px; margin:10px">
-                        <strong style="color: #000000; font-size: 14.45px;">user1</strong>
-                        <span class="id"></span>
-                        <span class="mt-1 col p-0" style="font-size: 11px; color: #000000;">2022.09.02 05:30</span>
-                        <div style="margin-top: 10px;">
-                            <p style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">답변드립니다~~
-                            <div style="float:right; margin-top: -33px;">
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">수정</button>
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
-                            </div>
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-
-                <div class="mb-3">
-                    <form action="">
-                        <div class="form-control" style="height: 105px; margin-top: 10px; margin-bottom: 5px;">
-                            <strong class="p-1" style="color: #000000; font-size: 14.45px;">user2</strong>
-                            <hr style="margin: 0px;">
-                            <textarea class="p-1"
-                                style="border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;"
-                                placeholder="댓글을 작성해주세요"></textarea>
-                        </div>
-                        <div class="text-right mt-1">
-                            <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">등록</button>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-
+            </form>
         </div>
-        <!-- 목록버튼 -->
-        <div class="text-center mt-3 mb-5">
-            <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;">목록</button>
+
+        <div class="mb-5 row my-5">
         </div>
     </div>
+    	<script>
+		$(document).ready(() => {
+		$("#btnCancel").on("click", () => {
+				if(confirm("게시글 수정을 취소하시겠습니까?")) {
+					location.replace("${ path }/board/question_board_list");
+				}
+			});
+		$("#qnafileDown").on("click", () => {
+				location.assign("${ path }/board/question_board_detail/qnafileDown?oname=${ board.boriginalfilename }&rname=${ board.brenamedfilename }");
+			});	
+		
+		});
+		
+	</script>
+
+
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-
-</body>
-
-</html>
