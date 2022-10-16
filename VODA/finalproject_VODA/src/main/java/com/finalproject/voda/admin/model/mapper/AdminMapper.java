@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -37,12 +38,17 @@ public interface AdminMapper {
 	int selectNoticeCount();
 	List<Notice> selectAllNotice(RowBounds rowBounds);
 	Notice selectNoticeByNo(int no);
+	int updateNoticeView(Notice notice);
+	
 	// 공지사항검색
-	List<Notice> selectSearchNotice(String title, String content);
+	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
+	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 	
 	int updateNotice(Notice notice);
 	int insertNotice(Notice notice);
 	int updateNoticeStatus(@Param("noticeno") int no, @Param("noticeStatus") String string);
+
+
 
 
 

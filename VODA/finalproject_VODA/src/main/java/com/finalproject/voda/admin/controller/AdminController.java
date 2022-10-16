@@ -5,6 +5,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.AbstractDocument.Content;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +31,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.admin.model.service.AdminService;
+import com.finalproject.voda.admin.model.vo.Cview;
 import com.finalproject.voda.admin.model.vo.Notice;
+import com.finalproject.voda.admin.model.vo.Visit;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.MultipartFileUtil;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
+import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -51,10 +58,17 @@ public class AdminController {
 //	기본 대시보드 연결
 	@GetMapping("/admin_dashboard")
 	public ModelAndView view(ModelAndView model) {
-		int viewCount = 0;
-		
-		viewCount = service.getViewCount();
-		System.out.println(viewCount);
+		Contents contents = null;
+		Cview cview = null;
+		Visit visit = null;
+//		Order order = null;
+//		JoinMember joinmember = null;
+
+		model.addObject("contents", contents);
+		model.addObject("cview", cview);
+		model.addObject("visit", visit);
+//		model.addObject("order", order);
+//		model.addObject("joinmember", joinmember);
 		model.setViewName("/admin/admin_dashboard");
 		
 		return model;
@@ -151,7 +165,7 @@ public class AdminController {
 		List<Board> list = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getViewCount(), 10);
+		pageInfo = new PageInfo(page, 10, service.getBoardCount(), 10);
 		list = service.getBoardList(pageInfo);
 		
 		System.out.println(list);
@@ -185,68 +199,86 @@ public class AdminController {
 //	공지사항 리스트
 	@GetMapping("/admin_notice_list") 
 	public ModelAndView noticeList(ModelAndView model, 
-			@RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "title") String searchType,
-			@RequestParam(required = false) String keyword) 
-					throws Exception {
-		
+			@RequestParam(value = "page", defaultValue = "1") int page)  {
 		
 		List<Notice> list = null;
-		PageInfo pageInfo = null;
-		Search search = new Search();		
+		PageInfo pageInfo = null;	
 		
 		pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10);
 		list = service.getNoticeList(pageInfo);
-
-		search.setSearchType(searchType);		
-		search.setKeyword(keyword);
-		
-		System.out.println(search);
-		System.out.println(list);
-		System.out.println(pageInfo);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
-		model.addObject("search", search);	
 		model.setViewName("/admin/admin_notice_list");
-		
+
 		return model; 
 	}
+	
+	// 공지사항 리스트 검색
+	@GetMapping("/admin_notice_search")
+	public ModelAndView NoticeSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
 
-	/*
-	 * // 공지사항 리스트 검색
-	 * 
-	 * @GetMapping("admin_notice_search") public ModelAndView
-	 * NoticeSearch(ModelAndView model,
-	 * 
-	 * @RequestParam(value = "page", defaultValue = "1") int page,
-	 * 
-	 * @RequestParam(value="title", required=false) String title,
-	 * 
-	 * @RequestParam(value="content", required=false) String content) {
-	 * 
-	 * List<Notice> list = null; PageInfo pageInfo = null;
-	 * 
-	 * pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10); list =
-	 * service.getNoticeList(title, content);
-	 * 
-	 * System.out.println("검색 제목"+title+"검색 내용"+content); System.out.println(list);
-	 * 
-	 * model.addObject("list",list); model.setViewName("/admin/admin_notice_list");
-	 * return model;
-	 * 
-	 * }
-	 */
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getNoticeSearchCount(searchType, keyword), 10);
+		search = service.getNoticeSearchList(pageInfo, searchType, keyword);
+		
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_notice_search");
+		
+		return model;
+	}
 	
 	//	공지사항 조회
 	@GetMapping("/admin_notice_detail")
-	public ModelAndView noticeView(ModelAndView model, @RequestParam int no) {
+	public ModelAndView noticeView(ModelAndView model, @RequestParam int no,
+			HttpServletRequest request, HttpServletResponse response) {
 		Notice notice = null;
 		
-		notice = service.findNoticeByNo(no);
-		
-		System.out.println(no);
-		System.out.println(notice);
+    	// 조회수 쿠키 관련
+    	Cookie[] cookies = request.getCookies();
+    	String viewhistory = "";
+    	boolean hasRead = false;
+    	
+    	if(cookies != null) {
+    		String name = null;
+    		String value = null;
+    		for (Cookie cookie : cookies) {
+    			name = cookie.getName();
+				value = cookie.getValue();
+			
+			if(name.equals("viewhistory")) {
+				viewhistory = value;
+				
+				if(value.contains("|" + no + "|")) {
+					hasRead = true;
+					
+					break;
+				}
+			}
+		}
+    }
+
+    	if(!hasRead) {    		
+    		Cookie cookie = new Cookie("viewhistory" ,viewhistory +  "|" +  no + "|");
+    		
+    		cookie.setMaxAge(-1); 
+    		response.addCookie(cookie);
+    	}
+    	
+    	HttpSession session = request.getSession(false);
+    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("member");
+    	
+    	
+    	
+		notice = service.findNoticeByNo(no , hasRead);
 		
 		model.addObject("notice", notice);
 		model.setViewName("/admin/admin_notice_detail");
@@ -356,7 +388,7 @@ public class AdminController {
 		
 		Notice notice = null;
 				
-		notice = service.findNoticeByNo(no);
+		notice = service.findNoticeByNo(no, true);
 		
 		
 		model.addObject("notice",notice);
@@ -382,7 +414,10 @@ public class AdminController {
 		
 		int result = 0;
 
-		if (service.findNoticeByNo(notice.getNoticeno()).getNoticeWriterId().equals(loginMember.getM_id())) {
+		System.out.println(notice.getNoticeno());
+		System.out.println(notice.getNoticeWriterId());
+		
+		if (service.findNoticeByNo(notice.getNoticeno(), true).getNoticeWriterId().equals(loginMember.getM_id())) {
 			
 			if (upfile != null && !upfile.isEmpty()) {
 				String location = null;
@@ -440,7 +475,7 @@ public class AdminController {
 			@SessionAttribute("loginMember") Member loginMamber){ 
 		int result = 0;
 		Notice notice = null;
-		notice = service.findNoticeByNo(no);
+		notice = service.findNoticeByNo(no,true);
 		
 		if (notice.getNoticeWriterId().equals(loginMamber.getM_id())) {
 			result = service.deleteNotice(no);
@@ -481,4 +516,10 @@ public class AdminController {
 		
 		return "/admin/admin_total_join"; 
 	}
+
+
+
+
+
+
 }

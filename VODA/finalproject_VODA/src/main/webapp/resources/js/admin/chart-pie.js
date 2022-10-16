@@ -7,7 +7,7 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["MOVIE", "TV", "WEBTOON", "BOOK"],
+    labels: ["영화", "TV", "웹툰", "도서"],
     datasets: [{
       data: [55, 30, 15, 10],
       backgroundColor: ['#FFA7A7', '#FFFF8F', '#B7F0B1', '#B2CCFF'],

@@ -213,38 +213,15 @@
 				
 				
                 <tbody>
- 	             <c:if test="${ empty list }">
+ 	             <c:if test="${ empty search }">
 					<tr>
 						<td colspan="6" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
 					</tr>	
 				 </c:if> 
-                  <c:if test="${ not empty list }"> 	 
-	                <c:forEach var="notice" items="${ list }">
-	                <c:choose> 
-	                
-                    <c:when test="${notice.noticeTopTitle == 1}">
-                    <tr style="text-align: center; background-color: #eeeeee; font-weight: bold;  cursor:pointer;">
-                        <td id="td">${ notice.noticeno }</td>
-						<td id="td" style="text-align: left;">
-							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
-								${ notice.noticeTitle }
-							</a>
-							<c:if test="${ empty notice.noticeOriginalFileName }">
-								<span> - </span>
-							</c:if>
-							<c:if test="${ not empty notice.noticeRenamedFileName }">
-								<img src="${ path }/resources/img/community/attachment.png" width="20px" height="20px">
-							</c:if>
-						</td>
-						<td id="td">${ notice.noticeWriterId }</td>
-						<td id="td"><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
-						<td id="td">${ notice.noticeReadCount }</td>
-                    </tr>                       		
-                    </c:when>
-                    
-                    <c:when test="${notice.noticeTopTitle == 0}">
+                  <c:if test="${ not empty search }"> 	 
+	                <c:forEach var="notice" items="${ search }">
                     <tr style="text-align: center; cursor:pointer;">
                         <td id="td">${ notice.noticeno }</td>
 						<td id="td" style="text-align: left;">
@@ -261,10 +238,7 @@
 						<td id="td">${ notice.noticeWriterId }</td>
 						<td id="td"><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
 						<td id="td">${ notice.noticeReadCount }</td>
-                    </tr>                    		
-                    </c:when>    
-                               
-                    </c:choose>
+                    </tr>
                     </c:forEach>
 
                     <tr>
@@ -284,10 +258,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_notice_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_notice_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -296,14 +270,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_notice_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_notice_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_notice_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
 
         </div>
@@ -328,7 +302,7 @@
 	                    </select>
 	            </div>
 
-		        <div class="col-xs-10 col-sm-7 pl-0">
+		        <div class="col-xs-7 col-sm-7 pl-0">
 		            <div class="input-group">
 		                 <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
 		                 <span class="input-group-btn">

@@ -717,6 +717,15 @@ ALTER TABLE CVIEW ADD CONSTRAINT PK_CVIEW PRIMARY KEY (
 	CV_NO
 );
 ------------------------------------------------
+----------- CONTENTSTYPE 관련 테이블 ------------
+------------------------------------------------
+CREATE TABLE CONTENTSTYPE (
+	MOVIE	VARCHAR2(500)		NULL,
+	TV	VARCHAR2(500)		NULL,
+	WEBTOON	VARCHAR2(500)		NULL,
+	BOOK	VARCHAR2(500)		NULL
+);
+------------------------------------------------
 ------------- 오라클 스케쥴러 관련 ---------------
 ------------------------------------------------
 
@@ -769,6 +778,28 @@ DBMS_SCHEDULER.CREATE_JOB (
             COMMENTS => '조회수 테이블 삽입');
 END;
 
+-- 컨텐츠 타입별 데이터 업데이트 프로시저
+CREATE OR REPLACE PROCEDURE UPDATE_CONTENTSTYPE AS 
+BEGIN
+UPDATE CONTENTSTYPE SET 
+MOVIE = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '영화'),
+TV = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = 'TV'),
+BOOK = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '도서'),
+WEBTOON = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '웹툰');
+END UPDATE_CONTENTSTYPE;
+
 -- 방문자수 데이터 생성 스케쥴러
 BEGIN
 DBMS_SCHEDULER.CREATE_JOB (
@@ -812,6 +843,21 @@ DBMS_SCHEDULER.CREATE_JOB (
             ENABLED => FALSE,
             AUTO_DROP => FALSE,
             COMMENTS => '방문자수 테이블 데이터 증가');
+END;
+
+-- 컨텐츠 타입별 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_CONTENTSTYPE',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_CONTENTSTYPE',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => SYSTIMESTAMP,
+            REPEAT_INTERVAL => 'FREQ=MINUTELY ;INTERVAL=10',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '컨텐츠 타입별 테이블 삽입 (10분에 한번씩 수행)');
 END;
 
 -- 스케쥴러 활성화

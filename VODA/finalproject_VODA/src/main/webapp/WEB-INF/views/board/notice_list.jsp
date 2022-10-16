@@ -179,24 +179,12 @@
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
       <div class="row">
-      
-	    <!-- 관리자 페이지 사이드바 -->
-        <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
-
-        <!-- 관리자 페이지 메인화면 -->
-        <div class="col-10 p-4">
-          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
-            <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-            <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
-            <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-          </svg> 공지사항 관리
-        </h1>
 
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${ path }/admin/admin_notice_list">공지사항</a></h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${ path }/board/notice_list">공지사항</a></h3>
         </div>
 
         <div class="mt-4">
@@ -222,7 +210,7 @@
 				 </c:if> 
                   <c:if test="${ not empty list }"> 	 
 	                <c:forEach var="notice" items="${ list }">
-	                <c:choose> 
+ 	                <c:choose> 
 	                
                     <c:when test="${notice.noticeTopTitle == 1}">
                     <tr style="text-align: center; background-color: #eeeeee; font-weight: bold;  cursor:pointer;">
@@ -284,10 +272,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+                <li><a href="${ path }/board/notice_list?page=1">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/board/notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -296,21 +284,16 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/board/notice_list?page=${ status.current }">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/board/notice_list?page=${ pageInfo.nextPage }">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/board/notice_list?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
 
-        </div>
-
-        <div class="display2">
-            <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                    src="${ path }/resources/img/community/edit.png" style="height: 20px;" onclick="location.href='${path}/admin/admin_notice_crud'"></button>
         </div>
 
         <div class="col-4 text-right">
@@ -318,7 +301,7 @@
 
 
         <div class="search1 row my-6">
-   		  <form action="${ path }/admin/admin_notice_search" style="width: 100%;">
+   		  <form action="${ path }/board/notice_search" style="width: 100%;">
             <div class="col-7 row">
                 <div class="col-xs-3 col-sm-3">
 	                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
