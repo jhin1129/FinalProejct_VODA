@@ -139,14 +139,28 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
-                            <th class="table-active" style="width: 20%;">제목</th>
-                            <td style="width: 50%;">${ board.btitle }</td>
+                            <th class="table-active" style="width: 20%;">카테고리</th>
+                            <td style="width: 50%;">
+                            <c:choose> 
+                                <c:when test="${board.bcategory== 'M'}">회원/정보관리</c:when>
+                                <c:when test="${board.bcategory == 'O'}">주문/결제</c:when>
+                                <c:when test="${board.bcategory == 'D'}">배송</c:when>
+                                <c:when test="${board.bcategory == 'R'}">환불</c:when>
+                                <c:when test="${board.bcategory == 'C'}">컨텐츠 요청</c:when>
+                                <c:when test="${board.bcategory == 'E'}">기타</c:when>
+                            </c:choose></td>
                             <td style="width: 15%;"></td>
                             <td style="width: 15%;"></td>
                         </tr>
                     </thead>
 
                     <tbody>
+                        <tr>
+                            <th class="table-active" style="width: 20%;">제목</th>
+                            <td style="width: 50%;">${ board.btitle }</td>
+                            <td style="width: 15%;"></td>
+                            <td style="width: 15%;"></td>
+                        </tr>
                         <tr>
                             <th class="table-active">작성자</th>
                             <td style="width: 50%;">${ board.mid }</td>
@@ -212,7 +226,7 @@
             
             <!-- 댓글 -->
             <div class="px-3">
-                <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글 1</strong>
+                <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글</strong>
 
                 <div id="comment">
                     <hr>

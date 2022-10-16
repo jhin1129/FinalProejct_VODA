@@ -12,9 +12,11 @@
 		    B.B_DATE, 
 		    B.B_CONTENT, 
 		    B.B_ORIGINAL_FILENAME, 
+		    B.B_RENAMED_FILENAME, 
 		    B.B_VIEW, 
 		    B.B_STATUS, 
 		    B.B_ANSWER_STATUS, 
+		    B.BCATEGORY, 
 		    M.M_ID
 		FROM BOARD B
 		JOIN MEMBER M ON (B.M_NO = M.M_NO)
@@ -30,8 +32,10 @@
 		<result property="bcreatedate" column="B_DATE"/>
 		<result property="bcontent" column="B_CONTENT"/>
 		<result property="boriginalfilename" column="B_ORIGINAL_FILENAME"/>
+		<result property="brenamedfilename" column="B_RENAMED_FILENAME"/>
 		<result property="bview" column="B_VIEW"/>
 		<result property="banswerstatus" column="B_ANSWER_STATUS"/>
+		<result property="bcategory" column="BCATEGORY"/>
 		<result property="bstatus" column="B_STATUS"/>
 		<result property="mid" column="M_ID"/>
 	</resultMap>
@@ -105,6 +109,7 @@
 			B_VIEW,
 			B_STATUS,
 			B_ANSWER_STATUS, 
+			BCATEGORY,
 			B_DATE
 		)
 		VALUES (
@@ -118,6 +123,7 @@
 			#{bview},
 			#{bstatus},
 			#{banswerstatus},
+			#{bcategory},
 			SYSDATE
 		)
 	</insert>

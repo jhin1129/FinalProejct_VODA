@@ -139,6 +139,7 @@
 				<input type="hidden" name="bstatus" value="Y">
 				<input type="hidden" name="btype" value="FREE">
 				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
+				<input type="hidden" name="bcategory" value="FREE">
             <div>
                 <table class="table m-0">
                     <thead>
@@ -200,11 +201,12 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;" onclick="history.back()">취소</button>
+	                <input class="btn btn-logoc py-0" type="submit"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="등록">
+	                <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소" onclick="history.back()">
                 </div>
+                
             </div>
             </form>
         </div>
