@@ -150,10 +150,6 @@
 	</resultMap>
 	
 	
-	<!-- 조회수 전체 조회 (테스트용 컬럼수별) -->
-	<select id="selectViewCount" resultType="_int">
-		SELECT COUNT(*) FROM CVIEW
-	</select>
 	
 	<!-- 회원관리테이블 전체 조회 -->
 	<select id="selectMemberCount" resultType="_int">
@@ -237,35 +233,46 @@
 	<!-- 공지사항 전체 조회 정렬 -->
 	<select id="selectAllNotice" resultMap="NoticeResultMap">
 	<include refid="NoticeListSql"></include>
-		ORDER BY N.N_NO DESC
+		ORDER BY N_TOPTITLE DESC, N_NO DESC
 	</select>
 	
-	<!-- 공지사항 검색 조회 -->
-	<select id="selectSearchNotice" resultMap="NoticeResultMap">
-		SELECT
-		    N.N_NO, 
-		    N.N_TITLE, 
-		    N.N_WRITERNO, 
-		    N.N_ID, 
-		    N.N_CONTENT, 
-		    N.N_ORIGINAL_FILENAME, 
-		    N.N_RENAMED_FILENAME, 
-		    N.N_READCOUNT, 
-		    N.N_STATUS, 
-		    N.N_CREATE_DATE, 
-		    N.N_TOPTITLE
-		FROM NOTICE N
-		JOIN MEMBER M ON (N.N_WRITERNO = M.M_NO)
-		 <trim prefix="WHERE" prefixOverrides="AND|OR">	
-			<if test="title != null">
-				AND N.N_TITLE LIKE '%' || #{title} || '%'
-			</if>
-			<if test="content != null">
-				AND N.M_CONTENT LIKE '%' || #{content} || '%'
-			</if>
-		 	AND B.STATUS = 'Y'
-		</trim>
-		ORDER BY N.N_NO DESC
+	<!-- 공지사항 전체 조회 (검색 총 개수) -->
+	<select id="getNoticeSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM NOTICE
+		
+		<if test='searchType == "noticeTitle"'>
+		WHERE 
+			N_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeContent"'>
+		WHERE 
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeTC"'>
+		WHERE
+			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 공지사항 전체 조회 (리스트) -->
+	<select id="getNoticeSearchList" resultMap="NoticeResultMap" parameterType="String">
+		SELECT * FROM NOTICE
+		<if test='searchType == "noticeTitle"'>
+		WHERE 
+			N_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeContent"'>
+		WHERE
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "noticeTC"'>
+		WHERE
+			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR
+			N_CONTENT LIKE '%' || #{keyword} || '%'
+		</if>
 	</select>
 	
 	
@@ -274,6 +281,13 @@
 		<include refid="NoticeListSql"></include>
 		AND N.N_NO = #{no}
 	</select>	
+	
+	<!-- 공지사항 조회수 증가 -->
+	<update id="updateNoticeView"  parameterType="Notice">
+		UPDATE NOTICE 
+		SET N_READCOUNT = N_READCOUNT + 1 
+		WHERE N_NO = #{noticeno}
+	</update>
 	
 	<!-- 공지사항 등록 -->
 	<insert id="insertNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="noticeno" keyColumn="N_NO">
@@ -301,7 +315,12 @@
 			#{noticeReadCount},
 			#{noticeStatus},
 			DEFAULT,
+			<if test='noticeTopTitle == 1'>
 			#{noticeTopTitle}
+			</if>
+			<if test='noticeTopTitle == null'>
+			DEFAULT
+			</if>
 		)
 	</insert>
 
@@ -324,6 +343,7 @@
 		</trim>
 		WHERE N_NO = #{noticeno}
 	</update>
+	
 	
 	<!-- 공지사항 삭제 (STATUS = 'N')-->
 	<update id="updateNoticeStatus" parameterType="map">

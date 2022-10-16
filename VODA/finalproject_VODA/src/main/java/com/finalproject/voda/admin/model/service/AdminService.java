@@ -7,12 +7,11 @@ import javax.swing.text.AbstractDocument.Content;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
 public interface AdminService {
-
-	int getViewCount();
 
 	int getMemberCount();
 	List<Member> getMemberList(PageInfo pageInfo);
@@ -32,7 +31,7 @@ public interface AdminService {
 	int getQnaCount();
 	List<Board> getQnaList(PageInfo pageInfo);
 
-	Notice findNoticeByNo(int no);
+	Notice findNoticeByNo(int no, boolean hasRead);
 
 	int saveNotice(Notice notice);
 
@@ -40,7 +39,8 @@ public interface AdminService {
 
 	int deleteMember(Long id);
 
-	List<Notice> getNoticeList(String title, String content);
+	int getNoticeSearchCount(String searchType, String keyword);
+	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 
 
 

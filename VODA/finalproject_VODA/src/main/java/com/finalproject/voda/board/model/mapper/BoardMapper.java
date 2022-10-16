@@ -6,7 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
+import com.finalproject.voda.common.util.Search;
 
 @Mapper
 public interface BoardMapper {
@@ -21,4 +23,12 @@ public interface BoardMapper {
 	int updateBoard(Board board);
 
 	int insertBoard(Board board);
+
+	// 일반회원용 공지사항 페이지
+	int selectNoticeCount();
+	List<Notice> selectAllNotice(RowBounds rowBounds);
+	Notice selectNoticeByNo(int no);
+	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
+	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateNoticeView(Notice notice);
 }
