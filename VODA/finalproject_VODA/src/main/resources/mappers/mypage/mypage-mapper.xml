@@ -142,5 +142,11 @@
 			M_DETAILADDRESS = #{m_detailAddress}		
 		WHERE M_NO = #{m_no}
 	</update>
+	
+	<update id="deleteMember" parameterType="_int">
+		UPDATE MEMBER SET
+		M_STATUS = 'N'
+		WHERE M_NO = #{m_no}
+	</update>
 </mapper>
 

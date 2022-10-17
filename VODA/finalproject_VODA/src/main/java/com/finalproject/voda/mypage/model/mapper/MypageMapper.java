@@ -31,5 +31,7 @@ public interface MypageMapper {
 
 	int updateMember(Member member);
 
+	int deleteMember(int m_no);
+
 
 }

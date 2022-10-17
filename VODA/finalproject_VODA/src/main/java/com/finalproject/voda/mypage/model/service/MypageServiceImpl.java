@@ -127,9 +127,17 @@ public class MypageServiceImpl implements MypageService {
 	@Transactional
 	public int updateMember(Member member) {
 		int result = 0;
-		System.out.println("여기는?");
 		result = mapper.updateMember(member);
-		System.out.println("여기까지오나?");
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public int deleteMember(int m_no) {
+		int result = 0;
+		
+		result = mapper.deleteMember(m_no);
+		
 		return result;
 	}
 

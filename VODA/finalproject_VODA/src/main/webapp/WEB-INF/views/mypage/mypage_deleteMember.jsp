@@ -63,7 +63,7 @@
                     <!-- 세번째 행 -->
                     <div class="row">
                         <div class="col-sm-12">
-                            <form>
+                            <form action="${path}/mypage/deleteMember" method="post">
                                 <span class="tabletitle">2. 회원 탈퇴 하기</span>
                                 <!-- 테이블 -->
                                 <table class="mytable">
@@ -127,7 +127,7 @@
                                 </table>
                                 <!-- 테이블 끝 -->
                                 <p style="text-align: center; margin-top: 10px; margin-left: 70px;">
-                                    <button type="button" class="btn btn-logoC" value="탈퇴">탈퇴</button>
+                                    <button id="deleteMember" type="submit" class="btn btn-logoC">탈퇴</button>
                                 </p>
                             </form>
                         </div>

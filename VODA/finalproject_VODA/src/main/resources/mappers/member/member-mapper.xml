@@ -50,12 +50,12 @@
 	
 	<select id="selectMemberById" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
-		WHERE M_ID = #{m_id} AND M_STATUS = 'L'
+		WHERE M_ID = #{m_id} AND M_STATUS = 'Y'
 	</select>
 	
 	<select id="selectMemberByEmail" parameterType="string" resultMap="memberResultMap">
 		<include refid="selectMemberSql"/>
-		WHERE M_EMAIL = #{m_email} AND M_STATUS = 'L'
+		WHERE M_EMAIL = #{m_email} AND M_STATUS = 'Y'
 	</select>
 	
 	

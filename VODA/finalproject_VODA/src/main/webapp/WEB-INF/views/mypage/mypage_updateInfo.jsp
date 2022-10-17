@@ -59,13 +59,13 @@
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이름</th>
                                         <td class="infotable_td">
-                                            <input type="text" name="m_name" maxlength="30" required value="${ loginMember.m_name }"> 
+                                            <input type="text" id="m_name" name="m_name" maxlength="30" required value="${ loginMember.m_name }"> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이메일</th>
                                         <td class="infotable_td">
-                                            <input type="text" name="m_email" id="email" tabindex="-1" required value="${ loginMember.m_email }">
+                                            <input type="text" name="m_email" id="m_email" tabindex="-1" required value="${ loginMember.m_email }">
                                             <!-- 
                                             <select id="emailDomain" name="emailDomain" class="chosen_select">
                                                 <option value="self" selected="selected">직접입력</option>
@@ -85,7 +85,7 @@
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">휴대폰번호</th>
                                         <td class="infotable_td">
-                                            <input type="text" name="m_phone" maxlength="12" placeholder="- 없이 입력하세요." value="${ loginMember.m_phone }" required>
+                                            <input type="text" id="m_phone" name="m_phone" maxlength="12" placeholder="- 없이 입력하세요." value="${ loginMember.m_phone }" required>
                                         </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
@@ -159,7 +159,7 @@
                     </div>
                     <!-- 행 시작 -->
                     <div class="text-center">
-                        <button type="submit" class="btn btn-logoC">수정하기</button>
+                        <button id="btn_updateMember" type="submit" class="btn btn-logoC">수정하기</button>
                     </div>
                 </form>
                     
@@ -203,4 +203,39 @@
             }
         }).open();
     }
+</script>
+
+<!-- 회원 가입 클릭 시 값 체크 (유효성 검사) -->
+<script>
+$(document).ready(function(){
+	$("#btn_updateMember").click(function(){
+		// 이름 정규식
+		var nameJ = /^[가-힣]{2,6}$/;
+		// 이메일 검사 정규식
+		var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		// 휴대폰 번호 정규식
+		var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+		
+	    // 이름
+
+		if (nameJ.test($("#m_name").val())) {
+		} else {
+			alert("이름을 다시 입력해주세요");
+			return false;
+		}
+
+		if(phoneJ.test($("#m_phone").val())){
+		} else {
+			alert("휴대폰 번호를 다시 입력해주세요");
+			return false;
+		}
+		
+		if($("#sample6_detailAddress").val() == ""){
+			alert("주소를 다시 입력해주세요");
+			return false;
+		}
+		
+	});
+});
+
 </script>
