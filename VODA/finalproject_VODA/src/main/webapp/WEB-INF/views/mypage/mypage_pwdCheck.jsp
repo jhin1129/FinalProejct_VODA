@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="row" style="text-align: center;">
-                        <form style="width: 100%;">
+                        <form action="${ path }/mypage/pwdCheck" method="POST" style="width: 100%;">
                             <label>비밀번호&nbsp:&nbsp</label>
                             <input type="password" style="border: 1px solid lightgrey; border-radius: 0%; height: 34px;" name= "userpwd" id="userpwd">
                             <button type="submit" class="btn btn-logoC" style="height: 34px; margin-top: -3px;">확인</button>

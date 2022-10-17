@@ -130,5 +130,17 @@
 		AND M.M_NO = ${mNo} AND B.B_TYPE='QNA' ORDER BY B.B_NO DESC
 	</select>
 	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER SET 
+			M_NAME = #{m_name},
+			M_EMAIL = #{m_email},
+			M_PHONE = #{m_phone},
+			M_ADDRESS = #{m_address},
+		    M_GENDER = #{m_gender},
+		    M_BIRTH = #{m_birth},
+		    M_POSTNUM = #{m_postNum},
+			M_DETAILADDRESS = #{m_detailAddress}		
+		WHERE M_NO = #{m_no}
+	</update>
 </mapper>
 

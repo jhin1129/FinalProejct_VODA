@@ -5,17 +5,23 @@ import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
+import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.mypage.model.mapper.MypageMapper;
 
 @Service
 public class MypageServiceImpl implements MypageService {
 	@Autowired
 	private MypageMapper mapper;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
 	public List<Contents> getLikesList(int mNo) {
@@ -107,6 +113,24 @@ public class MypageServiceImpl implements MypageService {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return mapper.selectQnaBoardList(rowBounds, mNo);
+	}
+
+	@Override
+	public void pwdCheck(String m_password, String string) {
+		// TODO Auto-generated method stub
+		System.out.println(m_password);
+		System.out.println(string);
+		System.out.println(passwordEncoder.encode(string));
+	}
+
+	@Override
+	@Transactional
+	public int updateMember(Member member) {
+		int result = 0;
+		System.out.println("여기는?");
+		result = mapper.updateMember(member);
+		System.out.println("여기까지오나?");
+		return result;
 	}
 
 

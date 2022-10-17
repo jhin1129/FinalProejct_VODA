@@ -22,7 +22,7 @@ public class Member {
 
 	private String m_email;
 
-	private int m_phone;
+	private String m_phone;
 
 	private String m_address;
 	

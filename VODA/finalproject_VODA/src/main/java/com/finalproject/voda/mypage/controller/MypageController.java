@@ -3,8 +3,11 @@ package com.finalproject.voda.mypage.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -21,6 +24,9 @@ import com.finalproject.voda.mypage.model.service.MypageService;
 public class MypageController {
 	@Autowired
 	private MypageService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@GetMapping("/main")
 	public ModelAndView main(ModelAndView model,
@@ -62,6 +68,65 @@ public class MypageController {
 	public ModelAndView memberInfo(ModelAndView model) {
 		
 		model.setViewName("mypage/mypage_viewInfo");
+		
+		return model;
+	}
+	
+	@GetMapping("/updateMember")
+	public ModelAndView updateMember(ModelAndView model) {
+		
+		model.setViewName("mypage/mypage_pwdCheck");
+		
+		return model;
+	}
+	
+	@PostMapping("/pwdCheck")
+	public ModelAndView pwdCheck(ModelAndView model,
+								@SessionAttribute("loginMember") Member loginMember,
+								@RequestParam(value = "userpwd") String pwd) {
+		
+		
+		if(passwordEncoder.matches(pwd, loginMember.getM_password())) {
+			model.setViewName("mypage/mypage_updateInfo");
+		} else {
+			model.addObject("msg", "비밀번호가 일치하지 않습니다.");
+			model.addObject("location", "/mypage/updateMember");
+			model.setViewName("common/msg");	
+		}
+		
+		return model;
+	}
+	
+	@PostMapping("/updateMember")
+	public ModelAndView updateMember(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@ModelAttribute Member member) {
+		int result = 0;
+		
+		member.setM_no(loginMember.getM_no());
+		
+		System.out.println(member);
+		
+		result = service.updateMember(member);
+		
+		if(result > 0) {
+			loginMember.setM_name(member.getM_name());
+			loginMember.setM_email(member.getM_email());
+			loginMember.setM_phone(member.getM_phone());
+			loginMember.setM_address(member.getM_address());
+			loginMember.setM_birth(member.getM_birth());
+			loginMember.setM_gender(member.getM_gender());
+			loginMember.setM_postNum(member.getM_postNum());
+			loginMember.setM_detailAddress(member.getM_detailAddress());
+			model.addObject("msg", "정보 수정이 완료되었습니다.");
+		} else {
+			model.addObject("msg", "정보 수정이 실패하였습니다.");
+		}
+		
+		
+		model.addObject("location", "/mypage/memberInfo");
+
+		model.setViewName("common/msg");	
 		
 		return model;
 	}

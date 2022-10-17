@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.contents.model.vo.Contents;
+import com.finalproject.voda.member.model.vo.Member;
 
 public interface MypageMapper {
 
@@ -27,6 +28,8 @@ public interface MypageMapper {
 	List<Board> selectQnaBoardList(RowBounds rowBounds, int mNo);
 
 	List<Contents> selectdibsContentsList(int m_no, String type);
+
+	int updateMember(Member member);
 
 
 }

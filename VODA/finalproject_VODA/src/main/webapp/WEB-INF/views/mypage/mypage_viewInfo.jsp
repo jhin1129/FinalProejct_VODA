@@ -63,7 +63,7 @@
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">주소</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_address }</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_address } ${loginMember.m_detailAddress}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -94,7 +94,7 @@
                     </div>
                     <!-- 행 시작 -->
                     <div class="text-center">
-                        <button class="btn btn-logoC">수정하기</button>
+                        <button onclick="location.href='${path}/mypage/updateMember'" class="btn btn-logoC">수정하기</button>
                     </div>
 
                     <!-- 행 끝 -->
