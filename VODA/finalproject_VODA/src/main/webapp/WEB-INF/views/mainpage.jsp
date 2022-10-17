@@ -78,7 +78,7 @@
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/free_board_list'">FREE BOARD</a></li>
-	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/question_board_list'">QNA</a></li>
+	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/question_board_list'">Q&A</a></li>
 	                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
 	              </ul>
 	            </li>

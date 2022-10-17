@@ -131,7 +131,8 @@
             <h3 style="text-align: center;  color: #000000; font-size: 17px;">문의게시판</h3>
         </div>
         <!-- 후기글 전체 -->
-        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">			
+        <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">		
+        	
         	<form action="${ path }/board/question_board_crud" method="POST" enctype="multipart/form-data">
 				<input type="hidden" name="no" value="${ board.bno }">
 				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
@@ -139,9 +140,27 @@
 				<input type="hidden" name="bstatus" value="Y">
 				<input type="hidden" name="btype" value="QNA">
 				<input type="hidden" name="bcreatedate" value="${ board.bcreatedate }">
-            <div>
+           <div>
                 <table class="table m-0">
                     <thead>
+                        <tr>
+                            <th class="table-active" style="width: 20%;">카테고리</th>
+                            <td class="p-0" style="width: 80%;">
+                                <select name="bcategory" 
+                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                    <option value="M" >회원/정보관리</option>
+                                    <option value="O" >주문/결제</option>
+                                    <option value="D" >배송</option>
+                                    <option value="R" >환불</option>
+                                    <option value="C" >컨텐츠 요청</option>
+                                    <option value="E" >기타</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </thead>
+                    
+                    
+                    <tbody>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
 
@@ -149,9 +168,7 @@
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
                         </tr>
-                    </thead>
 
-                    <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
                             <td style="margin-left: 10px; text-align: left;"><input type="hidden" name="mid" value="${ loginMember.m_id }">${ loginMember.m_id }</td>
@@ -200,10 +217,10 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;" onclick="history.back()">취소</button>
+	                <input class="btn btn-logoc py-0" type="submit"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="등록">
+	                <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+	                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소" onclick="history.back()">
                 </div>
             </div>
             </form>

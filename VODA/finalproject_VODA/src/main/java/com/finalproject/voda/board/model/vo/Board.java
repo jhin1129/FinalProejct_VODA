@@ -37,6 +37,8 @@ public class Board {
 	
 	private String bstatus;
 	
+	private String bcategory;
+	
 	private String banswerstatus;
 	
 	
