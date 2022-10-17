@@ -126,6 +126,8 @@
 
 
                     </div>
+                    
+                    <!-- 
                     <div class="row my-3">
                         <div class="col-4"></div>
                         <div class="col-4">
@@ -177,6 +179,7 @@
 
                         </div>
                     </div>
+                     -->
                     <!-- 컨테이너 끝 -->
                 </div>
                 <!-- 오른쪽 그리드 끝 -->

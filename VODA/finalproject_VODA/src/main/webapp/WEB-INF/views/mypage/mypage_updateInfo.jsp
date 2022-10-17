@@ -35,7 +35,7 @@
                             </form>
                         </div>
                     </div>
-                    <form action="">
+                    <form action="${ path }/mypage/updateMember" method="POST">
 
                         <div class="mt-3">
                             <p class="mySideMenuTitle">기본 정보</p>
@@ -48,7 +48,7 @@
                                 <tbody>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">아이디</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">아이디</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_id }</td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">비밀번호</th>
@@ -59,13 +59,14 @@
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이름</th>
                                         <td class="infotable_td">
-                                            <input type="text" maxlength="30" required>
+                                            <input type="text" name="m_name" maxlength="30" required value="${ loginMember.m_name }"> 
                                         </td>
                                     </tr>
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이메일</th>
                                         <td class="infotable_td">
-                                            <input type="text" name="email" id="email" value="" tabindex="-1" required>
+                                            <input type="text" name="m_email" id="email" tabindex="-1" required value="${ loginMember.m_email }">
+                                            <!-- 
                                             <select id="emailDomain" name="emailDomain" class="chosen_select">
                                                 <option value="self" selected="selected">직접입력</option>
                                                 <option value="naver.com">naver.com</option>
@@ -76,6 +77,7 @@
                                                 <option value="gmail.com">gmail.com</option>
                                                 <option value="icloud.com">icloud.com</option>
                                             </select>
+                                             -->
                                             <label for="" id="email_chk"></label>
                                             <button type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px; margin-top: -3px; margin-left: -4px;">인증하기</button>
                                         </td>
@@ -83,23 +85,22 @@
                                     <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">휴대폰번호</th>
                                         <td class="infotable_td">
-                                            <input type="text" maxlength="12" placeholder="- 없이 입력하세요." data-pattern="gdNum" value="" required>
+                                            <input type="text" name="m_phone" maxlength="12" placeholder="- 없이 입력하세요." value="${ loginMember.m_phone }" required>
                                         </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="padding-top: 52px;">주소</th>
                                         <td class="infotable_td">
                                             <div class="address_postcode">
-                                                <input type="text" name="zonecode" readonly="readonly" value="" required style="font-size: 0.85em; height: 27.66px; margin-bottom: 10px;" >
-                                                <button type="button" id="btnPostcode" class="btn_post_search btn btn-logoC" style="font-size: 0.7em; width: 90px; height: 27.67px; margin-top: 0px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">우편번호 검색</button>
-                                                <input type="hidden" name="zipcode" value="">
+                                                <input type="text" id="sample6_postcode" name="m_postNum" readonly="readonly" type="number" value="${ loginMember.m_postNum }" required style="font-size: 0.85em; height: 27.66px; margin-bottom: 10px; background-color: #e9ecef;" >
+                                                <button type="button" id="btnPostcode" onclick="sample6_execDaumPostcode()" class="btn_post_search btn btn-logoC" style="font-size: 0.7em; width: 90px; height: 27.67px; margin-top: 0px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">주소 검색</button>
                                             </div>
                                             <div class="address_input">
-                                                <div class="member_warning">
-                                                    <input type="text" id="address" name="address" readonly="readonly" value="" required style="font-size: 0.85em; width: 294px; height: 27.66px; margin-bottom: 10px;">             
+                                                <div>
+                                                    <input type="text" id="sample6_address" name="m_address" readonly="readonly" value="${ loginMember.m_address }" required style="font-size: 0.85em; width: 294px; height: 27.66px; margin-bottom: 10px; background-color: #e9ecef;">             
                                                 </div>
-                                                <div class="member_warning js_address_sub">
-                                                    <input type="text" id="addressSub" name="addressSub" value="" style="width: 294px; height: 27.66px; font-size: 0.85em;">
+                                                <div>
+                                                    <input type="text" id="sample6_detailAddress" name="m_detailAddress" value="${ loginMember.m_detailAddress }" style="width: 294px; height: 27.66px; font-size: 0.85em;">
                                                     <label for="" id="address_chk"></label>
                                                 </div>
                                             </div>
@@ -122,41 +123,43 @@
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">성별</th>
                                         <td class="infotable_td" style="padding-top: 17px; padding-bottom: 7px;">
-                                            <input type="radio" name="sexuality" id="man" value="man">
+                                        	<c:if test="${ loginMember.m_gender == 'M' }">
+                                            	<input type="radio" name="m_gender" id="man" value="M" checked>
+                                        	</c:if>
+                             	            <c:if test="${ loginMember.m_gender != 'M' }">
+                                            	<input type="radio" name="m_gender" id="man" value="M">
+                                        	</c:if>
                                             <label for="men" style="margin-top: -10px;">남자</label>
-                                            <input type="radio" name="sexuality" id="woman" value="woman">
+                                            <c:if test="${ loginMember.m_gender == 'W' }">
+	                                            <input type="radio" name="m_gender" id="woman" value="W" checked>
+                                            </c:if>
+                                            <c:if test="${ loginMember.m_gender != 'W' }">
+	                                            <input type="radio" name="m_gender" id="woman" value="W">
+                                            </c:if>
                                             <label for="men" style="margin-top: -10px;">여자</label>
-                                            <input type="radio" name="sexuality" id="none" value="none">
+                                            <c:if test="${ loginMember.m_gender == 'N' }">
+                                            	<input type="radio" name="m_gender" id="none" value="N" checked>
+                                            </c:if>
+                                            <c:if test="${ loginMember.m_gender != 'N' }">
+                                            	<input type="radio" name="m_gender" id="none" value="N" >
+                                            </c:if>
                                             <label for="men" style="margin-top: -10px;">선택 안함</label>
                                         </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="padding-top: 16px;">생년월일</th>
-                                        <td class="infotable_td">
-                                            <div style="flex: 1 1 0%">
-                                                <div class="birth1" style="width: 200px; height: 28px;">
-                                                        <input data-testid="input-box" name="birthYear" maxlength='4'
-                                                        placeholder="YYYY" type="text" id="css-birth1" style="height:25px;">
-                                                    <span class="birth3">
-                                                    </span>
-                                                        <input data-testid="input-box" name="birthMonth" maxlength='2'
-                                                        placeholder="MM" type="text" id="css-birth2" style="height:25px;">
-                                                    <span class="birth3">
-                                                    </span>
-                                                        <input data-testid="input-box" name="birthMonth" maxlength='2'
-                                                        placeholder="DD" type="text" id="css-birth2" style="height:25px;">
-                                                </div>    
-                                            </div>
+                                        <td class="infotable_td" style="padding-top: 14px;">
+                                             <input data-testid="input-box" name="m_birth" maxlength='8'
+                                             placeholder="예: 20001225" type="text" id="m_birth" style="height:25px;" value="<fmt:formatDate value="${ loginMember.m_birth }" type="date" pattern="yyyyMMdd"></fmt:formatDate>">
                                         </td>
                                     </tr>
-                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <!-- 행 시작 -->
                     <div class="text-center">
-                        <button class="btn btn-logoC">수정하기</button>
+                        <button type="submit" class="btn btn-logoC">수정하기</button>
                     </div>
                 </form>
                     
@@ -171,3 +174,33 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<!-- 주소 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>

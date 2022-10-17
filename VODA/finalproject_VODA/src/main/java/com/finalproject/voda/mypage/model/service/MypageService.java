@@ -5,6 +5,7 @@ import java.util.List;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
+import com.finalproject.voda.member.model.vo.Member;
 
 public interface MypageService {
 
@@ -23,6 +24,10 @@ public interface MypageService {
 	int getQnaBoardCount(int m_no);
 	
 	List<Board> getqnaBoardList(PageInfo pageInfo, int mNo);
+
+	void pwdCheck(String m_password, String string);
+
+	int updateMember(Member member);
 
 
 }
