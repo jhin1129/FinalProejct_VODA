@@ -22,6 +22,8 @@ public interface BoardService {
 	int getBoardSearchCount(String searchType, String keyword);
 	List<Search> getBoardSearchList(PageInfo pageInfo, String searchType, String keyword);
 
+	int getQnaSearchCount(String searchType, String keyword);
+	List<Search> getQnaSearchList(PageInfo pageInfo, String searchType, String keyword);
 	
 	// 일반회원용 공지사항 페이지
 	int getNoticeCount();
@@ -29,6 +31,8 @@ public interface BoardService {
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 	Notice findNoticeByNo(int no, boolean hasRead);
+
+
 
 
 }

@@ -51,6 +51,24 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getBoardSearchList(rowBounds, searchType, keyword);
 	}
 	
+	// 문의게시판 검색 조회 (총개수)
+	@Override
+	public int getQnaSearchCount(String searchType, String keyword) {
+		
+		return mapper.getQnaSearchCount(searchType, keyword);
+	}
+
+	// 문의게시판 검색 조회 (리스트)
+	@Override
+	public List<Search> getQnaSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getQnaSearchList(rowBounds, searchType, keyword);
+	}
+	
+	
 	// 자유게시판 상세 조회
 	@Override
 	public Board findBoardByNo(int no, boolean hasRead) {
