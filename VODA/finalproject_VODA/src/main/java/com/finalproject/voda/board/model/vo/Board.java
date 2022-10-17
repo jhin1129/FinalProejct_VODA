@@ -29,6 +29,8 @@ public class Board {
 	
 	private String bcontent;
 	
+	private String boardtc;
+	
 	private String boriginalfilename;
 	
 	private String brenamedfilename;

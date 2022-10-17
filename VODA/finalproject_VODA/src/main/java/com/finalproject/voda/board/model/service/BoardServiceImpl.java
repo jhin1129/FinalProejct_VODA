@@ -34,15 +34,38 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.selectAllBoard(rowBounds, type);
 	}
 	
+	// 자유게시판 검색 조회 (총개수)
+	@Override
+	public int getBoardSearchCount(String searchType, String keyword) {
+		
+		return mapper.getBoardSearchCount(searchType, keyword);
+	}
+
+	// 자유게시판 검색 조회 (리스트)
+	@Override
+	public List<Search> getBoardSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getBoardSearchList(rowBounds, searchType, keyword);
+	}
+	
 	// 자유게시판 상세 조회
 	@Override
-	public Board findBoardByNo(int no) {
+	public Board findBoardByNo(int no, boolean hasRead) {
+		Board board = null;
+		
+		board = mapper.selectBoardByNo(no);
+		
+		if(board != null && !hasRead) {
+			mapper.updateBoardView(board);
+		}
 
 		return mapper.selectBoardByNo(no);
 	}
 
 	// 자유게시판 삭제
-	@Transactional
 	@Override
 	public int deleteFree(int no) {
 		int result = 0;

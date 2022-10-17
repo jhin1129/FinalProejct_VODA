@@ -68,10 +68,10 @@
 	                  RANKING
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                <li><a class="dropdown-item" href="#">MOVIE</a></li>
-	                <li><a class="dropdown-item" href="#">TV</a></li>
-	                <li><a class="dropdown-item" href="#">BOOK</a></li>
-	                <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking_movie'">MOVIE</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking_tv'">TV</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking_book'">BOOK</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking_webtoon'">WEBTOON</a></li>
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">

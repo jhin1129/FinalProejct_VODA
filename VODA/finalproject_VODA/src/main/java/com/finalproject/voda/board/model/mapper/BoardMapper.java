@@ -17,13 +17,20 @@ public interface BoardMapper {
 	List<Board> selectAllBoard(RowBounds rowBounds, String type);
 
 	Board selectBoardByNo(int no);
+	
+	int updateBoardView(Board board);
 
 	int updateBoardStatus(@Param("bno")int no, @Param("bstatus") String string);
 
 	int updateBoard(Board board);
 
 	int insertBoard(Board board);
+	
+	// 자유게시판검색
+	int getBoardSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
+	List<Search> getBoardSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 
+	
 	// 일반회원용 공지사항 페이지
 	int selectNoticeCount();
 	List<Notice> selectAllNotice(RowBounds rowBounds);
@@ -31,4 +38,5 @@ public interface BoardMapper {
 	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 	int updateNoticeView(Notice notice);
+
 }
