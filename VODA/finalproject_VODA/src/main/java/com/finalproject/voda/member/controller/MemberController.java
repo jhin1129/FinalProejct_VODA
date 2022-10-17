@@ -375,19 +375,4 @@ public class MemberController {
 		return "redirect:/";
 	}
     
-	 
-	
-//	@GetMapping("/people/peopleEnroll") 
-//	public String peopleEnroll() {
-//		
-//		return "people/peopleEnroll"; 
-//		
-//	}
-//	
-//	@GetMapping("/people/peopleOnclickButton") 
-//	public String peopleOnclickButton() {
-//		
-//		return "people/peopleOnclickButton"; 
-//		
-//	}
 }

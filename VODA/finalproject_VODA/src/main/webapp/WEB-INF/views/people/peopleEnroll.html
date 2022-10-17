@@ -19,118 +19,118 @@
 </head>
 <body>
 
-
-
 	<div class="wrapper" style="width: 800px" >
-	    <main class="kakao_content" style="width: 800px" >
-	        <article id="mainContent" class="kakao_article" style="padding-bottom: 0px;">
-	        <h2 class="screen_out">영화인 본문</h2>
-	            <div class="section_star">
-	                <div class="box_basic" data-tiara-layer="main" style="padding-left: 50px;">
-	                    <div class="info_poster">
-	                        <div class="thumb_img">
-	                            <img  class="bg_img" id="blah" src="#" alt="" />
-	                        </div>
-	                        <input type='file' id="imgInp" style="margin-top: 30px; width: 220px;"/>
-	                    </div>
-	                <div class="base_info_sec">
-	                    <table border="0" cellpadding="0" cellspacing="0" style="margin-left: 300px;">
-	                        <colgroup>
-	                            <col width="25%">
-	                            <col width="75%">
-	                        </colgroup>
-	                        <tbody>
-	                        <tr>
-	                            <th>
-	                                <span class="important">이름</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputName" class="sr-only">PeopleName</label>
-	                                        <input type="text" class="form-control" id="inputName" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th>
-	                                <span class="important">직업</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputJob" class="sr-only">PeopleJob</label>
-	                                        <input type="text" class="form-control" id="inputJob" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th>
-	                                <span class="important">데뷔</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputDebut" class="sr-only">PeopleDebut</label>
-	                                        <input type="text" class="form-control" id="inputDebut" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th>
-	                                <span class="important">출생일</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputBirth" class="sr-only">PeopleBirth</label>
-	                                        <input type="text" class="form-control" id="inputBirth" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th>
-	                                <span class="important">수상</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputAward" class="sr-only">PeopleAward</label>
-	                                        <input type="text" class="form-control" id="inputAward" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                            <th>
-	                                <span class="important">성별</span>
-	                            </th>
-	                            <td>
-	                                <form class="form-inline">
-	                                    <div class="form-group mx-sm-3 mb-2">
-	                                        <label for="inputGender" class="sr-only">PeopleGender</label>
-	                                        <input type="text" class="form-control" id="inputGender" placeholder="">
-	                                    </div>
-	                                </form>
-	                            </td>
-	                        </tr>
-	                        </tbody>
-	                    </table>
-	                </div> 
-	                    <div class="footer" style="width: 400px; margin-top: 50px;">
-	                        <div class="text-right mt-2" >
-	                            <button type="button" class="btn-logoc" style="width: 100px; height: 36px;">등록</button>
-	                            <button type="button" class="btn-greyc" style="width: 100px; height: 36px;">취소</button>
-	                        </div> 
-	                    </div> 
-	                </div>
-	            </div>    
-	        </article>      
-	    </main>
+		<form action="${ path }/people/peopleEnroll" method="POST" enctype="multipart/form-data">
+		    <main class="kakao_content" style="width: 800px" >
+		        <article id="mainContent" class="kakao_article" style="padding-bottom: 0px;">
+		        <h2 class="screen_out">영화인 본문</h2>
+		            <div class="section_star">
+		                <div class="box_basic" data-tiara-layer="main" style="padding-left: 50px;">
+		                    <div class="info_poster">
+		                        <div class="thumb_img">
+		                            <img  class="bg_img" id="blah" src="#" alt="" />
+		                        </div>
+		                        <input type='file' id="imgInp" style="margin-top: 30px; width: 220px;"/>
+		                    </div>
+		                <div class="base_info_sec">
+		                    <table border="0" cellpadding="0" cellspacing="0" style="margin-left: 300px;">
+		                        <colgroup>
+		                            <col width="25%">
+		                            <col width="75%">
+		                        </colgroup>
+		                        <tbody>
+		                        <tr>
+		                            <th>
+		                                <span class="important">이름</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputName" class="sr-only">PeopleName</label>
+		                                        <input type="text" class="form-control" id="inputName" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <span class="important">직업</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputJob" class="sr-only">PeopleJob</label>
+		                                        <input type="text" class="form-control" id="inputJob" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <span class="important">데뷔</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputDebut" class="sr-only">PeopleDebut</label>
+		                                        <input type="text" class="form-control" id="inputDebut" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <span class="important">출생일</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputBirth" class="sr-only">PeopleBirth</label>
+		                                        <input type="text" class="form-control" id="inputBirth" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <span class="important">수상</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputAward" class="sr-only">PeopleAward</label>
+		                                        <input type="text" class="form-control" id="inputAward" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        <tr>
+		                            <th>
+		                                <span class="important">성별</span>
+		                            </th>
+		                            <td>
+		                                <div class="form-inline">
+		                                    <div class="form-group mx-sm-3 mb-2">
+		                                        <label for="inputGender" class="sr-only">PeopleGender</label>
+		                                        <input type="text" class="form-control" id="inputGender" placeholder="">
+		                                    </div>
+		                                </div>
+		                            </td>
+		                        </tr>
+		                        </tbody>
+		                    </table>
+		                </div> 
+		                    <div class="footer" style="width: 400px; margin-top: 50px;">
+		                        <div class="text-right mt-2" >
+		                            <button type="button" class="btn-logoc" style="width: 100px; height: 36px;">등록</button>
+		                            <button type="button" class="btn-greyc" style="width: 100px; height: 36px;">취소</button>
+		                        </div> 
+		                    </div> 
+		                </div>
+		            </div>    
+		        </article>      
+		    </main>
+		</form>    
 	</div>   
 
 
