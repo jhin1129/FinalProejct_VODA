@@ -3,6 +3,7 @@ package com.finalproject.voda.people.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.common.util.MultipartFileUtil;
+import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.people.model.service.PeopleService;
 import com.finalproject.voda.people.model.vo.People;
@@ -31,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/people")
+//@RequestMapping("/people")
 
 public class PeopleController {
 	@Autowired
@@ -40,8 +42,25 @@ public class PeopleController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
+	@GetMapping("/admin/admin_people")
+	public ModelAndView list(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page) {
+		
+		List<People> list = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 10);
+		list = service.getPeopleList(pageInfo);
+				
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_people");
+		
+		return model;
+	}
 	
-	@GetMapping("people")
+	
+	@GetMapping("/people/people")
 	public ModelAndView people(ModelAndView model, @RequestParam int people_no) {
 		People people = null;
 		
@@ -54,14 +73,14 @@ public class PeopleController {
 	}
 	
 	
-	@GetMapping("/peopleEnroll") 
+	@GetMapping("/people/peopleEnroll") 
 	public String peopleEnroll() {
 		
 		return "people/peopleEnroll"; 
 		
 	}
 	
-	@PostMapping("/peopleEnroll")
+	@PostMapping("/people/peopleEnroll")
 	public ModelAndView peopleEnroll(
 			ModelAndView model,
 			@ModelAttribute People people,
@@ -151,7 +170,7 @@ public class PeopleController {
 	}
 	
 	
-	@GetMapping("/peopleOnclickButton") 
+	@GetMapping("/people/peopleOnclickButton") 
 	public String peopleOnclickButton() {
 		
 		return "people/peopleOnclickButton"; 

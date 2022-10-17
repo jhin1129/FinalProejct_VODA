@@ -145,11 +145,11 @@ public class AdminController {
 	
 
 //	인물관리 페이지
-	@GetMapping("/admin_people")
-	public String adminPeople() {
-		
-		return "/admin/admin_people";
-	}
+//	@GetMapping("/admin_people")
+//	public String adminPeople() {
+//		
+//		return "/admin/admin_people";
+//	}
 	
 //	상품 주문 관리 페이지
 	@GetMapping("/admin_goods_order")
