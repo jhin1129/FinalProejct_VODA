@@ -1,7 +1,5 @@
 package com.finalproject.voda.admin.model.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +7,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Visit {
+public class ContentsType {
 
-	private int visitNo;
-
-	private Date visitDate;
+	private int movie;
 	
-	private int visitCount;
+	private int tv;
+	
+	private int webtoon;
+	
+	private int book;
+	
 }

@@ -7,13 +7,6 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
@@ -92,7 +85,7 @@
 
                         </tr>
                     </thead>
-
+					
                     <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
@@ -146,10 +139,10 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-logoc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;">등록</button>
-                    <button class="btn btn-greyc py-0"
-                        style="width: 80px; height: 29.05px; font-size: 14.45px;" onclick="history.back()">취소</button>
+                    <input class="btn btn-logoc py-0" type="submit"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="등록">
+                    <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+                        style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소" onclick="history.back()">
                 </div>
             </div>
             </form>

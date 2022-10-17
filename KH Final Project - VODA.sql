@@ -633,256 +633,6 @@ ALTER TABLE PAY ADD CONSTRAINT PK_PAY PRIMARY KEY (
 	PAY_NO
 );
 
-------------------------------------------------
---------------- VISIT 관련 테이블 ---------------
-------------------------------------------------
-CREATE TABLE VISIT (
-	V_NO	NUMBER		NOT NULL,
-	V_DATE	DATE		NOT NULL,
-	V_COUNT	NUMBER		NULL
-);
-
-COMMENT ON COLUMN VISIT.V_NO IS '방문 번호';
-COMMENT ON COLUMN VISIT.V_DATE IS '일별날짜';
-COMMENT ON COLUMN VISIT.V_COUNT IS '당일총방문횟수';
-
--- VISIT 시퀀스
-CREATE SEQUENCE SEQ_VISIT_NO;
-
--- VISIT PK
-ALTER TABLE VISIT ADD CONSTRAINT PK_VISIT PRIMARY KEY (
-	V_NO
-);
-
-------------------------------------------------
---------------- SALES 관련 테이블 ---------------
-------------------------------------------------
-CREATE TABLE SALES (
-	S_NO	NUMBER		NOT NULL,
-	S_DATE	DATE		NOT NULL,
-	S_COUNT	NUMBER		NULL
-);
-
-COMMENT ON COLUMN SALES.S_NO IS '매출액 번호';
-COMMENT ON COLUMN SALES.S_DATE IS '일별날짜';
-COMMENT ON COLUMN SALES.S_COUNT IS '당일총매출';
-
--- SALES 시퀀스
-CREATE SEQUENCE SEQ_SALES_NO;
-
--- SALES PK
-ALTER TABLE SALES ADD CONSTRAINT PK_SALES PRIMARY KEY (
-	S_NO
-);
-
-------------------------------------------------
----------- JOINMEMBER 관련 테이블 ---------------
-------------------------------------------------
-CREATE TABLE JOINMEMBER (
-	J_NO	NUMBER		NOT NULL,
-	J_DATE	DATE		NOT NULL,
-	J_COUNT	NUMBER		NULL
-);
-
-COMMENT ON COLUMN JOINMEMBER.J_NO IS '회원가입수 번호';
-COMMENT ON COLUMN JOINMEMBER.J_DATE IS '일별날짜';
-COMMENT ON COLUMN JOINMEMBER.J_COUNT IS '당일 회원가입자수';
-
--- JOINMEMBER 시퀀스
-CREATE SEQUENCE SEQ_JOINMEMBER_NO;
-
--- JOINMEMBER PK
-ALTER TABLE JOINMEMBER ADD CONSTRAINT PK_JOINMEMBER PRIMARY KEY (
-	J_NO
-);
-
-------------------------------------------------
---------------- CVIEW 관련 테이블 ---------------
-------------------------------------------------
-CREATE TABLE CVIEW (
-	CV_NO	NUMBER		NOT NULL,
-	CV_DATE	DATE		NOT NULL,
-	CV_COUNT	NUMBER		NULL
-);
-
-COMMENT ON COLUMN CVIEW.CV_NO IS '조회수 번호';
-COMMENT ON COLUMN CVIEW.CV_DATE IS '일별날짜';
-COMMENT ON COLUMN CVIEW.CV_COUNT IS '당일 총조회수';
-
--- CVIEW 시퀀스
-CREATE SEQUENCE SEQ_CVIEW_NO;
-
--- CVIEW PK
-ALTER TABLE CVIEW ADD CONSTRAINT PK_CVIEW PRIMARY KEY (
-	CV_NO
-);
-------------------------------------------------
------------ CONTENTSTYPE 관련 테이블 ------------
-------------------------------------------------
-CREATE TABLE CONTENTSTYPE (
-	MOVIE	VARCHAR2(500)		NULL,
-	TV	VARCHAR2(500)		NULL,
-	WEBTOON	VARCHAR2(500)		NULL,
-	BOOK	VARCHAR2(500)		NULL
-);
-------------------------------------------------
-------------- 오라클 스케쥴러 관련 ---------------
-------------------------------------------------
-
--- 조회수 삽입 프로시저
-CREATE OR REPLACE PROCEDURE INSERT_CVIEW AS 
-BEGIN
-INSERT INTO CVIEW VALUES(
-    SEQ_CVIEW_NO.NEXTVAL,
-    SYSDATE, 
-    0
-    );
-END INSERT_CVIEW;
-
--- 방문자수 삽입 프로시저
-CREATE OR REPLACE PROCEDURE INSERT_VISIT AS 
-BEGIN
-INSERT INTO VISIT VALUES(
-    SEQ_VISIT_NO.NEXTVAL,
-    SYSDATE, 
-    0
-    );
-END INSERT_VISIT;
-
--- 조회수 데이터 등록 프로시저 (수정해야함)
-CREATE OR REPLACE PROCEDURE UPDATE_CVIEW AS 
-BEGIN
-UPDATE CVIEW SET CV_COUNT = CV_COUNT + 1 
-WHERE CV_DATE = SYSDATE;
-END UPDATE_CVIEW;
-
--- 방문자수 데이터 등록 프로시저 (수정해야함)
-CREATE OR REPLACE PROCEDURE UPDATE_VISIT AS 
-BEGIN
-UPDATE CVIEW SET CV_COUNT = CV_COUNT + 1 
-WHERE CV_DATE = SYSDATE;
-END UPDATE_VISIT;
-
--- 조회수 데이터 생성 스케쥴러
-BEGIN
-DBMS_SCHEDULER.CREATE_JOB (
-            JOB_NAME => 'JOB_INSERT_CVIEW',
-            JOB_TYPE => 'STORED_PROCEDURE',
-            JOB_ACTION => 'INSERT_CVIEW',
-            NUMBER_OF_ARGUMENTS => 0,
-            START_DATE => TO_DATE('2022/10/14 12:00:00','YYYY/MM/DD HH24:MI:SS'),
-            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
-            END_DATE => NULL,
-            ENABLED => FALSE,
-            AUTO_DROP => FALSE,
-            COMMENTS => '조회수 테이블 삽입');
-END;
-
--- 컨텐츠 타입별 데이터 업데이트 프로시저
-CREATE OR REPLACE PROCEDURE UPDATE_CONTENTSTYPE AS 
-BEGIN
-UPDATE CONTENTSTYPE SET 
-MOVIE = (
-SELECT COUNT(*)
-FROM CONTENTS
-WHERE C_TYPE = '영화'),
-TV = (
-SELECT COUNT(*)
-FROM CONTENTS
-WHERE C_TYPE = 'TV'),
-BOOK = (
-SELECT COUNT(*)
-FROM CONTENTS
-WHERE C_TYPE = '도서'),
-WEBTOON = (
-SELECT COUNT(*)
-FROM CONTENTS
-WHERE C_TYPE = '웹툰');
-END UPDATE_CONTENTSTYPE;
-
--- 방문자수 데이터 생성 스케쥴러
-BEGIN
-DBMS_SCHEDULER.CREATE_JOB (
-            JOB_NAME => 'JOB_INSERT_VISIT',
-            JOB_TYPE => 'STORED_PROCEDURE',
-            JOB_ACTION => 'INSERT_VISIT',
-            NUMBER_OF_ARGUMENTS => 0,
-            START_DATE => TO_DATE('2022/10/14 12:00:00','YYYY/MM/DD HH24:MI:SS'),
-            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
-            END_DATE => NULL,
-            ENABLED => FALSE,
-            AUTO_DROP => FALSE,
-            COMMENTS => '방문자수 테이블 삽입');
-END;
-
--- 조회수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
-BEGIN
-DBMS_SCHEDULER.CREATE_JOB (
-            JOB_NAME => 'JOB_UPDATE_CVIEW',
-            JOB_TYPE => 'STORED_PROCEDURE',
-            JOB_ACTION => 'UPDATE_CVIEW',
-            NUMBER_OF_ARGUMENTS => 0,
-            START_DATE => TO_DATE('2022/10/14 00:00:00','YYYY/MM/DD HH24:MI:SS'),
-            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
-            END_DATE => NULL,
-            ENABLED => FALSE,
-            AUTO_DROP => FALSE,
-            COMMENTS => '조회수 테이블 데이터 증가');
-END;
-
--- 방문자수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
-BEGIN
-DBMS_SCHEDULER.CREATE_JOB (
-            JOB_NAME => 'JOB_UPDATE_VISIT',
-            JOB_TYPE => 'STORED_PROCEDURE',
-            JOB_ACTION => 'UPDATE_VISIT',
-            NUMBER_OF_ARGUMENTS => 0,
-            START_DATE => TO_DATE('2022/10/14 00:00:00','YYYY/MM/DD HH24:MI:SS'),
-            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
-            END_DATE => NULL,
-            ENABLED => FALSE,
-            AUTO_DROP => FALSE,
-            COMMENTS => '방문자수 테이블 데이터 증가');
-END;
-
--- 컨텐츠 타입별 데이터 생성 스케쥴러
-BEGIN
-DBMS_SCHEDULER.CREATE_JOB (
-            JOB_NAME => 'JOB_UPDATE_CONTENTSTYPE',
-            JOB_TYPE => 'STORED_PROCEDURE',
-            JOB_ACTION => 'UPDATE_CONTENTSTYPE',
-            NUMBER_OF_ARGUMENTS => 0,
-            START_DATE => SYSTIMESTAMP,
-            REPEAT_INTERVAL => 'FREQ=MINUTELY ;INTERVAL=10',
-            END_DATE => NULL,
-            ENABLED => FALSE,
-            AUTO_DROP => FALSE,
-            COMMENTS => '컨텐츠 타입별 테이블 삽입 (10분에 한번씩 수행)');
-END;
-
--- 스케쥴러 활성화
-BEGIN
-  DBMS_SCHEDULER.ENABLE(NAME=>'JOB_UPDATE_VISIT');
-END;
-
--- 스케쥴러 비활성화
-BEGIN
-  DBMS_SCHEDULER.DISABLE(NAME=>'JOB_UPDATE_VISIT');
-END;
-
--- 스케쥴러 로그 조회
-SELECT * FROM USER_SCHEDULER_JOBS;
-SELECT * FROM USER_SCHEDULER_JOB_LOG;
-SELECT * FROM USER_SCHEDULER_JOB_RUN_DETAILS;
-
-
--- 스케쥴러 삭제
---BEGIN
---    DBMS_SCHEDULER.DROP_JOB(JOB_NAME => 'JOB_INSERT_CVIEW',
---                                DEFER => FALSE,
---                                FORCE => FALSE);
---END;
-
 
 ------------------------------------------------
 ---------- CONTENTSPEOPLE 관련 테이블 -----------
@@ -1471,6 +1221,330 @@ INSERT INTO MEMBER VALUES (1, 'admin', '1234', '관리자', 'admin@voda.com', '0
 
 
 ------------------------------------------------
+--------------- SALES 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE SALES (
+	S_NO	NUMBER		NOT NULL,
+	S_DATE	DATE		NOT NULL,
+	S_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN SALES.S_NO IS '매출액 번호';
+COMMENT ON COLUMN SALES.S_DATE IS '일별날짜';
+COMMENT ON COLUMN SALES.S_COUNT IS '당일총매출';
+
+-- SALES 시퀀스
+CREATE SEQUENCE SEQ_SALES_NO NOCACHE;
+
+-- SALES PK
+ALTER TABLE SALES ADD CONSTRAINT PK_SALES PRIMARY KEY (
+	S_NO
+);
+
+------------------------------------------------
+---------- JOINMEMBER 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE JOINMEMBER (
+	J_NO	NUMBER		NOT NULL,
+	J_DATE	DATE		NOT NULL,
+	J_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN JOINMEMBER.J_NO IS '회원가입수 번호';
+COMMENT ON COLUMN JOINMEMBER.J_DATE IS '일별날짜';
+COMMENT ON COLUMN JOINMEMBER.J_COUNT IS '당일 회원가입자수';
+
+-- JOINMEMBER 시퀀스
+CREATE SEQUENCE SEQ_JOINMEMBER_NO NOCACHE;
+
+-- JOINMEMBER PK
+ALTER TABLE JOINMEMBER ADD CONSTRAINT PK_JOINMEMBER PRIMARY KEY (
+	J_NO
+);
+
+------------------------------------------------
+--------------- CVIEW 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE CVIEW (
+	CV_NO	NUMBER		NOT NULL,
+	CV_DATE	DATE		NOT NULL,
+	CV_COUNT	NUMBER		NULL
+);
+
+COMMENT ON COLUMN CVIEW.CV_NO IS '조회수 번호';
+COMMENT ON COLUMN CVIEW.CV_DATE IS '상세날짜';
+COMMENT ON COLUMN CVIEW.CV_COUNT IS '당일 총조회수';
+
+-- CVIEW 시퀀스
+CREATE SEQUENCE SEQ_CVIEW_NO NOCACHE;
+
+-- CVIEW PK
+ALTER TABLE CVIEW ADD CONSTRAINT PK_CVIEW PRIMARY KEY (
+	CV_NO
+);
+
+------------------------------------------------
+----------- CONTENTSTYPE 관련 테이블 ------------
+------------------------------------------------
+CREATE TABLE CONTENTSTYPE (
+	MOVIE	VARCHAR2(500)		NULL,
+	TV	VARCHAR2(500)		NULL,
+	WEBTOON	VARCHAR2(500)		NULL,
+	BOOK	VARCHAR2(500)		NULL
+);
+
+------------------------------------------------
+------------- 대시보드 관련 쿼리문 ---------------
+------------------------------------------------
+-- 대시보드 월별 합계
+SELECT SUM(COUNT컬럼) FROM 테이블
+WHERE EXTRACT(YEAR FROM DATE컬럼) = EXTRACT(YEAR FROM SYSDATE) AND EXTRACT(MONTH FROM DATE컬럼) = EXTRACT(MONTH FROM CRRENT);
+------------------------------------------------
+------------------------------------------------
+------------- 오라클 스케쥴러 관련 ---------------
+------------------------------------------------
+------------------------------------------------
+
+-- 조회수 삽입 프로시저
+CREATE OR REPLACE PROCEDURE INSERT_CVIEW AS 
+BEGIN
+INSERT INTO CVIEW VALUES(
+    SEQ_CVIEW_NO.NEXTVAL,
+    CURRENT_DATE, 
+    0
+    );
+END INSERT_CVIEW;
+
+-- 가입자수 삽입 프로시저
+CREATE OR REPLACE PROCEDURE INSERT_JOINMEMBER AS 
+BEGIN
+INSERT INTO JOINMEMBER VALUES(
+    SEQ_JOINMEMBER_NO.NEXTVAL,
+    CURRENT_DATE, 
+    0
+    );
+END INSERT_JOINMEMBER;
+
+-- 매출액 삽입 프로시저
+CREATE OR REPLACE PROCEDURE INSERT_SALES AS 
+BEGIN
+INSERT INTO SALES VALUES(
+    SEQ_SALES_NO.NEXTVAL,
+    CURRENT_DATE, 
+    0
+    );
+END INSERT_SALES;
+
+-- 조회수 데이터 등록 프로시저 (수정해야함)
+CREATE OR REPLACE PROCEDURE UPDATE_CVIEW AS 
+BEGIN
+UPDATE CVIEW SET CV_COUNT = CV_COUNT + 1 
+WHERE CV_DATE = SYSDATE;
+END UPDATE_CVIEW;
+
+-- 가입자수 데이터 등록 프로시저 
+CREATE OR REPLACE PROCEDURE UPDATE_JOINMEMBER AS 
+BEGIN
+UPDATE JOINMEMBER SET J_COUNT = 
+(
+SELECT COUNT(M_JOINDATE) FROM MEMBER
+WHERE EXTRACT(YEAR FROM M_JOINDATE) = EXTRACT(YEAR FROM CURRENT_DATE) AND EXTRACT(MONTH FROM M_JOINDATE) = EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(DAY FROM M_JOINDATE) = EXTRACT(DAY FROM CURRENT_DATE)
+)
+WHERE EXTRACT(YEAR FROM J_DATE) = EXTRACT(YEAR FROM CURRENT_DATE) AND EXTRACT(MONTH FROM J_DATE) = EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(DAY FROM J_DATE) = EXTRACT(DAY FROM CURRENT_DATE);
+END UPDATE_JOINMEMBER;
+
+UPDATE JOINMEMBER SET 
+CV_COUNT = CV_COUNT + 1 
+WHERE CV_DATE = SYSDATE;
+
+UPDATE CONTENTSTYPE SET 
+MOVIE = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '영화')
+
+-- 조회수 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_INSERT_CVIEW',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'INSERT_CVIEW',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/18 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => TRUE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '조회수 테이블 삽입');
+END;
+
+-- 가입자수 데이터 생성 스케쥴러 ( 매일 00시00분00초에 INSERT )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_INSERT_JOINMEMBER',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'INSERT_JOINMEMBER',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/18 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => TRUE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '가입자수 테이블 삽입');
+END;
+
+-- 매출액 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_INSERT_SALES',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'INSERT_SALES',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/18 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=DAILY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => TRUE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '매출액 테이블 삽입');
+END;
+
+
+-- 컨텐츠 타입별 데이터 업데이트 프로시저
+CREATE OR REPLACE PROCEDURE UPDATE_CONTENTSTYPE AS 
+BEGIN
+UPDATE CONTENTSTYPE SET 
+MOVIE = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '영화'),
+TV = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = 'TV'),
+BOOK = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '도서'),
+WEBTOON = (
+SELECT COUNT(*)
+FROM CONTENTS
+WHERE C_TYPE = '웹툰');
+END UPDATE_CONTENTSTYPE;
+
+-- 조회수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_CVIEW',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_CVIEW',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/14 00:00:00','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '조회수 테이블 데이터 증가');
+END;
+
+-- 가입자수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_JOINMEMBER',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_JOINMEMBER',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/18 00:00:10','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => TRUE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '가입자수 테이블 데이터 증가(1시간에 1번)');
+END;
+
+-- 가입자수 데이터값 추가 스케쥴러 ( 1시간에 한번씩 UPDATE )
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_JOINMEMBER',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_JOINMEMBER',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => TO_DATE('2022/10/18 00:00:10','YYYY/MM/DD HH24:MI:SS'),
+            REPEAT_INTERVAL => 'FREQ=HOURLY;INTERVAL=1',
+            END_DATE => NULL,
+            ENABLED => TRUE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '가입자수 테이블 데이터 증가(1시간에 1번)');
+END;
+
+-- 컨텐츠 타입별 데이터 생성 스케쥴러
+BEGIN
+DBMS_SCHEDULER.CREATE_JOB (
+            JOB_NAME => 'JOB_UPDATE_CONTENTSTYPE',
+            JOB_TYPE => 'STORED_PROCEDURE',
+            JOB_ACTION => 'UPDATE_CONTENTSTYPE',
+            NUMBER_OF_ARGUMENTS => 0,
+            START_DATE => SYSTIMESTAMP,
+            REPEAT_INTERVAL => 'FREQ=MINUTELY ;INTERVAL=10',
+            END_DATE => NULL,
+            ENABLED => FALSE,
+            AUTO_DROP => FALSE,
+            COMMENTS => '컨텐츠 타입별 테이블 삽입 (10분에 한번씩 수행)');
+END;
+
+---- 스케쥴러 활성화
+--BEGIN
+--  DBMS_SCHEDULER.ENABLE(NAME=>'JOB_INSERT_CVIEW');
+--END;
+--
+---- 스케쥴러 비활성화
+--BEGIN
+--  DBMS_SCHEDULER.DISABLE(NAME=>'JOB_UPDATE_VISIT');
+--END;
+
+--스케줄러 interval 변경
+--
+--EXECUTE DBMS_SCHEDULER.SET_ATTRIBUTE('JOB_NAME 입력', 'REPEAT_INTERVAL',  'FREQ=MINUTELY;INTERVAL=1' );
+
+
+-- 스케쥴러 로그 조회
+SELECT * FROM USER_SCHEDULER_JOBS;
+SELECT * FROM USER_SCHEDULER_JOB_LOG;
+SELECT * FROM USER_SCHEDULER_JOB_RUN_DETAILS;
+
+-- 스케쥴러 삭제
+BEGIN
+    DBMS_SCHEDULER.DROP_JOB(JOB_NAME => 'JOB_UPDATE_CONTENTSTYPE',
+                                DEFER => FALSE,
+                                FORCE => FALSE);
+END;
+
+-- 프로시저 삭제
+DROP PROCEDURE INSERT_S_TEST;
+
+
+---- 타임존 설정관련 (+9:00) KST
+---- 연결동안 세션 시간대 변경
+--ALTER SESSION SET TIME_ZONE = 'Asia/Seoul'
+---- 시간대 확인
+--SELECT DBTIMEZONE, SESSIONTIMEZONE FROM DUAL;
+--SELECT SYSTIMESTAMP, SYSDATE FROM DUAL;
+--SELECT SESSIONTIMEZONE FROM DUAL;
+--SELECT DBTIMEZONE FROM DUAL;
+--SELECT LOCALTIMESTAMP FROM DUAL;
+--SELECT CURRENT_TIMESTAMP FROM DUAL;
+--SELECT CURRENT_DATE, CURRENT_TIMESTAMP, LOCALTIMESTAMP FROM DUAL;
+--SELECT DBTIMEZONE FROM DUAL;
+--SELECT SESSIONTIMEZONE FROM DUAL;
+--ALTER SESSION SET TIME_ZONE = 'Asia/Seoul';
+---- 시간대 변경 (+9:00)
+--ALTER DATABASE SET TIME_ZONE = '+09:00';
+---- DB 종료 및 재시작
+--SHUTDOWN IMMEDIATE;
+--STARTUP;
+---- 시퀀스 값 수정
+--select * from user_sequences where sequence_name ='SEQ_SALES_NO';
+--select SEQ_SALES_NO.nextval from dual;
+------------------------------------------------
 --------------------- DROP --------------------
 ------------------------------------------------
 
@@ -1479,7 +1553,6 @@ INSERT INTO MEMBER VALUES (1, 'admin', '1234', '관리자', 'admin@voda.com', '0
 -- DROP TABLE COMMENTS;
 -- DROP TABLE CONTENTS;
 -- DROP TABLE CONTENTSPEOPLE;
--- DROP TABLE CVIEW;
 -- DROP TABLE LIKES;
 -- DROP TABLE MEMBER;
 -- DROP TABLE NOTICE;
@@ -1489,7 +1562,10 @@ INSERT INTO MEMBER VALUES (1, 'admin', '1234', '관리자', 'admin@voda.com', '0
 -- DROP TABLE PRODUCT;
 -- DROP TABLE RATE;
 -- DROP TABLE REVIEW;
--- DROP TABLE VISIT;
+-- DROP TABLE CVIEW;
+-- DROP TABLE JOINMEMBER;
+-- DROP TABLE SALES;
+-- DROP TABLE CONTENTSTYPE;
 
 -- DROP SEQUENCE CONTENTS_SEQ;
 -- DROP SEQUENCE MEMBER_SEQ;
@@ -1498,11 +1574,12 @@ INSERT INTO MEMBER VALUES (1, 'admin', '1234', '관리자', 'admin@voda.com', '0
 -- DROP SEQUENCE SEQ_CARTNO;
 -- DROP SEQUENCE SEQ_COMMENTS_NO;
 -- DROP SEQUENCE SEQ_CONTENTSPEOPLE_NO;
--- DROP SEQUENCE SEQ_CVIEW_NO;
 -- DROP SEQUENCE SEQ_NOTICE_NO;
 -- DROP SEQUENCE SEQ_PAYNO;
 -- DROP SEQUENCE SEQ_PEOPLE_NO;
 -- DROP SEQUENCE SEQ_PNO_NO;
 -- DROP SEQUENCE SEQ_REVNO;
 -- DROP SEQUENCE SEQ_UNO;
--- DROP SEQUENCE SEQ_VISIT_NO;
+-- DROP SEQUENCE SEQ_CVIEW_NO;
+-- DROP SEQUENCE SEQ_JOINMEMBER_NO;
+-- DROP SEQUENCE SEQ_SALES_NO;

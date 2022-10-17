@@ -7,25 +7,6 @@
 
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	
-    <!-- Admin CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-    
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/mypage/join.css"> 
-
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <!--BootStrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
 
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
@@ -41,7 +22,8 @@
             <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
             <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
           </svg>  상품 주문 관리
-        </font></font><hr>
+        </h1>
+        <hr>
           <!-- 카드 리스트 Row -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">

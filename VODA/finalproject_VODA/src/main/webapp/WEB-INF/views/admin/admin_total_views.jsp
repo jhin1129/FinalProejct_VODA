@@ -79,16 +79,16 @@
                                       </tr>
                                   </tfoot>
                                   <tbody>
+                                    <c:forEach var="Totalview" items="${ list }">
                                       <tr>
-                                          <td>1</td>
-                                          <td>2022/09/20</td>
-                                          <td>20</td>
+                                          <td id="td">${Totalview}</td>
+                                          <td id="td"></td>
+                                          <td id="td"></td>
+<%--                                           <td id="td">${Totalview.cViewNo}</td>
+                                          <td id="td">${Totalview.cViewDate}</td>
+                                          <td id="td">${Totalview.cViewCount}</td> --%>
                                       </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td>2022/09/21</td>
-                                        <td>30</td>
-                                      </tr>
+                                      </c:forEach>
                                   </tbody>
                               </table>
                           </div>

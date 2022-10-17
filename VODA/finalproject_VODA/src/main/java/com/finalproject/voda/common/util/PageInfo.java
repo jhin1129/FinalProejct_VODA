@@ -11,7 +11,7 @@ public class PageInfo {
 	private int listCount;
 	
 	private int listLimit;	
-
+	
 	public PageInfo(int currentPage, int pageLimit, int listCount, int listLimit) {
 		this.currentPage = currentPage;
 		this.pageLimit = pageLimit;

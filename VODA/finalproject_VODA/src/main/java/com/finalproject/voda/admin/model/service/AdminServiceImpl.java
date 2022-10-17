@@ -12,7 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.admin.model.mapper.AdminMapper;
+import com.finalproject.voda.admin.model.vo.ContentsType;
+import com.finalproject.voda.admin.model.vo.Cview;
+import com.finalproject.voda.admin.model.vo.JoinMember;
 import com.finalproject.voda.admin.model.vo.Notice;
+import com.finalproject.voda.admin.model.vo.Sales;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
@@ -24,9 +28,30 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminMapper mapper;
 	
+	// 대시보드 데이터 호출 (ContentsType, JoinMember, Cview, Sales)
+	@Override
+	public ContentsType getDashboardContentstypeData() {		
+		return mapper.selectDashboardContentstypeData();
+	}
+	@Override
+	public JoinMember getDashboardJoinmemberData() {		
+		return mapper.selectDashboardJoinmemberData();
+	}
+	@Override
+	public Cview getDashboardCviewData() {	
+		return mapper.selectDashboardCviewData();
+	}
+	@Override
+	public Sales getDashboardSalesData() {
+		return mapper.selectDashboardSalesData();
+	}
+
+	
+	
 	// 회원관리 전체개수 카운트
 	@Override
 	public int getMemberCount() {
+	
 		return mapper.selectMemberCount();
 	}
 
@@ -188,6 +213,28 @@ public class AdminServiceImpl implements AdminService {
 		
 		return result;
 	}
+	
+	// 통계페이지 (조회수)
+	@Override
+	public int getTotalviewCount() {
+		return mapper.selectTotalviewCount();
+	}
+	@Override
+	public List<Member> getTotalviewList(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return mapper.selectTotalviewList(rowBounds);	
+	}
+
+
+
+
+
+
+
+
 
 
 
