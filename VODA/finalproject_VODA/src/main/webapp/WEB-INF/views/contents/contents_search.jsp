@@ -53,15 +53,19 @@
 		    </c:if>
 		</ol>     
 		
-		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
-		<c:if test="${ searchResult.c_type eq '영화' }">
+		<c:set var="loop_flag" value="false" />
+		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:if test="${not loop_flag }">
+		<c:if test="${ not empty searchResult.c_type && searchResult.c_type eq '영화'  }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn01">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 						    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
 							</svg>
 						</button>
-	        </div>   
+	        </div>  
+	        <c:set var="loop_flag" value="true" /> 
+		</c:if>
 		</c:if>
 		</c:forEach>  
                 
@@ -102,17 +106,21 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
-		<c:if test="${ searchResult.c_type eq 'TV' }">
+		<c:set var="loop_flag" value="false" />
+		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:if test="${not loop_flag }">
+		<c:if test="${ searchResult.c_type eq 'TV'  }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn02">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 						    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
 							</svg>
 						</button>
-	        </div>   
+	        </div>  
+	        <c:set var="loop_flag" value="true" /> 
 		</c:if>
-		</c:forEach>  
+		</c:if>
+		</c:forEach> 
 		
 		<table class="mt-4">
             <tr>
@@ -151,17 +159,21 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
-		<c:if test="${ searchResult.c_type eq '책'}">
+		<c:set var="loop_flag" value="false" />
+		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:if test="${not loop_flag }">
+		<c:if test="${ searchResult.c_type eq '책'  }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn03">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 						    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
 							</svg>
 						</button>
-	        </div>   
+	        </div>  
+	        <c:set var="loop_flag" value="true" /> 
 		</c:if>
-		</c:forEach>
+		</c:if>
+		</c:forEach> 
 		
 		<table class="mt-4">
             <tr>
@@ -200,17 +212,21 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
-		<c:if test="${ searchResult.c_type eq '웹툰' }">
+		<c:set var="loop_flag" value="false" />
+		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:if test="${not loop_flag }">
+		<c:if test="${ searchResult.c_type eq '웹툰'  }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn04">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
 						    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
 							</svg>
 						</button>
-	        </div>   
+	        </div>  
+	        <c:set var="loop_flag" value="true" /> 
 		</c:if>
-		</c:forEach>  
+		</c:if>
+		</c:forEach> 
                 
         <table class="mt-4">
             <tr>
