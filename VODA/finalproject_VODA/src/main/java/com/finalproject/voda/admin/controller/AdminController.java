@@ -31,14 +31,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.admin.model.service.AdminService;
+import com.finalproject.voda.admin.model.vo.ContentsType;
 import com.finalproject.voda.admin.model.vo.Cview;
+import com.finalproject.voda.admin.model.vo.JoinMember;
 import com.finalproject.voda.admin.model.vo.Notice;
-import com.finalproject.voda.admin.model.vo.Visit;
+import com.finalproject.voda.admin.model.vo.Sales;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.MultipartFileUtil;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
-import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -57,18 +58,29 @@ public class AdminController {
 	
 //	기본 대시보드 연결
 	@GetMapping("/admin_dashboard")
-	public ModelAndView view(ModelAndView model) {
-		Contents contents = null;
-		Cview cview = null;
-		Visit visit = null;
+	public ModelAndView viewDashboard(ModelAndView model,
+			@ModelAttribute ContentsType contentstype,
+			@ModelAttribute JoinMember joinmember,
+			@ModelAttribute Cview cview,
+			@ModelAttribute Sales sales
+			) {
+		
 //		Order order = null;
-//		JoinMember joinmember = null;
+		
+		contentstype = service.getDashboardContentstypeData();
+		joinmember = service.getDashboardJoinmemberData();
+		cview = service.getDashboardCviewData();
+		sales = service.getDashboardSalesData();
+		
+		System.out.println("대시보드 contentstype " + contentstype);
+		System.out.println("대시보드 joinmember " + joinmember);
+		System.out.println("대시보드 cview " + cview);
+		System.out.println("대시보드 sales " + sales);
 
-		model.addObject("contents", contents);
+		model.addObject("contentstype", contentstype);
+		model.addObject("joinmember", joinmember);
 		model.addObject("cview", cview);
-		model.addObject("visit", visit);
-//		model.addObject("order", order);
-//		model.addObject("joinmember", joinmember);
+		model.addObject("sales", sales);
 		model.setViewName("/admin/admin_dashboard");
 		
 		return model;
@@ -207,6 +219,8 @@ public class AdminController {
 		pageInfo = new PageInfo(page, 10, service.getNoticeCount(), 10);
 		list = service.getNoticeList(pageInfo);
 		
+		System.out.println(list);
+		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
 		model.setViewName("/admin/admin_notice_list");
@@ -226,7 +240,9 @@ public class AdminController {
 		
 		pageInfo = new PageInfo(page, 10, service.getNoticeSearchCount(searchType, keyword), 10);
 		search = service.getNoticeSearchList(pageInfo, searchType, keyword);
-		
+				
+		System.out.println(search);
+
 		model.addObject("search", search);
 		model.addObject("searchType", searchType);
 		model.addObject("keyword", keyword);
@@ -331,6 +347,8 @@ public class AdminController {
 		notice.setNoticeWriterNo(loginMember.getM_no());
 		result = service.saveNotice(notice);
 		
+		System.out.println(result);
+		System.out.println(notice);
 		if(result > 0) {
 			model.addObject("msg", "게시글 등록 성공");
 			model.addObject("location", "/admin/admin_notice_detail?no=" + notice.getNoticeno());	
@@ -445,8 +463,6 @@ public class AdminController {
 				
 			}
 			result = service.saveNotice(notice);
-			System.out.println("업데이트"+notice);
-			System.out.println("업데이트"+notice.getNoticeno());
 			
 			if(result > 0) { 
 				model.addObject("msg","게시글이 정상적으로 수정되었습니다.");
@@ -498,9 +514,20 @@ public class AdminController {
 	
 //	통계 리스트 (조회수)
 	@GetMapping("/admin_total_views") 
-	public String totalView() {
+	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Member> list = null;
+		PageInfo pageInfo = null;
 		
-		return "/admin/admin_total_views"; 
+		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 10);
+		list = service.getTotalviewList(pageInfo);
+		
+		System.out.println(list);
+		
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);	
+		model.setViewName("/admin/admin_total_views");
+		
+		return model;
 	}
 
 //	통계 리스트 (판매량순)

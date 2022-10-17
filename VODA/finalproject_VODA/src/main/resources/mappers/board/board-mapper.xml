@@ -164,7 +164,7 @@
 	<!-- 공지사항 전체 조회 정렬 -->
 	<select id="selectAllNotice" resultMap="NoticeResultMap">
 	<include refid="NoticeListSql"></include>
-		ORDER BY N.N_NO DESC
+		ORDER BY N_TOPTITLE DESC, N_NO DESC
 	</select>
 	
 	<!-- 공지사항 전체 조회 (검색 총 개수) -->

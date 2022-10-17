@@ -7,11 +7,6 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
     
@@ -297,7 +292,7 @@
                 <div class="col-xs-3 col-sm-3">
 	                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
 	                        <option value="noticeTitle" selected>제목</option>
-	                        <option value="noticeContent">내용</option>
+	                        <option value="noticeContent" >내용</option>
 	                        <option value="noticeTC">제목+내용</option> 
 	                    </select>
 	            </div>
@@ -315,10 +310,6 @@
             </div>
 	      </form>  
        </div>
-        
-
-        
-        
     </div>
    </div>
   </div>

@@ -75,16 +75,29 @@
 		WHERE N.N_STATUS = 'Y'
 	</sql>	 
 	
+	<resultMap type="ContentsType" id="ContentstypeResultMap">
+		<result property="movie" column="MOVIE"/>
+		<result property="tv" column="TV"/>
+		<result property="webtoon" column="WEBTOON"/>
+		<result property="book" column="BOOK"/>
+	</resultMap>
+	
 	<resultMap type="Cview" id="CviewResultMap">
 		<id property="cViewNo" column="CV_NO"/>
 		<result property="cViewDate" column="CV_DATE"/>
 		<result property="cViewCount" column="CV_COUNT"/>
 	</resultMap>
 
-	<resultMap type="Visit" id="VisitResultMap">
-		<id property="visitNo" column="V_NO"/>
-		<result property="visitDate" column="V_DATE"/>
-		<result property="visitCount" column="V_COUNT"/>
+	<resultMap type="JoinMember" id="JoinMemberResultMap">
+		<id property="joinNo" column="J_NO"/>
+		<result property="joinDate" column="J_DATE"/>
+		<result property="joinCount" column="J_COUNT"/>
+	</resultMap>
+
+	<resultMap type="Sales" id="SalesResultMap">
+		<id property="salesNo" column="S_NO"/>
+		<result property="salesDate" column="S_DATE"/>
+		<result property="salesCount" column="S_COUNT"/>
 	</resultMap>
 	
 	<resultMap type="Member" id="MemberResultMap">
@@ -151,6 +164,44 @@
 	
 	
 	
+	<!-- 대시보드 컨텐츠타입 전체 조회 -->
+	<select id="selectDashboardContentstypeData" resultMap="ContentstypeResultMap" parameterType="_int">
+		SELECT MOVIE,
+			   TV,
+			   WEBTOON,
+			   BOOK 
+		FROM CONTENTSTYPE
+	</select>
+
+	<!-- 대시보드 가입자수 전체 조회 -->
+	<select id="selectDashboardJoinmemberData" resultMap="JoinMemberResultMap" parameterType="_int">
+		SELECT J_NO,
+			   J_DATE,
+			   J_COUNT
+		FROM JOINMEMBER
+		WHERE TO_CHAR(J_DATE, 'YYYYMMDD') = TO_CHAR(CURRENT_DATE,'YYYYMMDD')
+	</select>
+
+	<!-- 대시보드 컨텐츠조회수 전체 조회 -->
+	<select id="selectDashboardCviewData" resultMap="CviewResultMap" parameterType="_int">
+		SELECT CV_NO,
+			   CV_DATE,
+			   CV_COUNT
+		FROM CVIEW
+		WHERE TO_CHAR(CV_DATE, 'YYYYMMDD') = TO_CHAR(CURRENT_DATE,'YYYYMMDD')
+	</select>
+	
+	<!-- 대시보드 매출액 전체 조회 -->
+	<select id="selectDashboardSalesData" resultMap="SalesResultMap" parameterType="_int">
+		SELECT S_NO,
+			   S_DATE,
+			   S_COUNT
+		FROM SALES
+		WHERE TO_CHAR(S_DATE, 'YYYYMMDD') = TO_CHAR(CURRENT_DATE,'YYYYMMDD')
+	</select>
+
+	
+
 	<!-- 회원관리테이블 전체 조회 -->
 	<select id="selectMemberCount" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER
@@ -349,4 +400,18 @@
 	<update id="updateNoticeStatus" parameterType="map">
 		UPDATE NOTICE SET N_STATUS = #{noticeStatus} WHERE N_NO = #{noticeno}
 	</update>
+	
+	<!-- 통계페이지 조회수 전체 조회 개수 -->
+	<select id="selectTotalviewCount" resultType="_int">
+		SELECT COUNT(*) FROM CVIEW
+	</select>
+	
+	<!-- 통계페이지 조회수 전체 조회 리스트 -->
+	<select id="selectTotalviewList" resultMap="CviewResultMap">
+		SELECT CV_NO,
+			   CV_DATE,
+			   CV_COUNT
+		FROM CVIEW
+		ORDER BY CV_NO DESC
+	</select>
 </mapper>

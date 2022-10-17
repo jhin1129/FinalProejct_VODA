@@ -7,16 +7,9 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-    
+
     <!-- Board CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
     
@@ -38,10 +31,8 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 
-
     <title>회원관리</title>
 
-</head>
 <body>
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
@@ -57,8 +48,7 @@
             </h1>
           <hr>       
           <!-- 카드 리스트 Row -->
-
-            <form th:action th:object="${form}" method="get">
+             <div class="row"> 
               <table class="table table-hover">
                 <thead class="thead-light">
                   <tr>
@@ -67,7 +57,7 @@
                     <th scope="col">가입일</th>
                     <th scope="col" style="width: 10%">회원상태</th>
                     <th scope="col"style="width: 20%">
-                      <label class="checkbox-inline">
+                      <label class="checkbox-inline" style="line-height: 0px;">
                         <input type="checkbox" id="allCheckBox" onclick="allChecked()">
                       </label>
                     </th>
@@ -98,6 +88,8 @@
 				                        </span>
 				                    </div>
             				    </div>
+            				   </div>
+            				  </div>
                       </th>
                       <th colspan="1">
                         <button type="button" class="btn btn-logoC btn-sm" onclick="location.href='javascript:boardDelete();'">비활성화</button>
@@ -110,7 +102,7 @@
                  <c:forEach var="member" items="${ list }">
                   <tr>             
                     <th scope="row">${ member.m_no }</th>
-                    <td>${ member.m_id }"</td>
+                    <td>${ member.m_id }</td>
                     <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
                     <td>
                     	<c:choose> 
@@ -119,15 +111,15 @@
                     	</c:choose>
                     </td>
                     <td>
-                    	  <label class="checkbox-inline" for="defaultCheck1">
-                      	  	 <input class="chk" type="checkbox" value="" id="defaultCheck1" name="chk" onclick="chkClicked()" th:value="${ list.m_no }">
+                    	  <label class="checkbox-inline" for="defaultCheck1" >
+                      	  	 <input class="chk" type="checkbox" value="" id="defaultCheck1" name="chk" onclick="chkClicked()">
                       	  </label>
                     </td>
                   </tr>
                   </c:forEach> 
                 </tbody>
               </table>
-             </form>
+
                                     
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
@@ -164,7 +156,7 @@
                 
             </div>
         </div>
-
+     </div>
 <hr>
 <script>
 
@@ -239,7 +231,7 @@
             return false;
         }
 
-        else{
+/*         else{
             if (confirm("정말로 삭제하시겠습니까?")) {
 
                 //배열생성
@@ -262,7 +254,7 @@
                 document.body.appendChild(form);
                 form.submit();
             }
-        }
+        } */
     }
 
 </script>
