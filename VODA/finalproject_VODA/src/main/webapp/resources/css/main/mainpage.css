@@ -1,5 +1,5 @@
 /* 영상 자식요소 정보 */
-.info { position: absolute; top: 45%; width: 100%; }
+.info { position: absolute; top: 42%; width: 100%; }
 
 .title{ margin-top: -24px; font-size: 24px; color: #ffffff; }
 
@@ -106,6 +106,25 @@ video[poster] {
 .mainrank:hover {
     transform: translate(0,-15px);
     box-shadow: 0 32px 54px 0 rgba(73, 95, 233, 0.5);
+}
+
+#carouselExampleControlsNoTouching {
+	position: absolute;
+    top: 65%;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+}
+
+.slide-button {
+	display: inline-block;
+    overflow: hidden;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    vertical-align: top;
+    background-size: 500px auto;
+    width: 45px;
 }
 
 /* 최신 컨텐츠 */
