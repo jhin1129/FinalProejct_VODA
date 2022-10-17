@@ -34,28 +34,91 @@
 
         <div class="row" style="margin-bottom: 10px;">
         	<c:forEach var="rate" items="${ rates }">
-            <div class="li" style="margin:5px;">
-                <div class="commentbox">
-                    <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
-                    <div class="nickname">${ rate.m_id  }</div>
-                    <div class="commentstar">★ ${ rate.rate_star }</div>
-                    <hr style="margin-top: 42px;">
-                    <div class="commentinner">${ rate.rate_comment }</div>
-                    <a href="#" class="like-button">
-                        <?xml version="1.0" encoding="utf-8"?>
-                        <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
-                    </a>
-                    <div class="likecount">${ rate.rate_like }</div>
-                    <a class="date"><fmt:formatDate type="date" value="${ rate.rate_date }" pattern="yyyy.MM.dd"/></a>
-                    <a class="delete"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-</svg></a>
-                    <a class="update"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-</svg></a>
-                </div>
-            </div>
+        	<c:choose>
+        		<c:when test="${ rateNo == rate.rate_no && loginMember.m_id == rate.m_id }">
+		        	<form action="${ path }/contents/comment_update" method="POST" id="updateSubmit">
+			        	<div class="li" style="margin:5px;">
+			                <div class="commentbox">
+		                	<input type="hidden" name="rate_no" value="${ rate.rate_no}">
+							<input type="hidden" name="c_no" value="${ rate.c_no }">
+							<input type="hidden" name="m_no" value="${ rate.m_no }">
+							<input type="hidden" name="m_id" value="${ rate.m_id }">
+							<input type="hidden" name="rate_like" value="${ rate.rate_like }">
+			                    <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+			                    <div class="nickname">${ rate.m_id  }</div>
+			                    <div class="commentstar" style="width:68px; left:187px; top:12px;">
+									<div class="input-group mb-3">
+									  <select class="custom-select" name="rate_star">
+									    <option selected>${ rate.rate_star }</option>
+									    <option value="0.5">0.5</option>
+									    <option value="1">1</option>
+									    <option value="1.5">1.5</option>
+									    <option value="2">2</option>
+									    <option value="2.5">2.5</option>
+									    <option value="3">3</option>
+									    <option value="3.5">3.5</option>
+									    <option value="4">4</option>
+									    <option value="4.5">4.5</option>
+									    <option value="5">5</option>
+									  </select>
+									</div>
+								</div>
+			                    <hr style="margin-top: 42px; margin-bottom: 1px;">
+			                    <div class="commentinner" style="top:72px;">
+				                    <div class="mb-3">
+										<textarea name="rate_comment" style="border:none; width:100%; height:178px; padding:10px;">${ rate.rate_comment }</textarea>
+									</div>
+								</div>
+			                    <a href="#" class="like-button">
+			                        <?xml version="1.0" encoding="utf-8"?>
+			                        <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+			                    </a>
+			                    <div class="likecount">${ rate.rate_like }</div>
+			                    <!-- <span class="date"><fmt:formatDate type="date" value="${ rate.rate_date }" pattern="yyyy.MM.dd"/></span> -->
+			                    <c:if test="${ not empty loginMember && loginMember.m_id == rate.m_id }">
+			                    <a class="deletee" onclick="location.href='${ path }/contents/comment_delete?no=${ no }&sort=${ sort }&rateNo=${ rate.rate_no }'" >
+			                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+								  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+								</svg></a>
+			                    
+			                    <a class="updatee" onclick="return submit_form()">
+			                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+								  <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+								</svg></a>
+								</c:if>
+			                </div>
+			            </div>
+			    	</form>        
+	            </c:when>
+	            <c:otherwise>
+		            <div class="li" style="margin:5px;">
+		                <div class="commentbox">
+		                    <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
+		                    <div class="nickname">${ rate.m_id  }</div>
+		                    <div class="commentstar">★ ${ rate.rate_star }</div>
+		                    <hr style="margin-top: 42px;">
+		                    <div class="commentinner">${ rate.rate_comment }</div>
+		                    <a href="#" class="like-button">
+		                        <?xml version="1.0" encoding="utf-8"?>
+		                        <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
+		                    </a>
+		                    <div class="likecount">${ rate.rate_like }</div>
+		                    <span class="date"><fmt:formatDate type="date" value="${ rate.rate_date }" pattern="yyyy.MM.dd"/></span>
+		                    <c:if test="${ not empty loginMember && loginMember.m_id == rate.m_id }">
+		                    <a class="delete" onclick="location.href='${ path }/contents/comment_delete?no=${ no }&sort=${ sort }&rateNo=${ rate.rate_no }'" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+							  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+							</svg></a>
+		                    
+		                    <a class="update" onclick="location.href='${ path }/contents/comment_update?no=${ no }&sort=${ sort }&rateNo=${ rate.rate_no }'"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+							  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+							  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+							</svg></a>
+							</c:if>
+		                </div>
+		            </div>
+	            </c:otherwise>
+            </c:choose>
             </c:forEach>
  <!--            <div class="li">
                 <div class="commentbox">
@@ -318,6 +381,10 @@
 
     function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    
+    function submit_form() {
+    	document.getElementById('updateSubmit').submit();
     }
     </script>
 

@@ -92,15 +92,7 @@
 		<result property="rate_like" column="RATE_LIKE"/>
 	</resultMap>
 	
-	<resultMap type="Rate" id="myrateResultMap">
-		<id property="rate_no" column="RATE_NO"/>
-		<result property="c_no" column="C_NO"/>
-		<result property="m_no" column="M_NO"/>
-		<result property="m_id" column="M_ID"/>
-		<result property="rate_star" column="RATE_STAR"/>
-		<result property="rate_comment" column="RATE_COMMENT"/>
-		<result property="rate_date" column="RATE_DATE"/>
-		<result property="rate_like" column="RATE_LIKE"/>
+	<resultMap type="Rate" id="myrateResultMap" extends="contentsRate">
 	</resultMap>
 	
 	<resultMap type="SearchResult" id="searchByKeywordResultMap" extends="contentsListResultMap">
@@ -253,8 +245,55 @@
 			OR C_TITLE LIKE '%' || '${ keyword }' || '%'
 	</select>
 	
-	<select id="selectMyrate" parameterType="Rate" resultMap="myrateResultMap">
-	
-	
+	<select id="selectPeopleSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
+		SELECT 
+			PEOPLE_NO,
+			PEOPLE_NAME,
+			PEOPLE_ORIGINAL_FILENAME,
+			PEOPLE_RENAMED_FILENAME
+		FROM PEOPLE
+			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
 	</select>
+	
+	<select id="selectMyrate" parameterType="_int" resultMap="myrateResultMap">
+		SELECT 
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
+		WHERE R.RATE_NO = #{ rateNo }	
+	</select>
+	
+	<!-- 게시글 수정 테스트 -->
+	<update id="updateRate" parameterType="Rate">
+		UPDATE RATE
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="m_no != null">
+				M_NO = #{m_no},
+			</if>
+			<if test="rate_star != null">
+				RATE_STAR = #{rate_star},
+			</if>
+			<if test="rate_comment != null">
+				RATE_COMMENT = #{rate_comment},
+			</if>
+			<if test="rate_like != null">
+				RATE_LIKE = #{rate_like},
+			</if>
+			RATE_DATE = SYSDATE
+		</trim>		
+		WHERE RATE_NO = #{rate_no}
+	</update>
+	
+	<delete id="deleteRate" parameterType="_int">
+		DELETE FROM RATE
+		WHERE RATE_NO = #{ rateNo }
+	</delete>
 </mapper>

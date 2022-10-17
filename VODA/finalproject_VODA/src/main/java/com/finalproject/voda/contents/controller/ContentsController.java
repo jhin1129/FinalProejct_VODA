@@ -20,6 +20,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
 import com.finalproject.voda.member.model.vo.Member;
 
@@ -105,10 +106,10 @@ public class ContentsController {
 		result = service.save(rate);
 		
 		if(result > 0) {
-			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
+			model.addObject("msg", "코멘트가 정상적으로 등록되었습니다.");
 			model.addObject("location", "/contents/contents_detail?no=" + rate.getC_no());
 		} else {
-			model.addObject("msg", "게시글 등록을 실패하였습니다.");
+			model.addObject("msg", "코멘트 등록을 실패하였습니다.");
 			model.addObject("location", "/contents/contents_detail?no=" + rate.getC_no());
 		}
 		
@@ -116,14 +117,78 @@ public class ContentsController {
 		return model;
 	}
 	
+	@GetMapping("/contents/comment_update")
+	public ModelAndView commentUpdate(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, 
+														  @RequestParam int no, 
+														  @RequestParam String sort,
+														  @RequestParam int rateNo,
+												 		  @SessionAttribute("loginMember") Member loginMember) {
+					
+		List<Rate> rates = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
+		rates = service.getCommentsList(pageInfo, no, sort);
+		
+		model.addObject("rateNo", rateNo);
+		model.addObject("no", no);
+		model.addObject("sort", sort);
+		model.addObject("rates", rates);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("contents/contents_comments");
+		
+		return model;
+	}
+	
+	@PostMapping("/contents/comment_update")
+	public ModelAndView update(ModelAndView model, @ModelAttribute Rate rate) {
+		int result = 0;
+		
+		result = service.save(rate);
+		
+		if(result > 0 ) {
+			model.addObject("msg", "코멘트가 정상적으로 수정되었습니다.");
+			model.addObject("location", "/contents/contents_comments?no=" + rate.getC_no() + "&sort=new");
+		} else {
+			model.addObject("msg", "코멘트 수정을 실패하였습니다.");
+			model.addObject("location", "/contents/contents_comments?no=" + rate.getC_no() + "&sort=new");
+		}
+		
+		model.setViewName("common/msg");		
+		return model;	
+	}
+	
+	@GetMapping("/contents/comment_delete")
+	public ModelAndView commentDelete(ModelAndView model, @RequestParam int rateNo,
+														  @RequestParam int no, 
+														  @RequestParam String sort) {
+		int result = 0;
+		
+		result = service.delete(rateNo);
+		
+		if(result > 0 ) {
+			model.addObject("msg", "코멘트가 정상적으로 삭제되었습니다.");
+			model.addObject("location", "/contents/contents_comments?no=" + no + "&sort=new");
+		} else {
+			model.addObject("msg", "코멘트 삭제를 실패하였습니다.");
+			model.addObject("location", "/contents/contents_comments?no=" + no + "&sort=new");
+		}
+		
+		model.setViewName("common/msg");		
+		return model;	
+	}
+		
 	@GetMapping("/contents/contents_search")
 	public ModelAndView contentsSearch(ModelAndView model,
 									   @RequestParam String keyword) { 
 	
 		List<SearchResult> searchResult = null;
+		List<SearchPeople> searchPeople = null;
 		
-		searchResult = service.getContentsSearch(keyword);
+		searchPeople = service.getPeopleSearch(keyword);
+ 		searchResult = service.getContentsSearch(keyword);
 		
+ 		model.addObject("searchPeople",searchPeople);
 		model.addObject("searchResult", searchResult);
 		model.setViewName("contents/contents_search");
 		return model;

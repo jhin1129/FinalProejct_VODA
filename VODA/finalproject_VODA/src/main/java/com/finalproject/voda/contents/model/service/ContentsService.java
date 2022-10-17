@@ -9,6 +9,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
 
 public interface ContentsService {
@@ -31,5 +32,9 @@ public interface ContentsService {
 
 	List<SearchResult> getContentsSearch(String keyword);
 
-	Rate getMyrate(Rate rate);
+	Rate getMyRate(int rateNo);
+
+	int delete(int rateNo);
+
+	List<SearchPeople> getPeopleSearch(String keyword);
 }

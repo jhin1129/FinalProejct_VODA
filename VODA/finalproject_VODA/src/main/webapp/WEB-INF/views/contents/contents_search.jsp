@@ -53,7 +53,7 @@
 		    </c:if>
 		</ol>     
 		
-		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
 		<c:if test="${ searchResult.c_type eq '영화' }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn01">	
@@ -102,7 +102,7 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
 		<c:if test="${ searchResult.c_type eq 'TV' }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn02">	
@@ -151,8 +151,8 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }">
-		<c:if test="${ searchResult.c_type eq '책' }">
+		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
+		<c:if test="${ searchResult.c_type eq '책'}">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn03">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -200,7 +200,7 @@
 		    </c:if>
 		</ol>
 		
-		<c:forEach var="searchResult" items="${ searchResult }">
+		<c:forEach var="searchResult" items="${ searchResult }" begin="0" end="0">
 		<c:if test="${ searchResult.c_type eq '웹툰' }">
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn04">	
@@ -222,24 +222,23 @@
         </table>
         
         <ol class="list_movieranking cont" id="five" style="padding-top:30px;">
-		    <c:if test="${ not empty searchResult }">
-		        <c:forEach var="searchResult" items="${ searchResult }">
+		    <c:if test="${ not empty searchPeople }">
+		        <c:forEach var="searchPeople" items="${ searchPeople }">
 		            <li class="box">
 		                <div class="item_poster">
 		                    <div class="thumb_item">
-		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_opimg }.jpg" class="img_thumb">
+		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchPeople.people_no }'">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchPeople.people_no }.jpg" class="img_thumb">
 		                        </div>
 		                        <div class="poster_info">
-		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
+		                            <a href="${path}/contents/contents_detail?no=${ searchPeople.people_no }" class="link_story" data-tiara-layer="poster">
 		                            </a>
 		                        </div>
 		                    </div>
 		                    <div class="thumb_cont">
 		                        <strong class="tit_item">
-		                            <a href="#" class="link_txt" data-tiara-layer="moviename">${ searchResult.people_name}</a>
+		                            <a href="#" class="link_txt" data-tiara-layer="moviename">${ searchPeople.people_name}</a>
 		                        </strong>
-		                        <span>${ searchResult.c_year } ・ ${ searchResult.c_nation }</span>
 		                    </div>
 		                </div>
 		            </li>
@@ -247,8 +246,8 @@
 		    </c:if>
 		</ol>   
 		
-		<c:forEach var="searchResult" items="${ searchResult }">
-		<c:if test="${ searchResult.c_type eq '인물' }">
+		<c:forEach var="searchPeople" items="${ searchPeople }">
+		
 			<div class="btn_wrap" style="text-align:center;">
 	                    <button type="button" class="btn btn05">	
 		                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
@@ -256,7 +255,7 @@
 							</svg>
 						</button>
 	        </div>   
-		</c:if>
+		
 		</c:forEach>          
                 
             </div>

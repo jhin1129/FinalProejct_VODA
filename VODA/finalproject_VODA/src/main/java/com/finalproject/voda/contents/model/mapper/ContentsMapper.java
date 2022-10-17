@@ -10,6 +10,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
 
 @Mapper
@@ -33,5 +34,11 @@ public interface ContentsMapper {
 	List<SearchResult> selectSearchByKeyword(String keyword);
 
 	Rate selectMyrate(Rate rate);
+
+	int updateRate(Rate rate);
+
+	int deleteRate(int rateNo);
+
+	List<SearchPeople> selectPeopleSearchByKeyword(String keyword);
 
 }

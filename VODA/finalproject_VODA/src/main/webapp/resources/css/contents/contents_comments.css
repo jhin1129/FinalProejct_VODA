@@ -72,7 +72,7 @@
     position: absolute;
     top: 75px;
     height: 150px;
-    width: 230px;
+    width: 235px;
 }
 
 .likecount {
@@ -107,6 +107,29 @@
     text-decoration: none;
     color: gray;
 }
+
+.updatee {
+    position: absolute;
+    top: 260px; 
+    left: 210px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: gray;
+}
+
+.deletee {
+    position: absolute;
+    top: 260px;
+    left: 240px;
+    font-size: 0.9em;
+    text-decoration: none;
+    color: gray;
+}
+
+*:focus { outline: 0; }
+textarea:focus, input:focus{ outline: none; }
+.nofocus:focus { outline: none; }
+
 
 /* 좋아요 버튼 */
 .like-button {

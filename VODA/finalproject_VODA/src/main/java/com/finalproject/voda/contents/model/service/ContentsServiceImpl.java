@@ -15,6 +15,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
 
 @Service
@@ -61,7 +62,7 @@ public class ContentsServiceImpl implements ContentsService {
 		
 		if(rate.getRate_no() != 0) {
 			// update
-			// result = mapper.updateRate(rate);
+			result = mapper.updateRate(rate);
 		} else {
 			// insert
 			result = mapper.insertRate(rate);
@@ -102,10 +103,21 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public Rate getMyrate(Rate rate) {
+	public Rate getMyRate(int rateNo) {
 		
-		return mapper.selectMyrate(rate);
+		return mapper.selectMyrate(null);
 	}
 
+	@Override
+	public int delete(int rateNo) {
+	
+		return mapper.deleteRate(rateNo);
+	}
+
+	@Override
+	public List<SearchPeople> getPeopleSearch(String keyword) {
+	
+		return mapper.selectPeopleSearchByKeyword(keyword);
+	}
 
 }
