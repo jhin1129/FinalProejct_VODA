@@ -201,32 +201,33 @@
 						<td colspan="6" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
-					</tr>	
 				 </c:if> 
 				 <c:if test="${ not empty list }"> 
-				 <c:forEach var="board" items="${ list }">
-                    <tr style="text-align: center; cursor:pointer;">
-                        <td id="td">${ board.bno }</td>
-                           <td id="td" style="text-align: left;">
-	                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
-									${ board.btitle }
-								</a>
-								<c:if test="${ empty board.boriginalfilename }">
-										<span> </span>
-								</c:if>
-								<c:if test="${ not empty board.boriginalfilename }">
-										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
-								</c:if>
-                        	</td>
-                         <td id="td">
-							<c:choose> 
-                                <c:when test="${board.banswerstatus== 'Y'}">[답변완료]</c:when>
-                                <c:when test="${board.banswerstatus == 'N'}">[미답변]</c:when>
-                            </c:choose></td>
-                        <td id="td">${ board.mid }</td>
-                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
-                    </tr>
-                    </c:forEach>
+					 <c:forEach var="board" items="${ list }">
+					 	<c:if test="${ loginMember.m_id == board.mid || loginMember.m_authorization == 'M' }">
+	                    <tr style="text-align: center; cursor:pointer;">
+	                        <td id="td">${ board.bno }</td>
+	                           <td id="td" style="text-align: left;">
+		                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
+										${ board.btitle }
+									</a>
+									<c:if test="${ empty board.boriginalfilename }">
+											<span> </span>
+									</c:if>
+									<c:if test="${ not empty board.boriginalfilename }">
+											<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+									</c:if>
+	                        	</td>
+	                         <td id="td">
+								<c:choose> 
+	                                <c:when test="${board.banswerstatus== 'Y'}">[답변완료]</c:when>
+	                                <c:when test="${board.banswerstatus == 'N'}">[미답변]</c:when>
+	                            </c:choose></td>
+	                        <td id="td">${ board.mid }</td>
+	                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
+	                    </tr>
+		                   </c:if> 
+	                    </c:forEach>
 
                     <tr>
                         <td class="td-hr"></td>

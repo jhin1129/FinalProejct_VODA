@@ -13,11 +13,14 @@ public interface BoardService {
 
 	List<Board> getBoardList(PageInfo pageInfo, String type);
 
-	Board findBoardByNo(int no);
+	Board findBoardByNo(int no, boolean hasRead);
 
 	int deleteFree(int no);
 
 	int saveBoard(Board board);
+	
+	int getBoardSearchCount(String searchType, String keyword);
+	List<Search> getBoardSearchList(PageInfo pageInfo, String searchType, String keyword);
 
 	
 	// 일반회원용 공지사항 페이지
@@ -26,5 +29,6 @@ public interface BoardService {
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 	Notice findNoticeByNo(int no, boolean hasRead);
+
 
 }

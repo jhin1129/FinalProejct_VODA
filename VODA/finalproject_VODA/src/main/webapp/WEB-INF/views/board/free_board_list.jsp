@@ -231,7 +231,8 @@
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                     </tr>
-                    </c:if> 
+                    </c:if>
+                     
                 </tbody>
 
             </table>

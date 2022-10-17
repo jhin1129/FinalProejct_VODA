@@ -59,7 +59,7 @@ public class BoardController {
 		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 15);
 		list = service.getBoardList(pageInfo, "FREE");
 		
-		System.out.println(list);
+		System.out.println("null 나오는 리스트 확인 "+ list);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo",pageInfo);	
@@ -67,6 +67,29 @@ public class BoardController {
 		
 		return model;
 	}
+	
+	// 자유게시판 리스트 검색
+	@GetMapping("/free_board_search")
+	public ModelAndView BoardSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getNoticeSearchCount(searchType, keyword), 10);
+		search = service.getNoticeSearchList(pageInfo, searchType, keyword);
+		
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("board/free_board_search");
+		
+		return model;
+	}
+	
 	
 // 	문의게시판 리스트
 	@GetMapping("/question_board_list")
@@ -89,10 +112,46 @@ public class BoardController {
 	
 // 	자유게시판 조회
 	@GetMapping("/free_board_detail")
-	public ModelAndView freeView(ModelAndView model, @RequestParam int no) {
+	public ModelAndView boardView(ModelAndView model, @RequestParam int no,
+			HttpServletRequest request, HttpServletResponse response) {
 		Board board = null;
 		
-		board = service.findBoardByNo(no);
+    	// 조회수 쿠키 관련
+    	Cookie[] cookies = request.getCookies();
+    	String viewhistory = "";
+    	boolean hasRead = false;
+    	
+    	if(cookies != null) {
+    		String name = null;
+    		String value = null;
+    		for (Cookie cookie : cookies) {
+    			name = cookie.getName();
+				value = cookie.getValue();
+			
+			if(name.equals("viewhistory")) {
+				viewhistory = value;
+				
+				if(value.contains("|" + no + "|")) {
+					hasRead = true;
+					
+					break;
+				}
+			}
+		}
+    }
+
+    	if(!hasRead) {    		
+    		Cookie cookie = new Cookie("viewhistory" ,viewhistory +  "|" +  no + "|");
+    		
+    		cookie.setMaxAge(-1); 
+    		response.addCookie(cookie);
+    	}
+    	
+    	HttpSession session = request.getSession(false);
+    	Member loginMember = (session == null) ? null : (Member) session.getAttribute("member");
+//    	--------------------- 조회수 -----------------------------------------------------------
+    	
+		board = service.findBoardByNo(no, hasRead);
 		
 		System.out.println(no);
 		System.out.println(board);
@@ -108,7 +167,7 @@ public class BoardController {
 	public ModelAndView qnaView(ModelAndView model, @RequestParam int no) {
 		Board board = null;
 		
-		board = service.findBoardByNo(no);
+		board = service.findBoardByNo(no, true);
 		
 		System.out.println(no);
 		System.out.println(board);
@@ -127,7 +186,7 @@ public class BoardController {
 			@RequestParam int no) {
 		int result = 0;
 		Board board = null;
-		board = service.findBoardByNo(no);
+		board = service.findBoardByNo(no, true);
 		
 		if(board.getMid().equals(loginMember.getM_id()) || loginMember.getM_authorization().equals("M")) {
 			
@@ -159,7 +218,7 @@ public class BoardController {
 				@RequestParam int no) {
 			int result = 0;
 			Board board = null;
-			board = service.findBoardByNo(no);
+			board = service.findBoardByNo(no, true);
 			
 			if(board.getMid().equals(loginMember.getM_id()) || loginMember.getM_authorization().equals("M")) {
 				
@@ -373,14 +432,14 @@ public class BoardController {
 //	자유게시판 수정 (접근)
 	@GetMapping("/free_board_update")
 	public ModelAndView boardUpdate(
-			ModelAndView model, 
+			ModelAndView model,
 			@RequestParam int no,
 			@SessionAttribute("loginMember") Member loginMember)
 			{
 		
 		Board board = null;
 				
-		board = service.findBoardByNo(no);
+		board = service.findBoardByNo(no, true);
 		
 		
 		model.addObject("board", board);
@@ -406,11 +465,10 @@ public class BoardController {
 		
 		int result = 0;
 
-		System.out.println(loginMember.getM_id());
 		System.out.println(board.getBno());
 		System.out.println(board.getMid());
 		
-		if (service.findBoardByNo(board.getBno()).getMid().equals(loginMember.getM_id())) {
+		if (service.findBoardByNo(board.getBno(), true).getMid().equals(loginMember.getM_id())) {
 			
 			if (upfile != null && !upfile.isEmpty()) {
 				String location = null;
@@ -472,7 +530,7 @@ public class BoardController {
 		
 		Board board = null;
 				
-		board = service.findBoardByNo(no);
+		board = service.findBoardByNo(no, true);
 		
 		
 		model.addObject("board", board);
@@ -502,7 +560,7 @@ public class BoardController {
 		System.out.println(board.getBno());
 		System.out.println(board.getMid());
 		
-		if (service.findBoardByNo(board.getBno()).getMid().equals(loginMember.getM_id())) {
+		if (service.findBoardByNo(board.getBno(), true).getMid().equals(loginMember.getM_id())) {
 			
 			if (upfile != null && !upfile.isEmpty()) {
 				String location = null;

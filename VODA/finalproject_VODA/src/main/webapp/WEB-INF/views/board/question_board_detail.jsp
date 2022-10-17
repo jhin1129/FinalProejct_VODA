@@ -175,8 +175,8 @@
                             		${ board.boriginalfilename }
                             	</a>
                             </td>
-                            <th class="table-active">조회수</th>
-                            <td>${ board.bview }</td>
+                            <td style="width: 15%;"></td>
+                            <td style="width: 15%;"></td>
                         </tr>
 
                         <tr>

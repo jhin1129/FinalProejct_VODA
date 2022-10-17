@@ -2,12 +2,13 @@ package com.finalproject.voda.contents.model.service;
 
 import java.util.List;
 
-import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
+import com.finalproject.voda.contents.model.vo.SearchPeople;
+import com.finalproject.voda.contents.model.vo.SearchResult;
 
 public interface ContentsService {
 	
@@ -23,7 +24,15 @@ public interface ContentsService {
 
 	int save(Rate rate);
 
-	List<Rate> getCommentsList(PageInfo pageInfo, int no);
+	List<Rate> getCommentsList(PageInfo pageInfo, int no, String sort);
 
 	int getCommentsCount(int no);
+
+	List<SearchResult> getContentsSearch(String keyword);
+
+	Rate getMyRate(int rateNo);
+
+	int delete(int rateNo);
+
+	List<SearchPeople> getPeopleSearch(String keyword);
 }
