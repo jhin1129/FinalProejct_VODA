@@ -7,13 +7,14 @@ import com.finalproject.voda.people.model.vo.People;
 
 public interface PeopleService {
 
-	People findPeopleByNo(int people_no);
+	int getPeopleCount();
 
 	List<People> getPeopleList(PageInfo pageInfo);
 
+	People findPeopleByNo(int people_no);
+
 	int save(People people);
 
-	int getPeopleCount();
 
 
 }

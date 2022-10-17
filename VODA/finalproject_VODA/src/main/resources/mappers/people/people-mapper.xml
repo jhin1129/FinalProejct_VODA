@@ -35,7 +35,7 @@
 	
 	
 	<!-- 인물 페이지 조회 -->
-	<select id="selectPeopleCount" parameterType="_int">
+	<select id="selectPeopleCount" resultType="_int">
 		SELECT COUNT(*) FROM PEOPLE WHERE PEOPLE_STATUS='Y'
 	</select>
 	
@@ -51,11 +51,12 @@
 	</select>	
 	
 
-	<!-- 인물 페이지 수정 -->
+	<!-- 인물 페이지 수정 
 	<select id="" parameterType="_int" resultMap="PeopleResultMap">
 		<include refid="selectPeoplerSql"></include>
 		AND P.PEOPLE_NO = #{people_no}
 	</select>
+	-->
 	
 	
 	<!-- 인물 삭제 (STATUS = 'N')-->

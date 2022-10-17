@@ -31,14 +31,8 @@
                 <div class="box_basic" data-tiara-layer="main">
                     <div class="info_poster">
                         <div class="thumb_img">
-                        	<c:if test="${ empty people.people_original_filename }">
-                        		<img class="bg_img" src="${ path }/resources/img/people/noimage.png">
-							</c:if>
                             <c:if test="${ not empty people.people_original_filename }">
-								<img src="${ path }/resources/img/people/noimage.png">
-								<a href="javascript:" id="fileDown">
-									<span>${ people.people_renamed_filename }</span>
-								</a>
+                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }">
 							</c:if>
                         </div>
                     </div>
@@ -93,14 +87,6 @@
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
-
-
-<script>
-	$("#fileDown").on("click", () => {
-		location.assign("${ path }/people/fileDown?oname=${ people.people_original_filename }&rname=${ people.people_renamed_filename }");
-	});
-	
-</script>	
 
 </body>
 </html>

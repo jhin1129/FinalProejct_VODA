@@ -11,6 +11,9 @@
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
     
+    <!-- People CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/people/people.css">
+    
     <!-- Board CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
 
@@ -40,10 +43,21 @@
         <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
         <!-- 관리자 페이지 메인화면 -->
         <div class="col-10 p-4">
-          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <h1 class="h3 mb-2 text-gray-800">
+          	<svg xmlns="http://www.w3.org/2000/svg" 
+          		width="24" height="24" viewBox="0 0 24 24" 
+          		fill="none" stroke="currentColor" stroke-width="2" 
+          		stroke-linecap="round" stroke-linejoin="round" 
+          		class="feather feather-file-text">
+          			<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          			<polyline points="14 2 14 8 20 8"></polyline>
+          			<line x1="16" y1="13" x2="8" y2="13"></line>
+          			<line x1="16" y1="17" x2="8" y2="17"></line>
+          			<polyline points="10 9 9 9 8 9"></polyline>
+          	</svg>
             인물페이지 관리
-          <hr>
-
+           </h1>
+           <hr>
         <div class="pl-3 pr-4 row" style="height: 40px;" >
             <div class="col-6 mycategory" style="background-color: rgb(90, 97, 224); color: white;">
                 배우
@@ -52,7 +66,6 @@
                 작가
             </div>
         </div>
-
 		<c:if test="${ empty list }">
 			<tr>
 				<td colspan="6" style="text-align: center;">
@@ -69,15 +82,17 @@
                         <div class="item_poster">
                           <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
                             <input type="checkbox" style="width: 17px; height: 17px;">
-                            <input type="hidden" value="{ people.people_no+ }" >
+                            <input type="hidden" value="{ people.people_no }" >
                           </div>
                           <div class="thumb_item">
                              <div class="poster_movie" style="position: absolute;">
-	                             <c:if test="${ empty people.people_renamed_filename }">
+	                             <c:if test="${ empty people.people_original_filename }">
+	                             <!--  
 	                        		<img class="bg_img" src="${ path }/resources/img/people/noimage.png">
+	                             -->
 								</c:if>
-	                            <c:if test="${ not empty people.people_renamed_filename }">
-	                            	<img class="bg_img" src="${ path }/resources/img/people/${ people.people_renamed_filename }">
+	                            <c:if test="${ not empty people.people_original_filename }">
+	                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }">
 								</c:if>
                              </div>
                              <div class="poster_info" style="text-align: center; line-height: 300px;">
@@ -88,80 +103,13 @@
                           </div>
                              <div class="thumb_cont">
                               <strong class="tit_item">
-                                  <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
+                                  <a href="${ path }/people/people?people_no=${ people.people_no }" class="link_txt" data-tiara-layer="moviename">
+                                  	${ people.people_name }
+                                  </a>
                               </strong>
                           	</div>
                         </div>
                     </li>
-                    <!-- 
-                    <li>
-                        <div class="item_poster">
-                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
-                            <input type="checkbox" style="width: 17px; height: 17px;">
-                          </div>
-                            <div class="thumb_item">
-                                <div class="poster_movie" style="position: absolute;">
-                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
-                                </div>
-                                <div class="poster_info" style="text-align: center; line-height: 300px;">
-                                <a href="" class="link_story" data-tiara-layer="poster">
-                                  수정하기
-                                </a>
-                                </div>
-                                </div>
-                                <div class="thumb_cont">
-                                <strong class="tit_item">
-                     
-                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
-                                </strong>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item_poster">
-                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
-                            <input type="checkbox" style="width: 17px; height: 17px;">
-                          </div>
-                            <div class="thumb_item">
-                                <div class="poster_movie" style="position: absolute;">
-                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
-                                </div>
-                                <div class="poster_info" style="text-align: center; line-height: 300px;">
-                                <a href="" class="link_story" data-tiara-layer="poster">
-                                  수정하기
-                                </a>
-                                </div>
-                                </div>
-                                <div class="thumb_cont">
-                                <strong class="tit_item">
-                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
-                                </strong>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="item_poster">
-                          <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
-                            <input type="checkbox" style="width: 17px; height: 17px;">
-                          </div>
-                            <div class="thumb_item">
-                                <div class="poster_movie" style="position: absolute;">
-                                  <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2Feadce88891cd568afdb48966cb4345634c84f951" class="img_thumb"></span>
-                                </div>
-                                <div class="poster_info" style="text-align: center; line-height: 300px;">
-                                <a href="" class="link_story" data-tiara-layer="poster">
-                                  수정하기
-                                </a>
-                                </div>
-                                </div>
-                                <div class="thumb_cont">
-                                <strong class="tit_item">
-                                    <a href="/moviedb/main?movieId=147615" class="link_txt" data-tiara-layer="moviename">서인국</a>
-                                </strong>
-                            </div>
-                        </div>
-                    </li>
-                    -->
                     </c:forEach>
 				</c:if>
                 </ol>
@@ -197,9 +145,7 @@
 			<!-- 맨 끝 페이지로 -->
                 <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-
         </div>
-
     </div>
     <!-- 컨테이너 끝 -->
 </div>
