@@ -32,7 +32,8 @@
                     <div class="info_poster">
                         <div class="thumb_img">
                             <c:if test="${ not empty people.people_original_filename }">
-                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }">
+                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }"
+                            	style="width:105%;height:105%;-fit:cover;">
 							</c:if>
                         </div>
                     </div>

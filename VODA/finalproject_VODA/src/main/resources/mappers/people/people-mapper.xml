@@ -51,12 +51,38 @@
 	</select>	
 	
 
-	<!-- 인물 페이지 수정 
-	<select id="" parameterType="_int" resultMap="PeopleResultMap">
-		<include refid="selectPeoplerSql"></include>
-		AND P.PEOPLE_NO = #{people_no}
-	</select>
-	-->
+	<!-- 인물 페이지 수정 -->
+	<update id="updatePeople" parameterType="People">
+		UPDATE PEOPLE
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="people_original_filename != null">
+				PEOPLE_ORIGINAL_FILENAME = #{people_original_filename},
+			</if>
+			<if test="people_renamed_filename != null">
+				PEOPLE_RENAMED_FILENAME = #{people_renamed_filename},
+			</if>
+			<if test="people_name != null">
+				PEOPLE_NAME = #{people_name},
+			</if>
+			<if test="people_job != null">
+				PEOPLE_JOB = #{people_job},
+			</if>
+			<if test="people_debut != null">
+				PEOPLE_DEBUT = #{people_debut},
+			</if>
+			<if test="people_birth != null">
+				PEOPLE_BIRTH = #{people_birth},
+			</if>
+			<if test="poeple_award != null">
+				PEOPLE_AWARD = #{poeple_award},
+			</if>
+			<if test="people_gender != null">
+				PEOPLE_GENDER = #{people_gender},
+			</if>
+		</trim> 
+		WHERE PEOPLE_NO = #{people_no}
+	</update>
+	
 	
 	
 	<!-- 인물 삭제 (STATUS = 'N')-->

@@ -18,6 +18,10 @@ public interface PeopleMapper {
 
 	int insertPeople(People people);
 
+	int updatePeople(People people);
+
+	int updatePeopleStatus(int people_no, String string);
+
 
 
 }

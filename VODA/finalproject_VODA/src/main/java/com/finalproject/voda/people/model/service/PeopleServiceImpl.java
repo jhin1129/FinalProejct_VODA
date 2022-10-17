@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.people.model.mapper.PeopleMapper;
@@ -45,11 +46,21 @@ public class PeopleServiceImpl implements PeopleService {
 
 		if(people.getPeople_no() != 0) {
 			// update
-//			result = mapper.updatePeople(people);
+			result = mapper.updatePeople(people);
 		} else {
 			// insert
 			result = mapper.insertPeople(people);
 		}
+		
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public int delete(int people_no) {
+		int result = 0;
+		
+		result = mapper.updatePeopleStatus(people_no, "N");
 		
 		return result;
 	}

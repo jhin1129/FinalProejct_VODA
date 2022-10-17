@@ -15,6 +15,8 @@ public interface PeopleService {
 
 	int save(People people);
 
+	int delete(int people_no);
+
 
 
 }
