@@ -59,7 +59,7 @@ public class BoardController {
 		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 15);
 		list = service.getBoardList(pageInfo, "FREE");
 		
-		System.out.println(list);
+		System.out.println("null 나오는 리스트 확인 "+ list);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo",pageInfo);	

@@ -7,16 +7,9 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-    
+
     <!-- Board CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
     
@@ -38,9 +31,10 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 
-    <!-- jQuery -->
-    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
-
+   
+    <title>컨텐츠 관리</title>
+    
+<body>
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
       <div class="row">
@@ -52,18 +46,23 @@
         <div class="col-10 p-4">
           <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             컨텐츠 관리
+          </h1>
           <hr>
           <!-- 카드 리스트 Row -->
             <div class="row">
               <table class="table table-hover">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" style="width: 10%">번호</th>
-                    <th scope="col" style="width: 30%">제목</th>
+                    <th scope="col" style="width: 5%">No</th>
+                    <th scope="col" style="width: 20%">제목</th>
                     <th scope="col">이미지</th>
-                    <th scope="col" style="width: 15%">리뷰관리</th>
+                    <th scope="col" style="width: 10%">리뷰관리</th>
                     <th scope="col" style="width: 10%">상태수정</th>
-                    <th scope="col" style="width: 20%">컨텐츠 비활성화</th>
+                    <th scope="col" style="width: 20%">
+                      <label class="checkbox-inline" style="line-height: 0px;">
+                        <input type="checkbox" id="allCheckBox" onclick="allChecked()">
+                      </label>
+                    </th>
                   </tr>
                 </thead>
                 <tfoot>
@@ -93,7 +92,7 @@
             				    </div>
                       </th>
                       <th colspan="1">
-                        <button type="button" class="btn btn-logoC btn-sm">적용</button>
+                        <button type="button" class="btn btn-logoC btn-sm">비활성화</button>
                         <button type="button" class="btn btn-greyC btn-sm">취소</button></th>
                   </tr>
                 </tfoot>
@@ -146,6 +145,6 @@
         </div>
       </div>
 <hr>
- </head></html>
+</body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

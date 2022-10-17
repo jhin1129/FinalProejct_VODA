@@ -7,16 +7,9 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-    
+
     <!-- Board CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
     
@@ -38,10 +31,8 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
 
-
     <title>상품관리</title>
 
-</head>
 <body>
     <!-- 관리자 페이지 메인헤드 -->
     <div class="container">
@@ -54,6 +45,7 @@
         <div class="col-10 p-4">
           <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
             상품 상태 관리
+          </h1>
           <hr>
           <!-- 카드 리스트 Row -->
             <div class="row">
@@ -146,15 +138,9 @@
 			<!-- 맨 끝 페이지로 -->
                 <li><a href="${ path }/admin/admin_good?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-
-
-
-
-
-        
+    	</div>
     </div>
-    </div>
-    </div>
+ </div>
 <hr>
 </body>
 <!-- FOOTER -->
