@@ -77,7 +77,7 @@
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
                  <c:if test="${ not empty list }"> 	 
-       				<c:forEach var="people" items="${ list }">
+       				<c:forEach var="people" items="${ list }" varStatus="status">
                     <li>
                         <div class="item_poster">
                           <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
@@ -92,7 +92,7 @@
 	                             -->
 								</c:if>
 	                            <c:if test="${ not empty people.people_original_filename }">
-	                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }">
+	                            	<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }" style="width:105%; height:105%; object-fit:cover;">
 								</c:if>
                              </div>
                              <div class="poster_info" style="text-align: center; line-height: 300px;">
@@ -110,6 +110,9 @@
                           	</div>
                         </div>
                     </li>
+                    <c:if test="${ status.count %4 == 0 }">
+                    	<br>
+                    </c:if>
                     </c:forEach>
 				</c:if>
                 </ol>
