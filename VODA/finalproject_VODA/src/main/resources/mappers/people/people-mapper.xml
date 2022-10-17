@@ -16,6 +16,7 @@
 		    P.PEOPLE_GENDER,
 		    P.PEOPLE_STATUS
 		FROM PEOPLE P
+		WHERE P.PEOPLE_STATUS = 'Y'
 	</sql>	 
 	
 
@@ -34,12 +35,22 @@
 	
 	
 	<!-- 인물 페이지 조회 -->
+	<select id="selectPeopleCount" parameterType="_int">
+		SELECT COUNT(*) FROM PEOPLE WHERE PEOPLE_STATUS='Y'
+	</select>
+	
+	<select id="selectPeopleAll" resultMap="PeopleResultMap">
+		<include refid="selectPeoplerSql" />
+		ORDER BY PEOPLE_NO DESC
+	</select>
+	
+	<!-- 인물 페이지 상세 조회 -->
 	<select id="selectPeopleByNo" parameterType="_int" resultMap="PeopleResultMap">
 		<include refid="selectPeoplerSql"></include>
 		AND P.PEOPLE_NO = #{people_no}
 	</select>	
 	
-	
+
 	<!-- 인물 페이지 수정 -->
 	<select id="" parameterType="_int" resultMap="PeopleResultMap">
 		<include refid="selectPeoplerSql"></include>
