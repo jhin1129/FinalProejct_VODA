@@ -30,6 +30,10 @@ public interface BoardMapper {
 	int getBoardSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getBoardSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 
+	// 문의게시판검색
+	int getQnaSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
+	List<Search> getQnaSearchList(RowBounds rowBounds, @Param("searchType") String searchType,  @Param("keyword") String keyword);
+	
 	
 	// 일반회원용 공지사항 페이지
 	int selectNoticeCount();
@@ -38,5 +42,8 @@ public interface BoardMapper {
 	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 	int updateNoticeView(Notice notice);
+
+
+
 
 }

@@ -59,7 +59,6 @@ public class BoardController {
 		pageInfo = new PageInfo(page, 10, service.getBoardCount("FREE"), 15);
 		list = service.getBoardList(pageInfo, "FREE");
 		
-		System.out.println("null 나오는 리스트 확인 "+ list);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo",pageInfo);	
@@ -78,14 +77,36 @@ public class BoardController {
 		List<Search> search = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getNoticeSearchCount(searchType, keyword), 10);
-		search = service.getNoticeSearchList(pageInfo, searchType, keyword);
+		pageInfo = new PageInfo(page, 10, service.getBoardSearchCount(searchType, keyword), 10);
+		search = service.getBoardSearchList(pageInfo, searchType, keyword);
 		
 		model.addObject("search", search);
 		model.addObject("searchType", searchType);
 		model.addObject("keyword", keyword);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("board/free_board_search");
+		
+		return model;
+	}
+	
+	// 문의게시판 리스트 검색
+	@GetMapping("/question_board_search")
+	public ModelAndView QnaSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getQnaSearchCount(searchType, keyword), 10);
+		search = service.getQnaSearchList(pageInfo, searchType, keyword);
+		
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("board/question_board_search");
 		
 		return model;
 	}

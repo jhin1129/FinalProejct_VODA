@@ -196,14 +196,14 @@
                 </thead>
 
                 <tbody>
- 	             <c:if test="${ empty list }">
+ 	             <c:if test="${ empty search }">
 					<tr>
 						<td colspan="6" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
 				 </c:if> 
-				 <c:if test="${ not empty list }"> 
-					 <c:forEach var="board" items="${ list }">
+				 <c:if test="${ not empty search }"> 
+					 <c:forEach var="board" items="${ search }">
 	                    <tr style="text-align: center; cursor:pointer;">
 	                        <td id="td">${ board.bno }</td>
 	                           <td id="td" style="text-align: left;">
@@ -243,10 +243,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             	<!-- 맨 처음으로 -->
-                <li><a href="${ path }/board/question_board_list?page=1">«</a></li>
+                <li><a href="${ path }/board/question_board_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
                 
                 <!-- 이전 페이지로 -->
-                <li><a href="${ path }/board/question_board_list?page=${ pageInfo.prevPage }">‹</a></li>
+                <li><a href="${ path }/board/question_board_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>
                 
 				<!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -255,14 +255,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/board/question_board_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/board/question_board_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 				<!-- 다음 페이지로 -->
-					<li><a href="${ path }/board/question_board_list?page=${ pageInfo.nextPage }">›</a></li>  
+					<li><a href="${ path }/board/question_board_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 				<!-- 맨 끝 페이지로 -->
-	                <li><a href="${ path }/board/question_board_list?page=${ pageInfo.maxPage }">»</a></li>
+	                <li><a href="${ path }/board/question_board_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
             
         </div>
@@ -277,7 +277,7 @@
 
 
         <div class="search1 row my-4">
-          <form action="${ path }/board/question_board_search" style="width: 100%;">
+         <form action="${ path }/board/question_board_search" style="width: 100%;">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
