@@ -1,9 +1,7 @@
 package com.finalproject.voda.contents.model.service;
 
 import java.util.List;
-import java.util.Map;
 
-import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;

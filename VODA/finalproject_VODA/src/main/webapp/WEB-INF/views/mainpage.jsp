@@ -124,67 +124,191 @@
         </div>
       </div>
       
+  
+  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false"
+                        data-interval="false">
+	<!--carousel-->
+	<div class="carousel-inner" style="height:100%; width:1200px; margin:auto;">
+	    <div class="carousel-item active">
+  		<!--carousel page 1 start-->
+  		
       <div class="container" style="padding: 0px;" id="rankcontainer">
         <div class="row rank-boxes">
-  
+  		<c:forEach var="contents" items="${ list }" begin="0" end="0">
           <div class="col mainrank ml-0">
             <div class="rankingnumber">1</div>
-              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
-                  <p>사랑의 불시착</p>
-                  분류 드라마<br>
-                  장르 로맨스<br>
-                  등급 15세 이용가<br>
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
                 </div>
           </div>
-  
+  		 </c:forEach>
+  		
+  		<c:forEach var="contents" items="${ list }" begin="1" end="1">
           <div class="col mainrank">
             <div class="rankingnumber">2</div>
-              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
-                  <p>사랑의 불시착</p>
-                  분류 드라마<br>
-                  장르 로맨스<br>
-                  등급 15세 이용가<br>
+                  <p>제목 ${ contents.c_title }</p>
+               	  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
                 </div>
           </div>
-  
+  		</c:forEach>
+  		
+  		
+  		<c:forEach var="contents" items="${ list }" begin="2" end="2">
           <div class="col mainrank">
             <div class="rankingnumber">3</div>
-              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
-                  <p>제목 사랑의 불시착</p>
-                  분류 드라마<br>
-                  장르 로맨스<br>
-                  등급 15세 이용가<br>
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
                 </div>
           </div>
-  
+  		</c:forEach>
+  		
+  		<c:forEach var="contents" items="${ list }" begin="3" end="3">
           <div class="col mainrank">
             <div class="rankingnumber">4</div>
-              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
-                  <p>사랑의 불시착</p>
-                  분류 드라마<br>
-                  장르 로맨스<br>
-                  등급 15세 이용가<br>
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
                 </div>
           </div>
-  
+  		 </c:forEach>
+  		 
+  		 <c:forEach var="contents" items="${ list }" begin="4" end="4">
           <div class="col mainrank mr-0">
             <div class="rankingnumber">5</div>
-              <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
-                  <p>사랑의 불시착</p>
-                  분류 드라마<br>
-                  장르 로맨스<br>
-                  등급 15세 이용가<br>
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
                 </div>
           </div>
+       	 </c:forEach>
         
+        </div>
+       
+       <div class="carousel-item">
+  		<!--carousel page 1 start-->
+  		
+      <div class="container" style="padding: 0px;" id="rankcontainer">
+        <div class="row rank-boxes">
+  		<c:forEach var="contents" items="${ list }" begin="0" end="0">
+          <div class="col mainrank ml-0">
+            <div class="rankingnumber">1</div>
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
+                </div>
+          </div>
+  		 </c:forEach>
+  		
+  		<c:forEach var="contents" items="${ list }" begin="1" end="1">
+          <div class="col mainrank">
+            <div class="rankingnumber">2</div>
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 ${ contents.c_title }</p>
+               	  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
+                </div>
+          </div>
+  		</c:forEach>
+  		
+  		
+  		<c:forEach var="contents" items="${ list }" begin="2" end="2">
+          <div class="col mainrank">
+            <div class="rankingnumber">3</div>
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
+                </div>
+          </div>
+  		</c:forEach>
+  		
+  		<c:forEach var="contents" items="${ list }" begin="3" end="3">
+          <div class="col mainrank">
+            <div class="rankingnumber">4</div>
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
+                </div>
+          </div>
+  		 </c:forEach>
+  		 
+  		 <c:forEach var="contents" items="${ list }" begin="4" end="4">
+          <div class="col mainrank mr-0">
+            <div class="rankingnumber">5</div>
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+                <div class="rankinginfo">
+                  <p>제목 ${ contents.c_title }</p>
+                  분류 ${ contents.c_type }<br>
+                  장르 ${ contents.c_genre }<br>
+                  등급 ${ contents.c_age }세 이용가<br>
+                </div>
+          </div>
+       	 </c:forEach>
+        
+       </div>
+        </div>
+       <!--carousel page 2 end-->
+     
+       
+       
+       
+       
         </div> <!-- 랭크 박스 끝 -->
-      </div> <!-- 컨테이너 끝 -->
+   </div>
+   
+   
+   <!--carousel-inner end-->
+   <div style="width: 5%;" class="my-5">
+       <button style="width: 5%; height:100px; margin-top:135px; margin-left:-7px; z-index: 6;"
+           class="carousel-control-prev" type="button"
+           data-target="#carouselExampleControlsNoTouching" data-slide="prev">
+           <img src="${path}/resources/img/ranking/slide-left.png" alt="" class="slide-button"
+               style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+           <span class="sr-only">Previous</span>
+       </button>
+       <button style="width: 5%; height:100px; margin-top:135px; margin-right:-7px; z-index: 6;"
+           class="carousel-control-next" type="button"
+           data-target="#carouselExampleControlsNoTouching" data-slide="next">
+           <img src="${path}/resources/img/ranking/slide-right.png" alt="" class="slide-button"
+               style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+            <span class="sr-only">Next</span>
+        </button>
+    </div>
+   </div> <!-- 컨테이너 끝 -->
     </div> <!-- 비디오래퍼 끝 -->
+</div>
+<!--carousel-->
+        
+        
+      
 
  <div style="height: 150px;"></div>
  
