@@ -139,6 +139,27 @@ public class MypageController {
 		return model;
 	}
 	
+	@PostMapping("/deleteMember")
+	public ModelAndView deleteMember(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember) {
+		
+		int result = 0;
+				
+		result = service.deleteMember(loginMember.getM_no());
+		
+		if(result > 0) {
+			model.addObject("msg", "정상적으로 탈퇴되었습니다.");
+			model.addObject("location", "/member/logout");
+		} else {
+			model.addObject("msg", "회원 탈퇴를 실패하였습니다.");
+			model.addObject("location", "/mypage/main");
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+	
 	@GetMapping("/dibsContent")
 	public ModelAndView dibsContent(ModelAndView model,
 									@SessionAttribute("loginMember") Member loginMember,
@@ -205,6 +226,22 @@ public class MypageController {
 		model.addObject("pageInfo", pageInfo);
 		model.addObject("qnaBoardList", qnaBoardList);
 		model.setViewName("mypage/mypage_writeQuestionBoard");
+		
+		return model;
+	}
+	
+	@GetMapping("/payList")
+	public ModelAndView payList(ModelAndView model) {
+		
+		model.setViewName("mypage/mypage_pay_list");
+		
+		return model;
+	}
+	
+	@GetMapping("/payCancelList")
+	public ModelAndView payCancelList(ModelAndView model) {
+		
+		model.setViewName("mypage/mypage_pay_cancelList");
 		
 		return model;
 	}

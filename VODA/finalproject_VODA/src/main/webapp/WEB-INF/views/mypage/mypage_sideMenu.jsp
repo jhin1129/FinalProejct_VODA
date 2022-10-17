@@ -21,11 +21,11 @@
                                 </li>
 
                                 <div class="collapse show multi-collapse" id="pay_collapse">
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/payList">
                                         <li>
                                             - 주문 / 배송 조회</li>
                                     </a>
-                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="#">
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/payCancelList">
                                         <li>
                                             - 취소 / 환불 내역</li>
                                     </a>
