@@ -292,8 +292,21 @@
 		WHERE RATE_NO = #{rate_no}
 	</update>
 	
-	<delete id="deleteRate" parameterType="_int">
+	<delete id="deleteRate" parameterType="likes">
 		DELETE FROM RATE
 		WHERE RATE_NO = #{ rateNo }
+	</delete>
+	
+	<select id="findLikes" parameterType="likes" resultType="_int" >
+		SELECT COUNT(*) FROM LIKES WHERE C_NO = #{ cNo } AND M_NO = #{ mNo }
+	</select>
+	
+	<insert id="likeUp" parameterType="map" >
+		INSERT INTO LIKES (C_NO , M_NO)
+		VALUES(${ cNo } , ${ mNo })
+	</insert>
+	
+	<delete id="likeDown" parameterType="map" >
+		DELETE FROM LIKES WHERE C_NO = ${ cNo } AND M_NO = ${ mNo }
 	</delete>
 </mapper>

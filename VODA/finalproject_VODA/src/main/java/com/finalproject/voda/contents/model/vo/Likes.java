@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Likes {
-	int mNo;
-	
+//	int like_no;
+	int mNo;	
 	int cNo;
 }

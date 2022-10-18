@@ -378,10 +378,12 @@ COMMENT ON COLUMN COMMENTS.CM_DATE IS '작성일자';
 --------------- LIKES 관련 테이블 ---------------
 ------------------------------------------------
 CREATE TABLE LIKES (
+    LIKE_NO NUMBER      NOT NULL;
 	M_NO	NUMBER		NOT NULL,
 	C_NO	NUMBER		NOT NULL
 );
 
+COMMENT ON COLUMN LIKES.LIKE_NO IS '찜하기 번호';
 COMMENT ON COLUMN LIKES.M_NO IS '회원 번호';
 COMMENT ON COLUMN LIKES.C_NO IS '컨텐츠 번호';
 
@@ -1207,6 +1209,18 @@ VALUES
 (5,
 7,
 '주연');
+
+------------------------------------------------
+--------------- RATE 관련 테이블 ---------------
+------------------------------------------------
+CREATE TABLE RATELIKES (
+LIKE_NO NUMBER NOT NULL PRIMARY KEY ,
+C_NO NUMBER,
+RATE_NO NUMBER,
+M_NO NUMBER,
+FOREIGN KEY (C_NO) REFERENCES CONTENTS(C_NO) ON DELETE CASCADE,
+FOREIGN KEY (RATE_NO) REFERENCES RATE(RATE_NO) ON DELETE CASCADE,
+FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE );
 
 COMMIT;
 

@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,6 +21,7 @@ import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.service.ContentsService;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
@@ -75,10 +80,28 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/contents/contents_detail")
-	public ModelAndView commentDetail(ModelAndView model, @RequestParam int no) {
+	public ModelAndView commentDetail(ModelAndView model, @RequestParam int no,
+									  @SessionAttribute(value = "loginMember", required = false) Member loginMember) {
 		Contents contents = null;
 		RateResult rateResult = null;
 		List<ContentsPeople> contentsPeople = null;
+		
+		if(loginMember != null ) {
+			Likes likes = new Likes();
+			int confirmLike = 0; 
+			
+			likes.setMNo(loginMember.getM_no());
+			likes.setCNo(no); 
+		
+			System.out.println(likes); 
+		
+			confirmLike = service.findLikes(likes);
+			
+			System.out.println(confirmLike); 
+			
+			model.addObject("likes", likes);
+			model.addObject("confirmLike", confirmLike);
+		}
 		
 		contentsPeople = service.getContentsPeopleByNo(no);
 		rateResult = service.getContentsRateByNo(no);
@@ -91,6 +114,24 @@ public class ContentsController {
 		
 		return model;
 	}
+	
+	@ResponseBody
+	@PostMapping("/contents/contents_detail/likeUp")
+	//@RequestMapping(value = "/contents/contents_detail/likeUp", method = { RequestMethod.POST })	
+	public void likeUp (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
+		
+		service.likeUp(mNo, cNo);
+	}
+	
+	@ResponseBody
+	@PostMapping("/contents/contents_detail/likeDown")
+	//@RequestMapping(value = "/contents/contents_detail/likeUp", method = { RequestMethod.POST })	
+	public void likeDown (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
+
+		
+		service.likeDown(mNo, cNo);
+	}
+	
 	
 	@PostMapping("/contents/comment_write")
 	public ModelAndView commentWrite(ModelAndView model, 

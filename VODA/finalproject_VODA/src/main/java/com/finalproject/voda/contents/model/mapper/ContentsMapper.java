@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
@@ -40,5 +41,13 @@ public interface ContentsMapper {
 	int deleteRate(int rateNo);
 
 	List<SearchPeople> selectPeopleSearchByKeyword(String keyword);
+
+	int findLikes(Likes likes);
+
+	void likeUp(Map<String, Object> map);
+
+	void likeDown(Map<String, Object> map);
+
+	
 
 }

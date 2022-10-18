@@ -86,15 +86,29 @@
                     </div>
                 </div>
                 <div class="col" style="margin-top: 20px;">
-                    <button class="bookmark">
-                        <svg viewBox="0 0 36 36">
-                            <path class="filled" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
-                            <path class="default" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
-                            <path class="corner" d="M10 6C10 6 14.8758 6 18 6C21.1242 6 26 6 26 6C26 6 26 6 26 6H10C10 6 10 6 10 6Z" />
-                    </button>
-                    <span id="bookmarktext">북마크</span>
+                <c:choose>
+                	<c:when test= "${ confirmLike == 1 }">
+	                	<button class="bookmark marked hey" style="--default-y: 0px; --background-height: 19px;	--default-position: 0px;">
+	                	<svg viewBox="0 0 36 36">
+	                            <path class="filled" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
+	                            <path class="default" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
+	                            <path class="corner" d="M10 6C10 6 14.8758 6 18 6C21.1242 6 26 6 26 6C26 6 26 6 26 6H10C10 6 10 6 10 6Z" />
+	                    </svg>
+	                    </button>
+                	</c:when>
+                	<c:otherwise>
+	                    <button class="bookmark hey">
+	                        <svg viewBox="0 0 36 36">
+	                            <path class="filled" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
+	                            <path class="default" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
+	                            <path class="corner" d="M10 6C10 6 14.8758 6 18 6C21.1242 6 26 6 26 6C26 6 26 6 26 6H10C10 6 10 6 10 6Z" />
+	                        </svg>
+	                    </button>
+                    </c:otherwise>
+				</c:choose>
+                    <span id="bookmarktext" class="hey">북마크</span>
                 </div>
-
+			
                 <div class="col">
                     <a id="comment" href="#${ path }/contents/comment_form?no=${ contents.c_no }">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -508,7 +522,50 @@
     <!--회색 박스 끝 -->
 
     <div style="height: 35px;"></div>
-     
+	
+	<script>
+	var likeval = ${ confirmLike };
+	
+	let mNo = '${ loginMember.m_no }';
+	let cNo = '${ contents.c_no }';
+	
+	let param = [{'mNo':'${ loginMember.m_no }','cNo':'${ contents.c_no }'}];
+	
+	if(likeval > 0){
+		console.log(likeval + "좋아요 누름");
+		$('.hey').click(function() {
+			$.ajax({
+				type :'post',
+				url : '<c:url value ="/contents/contents_detail/likeDown"/>',
+				//contentType: 'application/json',
+				data: { 
+					mNo : "${ loginMember.m_no }",
+					cNo : "${ contents.c_no }" 
+				},
+				success : function(data) {
+					alert('취소 성공');
+				}
+			})// 아작스 끝
+		})
+
+	}else{
+		console.log(likeval + "좋아요 안누름")
+		console.log(mNo);
+		$('.hey').click(function() {
+			$.ajax({
+				type :'post',
+				url : '<c:url value ="/contents/contents_detail/likeUp"/>',
+				//contentType: 'application/json',
+				data: { mNo : "${ loginMember.m_no }",
+					cNo : "${ contents.c_no }" },
+				success : function(data) {
+					alert('성공염');
+				}
+			})// 아작스 끝
+		})
+	}
+	</script>
+
 <!-- contents_detail JS --> 	
 <script type="text/javascript" src="${path}/resources/js/contents/contents_detail.js"></script>
 

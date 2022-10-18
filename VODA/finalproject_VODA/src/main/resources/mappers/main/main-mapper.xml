@@ -54,4 +54,5 @@
 			<include refid="contentsListSql"/>
 			ORDER BY COUNT(RATE_NO) DESC
 	</select>
+	
 </mapper>

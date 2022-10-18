@@ -1,10 +1,12 @@
 package com.finalproject.voda.contents.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
@@ -35,4 +37,12 @@ public interface ContentsService {
 	int delete(int rateNo);
 
 	List<SearchPeople> getPeopleSearch(String keyword);
+
+	int findLikes(Likes likes);
+
+	void likeUp(int mNo, int cNo);
+
+	void likeDown(int mNo, int cNo);
+
+
 }

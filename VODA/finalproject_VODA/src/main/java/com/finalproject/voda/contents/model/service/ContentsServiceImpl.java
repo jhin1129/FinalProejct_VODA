@@ -13,6 +13,7 @@ import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.mapper.ContentsMapper;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
+import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
@@ -119,5 +120,43 @@ public class ContentsServiceImpl implements ContentsService {
 	
 		return mapper.selectPeopleSearchByKeyword(keyword);
 	}
+
+	@Override
+	public int findLikes(Likes likes) {
+	
+		return mapper.findLikes(likes);
+	}
+
+	@Override
+	public void likeUp(int mNo, int cNo) {
+
+		Map<String, Object> map	= new HashMap<>();
+		
+		map.put("mNo", mNo);
+		map.put("cNo", cNo);
+
+		System.out.println("map=mNo" + map.get("mNo"));
+		System.out.println("map=cNo" + map.get("cno"));
+		
+		mapper.likeUp(map);
+		
+	}
+
+	@Override
+	public void likeDown(int mNo, int cNo) {
+		
+		Map<String, Object> map	= new HashMap<>();
+		
+		map.put("mNo", mNo);
+		map.put("cNo", cNo);
+
+		System.out.println("map=mNo" + map.get("mNo"));
+		System.out.println("map=cNo" + map.get("cno"));
+		
+		mapper.likeDown(map);
+		
+	}
+
+
 
 }
