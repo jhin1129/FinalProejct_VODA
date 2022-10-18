@@ -37,7 +37,7 @@
   </div>
       <div class="join_completion">
           <button id="btn_join_completion" type="button" class="btn-logoc" 
-          			onclick="location.href='/voda'">VODA 즐기러 가기</button>
+          			onclick="location.href='/voda/member/login'">VODA 즐기러 가기</button>
       </div>
   
   <br><br><br><br><br><br>

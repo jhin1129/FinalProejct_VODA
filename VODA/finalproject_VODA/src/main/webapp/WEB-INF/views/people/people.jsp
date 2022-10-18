@@ -83,6 +83,8 @@
                     </div>
                 </div>
             </div>
+            <button type="button" class="btn-logoc" style="width: 100px; height: 36px; float: right;"
+             onclick="location.replace('${ path }/admin/admin_people')">목록으로</button>
         </article>        
     </main>
 

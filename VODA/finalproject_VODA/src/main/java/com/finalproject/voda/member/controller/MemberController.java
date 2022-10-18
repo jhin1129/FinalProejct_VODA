@@ -241,14 +241,20 @@ public class MemberController {
 				return mv;
 			}else {
 				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/findPwd");
+				mv.addObject("msg", "가입 시 등록한 아이디와 이메일을 입력해 주세요");
+				mv.addObject("location", "/member/findPwd" );
+				mv.setViewName("common/msg");
 				return mv;
 			}
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/findPwd");
-				return mv;
-			}
+			
+		} else {
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "가입 시 등록한 아이디와 이메일 입력해 주세요");
+			mv.addObject("location", "/member/findPwd" );
+			mv.setViewName("common/msg");
+			return mv;
+		}
+		
 		
 	}
 	
@@ -266,11 +272,23 @@ public class MemberController {
 			return model;
 		}
 		else {
-			model.setViewName("member/verifyCode");
+			model.addObject("num", num);
+			model.addObject("msg", "올바른 인증번호를 입력해 주세요");
+//			model.addObject("location", "/member/verifyCode");
+			model.addObject("redirect:/member/verifyCode");
+			model.setViewName("common/msg");
+			
 			return model;
 		}
 	} 
 	
+	
+	@GetMapping("/verifyCode") 
+	public String verifyCode() {
+		
+		return "member/verifyCode"; 
+		
+	}
 	
 	@PostMapping("/pwdReset") // DB 비밀번호 업데이트
 	public ModelAndView pwdReset(@RequestParam(value="m_email") String m_email, 
@@ -294,6 +312,7 @@ public class MemberController {
 		model.setViewName("common/msg");
 		return model;
 	}
+	
 	
 	
 		
