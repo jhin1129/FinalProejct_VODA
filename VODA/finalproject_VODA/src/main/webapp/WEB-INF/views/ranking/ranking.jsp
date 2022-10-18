@@ -27,7 +27,7 @@
 
 
     <!-- Ranking CSS-->
-    <link rel="stylesheet" type="text/css" href="../../CSS/Ranking/rankinglist.css">
+    <link rel="stylesheet" href="${path}/resources/css/ranking/ranking.css">
 
     <style>
         img {
@@ -49,8 +49,8 @@
         <h2 class="screen_out">영화 랭킹 본문</h2>
         <div class="section_ranking">
             <div class="head_section">
-                <h3 class="tit_section">10대·20대 여성이 좋아하는 영화 <img src="../../IMG/Ranking/kakao.png" alt=""
-                    style=" position: absolute; width: 45px; height: 45px; top: 25px; right: 0px; box-sizing: border-box; border-radius: 20%; box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;"></h3>
+                <h3 class="tit_section">10대·20대 여성이 좋아하는 영화<img src="${ path }/resources/img/ranking/kakao.png" alt=""
+                        style=" position: absolute; width: 45px; height: 45px; top: 25px; right: 0px; box-sizing: border-box; border-radius: 20%; box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;"></h3>
             </div>
 
             <div class="box_ranking" data-tiara-layer="list">
@@ -408,7 +408,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                                 class="carousel-control-prev" type="button"
                                 data-target="#carouselExampleControlsNoTouching" data-slide="prev">
-                                <img src="../../IMG/Ranking/slide-left.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -416,7 +416,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                                 class="carousel-control-next" type="button"
                                 data-target="#carouselExampleControlsNoTouching" data-slide="next">
-                                <img src="../../IMG/Ranking/slide-right.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
@@ -789,7 +789,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                                 class="carousel-control-prev" type="button"
                                 data-target="#carouselExampleControlsNoTouching2" data-slide="prev">
-                                <img src="../../IMG/Ranking/slide-left.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -797,7 +797,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                                 class="carousel-control-next" type="button"
                                 data-target="#carouselExampleControlsNoTouching2" data-slide="next">
-                                <img src="../../IMG/Ranking/slide-right.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
@@ -1163,7 +1163,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                                 class="carousel-control-prev" type="button"
                                 data-target="#carouselExampleControlsNoTouching4" data-slide="prev">
-                                <img src="../../IMG/Ranking/slide-left.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Previous</span>
@@ -1171,7 +1171,7 @@
                             <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                                 class="carousel-control-next" type="button"
                                 data-target="#carouselExampleControlsNoTouching4" data-slide="next">
-                                <img src="../../IMG/Ranking/slide-right.png" alt=""
+                                <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                                     style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="sr-only">Next</span>
@@ -1523,7 +1523,7 @@
                         <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                             class="carousel-control-prev" type="button"
                             data-target="#carouselExampleControlsNoTouching5" data-slide="prev">
-                            <img src="../../IMG/Ranking/slide-left.png" alt=""
+                            <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                                 style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
@@ -1531,7 +1531,7 @@
                         <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                             class="carousel-control-next" type="button"
                             data-target="#carouselExampleControlsNoTouching5" data-slide="next">
-                            <img src="../../IMG/Ranking/slide-right.png" alt=""
+                            <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                                 style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
@@ -1879,7 +1879,7 @@
                 <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                     class="carousel-control-prev" type="button"
                     data-target="#carouselExampleControlsNoTouching6" data-slide="prev">
-                    <img src="../../IMG/Ranking/slide-left.png" alt=""
+                    <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                         style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -1887,7 +1887,7 @@
                 <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                     class="carousel-control-next" type="button"
                     data-target="#carouselExampleControlsNoTouching6" data-slide="next">
-                    <img src="../../IMG/Ranking/slide-right.png" alt=""
+                    <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                         style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
@@ -2236,7 +2236,7 @@
                         <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
                             class="carousel-control-prev" type="button"
                             data-target="#carouselExampleControlsNoTouching7" data-slide="prev">
-                            <img src="../../IMG/Ranking/slide-left.png" alt=""
+                            <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
                                 style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="sr-only">Previous</span>
@@ -2244,7 +2244,7 @@
                         <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
                             class="carousel-control-next" type="button"
                             data-target="#carouselExampleControlsNoTouching7" data-slide="next">
-                            <img src="../../IMG/Ranking/slide-right.png" alt=""
+                            <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
                                 style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
@@ -2261,6 +2261,7 @@
     </article>
     </main>
     <hr class="hide">
+
 
     <!-- <script src="//t1.daumcdn.net/media/kraken/movie/272060b/PcRankingReservationRankBundle.merged.js"></script>
 <script src="//t1.daumcdn.net/media/kraken/movie/272060b/PcCommonEventBundle.merged.js"></script>     -->
