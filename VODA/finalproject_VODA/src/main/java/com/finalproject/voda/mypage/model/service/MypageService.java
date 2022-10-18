@@ -31,5 +31,13 @@ public interface MypageService {
 
 	int deleteMember(int m_no);
 
+	int getFreeBoardSearchCount(int m_no, String searchType, String searchVal);
+
+	List<Board> getfreeBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal);
+
+	int getQnaBoardSearchCount(int m_no, String searchType, String searchVal);
+
+	List<Board> getqnaBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal);
+
 
 }

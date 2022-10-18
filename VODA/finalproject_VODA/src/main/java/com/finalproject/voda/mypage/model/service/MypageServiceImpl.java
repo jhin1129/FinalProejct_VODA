@@ -141,6 +141,36 @@ public class MypageServiceImpl implements MypageService {
 		return result;
 	}
 
+	@Override
+	public int getFreeBoardSearchCount(int m_no, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectFreeBoardSearchCount(m_no, searchType, searchVal);
+	}
+
+	@Override
+	public List<Board> getfreeBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectFreeBoardSearchList(rowBounds, m_no, searchType, searchVal);
+	}
+
+	@Override
+	public int getQnaBoardSearchCount(int m_no, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectQnaBoardSearchCount(m_no, searchType, searchVal);
+	}
+
+	@Override
+	public List<Board> getqnaBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectQnaBoardSearchList(rowBounds, m_no, searchType, searchVal);
+	}
+
 
 
 }

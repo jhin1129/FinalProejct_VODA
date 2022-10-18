@@ -33,5 +33,13 @@ public interface MypageMapper {
 
 	int deleteMember(int m_no);
 
+	int selectFreeBoardSearchCount(@Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Board> selectFreeBoardSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	int selectQnaBoardSearchCount(@Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Board> selectQnaBoardSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
 
 }
