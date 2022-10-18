@@ -1,5 +1,6 @@
 package com.finalproject.voda.mypage.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,15 +34,12 @@ public class MypageController {
 								@SessionAttribute("loginMember") Member loginMember) {
 		
 		List<Contents> likesList = null;
-		List<Contents> reviewList = null;
 		List<Board> freeBoardList = null;
 		List<Board> qnaBoardList = null;
 		PageInfo pageInfo1 = null;
 		PageInfo pageInfo2 = null;
 		
-		likesList = service.getLikesList(loginMember.getM_no());
-		
-		reviewList = service.getreviewList(loginMember.getM_no());
+		likesList = service.getLikesAllList(loginMember.getM_no());
 		
 		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 5);
 		
@@ -53,8 +51,6 @@ public class MypageController {
 		
 		model.addObject("likesList", likesList);
 		model.addObject("likesListCount", likesList.size());
-		model.addObject("reviewList", reviewList);
-		model.addObject("reviewListCount", reviewList.size());
 		model.addObject("freeBoardList", freeBoardList);
 		model.addObject("freeBoardListCount", freeBoardList.size());
 		model.addObject("qnaBoardList", qnaBoardList);
@@ -163,12 +159,17 @@ public class MypageController {
 	@GetMapping("/dibsContent")
 	public ModelAndView dibsContent(ModelAndView model,
 									@SessionAttribute("loginMember") Member loginMember,
-									@RequestParam(value = "type", defaultValue = "영화") String type) {
+									@RequestParam(value = "type", defaultValue = "영화") String type,
+									@RequestParam(value = "page", defaultValue = "1") int page) {
 		
 		List<Contents> likesList = null;
+		PageInfo pageInfo = null;
 		
-		likesList = service.getLikesList(loginMember.getM_no(), type);
+		pageInfo = new PageInfo(page, 10, service.getLikesCount(loginMember.getM_no(), type), 8);
+				
+		likesList = service.getLikesList(pageInfo, loginMember.getM_no(), type);
 		
+		model.addObject("pageInfo", pageInfo);
 		model.addObject("likesList", likesList);
 		model.addObject("type", type);
 		model.setViewName("mypage/mypage_dibsContent");
@@ -176,21 +177,77 @@ public class MypageController {
 		return model;
 	}
 	
+	@GetMapping("/dibsContentSearch")
+	public ModelAndView dibsContentSearch(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "type", defaultValue = "영화") String type,
+									@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "searchType") String searchType,
+									@RequestParam(value = "searchVal") String searchVal) {
+		
+		List<Contents> likesList = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getLikesSearchCount(loginMember.getM_no(), type, searchType, searchVal), 8);
+				
+		likesList = service.getLikesSearchList(pageInfo, loginMember.getM_no(), type, searchType, searchVal);
+		
+		model.addObject("pageInfo", pageInfo);
+		model.addObject("likesList", likesList);
+		model.addObject("type", type);
+		model.addObject("searchType", searchType);
+		model.addObject("searchVal", searchVal);
+		model.setViewName("mypage/mypage_dibsContentSearch");
+		
+		return model;
+	}
+	
 	@GetMapping("/reviewContent")
 	public ModelAndView reviewContent(ModelAndView model,
 									@SessionAttribute("loginMember") Member loginMember,
-									@RequestParam(value = "type", defaultValue = "영화") String type) {
+									@RequestParam(value = "type", defaultValue = "영화") String type,
+									@RequestParam(value = "page", defaultValue = "1") int page) {
 		
 		List<Contents> reviewList = null;
-
-		reviewList = service.getReviewList(loginMember.getM_no(), type);
+		PageInfo pageInfo = null;
 		
+		pageInfo = new PageInfo(page, 10, service.getReviewCount(loginMember.getM_no(), type), 8);
+		
+		reviewList = service.getReviewList(pageInfo, loginMember.getM_no(), type);
+		
+		model.addObject("pageInfo", pageInfo);
 		model.addObject("reviewList", reviewList);
 		model.addObject("type", type);
 		model.setViewName("mypage/mypage_reviewContent");
 		
 		return model;
 	}
+	
+	@GetMapping("/reviewContentSearch")
+	public ModelAndView reviewContentSearch(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "type", defaultValue = "영화") String type,
+									@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "searchType") String searchType,
+									@RequestParam(value = "searchVal") String searchVal) {
+		
+		List<Contents> reviewList = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getReviewSearchCount(loginMember.getM_no(), type, searchType, searchVal), 8);
+		
+		reviewList = service.getReviewSearchList(pageInfo, loginMember.getM_no(), type, searchType, searchVal);
+		
+		model.addObject("pageInfo", pageInfo);
+		model.addObject("reviewList", reviewList);
+		model.addObject("type", type);
+		model.addObject("searchType", searchType);
+		model.addObject("searchVal", searchVal);
+		model.setViewName("mypage/mypage_reviewContentSearch");
+		
+		return model;
+	}
+	
 	
 	@GetMapping("/writeFreeBoard")
 	public ModelAndView writeFreeBoard(ModelAndView model,

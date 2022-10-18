@@ -10,14 +10,6 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
 
 public interface MypageMapper {
-
-	List<Integer> selectLikesCNoList(int mNo);
-
-	List<Integer> selectReviewCNoList(int mNo);
-	
-	Contents selectContentsByCNo(@Param("cNo") int cNo);
-	
-	Contents selectContentsByCNoType(@Param("cNo") int cNo, @Param("type") String type);
 	
 	int selectFreeBoardCount(int m_no);
 	
@@ -40,6 +32,26 @@ public interface MypageMapper {
 	int selectQnaBoardSearchCount(@Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
 
 	List<Board> selectQnaBoardSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectLikesAllList(int mNo);
+
+	List<Contents> selectLikesList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type);
+
+	List<Contents> selectReviewList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type);
+
+	int selectLikesCount(@Param("m_no") int m_no, @Param("type") String type);
+
+	int selectReviewCount(@Param("m_no") int m_no,  @Param("type") String type);
+
+	int selectLikesSearchCount(@Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectLikesSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType,
+			@Param("searchVal") String searchVal);
+
+	int selectReviewSearchCount(@Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectReviewSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType,
+			@Param("searchVal") String searchVal);
 
 
 }

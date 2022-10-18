@@ -24,7 +24,42 @@
 		    padding-left: 50px;
 		    padding-right: 50px;
 		}
-		
+		/* pagination */
+        #pagination {
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        #pagination li {
+            display: inline
+        }
+
+        #pagination li a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 3px 7px;
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* Active and Hoverable Pagination */
+        #pagination li a {
+            border-radius: 5px;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s
+        }
+
+        #pagination li a.active {
+            background-color: rgb(73, 95, 233);
+            color: #fff
+        }
+
+        #pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }		
 		.btn {
 
             transition: background 0.2s ease-in-out,
@@ -167,19 +202,48 @@
                     </div>
 
 					
+					<div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <ul id="pagination">
+				            	<!-- 맨 처음으로 -->
+				                <li><a href="${ path }/mypage/dibsContent?page=1">«</a></li>
+				                
+				                <!-- 이전 페이지로 -->
+				                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.prevPage }">‹</a></li>
+				                
+								<!--  10개 페이지 목록 -->
+								<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+									<c:if test="${ status.current == pageInfo.currentPage }">
+										<li><a class="active">${ status.current }</a></li>
+									</c:if>
+									
+									<c:if test="${ status.current != pageInfo.currentPage }">
+				                		<li><a href="${ path }/mypage/dibsContent?page=${ status.current }">${ status.current }</a></li>
+									</c:if>
+								</c:forEach>
+								
+								<!-- 다음 페이지로 -->
+									<li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.nextPage }">›</a></li>  
+								<!-- 맨 끝 페이지로 -->
+					                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.maxPage }">»</a></li>
+				            </ul>
+                        </div>
+            
+                    </div>
+					
 					<div class="search1 row my-4">
 						<div class="col-6 row">
+							
 						    <div class="col-3 mr-4">
-						        <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
+						        <select id="searchType" name="searchType" class="form-control1" style="font-size: 14.45px; width: 106px;">
 							        <option value="title" selected>제목</option>
-							        <option value="title">내용</option>
-							        <option value="title">제목+내용</option>
 						    	</select>
 							</div>
 					
 							<div class="col-8 pl-0">
 						    	<div class="input-group">
-						        	<input type="text" class="form-control1" style="font-size: 14.45px;">
+						        	<input id="searchVal" type="text" class="form-control1" style="font-size: 14.45px;">
 									<span class="input-group-btn">
 							    		<button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;">
 							    			<img src="${path}/resources/img/community/search.png" style="height: 16px;">
@@ -187,6 +251,7 @@
 						            </span>
 						         </div>
 						    </div>
+
 					    </div>
 					</div>
                     <!-- 컨테이너 끝 -->
@@ -199,3 +264,13 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script>
+	$(document).ready(() => {
+		$("#searchBtn").on("click", () => {
+			var searchType = $("#searchType").val();
+			var searchVal = $("#searchVal").val();
+			
+			location.href="${path}/mypage/dibsContentSearch?type=${type}&searchType=" + searchType + "&searchVal=" + searchVal;
+		});
+	});
+</script>
