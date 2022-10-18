@@ -38,14 +38,18 @@
 		            <div class="section_star">
 		                <div class="box_basic" data-tiara-layer="main" style="padding-left: 50px;">
 		                    <div class="info_poster">
-		                        <div class="thumb_img">
 		                        <c:if test="${ not empty people.people_original_filename }">
-		                            <img class="bg_img" id="blah" src="#" alt="" 
-		                            	src="${ path }/resources/upload/people/${ people.people_renamed_filename }"/>
+			                        <div class="thumb_img">
+			                       		<img src="${ path }/resources/upload/people/${ people.people_renamed_filename }"
+			                        		id="blah" style="width:105%;height:105%;-fit:cover;">
+			                            <!-- 
+			                            <img class="bg_img" id="blah" src="#" alt="" 
+			                            	src="${ path }/resources/upload/people/${ people.people_renamed_filename }"/>
+			                             -->
+			                        </div>
+			                        <input type='file' id="imgInp" name="upfile"
+			                        	style="margin-top: 30px; width: 220px;"/>
 								</c:if>
-		                        </div>
-		                        <input type='file' id="imgInp" name="upfile" 
-		                        style="margin-top: 30px; width: 220px;" required/>
 		                    </div>
 		                <div class="base_info_sec">
 		                    <table border="0" cellpadding="0" cellspacing="0" style="margin-left: 300px;">
