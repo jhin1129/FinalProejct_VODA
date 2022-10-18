@@ -264,31 +264,21 @@ public class MemberController {
 							 @RequestParam(value="code") String code,
 							 @RequestParam(value = "num") String num,
 							 @RequestParam(value = "m_email") String m_email){
-		
 		if(code.equals(num)) {
-			
 			model.addObject("m_email", m_email);
 			model.setViewName("member/pwdReset");
 			return model;
 		}
 		else {
-			model.addObject("num", num);
-			model.addObject("msg", "올바른 인증번호를 입력해 주세요");
-//			model.addObject("location", "/member/verifyCode");
-			model.addObject("redirect:/member/verifyCode");
+			model.addObject("msg", "올바른 인증번호를 입력해 주세요 ");
+			model.addObject("location", "/member/findPwd");
 			model.setViewName("common/msg");
-			
+//			model.setViewName("member/verifyCode");
 			return model;
 		}
 	} 
 	
 	
-	@GetMapping("/verifyCode") 
-	public String verifyCode() {
-		
-		return "member/verifyCode"; 
-		
-	}
 	
 	@PostMapping("/pwdReset") // DB 비밀번호 업데이트
 	public ModelAndView pwdReset(@RequestParam(value="m_email") String m_email, 

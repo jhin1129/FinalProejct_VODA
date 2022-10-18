@@ -48,7 +48,7 @@
                             placeholder="새 비밀번호를 한 번 더 입력해주세요." class="find_id_email5" required>
                         </div>
                     </div>
-                    <div class="mismatch-message" style="color: red;"></div>
+                    <div class="mismatch-message" id="password_check2" style="color: red;"></div>
                 </div>
                 <div class="verification_code1">
                     <button type="submit" class="verification_code2" id="code_onclick">
@@ -102,9 +102,12 @@ $('#m_password').blur(function(){
 	if(pwJ.test($(this).val())){
 		console.log(pwJ.test($(this).val()));
 		$("#password_check").text('');
+		$("#password_check").attr('style', 'visibility:hidden;');
+		
 	} else {
 		$('#password_check').text('비밀번호를 확인해 주세요');
-		$('#password_check').css('color', 'red');
+		$("#password_check").attr('style', 'visibility:visible;');
+		$('#password_check').attr('style', 'color: red');
 	}
 });
 
@@ -120,7 +123,7 @@ $(document).ready(function () {
 		var p2 = $("#newPwd2");
 		
 		if(p1.val() != p2.val()){
-			$(".mismatch-message").text("동일한 비밀번호를 입력해 주세요.");
+			$(".mismatch-message").text("동일한 비밀번호를 입력해 주세요");
 			$(".mismatch-message").attr('style', 'visibility:visible;');
             $(".mismatch-message").attr('style', 'color: red');
 
@@ -128,6 +131,30 @@ $(document).ready(function () {
 			$(".mismatch-message").text("");
 			$(".mismatch-message").attr('style', 'visibility:hidden;');
 		}
+	});
+});
+
+</script>
+
+<script>
+$(document).ready(function(){
+	$("#code_onclick").click(function(){
+		
+		//비밀번호 작성 여부(유효성 검사 여부)
+		if($("#password_check").css("visibility") != "hidden"){
+			alert("비밀번호를 확인해 주세요");
+			$("#m_password").focus();
+			
+			return false;
+		}
+		
+		if($(".mismatch-message").css("visibility") != "hidden"){
+			alert("동일한 비밀번호를 입력해 주세요");
+			$("#newPwd2").focus();
+			
+			return false;
+		}	
+		
 	});
 });
 
