@@ -43,11 +43,11 @@ public class MypageController {
 		
 		reviewList = service.getreviewList(loginMember.getM_no());
 		
-		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 10);
+		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 5);
 		
 		freeBoardList = service.getfreeBoardList(pageInfo1, loginMember.getM_no());
 		
-		pageInfo2 = new PageInfo(1, 10, service.getQnaBoardCount(loginMember.getM_no()), 10);
+		pageInfo2 = new PageInfo(1, 10, service.getQnaBoardCount(loginMember.getM_no()), 5);
 		
 		qnaBoardList = service.getqnaBoardList(pageInfo2, loginMember.getM_no());
 		
@@ -204,9 +204,34 @@ public class MypageController {
 		
 		freeBoardList = service.getfreeBoardList(pageInfo, loginMember.getM_no());
 		
+		
 		model.addObject("pageInfo", pageInfo);
 		model.addObject("freeBoardList", freeBoardList);
 		model.setViewName("mypage/mypage_writeFreeBoard");
+		
+		return model;
+	}
+	
+	@GetMapping("/writeFreeBoardSearch")
+	public ModelAndView writeFreeBoardSearch(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "searchType") String searchType,
+									@RequestParam(value = "searchVal") String searchVal) {
+		
+		List<Board> freeBoardList = null;
+		PageInfo pageInfo = null;
+		
+		
+		pageInfo = new PageInfo(page, 10, service.getFreeBoardSearchCount(loginMember.getM_no(), searchType, searchVal), 10);
+				
+		freeBoardList = service.getfreeBoardSearchList(pageInfo, loginMember.getM_no(), searchType, searchVal);
+		
+		model.addObject("pageInfo", pageInfo);
+		model.addObject("freeBoardList", freeBoardList);
+		model.addObject("searchType", searchType);
+		model.addObject("searchVal", searchVal);
+		model.setViewName("mypage/mypage_writeFreeBoardSearch");
 		
 		return model;
 	}
@@ -226,6 +251,30 @@ public class MypageController {
 		model.addObject("pageInfo", pageInfo);
 		model.addObject("qnaBoardList", qnaBoardList);
 		model.setViewName("mypage/mypage_writeQuestionBoard");
+		
+		return model;
+	}
+	
+	@GetMapping("/writeQuestionBoardSearch")
+	public ModelAndView writeQuestionBoardSearch(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "page", defaultValue = "1") int page,
+									@RequestParam(value = "searchType") String searchType,
+									@RequestParam(value = "searchVal") String searchVal) {
+		
+		List<Board> qnaBoardList = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getQnaBoardSearchCount(loginMember.getM_no(), searchType, searchVal), 10);
+		
+		qnaBoardList = service.getqnaBoardSearchList(pageInfo, loginMember.getM_no(), searchType, searchVal);
+
+		model.addObject("pageInfo", pageInfo);
+		model.addObject("qnaBoardList", qnaBoardList);
+		model.addObject("searchType", searchType);
+		model.addObject("searchVal", searchVal);
+		
+		model.setViewName("mypage/mypage_writeQuestionBoardSearch");
 		
 		return model;
 	}

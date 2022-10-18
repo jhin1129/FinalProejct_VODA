@@ -74,13 +74,13 @@
 		<result property="bstatus" column="B_STATUS"/>
 		<result property="mid" column="M_ID"/>
 	</resultMap>
-
+	
 	<select id="selectLikesCNoList" parameterType="_int" resultType="_int">
-		SELECT C_NO FROM LIKES WHERE M_NO = ${mNo}
+		SELECT C_NO FROM LIKES WHERE M_NO = #{mNo}
 	</select>
-
+	
 	<select id="selectReviewCNoList" parameterType="_int" resultType="_int">
-		SELECT C_NO FROM RATE WHERE M_NO = ${mNo}
+		SELECT C_NO FROM RATE WHERE M_NO = #{mNo}
 	</select>
 
 	<select id="selectContentsByCNo" parameterType="_int" resultMap="contentsListResultMap">
@@ -91,7 +91,7 @@
         LEFT OUTER JOIN RATE R
         ON C.C_NO = R.C_NO      
        	WHERE C.C_STATUS = 'Y' 
-       	AND C.C_NO = ${cNo}
+       	AND C.C_NO = #{cNo}
         GROUP BY 
         <include refid="contentsListSql"/>
         ORDER BY C.C_NO DESC
@@ -105,29 +105,89 @@
         LEFT OUTER JOIN RATE R
         ON C.C_NO = R.C_NO      
        	WHERE C.C_STATUS = 'Y' 
-       	AND C.C_NO = ${cNo} 
-       	AND C.C_TYPE = '${type}' 
+       	AND C.C_NO = #{cNo} 
+       	AND C.C_TYPE = #{type} 
         GROUP BY 
         <include refid="contentsListSql"/>
         ORDER BY C.C_NO DESC
 	</select>
 	
 	<select id="selectFreeBoardCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM BOARD WHERE M_NO = ${m_no} AND B_TYPE = 'FREE'
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'FREE' AND B_STATUS = 'Y'
 	</select>
 
 	<select id="selectFreeBoardList" parameterType="_int" resultMap="BoardResultMap">
 		<include refid="boardSql" />
-		AND M.M_NO = ${mNo} AND B.B_TYPE='FREE' ORDER BY B.B_NO DESC
+		AND M.M_NO = #{mNo} AND B.B_TYPE='FREE' ORDER BY B.B_NO DESC
 	</select>
 		
 	<select id="selectQnaBoardCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM BOARD WHERE M_NO = ${m_no} AND B_TYPE = 'QNA'
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'QNA' AND B_STATUS = 'Y'
 	</select>
 	
 	<select id="selectQnaBoardList" parameterType="_int" resultMap="BoardResultMap">
 		<include refid="boardSql" />
-		AND M.M_NO = ${mNo} AND B.B_TYPE='QNA' ORDER BY B.B_NO DESC
+		AND M.M_NO = #{mNo} AND B.B_TYPE='QNA' ORDER BY B.B_NO DESC
+	</select>
+	
+	<select id="selectFreeBoardSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'FREE' AND B_STATUS = 'Y' 
+		<if test="searchType == 'title'">
+		 	AND B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+	</select>
+	
+	<select id="selectFreeBoardSearchList" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{m_no} AND B.B_TYPE='FREE' 
+				<if test="searchType == 'title'">
+		 	AND B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B.B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B.B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+		ORDER BY B.B_NO DESC
+	</select>
+	
+	<select id="selectQnaBoardSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'QNA' AND B_STATUS = 'Y' 
+		<if test="searchType == 'title'">
+		 	AND B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+	</select>
+	
+	<select id="selectQnaBoardSearchList" resultMap="BoardResultMap">
+		<include refid="boardSql" />
+		AND M.M_NO = #{m_no} AND B.B_TYPE='QNA' 
+				<if test="searchType == 'title'">
+		 	AND B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'content'">
+		 	AND B.B_CONTENT LIKE '%' || #{searchVal} || '%'
+		</if>
+		<if test="searchType == 'titlecontent'">
+		 	AND (B.B_TITLE LIKE '%' || #{searchVal} || '%'
+		 	OR B.B_CONTENT LIKE '%' || #{searchVal} || '%')
+		</if>
+		ORDER BY B.B_NO DESC
 	</select>
 	
 	<update id="updateMember" parameterType="Member">
@@ -148,5 +208,9 @@
 		M_STATUS = 'N'
 		WHERE M_NO = #{m_no}
 	</update>
+	
+	
+	
+	
 </mapper>
 

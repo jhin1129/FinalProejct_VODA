@@ -159,6 +159,7 @@
                     </div>
                     <!-- 행 시작 -->
                     <div class="text-center">
+                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/memberInfo'">돌아가기</button>
                         <button id="btn_updateMember" type="submit" class="btn btn-logoC">수정하기</button>
                     </div>
                 </form>
