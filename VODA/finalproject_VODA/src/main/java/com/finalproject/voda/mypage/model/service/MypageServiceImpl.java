@@ -13,6 +13,7 @@ import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.mypage.model.mapper.MypageMapper;
+import com.finalproject.voda.order.model.vo.Order;
 
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -190,6 +191,12 @@ public class MypageServiceImpl implements MypageService {
 	public int deleteDibsContent(int m_no, List<Integer> list) {
 		// TODO Auto-generated method stub
 		return mapper.deleteDibsContent(m_no, list);
+	}
+
+	@Override
+	public List<Order> getOrderListByMNo(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectOrderListByMNo(m_no);
 	}
 
 

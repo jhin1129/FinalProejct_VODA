@@ -1,6 +1,9 @@
 package com.finalproject.voda.order.model.vo;
 
 import java.util.Date;
+import java.util.List;
+
+import com.finalproject.voda.product.model.vo.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,4 +33,7 @@ public class Order {
 	
 	private String omessage;
 	
+	private List<Product> productList;
+	
+	private Pay pay;
 }
