@@ -23,7 +23,6 @@ import com.finalproject.voda.product.model.service.ProductService;
 import com.finalproject.voda.product.model.vo.Product;
 
 @Controller
-@RequestMapping("/product")
 @SessionAttributes("loginMember")
 public class OrderController {
 	@Autowired
@@ -48,27 +47,23 @@ public class OrderController {
 	public ModelAndView InsertOrder (ModelAndView model,
 			@ModelAttribute Order order,
 			@SessionAttribute("loginMember") Member loginMember) {
-		Pay pay = null;
+		Pay pay = new Pay();
 		int result = 0;
-		int result2 = 0;
+		int payno = 0;
+		
+		payno = orderService.insertPay(pay);
 		order.setMno(loginMember.getM_no());
-//		result = orderService.insertOrder(order);
-		result2 = orderService.insertPay(pay);
+		order.setPayno(payno);
+		result = orderService.insertOrder(order);
 		
 		System.out.println(loginMember);
 		System.out.println(order);
-		System.out.println(result2);
+		System.out.println(payno);
 		if(result  > 0) {
-			
-			model.addObject("location", "/product/product_all_list");
+			model.setViewName("mainpage");
 		} else {
-			
-			model.addObject("location", "/product/product_all_list");	
+			model.setViewName("mainpage");
 		}
-		
-		
-		
-		
 		return model;
 	}
 	

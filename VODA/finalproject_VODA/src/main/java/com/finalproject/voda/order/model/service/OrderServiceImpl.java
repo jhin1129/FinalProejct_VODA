@@ -25,8 +25,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public int insertPay(Pay pay) {
-		// TODO Auto-generated method stub
-		return orderMapper.insertPay(pay);
+		orderMapper.insertPay(pay);
+		System.out.println(pay);
+		return pay.getPayno();
 	}
 
 }

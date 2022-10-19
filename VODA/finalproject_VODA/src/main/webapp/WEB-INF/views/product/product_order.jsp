@@ -13,7 +13,7 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <div class="container">
-<form action="${ path }/product/order_insert" method="post" id="formid">
+<form action="${ path }/order_insert" method="post" id="formid">
 <input type="hidden" name="pno" value="${ product.pno }">
 <input type="hidden" name="mno" value="${ loginMember.m_no }">
 
