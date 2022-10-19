@@ -13,4 +13,8 @@ public class Pay {
 	private String paymerchant;
 	
 	private String paymethod;
+	
+	private int payprice;
+	
+	private String patstatus;
 }
