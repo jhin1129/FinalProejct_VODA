@@ -51,5 +51,7 @@ public interface MypageService {
 
 	int updateMemberPwd(int m_no, String password);
 
+	int deleteDibsContent(int m_no, List<Integer> list);
+
 
 }

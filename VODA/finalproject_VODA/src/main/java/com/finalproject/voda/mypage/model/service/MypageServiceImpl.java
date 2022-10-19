@@ -186,6 +186,12 @@ public class MypageServiceImpl implements MypageService {
 		return result;
 	}
 
+	@Override
+	public int deleteDibsContent(int m_no, List<Integer> list) {
+		// TODO Auto-generated method stub
+		return mapper.deleteDibsContent(m_no, list);
+	}
+
 
 
 

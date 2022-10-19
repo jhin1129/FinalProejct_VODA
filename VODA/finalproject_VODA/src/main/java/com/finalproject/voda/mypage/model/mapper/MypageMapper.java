@@ -55,5 +55,7 @@ public interface MypageMapper {
 
 	int updateMemberPwd(@Param("m_no") int m_no, @Param("password") String password);
 
+	int deleteDibsContent(@Param("m_no") int m_no, @Param("list") List<Integer> list);
+
 
 }

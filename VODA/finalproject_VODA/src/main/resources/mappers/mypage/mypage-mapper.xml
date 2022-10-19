@@ -340,7 +340,14 @@
 		WHERE M_NO = #{m_no}
 	</update>
 	
-	
+	<delete id="deleteDibsContent">
+		DELETE FROM LIKES
+		WHERE M_NO = #{m_no}
+		AND C_NO IN
+		<foreach collection="list" item="c_no" open="(" separator="," close=")">
+				#{c_no}
+		</foreach>
+	</delete>
 	
 	
 </mapper>

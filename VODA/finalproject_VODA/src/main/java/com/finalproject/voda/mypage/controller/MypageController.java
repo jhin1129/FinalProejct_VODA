@@ -238,6 +238,30 @@ public class MypageController {
 		return model;
 	}
 	
+	@GetMapping("/deleteDibsContent")
+	public ModelAndView deleteDibsContent(ModelAndView model,
+										@SessionAttribute("loginMember") Member loginMember,
+										@RequestParam(value = "list") List<Integer> list,
+										@RequestParam(value = "type", defaultValue = "영화") String type
+										) {
+		
+		int result = 0;
+		
+		result = service.deleteDibsContent(loginMember.getM_no(), list);
+		
+		if(result > 0) {
+			model.addObject("msg", "삭제가 완료되었습니다.");
+			model.addObject("location", "/mypage/dibsContent?type=" + type);
+		} else {
+			model.addObject("msg", "삭제중 오류가 발생하였습니다.");
+			model.addObject("location", "/mypage/dibsContent?type=" + type);
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
+	}
+	
 	@GetMapping("/reviewContent")
 	public ModelAndView reviewContent(ModelAndView model,
 									@SessionAttribute("loginMember") Member loginMember,

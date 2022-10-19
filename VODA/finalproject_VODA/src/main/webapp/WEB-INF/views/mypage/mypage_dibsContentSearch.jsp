@@ -13,6 +13,8 @@
 
     <!-- mylist CSS-->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage/mypage_list.css">
+    
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
       
 	<style>
 		.item {
@@ -178,7 +180,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
-	                                                <input type="checkbox" style="width: 17px; height: 17px;">
+	                                                <input type="checkbox" value="${ contents.c_no }" name="contentsCheckBox" style="width: 17px; height: 17px;">
 	                                            </div>
 	                                        </div>
 	                                        <div class="thumb_cont">
@@ -229,7 +231,9 @@
 					                <li><a href="${ path }/mypage/dibsContentSearch?page=${ pageInfo.maxPage }&searchType=${searchType}&searchVal=${searchVal}">»</a></li>
 				            </ul>
                         </div>
-
+						<div class="col-4 text-right">
+            				<button id="btn_deleteDibsContent" class="btn btn-logoC mt-3 mr-4" style="height:33px;">삭제하기</button>
+            			</div>
                     </div>
 					
 					<div class="search1 row my-4">
@@ -272,5 +276,19 @@
 			
 			location.href="${path}/mypage/dibsContentSearch?type=${type}&searchType=" + searchType + "&searchVal=" + searchVal;
 		});
+		
+		$("#btn_deleteDibsContent").on("click", () => {
+			var arr = [];
+			$("input:checkbox[name='contentsCheckBox']:checked").each(function(){
+				var cNo = $(this).val();
+				arr.push(cNo);
+			});
+			if(arr.length !=0){
+				location.href="${path}/mypage/deleteDibsContent?list="+arr + "&type=${type}";
+			}else{
+				alert("컨텐츠를 선택해주세요");
+			}
+		});
 	});
+	
 </script>
