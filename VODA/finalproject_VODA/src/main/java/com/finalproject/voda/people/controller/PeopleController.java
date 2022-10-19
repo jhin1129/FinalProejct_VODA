@@ -196,23 +196,21 @@ public class PeopleController {
 		}	
 	
 	@GetMapping("/admin/peopleDelete")
-	public ModelAndView delete(
-			ModelAndView model, 
-			@RequestParam int people_no) {
+	public ModelAndView delete(ModelAndView model,
+								@RequestParam(value = "list") List<Integer> list) {
+		
 		int result = 0;
-		People people = null;
 		
-		people = service.findPeopleByNo(people_no);
+		System.out.println(list);
+		result = service.deletePeople(list);
 		
-			result = service.delete(people_no);			
-			
-			if(result > 0) {
-				model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
-				model.addObject("location", "/admin/admin_people");
-			} else {
-				model.addObject("msg", "게시글 삭제를 실패하였습니다.");
-				model.addObject("location", "/admin/peopleUpdate?people_no=\" + people.getPeople_no()");
-			}	
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
+			model.addObject("location", "/admin/admin_people");
+		} else {
+			model.addObject("msg", "삭제중 오류가 발생하였습니다.");
+			model.addObject("location", "/admin/admin_people");
+		}
 		
 		model.setViewName("common/msg");
 		

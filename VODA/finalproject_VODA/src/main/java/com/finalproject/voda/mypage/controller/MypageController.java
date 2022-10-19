@@ -249,6 +249,7 @@ public class MypageController {
 		
 		result = service.deleteDibsContent(loginMember.getM_no(), list);
 		
+		
 		if(result > 0) {
 			model.addObject("msg", "삭제가 완료되었습니다.");
 			model.addObject("location", "/mypage/dibsContent?type=" + type);

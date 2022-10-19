@@ -73,7 +73,8 @@
                     <li>
                         <div class="item_poster">
                           <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
-                            <input type="checkbox" style="width: 17px; height: 17px;">
+                            <input type="checkbox" value="${ people.people_no }" name="PeopleCheckBox"
+                            		style="width: 17px; height: 17px;">
                             <input type="hidden" value="{ people.people_no }" >
                           </div>
                           <div class="thumb_item">
@@ -164,17 +165,26 @@ $(document).ready(() => {
             open(url,"",status);
         });
 
-    $("#peopleUpdate").on("click", () => {
-        
-        let status = "left=300px,top=0px,width=850px,height=800px";
-
-        open(url,"",status);
-    });
-   
-	$("#btnDelete").on("click", () => {
-		if(confirm("정말로 게시글을 삭제 하시겠습니까?")) {
-			location.replace("${ path }/admin/peopleDelete?people_no=${ people.people_no }");
-		}
-	});
-}); 
+        // 수정
+	    $("#peopleUpdate").on("click", () => {
+	        
+	        let status = "left=300px,top=0px,width=850px,height=800px";
+	
+	        open(url,"",status);
+	    });
+   	
+	    // 삭제
+	    $("#btnDelete").on("click", () => {
+			var arr = [];
+			$("input:checkbox[name='PeopleCheckBox']:checked").each(function(){
+				var PeopleNo = $(this).val();
+				arr.push(PeopleNo);
+			});
+			if(arr.length !=0){
+				location.href="${path}/admin/peopleDelete?list=" + arr;
+			}else{
+				alert("삭제할 게시글을 선택해주세요");
+			}
+		});
+	}); 
 </script>

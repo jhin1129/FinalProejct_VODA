@@ -55,12 +55,13 @@ public class PeopleServiceImpl implements PeopleService {
 		return result;
 	}
 
+
 	@Override
 	@Transactional
-	public int delete(int people_no) {
+	public int deletePeople(List<Integer> list) {
 		int result = 0;
 		
-		result = mapper.updatePeopleStatus(people_no, "N");
+		result = mapper.deletePeople(list, "N");
 		
 		return result;
 	}
