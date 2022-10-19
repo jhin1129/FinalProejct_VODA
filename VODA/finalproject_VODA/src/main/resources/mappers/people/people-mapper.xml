@@ -41,7 +41,7 @@
 	
 	<select id="selectPeopleAll" resultMap="PeopleResultMap">
 		<include refid="selectPeoplerSql" />
-		ORDER BY PEOPLE_NO DESC
+		ORDER BY PEOPLE_NO DESC 
 	</select>
 	
 	<!-- 인물 페이지 상세 조회 -->
@@ -86,8 +86,13 @@
 	
 	
 	<!-- 인물 삭제 (STATUS = 'N')-->
-	<update id="updatePeopleStatus" parameterType="map">
-		UPDATE PEOPLE SET PEOPLE_STATUS = #{people_status} WHERE PEOPLE_NO = #{people_no}
+	<update id="deletePeople" parameterType="map">
+		UPDATE PEOPLE SET 
+		PEOPLE_STATUS = 'N'
+		WHERE PEOPLE_NO IN
+		<foreach collection="list" item="people_no" open="(" separator="," close=")">
+				#{people_no}
+		</foreach>
 	</update>
 	
 	
