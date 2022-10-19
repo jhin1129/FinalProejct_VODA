@@ -22,8 +22,6 @@ public class Order {
 	
 	private String oadress;
 	
-	private int oprice;
-	
 	private String pname;
 	
 	private String pcategory;
