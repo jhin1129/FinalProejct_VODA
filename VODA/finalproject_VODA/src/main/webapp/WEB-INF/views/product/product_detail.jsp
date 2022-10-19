@@ -196,7 +196,7 @@
                                         <div class="mt-2">수량선택</div>
                                     </td>
                                     <td>
-                                        <input class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1">
+                                        <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1">
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
@@ -225,7 +225,7 @@
 
                                 <tr>
                                     <td colspan="2">
-                                        <div><button class="btn btn-primary py-1" onclick="location.href='${ path }/product/product_order?pno=${ product.pno }'">구매하기</button></div>
+                                        <div><button class="btn btn-primary py-1" onclick="location.href='${ path }/product_order?pno=${ product.pno }'">구매하기</button></div>
                                     </td>
                                 </tr>
                             </table>
@@ -340,6 +340,29 @@
     
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script type="text/javascript">
+$(document).ready(() => {
+	$("#quantitySelect").on("change", () => {
+		$("#totalPrice").text(${product.pprice} * $("#quantitySelect").val());
+	});
+	
+	$("#payment").on("click", () => {
+		if(${empty loginMember}){
+			alert("로그인이 필요합니다.");
+		} else{
+			var value = $("#quantitySelect").val();
+			var min = $("#quantitySelect").attr("min");
+			var max = $("#quantitySelect").attr("max");
+			if(value >= min && value <= max){
+				location.href="${path}/product/payment?proNo=${product.pno}&payQuantity=" + $("#quantitySelect").val();
+			} else {
+				alert("구매 수량을 적절하게 입력해주세요.");
+			}
+		}
+	});
+	
+});
+</script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
