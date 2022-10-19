@@ -7,6 +7,7 @@ import javax.swing.text.AbstractDocument.Content;
 import com.finalproject.voda.admin.model.vo.ContentsType;
 import com.finalproject.voda.admin.model.vo.Cview;
 import com.finalproject.voda.admin.model.vo.JoinMember;
+import com.finalproject.voda.admin.model.vo.Monthlydata;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.admin.model.vo.Sales;
 import com.finalproject.voda.board.model.vo.Board;
@@ -21,38 +22,52 @@ public interface AdminService {
 	JoinMember getDashboardJoinmemberData();
 	Cview getDashboardCviewData();
 	Sales getDashboardSalesData();
+	List<Monthlydata> getDashboardMonthlydataData();
 
 	int getMemberCount();
 	List<Member> getMemberList(PageInfo pageInfo);
+	int getMemberSearchCount(String searchType, String keyword);
+	List<Search> getMemberSearchList(PageInfo pageInfo, String searchType, String keyword);
 
-	int getNoticeCount();
-	List<Notice> getNoticeList(PageInfo pageInfo);
+	Member deleteMember();
 
 	int getContentCount();
 	List<Content> getContentList(PageInfo pageInfo);
+	int getContentSearchCount(String searchType, String keyword);
+	List<Search> getContentSearchList(PageInfo pageInfo, String searchType, String keyword);	
 
 	int getProductCount();
 	List<Product> getProductList(PageInfo pageInfo);
+	int getGoodsSearchCount(String searchType, String keyword);
+	List<Search> getGoodsSearchList(PageInfo pageInfo, String searchType, String keyword);
 	
 	int getBoardCount();
 	List<Board> getBoardList(PageInfo pageInfo);
-
+	int getFreeboardSearchCount(String searchType, String keyword);
+	List<Search> getFreeboardSearchList(PageInfo pageInfo, String searchType, String keyword);
+	
 	int getQnaCount();
 	List<Board> getQnaList(PageInfo pageInfo);
+	int getQnaSearchCount(String searchType, String keyword);
+	List<Search> getQnaSearchList(PageInfo pageInfo, String searchType, String keyword);
 
-	Notice findNoticeByNo(int no, boolean hasRead);
 
-	int saveNotice(Notice notice);
-
-	int deleteNotice(int no);
-
-	int deleteMember(Long id);
-
+	int getNoticeCount();
+	List<Notice> getNoticeList(PageInfo pageInfo);
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
+	Notice findNoticeByNo(int no, boolean hasRead);
+	int saveNotice(Notice notice);
+	int deleteNotice(int no);
 	
 	int getTotalviewCount();
-	List<Member> getTotalviewList(PageInfo pageInfo);
+	List<Cview> getTotalviewList(PageInfo pageInfo);
+	List<Cview> getTotalmonthviewList(PageInfo pageInfo, int viewmonth);
+	
+	
+	Board getQNAboardType();
+	
+
 
 
 

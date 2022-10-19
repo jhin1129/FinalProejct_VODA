@@ -9,12 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cview {
+public class Monthlydata {
 
-	private int cviewno;
+	private String yeardata;
 
-	private Date cviewdate;
+	private String monthdata;
 	
-	private int cviewcount;
+	private int cviewdata;
+
+	private int joinmemberdata;
+	
+	private int salesdata;
 	
 }

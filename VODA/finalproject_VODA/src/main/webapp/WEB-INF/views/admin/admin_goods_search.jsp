@@ -10,13 +10,10 @@
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
-
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-
-    
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -24,7 +21,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-   <style>
+                   <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
         * {
@@ -167,11 +164,13 @@
         .td-hr {
             pointer-events: none;
         }
+        .poster_movie img
+        { width: 45px; height: 45px;}
     </style>
-    <!-- btn CSS -->
+      <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-
-    <title>회원관리</title>
+    
+    <title>상품관리</title>
 
 <body>
     <!-- 관리자 페이지 메인헤드 -->
@@ -180,89 +179,86 @@
       
 	    <!-- 관리자 페이지 사이드바 -->
         <jsp:include page="/WEB-INF/views/admin/admin_sidebar.jsp"/>
-        
+
         <!-- 관리자 페이지 메인화면 -->
-          <div class="col-10 p-4">
-            <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              회원 관리
-            </h1>
-          <hr>       
+        <div class="col-10 p-4">
+          <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            상품 상태 관리
+          </h1>
+          <hr>
           <!-- 카드 리스트 Row -->
-             <div class="row"> 
+            <div class="row">
               <table class="table table-hover">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" style="width: 5%">No</th>
-                    <th scope="col">회원아이디</th>
-                    <th scope="col">가입일</th>
-                    <th scope="col" style="width: 10%">회원상태</th>
-                    <th scope="col"style="width: 20%">비활성화</th>
+                    <th scope="col" style="width: 20%">상품명</th>
+                    <th scope="col">이미지</th>
+                    <th scope="col" style="width: 10%">리뷰</th>
+                    <th scope="col" style="width: 10%">상태수정</th>
+                    <th scope="col" style="width: 10%">비활성화</th>
                   </tr>
                 </thead>
-                <tfoot style="border: 3px;">
+                <tfoot>
                   <tr>
-                      <th colspan="5">            
-				        <div class="search1 row my-4">
-				          <form action="${ path }/admin/admin_member_search" style="width: 100%;">
-				            <div class="col-9 row">
-				                <div>
-				                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
-				                        <option value="id" selected>회원아이디</option>
-				                        <option value="status">회원상태</option>
-				                    </select>
-				                </div>
-				
-				                <div class="col-xs-7 col-sm-7 pl-0">
-				                    <div class="input-group">
-				                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
-				                        <span class="input-group-btn">
-				                            <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%상'0pxY0px 4px 0px;">
-				                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
-				                            </button>
-				                        </span>
-				                    </div>
-            				    </div>
-            				   </div>
-            				</form>
-            			</div>
+                      <th colspan="6">
+        <div class="search1 row my-4">
+          <form action="${ path }/admin/admin_goods_search" style="width: 100%;">
+            <div class="col-12 row">
+                <div>
+                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
+                        <option value="name" selected>상품명</option>
+                        <option value="title" >작품명</option>
+                        <option value="status">상품상태</option>
+                    </select>
+                </div>
+
+                <div class="col-xs-7 col-sm-7 pl-0">
+                    <div class="input-group">
+                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
+                        <span class="input-group-btn">
+                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
+                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
+                                >
+                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
+                            </button>
+                        </span>
+                    </div>
+                </div>     
+            </div>
+          </form>
+        </div>
                       </th>
                   </tr>
-                </tfoot>
-                
-                <!-- 테이블 내용 -->
+              </tfoot>
                 <tbody>
-                 <c:forEach var="member" items="${ list }">
-                  <tr>             
-                    <th scope="row" name="mno">${ member.m_no }</th>
-                    <td>${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if></td>
-                    <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
-                    <td>
-                    	<c:choose> 
-                    		<c:when test="${ member.m_status == 'Y'}">정상</c:when>
-                    		<c:when test="${ member.m_status == 'N'}">탈퇴</c:when>
-                    	</c:choose>
+                  <c:forEach var="product" items="${ search }">
+                  <c:set var="rename" value="${ product.prenamefile }" />
+                  <tr>
+                    <th scope="row" class="align-middle">${ product.pno }</th>
+                    <td class="align-middle">
+                    <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
+                    <td><div class="poster_movie">
+                          <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb">
+                        </div>
                     </td>
-                    <td>
-                       	<c:choose> 
-                    		<c:when test="${ member.m_status == 'Y' && member.m_authorization == 'M'}"><button type="button" class="btn btn-greyC btn-sm" style="cursor: default;">관리자</button></c:when>
-                    		<c:when test="${ member.m_status == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">탈퇴</button></c:when>
-                    		<c:when test="${ member.m_status == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
-                    	</c:choose>
-
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">리뷰관리</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">수정</button></td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">적용</button>
                     </td>
                   </tr>
-                  </c:forEach> 
+				</c:forEach>
                 </tbody>
               </table>
-        </div>
+              </div>
 
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_goods_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_goods_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -271,21 +267,19 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_member?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_goods_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_goods_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_goods_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
-
-            </div>
-        </div>
-     </div>
+    	</div>
+    </div>
+ </div>
 <hr>
-
 </body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

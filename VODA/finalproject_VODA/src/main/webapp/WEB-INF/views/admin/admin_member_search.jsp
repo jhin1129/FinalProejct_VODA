@@ -199,9 +199,9 @@
                     <th scope="col"style="width: 20%">비활성화</th>
                   </tr>
                 </thead>
-                <tfoot style="border: 3px;">
+                <tfoot>
                   <tr>
-                      <th colspan="5">            
+                      <th colspan="4">            
 				        <div class="search1 row my-4">
 				          <form action="${ path }/admin/admin_member_search" style="width: 100%;">
 				            <div class="col-9 row">
@@ -216,7 +216,8 @@
 				                    <div class="input-group">
 				                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
 				                        <span class="input-group-btn">
-				                            <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%상'0pxY0px 4px 0px;">
+				                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
+				                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;">
 				                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
 				                            </button>
 				                        </span>
@@ -231,10 +232,10 @@
                 
                 <!-- 테이블 내용 -->
                 <tbody>
-                 <c:forEach var="member" items="${ list }">
+                 <c:forEach var="member" items="${ search }">
                   <tr>             
                     <th scope="row" name="mno">${ member.m_no }</th>
-                    <td>${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if></td>
+                    <td>${ member.m_id }</td>
                     <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
                     <td>
                     	<c:choose> 
@@ -244,7 +245,6 @@
                     </td>
                     <td>
                        	<c:choose> 
-                    		<c:when test="${ member.m_status == 'Y' && member.m_authorization == 'M'}"><button type="button" class="btn btn-greyC btn-sm" style="cursor: default;">관리자</button></c:when>
                     		<c:when test="${ member.m_status == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">탈퇴</button></c:when>
                     		<c:when test="${ member.m_status == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
                     	</c:choose>
@@ -256,13 +256,14 @@
               </table>
         </div>
 
+                                    
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_member_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_member_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -271,14 +272,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_member?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_member_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_member_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_member_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
 
             </div>

@@ -34,6 +34,7 @@ import com.finalproject.voda.admin.model.service.AdminService;
 import com.finalproject.voda.admin.model.vo.ContentsType;
 import com.finalproject.voda.admin.model.vo.Cview;
 import com.finalproject.voda.admin.model.vo.JoinMember;
+import com.finalproject.voda.admin.model.vo.Monthlydata;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.admin.model.vo.Sales;
 import com.finalproject.voda.board.model.vo.Board;
@@ -58,29 +59,32 @@ public class AdminController {
 	
 //	기본 대시보드 연결
 	@GetMapping("/admin_dashboard")
-	public ModelAndView viewDashboard(ModelAndView model,
-			@ModelAttribute ContentsType contentstype,
-			@ModelAttribute JoinMember joinmember,
-			@ModelAttribute Cview cview,
-			@ModelAttribute Sales sales
-			) {
+	public ModelAndView viewDashboard(ModelAndView model) {
 		
-//		Order order = null;
+		ContentsType contentstype = null;
+		JoinMember joinmember = null;
+		Cview cview = null;
+		Sales sales = null;
+		List<Monthlydata> monthlydata = null;
 		
 		contentstype = service.getDashboardContentstypeData();
 		joinmember = service.getDashboardJoinmemberData();
 		cview = service.getDashboardCviewData();
 		sales = service.getDashboardSalesData();
+		monthlydata = service.getDashboardMonthlydataData();
 		
 		System.out.println("대시보드 contentstype " + contentstype);
 		System.out.println("대시보드 joinmember " + joinmember);
 		System.out.println("대시보드 cview " + cview);
 		System.out.println("대시보드 sales " + sales);
+		System.out.println("대시보드 monthlydata " + monthlydata);
 
 		model.addObject("contentstype", contentstype);
 		model.addObject("joinmember", joinmember);
 		model.addObject("cview", cview);
 		model.addObject("sales", sales);
+		model.addObject("monthlydata", monthlydata);
+		
 		model.setViewName("/admin/admin_dashboard");
 		
 		return model;
@@ -104,40 +108,53 @@ public class AdminController {
 		return model;
 	}
 	
-//	회원 비활성화 처리
-	@PostMapping("/admin_member_delete")
-    public String adminMemberDelete(@RequestParam List<String> memberIds){
+// 	회원관리 리스트 검색
+	@GetMapping("/admin_member_search")
+	public ModelAndView MemberSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
 
-		System.out.println(memberIds);
-		
-        for(int i=0; i<memberIds.size(); i++){
-            Long id = Long.valueOf(memberIds.get(i));
-            service.deleteMember(id);
-            System.out.println(id);
-        }
-
-        return "redirect:/admin/admin_member";
-    }
-	
-//	상품 관리 페이지
-	@GetMapping("/admin_goods")
-	public ModelAndView adminGoods(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Product> list = null;
+		List<Search> search = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getProductCount(), 10);
-		list = service.getProductList(pageInfo);
-		
-		System.out.println(list);
-		
-		model.addObject("list", list);
-		model.addObject("pageInfo", pageInfo);	
-		model.setViewName("/admin/admin_goods");
+		pageInfo = new PageInfo(page, 10, service.getMemberSearchCount(searchType, keyword), 10);
+		search = service.getMemberSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_member_search");
 		
 		return model;
 	}
 	
-//	컨텐츠 정보 관리 페이지
+//	회원 비활성화 처리
+	@PostMapping("/admin_member_delete")
+	public ModelAndView adminMemberDelete(ModelAndView model){ 
+
+		Member member = null;
+
+			member = service.deleteMember();
+			
+//			if(result > 0) {
+//				model.addObject("msg", "회원 비활성화");
+//				model.addObject("location", "/admin/admin_notice_list");	
+//			} else {
+//				model.addObject("msg", "회원 비활성화 해제");
+//				model.addObject("location", "/admin/admin_notice_detail?no=");	
+//			}
+//		model.setViewName("common/msg");
+			
+			model.addObject("member",member);
+			model.setViewName("/admin/admin_member_delete");
+		return model;
+	}
+
+	//	컨텐츠정보 관리 페이지
 	@GetMapping("/admin_content")
 	public ModelAndView adminContent(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Content> list = null;
@@ -155,6 +172,72 @@ public class AdminController {
 		return model;
 	}
 	
+	// 컨텐츠정보 리스트 검색
+	@GetMapping("/admin_content_search")
+	public ModelAndView ContentSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getContentSearchCount(searchType, keyword), 10);
+		search = service.getContentSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_content_search");
+		
+		return model;
+	}
+	
+	
+//	상품관리 페이지
+	@GetMapping("/admin_goods")
+	public ModelAndView adminGoods(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Product> list = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getProductCount(), 10);
+		list = service.getProductList(pageInfo);
+		
+		System.out.println(list);
+		
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);	
+		model.setViewName("/admin/admin_goods");
+		
+		return model;
+	}
+	
+// 상품관리 리스트 검색
+	@GetMapping("/admin_goods_search")
+	public ModelAndView GoodsSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getGoodsSearchCount(searchType, keyword), 10);
+		search = service.getGoodsSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_goods_search");
+		
+		return model;
+	}
 
 //	인물관리 페이지
 //	@GetMapping("/admin_people")
@@ -189,6 +272,30 @@ public class AdminController {
 		return model; 
 	}
 	
+	// 자유게시판 리스트 검색
+	@GetMapping("/admin_freeboard_search")
+	public ModelAndView FreeboardSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getFreeboardSearchCount(searchType, keyword), 10);
+		search = service.getFreeboardSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_freeboard_search");
+		
+		return model;
+	}
+	
 //	문의게시판 리스트
 	@GetMapping("/admin_qna") 
 	public ModelAndView qnaList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -206,6 +313,43 @@ public class AdminController {
 		model.setViewName("/admin/admin_qna");
 		
 		return model; 
+	}
+
+//	문의게시판 타입 선택
+	@GetMapping("/admin_qna_AT")
+	public ModelAndView adminQnaAT(ModelAndView model) {
+		
+		Board board = null;
+		
+		board = service.getQNAboardType();
+		model.addObject("board", board);
+		model.setViewName("/admin/admin_qna_AT");
+		return model;
+	}
+	
+	
+//	문의게시판 리스트 검색
+	@GetMapping("/admin_qna_search")
+	public ModelAndView QnaSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getQnaSearchCount(searchType, keyword), 10);
+		search = service.getQnaSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_qna_search");
+		
+		return model;
 	}
 	
 //	공지사항 리스트
@@ -515,17 +659,42 @@ public class AdminController {
 //	통계 리스트 (조회수)
 	@GetMapping("/admin_total_views") 
 	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
-		List<Member> list = null;
+		List<Cview> list = null;
+		List<Monthlydata> monthlydata = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 10);
+		
+		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 31);
 		list = service.getTotalviewList(pageInfo);
+		monthlydata = service.getDashboardMonthlydataData();
+		
+		System.out.println(list);
+		System.out.println(monthlydata);
+		
+		model.addObject("monthlydata",monthlydata);
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);	
+		model.setViewName("/admin/admin_total_views");
+		
+		return model;
+	}
+	
+//	통계 리스트 (조회수 월별)
+	@GetMapping("/admin_total_monthviews") 
+	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam int viewmonth) {
+		List<Cview> list = null;
+		
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 31);
+		list = service.getTotalmonthviewList(pageInfo,viewmonth);
 		
 		System.out.println(list);
 		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
-		model.setViewName("/admin/admin_total_views");
+		model.setViewName("/admin/admin_total_monthviews");
 		
 		return model;
 	}

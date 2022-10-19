@@ -50,7 +50,12 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     오늘의 컨텐츠 조회수</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">${cview}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">${cview.cviewcount}</div>
+                                    <c:forEach var="Totalview" items="${ cviewlist }">
+                                          <c:set var="Total" value="${Total + Totalview.cviewcount }" />
+                           			</c:forEach>
+                                          <div>총${ Total }</div>
+                                          
                             </div>
                             <div class="col-auto">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -96,7 +101,7 @@
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
                                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                        ${joinmember.joinCount}
+                                        ${joinmember.joinCount} 
                                         </div>
                                     </div>
                                 </div>
@@ -289,7 +294,7 @@
           pointHoverBorderColor: "rgba(73,95,233,1)",
           pointHitRadius: 10,
           pointBorderWidth: 2,
-          data: [0, 0, 0, 0, 0, 0, 0, 0, 200, 300, 250, 500],
+          data: [0, 0, 0, 0, 0, 0, 0, 0,${monthlydata[0].cviewdata}, ${monthlydata[1].cviewdata}, 0, 0],
         }],
       },
       options: {

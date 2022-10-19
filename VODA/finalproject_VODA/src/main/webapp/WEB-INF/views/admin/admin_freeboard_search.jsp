@@ -27,11 +27,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-        
+
     <!-- Board CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
 
-    <title>문의게시판 관리</title>
+    <title>자유게시판 관리</title>
 
 </head>
 <body>
@@ -48,7 +48,7 @@
             <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
             <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-          </svg> 문의게시판 관리
+          </svg> 자유게시판 관리
         </h1>
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
@@ -60,35 +60,28 @@
                 <thead>
                     <tr style="text-align: center">
                         <th id="th" style="width: 10%;">번호</th>
-                        <th id="th" style="width: 40%;">제목</th>
-                        <th id="th" style="width: 10%;">날짜</th>
-                        <th id="th" style="width: 15%;">작성자</th>
-                        <th id="th" style="width: 10%;">
-                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;" onchange="SelectATValue()">
-	                        <option name="AnswerType" value="ALL" selected>전체</option>
-	                        <option name="AnswerType" value="ANSWERNO">미답변</option>
-	                        <option name="AnswerType" value="ANSWERYES">답변완료</option>
-                    	</select>
-                        </th>
-                        <th id="th" style="width: 10%;">삭제</th>
+                        <th id="th" style="width: 35%;">제목</th>
+                        <th id="th" style="width: 10%;">작성자</th>
+                        <th id="th" style="width: 15%;">날짜</th>
+                        <th id="th" style="width: 10%;">비활성화</th>
                     </tr>
                 </thead>
 				
 				
                 <tbody>
- 	             <c:if test="${ empty list }">
+ 	             <c:if test="${ empty search }">
 					<tr>
 						<td colspan="6" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
 					</tr>	
 				 </c:if> 
-                  <c:if test="${ not empty list }"> 	 
-	                <c:forEach var="board" items="${ list }">
+                  <c:if test="${ not empty search }"> 	 
+	                <c:forEach var="board" items="${ search }">
                     <tr style="text-align: center;">
                         <td id="td">${ board.bno }</td>
 						<td id="td" style="text-align: left;">
-							<a href="${ path }/admin/admin_notice_detail?no=${ notice.bno }">
+							<a href="${ path }/board/free_board_detail?no=${ board.bno }">
 								${ board.btitle }
 							</a>
 						</td>
@@ -96,11 +89,10 @@
 						<td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate>
                         <td id="td">
                         <c:choose> 
-                    		<c:when test="${ board.banswerstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">미답변</button></c:when>
-                    		<c:when test="${ board.banswerstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">답변완료</button></c:when>
+                    		<c:when test="${ board.bstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">삭제</button></c:when>
+                    		<c:when test="${ board.bstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
                     	</c:choose>
                         </td>
-                        <td id="td"><button type="button" class="btn btn-logoC btn-sm">삭제</button></td>
                     </tr>
                     </c:forEach>
                     </c:if> 
@@ -108,18 +100,18 @@
             </table>
         </div>
 
+
         <div class="col-4 text-right">
         </div>
 
 
         <div class="search1 row my-4">
-          <form action="${ path }/admin/admin_qna_search" style="width: 100%;">
+          <form action="${ path }/admin/admin_freeboard_search" style="width: 100%;">
             <div class="col-7 row">
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
                         <option value="writer">작성자</option>
-                        <option value="Astatus">답변상태</option>
                         <option value="status">게시글상태</option>
                     </select>
                 </div>
@@ -133,19 +125,19 @@
                                      src="${path}/resources/img/community/search.png" style="height: 18px;"></button>
                         </span>
                     </div>
-                </div>   
-            </div>
-          </form>
-        </div>
-        
+                </div>     
+              </div>
+             </form>
+           </div>
+           
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_qna?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_freeboard_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_freeboard_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -154,48 +146,24 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_qna?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_freeboard_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_freeboard_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_qna?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_freeboard_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
+
+        </div>
+           
+           
+         </div>
+       </div>
      </div>
-    </div>
    </div>
-  </div>
- </div>
 </div>
-<!-- <script>
-// 답변상태 Ajax 
-$(document).ready(() => {
-	function SelectATValue(){
-	
-     let AT = document.getElementById("AnswerType");
-     let ATvalue = (AT.options[AT.selectedIndex].value); 
- 	 alert("value = " + ATvalue);
- 	
-		$.ajax({
-           type : "GET",
-           url : "${path}/admin/admin_qna_AT",
-           data : {no},
-           dataType : "json",
-           success : function(obj) {
-   			console.log(obj)
-   			alert("ajax value = "+ATvalue);
-   		} ,
-           error : function(error){
-               console.log(error);
-           },
-           complete : function(){
-           }
-       });
-}
-});
-</script> -->
 </body>
 </html>
 <!-- FOOTER -->

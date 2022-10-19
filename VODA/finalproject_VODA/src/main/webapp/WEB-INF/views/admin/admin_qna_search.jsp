@@ -76,15 +76,15 @@
 				
 				
                 <tbody>
- 	             <c:if test="${ empty list }">
+ 	             <c:if test="${ empty search }">
 					<tr>
 						<td colspan="6" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
 					</tr>	
 				 </c:if> 
-                  <c:if test="${ not empty list }"> 	 
-	                <c:forEach var="board" items="${ list }">
+                  <c:if test="${ not empty search }"> 	 
+	                <c:forEach var="board" items="${ search }">
                     <tr style="text-align: center;">
                         <td id="td">${ board.bno }</td>
 						<td id="td" style="text-align: left;">
@@ -142,10 +142,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_qna?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_qna_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_qna_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -154,14 +154,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_qna?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_qna_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_qna_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_qna?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_qna_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
      </div>
     </div>
