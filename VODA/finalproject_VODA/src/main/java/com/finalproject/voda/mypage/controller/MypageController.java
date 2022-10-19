@@ -404,13 +404,11 @@ public class MypageController {
 		
 		List<Order> orderList = new ArrayList<Order>();
 		
-//		orderList = service.getOrderListByMNo(loginMember.getM_no());
-//		
-//		for(int i = 0; i < orderList.size(); i++) {
-//			System.out.println(orderList.get(i));
-//		}
-//		
-//		model.addObject("orderList", orderList);
+		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		for(int i = 0; i < orderList.size(); i++) {
+			System.out.println(orderList.get(i));
+		}
+		model.addObject("orderList", orderList);
 		model.setViewName("mypage/mypage_pay_list");
 		
 		return model;

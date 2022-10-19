@@ -76,18 +76,50 @@
 	</resultMap>
 	
 	<resultMap type="Order" id="OrderResultMap">
-		<id property="payno" column="PAY_NO"/>
-		<id property="pno" column="P_NO"/>
 		<id property="mno" column="M_NO"/>
+		<id property="payno" column="PAY_NO"/>
 		<result property="odate" column="O_DATE"/>
-		<result property="oqtt" column="O_QTT"/>
 		<result property="oadress" column="O_ADRESS"/>
-		<result property="oprice" column="O_PRICE"/>
-		<result property="pname" column="P_NAME"/>
-		<result property="pcategory" column="P_CATEGORY"/>
-		<result property="pmadecompany" column="P_MADECOMPANY"/>
 		<result property="omessage" column="O_MESSAGE"/>
+		<collection property="productList" javaType="arraylist" resultMap="ProductResultMap"/>
+		<collection property="pay" resultMap="PayResultMap"/>
 	</resultMap>
+	
+	<resultMap type="Product" id="ProductResultMap">
+		<id property="pno" column="P_NO"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pprice" column="P_PRICE"/>
+		<result property="porderqtt" column="O_QTT"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+	</resultMap>
+	
+	<resultMap type="Pay" id="PayResultMap">
+		<result property="paymerchant" column="PAY_MERCHANT"/>
+		<result property="paymethod" column="PAY_METHOD"/>
+		<result property="payprice" column="PAY_PRICE"/>
+		<result property="patstatus" column="PAY_STATUS"/>
+	</resultMap>
+
+	<select id="selectOrderListByMNo" parameterType="_int" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = 999
+	</select>
 
 	<select id="selectLikesAllList" parameterType="_int" resultMap="contentsListResultMap">
 		SELECT
@@ -362,9 +394,7 @@
 		</foreach>
 	</delete>
 	
-	<select id="selectOrderListByMNo" parameterType="_int">
-	
-	</select>
+
 	
 </mapper>
 
