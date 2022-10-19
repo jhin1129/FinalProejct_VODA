@@ -196,8 +196,7 @@
                                         <div class="mt-2">수량선택</div>
                                     </td>
                                     <td>
-                                        <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1">
-                                        <input type="hidden" name="porderqtt" value="">
+                                        <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1" name="porderqtt">
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
@@ -361,11 +360,7 @@ $(document).ready(() => {
 			}
 		}
 	});
-	$("#btnbuy").on("click", function() {
-		let porderqtt = $("#quantitySelect").val;
-		$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
-		$(".order_form").submit();
-	})
+	
 	
 });
 </script>
