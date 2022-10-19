@@ -12,11 +12,14 @@
 	href="${path}/resources/css/product/product_order.css">
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
-<input type="hidden" name="pno" value="${ order.pno }">
 <div class="container">
+<form action="${ path }/product/order_insert" method="post" id="formid">
+<input type="hidden" name="pno" value="${ product.pno }">
+<input type="hidden" name="mno" value="${ loginMember.m_no }">
+
 	<section class="cart">
 		<table class="cart__list">
-			<form>
+			
 			<c:set var="rename" value="${ product.prenamefile }" />
 				<thead>
 					<tr>
@@ -43,7 +46,7 @@
 					</tr>
 				</tbody>
 				
-			</form>
+			
 		</table>
 
 		<br>
@@ -112,14 +115,14 @@
 							<th scope="row"><span class="important">받으실 곳</span></th>
 							<td class="member_address">
 								<div class="address_postcode">
-									<input type="text" name="receiverZonecode" readonly="readonly">
-									<input type="hidden" name="receiverZipcode"> <span
-										id="receiverZipcodeText" class="old_post_code"></span>
-									<button class="btn btn-search py-1">우편번호검색</button>
+									<input type="text" id="sample6_postcode" readonly="readonly">
+									<input type="hidden" name="receiverZipcode"> 
+									<span id="receiverZipcodeText" class="old_post_code"></span>
+									<button class="btn btn-search py-1" onclick="sample6_execDaumPostcode()">우편번호검색</button>
 								</div>
 								<div class="address_input">
-									<input type="text" name="receiverAddress" readonly="readonly">
-									<input type="text" name="receiverAddressSub">
+									<input type="text" id="sample6_address" readonly="readonly">
+									<input type="text" id="sample6_detailAddress">
 								</div>
 							</td>
 						</tr>
@@ -253,46 +256,80 @@
 							</div>
 						</div>
 						<hr>
-						<script>   
-							function requestPay() {
-								var IMP = window.IMP; // 생략 가능
-							    IMP.init("imp63887533"); // 예: imp00000000
-							    // IMP.request_pay(param, callback) 결제창 호출
-							    IMP.request_pay({ // param
-							        pg: "html5_inicis",
-							        pay_method: "kakaopay",
-							        merchant_uid:  new Date().getTime(),
-							        name: "${product.pname}",
-							        amount: ${product.pprice},
-							        buyer_email: "gildong@gmail.com",
-							        buyer_name: "홍길동",
-							        buyer_tel: "010-4242-4242",
-							        buyer_addr: "서울특별시 강남구 신사동",
-							        buyer_postcode: "01181"
-							    }, function (rsp) { // callback
-							        if (rsp.success) {
-							        	var msg = '결제가 완료되었습니다.';
-							            msg += '고유ID : ' + rsp.imp_uid;
-							            msg += '상점 거래ID : ' + rsp.merchant_uid;
-							            msg += '결제 금액 : ' + rsp.paid_amount;
-							            msg += '카드 승인번호 : ' + rsp.apply_num;
-							            window.location = '${path}/product/product_all_list';
-							        } else {
-							        	var msg = '결제에 실패하였습니다.';
-							            msg += '에러내용 : ' + rsp.error_msg;
-							        }
-							        alert(msg);
-							    });
-							  }
-							</script>
+
 						
 						<div class="cart__mainbtns">
 							<button class="btn btn-back py-1">이전페이지</button>
-							<button class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
+							<button type="button" class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
 						</div>
 					</div>
 	</section>
+	</form>
 </div>
+<script>   
+
+function requestPay() {
+	var IMP = window.IMP; // 생략 가능
+    IMP.init("imp63887533"); // 예: imp00000000
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "html5_inicis",
+        pay_method: "kakaopay",
+        merchant_uid:  new Date().getTime(),
+        name: "${product.pname}",
+        amount: ${product.pprice},
+        buyer_email: "gildong@gmail.com",
+        buyer_name: "홍길동",
+        buyer_tel: "010-4242-4242",
+        buyer_addr: "서울특별시 강남구 신사동",
+        buyer_postcode: "01181"
+    }, function (rsp) { // callback
+        if (rsp.success) {
+        	var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+            
+            document.getElementById('formid').submit();
+			
+        } else {
+        	var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+        }
+        alert(msg);
+    });
+  }
+</script>
+<!-- 주소 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

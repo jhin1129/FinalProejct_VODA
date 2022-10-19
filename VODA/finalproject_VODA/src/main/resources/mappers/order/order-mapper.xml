@@ -15,6 +15,17 @@
 		<result property="pmadecompany" column="P_MADECOMPANY"/>
 		<result property="omessage" column="O_MESSAGE"/>
 	</resultMap>
+	<resultMap type="Pay" id="PayResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<result property="paymerchant" column="PAY_MERCHANT"/>
+		<result property="paymethod" column="PAY_METHOD"/>
+	</resultMap>
 	
-
+	<insert id="insertOrder" parameterType="Order" useGeneratedKeys="true" keyProperty="payno" keyColumn="PAY_NO">
+		INSERT INTO ORDERS VALUES(#{mno}, #{pno}, 1022, SYSDATE, 1, #{oadress}, #{oprice}, #{omessage})
+	</insert>
+	
+	<insert id="insertPay" parameterType="Pay" keyProperty="payno" keyColumn="PAY_NO">
+		INSERT INTO PAY VALUES(SEQ_PAY_NO.NEXTVAL, 'imp63887533', 'kakaopay')
+	</insert>
 </mapper>
