@@ -51,12 +51,6 @@
                                         <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_id }</td>
                                     </tr>
                                     <tr>
-                                        <th class="infotable_th" style="padding-top: 16px;">비밀번호</th>
-                                        <td class="infotable_td">
-                                            <button type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">비밀번호 변경</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이름</th>
                                         <td class="infotable_td">
                                             <input type="text" id="m_name" name="m_name" maxlength="30" required value="${ loginMember.m_name }"> 

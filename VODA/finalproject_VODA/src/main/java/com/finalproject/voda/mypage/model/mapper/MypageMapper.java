@@ -53,5 +53,7 @@ public interface MypageMapper {
 	List<Contents> selectReviewSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType,
 			@Param("searchVal") String searchVal);
 
+	int updateMemberPwd(@Param("m_no") int m_no, @Param("password") String password);
+
 
 }

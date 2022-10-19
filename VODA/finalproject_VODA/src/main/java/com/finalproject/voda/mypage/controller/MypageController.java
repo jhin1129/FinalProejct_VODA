@@ -76,6 +76,42 @@ public class MypageController {
 		return model;
 	}
 	
+	@GetMapping("/updatePwd")
+	public ModelAndView updatePwd(ModelAndView model) {
+		
+		model.setViewName("mypage/mypage_updatePwd");
+		
+		return model;
+	}
+	
+	@PostMapping("/updatePwd")
+	public ModelAndView updatePwd(ModelAndView model,
+								@SessionAttribute("loginMember") Member loginMember,
+								@RequestParam(value = "password") String password,
+								@RequestParam(value = "newpassword") String newpassword,
+								@RequestParam(value = "newpasswordcheck") String newpasswordcheck) {
+		
+		int result = 0;
+		
+		if(passwordEncoder.matches(password, loginMember.getM_password())) {
+			result = service.updateMemberPwd(loginMember.getM_no(), passwordEncoder.encode(newpassword));
+			
+			if(result > 0) {
+				model.addObject("msg", "비밀번호 변경이 완료되었습니다. 다시 로그인해 주세요.");
+				model.addObject("location", "/member/logout");
+			} else {
+				model.addObject("msg", "비밀번호 변경에 실패하였습니다.");
+				model.addObject("location", "/mypage/updatePwd");
+			}
+		} else {
+			model.addObject("msg", "현재 비밀번호가 일치하지 않습니다.");
+			model.addObject("location", "/mypage/updatePwd");
+		}
+		model.setViewName("common/msg");	
+		
+		return model;
+	}
+	
 	@PostMapping("/pwdCheck")
 	public ModelAndView pwdCheck(ModelAndView model,
 								@SessionAttribute("loginMember") Member loginMember,

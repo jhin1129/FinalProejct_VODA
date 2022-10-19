@@ -49,7 +49,7 @@ public interface MypageService {
 
 	List<Contents> getReviewSearchList(PageInfo pageInfo, int m_no, String type, String searchType, String searchVal);
 
-
+	int updateMemberPwd(int m_no, String password);
 
 
 }

@@ -334,6 +334,12 @@
 		WHERE M_NO = #{m_no}
 	</update>
 	
+	<update id="updateMemberPwd">
+		UPDATE MEMBER SET
+		M_PW = #{password}
+		WHERE M_NO = #{m_no}
+	</update>
+	
 	
 	
 	

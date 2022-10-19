@@ -177,6 +177,15 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.selectReviewSearchList(rowBounds, m_no, type, searchType, searchVal);
 	}
 
+	@Override
+	@Transactional
+	public int updateMemberPwd(int m_no, String password) {
+		int result = 0;
+		System.out.println(password);
+		result = mapper.updateMemberPwd(m_no, password);
+		return result;
+	}
+
 
 
 
