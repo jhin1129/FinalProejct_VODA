@@ -75,42 +75,129 @@
 		<result property="mid" column="M_ID"/>
 	</resultMap>
 	
-	<select id="selectLikesCNoList" parameterType="_int" resultType="_int">
-		SELECT C_NO FROM LIKES WHERE M_NO = #{mNo}
+
+	<select id="selectLikesAllList" parameterType="_int" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{mNo}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
 	</select>
 	
-	<select id="selectReviewCNoList" parameterType="_int" resultType="_int">
-		SELECT C_NO FROM RATE WHERE M_NO = #{mNo}
+	<select id="selectLikesCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+			JOIN LIKES L ON (L.C_NO = C.C_NO)
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND L.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectLikesList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectLikesSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+			JOIN LIKES L ON (L.C_NO = C.C_NO)
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND L.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+   			<if test="searchType == 'title'">
+		 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+			</if>
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectLikesSearchList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+		JOIN LIKES L ON (L.C_NO = C.C_NO)
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND L.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+       	<if test="searchType == 'title'">
+	 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectReviewList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND R.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
 	</select>
 
-	<select id="selectContentsByCNo" parameterType="_int" resultMap="contentsListResultMap">
-		SELECT
-		<include refid="contentsListSql"/>
-		,ROUND(AVG(RATE_STAR),1)
-		FROM CONTENTS C
-        LEFT OUTER JOIN RATE R
-        ON C.C_NO = R.C_NO      
-       	WHERE C.C_STATUS = 'Y' 
-       	AND C.C_NO = #{cNo}
-        GROUP BY 
-        <include refid="contentsListSql"/>
-        ORDER BY C.C_NO DESC
-	</select>
 	
-	<select id="selectContentsByCNoType" parameterType="map" resultMap="contentsListResultMap">
-		SELECT
-		<include refid="contentsListSql"/>
-		,ROUND(AVG(RATE_STAR),1)
-		FROM CONTENTS C
-        LEFT OUTER JOIN RATE R
-        ON C.C_NO = R.C_NO      
-       	WHERE C.C_STATUS = 'Y' 
-       	AND C.C_NO = #{cNo} 
-       	AND C.C_TYPE = #{type} 
-        GROUP BY 
-        <include refid="contentsListSql"/>
-        ORDER BY C.C_NO DESC
-	</select>
 	
 	<select id="selectFreeBoardCount" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM BOARD WHERE M_NO = #{m_no} AND B_TYPE = 'FREE' AND B_STATUS = 'Y'
@@ -190,6 +277,44 @@
 		ORDER BY B.B_NO DESC
 	</select>
 	
+	<select id="selectReviewSearchCount" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	       	AND C.C_TYPE = #{type}
+   			<if test="searchType == 'title'">
+		 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+			</if>
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
+	<select id="selectReviewSearchList" resultMap="contentsListResultMap">
+		SELECT
+		<include refid="contentsListSql"/>
+		,ROUND(AVG(RATE_STAR),1)
+		FROM CONTENTS C
+        LEFT OUTER JOIN RATE R
+        ON C.C_NO = R.C_NO      
+       	WHERE C.C_STATUS = 'Y' 
+       	AND R.M_NO = #{m_no}
+       	AND C.C_TYPE = #{type}
+		<if test="searchType == 'title'">
+	 		AND C.C_TITLE LIKE '%' || #{searchVal} || '%'
+		</if>
+        GROUP BY 
+        <include refid="contentsListSql"/>
+        ORDER BY C.C_NO DESC
+	</select>
+	
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER SET 
 			M_NAME = #{m_name},
@@ -209,7 +334,20 @@
 		WHERE M_NO = #{m_no}
 	</update>
 	
+	<update id="updateMemberPwd">
+		UPDATE MEMBER SET
+		M_PW = #{password}
+		WHERE M_NO = #{m_no}
+	</update>
 	
+	<delete id="deleteDibsContent">
+		DELETE FROM LIKES
+		WHERE M_NO = #{m_no}
+		AND C_NO IN
+		<foreach collection="list" item="c_no" open="(" separator="," close=")">
+				#{c_no}
+		</foreach>
+	</delete>
 	
 	
 </mapper>

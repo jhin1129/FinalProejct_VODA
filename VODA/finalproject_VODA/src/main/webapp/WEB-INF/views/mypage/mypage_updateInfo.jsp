@@ -51,12 +51,6 @@
                                         <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_id }</td>
                                     </tr>
                                     <tr>
-                                        <th class="infotable_th" style="padding-top: 16px;">비밀번호</th>
-                                        <td class="infotable_td">
-                                            <button type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">비밀번호 변경</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <th class="infotable_th" style="padding-top: 16px;">이름</th>
                                         <td class="infotable_td">
                                             <input type="text" id="m_name" name="m_name" maxlength="30" required value="${ loginMember.m_name }"> 
@@ -79,7 +73,8 @@
                                             </select>
                                              -->
                                             <label for="" id="email_chk"></label>
-                                            <button type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px; margin-top: -3px; margin-left: -4px;">인증하기</button>
+                                            <input type="hidden" name="emailTest" value="0" />
+                                            <button id="emailCheckBtn" type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px; margin-top: -3px; margin-left: -4px;">중복확인</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -209,6 +204,38 @@
 <!-- 회원 가입 클릭 시 값 체크 (유효성 검사) -->
 <script>
 $(document).ready(function(){
+	$("#emailCheckBtn").on("click", () => {
+		let user_email = $("#m_email").val().trim();
+		
+		var $user_email = $("#m_email");
+		if (/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i.test($user_email.val()) == false) {
+			alert("이메일 형식으로 입력해 주세요");
+			return;
+		} 
+		
+		$.ajax({
+			type: "POST",
+			url: "${ path }/member/emailCheck",
+			dataType: "json",
+			data: {
+				user_email 
+			},
+			success: (obj) => {
+				console.log(obj);
+				
+				if(obj.duplicate === true) {
+					alert("이미 사용중인 이메일 입니다.")
+				} else {
+					$("[name=emailTest]").val("1");
+					alert("사용 가능한 이메일 입니다.")
+				}
+			}, 
+			error: (error) => {
+				console.log(error);
+			}
+		});
+	});
+	
 	$("#btn_updateMember").click(function(){
 		// 이름 정규식
 		var nameJ = /^[가-힣]{2,6}$/;
@@ -222,6 +249,12 @@ $(document).ready(function(){
 		if (nameJ.test($("#m_name").val())) {
 		} else {
 			alert("이름을 다시 입력해주세요");
+			return false;
+		}
+		//이메일 중복검사
+		if($("[name=emailTest]").val() != "1"){
+			alert("이메일 중복 체크를 해주세요");
+			
 			return false;
 		}
 
