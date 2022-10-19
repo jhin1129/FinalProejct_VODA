@@ -6,6 +6,7 @@ import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.order.model.vo.Order;
 
 public interface MypageService {
 
@@ -52,6 +53,8 @@ public interface MypageService {
 	int updateMemberPwd(int m_no, String password);
 
 	int deleteDibsContent(int m_no, List<Integer> list);
+
+	List<Order> getOrderListByMNo(int m_no);
 
 
 }

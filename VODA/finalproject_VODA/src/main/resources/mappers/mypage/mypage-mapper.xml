@@ -75,6 +75,19 @@
 		<result property="mid" column="M_ID"/>
 	</resultMap>
 	
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<id property="pno" column="P_NO"/>
+		<id property="mno" column="M_NO"/>
+		<result property="odate" column="O_DATE"/>
+		<result property="oqtt" column="O_QTT"/>
+		<result property="oadress" column="O_ADRESS"/>
+		<result property="oprice" column="O_PRICE"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
+		<result property="omessage" column="O_MESSAGE"/>
+	</resultMap>
 
 	<select id="selectLikesAllList" parameterType="_int" resultMap="contentsListResultMap">
 		SELECT
@@ -349,6 +362,9 @@
 		</foreach>
 	</delete>
 	
+	<select id="selectOrderListByMNo" parameterType="_int">
+	
+	</select>
 	
 </mapper>
 

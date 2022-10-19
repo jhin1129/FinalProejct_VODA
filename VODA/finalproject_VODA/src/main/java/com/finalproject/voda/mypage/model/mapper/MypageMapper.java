@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.order.model.vo.Order;
 
 public interface MypageMapper {
 	
@@ -56,6 +57,8 @@ public interface MypageMapper {
 	int updateMemberPwd(@Param("m_no") int m_no, @Param("password") String password);
 
 	int deleteDibsContent(@Param("m_no") int m_no, @Param("list") List<Integer> list);
+
+	List<Order> selectOrderListByMNo(int m_no);
 
 
 }

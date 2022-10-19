@@ -1,6 +1,6 @@
 package com.finalproject.voda.mypage.controller;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.mypage.model.service.MypageService;
+import com.finalproject.voda.order.model.vo.Order;
 
 @Controller
 @RequestMapping("/mypage")
@@ -397,8 +398,18 @@ public class MypageController {
 	}
 	
 	@GetMapping("/payList")
-	public ModelAndView payList(ModelAndView model) {
+	public ModelAndView payList(ModelAndView model,
+								@SessionAttribute("loginMember") Member loginMember) {
 		
+		List<Order> orderList = new ArrayList<Order>();
+		
+//		orderList = service.getOrderListByMNo(loginMember.getM_no());
+//		
+//		for(int i = 0; i < orderList.size(); i++) {
+//			System.out.println(orderList.get(i));
+//		}
+//		
+//		model.addObject("orderList", orderList);
 		model.setViewName("mypage/mypage_pay_list");
 		
 		return model;
