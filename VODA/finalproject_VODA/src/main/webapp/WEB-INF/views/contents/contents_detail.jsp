@@ -557,7 +557,7 @@
 				url : '<c:url value ="/contents/contents_detail/likeUp"/>',
 				//contentType: 'application/json',
 				data: { mNo : "${ loginMember.m_no }",
-					cNo : "${ contents.c_no }" },
+						cNo : "${ contents.c_no }" },
 				success : function(data) {
 					alert('성공염');
 				}

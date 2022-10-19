@@ -10,6 +10,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
+import com.finalproject.voda.contents.model.vo.RateLikes;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
@@ -48,6 +49,5 @@ public interface ContentsMapper {
 
 	void likeDown(Map<String, Object> map);
 
-	
-
+	List<RateLikes> findRateLikes(Map<String, Object> map);
 }

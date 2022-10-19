@@ -23,6 +23,7 @@ import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Likes;
 import com.finalproject.voda.contents.model.vo.Rate;
+import com.finalproject.voda.contents.model.vo.RateLikes;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
@@ -62,8 +63,25 @@ public class ContentsController {
 	@GetMapping("/contents/contents_comments")
 	public ModelAndView commentList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, 
 														@RequestParam int no, 
-														@RequestParam String sort) {
-					
+														@RequestParam String sort,
+														@SessionAttribute(value = "loginMember", required = false) Member loginMember) {
+		
+		if(loginMember != null ) {
+			List<RateLikes> rateLikes = null;
+			
+			Map<String, Object> map	= new HashMap<>();
+			
+			map.put("m_no", loginMember.getM_no());
+			map.put("c_no", no);
+		
+			System.out.println(map);
+				
+			rateLikes = service.findRateLikes(map);
+			
+			System.out.println(rateLikes);
+			model.addObject("rateLikes", rateLikes);
+		}
+		
 		List<Rate> rates = null;
 		PageInfo pageInfo = null;
 		
@@ -131,6 +149,17 @@ public class ContentsController {
 		
 		service.likeDown(mNo, cNo);
 	}
+	
+	@ResponseBody
+	@PostMapping("/contents/commentLike")
+	public void commentLike (@RequestParam("rate_no") int rate_no, @RequestParam("m_no") int m_no) {
+
+		System.out.println(rate_no);
+		System.out.println(m_no);
+		System.out.println("컨트롤러 연결 성공");
+		
+	}
+	
 	
 	
 	@PostMapping("/contents/comment_write")

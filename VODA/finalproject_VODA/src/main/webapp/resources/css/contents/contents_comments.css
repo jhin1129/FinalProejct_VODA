@@ -151,7 +151,7 @@ textarea:focus, input:focus{ outline: none; }
     opacity: 1;
 }
 .like-button svg path {
-    fill: rgba(73,95,233,0.5);
+    fill: rgb(170,179,233);
     transition: fill .4s ease-out;
 }
 .like-button.active svg path {   

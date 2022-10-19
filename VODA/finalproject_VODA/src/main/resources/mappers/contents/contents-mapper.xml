@@ -102,6 +102,11 @@
 		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
 	</resultMap>
 	
+	<resultMap type="RateLikes" id="findRateLikesResultMap" >
+		<result property="rate_no" column="RATE_NO"/>
+		<result property="rate_confirm" column="COUNT(RATE_NO)"/>
+	</resultMap>
+	
 	<select id="selectContentsCount" resultType="_int">
 		SELECT 
 			COUNT(*) FROM CONTENTS WHERE C_STATUS='Y'
@@ -309,4 +314,12 @@
 	<delete id="likeDown" parameterType="map" >
 		DELETE FROM LIKES WHERE C_NO = ${ cNo } AND M_NO = ${ mNo }
 	</delete>
+	
+	<select id="findRateLikes" parameterType="map" resultMap="findRateLikesResultMap" >
+		SELECT RATE_NO,
+			COUNT(RATE_NO) 
+			FROM RATELIKES 
+			WHERE M_NO = #{ m_no } 
+			GROUP BY RATE_NO
+	</select>
 </mapper>
