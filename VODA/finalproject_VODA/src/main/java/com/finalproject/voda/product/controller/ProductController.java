@@ -87,7 +87,6 @@ public class ProductController {
 	public ModelAndView ProductCreate(
 						ModelAndView model,
 						@RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
-//						@RequestParam("upfile") MultipartFile upfile,
 						@ModelAttribute Product product) {
 		int result = 0;
 		// 받아온것 출력 확인
