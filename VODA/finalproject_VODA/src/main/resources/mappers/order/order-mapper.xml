@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.finalproject.voda.order.model.mapper.OrderMapper">
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="payno" column="PAY_NO"/>
+		<id property="pno" column="P_NO"/>
+		<id property="mno" column="M_NO"/>
+		<result property="odate" column="O_DATE"/>
+		<result property="oqtt" column="O_QTT"/>
+		<result property="oadress" column="O_ADRESS"/>
+		<result property="oprice" column="O_PRICE"/>
+		<result property="pname" column="P_NAME"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
+		<result property="omessage" column="O_MESSAGE"/>
+	</resultMap>
+	
+
+</mapper>

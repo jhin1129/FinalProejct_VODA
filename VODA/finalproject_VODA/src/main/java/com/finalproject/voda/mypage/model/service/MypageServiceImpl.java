@@ -1,6 +1,5 @@
 package com.finalproject.voda.mypage.model.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -24,65 +23,40 @@ public class MypageServiceImpl implements MypageService {
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Override
-	public List<Contents> getLikesList(int mNo) {
+	public List<Contents> getLikesAllList(int mNo) {
 		
-		List<Integer> likesListCno = mapper.selectLikesCNoList(mNo);
+		return mapper.selectLikesAllList(mNo);
+	}
+	
+	@Override
+	public int getLikesCount(int m_no, String type) {
+		// TODO Auto-generated method stub
+		return mapper.selectLikesCount(m_no, type);
+	}
+
+	
+	@Override
+	public List<Contents> getLikesList(PageInfo pageInfo, int m_no, String type) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Contents> contentsList = new ArrayList<Contents>();
-		
-		for(int i = 0; i < likesListCno.size(); i++) {
-			contentsList.add(mapper.selectContentsByCNo(likesListCno.get(i)));
-		}
-		
-		return contentsList;
+		return mapper.selectLikesList(rowBounds, m_no, type);
 	}
 
 	@Override
-	public List<Contents> getLikesList(int m_no, String type) {
-		
-		List<Integer> likesListCno = mapper.selectLikesCNoList(m_no);
-		
-		List<Contents> contentsList = new ArrayList<Contents>();
-		
-		for(int i = 0; i < likesListCno.size(); i++) {
-			Contents contents = mapper.selectContentsByCNoType(likesListCno.get(i), type);
-			if(contents != null) {
-				contentsList.add(contents);
-			}
-		}
-		
-		return contentsList;
+	public int getReviewCount(int m_no, String type) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewCount(m_no, type);
 	}
 	
 	@Override
-	public List<Contents> getreviewList(int mNo) {
+	public List<Contents> getReviewList(PageInfo pageInfo, int m_no, String type) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
 		
-		List<Integer> reviewListCno = mapper.selectReviewCNoList(mNo);
-		
-		List<Contents> reviewList = new ArrayList<Contents>();
-		
-		for(int i = 0; i < reviewListCno.size(); i++) {
-			reviewList.add(mapper.selectContentsByCNo(reviewListCno.get(i)));
-		}
-		
-		return reviewList;
-	}
-	
-	@Override
-	public List<Contents> getReviewList(int m_no, String type) {
-		
-		List<Integer> reviewListCno = mapper.selectReviewCNoList(m_no);
-		
-		List<Contents> reviewList = new ArrayList<Contents>();
-		
-		for(int i = 0; i < reviewListCno.size(); i++) {
-			Contents contents = mapper.selectContentsByCNoType(reviewListCno.get(i), type);
-			if(contents != null) {
-				reviewList.add(contents);
-			}
-		}
-		
-		return reviewList;
+		return mapper.selectReviewList(rowBounds, m_no, type);
 	}
 	
 	@Override
@@ -140,6 +114,84 @@ public class MypageServiceImpl implements MypageService {
 		
 		return result;
 	}
+
+	@Override
+	public int getFreeBoardSearchCount(int m_no, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectFreeBoardSearchCount(m_no, searchType, searchVal);
+	}
+
+	@Override
+	public List<Board> getfreeBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectFreeBoardSearchList(rowBounds, m_no, searchType, searchVal);
+	}
+
+	@Override
+	public int getQnaBoardSearchCount(int m_no, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectQnaBoardSearchCount(m_no, searchType, searchVal);
+	}
+
+	@Override
+	public List<Board> getqnaBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectQnaBoardSearchList(rowBounds, m_no, searchType, searchVal);
+	}
+
+	@Override
+	public int getLikesSearchCount(int m_no, String type, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectLikesSearchCount(m_no, type, searchType, searchVal);
+	}
+
+	@Override
+	public List<Contents> getLikesSearchList(PageInfo pageInfo, int m_no, String type, String searchType,
+			String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectLikesSearchList(rowBounds, m_no, type, searchType, searchVal);
+	}
+
+	@Override
+	public int getReviewSearchCount(int m_no, String type, String searchType, String searchVal) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewSearchCount(m_no, type, searchType, searchVal);
+	}
+
+	@Override
+	public List<Contents> getReviewSearchList(PageInfo pageInfo, int m_no, String type, String searchType,
+			String searchVal) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectReviewSearchList(rowBounds, m_no, type, searchType, searchVal);
+	}
+
+	@Override
+	@Transactional
+	public int updateMemberPwd(int m_no, String password) {
+		int result = 0;
+		System.out.println(password);
+		result = mapper.updateMemberPwd(m_no, password);
+		return result;
+	}
+
+	@Override
+	public int deleteDibsContent(int m_no, List<Integer> list) {
+		// TODO Auto-generated method stub
+		return mapper.deleteDibsContent(m_no, list);
+	}
+
 
 
 

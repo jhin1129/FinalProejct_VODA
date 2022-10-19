@@ -30,4 +30,6 @@ public class Order {
 	
 	private String pmadecompany;
 	
+	private String omessage;
+	
 }

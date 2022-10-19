@@ -49,6 +49,48 @@
         #pagination li a:hover:not(.active) {
             background-color: #ddd;
         }
+        
+        .btn {
+
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            /* 패딩은 주석하쇼 */
+            padding: 1px 0.38rem;
+
+
+        }
+        
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+
+
+        }
+        
+        .form-control1 {
+            display: block;
+            height: 27.8px;
+            padding: 0.2rem 0.7rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
+        
 	</style>
 	
     <div class="container p-0">
@@ -130,31 +172,36 @@
                         </div>
             
                         <div class="col-4 text-right">
-                            <button class="btn btn-light text-nowrap"><img src="../../IMG/Community/edit.png" style="height: 23px;"></button>
+                            <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
+                    src="${path}/resources/img/community/edit.png" onclick="location.href='${path}/board/free_board_crud'" style="height: 20px;"></button>
                         </div>
                     </div>
-                    
-                    <div class="search row mb-5">
-                        <div class="col-xs-2 col-sm-2">
-                            <select name="searchType" class="form-control">
-                                <option value="title" selected>Subject</option>
-                                <option value="title">Poster</option>
-                                <option value="title">Contents</option>
-                                <option value="title">Subject+Contents</option>
-                            </select>
-                        </div>
-            
-                        <div class="col-xs-10 col-sm-10">
-                            <div class="input-group">
-                                <input type="text" name="searchInput" id="searchInput" class="form-control">
-                                <span class="input-group-btn" >
-                                    <button id="searchBtn" class="btn btn-greyC text-nowrap" ><img src="../../IMG/Community/search.png" style="height: 23px;"></button>
-                                </span>
-                            </div>
-            
-                        </div>
-                    </div>
-      
+					
+					<div class="search1 row my-4">
+						<div class="col-6 row">
+							
+						    <div class="col-3 mr-4">
+						        <select id="searchType" name="searchType" class="form-control1" style="font-size: 14.45px; ">
+							        <option value="title" selected>제목</option>
+							        <option value="content">내용</option>
+							        <option value="titlecontent">제목+내용</option>
+						    	</select>
+							</div>
+					
+							<div class="col-8 pl-0">
+						    	<div class="input-group">
+						        	<input id="searchVal" type="text" class="form-control1" style="font-size: 14.45px;">
+									<span class="input-group-btn">
+							    		<button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;">
+							    			<img src="${path}/resources/img/community/search.png" style="height: 16px;">
+										</button>
+						            </span>
+						         </div>
+						    </div>
+
+					    </div>
+					</div>
+      				
                 </div>
                 <!-- 컨테이너 끝 -->
             </div>
@@ -164,3 +211,14 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<script>
+	$(document).ready(() => {
+		$("#searchBtn").on("click", () => {
+			var searchType = $("#searchType").val();
+			var searchVal = $("#searchVal").val();
+			
+			location.href="${path}/mypage/writeFreeBoardSearch?searchType=" + searchType + "&searchVal=" + searchVal;
+		});
+	});
+</script>

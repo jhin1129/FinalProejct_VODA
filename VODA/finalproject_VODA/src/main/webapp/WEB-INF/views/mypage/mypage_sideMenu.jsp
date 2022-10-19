@@ -44,6 +44,10 @@
                                         <li>
                                             - 회원 정보 조회 / 변경</li>
                                     </a>
+                                    <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/updatePwd">
+                                        <li>
+                                            - 비밀번호 변경</li>
+                                    </a>
                                     <a class="nav-link mySideMenuSubTitle px-2" role="button" href="${path}/mypage/deleteMember">
                                         <li>
                                             - 회원 탈퇴</li>

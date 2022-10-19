@@ -125,37 +125,37 @@
 
                     <div class="pl-3 pr-4 row" style="margin-top: 10px; height: 40px;">
 						<c:if test="${ type == '영화' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=영화'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContentSearch?type=영화&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '영화' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=영화'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContentSearch?type=영화&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             MOVIE
                         </div>
                         
 						<c:if test="${ type == 'TV' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContentSearch?type=TV&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != 'TV' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContentSearch?type=TV&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             TV
                         </div>
 
 						<c:if test="${ type == '도서' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContentSearch?type=도서&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '도서' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContentSearch?type=도서&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             BOOK
                         </div>
                         
 						<c:if test="${ type == '웹툰' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white; border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContent?type=웹툰'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white; border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContentSearch?type=웹툰&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '웹툰' }">
-						    <div class="col-3 mycategory" style="border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContent?type=웹툰'">
+						    <div class="col-3 mycategory" style="border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContentSearch?type=웹툰&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             WEBTOON
                         </div>     
@@ -207,10 +207,10 @@
                         <div class="col-4">
                             <ul id="pagination">
 				            	<!-- 맨 처음으로 -->
-				                <li><a href="${ path }/mypage/reviewContent?page=1">«</a></li>
+				                <li><a href="${ path }/mypage/reviewContentSearch?page=1&searchType=${searchType}&searchVal=${searchVal}">«</a></li>
 				                
 				                <!-- 이전 페이지로 -->
-				                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.prevPage }">‹</a></li>
+				                <li><a href="${ path }/mypage/reviewContentSearch?page=${ pageInfo.prevPage }&searchType=${searchType}&searchVal=${searchVal}">‹</a></li>
 				                
 								<!--  10개 페이지 목록 -->
 								<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -219,14 +219,14 @@
 									</c:if>
 									
 									<c:if test="${ status.current != pageInfo.currentPage }">
-				                		<li><a href="${ path }/mypage/reviewContent?page=${ status.current }">${ status.current }</a></li>
+				                		<li><a href="${ path }/mypage/reviewContentSearch?page=${ status.current }&searchType=${searchType}&searchVal=${searchVal}">${ status.current }</a></li>
 									</c:if>
 								</c:forEach>
 								
 								<!-- 다음 페이지로 -->
-									<li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.nextPage }">›</a></li>  
+									<li><a href="${ path }/mypage/reviewContentSearch?page=${ pageInfo.nextPage }&searchType=${searchType}&searchVal=${searchVal}">›</a></li>  
 								<!-- 맨 끝 페이지로 -->
-					                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.maxPage }">»</a></li>
+					                <li><a href="${ path }/mypage/reviewContentSearch?page=${ pageInfo.maxPage }&searchType=${searchType}&searchVal=${searchVal}">»</a></li>
 				            </ul>
                         </div>
             

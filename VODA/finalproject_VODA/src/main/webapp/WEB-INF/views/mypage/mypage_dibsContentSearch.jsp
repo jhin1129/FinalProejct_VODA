@@ -13,6 +13,8 @@
 
     <!-- mylist CSS-->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/mypage/mypage_list.css">
+    
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
       
 	<style>
 		.item {
@@ -60,8 +62,7 @@
         #pagination li a:hover:not(.active) {
             background-color: #ddd;
         }		
-        
-        		.btn {
+		.btn {
 
             transition: background 0.2s ease-in-out,
                 color 0.2s ease-in-out;
@@ -82,6 +83,8 @@
             background-color: #c3c3c4b7 !important;
             border-color: #c3c3c4b7 !important;
             color: #000000 !important;
+
+
 
         }
         
@@ -117,7 +120,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;">리뷰한 컨텐츠</h5>
+                                <h5 style="font-weight: 600;">찜한 컨텐츠</h5>
                                 <hr>
                             </form>
                         </div>
@@ -125,48 +128,47 @@
 
                     <div class="pl-3 pr-4 row" style="margin-top: 10px; height: 40px;">
 						<c:if test="${ type == '영화' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=영화'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/dibsContentSearch?type=영화&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '영화' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=영화'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/dibsContentSearch?type=영화&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             MOVIE
                         </div>
                         
 						<c:if test="${ type == 'TV' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/dibsContentSearch?type=TV&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != 'TV' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/dibsContentSearch?type=TV&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             TV
                         </div>
 
 						<c:if test="${ type == '도서' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/dibsContentSearch?type=도서&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '도서' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/dibsContentSearch?type=도서&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             BOOK
                         </div>
                         
 						<c:if test="${ type == '웹툰' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white; border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContent?type=웹툰'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white; border-right: 1px solid grey;" onclick="location.href='${path}/mypage/dibsContentSearch?type=웹툰&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>
 						<c:if test="${ type != '웹툰' }">
-						    <div class="col-3 mycategory" style="border-right: 1px solid grey;" onclick="location.href='${path}/mypage/reviewContent?type=웹툰'">
+						    <div class="col-3 mycategory" style="border-right: 1px solid grey;" onclick="location.href='${path}/mypage/dibsContentSearch?type=웹툰&searchType=${searchType }&searchVal=${searchVal }'">
 						</c:if>                    	
                             WEBTOON
                         </div>     
                     </div>
 
 
-
                     <div class="section_ranking">
                         <div class="box_ranking" data-tiara-layer="list">
                             <ol class="list_movieranking">
-                            	<c:forEach var="contents" items="${ reviewList }" varStatus="status">
+                            	<c:forEach var="contents" items="${ likesList }" varStatus="status">
                             		<li class="item">
 	                                    <div class="item_poster">
 	                                        <div class="thumb_item" style="width: 187px; height: 273px;">
@@ -178,7 +180,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
-	                                                <input type="checkbox" style="width: 17px; height: 17px;">
+	                                                <input type="checkbox" value="${ contents.c_no }" name="contentsCheckBox" style="width: 17px; height: 17px;">
 	                                            </div>
 	                                        </div>
 	                                        <div class="thumb_cont">
@@ -196,21 +198,21 @@
                                 		<br>
                                 	</c:if>
                             	</c:forEach>
+                            
                             </ol>
                         </div>
-
-
                     </div>
-                    
-                    <div class="row">
+
+					
+					<div class="row">
                         <div class="col-4"></div>
                         <div class="col-4">
                             <ul id="pagination">
 				            	<!-- 맨 처음으로 -->
-				                <li><a href="${ path }/mypage/reviewContent?page=1">«</a></li>
+				                <li><a href="${ path }/mypage/dibsContentSearch?page=1&searchType=${searchType}&searchVal=${searchVal}">«</a></li>
 				                
 				                <!-- 이전 페이지로 -->
-				                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.prevPage }">‹</a></li>
+				                <li><a href="${ path }/mypage/dibsContentSearch?page=${ pageInfo.prevPage }&searchType=${searchType}&searchVal=${searchVal}">‹</a></li>
 				                
 								<!--  10개 페이지 목록 -->
 								<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -219,17 +221,19 @@
 									</c:if>
 									
 									<c:if test="${ status.current != pageInfo.currentPage }">
-				                		<li><a href="${ path }/mypage/reviewContent?page=${ status.current }">${ status.current }</a></li>
+				                		<li><a href="${ path }/mypage/dibsContentSearch?page=${ status.current }&searchType=${searchType}&searchVal=${searchVal}">${ status.current }</a></li>
 									</c:if>
 								</c:forEach>
 								
 								<!-- 다음 페이지로 -->
-									<li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.nextPage }">›</a></li>  
+									<li><a href="${ path }/mypage/dibsContentSearch?page=${ pageInfo.nextPage }&searchType=${searchType}&searchVal=${searchVal}">›</a></li>  
 								<!-- 맨 끝 페이지로 -->
-					                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.maxPage }">»</a></li>
+					                <li><a href="${ path }/mypage/dibsContentSearch?page=${ pageInfo.maxPage }&searchType=${searchType}&searchVal=${searchVal}">»</a></li>
 				            </ul>
                         </div>
-            
+						<div class="col-4 text-right">
+            				<button id="btn_deleteDibsContent" class="btn btn-logoC mt-3 mr-4" style="height:33px;">삭제하기</button>
+            			</div>
                     </div>
 					
 					<div class="search1 row my-4">
@@ -270,7 +274,21 @@
 			var searchType = $("#searchType").val();
 			var searchVal = $("#searchVal").val();
 			
-			location.href="${path}/mypage/reviewContentSearch?type=${type}&searchType=" + searchType + "&searchVal=" + searchVal;
+			location.href="${path}/mypage/dibsContentSearch?type=${type}&searchType=" + searchType + "&searchVal=" + searchVal;
+		});
+		
+		$("#btn_deleteDibsContent").on("click", () => {
+			var arr = [];
+			$("input:checkbox[name='contentsCheckBox']:checked").each(function(){
+				var cNo = $(this).val();
+				arr.push(cNo);
+			});
+			if(arr.length !=0){
+				location.href="${path}/mypage/deleteDibsContent?list="+arr + "&type=${type}";
+			}else{
+				alert("컨텐츠를 선택해주세요");
+			}
 		});
 	});
+	
 </script>
