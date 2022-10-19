@@ -38,7 +38,7 @@
 						<td><a href="#">${product.pmadecompany}</a>
 							<p>${product.pname}</p></td>
 						<td class="cart__list__option">
-							<p>상품 주문 수량: 1개</p>
+							<p>상품 주문 수량: ${ product.porderqtt }개</p>
 							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
 						</td>
 						<td><span class="price">${product.pprice}</span><br></td>

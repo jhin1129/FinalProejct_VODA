@@ -197,6 +197,7 @@
                                     </td>
                                     <td>
                                         <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1">
+                                        <input type="hidden" name="porderqtt" value="">
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
@@ -204,7 +205,7 @@
                                         <div class="mb-2">총 합계금액</div>
                                     </td>
                                     <td>
-                                        <div class="mb-2">${product.pprice}원</div>
+                                        <div class="mb-2" id="totalPrice">${product.pprice}원</div>
                                     </td>
                                 </tr>
                             </table>
@@ -225,7 +226,7 @@
 
                                 <tr>
                                     <td colspan="2">
-                                        <div><button class="btn btn-primary py-1" onclick="location.href='${ path }/product_order?pno=${ product.pno }'">구매하기</button></div>
+                                        <div><button id="btnbuy" class="btn btn-primary py-1" onclick="location.href='${ path }/product_order?pno=${ product.pno }'">구매하기</button></div>
                                     </td>
                                 </tr>
                             </table>
@@ -360,6 +361,11 @@ $(document).ready(() => {
 			}
 		}
 	});
+	$("#btnbuy").on("click", function() {
+		let porderqtt = $("#quantitySelect").val;
+		$(".order_form").find("input[name='orders[0].bookCount']").val(bookCount);
+		$(".order_form").submit();
+	})
 	
 });
 </script>

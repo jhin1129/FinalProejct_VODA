@@ -1,5 +1,7 @@
 package com.finalproject.voda.order.model.vo;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,4 +19,6 @@ public class Pay {
 	private int payprice;
 	
 	private String patstatus;
+	
+	private Date paydate;
 }
