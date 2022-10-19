@@ -1,8 +1,8 @@
-package com.finalproject.voda.order.model.service;
+package com.finalproject.voda.order.model.mapper;
 
 import com.finalproject.voda.order.model.vo.Order;
 
-public interface OrderService {
+public interface OrderMapper {
 
 	Order findOrderByNo(int pno);
 
