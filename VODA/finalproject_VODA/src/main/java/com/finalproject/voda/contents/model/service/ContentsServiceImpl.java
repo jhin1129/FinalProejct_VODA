@@ -164,4 +164,34 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.findRateLikes(map);
 	}
 
+	@Override
+	public int likeCheck(Map<String, Object> map) {
+		
+		return mapper.likeCheck(map);
+	}
+
+	@Override
+	public void insertLike(Map<String, Object> map) {
+		
+		mapper.insertLike(map);
+	}
+
+	@Override
+	public void updateLike(int rate_no) {
+		
+		mapper.updateLike(rate_no);
+	}
+
+	@Override
+	public void deleteLike(Map<String, Object> map) {
+		
+		mapper.deleteLike(map);
+	}
+
+	@Override
+	public void updateLikeCancel(int rate_no) {
+		
+		mapper.updateLikeCancel(rate_no);
+	}
+
 }

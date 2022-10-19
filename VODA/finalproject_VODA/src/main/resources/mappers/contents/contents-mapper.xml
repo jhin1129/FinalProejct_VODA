@@ -322,4 +322,30 @@
 			WHERE M_NO = #{ m_no } 
 			GROUP BY RATE_NO
 	</select>
+	
+	<select id="likeCheck" parameterType="map" resultType="_int" >
+		SELECT 
+			COUNT(RATE_NO) 
+			FROM RATELIKES 
+			WHERE RATE_NO = #{ rate_no } AND M_NO = #{ m_no }
+	</select>
+	
+	<insert id="insertLike" parameterType="map" 
+		useGeneratedKeys="true" keyProperty="like_no" keyColumn="LIKE_NO">
+		INSERT INTO RATELIKES VALUES(SEQ_LIKE_NO.NEXTVAL, #{ rate_no }, #{ m_no })
+	</insert>
+	
+	<update id="updateLike" parameterType="_int">
+		UPDATE RATE SET RATE_LIKE = RATE_LIKE +1
+        WHERE RATE_NO = #{ rate_no }
+	</update>
+	
+	<delete id="deleteLike" parameterType="map">
+		DELETE FROM RATELIKES WHERE M_NO = #{ m_no } AND RATE_NO = #{ rate_no }
+	</delete>
+	
+	<update id="updateLikeCancel" parameterType="_int">
+		UPDATE RATE SET RATE_LIKE = RATE_LIKE -1
+        WHERE RATE_NO = #{ rate_no }
+	</update>
 </mapper>

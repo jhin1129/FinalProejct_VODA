@@ -154,13 +154,29 @@ public class ContentsController {
 	@PostMapping("/contents/commentLike")
 	public void commentLike (@RequestParam("rate_no") int rate_no, @RequestParam("m_no") int m_no) {
 
-		System.out.println(rate_no);
 		System.out.println(m_no);
+		System.out.println(rate_no);
 		System.out.println("컨트롤러 연결 성공");
 		
-	}
-	
-	
+		Map<String, Object> map	= new HashMap<>();
+		
+		map.put("m_no", m_no);
+		map.put("rate_no", rate_no);
+		
+		int likeCheck = service.likeCheck(map);
+		if(likeCheck == 0) {
+			// 좋아요 처음 누름
+			service.insertLike(map); // RATELIKES 테이블 추가
+			service.updateLike(rate_no);	// RATE 테이블 RATE_LIKE +1
+			
+		} else if(likeCheck == 1) {
+			// 좋아요 있음
+			service.deleteLike(map); // RATELIKES 테이블 삭제
+			service.updateLikeCancel(rate_no); // RATE 테이블 RATE_LIKE -1
+
+		}
+
+	}	
 	
 	@PostMapping("/contents/comment_write")
 	public ModelAndView commentWrite(ModelAndView model, 

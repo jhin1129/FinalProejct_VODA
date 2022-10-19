@@ -50,4 +50,15 @@ public interface ContentsMapper {
 	void likeDown(Map<String, Object> map);
 
 	List<RateLikes> findRateLikes(Map<String, Object> map);
+
+	int likeCheck(Map<String, Object> map);
+
+	void insertLike(Map<String, Object> map);
+
+	void updateLike(int rate_no);
+
+	void deleteLike(Map<String, Object> map);
+
+	void updateLikeCancel(int rate_no);
+
 }

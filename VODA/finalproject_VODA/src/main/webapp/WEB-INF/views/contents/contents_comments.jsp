@@ -430,7 +430,7 @@
 	           success : function(data) {
 				  alert('성공염');
 			   }
-	       });
+	   	});
 	}
 
 	</script>
