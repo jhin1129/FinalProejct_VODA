@@ -62,5 +62,9 @@ public interface MypageService {
 
 	List<Order> getOrderCancelOrderListByMNo(int m_no, String dateFrom, String dateTo);
 
+	int payCancel(int payNo);
+
+	List<Order> getAllOrderListByMNo(int m_no);
+
 
 }

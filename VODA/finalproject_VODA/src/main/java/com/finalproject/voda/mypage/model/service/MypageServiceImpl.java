@@ -217,6 +217,18 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.selectOrderByPayNo(payNo);
 	}
 
+	@Override
+	public int payCancel(int payNo) {
+		// TODO Auto-generated method stub
+		return mapper.payCancel(payNo);
+	}
+
+	@Override
+	public List<Order> getAllOrderListByMNo(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectAllOrderListByMNo(m_no);
+	}
+
 
 
 }

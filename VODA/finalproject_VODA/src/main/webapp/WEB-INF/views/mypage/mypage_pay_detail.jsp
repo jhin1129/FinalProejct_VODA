@@ -170,9 +170,14 @@
                     
  
                     <div class="text-center mb-5">
-                        <button type="button" class="btn btn-greyC" onclick="history.back()">목록으로</button>
+                    	<c:if test="${order.pay.patstatus == '배송준비중' || order.pay.patstatus == '배송완료'}">
+	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payList'">목록으로</button>
+                    	</c:if>
+                    	<c:if test="${order.pay.patstatus == '환불대기중' || order.pay.patstatus == '환불완료'}">
+	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payCancelList'">목록으로</button>
+                    	</c:if>
                         <c:if test="${order.pay.patstatus == '배송준비중' }">
-                        	<button id="btn_updateMember" type="submit" class="btn btn-logoC">환불하기</button>
+                        	<button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'" id="btn_payCancel" type="button" class="btn btn-logoC">환불하기</button>
                         </c:if>
                     </div>
 

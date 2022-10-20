@@ -3,6 +3,8 @@ package com.finalproject.voda.mypage.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -42,7 +44,7 @@ public class MypageController {
 		PageInfo pageInfo2 = null;
 		List<Order> orderList = new ArrayList<Order>();
 		
-		orderList = service.getOrderListByMNo(loginMember.getM_no(), null, null);
+		orderList = service.getAllOrderListByMNo(loginMember.getM_no());
 		if(orderList.size() > 5) {
 			orderList = orderList.subList(0, 5);
 		}
@@ -461,6 +463,27 @@ public class MypageController {
 		
 		model.addObject("order", order);
 		model.setViewName("mypage/mypage_pay_detail");
+		
+		return model;
+	}
+	
+	@GetMapping("/payCancel")
+	public ModelAndView payCancel(ModelAndView model,
+								HttpServletRequest request,
+								@RequestParam(value = "payNo") int payNo) {
+		
+		String path = request.getHeader("Referer").substring(request.getHeader("Referer").indexOf(request.getContextPath()) + request.getContextPath().length());
+		int result = 0;
+		
+		result = service.payCancel(payNo);
+		
+		if(result > 0) {
+			model.addObject("msg", "환불요청이 완료되었습니다.");
+		} else {
+			model.addObject("msg", "환불요청이 실패하였습니다.");
+		}
+		model.addObject("location", path);
+		model.setViewName("common/msg");
 		
 		return model;
 	}

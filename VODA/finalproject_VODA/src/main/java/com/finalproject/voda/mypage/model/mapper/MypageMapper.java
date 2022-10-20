@@ -66,4 +66,8 @@ public interface MypageMapper {
 
 	int selectReviewAllCount(int m_no);
 
+	int payCancel(int payNo);
+
+	List<Order> selectAllOrderListByMNo(int m_no);
+
 }
