@@ -58,7 +58,7 @@
             인물페이지 관리
            </h1>
            <hr>
-		<c:if test="${ empty list }">
+		<c:if test="${ empty search }">
 			<tr>
 				<td colspan="6" style="text-align: center;">
 					조회된 게시글이 없습니다.
@@ -68,8 +68,8 @@
           <div class="section_ranking">
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
-                 <c:if test="${ not empty list }"> 	 
-       				<c:forEach var="people" items="${ list }" varStatus="status">
+                 <c:if test="${ not empty search }"> 	 
+       				<c:forEach var="people" items="${ search }" varStatus="status">
                     <li>
                         <div class="item_poster">
                           <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">

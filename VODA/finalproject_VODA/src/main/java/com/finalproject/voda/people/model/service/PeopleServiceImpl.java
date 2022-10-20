@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.people.model.mapper.PeopleMapper;
 import com.finalproject.voda.people.model.vo.People;
 
@@ -64,6 +65,20 @@ public class PeopleServiceImpl implements PeopleService {
 		result = mapper.deletePeople(list, "N");
 		
 		return result;
+	}
+
+	@Override
+	public int getPeopleSearchCount(String searchType, String keyword) {
+		return mapper.getPeopleSearchCount(searchType, keyword);
+	}
+
+	@Override
+	public List<Search> getPeopleSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getPeopleSearchList(rowBounds, searchType, keyword);
 	}
 
 }

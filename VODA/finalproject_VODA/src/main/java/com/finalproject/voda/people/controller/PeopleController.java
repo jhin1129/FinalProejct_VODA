@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.common.util.MultipartFileUtil;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.people.model.service.PeopleService;
 import com.finalproject.voda.people.model.vo.People;
@@ -223,6 +224,30 @@ public class PeopleController {
 		
 		return "people/peopleOnclickButton"; 
 		
+	}
+	
+	// 인물페이지 리스트 검색
+	@GetMapping("/admin/admin_people_search")
+	public ModelAndView adminPeopleSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getPeopleSearchCount(searchType, keyword), 12);
+		search = service.getPeopleSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_people_search");
+		
+		return model;
 	}
 
 }

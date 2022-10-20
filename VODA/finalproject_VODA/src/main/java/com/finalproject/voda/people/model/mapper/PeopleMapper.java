@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.people.model.vo.People;
 
 @Mapper
@@ -23,6 +24,8 @@ public interface PeopleMapper {
 
 	int deletePeople(@Param("list")List<Integer> list, @Param("people_status") String string);
 
+	int getPeopleSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 
+	List<Search> getPeopleSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 
 }
