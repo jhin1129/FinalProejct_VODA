@@ -23,5 +23,6 @@ public interface ProductService {
 
 	List<Product> getProductSearchList(PageInfo pageInfo, String searchtype, String searchname);
 
+
 	
 }
