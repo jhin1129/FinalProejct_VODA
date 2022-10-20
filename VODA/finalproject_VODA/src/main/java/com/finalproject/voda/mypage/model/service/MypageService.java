@@ -56,5 +56,7 @@ public interface MypageService {
 
 	List<Order> getOrderListByMNo(int m_no);
 
+	Order getOrderByPayNo(int payNo);
+
 
 }

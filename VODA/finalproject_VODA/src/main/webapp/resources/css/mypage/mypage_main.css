@@ -81,11 +81,12 @@
     font-weight: 600;
 }
 
-.table_td{
+.table_td {
     border-bottom: 1px solid lightgrey;
     height: 55px;
     font-size: 0.8em;
 }
+
 
 /* 개인정보 테이블 */
 .infotable_th{

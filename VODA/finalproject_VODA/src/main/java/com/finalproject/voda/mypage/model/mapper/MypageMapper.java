@@ -60,5 +60,7 @@ public interface MypageMapper {
 
 	List<Order> selectOrderListByMNo(int m_no);
 
+	Order selectOrderByPayNo(int payNo);
+
 
 }

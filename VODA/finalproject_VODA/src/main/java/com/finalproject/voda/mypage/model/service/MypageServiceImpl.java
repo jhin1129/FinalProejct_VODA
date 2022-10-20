@@ -199,6 +199,12 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.selectOrderListByMNo(m_no);
 	}
 
+	@Override
+	public Order getOrderByPayNo(int payNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectOrderByPayNo(payNo);
+	}
+
 
 
 
