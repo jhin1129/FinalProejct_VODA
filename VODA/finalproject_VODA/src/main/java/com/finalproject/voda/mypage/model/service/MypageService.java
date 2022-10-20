@@ -66,5 +66,9 @@ public interface MypageService {
 
 	List<Order> getAllOrderListByMNo(int m_no);
 
+	List<Order> getPayOrderList(int m_no);
+
+	List<Order> getCancelOrderList(int m_no);
+
 
 }

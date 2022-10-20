@@ -21,7 +21,7 @@
 	
 	<style>
 	.table_td > label{
-		font-size: 1.0em;
+		font-size: 1.05em;
 	}
 	</style>
 	
@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;" >주문 / 배송 조회</h5>
+                                <h5 class="rightMainMenu" style="font-weight: 600;" onclick="location.href='${path}/mypage/payList'">주문 / 배송 조회</h5>
                                 <hr>
                             </form>
                         </div>
@@ -75,17 +75,17 @@
                             <tbody>
                             	<c:forEach var="order" items="${ orderList }">
 	                            	<tr style="border-bottom: 1px solid lightgrey">
-	                                    <td class="table_td"><label style="margin-top: 10px;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.payno }</label></td>
+	                                    <td class="table_td"><label style="cursor:pointer; margin-top: 10px;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.payno }</label></td>
 	                                    <td class="table_td" style="width: 15%;"><img class="my-1" style="height: 80px; width: 80px;" src="${ path }/resources/uploadFiles/${ fn:substring(order.productList[0].prenamefile,0,22) }"></td>
 	                                    <td class="table_td" style="text-align: left;">
-	                                    	<label onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.productList[0].pname }
+	                                    	<label style="cursor: pointer;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.productList[0].pname }
 	                                    		<c:if test="${fn:length(order.productList) > 1}">
 	                                    		등
 	                                    		</c:if>
 	                                    	</label> <br>
 	                                    	<label style="font-size: 0.9em; margin-bottom: 0px;">총&nbsp;${fn:length(order.productList)}개 상품</label>
 	                                    </td>
-	                                    <td class="table_td">${ order.pay.payprice }원</td>
+	                                    <td class="table_td"><fmt:formatNumber value="${ order.pay.payprice }" ></fmt:formatNumber>원</td>
 	                                    <td class="table_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                    <td class="table_td">${ order.pay.patstatus }</td>
 	                                    <td class="table_td">

@@ -54,7 +54,7 @@
 	                                    <td class="table_td" style="width: 15%;"><img class="my-1" style="height: 80px; width: 80px;" src="${ path }/resources/uploadFiles/${ fn:substring(product.prenamefile,0,22) }"></td>
 	                                    <td class="table_td" style="text-align: left;">${ product.pname }</td>
 	                                    <td class="table_td">${product.porderqtt }</td>
-	                                    <td class="table_td">${product.porderqtt * product.pprice}</td>
+	                                    <td class="table_td"><fmt:formatNumber value="${product.porderqtt * product.pprice}" ></fmt:formatNumber>원</td>
 	                                    <td class="table_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                    <td class="table_td">${ order.pay.patstatus }</td>
                                 	</tr>
@@ -83,10 +83,6 @@
                                 <td class="table_td" style="padding-top: 18px;">${ loginMember.m_address } ${ loginMember.m_detailAddress }</td>
                             </tr>
                             <tr>
-                                <th class="table_th" style="padding-top: 18px;">전화번호</th>
-                                <td class="table_td" style="padding-top: 18px;">02-131-4646</td>
-                            </tr>
-                            <tr>
                                 <th class="table_th" style="padding-top: 18px;">휴대폰번호</th>
                                 <td class="table_td" style="padding-top: 18px;">${ loginMember.m_phone }</td>
                             </tr>
@@ -111,23 +107,19 @@
                             <tbody>
                             <tr>
                                 <th class="table_th" style="width: 30%; padding-top: 18px">받으실 분</th>
-                                <td class="table_td" style="padding-top: 18px;">이름</td>
+                                <td class="table_td" style="padding-top: 18px;">${ order.oname }</td>
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">배송 주소</th>
-                                <td class="table_td" style="padding-top: 18px;">주소</td>
-                            </tr>
-                            <tr>
-                                <th class="table_th" style="padding-top: 18px;">전화번호</th>
-                                <td class="table_td" style="padding-top: 18px;">02-131-4646</td>
+                                <td class="table_td" style="padding-top: 18px;">${ order.oadress } ${ order.oadressdetail }</td>
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">휴대폰번호</th>
-                                <td class="table_td" style="padding-top: 18px;">010-1234-2567</td>
+                                <td class="table_td" style="padding-top: 18px;">${ order.ophone }</td>
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">남기실 말씀</th>
-                                <td class="table_td" style="padding-top: 18px;">~</td>
+                                <td class="table_td" style="padding-top: 18px;">${ order.omessage }</td>
                             </tr>
                             </tbody>
                         </table>
@@ -146,7 +138,7 @@
                             <tbody>
                             <tr>
                                 <th class="table_th" style="width: 30%; padding-top: 18px">상품 합계 금액</th>
-                                <td class="table_td" style="padding-top: 18px;">${order.pay.payprice }원</td>
+                                <td class="table_td" style="padding-top: 18px;"><fmt:formatNumber value="${order.pay.payprice }" ></fmt:formatNumber>원</td>
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">배송비</th>
@@ -154,7 +146,7 @@
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">최종 결제 금액</th>
-                                <td class="table_td" style="padding-top: 18px;">${order.pay.payprice }원</td>
+                                <td class="table_td" style="padding-top: 18px;"><fmt:formatNumber value="${order.pay.payprice }" ></fmt:formatNumber>원</td>
                             </tr>
                             <tr>
                                 <th class="table_th" style="padding-top: 18px;">결제 수단</th>
@@ -190,3 +182,6 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script>
+	window.
+</script>

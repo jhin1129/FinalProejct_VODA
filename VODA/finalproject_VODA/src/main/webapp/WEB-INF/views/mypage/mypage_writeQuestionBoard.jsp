@@ -107,7 +107,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;" >문의사항 조회</h5>
+                                <h5 class="rightMainMenu" style="font-weight: 600;" onclick="location.href='${path}/mypage/writeQuestionBoard'">문의사항 조회</h5>
                                 <hr>
                             </form>
                         </div>

@@ -38,7 +38,7 @@
                     <form action="${ path }/mypage/updateMember" method="POST">
 
                         <div class="mt-3">
-                            <p class="mySideMenuTitle">기본 정보</p>
+                            <p class="myMenuTitle">기본 정보</p>
                         </div>
                         
                         <!-- 두번째 행 -->
@@ -107,7 +107,7 @@
                     </div>
                     
                     <div class="mt-3">
-                        <p class="mySideMenuTitle">부가 정보</p>
+                        <p class="myMenuTitle">부가 정보</p>
                     </div>
                     
                     <!-- 두번째 행 -->

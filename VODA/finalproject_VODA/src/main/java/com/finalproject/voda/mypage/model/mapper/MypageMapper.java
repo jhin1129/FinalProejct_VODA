@@ -70,4 +70,8 @@ public interface MypageMapper {
 
 	List<Order> selectAllOrderListByMNo(int m_no);
 
+	List<Order> selectPayOrderList(int m_no);
+
+	List<Order> selectCancelOrderList(int m_no);
+
 }

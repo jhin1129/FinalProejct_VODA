@@ -81,6 +81,10 @@
 		<result property="odate" column="O_DATE"/>
 		<result property="oadress" column="O_ADRESS"/>
 		<result property="omessage" column="O_MESSAGE"/>
+		<result property="oname" column="O_NAME"/>
+		<result property="ophone" column="O_PHONE"/>
+		<result property="opostnum" column="O_POSTNUM"/>
+		<result property="oadressdetail" column="O_ADRESSDETAIL"/>
 		<collection property="productList" javaType="arraylist" resultMap="ProductResultMap"/>
 		<collection property="pay" resultMap="PayResultMap"/>
 	</resultMap>
@@ -100,6 +104,51 @@
 		<result property="patstatus" column="PAY_STATUS"/>
 	</resultMap>
 	
+	<select id="selectPayOrderList" parameterType="_int" resultMap="OrderResultMap">
+			SELECT O.M_NO,
+		        O.PAY_NO,
+		        O.O_DATE,
+		        O.O_ADRESS,
+		        O.O_MESSAGE,
+		        P.P_NO,
+		        P.P_NAME,
+		        P.P_PRICE,
+		        O.O_QTT,
+		        P.P_RENAMEFILE,
+	            PA.PAY_MERCHANT,
+		        PA.PAY_METHOD,
+		        PA.PAY_PRICE,
+		        PA.PAY_STATUS
+				FROM ORDERS O 
+			JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+			JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+			WHERE M_NO = #{m_no}
+			AND PA.PAY_STATUS = '배송준비중'
+			ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectCancelOrderList" parameterType="_int" resultMap="OrderResultMap">
+			SELECT O.M_NO,
+		        O.PAY_NO,
+		        O.O_DATE,
+		        O.O_ADRESS,
+		        O.O_MESSAGE,
+		        P.P_NO,
+		        P.P_NAME,
+		        P.P_PRICE,
+		        O.O_QTT,
+		        P.P_RENAMEFILE,
+	            PA.PAY_MERCHANT,
+		        PA.PAY_METHOD,
+		        PA.PAY_PRICE,
+		        PA.PAY_STATUS
+				FROM ORDERS O 
+			JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+			JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+			WHERE M_NO = #{m_no}
+			AND PA.PAY_STATUS = '환불대기중'
+			ORDER BY O.O_DATE DESC
+	</select>
 	
 	<select id="selectAllOrderListByMNo" parameterType="_int" resultMap="OrderResultMap">
 		SELECT O.M_NO,
@@ -181,6 +230,10 @@
 	        O.O_DATE,
 	        O.O_ADRESS,
 	        O.O_MESSAGE,
+	        O.O_NAME,
+	        O.O_PHONE,
+	        O.O_POSTNUM,
+	        O.O_ADRESSDETAIL,
 	        P.P_NO,
 	        P.P_NAME,
 	        P.P_PRICE,

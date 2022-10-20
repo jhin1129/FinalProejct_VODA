@@ -5,12 +5,27 @@
     margin-bottom: 500px;
 }
 
+.mySideMenu > h5:hover{
+	color:#495FE9;
+	cursor: pointer;
+}
+
+.rightMainMenu:hover{
+	color:#495FE9;
+	cursor: pointer;
+}
+
 .mySideMenuTitle{
     font-weight: 700;
     padding-left: 0px;
 }
 .mySideMenuTitle:hover{
     color:#495FE9;
+}
+
+.myMenuTitle{
+    font-weight: 700;
+    padding-left: 0px;
 }
 
 .mySideMenuSubTitle *{
@@ -223,6 +238,7 @@ select * {
     border: 1px solid grey;
     border-right: none;
     text-align: center;
+    cursor: pointer;
 }
 
 .boardtable *{
