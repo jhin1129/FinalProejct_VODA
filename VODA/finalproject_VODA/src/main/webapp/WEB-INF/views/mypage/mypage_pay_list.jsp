@@ -41,7 +41,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;" >주문/ 배송 조회</h5>
+                                <h5 style="font-weight: 600;" >주문 / 배송 조회</h5>
                                 <hr>
                             </form>
                         </div>
@@ -88,7 +88,11 @@
 	                                    <td class="table_td">${ order.pay.payprice }원</td>
 	                                    <td class="table_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                    <td class="table_td">${ order.pay.patstatus }</td>
-	                                    <td class="table_td"><button>환불</button></td>
+	                                    <td class="table_td">
+	                                    	<c:if test="${order.pay.patstatus == '배송준비중' }">
+			                                    <button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+	                                    	</c:if>
+	                                    </td>
 	                                </tr>
                             	</c:forEach>
                             </tbody>
@@ -104,3 +108,26 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script>
+	$(document).ready(()=> {
+		$("#searchBtn").on("click", ()=> {
+			var dateFrom = $("#datepicker1").val();
+			var dateTo = $("#datepicker2").val();
+			
+			if(dateFrom == '' || dateTo == ''){
+				alert("날짜를 입력해주세요");
+				return;
+			}
+			
+			var date1 = new Date(dateFrom);
+			var date2 = new Date(dateTo);
+			if(date1 <= date2){
+				location.href="${path}/mypage/payList?dateFrom=" + dateFrom + "&dateTo=" + dateTo;
+			} else{
+				alert("날짜를 올바르게 입력해주세요");
+				return;
+			}
+			
+		});
+	});
+</script>

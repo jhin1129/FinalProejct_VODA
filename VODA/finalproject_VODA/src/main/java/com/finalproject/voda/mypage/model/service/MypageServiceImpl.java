@@ -46,6 +46,12 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
+	public int getReviewAllCount(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewAllCount(m_no);
+	}
+	
+	@Override
 	public int getReviewCount(int m_no, String type) {
 		// TODO Auto-generated method stub
 		return mapper.selectReviewCount(m_no, type);
@@ -194,17 +200,34 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<Order> getOrderListByMNo(int m_no) {
+	public List<Order> getOrderListByMNo(int m_no, String dateFrom, String dateTo) {
 		// TODO Auto-generated method stub
-		return mapper.selectOrderListByMNo(m_no);
+		return mapper.selectOrderListByMNo(m_no, dateFrom, dateTo);
 	}
 
+	@Override
+	public List<Order> getOrderCancelOrderListByMNo(int m_no, String dateFrom, String dateTo) {
+		
+		return mapper.selectCancelOrderListByMNo(m_no, dateFrom, dateTo);
+	}
+	
 	@Override
 	public Order getOrderByPayNo(int payNo) {
 		// TODO Auto-generated method stub
 		return mapper.selectOrderByPayNo(payNo);
 	}
 
+	@Override
+	public int payCancel(int payNo) {
+		// TODO Auto-generated method stub
+		return mapper.payCancel(payNo);
+	}
+
+	@Override
+	public List<Order> getAllOrderListByMNo(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectAllOrderListByMNo(m_no);
+	}
 
 
 

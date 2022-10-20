@@ -3,6 +3,8 @@ package com.finalproject.voda.mypage.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -35,17 +37,20 @@ public class MypageController {
 								@SessionAttribute("loginMember") Member loginMember) {
 		
 		List<Contents> likesList = null;
+		int reviewCount = 0;
 		List<Board> freeBoardList = null;
 		List<Board> qnaBoardList = null;
 		PageInfo pageInfo1 = null;
 		PageInfo pageInfo2 = null;
 		List<Order> orderList = new ArrayList<Order>();
 		
-		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		orderList = service.getAllOrderListByMNo(loginMember.getM_no());
 		if(orderList.size() > 5) {
 			orderList = orderList.subList(0, 5);
 		}
 		likesList = service.getLikesAllList(loginMember.getM_no());
+		
+		reviewCount = service.getReviewAllCount(loginMember.getM_no());
 		
 		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 5);
 		
@@ -57,6 +62,7 @@ public class MypageController {
 		
 		model.addObject("orderList", orderList);
 		model.addObject("likesList", likesList);
+		model.addObject("reviewCount", reviewCount);
 		model.addObject("likesListCount", likesList.size());
 		model.addObject("freeBoardList", freeBoardList);
 		model.addObject("freeBoardListCount", freeBoardList.size());
@@ -78,6 +84,7 @@ public class MypageController {
 	@GetMapping("/updateMember")
 	public ModelAndView updateMember(ModelAndView model) {
 		
+		model.addObject("type", "updateMember");
 		model.setViewName("mypage/mypage_pwdCheck");
 		
 		return model;
@@ -122,15 +129,24 @@ public class MypageController {
 	@PostMapping("/pwdCheck")
 	public ModelAndView pwdCheck(ModelAndView model,
 								@SessionAttribute("loginMember") Member loginMember,
-								@RequestParam(value = "userpwd") String pwd) {
+								@RequestParam(value = "userpwd") String pwd,
+								@RequestParam(value = "type") String type) {
 		
 		
 		if(passwordEncoder.matches(pwd, loginMember.getM_password())) {
-			model.setViewName("mypage/mypage_updateInfo");
+			if(type.equals("updateMember")) {
+				model.setViewName("mypage/mypage_updateInfo");
+			} else if(type.equals("deleteMember")) {
+				model.setViewName("mypage/mypage_deleteMember");
+			}
 		} else {
+			if(type.equals("updateMember")) {
+				model.addObject("location", "/mypage/updateMember");
+			} else {
+				model.addObject("location", "/mypage/main");
+			}
 			model.addObject("msg", "비밀번호가 일치하지 않습니다.");
-			model.addObject("location", "/mypage/updateMember");
-			model.setViewName("common/msg");	
+			model.setViewName("common/msg");
 		}
 		
 		return model;
@@ -173,7 +189,8 @@ public class MypageController {
 	@GetMapping("/deleteMember")
 	public ModelAndView deleteMember(ModelAndView model) {
 		
-		model.setViewName("mypage/mypage_deleteMember");
+		model.addObject("type", "deleteMember");
+		model.setViewName("mypage/mypage_pwdCheck");
 		
 		return model;
 	}
@@ -406,11 +423,14 @@ public class MypageController {
 	
 	@GetMapping("/payList")
 	public ModelAndView payList(ModelAndView model,
-								@SessionAttribute("loginMember") Member loginMember) {
+								@SessionAttribute("loginMember") Member loginMember,
+								@RequestParam(value = "dateFrom", required = false) String dateFrom,
+								@RequestParam(value = "dateTo", required = false) String dateTo) {
 		
 		List<Order> orderList = new ArrayList<Order>();
 		
-		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		orderList = service.getOrderListByMNo(loginMember.getM_no(), dateFrom, dateTo);
+		
 		
 		model.addObject("orderList", orderList);
 		model.setViewName("mypage/mypage_pay_list");
@@ -419,8 +439,17 @@ public class MypageController {
 	}
 	
 	@GetMapping("/payCancelList")
-	public ModelAndView payCancelList(ModelAndView model) {
+	public ModelAndView payCancelList(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "dateFrom", required = false) String dateFrom,
+									@RequestParam(value = "dateTo", required = false) String dateTo) {
 		
+		List<Order> orderList = new ArrayList<Order>();
+		
+		orderList = service.getOrderCancelOrderListByMNo(loginMember.getM_no(), dateFrom, dateTo);
+		
+		model.addObject("orderList", orderList);
+
 		model.setViewName("mypage/mypage_pay_cancelList");
 		
 		return model;
@@ -432,10 +461,29 @@ public class MypageController {
 		
 		Order order = service.getOrderByPayNo(payNo);
 		
-		System.out.println(order);
-		
 		model.addObject("order", order);
 		model.setViewName("mypage/mypage_pay_detail");
+		
+		return model;
+	}
+	
+	@GetMapping("/payCancel")
+	public ModelAndView payCancel(ModelAndView model,
+								HttpServletRequest request,
+								@RequestParam(value = "payNo") int payNo) {
+		
+		String path = request.getHeader("Referer").substring(request.getHeader("Referer").indexOf(request.getContextPath()) + request.getContextPath().length());
+		int result = 0;
+		
+		result = service.payCancel(payNo);
+		
+		if(result > 0) {
+			model.addObject("msg", "환불요청이 완료되었습니다.");
+		} else {
+			model.addObject("msg", "환불요청이 실패하였습니다.");
+		}
+		model.addObject("location", path);
+		model.setViewName("common/msg");
 		
 		return model;
 	}

@@ -99,8 +99,9 @@
 		<result property="payprice" column="PAY_PRICE"/>
 		<result property="patstatus" column="PAY_STATUS"/>
 	</resultMap>
-
-	<select id="selectOrderListByMNo" parameterType="_int" resultMap="OrderResultMap">
+	
+	
+	<select id="selectAllOrderListByMNo" parameterType="_int" resultMap="OrderResultMap">
 		SELECT O.M_NO,
 	        O.PAY_NO,
 	        O.O_DATE,
@@ -119,6 +120,58 @@
 		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
 		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
 		WHERE M_NO = #{m_no}
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectOrderListByMNo" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = #{m_no}
+		AND PA.PAY_STATUS IN ('배송준비중', '배송완료')
+		<if test="dateFrom != null">
+			AND O.O_DATE BETWEEN #{dateFrom} AND TO_DATE(#{dateTo})+1
+		</if>
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	<select id="selectCancelOrderListByMNo" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE M_NO = #{m_no}
+		AND PA.PAY_STATUS IN ('환불대기중', '환불완료')
+		<if test="dateFrom != null">
+			AND O.O_DATE BETWEEN #{dateFrom} AND TO_DATE(#{dateTo})+1
+		</if>
 		ORDER BY O.O_DATE DESC
 	</select>
 	
@@ -231,6 +284,22 @@
         GROUP BY 
         <include refid="contentsListSql"/>
         ORDER BY C.C_NO DESC
+	</select>
+	
+	<select id="selectReviewAllCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
 	</select>
 	
 	<select id="selectReviewCount" resultType="_int">
@@ -406,6 +475,12 @@
 		UPDATE MEMBER SET
 		M_PW = #{password}
 		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="payCancel" parameterType="_int">
+		UPDATE PAY SET
+		PAY_STATUS = '환불대기중'
+		WHERE PAY_NO = #{payNo}
 	</update>
 	
 	<delete id="deleteDibsContent">
