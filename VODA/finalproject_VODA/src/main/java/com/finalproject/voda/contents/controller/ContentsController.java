@@ -1,5 +1,6 @@
 package com.finalproject.voda.contents.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.people.model.vo.People;
 
 @Controller
 public class ContentsController {
@@ -152,7 +154,7 @@ public class ContentsController {
 	
 	@ResponseBody
 	@PostMapping("/contents/commentLike")
-	public void commentLike (@RequestParam("rate_no") int rate_no, @RequestParam("m_no") int m_no) {
+	public int commentLike (@RequestParam("rate_no") int rate_no, @RequestParam("m_no") int m_no) {
 
 		System.out.println(m_no);
 		System.out.println(rate_no);
@@ -175,7 +177,25 @@ public class ContentsController {
 			service.updateLikeCancel(rate_no); // RATE 테이블 RATE_LIKE -1
 
 		}
+		
+		return likeCheck;
 
+	}	
+	
+	@ResponseBody
+	@PostMapping("/contents/likeCount")
+	public int likeCount (@RequestParam("rate_no") int rate_no) {
+
+	    System.out.println(rate_no);
+	    System.out.println("카운트 컨트롤러 연결 성공");
+	    
+	    int likeCount = 0;
+	    
+	    likeCount = service.likeCount(rate_no);
+	    
+	    System.out.println(likeCount);
+	    
+	    return likeCount;
 	}	
 	
 	@PostMapping("/contents/comment_write")
@@ -276,6 +296,29 @@ public class ContentsController {
  		model.addObject("searchPeople",searchPeople);
 		model.addObject("searchResult", searchResult);
 		model.setViewName("contents/contents_search");
+		return model;
+	}
+	
+	@GetMapping("/contents/contents_form")
+	public ModelAndView contentsForm(ModelAndView model) { 
+		
+		model.setViewName("contents/contents_form");
+		return model;
+	}
+	
+	@GetMapping("/contents/contents_peoplemodal")
+	public ModelAndView contentsPeopleModal(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) { 
+		
+		List<People> list = null;  
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 15);
+		list = service.getPeopleList(pageInfo, "영화");
+
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);
+
+		model.setViewName("contents/contents_peoplemodal");
 		return model;
 	}
 	

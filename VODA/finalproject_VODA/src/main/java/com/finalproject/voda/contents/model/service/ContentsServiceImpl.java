@@ -194,4 +194,10 @@ public class ContentsServiceImpl implements ContentsService {
 		mapper.updateLikeCancel(rate_no);
 	}
 
+	@Override
+	public int likeCount(int rate_no) {
+	
+		return mapper.likeCount(rate_no);
+	}
+
 }

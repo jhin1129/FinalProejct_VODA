@@ -57,4 +57,6 @@ public interface ContentsService {
 
 	void updateLikeCancel(int rate_no);
 
+	int likeCount(int rate_no);
+
 }

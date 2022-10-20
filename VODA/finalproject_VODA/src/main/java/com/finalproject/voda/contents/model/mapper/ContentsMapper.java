@@ -61,4 +61,6 @@ public interface ContentsMapper {
 
 	void updateLikeCancel(int rate_no);
 
+	int likeCount(int rate_no);
+
 }

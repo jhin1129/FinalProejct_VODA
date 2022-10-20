@@ -86,7 +86,7 @@
 			                    </c:when>
 			                    </c:choose>
 		                    	</c:forEach>
-			                    <div class="likecount">${ rate.rate_like }</div>
+			                    <div class="likecount" id="likecount">${ rate.rate_like }</div>
 			                    <!-- <span class="date"><fmt:formatDate type="date" value="${ rate.rate_date }" pattern="yyyy.MM.dd"/></span> -->
 			                    <c:if test="${ not empty loginMember && loginMember.m_id == rate.m_id }">
 			                    <a class="deletee" onclick="location.href='${ path }/contents/comment_delete?no=${ no }&sort=${ sort }&rateNo=${ rate.rate_no }'" >
@@ -115,18 +115,18 @@
 		                    <c:forEach var="rateLikes" items="${ rateLikes }">
 		                    	<c:choose>
 		                    	<c:when test="${ rateLikes.rate_no == rate.rate_no }" >
-				                    <a href="#" class="like-button active" style="z-index:5;" onclick="myFunction(${ rate.rate_no },${ loginMember.m_no })">
+				                    <a href="#" class="like-button active" style="z-index:5;" onclick="myFunction(${ rate.rate_no },${ loginMember.m_no },event)">
 				                        <?xml version="1.0" encoding="utf-8"?>
 				                        <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
 				                    </a>
 			                    </c:when>
 			                    </c:choose>
 		                    </c:forEach>
-		                    	<a href="#" class="like-button" onclick="myFunction(${ rate.rate_no },${ loginMember.m_no })">
+		                    	<a href="#" class="like-button" onclick="myFunction(${ rate.rate_no },${ loginMember.m_no },event)">
 			                        <?xml version="1.0" encoding="utf-8"?>
 			                        <svg width="20" height="20" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z"/></svg>
 			                    </a>
-		                    <div class="likecount">${ rate.rate_like }</div>
+		                    <div class="likecount" id="likecount">${ rate.rate_like }</div>
 		                    <span class="date"><fmt:formatDate type="date" value="${ rate.rate_date }" pattern="yyyy.MM.dd"/></span>
 		                    <c:if test="${ not empty loginMember && loginMember.m_id == rate.m_id }">
 		                    <a class="delete" onclick="location.href='${ path }/contents/comment_delete?no=${ no }&sort=${ sort }&rateNo=${ rate.rate_no }'" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
@@ -414,8 +414,7 @@
     
 	<script>
 	//좋아요
-	
-	function myFunction(rate_no, m_no) { 
+	function myFunction(rate_no, m_no, event) { 
 	    $.ajax({
 	           type : "POST",  
 	           url :  
@@ -427,11 +426,46 @@
 	           error : function(){
 	              alert("통신 에러");
 	           },
-	           success : function(data) {
-				  alert('성공염');
+	           success : function(likeCheck) {
+	        	  console.log(likeCheck);
+				  // alert('성공');
+				   recCount(rate_no,event); 
+				  
+				  if(likeCheck == 0){
+	              		alert("추천완료.");
+
+	                    //let element = document.getElementById("likecount")
+	                    //element.innerText = parseInt(element.innerText)+1;
+	                    //$(".likecount").parseInt(element.innerText)+1;
+	                    
+	              }
+	              else if (likeCheck == 1){
+	                    alert("추천취소");
+	                    
+	                    //let element = document.getElementById("likecount")
+	                    //element.innerText = parseInt(element.innerText)-1;
+	              }
+
 			   }
 	   	});
 	}
+	
+	// 게시글 추천수
+    function recCount(rate_no,event) {
+		$.ajax({
+            type: "POST",
+            url :  
+ 	           '<c:url value ="/contents/likeCount"/>',
+            data: {
+            	'rate_no': rate_no,
+            },
+            success: function (count) {
+            	
+            	alert($(event.target).siblings(".likecount").html());
+            },
+		})
+    };
+	
 
 	</script>
 

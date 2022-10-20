@@ -348,4 +348,11 @@
 		UPDATE RATE SET RATE_LIKE = RATE_LIKE -1
         WHERE RATE_NO = #{ rate_no }
 	</update>
+	
+	<select id="likeCount" parameterType="_int" resultType="_int">
+		SELECT
+			RATE_LIKE
+			FROM RATE
+			WHERE RATE_NO = #{ rate_no }
+	</select>
 </mapper>
