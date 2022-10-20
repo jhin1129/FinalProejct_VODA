@@ -36,4 +36,14 @@ public class Order {
 	private List<Product> productList;
 	
 	private Pay pay;
+	
+	private String oname;
+	
+	private String ophone;
+	
+	private int opostnum;
+	
+	private String oadressdetail;
+	
+	
 }

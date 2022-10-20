@@ -1,7 +1,6 @@
 package com.finalproject.voda.product.model.vo;
 
 import java.util.Date;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

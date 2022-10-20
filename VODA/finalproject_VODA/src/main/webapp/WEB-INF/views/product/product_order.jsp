@@ -16,6 +16,9 @@
 <form action="${ path }/order_insert" method="post" id="formid">
 <input type="hidden" name="pno" value="${ product.pno }">
 <input type="hidden" name="mno" value="${ loginMember.m_no }">
+<input type="hidden" name="oqtt" value="${ product.porderqtt }">
+<input type="hidden" name="porderqtt" value="${ product.porderqtt }">
+<input type="hidden" name="payprice" value="${ product.pprice }">
 
 	<section class="cart">
 		<table class="cart__list">
@@ -41,7 +44,7 @@
 							<p>상품 주문 수량: ${ product.porderqtt }개</p>
 							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
 						</td>
-						<td><span class="price">${product.pprice}</span><br></td>
+						<td><span class="price">${product.pprice}원</span><br></td>
 						<td>무료</td>
 					</tr>
 				</tbody>
@@ -65,27 +68,23 @@
 						<tr>
 							<th scope="row"><span class="important">주문하시는 분</span></th>
 							<td><input type="text" name="orderName" id="orderName"
-								value="" data-pattern="gdEngKor" maxlength="20"></td>
+								value="${ loginMember.m_name }" data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
-							<th scope="row"><span class="important">주소</span></th>
+							<th scope="row"><span class="important">지역</span></th>
 							<td><input type="text" name="orderAddress" id="orderAddress"
-								value="" data-pattern="gdEngKor" maxlength="300"></td>
+								value="${ loginMember.m_address }" data-pattern="gdEngKor" maxlength="300"></td>
 						</tr>
-						<tr>
-							<th scope="row">전화번호</th>
-							<td><input type="text" id="phoneNum" name="orderPhone"
-								value="" maxlength="20"></td>
-						</tr>
+						
 						<tr>
 							<th scope="row"><span class="important">휴대폰 번호</span></th>
 							<td><input type="text" id="mobileNum" name="orderCellPhone"
-								value="" maxlength="20"></td>
+								value="${ loginMember.m_phone }" maxlength="20"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span class="important">이메일</span></th>
 							<td class="member_email"><input type="text"
-								name="orderEmail" value=""></td>
+								name="orderEmail" value="${ loginMember.m_email }"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -108,37 +107,33 @@
 					<tbody>
 						<tr>
 							<th scope="row"><span class="important">받으실분</span></th>
-							<td><input type="text" name="receiverName"
+							<td><input type="text" name="oname"
 								data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
 							<th scope="row"><span class="important">받으실 곳</span></th>
 							<td class="member_address">
 								<div class="address_postcode">
-									<input type="text" id="sample6_postcode" readonly="readonly">
+									<input type="text" id="sample6_postcode" readonly="readonly" name="opostnum">
 									<input type="hidden" name="receiverZipcode"> 
 									<span id="receiverZipcodeText" class="old_post_code"></span>
-									<button class="btn btn-search py-1" onclick="sample6_execDaumPostcode()">우편번호검색</button>
+									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
 								</div>
 								<div class="address_input">
-									<input type="text" id="sample6_address" readonly="readonly">
-									<input type="text" id="sample6_detailAddress">
+									<input type="text" id="sample6_address" readonly="readonly" name="oadress">
+									<input type="text" id="sample6_detailAddress" name="oadressdetail">
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<th scope="row">전화번호</th>
-							<td><input type="text" id="receiverPhone"
-								name="receiverPhone"></td>
-						</tr>
+						
 						<tr>
 							<th scope="row"><span class="important">휴대폰 번호</span></th>
 							<td><input type="text" id="receiverCellPhone"
-								name="receiverCellPhone"></td>
+								name="ophone"></td>
 						</tr>
 						<tr>
 							<th scope="row">남기실 말씀</th>
-							<td class="td_last_say"><input type="text" name="orderMemo"></td>
+							<td class="td_last_say"><input type="text" name="omessage"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -278,11 +273,11 @@ function requestPay() {
         merchant_uid:  new Date().getTime(),
         name: "${product.pname}",
         amount: ${product.pprice},
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181"
+        buyer_email: "${loginMember.m_email}",
+        buyer_name: "${loginMember.m_name}",
+        buyer_tel: "${loginMember.m_phone}",
+        buyer_addr: "${loginMember.m_address} ${loginMember.m_detailAddress}",
+        buyer_postcode: "${loginMember.m_postNum}"
     }, function (rsp) { // callback
         if (rsp.success) {
         	var msg = '결제가 완료되었습니다.';
