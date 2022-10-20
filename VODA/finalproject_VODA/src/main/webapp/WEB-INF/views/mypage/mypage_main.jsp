@@ -62,7 +62,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">나의 컨텐츠</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/mileage.php">찜(${likesListCount}) / 리뷰(${reviewListCount})</a>
+                                            <a href="../mypage/mileage.php">찜(${likesListCount}) / 리뷰(${reviewCount})</a>
                                         </p>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                     <div class="mt-5">
                         <div class="row">
                             <div class="col-4 tabletitle">찜한 컨텐츠</div>
-                            <div class="col-8 text-right pt-1 tablesubtitle">더 보기</div>
+                            <div class="col-8 text-right pt-1 tablesubtitle" onclick="location.href='${path}/mypage/dibsContent'">더 보기</div>
                         </div>
 
                         <div class="box_ranking" data-tiara-layer="list" style="margin-left: 3px;">
@@ -116,16 +116,16 @@
                                     		</c:if>
 
                                             	<div class="item_poster">
-                                                    <div class="thumb_item" style="width: 187px; height: 273px;">
+                                                    <div class="thumb_item" style="width: 187px; height: 273px;" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
                                                         <div class="poster_movie">
-                                                            <img src=""
-                                                                class="img_thumb" alt="${ contents.c_title }">
+                                                            <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
+                                                                class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
                                                             <span class="txt_tag">
                                                                 <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
                                                             </span>
                                                         </div>
                                                         <div class="poster_info">
-                                                            <a href="/moviedb/main?movieId=147615" class="link_story"
+                                                            <a class="link_story"
                                                                 data-tiara-layer="poster">
                                                                 ${ contents.c_synop }
                                                             </a>
@@ -189,7 +189,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col-4 tabletitle">최근 주문 정보</div>
-                                    <div class="col-8 pt-1 tablesubtitle">더 보기</div>
+                                    <div class="col-8 pt-1 tablesubtitle" onclick="location.href='${path}/mypage/payList'">더 보기</div>
                                 </div>
                             </form>
                             <!-- 주문내역 테이블 -->
@@ -223,7 +223,11 @@
                                         <td class="paytable_td">${ order.pay.payprice }원</td>
                                         <td class="paytable_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td class="paytable_td">${ order.pay.patstatus }</td>
-                                        <td class="paytable_td"><button>환불</button></td>
+                                        <td class="paytable_td">
+                                        	<c:if test="${order.pay.patstatus == '배송준비중'}">
+	                                        	<button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+                                        	</c:if>
+                                        </td>
                                     </tr>
                                 	</c:forEach>
  
@@ -241,7 +245,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col-4 tabletitle">내가 쓴 자유게시글</div>
-                                    <div class="col-8 text-right pt-1 tablesubtitle">더 보기</div>
+                                    <div class="col-8 text-right pt-1 tablesubtitle" onclick="location.href='${path}/mypage/writeFreeBoard'">더 보기</div>
                                 </div>
                             </form>
                             <!-- 자유게시판 테이블 -->
@@ -275,7 +279,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col-4 tabletitle">문의사항</div>
-                                    <div class="col-8 text-right pt-1 tablesubtitle">더 보기</div>
+                                    <div class="col-8 text-right pt-1 tablesubtitle" onclick="location.href='${path}/mypage/writeQuestionBoard'">더 보기</div>
                                 </div>
                             </form>
                             <!-- 자유게시판 테이블 -->

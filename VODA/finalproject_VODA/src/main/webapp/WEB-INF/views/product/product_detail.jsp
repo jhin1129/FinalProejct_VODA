@@ -196,6 +196,7 @@
                                         <div class="mt-2">수량선택</div>
                                     </td>
                                     <td>
+                                    
                                         <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1" name="porderqtt">
                                     </td>
                                 </tr>
@@ -224,13 +225,11 @@
                                 </tr>
 
                                 <tr>
-                                    <td colspan="2">
-                                        <div><button id="btnbuy" class="btn btn-primary py-1" onclick="location.href='${ path }/product_order?pno=${ product.pno }'">구매하기</button></div>
+                                    <td colspan="2">                                
+                                        <div><button id="payment" class="btn btn-primary py-1">구매하기</button></div>
                                     </td>
                                 </tr>
                             </table>
-
-
                         </div>
                     </div>
                 </div>
@@ -354,12 +353,13 @@ $(document).ready(() => {
 			var min = $("#quantitySelect").attr("min");
 			var max = $("#quantitySelect").attr("max");
 			if(value >= min && value <= max){
-				location.href="${path}/product/payment?proNo=${product.pno}&payQuantity=" + $("#quantitySelect").val();
+				location.href="${path}/product_order?pno=${product.pno}&porderqtt=" + $("#quantitySelect").val();
 			} else {
 				alert("구매 수량을 적절하게 입력해주세요.");
 			}
 		}
 	});
+
 	
 	
 });

@@ -10,7 +10,8 @@
 	
     <!-- my CSS -->
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_main.css">
-	
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
+    
     <div class="container p-0">
         <div class="row">
             <!-- 왼쪽 사이드메뉴 -->
@@ -159,9 +160,27 @@
                                 <th class="table_th" style="padding-top: 18px;">결제 수단</th>
                                 <td class="table_td" style="padding-top: 18px;">${order.pay.paymethod}</td>
                             </tr>
+                            <tr>
+                                <th class="table_th" style="padding-top: 18px;">주문 상태</th>
+                                <td class="table_td" style="padding-top: 18px;">${order.pay.patstatus}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
+                    
+ 
+                    <div class="text-center mb-5">
+                    	<c:if test="${order.pay.patstatus == '배송준비중' || order.pay.patstatus == '배송완료'}">
+	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payList'">목록으로</button>
+                    	</c:if>
+                    	<c:if test="${order.pay.patstatus == '환불대기중' || order.pay.patstatus == '환불완료'}">
+	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payCancelList'">목록으로</button>
+                    	</c:if>
+                        <c:if test="${order.pay.patstatus == '배송준비중' }">
+                        	<button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'" id="btn_payCancel" type="button" class="btn btn-logoC">환불하기</button>
+                        </c:if>
+                    </div>
+
                 </div>
                 <!-- 컨테이너 끝 -->
             </div>

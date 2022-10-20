@@ -38,5 +38,15 @@ public class Order {
 	
 	private Pay pay;
 	
+	private String oname;
+	
+	private String ophone;
+	
+	private int opostnum;
+	
+	private String oadressdetail;
+	
 	private Member member;
+	
+	
 }
