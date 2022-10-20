@@ -1,5 +1,6 @@
 package com.finalproject.voda.board.model.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -26,6 +27,11 @@ public interface BoardMapper {
 
 	int insertBoard(Board board);
 	
+	
+	// 댓글 작성
+	int commentswrite(HashMap<String, Object> comments);
+	
+	
 	// 자유게시판검색
 	int getBoardSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getBoardSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
@@ -42,6 +48,7 @@ public interface BoardMapper {
 	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 	int updateNoticeView(Notice notice);
+
 
 
 

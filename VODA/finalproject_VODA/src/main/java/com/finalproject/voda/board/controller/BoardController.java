@@ -3,7 +3,9 @@ package com.finalproject.voda.board.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -18,12 +20,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +38,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.service.BoardService;
 import com.finalproject.voda.board.model.vo.Board;
+import com.finalproject.voda.board.model.vo.Comments;
 import com.finalproject.voda.common.util.MultipartFileUtil;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
@@ -632,10 +639,31 @@ public class BoardController {
 		return model;
 	}
 	
+	// 댓글 작성
+	@RequestMapping("/commentswrite")
+	@ResponseBody
+	public Map<String, Object> commentswrite(@RequestBody HashMap<String, Object> comments) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		
+		System.out.println("파라미터 객체 : " + comments);
+		
+		int result = 0;
+		
+		result = service.commentswrite(comments);
+		
+		if(result > 0 ) {
+			System.out.println("값: " + result);
+			resultMap.put("comments", comments);
+		} else {
+			resultMap.put("data", "fail");
+		}
+		return comments;
+	}
 	
 	
 	
-	
+
 	
 	// 일반회원 조회용 공지사항
 	// 공지사항 리스트

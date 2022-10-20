@@ -23,6 +23,8 @@
 		WHERE B.B_STATUS = 'Y'
 	</sql>	 
 	
+	
+	
 
 	<resultMap type="Board" id="BoardResultMap">
 		<id property="bno" column="B_NO"/>
@@ -249,12 +251,52 @@
 		</if>
 	</select>
 	
+	<!-- 댓글 작성 -->
+	<resultMap type="Comments" id="CommentsResultMap">
+		<id property="cmno" column="CM_NO"/>
+		<result property="bno" column="B_NO"/>
+		<result property="cmcontent" column="CM_CONTENT"/>
+		<result property="cmdate" column="CM_DATE"/>
+		<result property="cmwriterid" column="CM_WRITER_ID"/>
+		<result property="cmstatus" column="CM_STATUS"/>
+	</resultMap>
+	
+	<insert id="commentswrite" parameterType="Comments" useGeneratedKeys="true" keyProperty="cmno" keyColumn="CM_NO">
+		INSERT INTO COMMENTS (
+			CM_NO,
+			B_NO,
+			CM_CONTENT, 
+			CM_DATE,
+			CM_WRITER_ID, 
+			CM_STATUS
+		)
+		VALUES (
+			SEQ_COMMENTS_NO.NEXTVAL,
+			#{bno},
+			#{cmcontent},
+			#{cmdate},
+			#{cmwriterid},
+			#{cmstatus}
+		)
+	</insert>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 
 	
-	
 	일반회원용 공지사항 페이지 
-	
 	
 	-->
 	<!-- 공지사항 전체 조회 -->
