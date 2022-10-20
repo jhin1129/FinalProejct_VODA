@@ -32,10 +32,14 @@ public class OrderController {
 	
 	@GetMapping("/product_order")
 	public ModelAndView ProductOrder (ModelAndView model,
-			@RequestParam int pno) {
-		Product product = null;
+			@RequestParam int pno,
+			@RequestParam int porderqtt) {
+		Product product = new Product();
 		product = productService.findProductByNo(pno);
-		
+		product.setPorderqtt(porderqtt);
+		product.setPprice(product.getPprice() * porderqtt);
+		System.out.println(product);
+		System.out.println(porderqtt);
 		model.addObject("product", product);
 		model.setViewName("product/product_order");
 		
@@ -46,19 +50,27 @@ public class OrderController {
 	@PostMapping("/order_insert")
 	public ModelAndView InsertOrder (ModelAndView model,
 			@ModelAttribute Order order,
+			@ModelAttribute Pay pay,
 			@SessionAttribute("loginMember") Member loginMember) {
-		Pay pay = new Pay();
+//		pay = new Pay();
 		int result = 0;
 		int payno = 0;
 		
+		
+		
 		payno = orderService.insertPay(pay);
+		
 		order.setMno(loginMember.getM_no());
 		order.setPayno(payno);
+		
 		result = orderService.insertOrder(order);
 		
 		System.out.println(loginMember);
 		System.out.println(order);
 		System.out.println(payno);
+		System.out.println("pay" + pay);
+		System.out.println(pay.getPayprice());
+		
 		if(result  > 0) {
 			model.setViewName("mainpage");
 		} else {
