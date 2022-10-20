@@ -42,7 +42,7 @@ public class MypageController {
 		PageInfo pageInfo2 = null;
 		List<Order> orderList = new ArrayList<Order>();
 		
-		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		orderList = service.getOrderListByMNo(loginMember.getM_no(), null, null);
 		if(orderList.size() > 5) {
 			orderList = orderList.subList(0, 5);
 		}
@@ -421,11 +421,14 @@ public class MypageController {
 	
 	@GetMapping("/payList")
 	public ModelAndView payList(ModelAndView model,
-								@SessionAttribute("loginMember") Member loginMember) {
+								@SessionAttribute("loginMember") Member loginMember,
+								@RequestParam(value = "dateFrom", required = false) String dateFrom,
+								@RequestParam(value = "dateTo", required = false) String dateTo) {
 		
 		List<Order> orderList = new ArrayList<Order>();
 		
-		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		orderList = service.getOrderListByMNo(loginMember.getM_no(), dateFrom, dateTo);
+		
 		
 		model.addObject("orderList", orderList);
 		model.setViewName("mypage/mypage_pay_list");
@@ -434,8 +437,17 @@ public class MypageController {
 	}
 	
 	@GetMapping("/payCancelList")
-	public ModelAndView payCancelList(ModelAndView model) {
+	public ModelAndView payCancelList(ModelAndView model,
+									@SessionAttribute("loginMember") Member loginMember,
+									@RequestParam(value = "dateFrom", required = false) String dateFrom,
+									@RequestParam(value = "dateTo", required = false) String dateTo) {
 		
+		List<Order> orderList = new ArrayList<Order>();
+		
+		orderList = service.getOrderCancelOrderListByMNo(loginMember.getM_no(), dateFrom, dateTo);
+		
+		model.addObject("orderList", orderList);
+
 		model.setViewName("mypage/mypage_pay_cancelList");
 		
 		return model;
@@ -446,8 +458,6 @@ public class MypageController {
 								@RequestParam(value = "payNo") int payNo) {
 		
 		Order order = service.getOrderByPayNo(payNo);
-		
-		System.out.println(order);
 		
 		model.addObject("order", order);
 		model.setViewName("mypage/mypage_pay_detail");

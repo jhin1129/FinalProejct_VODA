@@ -54,11 +54,13 @@ public interface MypageService {
 
 	int deleteDibsContent(int m_no, List<Integer> list);
 
-	List<Order> getOrderListByMNo(int m_no);
+	List<Order> getOrderListByMNo(int m_no, String dateFrom, String dateTo);
 
 	Order getOrderByPayNo(int payNo);
 
 	int getReviewAllCount(int m_no);
+
+	List<Order> getOrderCancelOrderListByMNo(int m_no, String dateFrom, String dateTo);
 
 
 }

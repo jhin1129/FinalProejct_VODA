@@ -200,11 +200,17 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public List<Order> getOrderListByMNo(int m_no) {
+	public List<Order> getOrderListByMNo(int m_no, String dateFrom, String dateTo) {
 		// TODO Auto-generated method stub
-		return mapper.selectOrderListByMNo(m_no);
+		return mapper.selectOrderListByMNo(m_no, dateFrom, dateTo);
 	}
 
+	@Override
+	public List<Order> getOrderCancelOrderListByMNo(int m_no, String dateFrom, String dateTo) {
+		
+		return mapper.selectCancelOrderListByMNo(m_no, dateFrom, dateTo);
+	}
+	
 	@Override
 	public Order getOrderByPayNo(int payNo) {
 		// TODO Auto-generated method stub

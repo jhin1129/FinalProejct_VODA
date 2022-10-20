@@ -58,11 +58,12 @@ public interface MypageMapper {
 
 	int deleteDibsContent(@Param("m_no") int m_no, @Param("list") List<Integer> list);
 
-	List<Order> selectOrderListByMNo(int m_no);
+	List<Order> selectOrderListByMNo(@Param("m_no")int m_no, @Param("dateFrom")String dateFrom, @Param("dateTo")String dateTo);
 
+	List<Order> selectCancelOrderListByMNo(@Param("m_no")int m_no, @Param("dateFrom")String dateFrom, @Param("dateTo")String dateTo);
+	
 	Order selectOrderByPayNo(int payNo);
 
 	int selectReviewAllCount(int m_no);
-
 
 }

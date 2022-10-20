@@ -223,7 +223,11 @@
                                         <td class="paytable_td">${ order.pay.payprice }원</td>
                                         <td class="paytable_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td class="paytable_td">${ order.pay.patstatus }</td>
-                                        <td class="paytable_td"><button>환불</button></td>
+                                        <td class="paytable_td">
+                                        	<c:if test="${order.pay.patstatus == '배송준비중'}">
+	                                        	<button>환불</button>
+                                        	</c:if>
+                                        </td>
                                     </tr>
                                 	</c:forEach>
  
