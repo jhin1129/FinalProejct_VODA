@@ -3,6 +3,7 @@ package com.finalproject.voda.order.model.vo;
 import java.util.Date;
 import java.util.List;
 
+import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.vo.Product;
 
 import lombok.AllArgsConstructor;
@@ -36,4 +37,6 @@ public class Order {
 	private List<Product> productList;
 	
 	private Pay pay;
+	
+	private Member member;
 }
