@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;" >개인 정보 조회</h5>
+                                <h5 style="font-weight: 600;" >비밀번호 변경</h5>
                                 <hr style="margin-bottom: 100px;">
                             </form>
                         </div>

@@ -44,8 +44,8 @@
                     </div>
 
                     <div class="text-center">
-                        <button class="btn btn-greyC btn-lg">마이 페이지로</button>
-                        <button class="btn btn-logoC btn-lg">메인 화면으로</button>
+                        <button class="btn btn-greyC btn-lg" onclick="location.href='${path}/mypage/main'">마이 페이지로</button>
+                        <button class="btn btn-logoC btn-lg" onclick="location.href='${path}/'">메인 화면으로</button>
                     </div>
       
                 </div>

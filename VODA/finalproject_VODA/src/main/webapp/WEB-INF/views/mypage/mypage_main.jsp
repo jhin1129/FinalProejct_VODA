@@ -15,9 +15,15 @@
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_list.css">
 
 	<style>
-
+		.card-text > a{
+			text-decoration: none;
+		}
+		.tablesubtitle {
+			cursor: pointer;
+		}
+		
 		.paytable_td > label{
-			font-size: 1.0em;
+			font-size: 1.05em;
 		}
 
         .item {
@@ -28,6 +34,11 @@
             width: 190px;
             padding-left: 50px;
             padding-right: 50px;
+        }
+        
+        .table_td a{
+        	font-size: 1.05em;
+        	text-decoration: none;
         }
     </style>
     
@@ -50,9 +61,9 @@
                                 <div class="card">
                                     <img src="${path}/resources/img/mypage/member.png" class="card-img-top">
                                     <div class="card-body">
-                                        <h5 class="card-title">${loginMember.m_name } 님</h5>
+                                        <h5 class="card-title">구매 정보</h5>
                                         <p class="card-text">
-                                            환영합니다.
+                                            <a href="${path}/mypage/payList">배송준비(${payOrderCount})</a> / <a href="${path}/mypage/payCancelList">환불대기(${cancelOrderCount})</a>
                                         </p>
                                     </div>
                                 </div>
@@ -62,7 +73,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">나의 컨텐츠</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/mileage.php">찜(${likesListCount}) / 리뷰(${reviewCount})</a>
+                                            <a href="${path}/mypage/dibsContent">찜(${likesListCount})</a> / <a href="${path}/mypage/reviewContent">리뷰(${reviewCount})</a>
                                         </p>
                                     </div>
                                 </div>
@@ -72,7 +83,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">내가 쓴 글</h5>
                                         <p class="card-text">
-                                            <a href="../mypage/money.php">자유글(${freeBoardListCount }) / 문의글(${qnaBoardListCount })</a>
+                                            <a href="${path}/mypage/writeFreeBoard">자유글(${freeBoardListCount })</a> / <a href="${path}/mypage/writeQuestionBoard">문의글(${qnaBoardListCount })</a>
                                         </p>
                                     </div>
                                 </div>
@@ -116,7 +127,7 @@
                                     		</c:if>
 
                                             	<div class="item_poster">
-                                                    <div class="thumb_item" style="width: 187px; height: 273px;" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
+                                                    <div class="thumb_item" style="cursor:pointer; width: 187px; height: 273px;" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
                                                         <div class="poster_movie">
                                                             <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
                                                                 class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
@@ -133,7 +144,7 @@
                                                     </div>
                                                     <div class="thumb_cont">
                                                         <strong class="tit_item">
-                                                            <a href="/moviedb/main?movieId=147615" class="link_txt"
+                                                            <a style="text-decoration: none;" href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_txt"
                                                                 data-tiara-layer="moviename">${ contents.c_title }</a>
                                                         </strong>
                                                         <span class="txt_append">
@@ -207,20 +218,20 @@
                                 <tbody>
                                 	<c:forEach var="order" items="${ orderList }">
                                 	<tr style="border-bottom: 1px solid lightgrey">
-                                        <td class="paytable_td"><label style="margin-top: 10px;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.payno }</label></td>
+                                        <td class="paytable_td"><label style="cursor:pointer; margin-top: 10px;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.payno }</label></td>
                                         <td class="paytable_td" style="width: 15%;"><img class="my-1"
                                                 style="height: 80px; width: 80px;"
                                                 src="${ path }/resources/uploadFiles/${ fn:substring(order.productList[0].prenamefile,0,22) }">
                                         </td>
                                         <td class="paytable_td" style="text-align: left;">
-											<label onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.productList[0].pname }
+											<label style="cursor: pointer;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.productList[0].pname }
 	                                    		<c:if test="${fn:length(order.productList) > 1}">
 	                                    		등
 	                                    		</c:if>
 	                                    	</label> <br>
 	                                    	<label style="font-size: 0.9em; margin-bottom: 0px;">총&nbsp;${fn:length(order.productList)}개 상품</label>
 										</td>
-                                        <td class="paytable_td">${ order.pay.payprice }원</td>
+                                        <td class="paytable_td"><fmt:formatNumber value="${ order.pay.payprice }" ></fmt:formatNumber>원</td>
                                         <td class="paytable_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                         <td class="paytable_td">${ order.pay.patstatus }</td>
                                         <td class="paytable_td">
@@ -262,7 +273,11 @@
                                 	<c:forEach var="board" items="${ freeBoardList }" varStatus="status">
                                 		<tr>
 	                                        <td class="table_td">${ board.bno }</td>
-	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">${ board.btitle }</td>
+	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">
+												<a href="${ path }/board/free_board_detail?no=${ board.bno }">	                                        
+	                                        		${ board.btitle }
+	                                        	</a>
+                                        	</td>
 	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                        <td class="table_td">${ board.bview }</td>
                                     	</tr>
@@ -296,7 +311,11 @@
                                 	<c:forEach var="board" items="${ qnaBoardList }" varStatus="status">
                                 		<tr>
 	                                        <td class="table_td">${ board.bno }</td>
-	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">${ board.btitle }</td>
+	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">
+	                                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
+	                                        		${ board.btitle }
+                                       		</a>
+                                   		</td>
 	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                        <td class="table_td">${ board.bview }</td>
                                     	</tr>

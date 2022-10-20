@@ -117,7 +117,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;">리뷰한 컨텐츠</h5>
+                                <h5 class="rightMainMenu" style="font-weight: 600;" onclick="location.href='${path}/mypage/reviewContent'">리뷰한 컨텐츠</h5>
                                 <hr>
                             </form>
                         </div>
@@ -171,7 +171,7 @@
 	                                    <div class="item_poster">
 	                                        <div class="thumb_item" style="width: 187px; height: 273px;">
 	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'" style="position: absolute; z-index: 2;">
-	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
+	                                                <img style="cursor: pointer;" src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
 	                                                    class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
 	                                                <span class="txt_tag">
 	                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
@@ -183,7 +183,7 @@
 	                                        </div>
 	                                        <div class="thumb_cont">
 	                                            <strong class="tit_item">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_txt"
+	                                                <a style="text-decoration: none;" href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_txt"
 	                                                    data-tiara-layer="moviename">${ contents.c_title }</a>
 	                                            </strong>
 	                                            <span class="txt_append">

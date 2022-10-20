@@ -229,6 +229,19 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.selectAllOrderListByMNo(m_no);
 	}
 
+	@Override
+	public List<Order> getPayOrderList(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectPayOrderList(m_no);
+	}
+
+	@Override
+	public List<Order> getCancelOrderList(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectCancelOrderList(m_no);
+	}
+
+
 
 
 }

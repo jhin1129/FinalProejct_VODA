@@ -6,7 +6,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
 <div class="mySideMenu">
-                    <h5 style="font-weight: 600;">마이 페이지</h5>
+                    <h5 style="font-weight: 600;" onclick="location.href='${path}/mypage/main'">마이 페이지</h5>
                     <hr>
                     <nav id="sidebarMenu" class="d-md-block sidebar collapse">
                         <div>

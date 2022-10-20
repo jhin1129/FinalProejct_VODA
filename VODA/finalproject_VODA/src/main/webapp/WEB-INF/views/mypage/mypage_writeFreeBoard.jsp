@@ -109,7 +109,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600;" >자유게시글 조회</h5>
+                                <h5 class="rightMainMenu" style="font-weight: 600;" onclick="location.href='${path}/mypage/writeFreeBoard'">자유게시글 조회</h5>
                                 <hr>
                             </form>
                         </div>

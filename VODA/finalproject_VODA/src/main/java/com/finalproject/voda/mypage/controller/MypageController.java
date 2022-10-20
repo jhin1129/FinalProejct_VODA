@@ -43,6 +43,8 @@ public class MypageController {
 		PageInfo pageInfo1 = null;
 		PageInfo pageInfo2 = null;
 		List<Order> orderList = new ArrayList<Order>();
+		List<Order> payOrderList = new ArrayList<Order>();
+		List<Order> cancelOrderList = new ArrayList<Order>();
 		
 		orderList = service.getAllOrderListByMNo(loginMember.getM_no());
 		if(orderList.size() > 5) {
@@ -60,6 +62,9 @@ public class MypageController {
 		
 		qnaBoardList = service.getqnaBoardList(pageInfo2, loginMember.getM_no());
 		
+		payOrderList = service.getPayOrderList(loginMember.getM_no());
+		cancelOrderList = service.getCancelOrderList(loginMember.getM_no());
+
 		model.addObject("orderList", orderList);
 		model.addObject("likesList", likesList);
 		model.addObject("reviewCount", reviewCount);
@@ -68,6 +73,9 @@ public class MypageController {
 		model.addObject("freeBoardListCount", freeBoardList.size());
 		model.addObject("qnaBoardList", qnaBoardList);
 		model.addObject("qnaBoardListCount", qnaBoardList.size());
+		model.addObject("payOrderCount", payOrderList.size());
+		model.addObject("cancelOrderCount", cancelOrderList.size());
+		
 		model.setViewName("mypage/mypage_main");
 		
 		return model;
@@ -460,6 +468,8 @@ public class MypageController {
 								@RequestParam(value = "payNo") int payNo) {
 		
 		Order order = service.getOrderByPayNo(payNo);
+		
+		System.out.println(order);
 		
 		model.addObject("order", order);
 		model.setViewName("mypage/mypage_pay_detail");
