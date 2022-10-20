@@ -118,9 +118,32 @@
 			FROM ORDERS O 
 		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
 		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
-		WHERE M_NO = 999
+		WHERE M_NO = #{m_no}
+		ORDER BY O.O_DATE DESC
 	</select>
-
+	
+	<select id="selectOrderByPayNo" parameterType="_int" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		WHERE O.PAY_NO = #{payNo}
+		ORDER BY O.O_DATE DESC
+	</select>
+	
 	<select id="selectLikesAllList" parameterType="_int" resultMap="contentsListResultMap">
 		SELECT
 		<include refid="contentsListSql"/>

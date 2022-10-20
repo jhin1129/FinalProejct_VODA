@@ -39,7 +39,12 @@ public class MypageController {
 		List<Board> qnaBoardList = null;
 		PageInfo pageInfo1 = null;
 		PageInfo pageInfo2 = null;
+		List<Order> orderList = new ArrayList<Order>();
 		
+		orderList = service.getOrderListByMNo(loginMember.getM_no());
+		if(orderList.size() > 5) {
+			orderList = orderList.subList(0, 5);
+		}
 		likesList = service.getLikesAllList(loginMember.getM_no());
 		
 		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 5);
@@ -50,6 +55,7 @@ public class MypageController {
 		
 		qnaBoardList = service.getqnaBoardList(pageInfo2, loginMember.getM_no());
 		
+		model.addObject("orderList", orderList);
 		model.addObject("likesList", likesList);
 		model.addObject("likesListCount", likesList.size());
 		model.addObject("freeBoardList", freeBoardList);
@@ -405,9 +411,7 @@ public class MypageController {
 		List<Order> orderList = new ArrayList<Order>();
 		
 		orderList = service.getOrderListByMNo(loginMember.getM_no());
-		for(int i = 0; i < orderList.size(); i++) {
-			System.out.println(orderList.get(i));
-		}
+		
 		model.addObject("orderList", orderList);
 		model.setViewName("mypage/mypage_pay_list");
 		
@@ -418,6 +422,20 @@ public class MypageController {
 	public ModelAndView payCancelList(ModelAndView model) {
 		
 		model.setViewName("mypage/mypage_pay_cancelList");
+		
+		return model;
+	}
+	
+	@GetMapping("/payDetail")
+	public ModelAndView payDetail(ModelAndView model,
+								@RequestParam(value = "payNo") int payNo) {
+		
+		Order order = service.getOrderByPayNo(payNo);
+		
+		System.out.println(order);
+		
+		model.addObject("order", order);
+		model.setViewName("mypage/mypage_pay_detail");
 		
 		return model;
 	}

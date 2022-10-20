@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_list.css">
 
 	<style>
+
+		.paytable_td > label{
+			font-size: 1.0em;
+		}
+
         .item {
             padding-right: 50px;
         }
@@ -200,31 +205,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="border-bottom: 1px solid lightgrey">
-                                        <td class="paytable_td">11111111</td>
+                                	<c:forEach var="order" items="${ orderList }">
+                                	<tr style="border-bottom: 1px solid lightgrey">
+                                        <td class="paytable_td"><label style="margin-top: 10px;" onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.payno }</label></td>
                                         <td class="paytable_td" style="width: 15%;"><img class="my-1"
                                                 style="height: 80px; width: 80px;"
-                                                src="https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL14957584354.jpg%3Fut%3D20211005180923">
+                                                src="${ path }/resources/uploadFiles/${ fn:substring(order.productList[0].prenamefile,0,22) }">
                                         </td>
-                                        <td class="paytable_td" style="text-align: left;">카카오프렌즈 라이언 인형 포근포근쿠션 라이언굿즈
-                                            <br>외 2종</td>
-                                        <td class="paytable_td">100000원</td>
-                                        <td class="paytable_td">22-09-27</td>
-                                        <td class="paytable_td">배송준비중</td>
+                                        <td class="paytable_td" style="text-align: left;">
+											<label onclick="location.href='${path}/mypage/payDetail?payNo=${ order.payno }'">${ order.productList[0].pname }
+	                                    		<c:if test="${fn:length(order.productList) > 1}">
+	                                    		등
+	                                    		</c:if>
+	                                    	</label> <br>
+	                                    	<label style="font-size: 0.9em; margin-bottom: 0px;">총&nbsp;${fn:length(order.productList)}개 상품</label>
+										</td>
+                                        <td class="paytable_td">${ order.pay.payprice }원</td>
+                                        <td class="paytable_td"><fmt:formatDate value="${ order.odate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                        <td class="paytable_td">${ order.pay.patstatus }</td>
                                         <td class="paytable_td"><button>환불</button></td>
                                     </tr>
-                                    <tr style="border-bottom: 1px solid lightgrey">
-                                        <td class="paytable_td">11111112</td>
-                                        <td class="paytable_td"><img class="my-1" style="height: 80px; width: 80px;"
-                                                src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg"
-                                                alt="magic mouse"></td>
-                                        <td class="paytable_td" style="text-align: left;">짱구는 식기 세트 그릇 굿즈 못말려 머그컵 귀여운 수입
-                                            밥그릇 짱구<br>외 2종</td>
-                                        <td class="paytable_td">100000원</td>
-                                        <td class="paytable_td">22-09-27</td>
-                                        <td class="paytable_td">배송준비중</td>
-                                        <td class="paytable_td"><button>환불</button></td>
-                                    </tr>
+                                	</c:forEach>
+ 
                                 </tbody>
                             </table>
                         </div>
@@ -257,7 +259,7 @@
                                 		<tr>
 	                                        <td class="table_td">${ board.bno }</td>
 	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">${ board.btitle }</td>
-	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
+	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                        <td class="table_td">${ board.bview }</td>
                                     	</tr>
                                 	</c:forEach>
@@ -291,7 +293,7 @@
                                 		<tr>
 	                                        <td class="table_td">${ board.bno }</td>
 	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">${ board.btitle }</td>
-	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
+	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 	                                        <td class="table_td">${ board.bview }</td>
                                     	</tr>
                                 	</c:forEach>
