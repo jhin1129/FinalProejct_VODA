@@ -116,4 +116,19 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	@Transactional
+	public int saveKakao(Member newMember) {
+		int result = 0;
+		
+		if(newMember.getM_no() != 0) {
+			// update
+		} else {
+			// insert
+			result = mapper.insertMemberKakao(newMember);
+		}
+		
+		return result;
+	}
+
 }

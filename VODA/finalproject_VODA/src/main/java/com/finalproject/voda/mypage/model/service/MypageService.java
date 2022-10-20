@@ -6,16 +6,19 @@ import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.order.model.vo.Order;
 
 public interface MypageService {
 
-	List<Contents> getLikesList(int mNo);
+	List<Contents> getLikesAllList(int mNo);
 
-	List<Contents> getLikesList(int m_no, String type);
+	int getLikesCount(int m_no, String type);
 	
-	List<Contents> getreviewList(int mNo);
+	List<Contents> getLikesList(PageInfo pageInfo, int m_no, String type);
+
+	int getReviewCount(int m_no, String type);
 	
-	List<Contents> getReviewList(int m_no, String type);
+	List<Contents> getReviewList(PageInfo pageInfo, int m_no, String type);
 	
 	int getFreeBoardCount(int m_no);
 	
@@ -30,6 +33,28 @@ public interface MypageService {
 	int updateMember(Member member);
 
 	int deleteMember(int m_no);
+
+	int getFreeBoardSearchCount(int m_no, String searchType, String searchVal);
+
+	List<Board> getfreeBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal);
+
+	int getQnaBoardSearchCount(int m_no, String searchType, String searchVal);
+
+	List<Board> getqnaBoardSearchList(PageInfo pageInfo, int m_no, String searchType, String searchVal);
+
+	int getLikesSearchCount(int m_no, String type, String searchType, String searchVal);
+
+	List<Contents> getLikesSearchList(PageInfo pageInfo, int m_no, String type, String searchType, String searchVal);
+
+	int getReviewSearchCount(int m_no, String type, String searchType, String searchVal);
+
+	List<Contents> getReviewSearchList(PageInfo pageInfo, int m_no, String type, String searchType, String searchVal);
+
+	int updateMemberPwd(int m_no, String password);
+
+	int deleteDibsContent(int m_no, List<Integer> list);
+
+	List<Order> getOrderListByMNo(int m_no);
 
 
 }

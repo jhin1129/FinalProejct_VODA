@@ -7,18 +7,8 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-
-    <!-- Board CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
     
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -37,9 +27,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+        
+    <!-- Board CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
 
-
-    <title>공지사항</title>
+    <title>문의게시판 관리</title>
 
 </head>
 <body>
@@ -71,7 +63,13 @@
                         <th id="th" style="width: 40%;">제목</th>
                         <th id="th" style="width: 10%;">날짜</th>
                         <th id="th" style="width: 15%;">작성자</th>
-                        <th id="th" style="width: 10%;">답변</th>
+                        <th id="th" style="width: 10%;">
+                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;" onchange="SelectATValue()">
+	                        <option name="AnswerType" value="ALL" selected>전체</option>
+	                        <option name="AnswerType" value="ANSWERNO">미답변</option>
+	                        <option name="AnswerType" value="ANSWERYES">답변완료</option>
+                    	</select>
+                        </th>
                         <th id="th" style="width: 10%;">삭제</th>
                     </tr>
                 </thead>
@@ -87,7 +85,7 @@
 				 </c:if> 
                   <c:if test="${ not empty list }"> 	 
 	                <c:forEach var="board" items="${ list }">
-                    <tr style="text-align: center; cursor:pointer;">
+                    <tr style="text-align: center;">
                         <td id="td">${ board.bno }</td>
 						<td id="td" style="text-align: left;">
 							<a href="${ path }/admin/admin_notice_detail?no=${ notice.bno }">
@@ -96,7 +94,12 @@
 						</td>
 						<td id="td">${ board.mid }</td>
 						<td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate>
-                        <td id="td">미해결</td>
+                        <td id="td">
+                        <c:choose> 
+                    		<c:when test="${ board.banswerstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">미답변</button></c:when>
+                    		<c:when test="${ board.banswerstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">답변완료</button></c:when>
+                    	</c:choose>
+                        </td>
                         <td id="td"><button type="button" class="btn btn-logoC btn-sm">삭제</button></td>
                     </tr>
                     </c:forEach>
@@ -110,18 +113,20 @@
 
 
         <div class="search1 row my-4">
+          <form action="${ path }/admin/admin_qna_search" style="width: 100%;">
             <div class="col-7 row">
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
-                        <option value="title">내용</option>
-                        <option value="title">제목+내용</option>
+                        <option value="writer">작성자</option>
+                        <option value="Astatus">답변상태</option>
+                        <option value="status">게시글상태</option>
                     </select>
                 </div>
 
                 <div class="col-xs-7 col-sm-7 pl-0">
                     <div class="input-group">
-                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
@@ -130,16 +135,17 @@
                     </div>
                 </div>   
             </div>
+          </form>
         </div>
         
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_qna?page=1">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.prevPage }">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -148,21 +154,48 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_qna?page=${ status.current }">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_qna?page=${ pageInfo.nextPage }">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_qna?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-        </div>
-        
-        
+     </div>
     </div>
-    </div></div></div>
+   </div>
+  </div>
+ </div>
 </div>
+<!-- <script>
+// 답변상태 Ajax 
+$(document).ready(() => {
+	function SelectATValue(){
+	
+     let AT = document.getElementById("AnswerType");
+     let ATvalue = (AT.options[AT.selectedIndex].value); 
+ 	 alert("value = " + ATvalue);
+ 	
+		$.ajax({
+           type : "GET",
+           url : "${path}/admin/admin_qna_AT",
+           data : {no},
+           dataType : "json",
+           success : function(obj) {
+   			console.log(obj)
+   			alert("ajax value = "+ATvalue);
+   		} ,
+           error : function(error){
+               console.log(error);
+           },
+           complete : function(){
+           }
+       });
+}
+});
+</script> -->
 </body>
 </html>
 <!-- FOOTER -->

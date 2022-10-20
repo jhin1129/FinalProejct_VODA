@@ -15,6 +15,7 @@ import com.finalproject.voda.admin.model.mapper.AdminMapper;
 import com.finalproject.voda.admin.model.vo.ContentsType;
 import com.finalproject.voda.admin.model.vo.Cview;
 import com.finalproject.voda.admin.model.vo.JoinMember;
+import com.finalproject.voda.admin.model.vo.Monthlydata;
 import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.admin.model.vo.Sales;
 import com.finalproject.voda.board.model.vo.Board;
@@ -45,6 +46,10 @@ public class AdminServiceImpl implements AdminService {
 	public Sales getDashboardSalesData() {
 		return mapper.selectDashboardSalesData();
 	}
+	@Override
+	public List<Monthlydata> getDashboardMonthlydataData() {
+		return mapper.selectDashboardMonthlydataData();
+	}
 
 	
 	
@@ -64,15 +69,26 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectAllMember(rowBounds);	
 	}
+	// 회원관리 검색 조회 (총개수)
+	@Override
+	public int getMemberSearchCount(String searchType, String keyword) {
+		return mapper.getMemberSearchCount(searchType, keyword);
+	}
+	// 회원관리 검색 조회 (리스트)
+	@Override
+	public List<Search> getMemberSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getMemberSearchList(rowBounds, searchType, keyword);
+	}
+
 	
 	// 회원 비활성화
 	@Override
-	public int deleteMember(Long id) {
-		int result = 0;
-		
-		result = mapper.deleteMember(id, "N");
-		
-		return result;
+	public Member deleteMember() {
+		return mapper.updateNoticeStatus("N");
 	}
 
 	// 컨텐츠 전체개수 카운트
@@ -90,7 +106,23 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectAllContent(rowBounds);	
 	}
-
+	
+	// 컨텐츠 리스트 검색 (총개수)
+	@Override
+	public int getContentSearchCount(String searchType, String keyword) {
+		return mapper.getContentSearchCount(searchType, keyword);
+	}
+	
+	// 컨텐츠 리스트 검색 (리스트)
+	@Override
+	public List<Search> getContentSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getContentSearchList(rowBounds, searchType, keyword);
+	}
+	
 	// 상품 전체개수 카운트
 	@Override
 	public int getProductCount() {
@@ -105,6 +137,22 @@ public class AdminServiceImpl implements AdminService {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		return mapper.selectAllProduct(rowBounds);	
+	}
+	
+	// 상품 리스트 검색 (총개수)
+	@Override
+	public int getGoodsSearchCount(String searchType, String keyword) {
+		return mapper.getGoodsSearchCount(searchType, keyword);
+	}
+	
+	// 상품 리스트 검색 (리스트)
+	@Override
+	public List<Search> getGoodsSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getGoodsSearchList(rowBounds, searchType, keyword);
 	}
 	
 	// 자유게시판 전체개수 카운트
@@ -122,7 +170,23 @@ public class AdminServiceImpl implements AdminService {
 
 		return mapper.selectAllBoard(rowBounds);	
 	}
-
+	
+	// 자유게시판 검색 (총개수)
+	@Override
+	public int getFreeboardSearchCount(String searchType, String keyword) {
+		return mapper.getFreeboardSearchCount(searchType, keyword);
+	}
+	
+	// 자유게시판 검색 (리스트)
+	@Override
+	public List<Search> getFreeboardSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getFreeboardSearchList(rowBounds, searchType, keyword);
+	}
+	
 	// 문의게시판 전체개수 카운트
 	@Override
 	public int getQnaCount() {
@@ -137,6 +201,21 @@ public class AdminServiceImpl implements AdminService {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		
 		return mapper.selectAllQna(rowBounds);	
+	}
+	
+	// 문의게시판 검색 (총개수)
+	@Override
+	public int getQnaSearchCount(String searchType, String keyword) {
+		return mapper.getQnaSearchCount(searchType, keyword);
+	}
+	// 문의게시판 검색 (리스트)
+	@Override
+	public List<Search> getQnaSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getQnaSearchList(rowBounds, searchType, keyword);
 	}
 
 	// 공지사항 전체개수 카운트
@@ -220,21 +299,26 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.selectTotalviewCount();
 	}
 	@Override
-	public List<Member> getTotalviewList(PageInfo pageInfo) {
+	public List<Cview> getTotalviewList(PageInfo pageInfo) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		return mapper.selectTotalviewList(rowBounds);	
 	}
-
-
-
-
-
-
-
-
+	@Override
+	public List<Cview> getTotalmonthviewList(PageInfo pageInfo, int viewmonth) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.selectTotalmonthviewList(rowBounds, viewmonth);	
+	}
+	
+	@Override
+	public Board getQNAboardType() {
+		return mapper.selectQnaType();
+	}
 
 
 

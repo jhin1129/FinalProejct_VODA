@@ -24,6 +24,81 @@
 		    padding-left: 50px;
 		    padding-right: 50px;
 		}
+		/* pagination */
+        #pagination {
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        #pagination li {
+            display: inline
+        }
+
+        #pagination li a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 3px 7px;
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* Active and Hoverable Pagination */
+        #pagination li a {
+            border-radius: 5px;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s
+        }
+
+        #pagination li a.active {
+            background-color: rgb(73, 95, 233);
+            color: #fff
+        }
+
+        #pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }		
+        
+        		.btn {
+
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            /* 패딩은 주석하쇼 */
+            padding: 1px 0.38rem;
+
+
+        }
+        
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+        }
+        
+        .form-control1 {
+            display: block;
+            height: 27.8px;
+            padding: 0.2rem 0.7rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
 	</style>
 	
     <div class="container p-0">
@@ -58,19 +133,19 @@
                             MOVIE
                         </div>
                         
-						<c:if test="${ type == '드라마' }">
+						<c:if test="${ type == 'TV' }">
 							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
 						</c:if>
-						<c:if test="${ type != '드라마' }">
+						<c:if test="${ type != 'TV' }">
 						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
 						</c:if>                    	
                             TV
                         </div>
 
-						<c:if test="${ type == '책' }">
+						<c:if test="${ type == '도서' }">
 							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=책'">
 						</c:if>
-						<c:if test="${ type != '책' }">
+						<c:if test="${ type != '도서' }">
 						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=책'">
 						</c:if>                    	
                             BOOK
@@ -127,59 +202,58 @@
 
                     </div>
                     
-                    <!-- 
-                    <div class="row my-3">
+                    <div class="row">
                         <div class="col-4"></div>
                         <div class="col-4">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#">&laquo;</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#" style="background-color: #495FE9;">1</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" style="color: #777777;">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" style="color: #777777;">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" style="color: #777777;">4</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" style="color: #777777;">5</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" style="color: #777777;">&raquo;</a>
-                                </li>
-                            </ul>
+                            <ul id="pagination">
+				            	<!-- 맨 처음으로 -->
+				                <li><a href="${ path }/mypage/reviewContent?page=1">«</a></li>
+				                
+				                <!-- 이전 페이지로 -->
+				                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.prevPage }">‹</a></li>
+				                
+								<!--  10개 페이지 목록 -->
+								<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
+									<c:if test="${ status.current == pageInfo.currentPage }">
+										<li><a class="active">${ status.current }</a></li>
+									</c:if>
+									
+									<c:if test="${ status.current != pageInfo.currentPage }">
+				                		<li><a href="${ path }/mypage/reviewContent?page=${ status.current }">${ status.current }</a></li>
+									</c:if>
+								</c:forEach>
+								
+								<!-- 다음 페이지로 -->
+									<li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.nextPage }">›</a></li>  
+								<!-- 맨 끝 페이지로 -->
+					                <li><a href="${ path }/mypage/reviewContent?page=${ pageInfo.maxPage }">»</a></li>
+				            </ul>
                         </div>
-
-                        <div class="col-4"></div>
+            
                     </div>
+					
+					<div class="search1 row my-4">
+						<div class="col-6 row">
+							
+						    <div class="col-3 mr-4">
+						        <select id="searchType" name="searchType" class="form-control1" style="font-size: 14.45px; width: 106px;">
+							        <option value="title" selected>제목</option>
+						    	</select>
+							</div>
+					
+							<div class="col-8 pl-0">
+						    	<div class="input-group">
+						        	<input id="searchVal" type="text" class="form-control1" style="font-size: 14.45px;">
+									<span class="input-group-btn">
+							    		<button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;">
+							    			<img src="${path}/resources/img/community/search.png" style="height: 16px;">
+										</button>
+						            </span>
+						         </div>
+						    </div>
 
-                    <div class="search row mb-5">
-                        <div class="col-xs-2 col-sm-2">
-                            <select name="searchType" class="form-control">
-                                <option value="title" selected>Subject</option>
-                                <option value="title">Contents</option>
-                                <option value="title">Subject+Contents</option>
-                            </select>
-                        </div>
-
-                        <div class="col-xs-10 col-sm-10">
-                            <div class="input-group">
-                                <input type="text" name="searchInput" id="searchInput" class="form-control">
-                                <span class="input-group-btn">
-                                    <button id="searchBtn" class="btn btn-greyC text-nowrap"><img
-                                            src="../../IMG/Community/search.png" style="height: 23px;"></button>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-                     -->
+					    </div>
+					</div>
                     <!-- 컨테이너 끝 -->
                 </div>
                 <!-- 오른쪽 그리드 끝 -->
@@ -190,3 +264,13 @@
     <!-- 내용 전체 컨테이너 끝 -->
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+<script>
+	$(document).ready(() => {
+		$("#searchBtn").on("click", () => {
+			var searchType = $("#searchType").val();
+			var searchVal = $("#searchVal").val();
+			
+			location.href="${path}/mypage/reviewContentSearch?type=${type}&searchType=" + searchType + "&searchVal=" + searchVal;
+		});
+	});
+</script>

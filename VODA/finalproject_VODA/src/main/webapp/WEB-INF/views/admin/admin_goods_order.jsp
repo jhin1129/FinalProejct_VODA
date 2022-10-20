@@ -39,7 +39,7 @@
                                       <tr>
                                           <th style="width: 5%;">No</th>
                                           <th>주문일자</th>
-                                          <th>상품번호</th>
+                                          <th>주문번호</th>
                                           <th>상품명</th>
                                           <th>개당 금액</th>
                                           <th>회원정보</th>

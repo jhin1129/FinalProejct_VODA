@@ -87,7 +87,6 @@ public class ProductController {
 	public ModelAndView ProductCreate(
 						ModelAndView model,
 						@RequestParam(value="multiFile") List<MultipartFile> multiFileList,HttpServletRequest request,
-//						@RequestParam("upfile") MultipartFile upfile,
 						@ModelAttribute Product product) {
 		int result = 0;
 		// 받아온것 출력 확인
@@ -300,12 +299,6 @@ public class ProductController {
 		model.setViewName("product/product_search");
 		System.out.println(product);
 		return model;
-	}
-	
-	@GetMapping("/product_order")
-	public String ProductOrder() {
-		log.info("게시글 작성 페이지 요청");
-		return "product/product_order";
 	}
 	
 }

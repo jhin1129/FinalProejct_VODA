@@ -26,6 +26,8 @@ public interface MemberMapper {
 	Member findPwd(String m_email);
 
 	int passwordUpdate(Member member);
+
+	int insertMemberKakao(Member newMember);
 	
 
 }

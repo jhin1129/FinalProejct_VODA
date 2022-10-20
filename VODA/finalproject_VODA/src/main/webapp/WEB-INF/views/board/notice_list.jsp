@@ -216,7 +216,7 @@
                     <tr style="text-align: center; background-color: #eeeeee; font-weight: bold;  cursor:pointer;">
                         <td id="td">${ notice.noticeno }</td>
 						<td id="td" style="text-align: left;">
-							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
+							<a href="${ path }/board/notice_detail?no=${ notice.noticeno }">
 								${ notice.noticeTitle }
 							</a>
 							<c:if test="${ empty notice.noticeOriginalFileName }">
@@ -236,7 +236,7 @@
                     <tr style="text-align: center; cursor:pointer;">
                         <td id="td">${ notice.noticeno }</td>
 						<td id="td" style="text-align: left;">
-							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
+							<a href="${ path }/board/notice_detail?no=${ notice.noticeno }">
 								${ notice.noticeTitle }
 							</a>
 							<c:if test="${ empty notice.noticeOriginalFileName }">
@@ -303,7 +303,7 @@
         <div class="search1 row my-6">
    		  <form action="${ path }/board/notice_search" style="width: 100%;">
             <div class="col-7 row">
-                <div class="col-xs-3 col-sm-3">
+                <div>
 	                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
 	                        <option value="noticeTitle" selected>제목</option>
 	                        <option value="noticeContent">내용</option>
@@ -331,21 +331,6 @@
     </div>
    </div>
   </div>
- </div>
- 
-<!-- <script>
-		$(document).ready(() => {
-			$("#searchBtn").on("click", () => {
-				var url = "${Path}admin_notice_list";		
-				url = url + "?searchType=" + $('#searchType').val();		
-				url = url + "&keyword=" + $('#keyword').val();		
-				location.href = url;		
-				console.log(url);
-			})
-
-		
-		});	
-</script> -->
 
 </body>
 

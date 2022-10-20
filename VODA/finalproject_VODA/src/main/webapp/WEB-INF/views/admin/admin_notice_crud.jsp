@@ -20,8 +20,6 @@
     <!-- common CSS-->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
     
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
     
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -37,6 +35,9 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
+    
     <title>공지사항 등록</title>
 
 
@@ -139,9 +140,9 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <input class="btn btn-logoc py-0" type="submit"
+                    <input class="btn btn-logoC py-0" type="submit"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;" value="등록">
-                    <input class="btn btn-greyc py-0" id="btnCancel" type="button"
+                    <input class="btn btn-greyC py-0" id="btnCancel" type="button"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;" value="취소" onclick="history.back()">
                 </div>
             </div>

@@ -58,14 +58,6 @@
             인물페이지 관리
            </h1>
            <hr>
-        <div class="pl-3 pr-4 row" style="height: 40px;" >
-            <div class="col-6 mycategory" style="background-color: rgb(90, 97, 224); color: white;">
-                배우
-            </div>
-            <div class="col-6 mycategory" >
-                작가
-            </div>
-        </div>
 		<c:if test="${ empty list }">
 			<tr>
 				<td colspan="6" style="text-align: center;">
@@ -81,7 +73,8 @@
                     <li>
                         <div class="item_poster">
                           <div class="mx-2 my-1 people_nohover" style="position: absolute; z-index: 2;">
-                            <input type="checkbox" style="width: 17px; height: 17px;">
+                            <input type="checkbox" value="${ people.people_no }" name="PeopleCheckBox"
+                            		style="width: 17px; height: 17px;">
                             <input type="hidden" value="{ people.people_no }" >
                           </div>
                           <div class="thumb_item">
@@ -96,7 +89,8 @@
 								</c:if>
                              </div>
                              <div class="poster_info" style="text-align: center; line-height: 300px;">
-                              <a href="" class="link_story" data-tiara-layer="poster">
+                              <a href="${ path }/admin/peopleUpdate?people_no=${ people.people_no }" 
+                              id="peopleUpdate" class="link_story" data-tiara-layer="poster">
                                 수정하기
                               </a>
                              </div>
@@ -119,18 +113,18 @@
             </div>
             <hr>
             <div style="float: right;">
-              <button type="button" class="btn btn-primary btn-sm">인물등록</button>
-              <button type="button" class="btn btn-secondary btn-sm">인물삭제</button>
+              <button type="button" id="btnFindProduct" class="btn btn-primary btn-sm">인물등록</button>
+              <button type="button" id="btnDelete" class="btn btn-secondary btn-sm">인물삭제</button>
             </div>
             
         <div class="display1 row my-3">
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_people?page=1">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_people?page=${ pageInfo.prevPage }">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -139,14 +133,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_notice_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_people?page=${ status.current }">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_people?page=${ pageInfo.nextPage }">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_notice_list?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_people?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
         </div>
     </div>
@@ -160,3 +154,37 @@
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+<!-- 인물 등록 -->
+<script>
+$(document).ready(() => {
+        $("#btnFindProduct").on("click", () => {
+            let url ="peopleEnroll.html";
+            let status = "left=300px,top=0px,width=850px,height=800px";
+
+            open(url,"",status);
+        });
+
+        // 수정
+	    $("#peopleUpdate").on("click", () => {
+	        
+	        let status = "left=300px,top=0px,width=850px,height=800px";
+	
+	        open(url,"",status);
+	    });
+   	
+	    // 삭제
+	    $("#btnDelete").on("click", () => {
+			var arr = [];
+			$("input:checkbox[name='PeopleCheckBox']:checked").each(function(){
+				var PeopleNo = $(this).val();
+				arr.push(PeopleNo);
+			});
+			if(arr.length !=0){
+				location.href="${path}/admin/peopleDelete?list=" + arr;
+			}else{
+				alert("삭제할 게시글을 선택해주세요");
+			}
+		});
+	}); 
+</script>

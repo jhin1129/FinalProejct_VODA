@@ -31,7 +31,8 @@
     <!-- summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
 
     <title>공지사항</title>
 
@@ -125,10 +126,10 @@
 
                 </p>
                 <div class="text-right mt-3">
-                    <button class="btn btn-logoc py-0"
+                    <button class="btn btn-logoC py-0"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;"
                         onclick="location.href='${path}/admin/admin_notice_update?no=${ notice.noticeno }'">수정</button>
-                    <button class="btn btn-greyc py-0" id="btnDelete"
+                    <button class="btn btn-greyC py-0" id="btnDelete"
                         style="width: 80px; height: 29.05px; font-size: 14.45px;">삭제</button>
                 </div>
             </div>

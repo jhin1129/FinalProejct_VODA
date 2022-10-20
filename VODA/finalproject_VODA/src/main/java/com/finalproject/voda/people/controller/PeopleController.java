@@ -49,7 +49,7 @@ public class PeopleController {
 		List<People> list = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 10);
+		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 12);
 		list = service.getPeopleList(pageInfo);
 				
 		model.addObject("list", list);
@@ -73,19 +73,20 @@ public class PeopleController {
 	}
 	
 	
-	@GetMapping("/people/peopleEnroll") 
+	@GetMapping("/admin/peopleEnroll") 
 	public String peopleEnroll() {
 		
-		return "people/peopleEnroll"; 
+		return "admin/peopleEnroll"; 
 		
 	}
 	
-	@PostMapping("/people/peopleEnroll")
+	@PostMapping("/admin/peopleEnroll")
 	public ModelAndView peopleEnroll(
 			ModelAndView model,
 			@ModelAttribute People people,
-			@RequestParam("upfile") MultipartFile upfile,
-			@SessionAttribute("loginMember") Member loginMember) {
+			@RequestParam("upfile") MultipartFile upfile
+//			,@SessionAttribute("loginMember") Member loginMember
+			) {
 		
 		int result = 0;
 		// 파일을 업로드 하지 않으면 true, 파일을 업로드하면 false
@@ -113,20 +114,22 @@ public class PeopleController {
 			if(renamedFileName != null) {
 				people.setPeople_original_filename(upfile.getOriginalFilename());
 				people.setPeople_renamed_filename(renamedFileName);
+				log.info("renamedFileName: " + renamedFileName);
 			}
 		}
 		
 		// 2. 작성한 게시글 데이터를 데이터 베이스에 저장
 //		people.setPeople_no(loginMember.getM_no());
 		result = service.save(people);
-		
+		System.out.println(people);
+		System.out.println(result);
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
-			model.addObject("location", "/people/people?people_no=" + people.getPeople_no());
+//			model.addObject("location", "/people/people?people_no=" + people.getPeople_no());
 		} else {
 			model.addObject("msg", "게시글 등록을 실패하였습니다.");
-			model.addObject("location", "/people/peopleEnroll");
+			model.addObject("location", "/admin/peopleEnroll");
 		}
 		
 		model.setViewName("common/msg");
@@ -135,38 +138,83 @@ public class PeopleController {
 		
 	}
 	
+	@GetMapping("/admin/peopleUpdate")
+	public ModelAndView update(
+			ModelAndView model,
+			@RequestParam int people_no){
+		 People people = null;
+		 
+		 people = service.findPeopleByNo(people_no);
+		
+		 model.addObject("people", people);
+		 model.setViewName("admin/peopleUpdate");
+		
+		return model;
+	}
 	
-	
-	
-	@GetMapping("fileDown") 
-	public ResponseEntity<Resource> fileDown(
-			@RequestHeader("user-agent") String userAgent,
-			@RequestParam String oname, @RequestParam String rname) {
+	@RequestMapping("/admin/peopleUpdate")
+	public ModelAndView update(
+			ModelAndView model,
+			@ModelAttribute People people,
+			@RequestParam("upfile") MultipartFile upfile) {
+		int result = 0;
+		String location = null;
+		String renamedFileName = null;
 		
-		Resource resource = null;
-		String downFileName = null;
-		
-		log.info("oname : {}, rname : {}", oname, rname);
-		log.info("{}", userAgent);
-		
-		try {
-			resource = resourceLoader.getResource("resources/upload/people/" + rname);
-		
-			if(userAgent.indexOf("MSIE") != -1 || userAgent.indexOf("Trident") != -1) {
-					downFileName = URLEncoder.encode(oname, "UTF-8").replaceAll("\\+", "%20");
-			} else {
-				downFileName = new String(oname.getBytes("UTF-8"), "ISO-8859-1");
-			} 
+		if(upfile != null && !upfile.isEmpty()) {
+			try {
+				location = resourceLoader.getResource("resources/upload/people").getFile().getPath();
 			
-			return ResponseEntity.ok()
-					.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_OCTET_STREAM_VALUE)
-					.header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + downFileName)
-					.body(resource);
-		}catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+				if(people.getPeople_renamed_filename() != null) {
+					MultipartFileUtil.delete(location + "/" + people.getPeople_renamed_filename());
+				}
+			
+				renamedFileName = MultipartFileUtil.save(upfile, location);
+				
+				if(renamedFileName != null) {
+					people.setPeople_original_filename(upfile.getOriginalFilename());
+					people.setPeople_renamed_filename(renamedFileName);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+			result = service.save(people);
+		
+			if(result > 0) {
+				model.addObject("msg", "게시글이 정상적으로 수정되었습니다.");
+				model.addObject("location", "/people/people?people_no=" + people.getPeople_no());
+			} else {
+				model.addObject("msg", "게시글 수정을 실패하였습니다.");
+				model.addObject("location", "/admin/peopleUpdate?people_no=" + people.getPeople_no());
+			}
+			
+			model.setViewName("common/msg");
+			
+			return model;
+		}	
+	
+	@GetMapping("/admin/peopleDelete")
+	public ModelAndView delete(ModelAndView model,
+								@RequestParam(value = "list") List<Integer> list) {
+		
+		int result = 0;
+		
+		System.out.println(list);
+		result = service.deletePeople(list);
+		
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 삭제되었습니다.");
+			model.addObject("location", "/admin/admin_people");
+		} else {
+			model.addObject("msg", "삭제중 오류가 발생하였습니다.");
+			model.addObject("location", "/admin/admin_people");
+		}
+		
+		model.setViewName("common/msg");
+		
+		return model;
 	}
 	
 	

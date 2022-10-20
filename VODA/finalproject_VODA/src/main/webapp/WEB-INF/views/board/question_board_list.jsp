@@ -204,7 +204,6 @@
 				 </c:if> 
 				 <c:if test="${ not empty list }"> 
 					 <c:forEach var="board" items="${ list }">
-					 	<c:if test="${ loginMember.m_id == board.mid || loginMember.m_authorization == 'M' }">
 	                    <tr style="text-align: center; cursor:pointer;">
 	                        <td id="td">${ board.bno }</td>
 	                           <td id="td" style="text-align: left;">
@@ -226,7 +225,6 @@
 	                        <td id="td">${ board.mid }</td>
 	                         <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
 	                    </tr>
-		                   </c:if> 
 	                    </c:forEach>
 
                     <tr>
@@ -279,19 +277,20 @@
 
 
         <div class="search1 row my-4">
+          <form action="${ path }/board/question_board_search" style="width: 100%;">
             <div class="col-6 row">
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
-                        <option value="title" selected>제목</option>
-                        <option value="title">작성자</option>
-                        <option value="title">내용</option>
-                        <option value="title">제목+내용</option>
+                        <option value="btitle" selected>제목</option>
+                        <option value="mid">작성자</option>
+                        <option value="bcontent">내용</option>
+                        <option value="boardtc">제목+내용</option>
                     </select>
                 </div>
 
                 <div class="col-xs-7 col-sm-7 pl-0">
                     <div class="input-group">
-                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img

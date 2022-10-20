@@ -215,7 +215,7 @@
 										<span> </span>
 								</c:if>
 								<c:if test="${ not empty board.boriginalfilename }">
-										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+									<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
 								</c:if>
                         	</td>
                         <td id="td">${ board.mid }</td>

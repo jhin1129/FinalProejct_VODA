@@ -10,18 +10,12 @@
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
 
-    <!-- Board CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
-    
+
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
-    
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
+
     
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -30,6 +24,152 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+   <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        * {
+            font-family: Pretendard,
+                -apple-system, BlinkMacSystemFont,
+                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        }
+
+        .page-link,
+        .form-control {
+
+            box-shadow: none !important;
+        }
+
+        input:focus {
+            outline: none !important;
+        }
+
+
+        .btn {
+
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            /* 패딩은 주석하쇼 */
+            padding: 1px 0.38rem;
+
+
+        }
+
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+
+
+        }
+
+        table * {
+            font-size: 14.45px;
+            color: #000000;
+        }
+
+        .table thead th {
+            border-bottom: 1px;
+        }
+
+        .table {
+            margin-bottom: 0rem;
+        }
+
+
+        .table td,
+        .table th {
+            padding: 0.60rem;
+        }
+
+        .page-link {
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* pagination */
+        #pagination {
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        #pagination li {
+            display: inline
+        }
+
+        #pagination li a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 3px 7px;
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* Active and Hoverable Pagination */
+        #pagination li a {
+            border-radius: 5px;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s
+        }
+
+        #pagination li a.active {
+            background-color: rgb(73, 95, 233);
+            color: #fff
+        }
+
+        #pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        .display1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .display2 {
+            float: right;
+            margin-top: -90px;
+        }
+
+
+        /* 인풋, 폼태그 */
+        option {
+            font-size: 14.5px;
+        }
+
+        .form-control1 {
+            display: block;
+            height: 27.8px;
+            padding: 0.2rem 0.7rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
+
+
+        .td-hr {
+            pointer-events: none;
+        }
+    </style>
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
 
     <title>회원관리</title>
 
@@ -56,44 +196,36 @@
                     <th scope="col">회원아이디</th>
                     <th scope="col">가입일</th>
                     <th scope="col" style="width: 10%">회원상태</th>
-                    <th scope="col"style="width: 20%">
-                      <label class="checkbox-inline" style="line-height: 0px;">
-                        <input type="checkbox" id="allCheckBox" onclick="allChecked()">
-                      </label>
-                    </th>
+                    <th scope="col"style="width: 20%">비활성화</th>
                   </tr>
                 </thead>
-                <tfoot>
+                <tfoot style="border: 3px;">
                   <tr>
-                      <th colspan="4">            
+                      <th colspan="5">            
 				        <div class="search1 row my-4">
+				          <form action="${ path }/admin/admin_member_search" style="width: 100%;">
 				            <div class="col-9 row">
-				                <div class="col-xs-3 col-sm-3">
+				                <div>
 				                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
-				                        <option value="title" selected>제목</option>
-				                        <option value="title">내용</option>
-				                        <option value="title">제목+내용</option>
+				                        <option value="id" selected>회원아이디</option>
+				                        <option value="status">회원상태</option>
 				                    </select>
 				                </div>
 				
 				                <div class="col-xs-7 col-sm-7 pl-0">
 				                    <div class="input-group">
-				                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+				                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
 				                        <span class="input-group-btn">
-				                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
-				                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
-				                                >
+				                            <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%상'0pxY0px 4px 0px;">
 				                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
 				                            </button>
 				                        </span>
 				                    </div>
             				    </div>
             				   </div>
-            				  </div>
+            				</form>
+            			</div>
                       </th>
-                      <th colspan="1">
-                        <button type="button" class="btn btn-logoC btn-sm" onclick="location.href='javascript:boardDelete();'">비활성화</button>
-                        <button type="button" class="btn btn-greyC btn-sm">취소</button></th>
                   </tr>
                 </tfoot>
                 
@@ -101,26 +233,29 @@
                 <tbody>
                  <c:forEach var="member" items="${ list }">
                   <tr>             
-                    <th scope="row">${ member.m_no }</th>
-                    <td>${ member.m_id }</td>
+                    <th scope="row" name="mno">${ member.m_no }</th>
+                    <td>${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if></td>
                     <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
                     <td>
                     	<c:choose> 
-                    		<c:when test="${ member.m_status == 'L'}">정상</c:when>
+                    		<c:when test="${ member.m_status == 'Y'}">정상</c:when>
                     		<c:when test="${ member.m_status == 'N'}">탈퇴</c:when>
                     	</c:choose>
                     </td>
                     <td>
-                    	  <label class="checkbox-inline" for="defaultCheck1" >
-                      	  	 <input class="chk" type="checkbox" value="" id="defaultCheck1" name="chk" onclick="chkClicked()">
-                      	  </label>
+                       	<c:choose> 
+                    		<c:when test="${ member.m_status == 'Y' && member.m_authorization == 'M'}"><button type="button" class="btn btn-greyC btn-sm" style="cursor: default;">관리자</button></c:when>
+                    		<c:when test="${ member.m_status == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">탈퇴</button></c:when>
+                    		<c:when test="${ member.m_status == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
+                    	</c:choose>
+
                     </td>
                   </tr>
                   </c:forEach> 
                 </tbody>
               </table>
+        </div>
 
-                                    
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
@@ -145,119 +280,12 @@
 			<!-- 맨 끝 페이지로 -->
                 <li><a href="${ path }/admin/admin_member?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
-        </div>
-        
 
-
-
-
-
-
-                
             </div>
         </div>
      </div>
 <hr>
-<script>
 
-    //체크박스 전체 선택 클릭 이벤트
-    function allChecked(target){
-
-        //전체 체크박스 버튼
-        const checkbox = document.getElementById('allCheckBox');
-
-        //전체 체크박스 버튼 체크 여부
-        const is_checked = checkbox.checked;
-
-        //전체 체크박스 제외한 모든 체크박스
-        if(is_checked){
-            //체크박스 전체 체크
-            chkAllChecked()
-        }
-
-        else{
-            //체크박스 전체 해제
-            chkAllUnChecked()
-        }
-    }
-
-    //자식 체크박스 클릭 이벤트
-    function chkClicked(){
-
-        //체크박스 전체개수
-        const allCount = document.querySelectorAll(".chk").length;
-
-        //체크된 체크박스 전체개수
-        const query = 'input[name="chk"]:checked'
-        const selectedElements = document.querySelectorAll(query)
-        const selectedElementsCnt = selectedElements.length;
-
-        //체크박스 전체개수와 체크된 체크박스 전체개수가 같으면 전체 체크박스 체크
-        if(allCount == selectedElementsCnt){
-             document.getElementById('allCheckBox').checked = true;
-        }
-
-        //같지않으면 전체 체크박스 해제
-        else{
-            document.getElementById('allCheckBox').checked = false;
-        }
-    }
-
-    //체크박스 전체 체크
-    function chkAllChecked(){
-        document.querySelectorAll(".chk").forEach(function(v, i) {
-            v.checked = true;
-        });
-    }
-
-    //체크박스 전체 체크 해제
-    function chkAllUnChecked(){
-        document.querySelectorAll(".chk").forEach(function(v, i) {
-            v.checked = false;
-        });
-    }
-
-    //글삭제
-    function boardDelete(){
-        //체크박스 체크된 항목
-        const query = 'input[name="chk"]:checked'
-        const selectedElements = document.querySelectorAll(query)
-
-        //체크박스 체크된 항목의 개수
-        const selectedElementsCnt = selectedElements.length;
-
-        if(selectedElementsCnt == 0){
-            alert("삭제할 항목을 선택해주세요.");
-            return false;
-        }
-
-/*         else{
-            if (confirm("정말로 삭제하시겠습니까?")) {
-
-                //배열생성
-                const arr = new Array(selectedElementsCnt);
-
-                document.querySelectorAll('input[name="chk"]:checked').forEach(function(v, i) {
-                    arr[i] = v.value;
-                });
-
-                const form = document.createElement('form');
-                form.setAttribute('method', 'post');        //Post 메소드 적용
-                form.setAttribute('action', 'admin_member_delete');
-
-                var input1 = document.createElement('input');
-                input1.setAttribute("type", "hidden");
-                input1.setAttribute("name", "memberIds");
-                input1.setAttribute("value", arr);
-                form.appendChild(input1);
-                console.log(form);
-                document.body.appendChild(form);
-                form.submit();
-            }
-        } */
-    }
-
-</script>
 </body>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

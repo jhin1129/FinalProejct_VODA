@@ -39,4 +39,6 @@ public class Product {
 	private String searchname;
 	
 	private String searchtype;
+	
+	private int porderqtt;
 }

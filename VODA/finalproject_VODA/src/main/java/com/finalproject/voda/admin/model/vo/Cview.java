@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cview {
 
-	private int cViewNo;
+	private int cviewno;
 
-	private Date cViewDate;
+	private Date cviewdate;
 	
-	private int cViewCount;
+	private int cviewcount;
+	
 }

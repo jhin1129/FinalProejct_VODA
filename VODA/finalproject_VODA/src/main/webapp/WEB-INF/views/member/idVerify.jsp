@@ -39,7 +39,10 @@
                     <div class="find_account8">
                         <div class="find_account9" id="m_id">
                         	 <c:forEach items="${ member }" var="member">
-                        		  ${member.m_id}
+                        		  ${ fn:substring(member.m_id,0,3) }
+                        		  <c:forEach begin="4" end="${ fn:length(member.m_id) }" step="1">
+							        *
+							      </c:forEach>
                         	 </c:forEach>	
                         </div>
                         <!-- 

@@ -3,47 +3,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@page import="java.util.Date" %>
+<% Date now = new Date(); %>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/product/product_order.css">
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script>   
-function requestPay() {
-	var IMP = window.IMP; // 생략 가능
-    IMP.init("imp63887533"); // 예: imp00000000
-    // IMP.request_pay(param, callback) 결제창 호출
-    IMP.request_pay({ // param
-        pg: "html5_inicis",
-        pay_method: "card",
-        merchant_uid: "ORD20180131-0000011",
-        name: "노르웨이 회전 의자",
-        amount: 64900,
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
-        buyer_tel: "010-4242-4242",
-        buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181"
-    }, function (rsp) { // callback
-        if (rsp.success) {
-        	var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-        } else {
-        	var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
-        }
-        alert(msg);
-    });
-  }
-</script>
+
 <div class="container">
+<form action="${ path }/order_insert" method="post" id="formid">
+<input type="hidden" name="pno" value="${ product.pno }">
+<input type="hidden" name="mno" value="${ loginMember.m_no }">
+
 	<section class="cart">
 		<table class="cart__list">
-			<form>
+			
+			<c:set var="rename" value="${ product.prenamefile }" />
 				<thead>
 					<tr>
 						<td><input type="checkbox"></td>
@@ -57,43 +34,19 @@ function requestPay() {
 					<tr class="cart__list__detail">
 						<td><input type="checkbox"></td>
 						<td><img
-							src="https://shop1.daumcdn.net/thumb/R500x500/?fname=http%3A%2F%2Fshop1.daumcdn.net%2Fshophow%2Fp%2FL14957584354.jpg%3Fut%3D20211005180923"></td>
-						<td><a href="#">카카오 공식 브랜드스토어</a>
-							<p>카카오프렌즈 라이언 인형 포근포근쿠션 라이언굿즈</p></td>
+							src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }"></td>
+						<td><a href="#">${product.pmadecompany}</a>
+							<p>${product.pname}</p></td>
 						<td class="cart__list__option">
-							<p>상품 주문 수량: 1개</p>
+							<p>상품 주문 수량: ${ product.porderqtt }개</p>
 							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
 						</td>
-						<td><span class="price">116,620원</span><br></td>
+						<td><span class="price">${product.pprice}</span><br></td>
 						<td>무료</td>
 					</tr>
-					<tr class="cart__list__detail">
-						<td style="width: 2%;"><input type="checkbox"></td>
-						<td style="width: 13%;"><img
-							src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg"
-							alt="magic mouse"></td>
-						<td style="width: 27%;"><a href="#">신세계몰</a>
-							<p>짱구는 식기 세트 그릇 굿즈 못말려 머그컵 귀여운 수입 밥그릇 짱구</p></td>
-						<td class="cart__list__option" style="width: 27%;">
-							<p>상품 주문 수량: 1개</p>
-							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
-						</td>
-						<td style="width: 15%;"><span class="price">88,900원</span><br>
-
-						</td>
-						<td style="width: 15%;">무료</td>
-					</tr>
 				</tbody>
-				<tfoot>
-					<tr>
-						<td colspan="3"><input type="checkbox">&nbsp;&nbsp;
-							<button class="btn btn-primary2 py-1">선택상품 삭제</button></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tfoot>
-			</form>
+				
+			
 		</table>
 
 		<br>
@@ -162,14 +115,14 @@ function requestPay() {
 							<th scope="row"><span class="important">받으실 곳</span></th>
 							<td class="member_address">
 								<div class="address_postcode">
-									<input type="text" name="receiverZonecode" readonly="readonly">
-									<input type="hidden" name="receiverZipcode"> <span
-										id="receiverZipcodeText" class="old_post_code"></span>
-									<button class="btn btn-search py-1">우편번호검색</button>
+									<input type="text" id="sample6_postcode" readonly="readonly">
+									<input type="hidden" name="receiverZipcode"> 
+									<span id="receiverZipcodeText" class="old_post_code"></span>
+									<button class="btn btn-search py-1" onclick="sample6_execDaumPostcode()">우편번호검색</button>
 								</div>
 								<div class="address_input">
-									<input type="text" name="receiverAddress" readonly="readonly">
-									<input type="text" name="receiverAddressSub">
+									<input type="text" id="sample6_address" readonly="readonly">
+									<input type="text" id="sample6_detailAddress">
 								</div>
 							</td>
 						</tr>
@@ -210,7 +163,7 @@ function requestPay() {
 					<tbody>
 						<tr>
 							<th scope="row">상품 합계 금액</th>
-							<td><strong id="totalGoodsPrice" class="order_payment_sum">1,490,000원</strong>
+							<td><strong id="totalGoodsPrice" class="order_payment_sum">${product.pprice}원</strong>
 							</td>
 						</tr>
 						<tr>
@@ -224,7 +177,7 @@ function requestPay() {
 								value="1,490,000"> <input type="hidden"
 								name="overseasSettlePrice" value="0"> <input
 								type="hidden" name="overseasSettleCurrency" value="KRW">
-								<strong id="totalSettlePrice" class="order_payment_sum">1,490,000</strong>원
+								<strong id="totalSettlePrice" class="order_payment_sum">${product.pprice}</strong>원
 							</td>
 						</tr>
 					</tbody>
@@ -293,13 +246,7 @@ function requestPay() {
 					<div class="payment_final">
 						<div class="payment_final_total">
 							<hr>
-							<dl>
-								<dt>최종 결제 금액</dt>
-								<dd>
-									<span><strong id="totalSettlePriceView">82,000</strong>원</span>
-								</dd>
-							</dl>
-							<hr>
+
 						</div>
 						<div class="payment_final_check">
 							<div class="form_element">
@@ -309,13 +256,80 @@ function requestPay() {
 							</div>
 						</div>
 						<hr>
+
+						
 						<div class="cart__mainbtns">
 							<button class="btn btn-back py-1">이전페이지</button>
-							<button class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
+							<button type="button" class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
 						</div>
 					</div>
 	</section>
+	</form>
 </div>
+<script>   
+
+function requestPay() {
+	var IMP = window.IMP; // 생략 가능
+    IMP.init("imp63887533"); // 예: imp00000000
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "html5_inicis",
+        pay_method: "kakaopay",
+        merchant_uid:  new Date().getTime(),
+        name: "${product.pname}",
+        amount: ${product.pprice},
+        buyer_email: "gildong@gmail.com",
+        buyer_name: "홍길동",
+        buyer_tel: "010-4242-4242",
+        buyer_addr: "서울특별시 강남구 신사동",
+        buyer_postcode: "01181"
+    }, function (rsp) { // callback
+        if (rsp.success) {
+        	var msg = '결제가 완료되었습니다.';
+            msg += '고유ID : ' + rsp.imp_uid;
+            msg += '상점 거래ID : ' + rsp.merchant_uid;
+            msg += '결제 금액 : ' + rsp.paid_amount;
+            msg += '카드 승인번호 : ' + rsp.apply_num;
+            
+            document.getElementById('formid').submit();
+			
+        } else {
+        	var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+        }
+        alert(msg);
+    });
+  }
+</script>
+<!-- 주소 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -9,20 +9,10 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-
-    <!-- Board CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
-    
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
-    
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-    
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -30,6 +20,154 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
+        
+           <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+        * {
+            font-family: Pretendard,
+                -apple-system, BlinkMacSystemFont,
+                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        }
+
+        .page-link,
+        .form-control {
+
+            box-shadow: none !important;
+        }
+
+        input:focus {
+            outline: none !important;
+        }
+
+
+        .btn {
+
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            /* 패딩은 주석하쇼 */
+            padding: 1px 0.38rem;
+
+
+        }
+
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+
+
+        }
+
+        table * {
+            font-size: 14.45px;
+            color: #000000;
+        }
+
+        .table thead th {
+            border-bottom: 1px;
+        }
+
+        .table {
+            margin-bottom: 0rem;
+        }
+
+
+        .table td,
+        .table th {
+            padding: 0.60rem;
+        }
+
+        .page-link {
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* pagination */
+        #pagination {
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        #pagination li {
+            display: inline
+        }
+
+        #pagination li a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 3px 7px;
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* Active and Hoverable Pagination */
+        #pagination li a {
+            border-radius: 5px;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s
+        }
+
+        #pagination li a.active {
+            background-color: rgb(73, 95, 233);
+            color: #fff
+        }
+
+        #pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        .display1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .display2 {
+            float: right;
+            margin-top: -90px;
+        }
+
+
+        /* 인풋, 폼태그 */
+        option {
+            font-size: 14.5px;
+        }
+
+        .form-control1 {
+            display: block;
+            height: 27.8px;
+            padding: 0.2rem 0.7rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
+
+
+        .td-hr {
+            pointer-events: none;
+        }
+    </style>
+    
+        <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
 
    
     <title>컨텐츠 관리</title>
@@ -58,42 +196,36 @@
                     <th scope="col">이미지</th>
                     <th scope="col" style="width: 10%">리뷰관리</th>
                     <th scope="col" style="width: 10%">상태수정</th>
-                    <th scope="col" style="width: 20%">
-                      <label class="checkbox-inline" style="line-height: 0px;">
-                        <input type="checkbox" id="allCheckBox" onclick="allChecked()">
-                      </label>
-                    </th>
+                    <th scope="col" style="width: 10%">비활성화</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
                       <th colspan="5">            
 				        <div class="search1 row my-4">
+				          <form action="${ path }/admin/admin_content_search" style="width: 100%;">
 				            <div class="col-12 row">
-				                <div class="col-xs-3 col-sm-3">
+				                <div>
 				                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
-				                        <option value="title" selected>제목</option>
-				                        <option value="title">내용</option>
-				                        <option value="title">제목+내용</option>
+				                        <option value="title" selected>컨텐츠명</option>
+				                        <option value="status">컨텐츠상태</option>
 				                    </select>
 				                </div>
 				
 				                <div class="col-xs-7 col-sm-7 pl-0">
 				                    <div class="input-group">
-				                        <input type="text" class="form-control1" style="font-size: 14.45px;">
+				                        <input name="keyword" type="text" class="form-control1" style="font-size: 14.45px;">
 				                        <span class="input-group-btn">
-				                            <button id="searchBtn" class="btn btn-greyc text-nowrap"
-				                                style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"
-				                                >
+				                            <button id="searchBtn" class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;">
 				                                <img src="${ path }/resources/img/community/search.png" style="height: 18px;">
 				                            </button>
 				                        </span>
 				                    </div>
             				    </div>
+            				 </div>
+            			   </form>
+            		     </div>
                       </th>
-                      <th colspan="1">
-                        <button type="button" class="btn btn-logoC btn-sm">비활성화</button>
-                        <button type="button" class="btn btn-greyC btn-sm">취소</button></th>
                   </tr>
                 </tfoot>
                 <tbody>
@@ -104,12 +236,7 @@
                     <td>${ content.c_pimg }</td>
                     <td><button type="button" class="btn btn-logoC btn-sm">관리</td>
                     <td><button type="button" class="btn btn-logoC btn-sm">수정</td>
-                    <td><div class="form-check">
-                      	  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    	  <label class="form-check-label" for="defaultCheck1">
-                      	  </label>
-                    	</div>
-                    </td>
+                    <td><button type="button" class="btn btn-logoC btn-sm">적용</td>
                   </tr>
                   </c:forEach>
                 </tbody>
@@ -119,10 +246,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_content?page=1">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_content?page=${ pageInfo.prevPage }">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -131,14 +258,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_member?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_content?page=${ status.current }">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_member?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_content?page=${ pageInfo.nextPage }">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_member?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_content?page=${ pageInfo.maxPage }">»</a></li>
             </ul>
 
           </div>

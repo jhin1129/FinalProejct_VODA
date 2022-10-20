@@ -8,16 +8,9 @@ import org.apache.ibatis.session.RowBounds;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.order.model.vo.Order;
 
 public interface MypageMapper {
-
-	List<Integer> selectLikesCNoList(int mNo);
-
-	List<Integer> selectReviewCNoList(int mNo);
-	
-	Contents selectContentsByCNo(@Param("cNo") int cNo);
-	
-	Contents selectContentsByCNoType(@Param("cNo") int cNo, @Param("type") String type);
 	
 	int selectFreeBoardCount(int m_no);
 	
@@ -32,6 +25,40 @@ public interface MypageMapper {
 	int updateMember(Member member);
 
 	int deleteMember(int m_no);
+
+	int selectFreeBoardSearchCount(@Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Board> selectFreeBoardSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	int selectQnaBoardSearchCount(@Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Board> selectQnaBoardSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectLikesAllList(int mNo);
+
+	List<Contents> selectLikesList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type);
+
+	List<Contents> selectReviewList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type);
+
+	int selectLikesCount(@Param("m_no") int m_no, @Param("type") String type);
+
+	int selectReviewCount(@Param("m_no") int m_no,  @Param("type") String type);
+
+	int selectLikesSearchCount(@Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectLikesSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType,
+			@Param("searchVal") String searchVal);
+
+	int selectReviewSearchCount(@Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType, @Param("searchVal") String searchVal);
+
+	List<Contents> selectReviewSearchList(RowBounds rowBounds, @Param("m_no") int m_no, @Param("type") String type, @Param("searchType") String searchType,
+			@Param("searchVal") String searchVal);
+
+	int updateMemberPwd(@Param("m_no") int m_no, @Param("password") String password);
+
+	int deleteDibsContent(@Param("m_no") int m_no, @Param("list") List<Integer> list);
+
+	List<Order> selectOrderListByMNo(int m_no);
 
 
 }

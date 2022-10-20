@@ -241,14 +241,20 @@ public class MemberController {
 				return mv;
 			}else {
 				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/findPwd");
+				mv.addObject("msg", "가입 시 등록한 아이디와 이메일을 입력해 주세요");
+				mv.addObject("location", "/member/findPwd" );
+				mv.setViewName("common/msg");
 				return mv;
 			}
-			}else {
-				ModelAndView mv = new ModelAndView();
-				mv.setViewName("member/findPwd");
-				return mv;
-			}
+			
+		} else {
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("msg", "가입 시 등록한 아이디와 이메일 입력해 주세요");
+			mv.addObject("location", "/member/findPwd" );
+			mv.setViewName("common/msg");
+			return mv;
+		}
+		
 		
 	}
 	
@@ -258,18 +264,20 @@ public class MemberController {
 							 @RequestParam(value="code") String code,
 							 @RequestParam(value = "num") String num,
 							 @RequestParam(value = "m_email") String m_email){
-		
 		if(code.equals(num)) {
-			
 			model.addObject("m_email", m_email);
 			model.setViewName("member/pwdReset");
 			return model;
 		}
 		else {
-			model.setViewName("member/verifyCode");
+			model.addObject("msg", "올바른 인증번호를 입력해 주세요 ");
+			model.addObject("location", "/member/findPwd");
+			model.setViewName("common/msg");
+//			model.setViewName("member/verifyCode");
 			return model;
 		}
 	} 
+	
 	
 	
 	@PostMapping("/pwdReset") // DB 비밀번호 업데이트
@@ -294,6 +302,7 @@ public class MemberController {
 		model.setViewName("common/msg");
 		return model;
 	}
+	
 	
 	
 		
@@ -337,19 +346,23 @@ public class MemberController {
 		
 		/* 카카오 URL */
 		String kakaoAuthUrl = kakaoLoginBO.getAuthorizationUrl(session);
-		System.out.println("카카오:" + kakaoAuthUrl);		
+		System.out.println("카카오:" + kakaoAuthUrl);	
+		
 		model.addAttribute("urlKakao", kakaoAuthUrl);	
 		
 		
 		return "member/login"; 		
 	}
+	
+	
 
 	
 	// 카카오 로그인 성공시 callback
 	@RequestMapping(value = "/kakaologin", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callbackKakao(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) 
+	public ModelAndView callbackKakao(ModelAndView model, @RequestParam String code, @RequestParam String state, HttpSession session) 
 			throws Exception {
 		System.out.println("로그인 성공 callbackKako");
+		
 		OAuth2AccessToken oauthToken;
 		oauthToken = kakaoLoginBO.getAccessToken(session, code, state);	
 		// 로그인 사용자 정보를 읽어온다
@@ -364,6 +377,38 @@ public class MemberController {
 		// 프로필 조회
 		String email = (String) response_obj.get("email");
 		String name = (String) response_obj2.get("nickname");
+		System.out.println(email + name + apiResult);
+
+		Member loginMember = null;
+		
+		// 아이디 여부 체크 
+		if(service.isDuplicateID(email)) { // 아이디가 중복된 게 있니? 
+			loginMember = service.findMemberById(email); 
+
+			model.addObject("loginMember", loginMember);
+			model.addObject("msg", "로그인에 성공하였습니다.");
+			model.addObject("location", "/");
+			
+		} else {
+			int result = 0;
+			
+			Member newMember = new Member();
+			newMember.setM_id(email);
+			newMember.setM_name(name);
+			result =  service.saveKakao(newMember);
+			
+			if(result > 0) {
+				loginMember = service.findMemberById(email); 
+
+				model.addObject("loginMember", loginMember);
+				model.addObject("msg", "로그인에 성공하였습니다.");
+				model.addObject("location", "/");
+			} else {
+				model.addObject("msg", "로그인에 실패하였습니다. 로그인 페이지로 돌아갑니다.");
+				model.addObject("location", "/member/login");
+			}
+			
+		}
 		
 		// 세션에 사용자 정보 등록
 		// session.setAttribute("islogin_r", "Y");
@@ -372,7 +417,11 @@ public class MemberController {
 		session.setAttribute("name", name);
 		System.out.println(email + name + apiResult);
 
-		return "redirect:/";
+		model.setViewName("common/msg");
+		return model;
 	}
+	
+	
+
     
 }

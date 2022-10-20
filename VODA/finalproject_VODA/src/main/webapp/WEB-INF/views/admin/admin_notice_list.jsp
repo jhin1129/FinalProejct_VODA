@@ -352,20 +352,7 @@
    </div>
   </div>
  </div>
- 
-<!-- <script>
-		$(document).ready(() => {
-			$("#searchBtn").on("click", () => {
-				var url = "${Path}admin_notice_list";		
-				url = url + "?searchType=" + $('#searchType').val();		
-				url = url + "&keyword=" + $('#keyword').val();		
-				location.href = url;		
-				console.log(url);
-			})
 
-		
-		});	
-</script> -->
 
 </body>
 

@@ -17,6 +17,25 @@
 		    V_COUNT 
 		FROM VISIT
 	</sql>	-->
+	<sql id="selectMemberSql">
+		SELECT
+		    M_NO, 
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE, 
+		    M_ADDRESS, 
+		    M_GENDER,
+		    M_BIRTH, 
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+		    M_DETAILADDRESS
+		FROM MEMBER
+	</sql>	
 	
 	<sql id="contentsListSql">
 		SELECT C_NO,
@@ -54,7 +73,6 @@
 		    M.M_ID
 		FROM BOARD B
 		JOIN MEMBER M ON (B.M_NO = M.M_NO)
-		WHERE B.B_STATUS = 'Y'
 	</sql>	 
 	
 	<sql id="NoticeListSql">
@@ -83,9 +101,9 @@
 	</resultMap>
 	
 	<resultMap type="Cview" id="CviewResultMap">
-		<id property="cViewNo" column="CV_NO"/>
-		<result property="cViewDate" column="CV_DATE"/>
-		<result property="cViewCount" column="CV_COUNT"/>
+		<id property="cviewno" column="CV_NO"/>
+		<result property="cviewdate" column="CV_DATE"/>
+		<result property="cviewcount" column="CV_COUNT"/>
 	</resultMap>
 
 	<resultMap type="JoinMember" id="JoinMemberResultMap">
@@ -101,17 +119,37 @@
 	</resultMap>
 	
 	<resultMap type="Member" id="MemberResultMap">
-		<id property="m_no" column="M_NO"/>
+		<id property="m_no" column="M_NO" />
 		<result property="m_id" column="M_ID"/>
+		<result property="m_password" column="M_PW"/>
+		<result property="m_name" column="M_NAME"/>
+		<result property="m_email" column="M_EMAIL"/>
+		<result property="m_phone" column="M_PHONE"/>
+		<result property="m_address" column="M_ADDRESS"/>
+		<result property="m_gender" column="M_GENDER"/>
+		<result property="m_birth" column="M_BIRTH"/>
 		<result property="m_joinDate" column="M_JOINDATE"/>
+		<result property="m_authorization" column="M_AUTHORIZATION"/>
 		<result property="m_status" column="M_STATUS"/>
+		<result property="m_joinWay" column="M_JOINWAY"/>	
+		<result property="m_postNum" column="M_POSTNUM"/>
+		<result property="m_detailAddress" column="M_DETAILADDRESS"/>
 	</resultMap>
 	
-	<resultMap type="Product" id="ProductResultMap">
+	<resultMap type="Product" id="ProductListResultMap">
 		<id property="pno" column="P_NO"/>
 		<result property="pname" column="P_NAME"/>
-		<result property="prenamefile" column="P_RENAMEFILE"/>
+		<result property="pprice" column="P_PRICE"/>
+		<result property="pqtt" column="P_QTT"/>
+		<result property="pcontents" column="P_CONTENTS"/>
+		<result property="pview" column="P_VIEW"/>
+		<result property="pdate" column="P_DATE"/>
 		<result property="pstatus" column="P_STATUS"/>
+		<result property="poriginfile" column="P_ORIGINFILE"/>
+		<result property="prenamefile" column="P_RENAMEFILE"/>
+		<result property="pcategory" column="P_CATEGORY"/>
+		<result property="pmadelocal" column="P_MADELOCAL"/>
+		<result property="pmadecompany" column="P_MADECOMPANY"/>
 	</resultMap>
 	
 	<resultMap type="Contents" id="contentsListResultMap">
@@ -162,8 +200,13 @@
 		<result property="noticeTopTitle" column="N_TOPTITLE"/>
 	</resultMap>
 	
-	
-	
+	<resultMap type="Monthlydata" id="MonthlyResultMap">
+		<result property="yeardata" column="YEARDATA"/>
+		<result property="monthdata" column="MONTHDATA"/>
+		<result property="cviewdata" column="CVIEWDATA"/>
+		<result property="joinmemberdata" column="JOINMEMBERDATA"/>
+		<result property="salesdata" column="SALESDATA"/>
+	</resultMap>
 	<!-- 대시보드 컨텐츠타입 전체 조회 -->
 	<select id="selectDashboardContentstypeData" resultMap="ContentstypeResultMap" parameterType="_int">
 		SELECT MOVIE,
@@ -191,6 +234,15 @@
 		WHERE TO_CHAR(CV_DATE, 'YYYYMMDD') = TO_CHAR(CURRENT_DATE,'YYYYMMDD')
 	</select>
 	
+	<!-- 대시보드 컨텐츠조회수 전체 조회 (그래프용) -->
+	<select id="selectDashboardCviewlistData" resultMap="CviewResultMap" parameterType="_int">
+		SELECT CV_NO,
+			   CV_DATE,
+			   CV_COUNT
+		FROM CVIEW
+		WHERE TO_CHAR(CV_DATE, 'MM') = TO_CHAR(#{viewmonth},'MM')
+	</select>
+	
 	<!-- 대시보드 매출액 전체 조회 -->
 	<select id="selectDashboardSalesData" resultMap="SalesResultMap" parameterType="_int">
 		SELECT S_NO,
@@ -200,7 +252,15 @@
 		WHERE TO_CHAR(S_DATE, 'YYYYMMDD') = TO_CHAR(CURRENT_DATE,'YYYYMMDD')
 	</select>
 
-	
+	<!-- 대시보드 월별데이터 전체 조회 -->
+	<select id="selectDashboardMonthlydataData" resultMap="MonthlyResultMap" parameterType="_int">
+		SELECT YEARDATA,
+			   MONTHDATA,
+			   CVIEWDATA,
+			   JOINMEMBERDATA,
+			   SALESDATA
+		FROM MONTHLYDATA
+	</select>
 
 	<!-- 회원관리테이블 전체 조회 -->
 	<select id="selectMemberCount" resultType="_int">
@@ -212,21 +272,51 @@
 		SELECT M_NO, 
 			   M_ID, 
 			   M_JOINDATE, 
-			   M_STATUS
+			   M_STATUS,
+			   M_AUTHORIZATION
 		FROM MEMBER
 	</select>
+	
+	<!-- 회원관리테이블 전체 조회 (검색 총 개수) -->
+	<select id="getMemberSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM MEMBER
+		<if test='searchType == "id"'>
+		WHERE 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			M_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
 
-	<!-- 회원 비활성화 -->
+	<!-- 회원관리테이블 전체 조회 (리스트) -->
+	<select id="getMemberSearchList" resultMap="MemberResultMap" parameterType="String">
+		SELECT * FROM MEMBER
+		<if test='searchType == "id"'>
+		WHERE 
+			M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			M_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>	
+
+
+	<!-- 회원 비활성화 (STATUS = 'N')-->
 	<update id="deleteMember" parameterType="map">
-		UPDATE MEMBER SET M_STATUS = #{memberStatus} WHERE M_NO = #{memberno}
+		UPDATE MEMBER SET M_STATUS = #{memberStatus} WHERE M_NO = #{m_no}
 	</update>
-
-	<!-- 컨텐츠 관리 테이블 전체 조회 -->
+	
+	
+	
+	<!-- 컨텐츠관리테이블 전체 조회 -->
 	<select id="selectContentCount" resultType="_int">
 		SELECT COUNT(*) FROM CONTENTS
 	</select>
 	
-	<!-- 컨텐츠 관리 테이블 전체 조회 정렬 -->
+	<!-- 컨텐츠관리테이블 전체 조회 정렬 -->
 	<select id="selectAllContent" resultMap="contentsListResultMap">
 		SELECT C_NO, 
 			   C_TITLE, 
@@ -234,6 +324,32 @@
 			   C_STATUS
 		FROM CONTENTS
 	</select>
+	
+	<!-- 컨텐츠관리테이블 전체 조회 (검색 총 개수) -->
+	<select id="getContentSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM CONTENTS
+		<if test='searchType == "title"'>
+		WHERE 
+			C_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			C_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 컨텐츠관리테이블 전체 조회 (리스트) -->
+	<select id="getContentSearchList" resultMap="contentsListResultMap" parameterType="String">
+		SELECT * FROM CONTENTS
+		<if test='searchType == "title"'>
+		WHERE 
+			C_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			C_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>	
 
 	<!-- 상품관리테이블 전체 조회 -->
 	<select id="selectProductCount" resultType="_int">
@@ -241,40 +357,158 @@
 	</select>
 
 	<!-- 상품관리테이블 전체 조회 정렬 -->
-	<select id="selectAllProduct" resultMap="ProductResultMap">
+	<select id="selectAllProduct" resultMap="ProductListResultMap">
 		SELECT P_NO, 
 			   P_NAME, 
 			   P_RENAMEFILE, 
-			   P_STATUS
+			   P_STATUS,
+			   P_CATEGORY
 		FROM PRODUCT
 		WHERE P_STATUS = 'Y'
 	</select>
 	
+	<!-- 상품관리테이블 전체 조회 (검색 총 개수) -->
+	<select id="getGoodsSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) FROM PRODUCT
+		<if test='searchType == "name"'>
+		WHERE 
+			P_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "title"'>
+		WHERE 
+			P_CATEGORY LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			P_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 상품관리테이블 전체 조회 (리스트) -->
+	<select id="getGoodsSearchList" resultMap="ProductListResultMap" parameterType="String">
+		SELECT * FROM PRODUCT
+		<if test='searchType == "name"'>
+		WHERE 
+			P_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "title"'>
+		WHERE 
+			P_CATEGORY LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE
+			P_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>	
+	
 	<!-- 자유게시판 전체 조회 -->
 	<select id="selectBoardCount" resultType="_int">
-		SELECT COUNT(*) FROM BOARD WHERE B_STATUS='Y'
-		AND B_TYPE = 'FREE'
+		SELECT COUNT(*) FROM BOARD
+		WHERE B_TYPE = 'FREE'
 	</select>
 	
 	<!-- 자유게시판 전체 조회 정렬 -->
 	<select id="selectAllBoard" resultMap="BoardResultMap">
 		<include refid="BoardListSql"></include>
-		AND B.B_TYPE = 'FREE'
+		WHERE B.B_TYPE = 'FREE'
 		ORDER BY B.B_NO DESC
 	</select>
+	
+	<!-- 자유게시판 전체 조회 (검색 총 개수) -->
+	<select id="getFreeboardSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) 
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_TYPE = 'FREE' 
+		<if test='searchType == "title"'>
+		AND	B.B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "writer"'>
+		AND	M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		AND	B_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 자유게시판 전체 조회 (리스트) -->
+	<select id="getFreeboardSearchList" resultMap="BoardResultMap" parameterType="String">
+		SELECT * 
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_TYPE = 'FREE' 
+		<if test='searchType == "title"'>
+		AND	B.B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "writer"'> 
+		AND	M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>	
 
 	<!-- 문의게시판 전체 조회 -->
 	<select id="selectQnaCount" resultType="_int">
-		SELECT COUNT(*) FROM BOARD WHERE B_STATUS='Y'
-		AND B_TYPE = 'QNA'
+		SELECT COUNT(*) FROM BOARD
+		WHERE B_TYPE = 'QNA'
 	</select>
 	
 	<!-- 문의게시판 전체 조회 정렬 -->
 	<select id="selectAllQna" resultMap="BoardResultMap">
 		<include refid="BoardListSql"></include>
-		AND B.B_TYPE = 'QNA'
+		WHERE B.B_TYPE = 'QNA'
 		ORDER BY B.B_NO DESC
 	</select>
+	
+	<!-- 문의게시판 전체 조회 (검색 총 개수) -->
+	<select id="getQnaSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) 
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_TYPE = 'QNA' 
+		<if test='searchType == "title"'>
+		AND	B.B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "writer"'>
+		AND	M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "Astatus"'>
+		AND	B.B_ANSWER_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+
+	<!-- 문의게시판 전체 조회 (리스트) -->
+	<select id="getQnaSearchList" resultMap="BoardResultMap" parameterType="String">
+		SELECT * 
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_TYPE = 'QNA' 
+		<if test='searchType == "title"'>
+		AND	B.B_TITLE LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "writer"'> 
+		AND	M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "Astatus"'>
+		AND	B.B_ANSWER_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>	
+	
+	<!-- 문의게시판 타입선택 조회 -->
+	<select id="selectQnaType" resultMap="BoardResultMap" parameterType="String">
+		SELECT * 
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_TYPE = 'QNA' AND B.B_ANSWERSTATUS = 'Y'
+	</select>
+	
 	
 	<!-- 공지사항 전체 조회 -->
 	<select id="selectNoticeCount" resultType="_int">
@@ -412,6 +646,18 @@
 			   CV_DATE,
 			   CV_COUNT
 		FROM CVIEW
-		ORDER BY CV_NO DESC
+		ORDER BY CV_DATE ASC
+	</select>
+
+	<!-- 통계페이지 조회수 전체 조회 리스트 -->
+	<select id="selectTotalmonthviewList" resultMap="CviewResultMap">
+		SELECT CV_NO,
+			   CV_DATE,
+			   CV_COUNT
+		FROM CVIEW
+		<if test='viewmonth == 09'>
+		WHERE TO_CHAR(CV_DATE, 'MM') = TO_CHAR(09,'MM')
+		</if>
+		ORDER BY CV_DATE ASC
 	</select>
 </mapper>
