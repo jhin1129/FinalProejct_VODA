@@ -87,8 +87,11 @@ public class AdminServiceImpl implements AdminService {
 	
 	// 회원 비활성화
 	@Override
-	public Member deleteMember() {
-		return mapper.updateNoticeStatus("N");
+	public int deleteMember(int mno, String memberStatus) {
+		int result = 0;
+		
+		result =  mapper.updateMemberStatus(mno, memberStatus);
+		return result;
 	}
 
 	// 컨텐츠 전체개수 카운트
@@ -123,6 +126,15 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.getContentSearchList(rowBounds, searchType, keyword);
 	}
 	
+	// 컨텐츠 비활성화
+	@Override
+	public int deleteContent(int cno, String contentStatus) {
+		int result = 0;
+		
+		result =  mapper.updateContentStatus(cno, contentStatus);
+		return result;
+	}
+	
 	// 상품 전체개수 카운트
 	@Override
 	public int getProductCount() {
@@ -155,6 +167,44 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.getGoodsSearchList(rowBounds, searchType, keyword);
 	}
 	
+	// 상품 비활성화
+	@Override
+	public int deleteGoods(int pno, String pstatus) {
+		int result = 0;
+		
+		result =  mapper.updateGoodsStatus(pno, pstatus);
+		return result;
+	}
+	
+	// 상품주문 전체개수 카운트
+	@Override
+	public int getOrderCount() {
+		return mapper.selectOrderCount();
+	}
+	// 상품주문 리스트 조회
+	@Override
+	public List<Product> getOrderList(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return mapper.selectAllOrder(rowBounds);	
+	}
+	// 상품주문 검색 카운트
+	@Override
+	public int getOrderSearchCount(String searchType, String keyword) {
+		return mapper.getOrderSearchCount(searchType, keyword);
+	}
+	// 상품주문 검색 리스트 
+	@Override
+	public List<Search> getOrderSearchList(PageInfo pageInfo, String searchType, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getOrderSearchList(rowBounds, searchType, keyword);
+	}
+
 	// 자유게시판 전체개수 카운트
 	@Override
 	public int getBoardCount() {
@@ -187,6 +237,16 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.getFreeboardSearchList(rowBounds, searchType, keyword);
 	}
 	
+	// 자유게시판 비활성화
+	@Override
+	public int deleteboard(int bno, String bstatus) {
+		int result = 0;
+		
+		result =  mapper.updateFreeboardStatus(bno, bstatus,"FREE");
+		result =  mapper.updateQnaStatus(bno, bstatus,"QNA");
+		return result;
+	}
+	
 	// 문의게시판 전체개수 카운트
 	@Override
 	public int getQnaCount() {
@@ -217,7 +277,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.getQnaSearchList(rowBounds, searchType, keyword);
 	}
-
+	
 	// 공지사항 전체개수 카운트
 	@Override
 	public int getNoticeCount() {
@@ -298,30 +358,49 @@ public class AdminServiceImpl implements AdminService {
 	public int getTotalviewCount() {
 		return mapper.selectTotalviewCount();
 	}
+	// 통계페이지 조회수 리스트
 	@Override
-	public List<Cview> getTotalviewList(PageInfo pageInfo) {
+	public List<Cview> getTotalviewList(PageInfo pageInfo, String no) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
-		return mapper.selectTotalviewList(rowBounds);	
+		return mapper.selectTotalviewList(rowBounds, no);	
 	}
+	// 통계페이지 (매출액)
 	@Override
-	public List<Cview> getTotalmonthviewList(PageInfo pageInfo, int viewmonth) {
+	public int getTotalsalesCount() {
+		return mapper.selectTotalsalesCount();
+	}
+	// 통계페이지 매출액 리스트
+	@Override
+	public List<Sales> getTotalsalesList(PageInfo pageInfo, String no) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		
-		return mapper.selectTotalmonthviewList(rowBounds, viewmonth);	
+
+		return mapper.selectTotalsalesList(rowBounds, no);	
+	}
+	// 통계페이지 (가입자수)	
+	@Override
+	public int getTotaljoinCount() {
+		return mapper.selectTotaljoinCount();
+	}
+	// 통계페이지 사입자수 리스트
+	@Override
+	public List<JoinMember> getTotaljoinList(PageInfo pageInfo, String no) {
+		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return mapper.selectTotaljoinList(rowBounds, no);	
 	}
 	
 	@Override
 	public Board getQNAboardType() {
-		return mapper.selectQnaType();
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
-
 
 
 

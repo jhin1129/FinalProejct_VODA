@@ -34,27 +34,36 @@ public interface AdminMapper {
 	List<Member> selectAllMember(RowBounds rowBounds);
 	int getMemberSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getMemberSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
-	int deleteMember(@Param("memberno") long id, @Param("memberStatus") String string);
+	int updateMemberStatus(@Param("mno") int mno, @Param("memberStatus") String memberStatus);
 
 	int selectContentCount();
 	List<Content> selectAllContent(RowBounds rowBounds);
 	int getContentSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getContentSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateContentStatus(@Param("cno") int cno, @Param("contentStatus") String contentStatus);
 
 	int selectProductCount();
 	List<Product> selectAllProduct(RowBounds rowBounds);
 	int getGoodsSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getGoodsSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateGoodsStatus(@Param("pno") int pno, @Param("pstatus") String pstatus);
 
+	int selectOrderCount();
+	List<Product> selectAllOrder(RowBounds rowBounds);
+	int getOrderSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
+	List<Search> getOrderSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	
 	int selectBoardCount();
 	List<Board> selectAllBoard(RowBounds rowBounds);
 	int getFreeboardSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getFreeboardSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateFreeboardStatus(@Param("bno") int bno, @Param("bstatus") String bstatus, @Param("btype") String btype);
 
 	int selectQnaCount();
 	List<Board> selectAllQna(RowBounds rowBounds);
 	int getQnaSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getQnaSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateQnaStatus(@Param("bno") int bno, @Param("bstatus") String bstatus, @Param("btype") String btype);
 	
 	int selectNoticeCount();
 	List<Notice> selectAllNotice(RowBounds rowBounds);
@@ -70,12 +79,15 @@ public interface AdminMapper {
 	int updateNoticeStatus(@Param("noticeno") int no, @Param("noticeStatus") String string);
 	
 	int selectTotalviewCount();
-	List<Cview> selectTotalviewList(RowBounds rowBounds);
-	List<Cview> selectTotalmonthviewList(RowBounds rowBounds, @Param("viewmonth") int viewmonth);
-	
-	Member updateNoticeStatus( @Param("memberStatus") String string);
-	
+	List<Cview> selectTotalviewList(RowBounds rowBounds, @Param("no") String no);
+	int selectTotalsalesCount();
+	List<Sales> selectTotalsalesList(RowBounds rowBounds, String no);
+	int selectTotaljoinCount();
+	List<JoinMember> selectTotaljoinList(RowBounds rowBounds, String no);
+
 	Board selectQnaType();
+
+
 
 
 

@@ -3,6 +3,7 @@ package com.finalproject.voda.admin.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -66,6 +67,8 @@ public class AdminController {
 		Cview cview = null;
 		Sales sales = null;
 		List<Monthlydata> monthlydata = null;
+		
+		
 		
 		contentstype = service.getDashboardContentstypeData();
 		joinmember = service.getDashboardJoinmemberData();
@@ -133,28 +136,24 @@ public class AdminController {
 	}
 	
 //	회원 비활성화 처리
-	@PostMapping("/admin_member_delete")
-	public ModelAndView adminMemberDelete(ModelAndView model){ 
+	@GetMapping("/admin_member_delete")
+	public ModelAndView adminMemberDelete(ModelAndView model, 
+			@RequestParam(name="mno") int mno,
+			@RequestParam(name="memberStatus") String memberStatus
+			){ 
+		int result = 0;
 
-		Member member = null;
-
-			member = service.deleteMember();
-			
-//			if(result > 0) {
-//				model.addObject("msg", "회원 비활성화");
-//				model.addObject("location", "/admin/admin_notice_list");	
-//			} else {
-//				model.addObject("msg", "회원 비활성화 해제");
-//				model.addObject("location", "/admin/admin_notice_detail?no=");	
-//			}
-//		model.setViewName("common/msg");
-			
-			model.addObject("member",member);
-			model.setViewName("/admin/admin_member_delete");
+		result = service.deleteMember(mno,memberStatus);
+		
+			if(result > 0) {
+				model.addObject("msg", "회원 상태 변경");
+				model.addObject("location", "/admin/admin_member");	
+			} 
+			model.setViewName("common/msg");
 		return model;
 	}
 
-	//	컨텐츠정보 관리 페이지
+//	컨텐츠정보 관리 페이지
 	@GetMapping("/admin_content")
 	public ModelAndView adminContent(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Content> list = null;
@@ -172,7 +171,7 @@ public class AdminController {
 		return model;
 	}
 	
-	// 컨텐츠정보 리스트 검색
+// 컨텐츠정보 리스트 검색
 	@GetMapping("/admin_content_search")
 	public ModelAndView ContentSearch(ModelAndView model, 
 			@RequestParam(value = "page", defaultValue = "1") int page,
@@ -196,6 +195,25 @@ public class AdminController {
 		return model;
 	}
 	
+//	컨텐츠 비활성화 처리
+	@GetMapping("/admin_content_delete")
+	public ModelAndView adminContentDelete(ModelAndView model, 
+			@RequestParam(name="cno") int cno,
+			@RequestParam(name="contentStatus") String contentStatus
+			){ 
+		
+		int result = 0;
+
+		result = service.deleteContent(cno,contentStatus);
+		
+			
+			if(result > 0) {
+				model.addObject("msg", "컨텐츠 상태 변경");
+				model.addObject("location", "/admin/admin_content");	
+			} 
+			model.setViewName("common/msg");
+		return model;
+	}
 	
 //	상품관리 페이지
 	@GetMapping("/admin_goods")
@@ -238,19 +256,66 @@ public class AdminController {
 		
 		return model;
 	}
-
-//	인물관리 페이지
-//	@GetMapping("/admin_people")
-//	public String adminPeople() {
-//		
-//		return "/admin/admin_people";
-//	}
 	
-//	상품 주문 관리 페이지
-	@GetMapping("/admin_goods_order")
-	public String adminGoodsOrder() {
+//	상품 비활성화 처리
+	@GetMapping("/admin_goods_delete")
+	public ModelAndView adminGoodsDelete(ModelAndView model, 
+			@RequestParam(name="pno") int pno,
+			@RequestParam(name="pstatus") String pstatus
+			){ 
 		
-		return "/admin/admin_goods_order";
+		int result = 0;
+
+		result = service.deleteGoods(pno,pstatus);
+			
+			if(result > 0) {
+				model.addObject("msg", "상품 상태 변경");
+				model.addObject("location", "/admin/admin_goods");	
+			} 
+			model.setViewName("common/msg");
+		return model;
+	}
+	
+//	상품주문관리 페이지
+	@GetMapping("/admin_goods_order")
+	public ModelAndView adminGoodsOrder(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Product> list = new ArrayList<Product>();
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getOrderCount(), 10);
+		list = service.getOrderList(pageInfo);
+		
+		System.out.println(list);
+		
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);	
+		model.setViewName("/admin/admin_goods_order");
+		
+		return model;
+	}
+	
+	// 상품주문관리 페이지 검색
+	@GetMapping("/admin_goods_order_search")
+	public ModelAndView adminGoodsOrderSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String searchType,
+			@RequestParam String keyword) {
+
+		List<Search> search = new ArrayList<Search>();
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getOrderSearchCount(searchType, keyword), 10);
+		search = service.getOrderSearchList(pageInfo, searchType, keyword);
+				
+		System.out.println(search);
+
+		model.addObject("search", search);
+		model.addObject("searchType", searchType);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("admin/admin_goods_order_search");
+		
+		return model;
 	}
 
 //	자유게시판 리스트
@@ -295,7 +360,37 @@ public class AdminController {
 		
 		return model;
 	}
-	
+
+//	자유,문의게시글 비활성화 처리
+	@GetMapping("/admin_board_delete")
+	public ModelAndView adminBoardDelete(ModelAndView model, 
+			@RequestParam(name="bno") int bno,
+			@RequestParam(name="bstatus") String bstatus,
+			@RequestParam(name="btype", required = false) String btype
+			){ 
+		
+		int result = 0;
+
+		result = service.deleteboard(bno,bstatus);
+		
+		System.out.println("btype 확인 " + btype);
+		System.out.println("result 확인 " + result);
+		
+			if(result > 0) {
+				if(btype.equals("FREE")) {
+				model.addObject("msg", "자유게시글 상태 변경");
+				model.addObject("location", "/admin/admin_freeboard");
+				} else if 
+				(btype.equals("QNA")) {
+				model.addObject("msg", "문의게시글 상태 변경");
+				model.addObject("location", "/admin/admin_qna");
+				}
+			} 
+			
+			model.setViewName("common/msg");
+		return model;
+	}	
+
 //	문의게시판 리스트
 	@GetMapping("/admin_qna") 
 	public ModelAndView qnaList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -658,18 +753,20 @@ public class AdminController {
 	
 //	통계 리스트 (조회수)
 	@GetMapping("/admin_total_views") 
-	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page
+			,@RequestParam String no) {
 		List<Cview> list = null;
 		List<Monthlydata> monthlydata = null;
 		PageInfo pageInfo = null;
 		
 		
 		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 31);
-		list = service.getTotalviewList(pageInfo);
+		list = service.getTotalviewList(pageInfo, no);
 		monthlydata = service.getDashboardMonthlydataData();
 		
 		System.out.println(list);
 		System.out.println(monthlydata);
+		System.out.println("no 체크" + no);
 		
 		model.addObject("monthlydata",monthlydata);
 		model.addObject("list", list);
@@ -679,40 +776,54 @@ public class AdminController {
 		return model;
 	}
 	
-//	통계 리스트 (조회수 월별)
-	@GetMapping("/admin_total_monthviews") 
-	public ModelAndView adminTotalViews(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page,
-			@RequestParam int viewmonth) {
-		List<Cview> list = null;
-		
+//	통계 리스트 (매출액)
+	@GetMapping("/admin_total_sales") 
+	public ModelAndView adminTotalSales(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page
+			,@RequestParam String no) {
+		List<Sales> list = null;
+		List<Monthlydata> monthlydata = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getTotalviewCount(), 31);
-		list = service.getTotalmonthviewList(pageInfo,viewmonth);
+		
+		pageInfo = new PageInfo(page, 10, service.getTotalsalesCount(), 31);
+		list = service.getTotalsalesList(pageInfo, no);
+		monthlydata = service.getDashboardMonthlydataData();
 		
 		System.out.println(list);
+		System.out.println(monthlydata);
 		
+		model.addObject("monthlydata",monthlydata);
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);	
-		model.setViewName("/admin/admin_total_monthviews");
+		model.setViewName("/admin/admin_total_sales");
 		
 		return model;
-	}
-
-//	통계 리스트 (판매량순)
-	@GetMapping("/admin_total_sales") 
-	public String totalSales() {
-		
-		return "/admin/admin_total_sales"; 
 	}
 	
 //	통계 리스트 (가입자수)
 	@GetMapping("/admin_total_join") 
-	public String totalJoin() {
+	public ModelAndView adminTotalJoinmember(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page
+			,@RequestParam String no) {
+		List<JoinMember> list = null;
+		List<Monthlydata> monthlydata = null;
+		PageInfo pageInfo = null;
 		
-		return "/admin/admin_total_join"; 
+		
+		pageInfo = new PageInfo(page, 10, service.getTotaljoinCount(), 31);
+		list = service.getTotaljoinList(pageInfo, no);
+		monthlydata = service.getDashboardMonthlydataData();
+		
+		System.out.println(list);
+		System.out.println(monthlydata);
+		
+		model.addObject("monthlydata",monthlydata);
+		model.addObject("list", list);
+		model.addObject("pageInfo", pageInfo);	
+		model.setViewName("/admin/admin_total_join");
+		
+		return model;
 	}
-
+	
 
 
 

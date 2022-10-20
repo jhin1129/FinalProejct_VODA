@@ -152,6 +152,26 @@
 		<result property="pmadecompany" column="P_MADECOMPANY"/>
 	</resultMap>
 	
+	<resultMap type="Order" id="OrderResultMap">
+		<id property="mno" column="M_NO"/>
+		<id property="payno" column="PAY_NO"/>
+		<result property="odate" column="O_DATE"/>
+		<result property="oadress" column="O_ADRESS"/>
+		<result property="omessage" column="O_MESSAGE"/>
+		<result property="oqtt" column="O_QTT"/>
+		<collection property="productList" javaType="arraylist" resultMap="ProductListResultMap"/>
+		<collection property="pay" resultMap="PayResultMap"/>
+		<collection property="member" resultMap="MemberResultMap"/>
+	</resultMap>
+	
+	<resultMap type="Pay" id="PayResultMap">
+		<result property="paymerchant" column="PAY_MERCHANT"/>
+		<result property="paymethod" column="PAY_METHOD"/>
+		<result property="payprice" column="PAY_PRICE"/>
+		<result property="patstatus" column="PAY_STATUS"/>
+		<result property="paydate" column="PAY_DATE"/>
+	</resultMap>
+	
 	<resultMap type="Contents" id="contentsListResultMap">
 		<id property="c_no" column="C_NO"/>
 		<result property="c_title" column="C_TITLE"/>
@@ -304,11 +324,16 @@
 	</select>	
 
 
-	<!-- 회원 비활성화 (STATUS = 'N')-->
-	<update id="deleteMember" parameterType="map">
-		UPDATE MEMBER SET M_STATUS = #{memberStatus} WHERE M_NO = #{m_no}
+	<!-- 회원 비활성화 (STATUS 토글)-->
+	<update id="updateMemberStatus" parameterType="map">
+		UPDATE MEMBER 
+		<if test='memberStatus == "Y"'>
+		SET M_STATUS = 'N' WHERE M_NO = #{mno}
+		</if>
+		<if test='memberStatus == "N"'>
+		SET M_STATUS = 'Y' WHERE M_NO = #{mno}
+		</if>
 	</update>
-	
 	
 	
 	<!-- 컨텐츠관리테이블 전체 조회 -->
@@ -351,6 +376,17 @@
 		</if>
 	</select>	
 
+	<!-- 컨텐츠 비활성화 (STATUS = 토글)-->
+	<update id="updateContentStatus" parameterType="map">
+		UPDATE CONTENTS 
+		<if test='contentStatus == "Y"'>
+		SET C_STATUS = 'N' WHERE C_NO = #{cno}
+		</if>
+		<if test='contentStatus == "N"'>
+		SET C_STATUS = 'Y' WHERE C_NO = #{cno}
+		</if>
+	</update>
+
 	<!-- 상품관리테이블 전체 조회 -->
 	<select id="selectProductCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT
@@ -364,7 +400,6 @@
 			   P_STATUS,
 			   P_CATEGORY
 		FROM PRODUCT
-		WHERE P_STATUS = 'Y'
 	</select>
 	
 	<!-- 상품관리테이블 전체 조회 (검색 총 개수) -->
@@ -400,6 +435,98 @@
 			P_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
 	</select>	
+
+	<!-- 상품 비활성화 (STATUS = 토글)-->
+	<update id="updateGoodsStatus" parameterType="map">
+		UPDATE PRODUCT 
+		<if test='pstatus == "Y"'>
+		SET P_STATUS = 'N' WHERE P_NO = #{pno}
+		</if>
+		<if test='pstatus == "N"'>
+		SET P_STATUS = 'Y' WHERE P_NO = #{pno}
+		</if>
+	</update>
+	
+	<!-- 상품주문 총개수 -->
+	<select id="selectOrderCount" resultType="_int">
+		SELECT COUNT(*) FROM ORDERS
+	</select>
+	
+	<!-- 상품주문 리스트 -->
+	<select id="selectAllOrder" resultMap="OrderResultMap">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS,
+	        M.M_ID
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		JOIN MEMBER M ON (O.M_NO = M.M_NO)
+		ORDER BY O.O_DATE DESC
+	</select>
+	
+	
+	<!-- 상품주문 검색 총개수 -->
+	<select id="getOrderSearchCount" resultType="_int" parameterType="String">
+		SELECT COUNT(*) 
+		FROM ORDERS O
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		JOIN MEMBER M ON (O.M_NO = M.M_NO)
+		<if test='searchType == "title"'>
+		WHERE P.P_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "member"'>
+		WHERE M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE PA.PAY_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
+	<!-- 상품주문 검색 리스트 -->
+	<select id="getOrderSearchList" resultMap="OrderResultMap" parameterType="String">
+		SELECT O.M_NO,
+	        O.PAY_NO,
+	        O.O_DATE,
+	        O.O_ADRESS,
+	        O.O_MESSAGE,
+	        P.P_NO,
+	        P.P_NAME,
+	        P.P_PRICE,
+	        O.O_QTT,
+	        P.P_RENAMEFILE,
+            PA.PAY_MERCHANT,
+	        PA.PAY_METHOD,
+	        PA.PAY_PRICE,
+	        PA.PAY_STATUS,
+	        M.M_ID
+			FROM ORDERS O 
+		JOIN PRODUCT P ON (O.P_NO = P.P_NO)
+		JOIN PAY PA ON (O.PAY_NO = PA.PAY_NO)
+		JOIN MEMBER M ON (O.M_NO = M.M_NO)
+		<if test='searchType == "title"'>
+		WHERE P.P_NAME LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "member"'>
+		WHERE M.M_ID LIKE '%' || #{keyword} || '%'
+		</if>
+		<if test='searchType == "status"'>
+		WHERE PA.PAY_STATUS LIKE '%' || #{keyword} || '%'
+		</if>
+	</select>
+	
 	
 	<!-- 자유게시판 전체 조회 -->
 	<select id="selectBoardCount" resultType="_int">
@@ -447,6 +574,17 @@
 		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
 	</select>	
+	
+	<!-- 자유게시판 게시글 비활성화 (STATUS = 토글)-->
+	<update id="updateFreeboardStatus" parameterType="map">
+		UPDATE BOARD 
+		<if test='bstatus == "Y" and btype == "FREE"'>
+		SET B_STATUS = 'N' WHERE B_NO = #{bno}
+		</if>
+		<if test='bstatus == "N" and btype == "FREE"'>
+		SET B_STATUS = 'Y' WHERE B_NO = #{bno}
+		</if>
+	</update>
 
 	<!-- 문의게시판 전체 조회 -->
 	<select id="selectQnaCount" resultType="_int">
@@ -500,6 +638,17 @@
 		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
 	</select>	
+
+	<!-- 문의게시판 게시글 비활성화 (STATUS = 토글)-->
+	<update id="updateQnaStatus" parameterType="map">
+		UPDATE BOARD 
+		<if test='bstatus == "Y" and btype == "QNA"'>
+		SET B_STATUS = 'N' WHERE B_NO = #{bno}
+		</if>
+		<if test='bstatus == "N" and btype == "QNA"'>
+		SET B_STATUS = 'Y' WHERE B_NO = #{bno}
+		</if>
+	</update>
 	
 	<!-- 문의게시판 타입선택 조회 -->
 	<select id="selectQnaType" resultMap="BoardResultMap" parameterType="String">
@@ -646,18 +795,38 @@
 			   CV_DATE,
 			   CV_COUNT
 		FROM CVIEW
+		WHERE TO_CHAR(CV_DATE,'MM') = ${no}
 		ORDER BY CV_DATE ASC
+	</select>
+	
+	<!-- 통계페이지 매출액 전체 조회 개수 -->
+	<select id="selectTotalsalesCount" resultType="_int">
+		SELECT COUNT(*) FROM SALES
+	</select>
+	
+	<!-- 통계페이지 매출액 전체 조회 리스트 -->
+	<select id="selectTotalsalesList" resultMap="SalesResultMap">
+		SELECT S_NO,
+			   S_DATE,
+			   S_COUNT
+		FROM SALES
+		WHERE TO_CHAR(S_DATE,'MM') = ${no}
+		ORDER BY S_DATE ASC
+	</select>
+	
+	<!-- 통계페이지 가입자수 전체 조회 개수 -->
+	<select id="selectTotaljoinCount" resultType="_int">
+		SELECT COUNT(*) FROM JOINMEMBER
+	</select>
+	
+	<!-- 통계페이지 가입자수 전체 조회 리스트 -->
+	<select id="selectTotaljoinList" resultMap="JoinMemberResultMap">
+		SELECT J_NO,
+			   J_DATE,
+			   J_COUNT
+		FROM JOINMEMBER
+		WHERE TO_CHAR(J_DATE,'MM') = ${no}
+		ORDER BY J_DATE ASC
 	</select>
 
-	<!-- 통계페이지 조회수 전체 조회 리스트 -->
-	<select id="selectTotalmonthviewList" resultMap="CviewResultMap">
-		SELECT CV_NO,
-			   CV_DATE,
-			   CV_COUNT
-		FROM CVIEW
-		<if test='viewmonth == 09'>
-		WHERE TO_CHAR(CV_DATE, 'MM') = TO_CHAR(09,'MM')
-		</if>
-		ORDER BY CV_DATE ASC
-	</select>
 </mapper>

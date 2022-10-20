@@ -68,15 +68,15 @@
 				
 				
                 <tbody>
- 	             <c:if test="${ empty list }">
+ 	             <c:if test="${ empty search }">
 					<tr>
 						<td colspan="9" style="text-align: center;">
 							조회된 게시글이 없습니다.
 						</td>
 					</tr>	
 				 </c:if> 
-                  <c:if test="${ not empty list }"> 	 
-	                <c:forEach var="order" items="${ list }">
+                  <c:if test="${ not empty search }"> 	 
+	                <c:forEach var="order" items="${ search }">
                     <tr style="text-align: center;">
                         <td id="td">${ order.payno }</td>
                         <td id="td"><fmt:formatDate value="${ order.odate }" type="date"/></td>
@@ -107,7 +107,7 @@
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>상품명</option>
-                        <option value="member">구매자</option>
+                        <option value="">구매자</option>
                         <option value="status">주문현황</option>
                     </select>
                 </div>

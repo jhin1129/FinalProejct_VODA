@@ -28,23 +28,31 @@ public interface AdminService {
 	List<Member> getMemberList(PageInfo pageInfo);
 	int getMemberSearchCount(String searchType, String keyword);
 	List<Search> getMemberSearchList(PageInfo pageInfo, String searchType, String keyword);
+	int deleteMember(int mno, String memberStatus);
 
-	Member deleteMember();
 
 	int getContentCount();
 	List<Content> getContentList(PageInfo pageInfo);
 	int getContentSearchCount(String searchType, String keyword);
 	List<Search> getContentSearchList(PageInfo pageInfo, String searchType, String keyword);	
+	int deleteContent(int cno, String contentStatus);
 
 	int getProductCount();
 	List<Product> getProductList(PageInfo pageInfo);
 	int getGoodsSearchCount(String searchType, String keyword);
 	List<Search> getGoodsSearchList(PageInfo pageInfo, String searchType, String keyword);
+	int deleteGoods(int pno, String pstatus);
+
+	int getOrderCount();
+	List<Product> getOrderList(PageInfo pageInfo);
+	int getOrderSearchCount(String searchType, String keyword);
+	List<Search> getOrderSearchList(PageInfo pageInfo, String searchType, String keyword);
 	
 	int getBoardCount();
 	List<Board> getBoardList(PageInfo pageInfo);
 	int getFreeboardSearchCount(String searchType, String keyword);
 	List<Search> getFreeboardSearchList(PageInfo pageInfo, String searchType, String keyword);
+	int deleteboard(int bno, String bstatus);
 	
 	int getQnaCount();
 	List<Board> getQnaList(PageInfo pageInfo);
@@ -61,11 +69,15 @@ public interface AdminService {
 	int deleteNotice(int no);
 	
 	int getTotalviewCount();
-	List<Cview> getTotalviewList(PageInfo pageInfo);
-	List<Cview> getTotalmonthviewList(PageInfo pageInfo, int viewmonth);
+	List<Cview> getTotalviewList(PageInfo pageInfo, String no);
+	int getTotalsalesCount();
+	List<Sales> getTotalsalesList(PageInfo pageInfo, String no);
+	int getTotaljoinCount();
+	List<JoinMember> getTotaljoinList(PageInfo pageInfo, String no);
 	
 	
 	Board getQNAboardType();
+
 	
 
 
