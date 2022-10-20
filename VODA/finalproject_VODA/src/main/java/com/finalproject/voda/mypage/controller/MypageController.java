@@ -82,6 +82,7 @@ public class MypageController {
 	@GetMapping("/updateMember")
 	public ModelAndView updateMember(ModelAndView model) {
 		
+		model.addObject("type", "updateMember");
 		model.setViewName("mypage/mypage_pwdCheck");
 		
 		return model;
@@ -126,15 +127,24 @@ public class MypageController {
 	@PostMapping("/pwdCheck")
 	public ModelAndView pwdCheck(ModelAndView model,
 								@SessionAttribute("loginMember") Member loginMember,
-								@RequestParam(value = "userpwd") String pwd) {
+								@RequestParam(value = "userpwd") String pwd,
+								@RequestParam(value = "type") String type) {
 		
 		
 		if(passwordEncoder.matches(pwd, loginMember.getM_password())) {
-			model.setViewName("mypage/mypage_updateInfo");
+			if(type.equals("updateMember")) {
+				model.setViewName("mypage/mypage_updateInfo");
+			} else if(type.equals("deleteMember")) {
+				model.setViewName("mypage/mypage_deleteMember");
+			}
 		} else {
+			if(type.equals("updateMember")) {
+				model.addObject("location", "/mypage/updateMember");
+			} else {
+				model.addObject("location", "/mypage/main");
+			}
 			model.addObject("msg", "비밀번호가 일치하지 않습니다.");
-			model.addObject("location", "/mypage/updateMember");
-			model.setViewName("common/msg");	
+			model.setViewName("common/msg");
 		}
 		
 		return model;
@@ -177,7 +187,8 @@ public class MypageController {
 	@GetMapping("/deleteMember")
 	public ModelAndView deleteMember(ModelAndView model) {
 		
-		model.setViewName("mypage/mypage_deleteMember");
+		model.addObject("type", "deleteMember");
+		model.setViewName("mypage/mypage_pwdCheck");
 		
 		return model;
 	}
