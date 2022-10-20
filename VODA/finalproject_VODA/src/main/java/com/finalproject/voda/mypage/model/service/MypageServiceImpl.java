@@ -46,6 +46,12 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
+	public int getReviewAllCount(int m_no) {
+		// TODO Auto-generated method stub
+		return mapper.selectReviewAllCount(m_no);
+	}
+	
+	@Override
 	public int getReviewCount(int m_no, String type) {
 		// TODO Auto-generated method stub
 		return mapper.selectReviewCount(m_no, type);
@@ -204,7 +210,6 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		return mapper.selectOrderByPayNo(payNo);
 	}
-
 
 
 

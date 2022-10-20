@@ -58,5 +58,7 @@ public interface MypageService {
 
 	Order getOrderByPayNo(int payNo);
 
+	int getReviewAllCount(int m_no);
+
 
 }

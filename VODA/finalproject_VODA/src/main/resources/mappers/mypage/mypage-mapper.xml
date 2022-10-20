@@ -233,6 +233,22 @@
         ORDER BY C.C_NO DESC
 	</select>
 	
+	<select id="selectReviewAllCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM (
+			SELECT
+			<include refid="contentsListSql"/>
+			,ROUND(AVG(RATE_STAR),1)
+			FROM CONTENTS C
+	        LEFT OUTER JOIN RATE R
+	        ON C.C_NO = R.C_NO      
+	       	WHERE C.C_STATUS = 'Y' 
+	       	AND R.M_NO = #{m_no}
+	        GROUP BY 
+	        <include refid="contentsListSql"/>
+	        ORDER BY C.C_NO DESC
+        )
+	</select>
+	
 	<select id="selectReviewCount" resultType="_int">
 		SELECT COUNT(*) FROM (
 			SELECT

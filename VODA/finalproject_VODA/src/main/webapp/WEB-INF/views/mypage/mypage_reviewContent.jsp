@@ -134,19 +134,19 @@
                         </div>
                         
 						<c:if test="${ type == 'TV' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=TV'">
 						</c:if>
 						<c:if test="${ type != 'TV' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=드라마'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=TV'">
 						</c:if>                    	
                             TV
                         </div>
 
 						<c:if test="${ type == '도서' }">
-							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+							<div class="col-3 mycategory" style="background-color: rgb(90, 97, 224); color: white;" onclick="location.href='${path}/mypage/reviewContent?type=도서'">
 						</c:if>
 						<c:if test="${ type != '도서' }">
-						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=책'">
+						    <div class="col-3 mycategory" onclick="location.href='${path}/mypage/reviewContent?type=도서'">
 						</c:if>                    	
                             BOOK
                         </div>
@@ -170,14 +170,14 @@
                             		<li class="item">
 	                                    <div class="item_poster">
 	                                        <div class="thumb_item" style="width: 187px; height: 273px;">
-	                                            <div class="poster_movie" style="position: absolute;">
-	                                                <img src=""
-	                                                    class="img_thumb" alt="">
+	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'" style="position: absolute; z-index: 2;">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
+	                                                    class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
 	                                                <span class="txt_tag">
 	                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
 	                                                </span>
 	                                            </div>
-	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
+	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 3;">
 	                                                <input type="checkbox" style="width: 17px; height: 17px;">
 	                                            </div>
 	                                        </div>

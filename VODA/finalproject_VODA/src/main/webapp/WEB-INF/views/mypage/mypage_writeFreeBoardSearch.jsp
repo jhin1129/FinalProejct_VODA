@@ -133,7 +133,11 @@
                             	<c:forEach var="board" items="${ freeBoardList }">
                             		<tr style="text-align: center">
                                     <td id="td">${ board.bno }</td>
-                                    <td id="td" style="text-align: left;">${ board.btitle }</td>
+                                    <td id="td" style="text-align: left;">
+                                    	<a href="${ path }/board/free_board_detail?no=${ board.bno }">
+											${ board.btitle }
+										</a>
+                                    </td>
                                     <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>
                                     <td id="td">${ board.bview }</td>
                                 </tr>

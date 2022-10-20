@@ -35,6 +35,7 @@ public class MypageController {
 								@SessionAttribute("loginMember") Member loginMember) {
 		
 		List<Contents> likesList = null;
+		int reviewCount = 0;
 		List<Board> freeBoardList = null;
 		List<Board> qnaBoardList = null;
 		PageInfo pageInfo1 = null;
@@ -47,6 +48,8 @@ public class MypageController {
 		}
 		likesList = service.getLikesAllList(loginMember.getM_no());
 		
+		reviewCount = service.getReviewAllCount(loginMember.getM_no());
+		
 		pageInfo1 = new PageInfo(1, 10, service.getFreeBoardCount(loginMember.getM_no()), 5);
 		
 		freeBoardList = service.getfreeBoardList(pageInfo1, loginMember.getM_no());
@@ -57,6 +60,7 @@ public class MypageController {
 		
 		model.addObject("orderList", orderList);
 		model.addObject("likesList", likesList);
+		model.addObject("reviewCount", reviewCount);
 		model.addObject("likesListCount", likesList.size());
 		model.addObject("freeBoardList", freeBoardList);
 		model.addObject("freeBoardListCount", freeBoardList.size());
