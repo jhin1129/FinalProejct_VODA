@@ -23,7 +23,13 @@ public final class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 			
 			return false;
 		}
-
+		if(loginMember.getM_authorization().equals("U")) {
+			request.setAttribute("msg", "관리자만 이용이 가능합니다.");
+			request.setAttribute("location", "/");
+			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
+			
+			return false;
+		}
 		return super.preHandle(request, response, handler);
 	}
 
