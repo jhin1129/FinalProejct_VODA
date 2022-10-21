@@ -23,4 +23,6 @@ public class Cart {
 	private String pcategory;
 	
 	private String prenamefile;
+	
+	private String cstatus;
 }

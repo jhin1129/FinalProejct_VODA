@@ -5,6 +5,7 @@
 	<sql id="getCartListSql">
 		SELECT C.M_NO,
 		       C.P_NO,
+		       C.C_STATUS,
 		       P.P_NAME,
 		       P.P_PRICE,
 		       P.P_QTT,
@@ -15,10 +16,11 @@
 		JOIN MEMBER M ON(M.M_NO = C.M_NO)
 		JOIN PRODUCT P ON(C.P_NO = P.P_NO)
 	</sql>
-	
+
 	<resultMap type="Cart" id="CartListResultMap">
 		<id property="pno" column="P_NO"/>
 		<id property="mno" column="M_NO"/>
+		<result property="cstatus" column="C_STATUS"/>
 		<result property="pname" column="P_NAME"/>
 		<result property="pprice" column="P_PRICE"/>
 		<result property="pqtt" column="P_QTT"/>
@@ -29,11 +31,12 @@
 	
 	<select id="getCartList" resultMap="CartListResultMap">
 		<include refid="getCartListSql" />
-		ORDER BY C.P_NO DESC
+		WHERE C.C_STATUS = 'Y' AND C.M_NO = #{mno}
+		ORDER BY C.P_NO DESC 
 	</select>
 	
 	<insert id="insertCart" parameterType="Cart">
-	INSERT INTO CART VALUES (15, #{pno})
+	INSERT INTO CART VALUES (#{mno}, #{pno}, 'Y')
 	</insert>
 
 

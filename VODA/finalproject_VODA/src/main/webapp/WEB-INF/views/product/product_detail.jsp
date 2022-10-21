@@ -223,7 +223,6 @@
                                         </form>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td colspan="2">                                
                                         <div><button id="payment" class="btn btn-primary py-1">구매하기</button></div>
@@ -359,7 +358,6 @@ $(document).ready(() => {
 			}
 		}
 	});
-
 	
 	
 });
