@@ -5,23 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>enrollComplete</title>
-	
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<title>VODA</title>
 
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
     <!-- join CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/enroll.css">
     
-</head>
-<body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
   <div class="container">
       <div class="join_base_wrap">
           <div class="member_tit">
@@ -42,8 +33,5 @@
   
   <br><br><br><br><br><br>
 
-
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
-</body>
-</html>

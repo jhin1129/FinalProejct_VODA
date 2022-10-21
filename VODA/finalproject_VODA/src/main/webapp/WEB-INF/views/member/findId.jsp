@@ -5,29 +5,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>findId</title>
+<title>VODA</title>
 
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+ 
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">
 
-    <!-- jquery 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    -->
     <script src="${ path }/js/jquery-3.6.0.min.js"></script>
-    
-    
-</head>
-
-<body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <div class="container">
         <div class="member_tit">
@@ -73,9 +59,7 @@
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 
-
-<script>
-    
+<script> 
     $('.find_id_name5').on('input', checkInput);
     $('.find_id_email5').on('input', checkInput);
 
@@ -101,7 +85,6 @@
         }
     }
 </script>
-
 
 <!-- 유효성 검사 -->
 <script>
@@ -137,34 +120,3 @@ $('#m_email').blur(function(){
 });
 
 </script>
-
-<!-- 확인 버튼 클릭 시 유효성 검사 
-<script>
-$(document).ready(function(){
-	$("#idSearch").click(function(){
-	
-		//이름 작성 여부(유효성 검사 여부)
-		if($("#name_check").css("visibility") != "hidden"){
-			alert("가입 시 등록한 이름을 입력해 주세요");
-			$("#m_name").focus();
-			
-			return false;
-		}
-		
-		//이메일 중복검사
-		if($("#email_check").css("visibility") != "hidden"){
-			alert("가입 시 등록한 이메일을 입력해 주세요");
-			$("#m_email").focus();
-
-			return false;
-		}
-	});
-	
-
-});
-
-</script>
--->
-
-</body>
-</html>

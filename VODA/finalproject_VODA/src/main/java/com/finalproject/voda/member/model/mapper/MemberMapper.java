@@ -28,6 +28,8 @@ public interface MemberMapper {
 	int passwordUpdate(Member member);
 
 	int insertMemberKakao(Member newMember);
+
+	int insertMemberNaver(Member newMember);
 	
 
 }

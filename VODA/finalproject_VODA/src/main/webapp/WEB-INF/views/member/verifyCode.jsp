@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+<title>VODA</title>
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
@@ -61,9 +63,6 @@
 
 <br><br><br><br><br><br>
 
-
-
-
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
 
@@ -119,5 +118,4 @@ $('#m_email').blur(function(){
         $('#email_check').css('color', 'red');
     
 });
-
 </script>
