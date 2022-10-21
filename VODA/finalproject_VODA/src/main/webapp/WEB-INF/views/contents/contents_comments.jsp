@@ -461,7 +461,7 @@
             },
             success: function (count) {
             	
-            	$(event.target).parent().parent().next().html(count);
+            	alert($(event.target).siblings(".likecount").html());
             },
 		})
     };

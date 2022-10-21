@@ -355,44 +355,4 @@
 			FROM RATE
 			WHERE RATE_NO = #{ rate_no }
 	</select>
-	
-	<sql id="selectPeopleSql">
-		SELECT
-		    P.PEOPLE_NO, 
-		    P.PEOPLE_ORIGINAL_FILENAME, 
-		    P.PEOPLE_RENAMED_FILENAME, 
-		    P.PEOPLE_NAME, 
-		    P.PEOPLE_JOB, 
-		    P.PEOPLE_DEBUT, 
-		    P.PEOPLE_BIRTH, 
-		    P.PEOPLE_AWARD, 
-		    P.PEOPLE_GENDER,
-		    P.PEOPLE_STATUS
-		FROM PEOPLE P
-		WHERE P.PEOPLE_STATUS = 'Y'
-	</sql>	 
-	
-	<resultMap type="People" id="PeopleResultMap">
-		<id property="people_no" column="PEOPLE_NO"/>
-		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
-		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
-		<result property="people_name" column="PEOPLE_NAME"/>
-		<result property="people_job" column="PEOPLE_JOB"/>
-		<result property="people_debut" column="PEOPLE_DEBUT"/>
-		<result property="people_birth" column="PEOPLE_BIRTH"/>
-		<result property="poeple_award" column="PEOPLE_AWARD"/>
-		<result property="people_gender" column="PEOPLE_GENDER"/>
-		<result property="people_status" column="PEOPLE_STATUS"/>
-	</resultMap>
-	
-	<!-- 인물 페이지 조회 -->
-	<select id="getPeopleCount" resultType="_int">
-		SELECT COUNT(*) FROM PEOPLE WHERE PEOPLE_STATUS='Y'
-	</select>
-	
-	<select id="getPeopleList" resultMap="PeopleResultMap">
-		<include refid="selectPeopleSql" />
-		ORDER BY PEOPLE_NO DESC
-	</select>
-		
 </mapper>

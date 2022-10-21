@@ -5,22 +5,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!-- Jquery-->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+ <!-- Jquery-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
 
-<!--BootStrap CSS-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+      <!--BootStrap CSS-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-<!--BootStrap JS-->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
+  <!--BootStrap JS-->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
 
-<!-- common CSS-->
-<link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
+ <!-- common CSS-->
+ <link rel="stylesheet" type="text/css" href="../../CSS/Common/headerfooter.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <style>
+        
+       
 
-<style>
 /* reset */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, blockquote, th, td, input, select, button {
   margin: 0;
@@ -59,6 +61,7 @@ body {
 body, th, td, input, select, textarea, button {
   font-size: 14px;
   line-height: 1.5;
+  font-family: 'SF Pro Display','AppleSDGothicNeo','Malgun Gothic','\B9D1\C740   \ACE0\B515','\B3CB\C6C0',dotum,sans-serif;
   color: #000; }
 
 a {
@@ -83,7 +86,10 @@ strong {
 
 
 .section_ranking *, ::after, ::before {
-  box-sizing: content-box !important; }
+  box-sizing: content-box !important;
+}
+  
+
 
 /* global */
 .direct-link {
@@ -578,12 +584,13 @@ html, body {
 
 .item_poster .thumb_cont .txt_append {
   display: block;
-  padding-top: 3px;
+  padding-top: 7px;
   font-size: 13px;
   line-height: 16px; }
 
 .item_poster .thumb_cont .txt_grade {
-  color: black; }
+  padding-left: 5px;
+  color: #E92130; }
 
 .item_poster .thumb_cont .txt_info {
   display: block;
@@ -714,7 +721,7 @@ html, body {
   float: left;
   padding-top: 15px; }
 
-.list_movieranking li:nth-child(-n+4) {
+.list_movieranking li:nth-child(-n+5) {
   padding-top: 0; }
 
 .list_movieranking .item_poster {
@@ -1266,8 +1273,10 @@ html, body {
   text-align: right;
   background-color: white; }
 
-/* 서치바 CSS */
-.search-box {
+  /* 서치바 CSS */
+     
+.search-box
+{
   position : absolute;
   margin-left: 10px;
   /*top : 50px;
@@ -1276,9 +1285,10 @@ html, body {
   background : rgb(235,236,246);
   height : 40px;
   border-radius : 40px;
-  padding : 10px; }
-
-.search-btn {
+  padding : 10px;
+}
+.search-btn
+{
   color : white;
   float : right;
   width : 40px;
@@ -1289,9 +1299,10 @@ html, body {
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  transition: 0.4s; }
-
-.search-txt {
+  transition: 0.4s;
+}
+.search-txt
+{
   border:none;
   background:none;
   outline:none;
@@ -1301,127 +1312,38 @@ html, body {
   font-size:16px;
   transition : 1s;
   line-height: 40px;
-  width : 0px; }
-
-.search-box:hover > .search-txt {
+  width : 0px;
+}
+.search-box:hover > .search-txt
+{
   width: 240px;
-  padding: 0px 20px; }
-  
-.search-box:hover > .search-btn {
-  background:rgb(235,236,246); }
-  
-/* 페이지 네이션 시작 */
-#wrapper {
-margin: 0 auto;
-display: block;
-width: 960px;
+  padding: 0px 20px;
 }
-
-.page-header {
-text-align: center;
-font-size: 1.5em;
-font-weight: normal;
-border-bottom: 1px solid #ddd;
-margin: 30px 0
+.search-box:hover > .search-btn
+{
+ background:rgb(235,236,246);
 }
-
-#pagination {
-margin: 0;
-margin-top: 70px;
-padding: 0;
-text-align: center
-}
-
-#pagination li {
-display: inline
-}
-
-#pagination li a {
-display: inline-block;
-text-decoration: none;
-padding: 5px 10px;
-color: #000
-}
-
-/* Active and Hoverable Pagination */
-#pagination li a {
-border-radius: 5px;
--webkit-transition: background-color 0.3s;
-transition: background-color 0.3s
-}
-#pagination li a.active {
-background-color: rgb(73,95,233);
-color: #fff
-}
-#pagination li a:hover:not(.active) {
-background-color: #ddd;
-} 
-
-/* border-pagination */
-.b-pagination-outer {
-width: 100%;
-margin: 0 auto;
-text-align: center;
-overflow: hidden;
-display: flex
-}
-
-#border-pagination {
-margin: 0 auto;
-padding: 0;
-text-align: center
-}
-
-#border-pagination li {
-display: inline;
-}
-
-#border-pagination li a {
-display: block;
-text-decoration: none;
-color: #000;
-padding: 5px 10px;
-border: 1px solid #ddd;
-float: left;
-}
-
-#border-pagination li a {
--webkit-transition: background-color 0.4s;
-transition: background-color 0.4s
-}
-
-#border-pagination li a.active {
-background-color: #4caf50;
-color: #fff;
-}
-
-#border-pagination li a:hover:not(.active) {
-background: #ddd;
-}  
-  
-</style>
+    </style>
 </head>
-
 <body>
     <div class="container p-0" style="width:600px; height: 40px;">
-    	<div class="search-box p-0">
+        <div class="search-box p-0">
             <input class="search-txt" type="text" name="" >
-	       <a class="search-btn" href="#">
-	         <i class="fas fa-search" style="color: white;"></i>
-	       </a>
-        </div>
+       <a class="search-btn" href="#">
+         <i class="fas fa-search" style="color: white;"></i>
+       </a>
+       </div>
     </div>
     <div class="container p-0" style="width:600px;">
     <div class="section_ranking">
         <div class="box_ranking" data-tiara-layer="list">
             <ol class="list_movieranking m-0">
-            	<c:forEach var="people" items="${ list }">
                 <li class="item">
                     <div class="item_poster">
                         <div class="thumb_item">
                             <div class="poster_movie" style="position: absolute;">
                                 <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
-                                    class="img_thumb" alt="${ people.people_name }">
+                                    class="img_thumb" alt="공조2: 인터내셔날">
                             </div>
                             <div class="mx-2 my-1" style="position: absolute; z-index: 2;">
                                 <input type="checkbox" style="width: 17px; height: 17px;">
@@ -1430,16 +1352,15 @@ background: #ddd;
                         <div class="thumb_cont">
                             <strong class="tit_item">
                                 <a href="/moviedb/main?movieId=147615" class="link_txt"
-                                    data-tiara-layer="moviename">${ people.people_name }</a>
+                                    data-tiara-layer="moviename">공조2: 인터내셔날</a>
                             </strong>
                             <span class="txt_append">
-                                <span class="info_txt"><span class="txt_grade">${ people.people_job }</span></span>
+                                <span class="info_txt">평점<span class="txt_grade">8.1</span></span>
                             </span>
                         </div>
                     </div>
                 </li>
-                </c:forEach>
-         <!--   <li class="item">
+                <li class="item">
                     <div class="item_poster">
                         <div class="thumb_item">
                             <div class="poster_movie" style="position: absolute;">
@@ -1470,6 +1391,17 @@ background: #ddd;
                             </div>
                             <div class="mx-2 my-1" style="position: absolute; z-index: 5;">
                                 <input type="checkbox" style="width: 17px; height: 17px;">
+                            </div>
+                            <div class="poster_info">
+                                <a href="/moviedb/main?movieId=142869" class="link_story"
+                                    data-tiara-layer="poster">
+                                    “45개 번호 중에 6개 맞히면 1등인 육사오라는 종이쪼가리,내가 주웠지 말입니다”우연히 1등 당첨 로또를 주운 말년 병장
+                                    ‘천우’.심장이 터질듯한 설렘도 잠시, 순간의 실수로 바람을 타고 군사분계선을 넘어간 로또.바사삭 부서진 멘탈을
+                                    부여잡고…기필코 다시 찾아야 한다!우연히 남쪽에서 넘어온 1등 당첨 로또를 주운 북한 병사 ‘용호’.이거이 남조선 인민의
+                                    고혈을 쥐어 짜내는 육사오라는 종이쪼가리란 말인가?근데 무려 당첨금이 57억이라고?!당첨금을 눈앞에서 놓칠 위기에 처한
+                                    ‘천우’와북에선 한낱 종이쪼가리일 뿐일 로또를 당첨금으로 바꿔야 하는 ‘용호’.여기에 예상치 못한 멤버들(?)까지 합류하고
+                                    57억을 사수하기 위한 3:3팀이 결성되는데…주운 자 VS 또 주운 자아슬아슬 선 넘는 지분 협상이 시작된다!
+                                </a>
                             </div>
                         </div>
                         <div class="thumb_cont">
@@ -1690,25 +1622,7 @@ background: #ddd;
                             </span>
                         </div>
                     </div>
-                </li> -->
+                </li>
             </ol>
-            
-             <!--Active and Hoverable Pagination-->
-	        <ul id="pagination">
-	            <li><a href="${ path }/contents/contents_movie?page=1">«</a></li>
-	            
-	            <!--  10개 페이지 목록 -->
-				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
-					<c:if test="${ status.current == pageInfo.currentPage }">
-						<li><a class="active">${ status.current }</a></li>
-					</c:if>
-					<c:if test="${ status.current != pageInfo.currentPage }">
-						<li><a href="${ path }/contents/contents_movie?page=${ status.current }">${ status.current }</a></li>
-					</c:if>
-				</c:forEach>
-	            
-	            <li><a href="${ path }/contents/contents_movie?page=${ pageInfo.maxPage }">»</a></li>
-	        </ul>
         </div>
     </div>
-</div>

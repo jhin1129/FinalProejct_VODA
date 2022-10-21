@@ -19,6 +19,7 @@
 		WHERE P.PEOPLE_STATUS = 'Y'
 	</sql>	 
 	
+
 	<resultMap type="People" id="PeopleResultMap">
 		<id property="people_no" column="PEOPLE_NO"/>
 		<result property="people_original_filename" column="PEOPLE_ORIGINAL_FILENAME"/>
@@ -31,6 +32,7 @@
 		<result property="people_gender" column="PEOPLE_GENDER"/>
 		<result property="people_status" column="PEOPLE_STATUS"/>
 	</resultMap>
+	
 	
 	<!-- 인물 페이지 조회 -->
 	<select id="selectPeopleCount" resultType="_int">
