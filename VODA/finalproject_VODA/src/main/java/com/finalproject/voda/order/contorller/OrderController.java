@@ -1,6 +1,8 @@
 package com.finalproject.voda.order.contorller;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.board.model.vo.Board;
+import com.finalproject.voda.cart.model.service.CartService;
+import com.finalproject.voda.cart.model.vo.Cart;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.order.model.service.OrderService;
 import com.finalproject.voda.order.model.vo.Order;
@@ -29,6 +33,8 @@ public class OrderController {
 	private OrderService orderService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CartService cartService;
 	
 	@GetMapping("/product_order")
 	public ModelAndView ProductOrder (ModelAndView model,
@@ -46,6 +52,20 @@ public class OrderController {
 		return model;
 		
 	}
+	
+	@GetMapping("/product_list_order")
+	public ModelAndView ProductListOrder (ModelAndView model,
+			@SessionAttribute("loginMember") Member loginMember) {
+		List<Cart> cart = null;
+		cart = cartService.getCartList(loginMember.getM_no());
+		System.out.println(cart);
+		model.addObject("cart", cart);
+		model.setViewName("product/product_list_order");
+		
+		return model;
+		
+	}
+	
 	
 	@PostMapping("/order_insert")
 	public ModelAndView InsertOrder (ModelAndView model,

@@ -21,9 +21,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Cart> getCartList(PageInfo pageInfo, int m_no) {
+	public List<Cart> getCartList(int m_no) {
 		// TODO Auto-generated method stub
-		return cartMapper.getCartList(pageInfo, m_no);
+		return cartMapper.getCartList(m_no);
 	}
 
 }

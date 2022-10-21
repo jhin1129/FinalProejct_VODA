@@ -20,33 +20,41 @@
                 <form>
                     <thead>
                         <tr>
-                            <td><input type="checkbox" class="allCheck"></td>
+                            <td>
+	                            <input type="checkbox" id="allCheck1" class="allCheck">
+	                            <label for="allCheck1" class="check_s on"></label>
+                            </td>
                             <td colspan="2">상품정보</td>
                             <td>옵션</td>
                             <td>상품금액</td>
                             <td>배송비</td>
                         </tr>
                     </thead>
+                   
                     <tbody>
                     <c:forEach var="cart" items="${ cart }">
                     <c:set var="rename" value="${ cart.prenamefile }" />
                         <tr class="cart__list__detail">
-                            <td style="width: 2%;"><input type="checkbox" class="check"></td>
+                            <td style="width: 2%;">
+                            	<input type="checkbox" id="cartSno1_212360" class="checkProduct" name="cartSno[]" value="${ cart.pno }">
+                            	<label for="cartSno1_212360" class="check_s on"></label>
+                            </td>
                             <td style="width: 13%;">
                             	<img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" style="height: 80%;">
                             </td>
                             <td style="width: 27%;"><a href="#">${ cart.pmadecompany }</a>
-                                <p>${ cart.pname }</p>
+                                <p>[${cart.pcategory}]${ cart.pname }</p>
                             </td>
                             <td class="cart__list__option" style="width: 27%;">
                                 <p>잔여 상품 수량: ${ cart.pqtt }개</p>
-                                <p>상품 주문 수량: <input id="quantitySelect" class="number_input" type="number" min="1" max="10" value="1">개</p>
-                                <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
+                                <p>상품 주문 수량: <input id="quantitySelect" class="number_input" type="number" min="1" max="${ cart.pqtt }" value="1">개</p>
                             </td>
-                            <td style="width: 15%;"><span class="price">${ cart.pprice }</span><br>
-                                
+                            <td style="width: 15%;">
+                            	<strong class="proPrice">${ cart.pprice }</strong><br>
                             </td>
-                            <td style="width: 15%;">무료</td>
+                            <td style="width: 15%;">
+                            	<strong class="sumPrice">${ cart.pprice }</strong><br>
+							</td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -56,15 +64,16 @@
                                 <button class="btn btn-primary2 py-1">전체상품 삭제</button>
                             </td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 합계 금액 : </strong></td>
+                            <td><strong class="totalPrice">0</strong></td>
                         </tr>
                     </tfoot>
                 </form>
             </table>
             <div class="cart__mainbtns">
                 <button class="btn btn-back py-1">쇼핑 계속하기</button>
-                <button class="btn btn-primary py-1">주문하기</button>
+                <button class="btn btn-primary py-1" id="selectedProductPayment">주문하기</button>
+                <button ></button>
             </div>
         </section>
     </div>
@@ -85,27 +94,73 @@
 </script>
 <script type="text/javascript">
 $(document).ready(() => {
-	$(".quantitySelect").on("change", (event) => {
+	$("#quantitySelect").on("change", (event) => {
 		var quantity = $(event.target).val();
 		var proPrice = $(event.target).parent().parent().next().find(".proPrice").text();
 		$(event.target).parent().parent().next().next().find(".sumPrice").text(quantity * proPrice);
 		getTotalPrice();
 	});
 	
-	$("#payment").on("click", () => {
-		if(${empty loginMember}){
-			alert("로그인이 필요합니다.");
-		} else{
-			var value = $("#quantitySelect").val();
-			var min = $("#quantitySelect").attr("min");
-			var max = $("#quantitySelect").attr("max");
-			if(value >= min && value <= max){
-				location.href="${path}/product_order?pno=${product.pno}&porderqtt=" + $("#quantitySelect").val();
-			} else {
-				alert("구매 수량을 적절하게 입력해주세요.");
+	$("#selectedProductPayment").on("click", () => {
+		var result = 1;
+		$("input:checkbox[name='cartSno[]']:checked").each(function(){
+			var value = Number($(this).parent().next().next().find(".quantitySelect").val());
+			var min = Number($(this).parent().next().next().find(".quantitySelect").attr("min"));
+			var max = Number($(this).parent().next().next().find(".quantitySelect").attr("max"));
+			
+			if(value < min || value > max){
+				result = 0;
 			}
-		}
+		});
+		if(result==0){
+			alert("구매수량을 적절하게 입력해주세요");
+		} else{
+			var arr = [];
+			var pqttarr = [];
+			$("input:checkbox[name='cartSno[]']:checked").each(function(){
+				var pno = $(this).val();
+				var pqtt = $(this).parent().next().next().next().find("#quantitySelect").val();
+				arr.push(pno);
+				pqttarr.push(pqtt);
+				
+				console.log(pqttarr)
+				console.log(pqtt)
+				console.log(arr)
+				console.log(pno)
+				
+			});
+			if(arr.length !=0){
+				<%-- location.href="${path}/product_list_order?list="+arr+"&pqtt="+quanarr; --%>
+				location.href="${path}/product_list_order?cart="+arr+"&pqtt="+pqttarr;
+				
+			}else{
+				alert("상품을 선택해주세요");
+			}
+		}		
 	});
+	
+	$(".checkProduct").change(function(){
+		getTotalPrice();
+    });
+	
+	$("#allCheck1").change(function() {
+		if($("#allCheck1").is(":checked")){
+			$('.checkProduct').prop('checked',true);
+			getTotalPrice();
+        }else{
+        	$('.checkProduct').prop('checked',false);
+			getTotalPrice();
+        }
+	});
+	
+	function getTotalPrice(){
+		var arr = [];
+		var totalPrice = 0;
+		$("input:checkbox[name='cartSno[]']:checked").each(function(){
+			totalPrice += Number($(this).parent().next().next().next().next().next().find(".sumPrice").text());
+		});
+		$(".totalPrice").text(totalPrice);
+	}
 	
 	
 });

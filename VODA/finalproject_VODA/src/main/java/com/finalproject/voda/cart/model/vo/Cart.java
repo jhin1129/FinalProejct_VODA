@@ -25,4 +25,6 @@ public class Cart {
 	private String prenamefile;
 	
 	private String cstatus;
+	
+	private int porderqtt;
 }
