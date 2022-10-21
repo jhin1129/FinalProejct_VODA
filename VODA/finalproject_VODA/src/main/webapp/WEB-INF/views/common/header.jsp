@@ -93,7 +93,7 @@
 	
 	      <div class="search">
 	        <form class="d-flex">
-	          <input class="form-control me-sm-2" type="text">
+	          <input class="form-control me-sm-2" type="text" value="">
 	        </form>
 	      </div>
 	      
