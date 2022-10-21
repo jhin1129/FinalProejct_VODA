@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.RowBounds;
 
+import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Likes;
@@ -14,6 +15,7 @@ import com.finalproject.voda.contents.model.vo.RateLikes;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
+import com.finalproject.voda.people.model.vo.People;
 
 @Mapper
 public interface ContentsMapper {
@@ -62,5 +64,9 @@ public interface ContentsMapper {
 	void updateLikeCancel(int rate_no);
 
 	int likeCount(int rate_no);
+
+	List<People> getPeopleList(PageInfo pageInfo);
+
+	int getPeopleCount();
 
 }
