@@ -1403,7 +1403,7 @@ background: #ddd;
 </head>
 
 <body>
-     <div class="container p-0" style="width:600px; height: 40px;">
+    <div class="container p-0" style="width:600px; height: 40px;">
 	 <form>
     	<div class="search-box p-0">
             <input class="search-txt" type="text" name="" >

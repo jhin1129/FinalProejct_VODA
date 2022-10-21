@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Likes;
@@ -63,5 +64,9 @@ public interface ContentsService {
 	List<People> getPeopleList(PageInfo pageInfo);
 
 	int getPeopleCount();
+	
+	int getPeopleSearchCount(String keyword);
+
+	List<Search> getPeopleSearchList(PageInfo pageInfo, String keyword);
 
 }

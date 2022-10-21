@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
 import com.finalproject.voda.contents.model.vo.Likes;
@@ -68,5 +70,9 @@ public interface ContentsMapper {
 	List<People> getPeopleList(PageInfo pageInfo);
 
 	int getPeopleCount();
+	
+	int getPeopleSearchCount(@Param("keyword") String keyword);
+
+	List<Search> getPeopleSearchList(RowBounds rowBounds, @Param("keyword") String keyword);
 
 }

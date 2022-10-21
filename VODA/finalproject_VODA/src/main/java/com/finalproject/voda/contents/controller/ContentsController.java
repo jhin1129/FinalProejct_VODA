@@ -1,6 +1,5 @@
 package com.finalproject.voda.contents.controller;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,15 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.contents.model.service.ContentsService;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
@@ -320,6 +317,26 @@ public class ContentsController {
 		model.setViewName("contents/contents_peoplemodal");
 		return model;
 
+	}
+	
+	// 인물페이지 리스트 검색
+	@GetMapping("/contents/contents_peoplesearch")
+	public ModelAndView adminPeopleSearch(ModelAndView model, 
+			@RequestParam(value = "page", defaultValue = "1") int page,
+			@RequestParam String keyword) {
+
+		List<Search> list = null;
+		PageInfo pageInfo = null;
+		
+		pageInfo = new PageInfo(page, 10, service.getPeopleSearchCount(keyword), 12);
+		list = service.getPeopleSearchList(pageInfo, keyword);
+
+		model.addObject("list", list);
+		model.addObject("keyword", keyword);
+		model.addObject("pageInfo", pageInfo);
+		model.setViewName("contents/contents_peoplesearch");
+		
+		return model;
 	}
 	
 }
