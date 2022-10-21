@@ -5,25 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>idVerify</title>
+<title>VODA</title>
 
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">
-
-    <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    
-</head>
-<body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <div class="find_account1">
         <div class="find_account2">

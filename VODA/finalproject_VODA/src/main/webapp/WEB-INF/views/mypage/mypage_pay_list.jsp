@@ -11,6 +11,8 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_main.css">
     
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
+    
     <!-- datePicker CSS -->
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_datePicker.css">
     
@@ -23,6 +25,41 @@
 	.table_td > label{
 		font-size: 1.05em;
 	}
+       button:focus {
+		box-shadow: none !important;
+	}
+	
+	
+	.btn {
+	
+	    transition: background 0.2s ease-in-out,
+	        color 0.2s ease-in-out;
+	}
+	
+	.btn-logoc {
+	    color: #fff;
+	    border-color: #495FE9;
+	    background-color: #495FE9;
+	}
+	
+	.btn-logoc:hover {
+	    background-color: #0b27db !important;
+	    border-color: #0b27db;
+	    color: #fff !important;
+	}
+	
+	.btn-greyc {
+	    background-color: rgb(235, 236, 240);
+	    border: rgb(235, 236, 240);
+	    color: #000000;
+	
+	}
+	
+	.btn-greyc:hover {
+	    background-color: #c3c3c4b7 !important;
+	    border-color: #c3c3c4b7 !important;
+	    color: #000000 !important;
+	}	
 	</style>
 	
 	<div class="container p-0">
@@ -90,7 +127,7 @@
 	                                    <td class="table_td">${ order.pay.patstatus }</td>
 	                                    <td class="table_td">
 	                                    	<c:if test="${order.pay.patstatus == '배송준비중' }">
-			                                    <button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+			                                    <button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 5px; height: 28px; onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
 	                                    	</c:if>
 	                                    </td>
 	                                </tr>
