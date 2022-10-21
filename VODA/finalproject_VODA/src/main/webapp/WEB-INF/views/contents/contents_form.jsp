@@ -95,6 +95,7 @@
 </div>
 
 
+
 <script>
     $('input[type="color"]').on("change", function() {
         document.body.style.setProperty($(this).attr("data-css-var"), this.value);

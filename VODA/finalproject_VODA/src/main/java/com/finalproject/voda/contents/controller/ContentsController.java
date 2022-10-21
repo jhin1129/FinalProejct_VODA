@@ -312,14 +312,14 @@ public class ContentsController {
 		List<People> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 15);
-		list = service.getPeopleList(pageInfo, "영화");
-
+		pageInfo = new PageInfo(page, 10, service.getPeopleCount(), 16);
+		list = service.getPeopleList(pageInfo);
+		
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
-
 		model.setViewName("contents/contents_peoplemodal");
 		return model;
+
 	}
 	
 }

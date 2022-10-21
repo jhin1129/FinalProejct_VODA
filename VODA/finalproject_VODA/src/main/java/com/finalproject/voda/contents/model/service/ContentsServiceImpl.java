@@ -19,6 +19,7 @@ import com.finalproject.voda.contents.model.vo.RateLikes;
 import com.finalproject.voda.contents.model.vo.RateResult;
 import com.finalproject.voda.contents.model.vo.SearchPeople;
 import com.finalproject.voda.contents.model.vo.SearchResult;
+import com.finalproject.voda.people.model.vo.People;
 
 @Service
 public class ContentsServiceImpl implements ContentsService {
@@ -198,6 +199,18 @@ public class ContentsServiceImpl implements ContentsService {
 	public int likeCount(int rate_no) {
 	
 		return mapper.likeCount(rate_no);
+	}
+
+	@Override
+	public List<People> getPeopleList(PageInfo pageInfo) {
+		
+		return mapper.getPeopleList(pageInfo);
+	}
+
+	@Override
+	public int getPeopleCount() {
+	
+		return mapper.getPeopleCount();
 	}
 
 }
