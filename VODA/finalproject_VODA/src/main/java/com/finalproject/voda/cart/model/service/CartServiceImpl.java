@@ -8,16 +8,11 @@ import org.springframework.stereotype.Service;
 import com.finalproject.voda.cart.model.mapper.CartMapper;
 import com.finalproject.voda.cart.model.vo.Cart;
 import com.finalproject.voda.common.util.PageInfo;
+
 @Service
 public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartMapper cartMapper;
-
-	@Override
-	public List<Cart> getCartList(PageInfo pageInfo) {
-		// TODO Auto-generated method stub
-		return cartMapper.getCartList(pageInfo);
-	}
 
 	@Override
 	public int insertCart(Cart cart) {
@@ -25,7 +20,10 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.insertCart(cart);
 	}
 
-	
+	@Override
+	public List<Cart> getCartList(PageInfo pageInfo, int m_no) {
+		// TODO Auto-generated method stub
+		return cartMapper.getCartList(pageInfo, m_no);
+	}
 
-	
 }

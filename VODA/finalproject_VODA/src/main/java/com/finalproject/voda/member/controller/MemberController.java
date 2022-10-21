@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -131,6 +130,8 @@ public class MemberController {
 		if(loginMember != null) {
 			model.addObject("loginMember", loginMember);
 			model.setViewName("redirect:/");
+
+		
 		} else {
 			model.addObject("msg", "아이디나 비밀번호가 일치하지 않습니다.");
 			model.addObject("location", "/member/login");
@@ -422,6 +423,5 @@ public class MemberController {
 	}
 	
 	
-
     
 }

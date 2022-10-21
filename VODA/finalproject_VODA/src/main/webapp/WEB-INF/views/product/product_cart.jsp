@@ -40,7 +40,7 @@
                             </td>
                             <td class="cart__list__option" style="width: 27%;">
                                 <p>잔여 상품 수량: ${ cart.pqtt }개</p>
-                                <p>상품 주문 수량: <input class="number_input" type="number" min="1" max="10" value="1">개</p>
+                                <p>상품 주문 수량: <input id="quantitySelect" class="number_input" type="number" min="1" max="10" value="1">개</p>
                                 <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
                             </td>
                             <td style="width: 15%;"><span class="price">${ cart.pprice }</span><br>
@@ -49,24 +49,6 @@
                             <td style="width: 15%;">무료</td>
                         </tr>
                     </c:forEach>
-                        <!-- <tr class="cart__list__detail">
-                            <td style="width: 2%;"><input type="checkbox"></td>
-                            <td style="width: 13%;">
-                                <img src="https://sitem.ssgcdn.com/15/71/18/item/1000482187115_i1_500.jpg" alt="magic mouse">
-                            </td>
-                            <td style="width: 27%;"><a href="#">신세계몰</a>
-                                <p>짱구는 식기 세트 그릇 굿즈 못말려 머그컵 귀여운 수입 밥그릇 짱구</p>
-                            </td>
-                            <td class="cart__list__option" style="width: 27%;">
-                                <p>잔여 상품 수량: 30개</p>
-                                <p>상품 주문 수량: <input class="number_input" type="number" min="1" max="30" value="1">개</p>
-                                <button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
-                            </td>
-                            <td style="width: 15%;"><span class="price">88,900원</span><br>
-                                
-                            </td>
-                            <td style="width: 15%;">무료</td>
-                        </tr> -->
                     </tbody>
                     <tfoot>
                         <tr>
@@ -100,7 +82,33 @@
             }
         }
     }
-
+</script>
+<script type="text/javascript">
+$(document).ready(() => {
+	$(".quantitySelect").on("change", (event) => {
+		var quantity = $(event.target).val();
+		var proPrice = $(event.target).parent().parent().next().find(".proPrice").text();
+		$(event.target).parent().parent().next().next().find(".sumPrice").text(quantity * proPrice);
+		getTotalPrice();
+	});
+	
+	$("#payment").on("click", () => {
+		if(${empty loginMember}){
+			alert("로그인이 필요합니다.");
+		} else{
+			var value = $("#quantitySelect").val();
+			var min = $("#quantitySelect").attr("min");
+			var max = $("#quantitySelect").attr("max");
+			if(value >= min && value <= max){
+				location.href="${path}/product_order?pno=${product.pno}&porderqtt=" + $("#quantitySelect").val();
+			} else {
+				alert("구매 수량을 적절하게 입력해주세요.");
+			}
+		}
+	});
+	
+	
+});
 </script>
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
