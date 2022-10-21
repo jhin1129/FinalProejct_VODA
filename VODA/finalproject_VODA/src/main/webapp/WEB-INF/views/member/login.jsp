@@ -13,7 +13,10 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
 
     <!-- login CSS -->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">   
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css"> 
+    
+    <!-- eye slash -->
+    <link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">  
 
 	    <div class="container">
 	        <div class="row">
@@ -35,22 +38,22 @@
 	                                </div>
 	                            </div>
 	                            <div class="form-group py-1 pb-2"  style="margin-bottom: 15px;">
-	                                <div class="input-field">
+	                                <div class="input-field" style="height: 44px;">
 	                                    <span class="fas fa-lock px-2"></span>
-	                                    <input id="userPwd" name="m_password" type="password" placeholder="비밀번호"  autocomplete="off" required>
-	                                    <button class="btn bg-white text-muted"> 
-	                                    <span class="far fa-eye-slash"></span>
-	                                    </button>
+		                                    <input id="userPwd" name="m_password" type="password" placeholder="비밀번호"  autocomplete="off" required>
+	                                    		<span id="eye" class="far fa-eye-slash"></span>
 	                                </div>
 	                            </div>
 	                            <span class="form-inline">
 	                                <input type="checkbox" name="saveId" id="saveId">
 	                                <label for="saveId" class="text-muted" id="idSaveCheck">아이디 저장</label> 
 	                            </span>
+	                            <!-- 
 	                            <span class="form-inline"> 
 	                                <input type="checkbox" name="autoLogin" id="autoLogin"> 
 	                                <label for="autoLogin" class="text-muted">자동 로그인</label>
 	                            </span>
+	                             -->
 	                            <br>
 	                            <button type="submit" class="btn-logoc" id="login_submit">로그인</button>
 	                            <ul class="join-find">
@@ -157,13 +160,20 @@
         }
     }
  
- 
-    
-    
+//eye slash
+	$(document).ready(function(){
+	    $('#eye').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+	});
 </script>
 
-
-                
-   
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>	
