@@ -27,5 +27,7 @@ public interface MemberService {
 	int passwordUpdate(Member member);
 
 	int saveKakao(Member newMember);
+
+	int saveNaver(Member newMember);
 	
 }

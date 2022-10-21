@@ -131,4 +131,19 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	@Transactional
+	public int saveNaver(Member newMember) {
+		int result = 0;
+		
+		if(newMember.getM_no() != 0) {
+			// update
+		} else {
+			// insert
+			result = mapper.insertMemberNaver(newMember);
+		}
+		
+		return result;
+	}
+
 }

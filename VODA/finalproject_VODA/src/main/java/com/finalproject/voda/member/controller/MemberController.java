@@ -31,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.finalproject.voda.member.kakao.KakaoLoginBO;
 import com.finalproject.voda.member.model.service.MemberService;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.member.naver.NaverLoginBO;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,15 @@ public class MemberController {
 	private KakaoLoginBO kakaoLoginBO;
 	
 	private String apiResult = null;
+	
+	@Autowired
+	private NaverLoginBO naverLoginBO;
+	
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+	
 
 
 	@GetMapping("/enroll") 
@@ -351,6 +361,13 @@ public class MemberController {
 		
 		model.addAttribute("urlKakao", kakaoAuthUrl);	
 		
+		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		/* 인증요청문 확인 */
+		System.out.println("네이버:" + naverAuthUrl);
+		/* 객체 바인딩 */
+		model.addAttribute("urlNaver", naverAuthUrl);
+		
 		
 		return "member/login"; 		
 	}
@@ -360,7 +377,9 @@ public class MemberController {
 	
 	// 카카오 로그인 성공시 callback
 	@RequestMapping(value = "/kakaologin", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView callbackKakao(ModelAndView model, @RequestParam String code, @RequestParam String state, HttpSession session) 
+	public ModelAndView callbackKakao(ModelAndView model, 
+									  @RequestParam String code, 
+									  @RequestParam String state, HttpSession session) 
 			throws Exception {
 		System.out.println("로그인 성공 callbackKako");
 		
@@ -422,6 +441,88 @@ public class MemberController {
 		return model;
 	}
 	
+
+//	// 네이버 로그인
+//	@GetMapping("/login") 
+//	public String naverLogin(Model model, HttpSession session) {
+//		
+//		/* 네아로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+//		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+//		/* 인증요청문 확인 */
+//		System.out.println("네이버:" + naverAuthUrl);
+//		/* 객체 바인딩 */
+//		model.addAttribute("urlNaver", naverAuthUrl);
+//
+//		/* 생성한 인증 URL을 View로 전달 */
+//
+//		return "member/login"; 		
+//	}
 	
+	
+	
+	//네이버 로그인 성공시 callback호출 메소드
+	@RequestMapping(value = "/naverlogin", method = { RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView callbackNaver(ModelAndView model, 
+									  @RequestParam String code, 
+									  @RequestParam String state, HttpSession session)
+			throws Exception {
+		System.out.println("로그인 성공 callbackNaver");
+		
+		OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+	    apiResult = naverLoginBO.getUserProfile(oauthToken);
+	    
+		JSONParser jsonParser = new JSONParser();
+		JSONObject jsonObj;
+		
+		jsonObj = (JSONObject) jsonParser.parse(apiResult);
+		JSONObject response_obj = (JSONObject) jsonObj.get("response");			
+		// 프로필 조회
+		String email = (String) response_obj.get("email");
+		String name = (String) response_obj.get("name");
+		
+		Member loginMember = null;
+		
+		// 아이디 여부 체크 
+		if(service.isDuplicateID(email)) { // 아이디가 중복된 게 있니? 
+			loginMember = service.findMemberById(email); 
+
+			model.addObject("loginMember", loginMember);
+			model.addObject("msg", "로그인에 성공하였습니다.");
+			model.addObject("location", "/");
+			
+		} else {
+			int result = 0;
+			
+			Member newMember = new Member();
+			newMember.setM_id(email);
+			newMember.setM_name(name);
+			result =  service.saveNaver(newMember);
+			
+			if(result > 0) {
+				loginMember = service.findMemberById(email); 
+
+				model.addObject("loginMember", loginMember);
+				model.addObject("msg", "로그인에 성공하였습니다.");
+				model.addObject("location", "/");
+			} else {
+				model.addObject("msg", "로그인에 실패하였습니다. 로그인 페이지로 돌아갑니다.");
+				model.addObject("location", "/member/login");
+			}
+			
+		}
+		
+		// 세션에 사용자 정보 등록
+		// session.setAttribute("islogin_r", "Y");
+		session.setAttribute("signIn", apiResult);
+		session.setAttribute("email", email);
+		session.setAttribute("name", name);
+		System.out.println(email + name + apiResult);
+
+		
+		model.setViewName("common/msg");
+		return model;
+	}
     
 }

@@ -5,21 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>pwdReset</title>
+<title>VODA</title>
 
-    <!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- HEADER -->
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
     <!-- login CSS -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/login.css">
-</head>
-<body>
-<!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
    <div class="container">
         <div class="member_tit">
@@ -113,9 +105,7 @@ $('#m_password').blur(function(){
 
 </script>
 
-
 <!-- 비밀번호 재확인 -->
-
 <script>
 $(document).ready(function () {
     $("#newPwd2").change(function(){
@@ -133,7 +123,6 @@ $(document).ready(function () {
 		}
 	});
 });
-
 </script>
 
 <script>
@@ -159,7 +148,3 @@ $(document).ready(function(){
 });
 
 </script>
-
-
-</body>
-</html>
