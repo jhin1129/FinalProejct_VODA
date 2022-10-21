@@ -116,7 +116,10 @@
 					관리자페이지
 				</a>
 			</c:if>
-	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
+	        <a class="text-nowrap" href="${ path }/member/logout"
+	        	style="margin-left: 16px;">
+				로그아웃
+			</a>
 	      </div>	
 		</c:if>
 

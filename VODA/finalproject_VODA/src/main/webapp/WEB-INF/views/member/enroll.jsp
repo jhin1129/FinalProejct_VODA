@@ -5,34 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>enroll</title>
-	
-	<!--BootStrap CSS-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <!--BootStrap JS
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-    <!-- join CSS -->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/enroll.css">
-    
-    <!-- 
-    <script src="${ path }/js/jquery-3.6.0.min.js"></script>
-     -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
-    
-</head>
-<body>
+<title>VODA</title>
 
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+
+    <!-- join CSS -->
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/member/enroll.css">
 
        <div class="container">
             <div class="join_base_wrap">
@@ -88,7 +67,6 @@
                                                 style="padding-bottom: 10px;"></div>
                                                 <p id="requiredPassword">10자 이상 입력</p>
                                                 <p id="requiredPassword">영문/숫자/특수문자만 허용하며, 2개 이상 조합</p>
-                                                <!-- <p id="requiredPassword">동일한 숫자 3개 이상 연속 사용 불가</p> -->
                                         </tr>
                                         <tr class="">
                                             <th><span class="important">
@@ -1166,14 +1144,6 @@
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
                     </div>
-                <!-- <h5 class="modal-title" id="staticBackdropLabel">개인정보 수집·이용 동의(선택)</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                ...
-                </div> -->
             </div>
         </div>
     </div>    
@@ -1581,25 +1551,3 @@ $(document).ready(function(){
 });
 
 </script>
-<!-- 회원 가입 버튼 : 필수 이용 약관 동의
-
-<script>
-    $(document).ready(function(){
-
-        $("#btn_final_join").click(function(){    
-            if($("#flexCheckDefault1").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }else if($("#flexCheckDefault2").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }else if($("#flexCheckDefault4").is(":checked") == false){
-                alert("필수 이용 약관을 동의해 주세요.");
-                return;
-            }
-        });    
-    });
-</script>
--->
-</body>
-</html>
