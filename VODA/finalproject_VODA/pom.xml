@@ -235,7 +235,12 @@
 		    <version>21.7.0.0</version>
 		</dependency>
 
-		
+		<!-- json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
+        </dependency>
 
 	  
 		<dependency>

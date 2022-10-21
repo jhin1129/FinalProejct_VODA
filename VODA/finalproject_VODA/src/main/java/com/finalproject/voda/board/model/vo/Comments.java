@@ -1,6 +1,5 @@
 package com.finalproject.voda.board.model.vo;
 
-import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,9 +16,7 @@ public class Comments {
 	
 	String cmcontent;
 	
-	Date cmdate;
-	
-	String cmwriterno;
+	String cmdate;
 	
 	String cmwriterid;
 	

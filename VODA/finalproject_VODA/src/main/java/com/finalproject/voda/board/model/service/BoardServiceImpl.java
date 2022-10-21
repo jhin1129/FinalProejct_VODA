@@ -1,5 +1,6 @@
 package com.finalproject.voda.board.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
@@ -161,6 +162,18 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		return mapper.selectNoticeByNo(no);
+	}
+
+	
+	// 댓글 작성
+	
+	@Override
+	public int commentswrite(HashMap<String, Object> comments) {
+		
+		System.out.println("댓글 추가 : " + comments);
+		
+		return mapper.commentswrite(comments);
+		
 	}
 
 
