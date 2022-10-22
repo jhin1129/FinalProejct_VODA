@@ -11,6 +11,10 @@ public interface CartService {
 
 	List<Cart> getCartList(int m_no);
 
+	int getTotalPrice(List<Cart> cart);
+
+	int getTotalOqtt(List<Integer> porderqtt);
+
 	
 
 	

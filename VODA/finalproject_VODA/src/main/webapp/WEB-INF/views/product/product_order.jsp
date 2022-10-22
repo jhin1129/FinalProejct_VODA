@@ -198,18 +198,21 @@
 								<div class="form_element">
 									<ul class="payment_progress_select">
 
-										<oi id="settlekindType_pc"> <input type="radio"
-											id="settleKind_pc" name="settleKind" value="pc"> <label
-											for="settleKind_pc" class="choice_s">신용카드</label> </oi>
-										<oi id="settlekindType_pb"> <input type="radio"
-											id="settleKind_pb" name="settleKind" value="pb"> <label
-											for="settleKind_pb" class="choice_s">계좌이체</label> </oi>
-										<oi id="settlekindType_pv"> <input type="radio"
-											id="settleKind_pv" name="settleKind" value="pv"> <label
-											for="settleKind_pv" class="choice_s">가상계좌</label> </oi>
-										<oi id="settlekindType_ph"> <input type="radio"
-											id="settleKind_ph" name="settleKind" value="ph"> <label
-											for="settleKind_ph" class="choice_s">휴대폰결제</label> </oi>
+										<oi id="payCard"> 
+											<input type="radio" id="payCardRadio" name="payRadio"> 
+											<label for="payCardRadio" class="choice_s">신용카드</label> 
+										</oi>
+										<oi id="payBank"> 
+											<input type="radio" id="payBankRadio" name="payRadio"> 
+											<label for="payBankRadio" class="choice_s">계좌이체</label>
+										</oi>
+										<oi id="payKakao">
+											<input type="radio" id="payKakaoRadio" name="payRadio">
+											<label for="payKakaoRadio" class="choice_s">카카오페이</label> </oi>
+										<oi id="payPhone">
+											<input type="radio" id="payPhoneRadio" name="payRadio">
+											<label for="payPhoneRadio" class="choice_s">휴대폰결제</label> 
+										</oi>
 									</ul>
 								</div>
 

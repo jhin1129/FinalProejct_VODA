@@ -26,6 +26,8 @@ import com.finalproject.voda.order.model.vo.Pay;
 import com.finalproject.voda.product.model.service.ProductService;
 import com.finalproject.voda.product.model.vo.Product;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @SessionAttributes("loginMember")
 public class OrderController {
@@ -55,11 +57,23 @@ public class OrderController {
 	
 	@GetMapping("/product_list_order")
 	public ModelAndView ProductListOrder (ModelAndView model,
-			@SessionAttribute("loginMember") Member loginMember) {
-		List<Cart> cart = null;
+			@ModelAttribute Order order,
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam List<Integer> porderqtt) {
+		List<Cart> cart = new ArrayList<Cart>();
+		String productName = null;
 		cart = cartService.getCartList(loginMember.getM_no());
-		System.out.println(cart);
+		
+		for(int i=0; i<cart.size(); i++){
+			cart.get(i).setPorderqtt(porderqtt.get(i));
+			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
+			}
+		int totalOqtt = cartService.getTotalOqtt(porderqtt);
+		int totalPrice = cartService.getTotalPrice(cart);
+		productName = cart.get(0).getPname() + " 포함 총 " + totalOqtt + "개의 상품";
 		model.addObject("cart", cart);
+		model.addObject("totalPrice", totalPrice);
+		model.addObject("productName", productName);
 		model.setViewName("product/product_list_order");
 		
 		return model;
@@ -76,8 +90,6 @@ public class OrderController {
 		int result = 0;
 		int payno = 0;
 		
-		
-		
 		payno = orderService.insertPay(pay);
 		
 		order.setMno(loginMember.getM_no());
@@ -90,6 +102,51 @@ public class OrderController {
 		System.out.println(payno);
 		System.out.println("pay" + pay);
 		System.out.println(pay.getPayprice());
+		
+		if(result  > 0) {
+			model.setViewName("mainpage");
+		} else {
+			model.setViewName("mainpage");
+		}
+		return model;
+	}
+	
+	@PostMapping("/order_list_insert")
+	public ModelAndView ListInsertOrder (ModelAndView model,
+			@ModelAttribute Order order,
+			@ModelAttribute Pay pay,
+			@RequestParam List<Integer> porderqtt,
+			@SessionAttribute("loginMember") Member loginMember) {
+		List<Cart> cart = new ArrayList<Cart>();
+		int result = 0;
+		int payno = 0;
+		String productName = null;
+		
+		
+		for(int i=0; i<cart.size(); i++){
+			cart.get(i).setPorderqtt(porderqtt.get(i));
+			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
+			}
+		int totalPrice = cartService.getTotalPrice(cart);
+		
+		cart = cartService.getCartList(loginMember.getM_no());
+		
+		payno = orderService.insertPay(pay);
+		
+		order.setMno(loginMember.getM_no());
+		order.setPayno(payno);
+		
+		result = orderService.insertOrder(order);
+		
+
+		System.out.println();
+		System.out.println(cart);
+		
+		model.addObject("productName", productName);
+		model.addObject("totalPrice", totalPrice);
+		model.addObject("cart", cart);
+		model.addObject("order", order);
+		model.setViewName("mainpage");
 		
 		if(result  > 0) {
 			model.setViewName("mainpage");
