@@ -17,13 +17,12 @@
 		    B.B_STATUS, 
 		    B.B_ANSWER_STATUS, 
 		    B.BCATEGORY, 
-		    M.M_ID
+		    M.M_ID,
+		    B.COMMENTS
 		FROM BOARD B
 		JOIN MEMBER M ON (B.M_NO = M.M_NO)
 		WHERE B.B_STATUS = 'Y'
 	</sql>	 
-	
-	
 	
 
 	<resultMap type="Board" id="BoardResultMap">
@@ -40,6 +39,10 @@
 		<result property="bcategory" column="BCATEGORY"/>
 		<result property="bstatus" column="B_STATUS"/>
 		<result property="mid" column="M_ID"/>
+	</resultMap>
+	
+	<resultMap type="Board" id="BoardDetailResultMap" extends="BoardResultMap">
+		<collection property="comments" javaType="arraylist" columnPrefix="CM_" resultMap="CommentsResultMap"/>
 	</resultMap>
 	
 	<sql id="NoticeListSql">
@@ -88,9 +91,52 @@
 	</select>
 	
 		<!-- 게시판 상세 조회 -->
-	<select id="selectBoardByNo" parameterType="_int" resultMap="BoardResultMap">
-		<include refid="BoardListSql"></include>
-		AND B.B_NO = #{no}
+	<select id="selectBoardByNo" parameterType="_int" resultMap="BoardDetailResultMap">
+		SELECT
+		    B.B_NO, 
+		    M.M_NO, 
+		    B.B_TITLE, 
+		    B.B_TYPE, 
+		    B.B_DATE, 
+		    B.B_CONTENT, 
+		    B.B_ORIGINAL_FILENAME, 
+		    B.B_RENAMED_FILENAME, 
+		    B.B_VIEW, 
+		    B.B_STATUS, 
+		    B.B_ANSWER_STATUS, 
+		    B.BCATEGORY, 
+		    M.M_ID,
+            C.CM_NO AS "CM_CM_NO",
+            C.B_NO AS "CM_B_NO",
+            C.CM_CONTENT AS "CM_CM_CONTENT",
+            C.CM_WRITER_ID AS "CM_CM_WRITER_ID",
+            C.CM_WRITER_NO AS "CM_CM_WRITER_NO",
+            C.CM_DATE AS "CM_CM_DATE"
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+        LEFT JOIN 
+            (SELECT NUM,
+                CM_NO,
+                B_NO,
+                CM_CONTENT,
+                CM_WRITER_ID,
+                CM_WRITER_NO,
+                CM_DATE
+            FROM (
+                    SELECT ROWNUM AS "NUM",
+                        CM_NO,
+                        B_NO,
+                        CM_CONTENT,
+                        CM_WRITER_ID,
+                        CM_WRITER_NO,
+                        CM_DATE
+                    FROM COMMENTS 
+                    WHERE CM_STATUS = 'Y'
+                    ORDER BY CM_DATE 
+                ) )
+        C ON(B.B_NO = C.B_NO)
+        LEFT JOIN MEMBER M2 ON(C.CM_WRITER_NO = M2.M_NO)
+		WHERE B.B_STATUS = 'Y' AND B.B_NO = #{bno}
 	</select>	
 	
 		<!-- 게시판 삭제 (STATUS = 'N')-->
@@ -251,16 +297,18 @@
 		</if>
 	</select>
 	
-	<!-- 댓글 작성 -->
 	<resultMap type="Comments" id="CommentsResultMap">
 		<id property="cmno" column="CM_NO"/>
 		<result property="bno" column="B_NO"/>
 		<result property="cmcontent" column="CM_CONTENT"/>
 		<result property="cmdate" column="CM_DATE"/>
 		<result property="cmwriterid" column="CM_WRITER_ID"/>
+		<result property="cmwriterno" column="CM_WRITER_NO"/>
 		<result property="cmstatus" column="CM_STATUS"/>
 	</resultMap>
 	
+	
+	<!-- 댓글 작성 -->
 	<insert id="commentswrite" parameterType="Comments" useGeneratedKeys="true" keyProperty="cmno" keyColumn="CM_NO">
 		INSERT INTO COMMENTS (
 			CM_NO,
@@ -268,6 +316,7 @@
 			CM_CONTENT, 
 			CM_DATE,
 			CM_WRITER_ID, 
+			CM_WRITER_NO, 
 			CM_STATUS
 		)
 		VALUES (
@@ -276,9 +325,19 @@
 			#{cmcontent},
 			#{cmdate},
 			#{cmwriterid},
-			#{cmstatus}
+			#{cmwriterno},
+			DEFAULT
 		)
 	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<update id="commentsdelete" parameterType="map">
+		UPDATE COMMENTS SET CM_STATUS = #{cmstatus} WHERE CM_NO = #{cmno}
+	</update>
+	
+	
+	
+	<!-- 댓글 수정 -->
 	
 	
 	

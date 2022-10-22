@@ -214,7 +214,7 @@
                 <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글</strong>
 					<hr>
 					<div id="comment-list">
-                	<c:forEach var="comments" items="${ commentsList }">
+                	<c:forEach var="comments" items="${ board.comments }">
                 <div id="comment">
                 	    <input id="cmno" type="hidden" value="${ comments.cmno}">
 	                	<input id="cmwriterno" type="hidden" value="${comments.cmwriterno }" >
@@ -223,11 +223,11 @@
                         <span class="id"></span>
                         <span name="cmdate" class="mt-1 col p-0" style="font-size: 11px; color: #000000;">${comments.cmdate }</span>
                         <p  class="cmcontent" style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">${comments.cmcontent }</p>
-                        <c:if test='${ loginMember.m_no == comments.cmwriterno }'>
+                        <c:if test="${ loginMember.m_no == comments.cmwriterno || loginMember.m_authorization == 'M' }">
 	                        <div style="margin-top: 10px;">
 		                            <div style="float:right; margin-top: -33px;">
 		                                <button onclick="updateComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px; margin-right: 5px;">수정</button>
-		                                <button onclick="deleteComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
+		                                <button id="deletebutton" onclick="deleteComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
 		                            </div>
 	                        </div>
                         </c:if>
@@ -257,6 +257,7 @@
 
                    <div  id="comment-editor" class="mb-3">
                         <div class="form-control" style="height: 105px; margin-top: 10px; margin-bottom: 5px;">
+                            <input id="loginno" type="hidden" value="${ loginMember.m_no }" >
                             <strong id="loginId" value="${loginMember.m_id }" class="p-1 cmwriterid" style="color: #000000; font-size: 14.45px;">${loginMember.m_id }</strong>
                             <hr style="margin: 0px;">
                             <textarea id="cmcontent"  onfocus="loginCheck();"  class="p-1"
@@ -303,6 +304,14 @@
 
 		    var d = new Date(date),
 
+		    hours = ('0' + d.getHours()).slice(-2); 
+		    minutes = ('0' + d.getMinutes()).slice(-2);
+		    seconds = ('0' + d.getSeconds()).slice(-2); 
+
+		    timeString = hours + ':' + minutes  + ':' + seconds;
+
+		    console.log(timeString);
+
 		    month = '' + (d.getMonth() + 1) , 
 		    day = '' + d.getDate(), 
 		    year = d.getFullYear();
@@ -310,7 +319,7 @@
 		    if (month.length < 2) month = '0' + month; 
 		    if (day.length < 2) day = '0' + day; 
 
-		    return [year, month, day].join('-');
+		    return [year, month, day].join('-') + ' ' + timeString;
 
 		    }
 		
@@ -320,11 +329,14 @@
 			if($("#cmcontent").val().trim()==""){
 				alert("내용을 입력해주세요");
 			} else{
+				console.log(${loginMember.m_no});
+				console.log($("#loginno").attr("value"));
 				var now = new Date();
 				var comments = {
 					"bno" : ${board.bno},
 					"cmcontent" : $("#cmcontent").val(),
 					"cmwriterid" : $("#loginId").attr("value"),
+					"cmwriterno" : parseInt($("#loginno").attr("value")),
 					"cmdate" : formatDate(now)
 				}
 				
@@ -370,16 +382,20 @@
 		}
 		
 		function deleteComments(event) {
+			$("#deletebutton").attr("value", "N")
+			var comments = {
+					"cmno" : $(event.target).parent().parent().parent().siblings("#cmno").val(),
+					"cmwriterno" : $(event.target).parent().parent().parent().siblings("#cmwriterno").val(),
+					"cmstatus" : $("#deletebutton").attr("value")
+				}
 			$.ajax({
 				url: "${path}/board/commentsdelete",
 				type: "POST",
 				dataType: "json",
-				data: {
-					"cmno" : $(event.target).parent().parent().siblings("#cmno").val(),
-					"cmwriterno" : $(event.target).parent().parent().siblings("#cmwriterno").val()
-				},
+				contentType : "application/json",
+				data: JSON.stringify(comments),
 				success: function() {
-					$(event.target).parents(".comment").remove();
+					$(event.target).parents("#comment").remove();
 				},
 				error: (error) => {
 					alert("댓글 삭제 실패");

@@ -176,5 +176,14 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
+	// 댓글 삭제
+	@Override
+	public int commentsdelete(HashMap<String, Object> comments) {
+		
+		System.out.println("댓글 삭제 : " + comments);
+		
+		return mapper.commentsdelete(comments);
+	}
+
 
 }

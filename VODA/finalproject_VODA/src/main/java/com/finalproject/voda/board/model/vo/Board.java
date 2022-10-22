@@ -1,6 +1,7 @@
 package com.finalproject.voda.board.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -42,6 +43,8 @@ public class Board {
 	private String bcategory;
 	
 	private String banswerstatus;
+	
+	private List<Comments> comments;
 	
 	
 }
