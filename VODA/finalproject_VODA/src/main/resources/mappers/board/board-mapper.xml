@@ -335,10 +335,10 @@
 		UPDATE COMMENTS SET CM_STATUS = #{cmstatus} WHERE CM_NO = #{cmno}
 	</update>
 	
-	
-	
 	<!-- 댓글 수정 -->
-	
+	<update id="commentsupdate" parameterType="map">
+		UPDATE COMMENTS SET CM_CONTENT = #{cmcontent} WHERE CM #{cmno}
+	</update>
 	
 	
 	

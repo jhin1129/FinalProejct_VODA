@@ -34,6 +34,9 @@ public interface BoardMapper {
 	// 댓글 삭제
 	int commentsdelete(HashMap<String, Object> comments);
 	
+	// 댓글 수정
+	int commentsupdate(HashMap<String, Object> comments);
+	
 	// 자유게시판검색
 	int getBoardSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getBoardSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
@@ -50,6 +53,7 @@ public interface BoardMapper {
 	int getNoticeSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getNoticeSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
 	int updateNoticeView(Notice notice);
+
 
 
 

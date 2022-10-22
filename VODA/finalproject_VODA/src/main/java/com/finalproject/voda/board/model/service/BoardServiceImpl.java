@@ -185,5 +185,14 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.commentsdelete(comments);
 	}
 
+	// 댓글 수정
+	@Override
+	public int commentsupdate(HashMap<String, Object> comments) {
+		
+		System.out.println("댓글 수정 : " + comments);
+		
+		return mapper.commentsupdate(comments);
+	}
+
 
 }

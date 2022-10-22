@@ -32,6 +32,8 @@ public interface BoardService {
 	// 댓글 삭제
 	int commentsdelete(HashMap<String, Object> comments);
 	
+	// 댓글 수정
+	int commentsupdate(HashMap<String, Object> comments);
 	
 	// 일반회원용 공지사항 페이지
 	int getNoticeCount();
@@ -39,6 +41,7 @@ public interface BoardService {
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 	Notice findNoticeByNo(int no, boolean hasRead);
+
 
 
 

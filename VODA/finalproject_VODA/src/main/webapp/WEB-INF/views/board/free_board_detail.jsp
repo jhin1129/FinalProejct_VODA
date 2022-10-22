@@ -416,15 +416,19 @@
 		}
 		
 		function updateCommentsCommit(event){
+			
+			var comments = {
+					"cmno" : $(event.target).parent().parent().parent().prev().find("#cmno").val(),
+					"cmcontent" : $(event.target).parent().parent().prev().find("#updateCommentsContent").val(),
+					"cmwriterno" : $(event.target).parent().parent().parent().prev().find("#cmwriterno").val()
+				}
+			
 			$.ajax({
 				url: "${path}/board/commentsupdate",
 				type: "POST",
 				dataType: "json",
-				data: {
-					"cmno" : $(event.target).parent().parent().prev().find("#cmno").val(),
-					"cmcontent" : $(event.target).parent().prev().find("#updateCommentsContent").val(),
-					"cmwriterno" : $(event.target).parent().parent().prev().find("#cmwriterno").val()
-				},
+				contentType : "application/json",
+				data: JSON.stringify(comments),
 				success: function() {
 					$(event.target).parent().parent().hide();
 					$(event.target).parent().parent().prev().show();

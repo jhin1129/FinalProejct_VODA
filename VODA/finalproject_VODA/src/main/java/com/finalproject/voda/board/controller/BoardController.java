@@ -683,6 +683,27 @@ public class BoardController {
 		return comments;
 	}
 	
+	//	자유게시판 댓글 수정
+	@RequestMapping("/commentsupdate")
+	@ResponseBody
+	public Map<String, Object> commentsupdate(@RequestBody HashMap<String, Object> comments) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		
+		System.out.println("파라미터 객체 : " + comments);
+		
+		int result = 0;
+		
+		result = service.commentsupdate(comments);
+		
+		if(result > 0 ) {
+			System.out.println("값: " + result);
+			resultMap.put("comments", comments);
+		} else {
+			resultMap.put("data", "fail");
+		}
+		return comments;
+	}
 	
 	
 
