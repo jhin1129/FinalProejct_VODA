@@ -52,6 +52,7 @@ public interface AdminMapper {
 	List<Product> selectAllOrder(RowBounds rowBounds);
 	int getOrderSearchCount(@Param("searchType") String searchType, @Param("keyword") String keyword);
 	List<Search> getOrderSearchList(RowBounds rowBounds,@Param("searchType") String searchType, @Param("keyword") String keyword);
+	int updateOrderStatus(@Param("no") int no);
 	
 	int selectBoardCount();
 	List<Board> selectAllBoard(RowBounds rowBounds);
@@ -86,6 +87,7 @@ public interface AdminMapper {
 	List<JoinMember> selectTotaljoinList(RowBounds rowBounds, String no);
 
 	Board selectQnaType();
+
 
 
 

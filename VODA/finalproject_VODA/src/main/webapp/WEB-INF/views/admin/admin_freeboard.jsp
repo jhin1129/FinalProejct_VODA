@@ -53,7 +53,7 @@
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
 
-                <!-- Begin Page Content -->
+     <!-- Begin Page Content -->
      <div class="container-fluid">
         <div class="table">
             <table id="table_idd" class="table table-bordered" style="width:100%">
@@ -88,10 +88,14 @@
 						<td id="td">${ board.mid }</td>
 						<td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate>
                         <td id="td">
-                        <c:choose> 
-                    		<c:when test="${ board.bstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">삭제</button></c:when>
-                    		<c:when test="${ board.bstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
-                    	</c:choose>
+                   		<form action="${ path }/admin/admin_board_delete" style="width: 100%;">
+                    	<input type="hidden" name="bno" value="${ board.bno }">
+                    	<input type="hidden" name="btype" value="FREE">
+                    	<c:choose> 
+                    		<c:when test="${ board.bstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="bstatus" value="Y">적용</button></c:when>
+                    		<c:when test="${ board.bstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="bstatus" value="N">복구</button></c:when>
+                    	</c:choose>	
+                  		</form>
                         </td>
                     </tr>
                     </c:forEach>

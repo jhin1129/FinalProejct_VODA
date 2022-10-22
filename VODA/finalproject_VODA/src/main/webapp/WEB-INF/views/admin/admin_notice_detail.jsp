@@ -139,7 +139,7 @@
 
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
-            <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/admin/admin_notice_list'">목록</button>
+            <button class="btn btn-greyC py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/admin/admin_notice_list'">목록</button>
         </div>
     </div>
     </div></div></div>

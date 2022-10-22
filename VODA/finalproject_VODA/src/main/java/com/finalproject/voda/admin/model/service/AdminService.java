@@ -47,6 +47,7 @@ public interface AdminService {
 	List<Product> getOrderList(PageInfo pageInfo);
 	int getOrderSearchCount(String searchType, String keyword);
 	List<Search> getOrderSearchList(PageInfo pageInfo, String searchType, String keyword);
+	int refundGoods(int no);
 	
 	int getBoardCount();
 	List<Board> getBoardList(PageInfo pageInfo);
@@ -74,11 +75,7 @@ public interface AdminService {
 	List<Sales> getTotalsalesList(PageInfo pageInfo, String no);
 	int getTotaljoinCount();
 	List<JoinMember> getTotaljoinList(PageInfo pageInfo, String no);
-	
-	
-	Board getQNAboardType();
 
-	
 
 
 

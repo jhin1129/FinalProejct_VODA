@@ -88,10 +88,14 @@
 						<td id="td">${ board.mid }</td>
 						<td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate>
                         <td id="td">
-                        <c:choose> 
-                    		<c:when test="${ board.bstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">삭제</button></c:when>
-                    		<c:when test="${ board.bstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
-                    	</c:choose>
+                   		<form action="${ path }/admin/admin_freeboard_delete" style="width: 100%;">
+                    	<input type="hidden" name="bno" value="${ board.bno }">
+                    	<input type="hidden" name="btype" value="FREE">
+                    	<c:choose> 
+                    		<c:when test="${ board.bstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="bstatus" value="Y">적용</button></c:when>
+                    		<c:when test="${ board.bstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="bstatus" value="N">복구</button></c:when>
+                    	</c:choose>	
+                  		</form>
                         </td>
                     </tr>
                     </c:forEach>
@@ -106,7 +110,7 @@
 
 
         <div class="search1 row my-4">
-          <form action="${ path }/admin/admin_freeboard_search" style="width: 100%;">
+          <form action="${ path }/admin/admin_board_search" style="width: 100%;">
             <div class="col-7 row">
                 <div class="col-xs-3 col-sm-3">
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">

@@ -61,8 +61,17 @@
                         <th id="th" style="width: 20%;">상품명</th>
                         <th id="th" style="width: 10%;">회원정보</th>
                         <th id="th" style="width: 10%;">구매수량</th>
-                        <th id="th" style="width: 15%;">주문금액</th>
-                        <th id="th" style="width: 15%;">주문현황</th>
+                        <th id="th" style="width: 10%;">주문금액</th>
+                        <th id="th" style="width: 10%;">
+						<select class="form-control1" style="font-size: 14.45px;"onchange="if(this.value) location.href=(this.value);">
+	                        <option value="${path}/admin/admin_goods_order" selected>전체</option>
+	                        <option value="${path}/admin/admin_goods_order_search?searchType=status&keyword=배송준비중">배송준비중</option>
+	                        <option value="${path}/admin/admin_goods_order_search?searchType=status&keyword=배송완료">배송완료</option>
+	                        <option value="${path}/admin/admin_goods_order_search?searchType=status&keyword=환불대기중">환불대기중</option>
+	                        <option value="${path}/admin/admin_goods_order_search?searchType=status&keyword=환불완료">환불완료</option>
+                    	</select>
+						</th>
+                        <th id="th" style="width: 10%;">환불</th>
                     </tr>
                 </thead>
 				
@@ -76,25 +85,85 @@
 					</tr>	
 				 </c:if> 
                   <c:if test="${ not empty list }"> 	 
-	                <c:forEach var="order" items="${ list }">
+	                <c:forEach var="order" items="${ list }" varStatus="Status">
                     <tr style="text-align: center;">
                         <td id="td">${ order.payno }</td>
                         <td id="td"><fmt:formatDate value="${ order.odate }" type="date"/></td>
 						<td id="td" style="text-align: left;">
-							<a href="${ path }/product/product_detail?no=${ order.productList[0].pno }">
-								${ order.productList[0].pname }
-							</a>
+							<!-- Button trigger modal -->
+						<a href="#" data-toggle="modal" data-target="#Modal${Status.index}">
+	                        <label style="cursor: pointer;"> ${ order.productList[0].pname }
+	                            <c:if test="${fn:length(order.productList) > 1}">
+	                            
+	                            	<c:forEach begin="1" end="${fn:length(order.productList)}" step="1" varStatus="i">
+		                            	<c:set var="Count" value="${i.count}" />
+		                            	<c:out value="${order.productList[Count].pname}"/>
+	                            	</c:forEach>
+	                            	
+	                            </c:if>
+	                        </label>
+						</a>
+
+
+						
 						</td>
-						<td id="td">${ order.member.m_id }</td>
+						<td id="td">${ order.member[0].m_id }</td>
 						<td id="td">${ order.oqtt }</td>
 						<td id="td"><fmt:formatNumber value="${ order.pay.payprice }" type="number" groupingUsed="true"/>
                         <td id="td">${ order.pay.patstatus }</td>
+                        <td id="td">
+                        	<c:if test="${ order.pay.patstatus  eq '환불대기중'}"><button type="button" class="btn btn-logoC btn-sm" data-toggle="modal" data-target="#Modal">환불</button></c:if>
+                        </td>
                     </tr>
+						<!-- Modal -->
+						<div class="modal fade" id="Modal${Status.index}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h3 class="modal-title" id="ModalLabel">📜 주문 상세 내역</h3>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">✖</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        • 주문번호 : ${ order.payno }<br>
+						        • 상품명 : 
+						        <c:forEach begin="1" end="${fn:length(order.productList)}" step="1" varStatus="i">
+		                            	<c:set var="Count" value="${i.count-1}" />
+		                            	<c:out value="${order.productList[Count].pname}"/>
+	                            	</c:forEach><br>
+						        • 결제금액 : <fmt:formatNumber value="${ order.pay.payprice }" type="number" groupingUsed="true"/>원<br>
+						        • 결제수단 : ${ order.pay.paymethod }<br>
+						        • 구매자아이디 : ${ order.member[0].m_id }<br>
+						        • 구매자이름: 
+						        <c:choose>
+						        	<c:when test="${fn:length(order.member[0].m_name) > 1}">
+							        	<c:out value="${fn:substring(order.member[0].m_name,0,1)}"/>*
+							        	<c:out value="${fn:substring(order.member[0].m_name,2,4)}"/>
+						        	</c:when>
+						        </c:choose><br>
+						        • 구매자연락처 : ${ order.ophone }<br>
+						        • 배송주소 : [${ order.opostnum }] ${ order.oadress } ${ order.oadressdetail }<br>
+						        • 주문메세지 : ${ order.omessage }<br>
+						        • 주문현황 : ${ order.pay.patstatus }<br>
+						      </div>
+						      <div class="modal-footer">
+						        <form action="${ path }/admin/admin_goods_order_refund" >
+						        <input type="hidden" name="no" value="${ order.payno }">
+						        <c:if test="${ order.pay.patstatus  eq '환불대기중'}"><button type="submit" class="btn btn-logoC btn-sm" data-toggle="modal" data-target="#Modal">환불</button></c:if>
+						        <button type="button" class="btn btn-logoC btn-sm" data-dismiss="modal">닫기</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
                     </c:forEach>
                     </c:if> 
                 </tbody>
             </table>
         </div>
+
 
 
         <div class="col-4 text-right">
@@ -108,7 +177,6 @@
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>상품명</option>
                         <option value="member">구매자</option>
-                        <option value="status">주문현황</option>
                     </select>
                 </div>
 
@@ -158,6 +226,7 @@
          </div>
        </div>
   </div>
+</div>
 </div>
 <hr>
 

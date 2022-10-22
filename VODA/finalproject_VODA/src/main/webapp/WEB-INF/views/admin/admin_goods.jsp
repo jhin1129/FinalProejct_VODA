@@ -240,12 +240,18 @@
                     <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
                     <td><div class="poster_movie">
                           <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb">
-                        </div>
-                    </td>
+                        </div></td>
                     <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">리뷰관리</button></td>
-                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">수정</button></td>
-                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">적용</button>
-                    </td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/product/product_update?pno=${ product.pno }'">수정</button></td>
+                    <td class="align-middle">
+                    <form action="${ path }/admin/admin_goods_delete" style="width: 100%;">
+                    	<input type="hidden" name="pno" value="${ product.pno }">
+                    	<c:choose> 
+                    		<c:when test="${ product.pstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="pstatus" value="Y">적용</button></c:when>
+                    		<c:when test="${ product.pstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="pstatus" value="N">복구</button></c:when>
+                    	</c:choose>	
+                  	</form>
+                  	</td>
                   </tr>
 				</c:forEach>
                 </tbody>

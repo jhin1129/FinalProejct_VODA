@@ -243,9 +243,15 @@
                         </div>
                     </td>
                     <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">리뷰관리</button></td>
-                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">수정</button></td>
-                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">적용</button>
-                    </td>
+                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/product/product_update?pno=${ product.pno }'">수정</button></td>
+                    <td class="align-middle">
+                    <form action="${ path }/admin/admin_goods_delete" style="width: 100%;">
+                    	<input type="hidden" name="pno" value="${ product.pno }">
+                    	<c:choose> 
+                    		<c:when test="${ product.pstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="pstatus" value="Y">적용</button></c:when>
+                    		<c:when test="${ product.pstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="pstatus" value="N">복구</button></c:when>
+                    	</c:choose>	
+                  	</form>
                   </tr>
 				</c:forEach>
                 </tbody>

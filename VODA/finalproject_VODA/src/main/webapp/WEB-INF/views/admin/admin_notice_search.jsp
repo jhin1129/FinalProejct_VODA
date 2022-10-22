@@ -227,7 +227,7 @@
 								<span> - </span>
 							</c:if>
 							<c:if test="${ not empty notice.noticeRenamedFileName }">
-								<img src="${ path }/resources/img/community/attachment.png" width="20px" height="20px">
+								<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
 							</c:if>
 						</td>
 						<td id="td">${ notice.noticeWriterId }</td>

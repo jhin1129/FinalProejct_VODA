@@ -64,10 +64,10 @@
                         <th id="th" style="width: 10%;">날짜</th>
                         <th id="th" style="width: 15%;">작성자</th>
                         <th id="th" style="width: 10%;">
-                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;" onchange="SelectATValue()">
-	                        <option name="AnswerType" value="ALL" selected>전체</option>
-	                        <option name="AnswerType" value="ANSWERNO">미답변</option>
-	                        <option name="AnswerType" value="ANSWERYES">답변완료</option>
+                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;"onchange="if(this.value) location.href=(this.value);">
+	                        <option value="${path}/admin/admin_qna" selected>전체</option>
+	                        <option value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=N">미답변</option>
+	                        <option value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=Y">답변완료</option>
                     	</select>
                         </th>
                         <th id="th" style="width: 10%;">삭제</th>
@@ -88,7 +88,7 @@
                     <tr style="text-align: center;">
                         <td id="td">${ board.bno }</td>
 						<td id="td" style="text-align: left;">
-							<a href="${ path }/admin/admin_notice_detail?no=${ notice.bno }">
+							<a href="${ path }/board/question_board_detail?no=${ board.bno }">
 								${ board.btitle }
 							</a>
 						</td>
@@ -96,11 +96,20 @@
 						<td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate>
                         <td id="td">
                         <c:choose> 
-                    		<c:when test="${ board.banswerstatus == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">미답변</button></c:when>
-                    		<c:when test="${ board.banswerstatus == 'N'}"><button type="button" class="btn btn-greyC btn-sm">답변완료</button></c:when>
-                    	</c:choose>
+                    		<c:when test="${ board.banswerstatus == 'Y'}"><button type="button" class="btn btn-greyC btn-sm">답변완료</button></c:when>
+                    		<c:when test="${ board.banswerstatus == 'N'}"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/board/question_board_detail?no=${ board.bno }'">미답변</button></c:when>
+                     	</c:choose>
                         </td>
-                        <td id="td"><button type="button" class="btn btn-logoC btn-sm">삭제</button></td>
+                        <td id="td">
+                   		<form action="${ path }/admin/admin_board_delete" style="width: 100%;">
+                    	<input type="hidden" name="bno" value="${ board.bno }">
+		                <input type="hidden" name="btype" value="QNA">
+                    	<c:choose> 
+                    		<c:when test="${ board.bstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="bstatus" value="Y">적용</button></c:when>
+                    		<c:when test="${ board.bstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="bstatus" value="N">복구</button></c:when>
+                    	</c:choose>	
+                  		</form>
+                        </td>
                     </tr>
                     </c:forEach>
                     </c:if> 
@@ -119,7 +128,6 @@
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
                         <option value="writer">작성자</option>
-                        <option value="Astatus">답변상태</option>
                         <option value="status">게시글상태</option>
                     </select>
                 </div>

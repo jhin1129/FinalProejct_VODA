@@ -234,8 +234,8 @@
                 <tbody>
                  <c:forEach var="member" items="${ search }">
                   <tr>             
-                    <th scope="row" name="mno">${ member.m_no }</th>
-                    <td>${ member.m_id }</td>
+                    <th scope="row">${ member.m_no }</th>
+                    <td>${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if></td>
                     <td><fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate></td>
                     <td>
                     	<c:choose> 
@@ -244,11 +244,14 @@
                     	</c:choose>
                     </td>
                     <td>
+   		 			 <form action="${ path }/admin/admin_member_delete" style="width: 100%;">
+                       		<input type="hidden" name="mno" value="${ member.m_no }">
                        	<c:choose> 
-                    		<c:when test="${ member.m_status == 'Y'}"><button type="button" class="btn btn-logoC btn-sm">탈퇴</button></c:when>
-                    		<c:when test="${ member.m_status == 'N'}"><button type="button" class="btn btn-greyC btn-sm">복구</button></c:when>
+                    		<c:when test="${ member.m_status == 'Y' && member.m_authorization == 'M'}"><button type="button" class="btn btn-greyC btn-sm" style="cursor: default;">관리자</button></c:when>
+                    		<c:when test="${ member.m_status == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="memberStatus" value="Y">탈퇴</button></c:when>
+                    		<c:when test="${ member.m_status == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="memberStatus" value="N">복구</button></c:when>
                     	</c:choose>
-
+                    </form>
                     </td>
                   </tr>
                   </c:forEach> 

@@ -204,6 +204,15 @@ public class AdminServiceImpl implements AdminService {
 		
 		return mapper.getOrderSearchList(rowBounds, searchType, keyword);
 	}
+	// 상품주문 환불 처리 
+	@Override
+	public int refundGoods(int no) {
+		int result = 0;
+		
+		result =  mapper.updateOrderStatus(no);
+		return result;
+	}
+
 
 	// 자유게시판 전체개수 카운트
 	@Override
@@ -386,7 +395,7 @@ public class AdminServiceImpl implements AdminService {
 	public int getTotaljoinCount() {
 		return mapper.selectTotaljoinCount();
 	}
-	// 통계페이지 사입자수 리스트
+	// 통계페이지 가입자수 리스트
 	@Override
 	public List<JoinMember> getTotaljoinList(PageInfo pageInfo, String no) {
 		int offset = (pageInfo.getCurrentPage() -1)*pageInfo.getListLimit();
@@ -394,12 +403,6 @@ public class AdminServiceImpl implements AdminService {
 		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		return mapper.selectTotaljoinList(rowBounds, no);	
-	}
-	
-	@Override
-	public Board getQNAboardType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

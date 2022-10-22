@@ -46,7 +46,7 @@ public class Order {
 	
 	private String oadressdetail;
 	
-	private Member member;
+	private List<Member> member;
 	
 	
 }

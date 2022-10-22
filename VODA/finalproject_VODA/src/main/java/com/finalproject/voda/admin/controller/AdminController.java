@@ -317,6 +317,24 @@ public class AdminController {
 		
 		return model;
 	}
+	
+//	상품주문관리 환불 처리
+	@GetMapping("/admin_goods_order_refund")
+	public ModelAndView adminGoodsOrderDelete(ModelAndView model, 
+			@RequestParam(name="no") int no
+			){ 
+		
+		int result = 0;
+		
+		result = service.refundGoods(no);
+		
+		if(result > 0) {
+			model.addObject("msg", "상품 상태 변경");
+			model.addObject("location", "/admin/admin_goods_order");	
+		} 
+		model.setViewName("common/msg");
+		return model;
+	}
 
 //	자유게시판 리스트
 	@GetMapping("/admin_freeboard") 
@@ -410,18 +428,6 @@ public class AdminController {
 		return model; 
 	}
 
-//	문의게시판 타입 선택
-	@GetMapping("/admin_qna_AT")
-	public ModelAndView adminQnaAT(ModelAndView model) {
-		
-		Board board = null;
-		
-		board = service.getQNAboardType();
-		model.addObject("board", board);
-		model.setViewName("/admin/admin_qna_AT");
-		return model;
-	}
-	
 	
 //	문의게시판 리스트 검색
 	@GetMapping("/admin_qna_search")
@@ -516,10 +522,10 @@ public class AdminController {
 					hasRead = true;
 					
 					break;
+					}
 				}
-			}
-		}
-    }
+    		}
+    	}
 
     	if(!hasRead) {    		
     		Cookie cookie = new Cookie("viewhistory" ,viewhistory +  "|" +  no + "|");

@@ -54,7 +54,6 @@
                                     <c:forEach var="Totalview" items="${ cviewlist }">
                                           <c:set var="Total" value="${Total + Totalview.cviewcount }" />
                            			</c:forEach>
-                                          <div>총${ Total }</div>
                                           
                             </div>
                             <div class="col-auto">
