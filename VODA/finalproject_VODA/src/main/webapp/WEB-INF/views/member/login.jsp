@@ -5,9 +5,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+<title>VODA</title>
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
-
 
     <!-- Font CSS -->
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
@@ -37,14 +38,14 @@
 	                                    <input id="userId" name="m_id" type="text" placeholder="이메일 주소 또는 아이디"  autocomplete="off" required> 
 	                                </div>
 	                            </div>
-	                            <div class="form-group py-1 pb-2"  style="margin-bottom: 15px;">
+	                            <div class="form-group py-1 pb-2"  style="margin-bottom: 0px;">
 	                                <div class="input-field" style="height: 44px;">
 	                                    <span class="fas fa-lock px-2"></span>
 		                                    <input id="userPwd" name="m_password" type="password" placeholder="비밀번호"  autocomplete="off" required>
 	                                    		<span id="eye" class="far fa-eye-slash"></span>
 	                                </div>
 	                            </div>
-	                            <span class="form-inline">
+	                            <span class="form-inline" style="margin-left: 10px;">
 	                                <input type="checkbox" name="saveId" id="saveId">
 	                                <label for="saveId" class="text-muted" id="idSaveCheck">아이디 저장</label> 
 	                            </span>
@@ -73,12 +74,12 @@
 	                    <!-- 카카오 로그인 -->
 	                    <div class="mx-3 my-2 py-2 bordert">
 	                        <a onclick="location.href='${urlKakao}'">
-	                            <img id="kakao"
-	                                src="http://papaspick.com/web/upload/2019_web/icon/kakao_login.jpg"
-	                                width="222"
-	                                alt="카카오 로그인 버튼"
-	                                />
+	                            <img src='${path}/resources/img/member/kakao_login_medium_narrow.png'>
 	                            </a>
+	                    <button type ="button" class = "btn" onclick="location.href='${urlNaver}'">
+	                    	<img src='${path}/resources/img/member/naver_login.png' 
+	                    		style="width: 170px;">
+	                    </button>
 	                    </div>
 	                </div>
 	            </div>

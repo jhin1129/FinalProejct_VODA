@@ -9,7 +9,7 @@ public interface CartService {
 
 	int insertCart(Cart cart);
 
-	List<Cart> getCartList(PageInfo pageInfo, int m_no);
+	List<Cart> getCartList(int m_no);
 
 	
 

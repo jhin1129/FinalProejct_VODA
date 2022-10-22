@@ -13,7 +13,43 @@
 
     <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-      
+    <style>
+    button:focus {
+		box-shadow: none !important;
+	}
+	
+	
+	.btn {
+	
+	    transition: background 0.2s ease-in-out,
+	        color 0.2s ease-in-out;
+	}
+	
+	.btn-logoc {
+	    color: #fff;
+	    border-color: #495FE9;
+	    background-color: #495FE9;
+	}
+	
+	.btn-logoc:hover {
+	    background-color: #0b27db !important;
+	    border-color: #0b27db;
+	    color: #fff !important;
+	}
+	
+	.btn-greyc {
+	    background-color: rgb(235, 236, 240);
+	    border: rgb(235, 236, 240);
+	    color: #000000;
+	
+	}
+	
+	.btn-greyc:hover {
+	    background-color: #c3c3c4b7 !important;
+	    border-color: #c3c3c4b7 !important;
+	    color: #000000 !important;
+	}
+    </style>  
     <div class="container p-0">
         <div class="row">
             <!-- 왼쪽 사이드메뉴 -->
@@ -127,7 +163,7 @@
                                 </table>
                                 <!-- 테이블 끝 -->
                                 <p style="text-align: center; margin-top: 10px; margin-left: 70px;">
-                                    <button id="deleteMember" type="submit" class="btn btn-logoC">탈퇴</button>
+                                    <button id="deleteMember" type="submit" class="btn btn-logoc">탈퇴</button>
                                 </p>
                             </form>
                         </div>

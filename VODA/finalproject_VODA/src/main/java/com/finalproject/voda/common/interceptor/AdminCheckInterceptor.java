@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.finalproject.voda.member.model.vo.Member;
 
-public final class LoginCheckInterceptor extends HandlerInterceptorAdapter {
+public final class AdminCheckInterceptor extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -16,14 +16,13 @@ public final class LoginCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		Member loginMember = (Member) request.getSession().getAttribute("loginMember");
 		
-		if(loginMember == null) {
-			request.setAttribute("msg", "로그인 후 이용이 가능합니다.");
+		if(loginMember.getM_authorization().equals("U")) {
+			request.setAttribute("msg", "관리자만 이용이 가능합니다.");
 			request.setAttribute("location", "/");
 			request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 			
 			return false;
 		}
-
 		return super.preHandle(request, response, handler);
 	}
 

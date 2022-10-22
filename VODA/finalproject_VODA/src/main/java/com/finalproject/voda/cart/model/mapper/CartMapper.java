@@ -11,6 +11,6 @@ public interface CartMapper {
 
 	int insertCart(Cart cart);
 
-	List<Cart> getCartList(@Param("pageInfo") PageInfo pageInfo,@Param("mno") int m_no);
+	List<Cart> getCartList(@Param("mno") int m_no);
 
 }

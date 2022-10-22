@@ -14,6 +14,44 @@
     <!-- my CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
 	
+	<style>
+        button:focus {
+			box-shadow: none !important;
+		}
+		
+		
+		.btn {
+		
+		    transition: background 0.2s ease-in-out,
+		        color 0.2s ease-in-out;
+		}
+		
+		.btn-logoc {
+		    color: #fff;
+		    border-color: #495FE9;
+		    background-color: #495FE9;
+		}
+		
+		.btn-logoc:hover {
+		    background-color: #0b27db !important;
+		    border-color: #0b27db;
+		    color: #fff !important;
+		}
+		
+		.btn-greyc {
+		    background-color: rgb(235, 236, 240);
+		    border: rgb(235, 236, 240);
+		    color: #000000;
+		
+		}
+		
+		.btn-greyc:hover {
+		    background-color: #c3c3c4b7 !important;
+		    border-color: #c3c3c4b7 !important;
+		    color: #000000 !important;
+		}
+	</style>
+	
     <div class="container p-0">
         <div class="row">
             <!-- 왼쪽 사이드메뉴 -->
@@ -74,7 +112,7 @@
                                              -->
                                             <label for="" id="email_chk"></label>
                                             <input type="hidden" name="emailTest" value="0" />
-                                            <button id="emailCheckBtn" type="button" class="btn btn-logoC" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px; margin-top: -3px; margin-left: -4px;">중복확인</button>
+                                            <button id="emailCheckBtn" type="button" class="btn btn-logoc" style="font-size: 0.85em; width: 90px; height: 27.67px; padding-top: 5px; padding-left: 5px; padding-right: 5px; margin-top: -3px; margin-left: -4px;">중복확인</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -88,7 +126,7 @@
                                         <td class="infotable_td">
                                             <div class="address_postcode">
                                                 <input type="text" id="sample6_postcode" name="m_postNum" readonly="readonly" type="number" value="${ loginMember.m_postNum }" required style="font-size: 0.85em; height: 27.66px; margin-bottom: 10px; background-color: #e9ecef;" >
-                                                <button type="button" id="btnPostcode" onclick="sample6_execDaumPostcode()" class="btn_post_search btn btn-logoC" style="font-size: 0.7em; width: 90px; height: 27.67px; margin-top: 0px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">주소 검색</button>
+                                                <button type="button" id="btnPostcode" onclick="sample6_execDaumPostcode()" class="btn_post_search btn btn-logoc" style="font-size: 0.7em; width: 90px; height: 27.67px; margin-top: 0px; padding-top: 5px; padding-left: 5px; padding-right: 5px;">주소 검색</button>
                                             </div>
                                             <div class="address_input">
                                                 <div>
@@ -154,8 +192,8 @@
                     </div>
                     <!-- 행 시작 -->
                     <div class="text-center">
-                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/memberInfo'">돌아가기</button>
-                        <button id="btn_updateMember" type="submit" class="btn btn-logoC">수정하기</button>
+                        <button type="button" class="btn btn-greyc" onclick="location.href='${path}/mypage/memberInfo'">돌아가기</button>
+                        <button id="btn_updateMember" type="submit" class="btn btn-logoc">수정하기</button>
                     </div>
                 </form>
                     

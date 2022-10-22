@@ -12,6 +12,44 @@
     <link rel="stylesheet" href="${path}/resources/css/mypage/mypage_main.css">
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
     
+    <style>
+        button:focus {
+			box-shadow: none !important;
+		}
+		
+		
+		.btn {
+		
+		    transition: background 0.2s ease-in-out,
+		        color 0.2s ease-in-out;
+		}
+		
+		.btn-logoc {
+		    color: #fff;
+		    border-color: #495FE9;
+		    background-color: #495FE9;
+		}
+		
+		.btn-logoc:hover {
+		    background-color: #0b27db !important;
+		    border-color: #0b27db;
+		    color: #fff !important;
+		}
+		
+		.btn-greyc {
+		    background-color: rgb(235, 236, 240);
+		    border: rgb(235, 236, 240);
+		    color: #000000;
+		
+		}
+		
+		.btn-greyc:hover {
+		    background-color: #c3c3c4b7 !important;
+		    border-color: #c3c3c4b7 !important;
+		    color: #000000 !important;
+		}
+	</style>
+    
     <div class="container p-0">
         <div class="row">
             <!-- 왼쪽 사이드메뉴 -->
@@ -163,13 +201,13 @@
  
                     <div class="text-center mb-5">
                     	<c:if test="${order.pay.patstatus == '배송준비중' || order.pay.patstatus == '배송완료'}">
-	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payList'">목록으로</button>
+	                        <button type="button" class="btn btn-greyc" onclick="location.href='${path}/mypage/payList'">목록으로</button>
                     	</c:if>
                     	<c:if test="${order.pay.patstatus == '환불대기중' || order.pay.patstatus == '환불완료'}">
-	                        <button type="button" class="btn btn-greyC" onclick="location.href='${path}/mypage/payCancelList'">목록으로</button>
+	                        <button type="button" class="btn btn-greyc" onclick="location.href='${path}/mypage/payCancelList'">목록으로</button>
                     	</c:if>
                         <c:if test="${order.pay.patstatus == '배송준비중' }">
-                        	<button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'" id="btn_payCancel" type="button" class="btn btn-logoC">환불하기</button>
+                        	<button onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'" id="btn_payCancel" type="button" class="btn btn-logoc">환불하기</button>
                         </c:if>
                     </div>
 

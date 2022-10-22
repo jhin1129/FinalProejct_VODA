@@ -16,6 +16,7 @@ import com.finalproject.voda.cart.model.service.CartService;
 import com.finalproject.voda.cart.model.vo.Cart;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.member.model.vo.Member;
+import com.finalproject.voda.product.model.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
@@ -26,11 +27,9 @@ public class CartController {
 	
 	@GetMapping("/product_cart")
 	public ModelAndView cart_list (ModelAndView model,
-			@RequestParam(value = "page", defaultValue = "1") int page,
 			@SessionAttribute("loginMember") Member loginMember) {
 		List<Cart> cart = null;
-		PageInfo pageInfo = null;
-		cart = cartService.getCartList(pageInfo, loginMember.getM_no());
+		cart = cartService.getCartList(loginMember.getM_no());
 		System.out.println(cart);
 		model.addObject("cart", cart);
 		model.setViewName("product/product_cart");

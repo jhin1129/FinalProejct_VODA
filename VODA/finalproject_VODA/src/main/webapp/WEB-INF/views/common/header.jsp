@@ -68,10 +68,10 @@
 	                  RANKING
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking'">MOVIE</a></li>
-	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking'">TV</a></li>
-	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking'">BOOK</a></li>
-	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking'">WEBTOON</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking?type=영화'">MOVIE</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking?type=TV'">TV</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking?type=도서'">BOOK</a></li>
+	                <li><a class="dropdown-item" href="#" onclick="location.href='${path}/ranking/ranking?type=웹툰'">WEBTOON</a></li>
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">
@@ -117,7 +117,10 @@
 					관리자페이지
 				</a>
 			</c:if>
-	        <button onclick="location.replace('${ path }/member/logout')" class="text-nowrap" >로그아웃</button>
+			<a class="text-nowrap" href="${ path }/member/logout"
+	        	style="margin-left: 16px;">
+				로그아웃
+			</a>
 	      </div>	
 		</c:if>
 		
