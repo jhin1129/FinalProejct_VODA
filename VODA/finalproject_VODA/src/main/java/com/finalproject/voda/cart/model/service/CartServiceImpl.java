@@ -1,5 +1,6 @@
 package com.finalproject.voda.cart.model.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,24 @@ public class CartServiceImpl implements CartService {
 	public List<Cart> getCartList(int m_no) {
 		// TODO Auto-generated method stub
 		return cartMapper.getCartList(m_no);
+	}
+
+	@Override
+	public int getTotalPrice(List<Cart> cart) {
+		int totalPrice = 0;
+		for (int i = 0; i < cart.size(); i++) {
+			totalPrice += cart.get(i).getPprice();
+		} 
+		return totalPrice;
+	}
+
+	@Override
+	public int getTotalOqtt(List<Integer> porderqtt) {
+		int totalOqtt = 0;
+		for (int i = 0; i < porderqtt.size(); i++) {
+			totalOqtt += porderqtt.get(i);
+		} 
+		return totalOqtt;
 	}
 
 }

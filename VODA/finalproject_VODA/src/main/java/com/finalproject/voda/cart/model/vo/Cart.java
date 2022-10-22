@@ -1,5 +1,7 @@
 package com.finalproject.voda.cart.model.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,4 +29,6 @@ public class Cart {
 	private String cstatus;
 	
 	private int porderqtt;
+	
+	private int totalprice;
 }

@@ -13,37 +13,34 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <div class="container">
-<form action="${ path }/order_insert" method="post" id="formid">
-<input type="hidden" name="pno" value="${ product.pno }">
+<form action="${ path }/order_list_insert" method="post" id="formid2">
 <input type="hidden" name="mno" value="${ loginMember.m_no }">
-<input type="hidden" name="oqtt" value="${ product.porderqtt }">
-<input type="hidden" name="porderqtt" value="${ product.porderqtt }">
-<input type="hidden" name="payprice" value="${ product.pprice }">
-
+<input type="hidden" name="payprice" value="${totalPrice}">
 	<section class="cart">
 		<table class="cart__list">
-			
-			<c:set var="rename" value="${ product.prenamefile }" />
 				<thead>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td></td>
 						<td colspan="2">상품정보</td>
 						<td>옵션</td>
 						<td>상품금액</td>
-						<td>배송비</td>
+						<td>배송비${ productName }</td>
 					</tr>
 				</thead>
 				<tbody>
 				<c:forEach var="cart" items="${ cart }">
 				<c:set var="rename" value="${ cart.prenamefile }" />
+				<input type="hidden" name="pno" value="${ cart.pno }">
+                <input type="hidden" name="porderqtt" value="${ cart.porderqtt }">
+                <input type="hidden" name="pname" value="${ cart.pname }">
 					<tr class="cart__list__detail">
-						<td><input type="checkbox"></td>
+						<td></td>
 						<td><img
 							src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }"></td>
 						<td><a href="#">${cart.pmadecompany}</a>
 							<p>[${cart.pcategory}]${cart.pname}</p></td>
 						<td class="cart__list__option">
-							<p>상품 주문 수량: 1개</p>
+							<p>상품 주문 수량: ${ cart.porderqtt }개</p>
 							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
 						</td>
 						<td><span class="price">${cart.pprice}원</span><br></td>
@@ -102,6 +99,7 @@
 			</div>
 
 			<div class="order_table_type shipping_info">
+			
 				<table class="table_left shipping_info_table">
 					<colgroup>
 						<col style="width: 15%;">
@@ -161,7 +159,7 @@
 					<tbody>
 						<tr>
 							<th scope="row">상품 합계 금액</th>
-							<td><strong id="totalGoodsPrice" class="order_payment_sum">${product.pprice}원</strong>
+							<td><strong id="totalGoodsPrice" class="order_payment_sum">${totalPrice}원</strong>
 							</td>
 						</tr>
 						<tr>
@@ -175,7 +173,7 @@
 								value="1,490,000"> <input type="hidden"
 								name="overseasSettlePrice" value="0"> <input
 								type="hidden" name="overseasSettleCurrency" value="KRW">
-								<strong id="totalSettlePrice" class="order_payment_sum">${product.pprice}</strong>원
+								<strong id="totalSettlePrice" class="order_payment_sum">${totalPrice}</strong>원
 							</td>
 						</tr>
 					</tbody>
@@ -200,19 +198,22 @@
 							<dd>
 								<div class="form_element">
 									<ul class="payment_progress_select">
-
-										<oi id="settlekindType_pc"> <input type="radio"
-											id="settleKind_pc" name="settleKind" value="pc"> <label
-											for="settleKind_pc" class="choice_s">신용카드</label> </oi>
-										<oi id="settlekindType_pb"> <input type="radio"
-											id="settleKind_pb" name="settleKind" value="pb"> <label
-											for="settleKind_pb" class="choice_s">계좌이체</label> </oi>
-										<oi id="settlekindType_pv"> <input type="radio"
-											id="settleKind_pv" name="settleKind" value="pv"> <label
-											for="settleKind_pv" class="choice_s">가상계좌</label> </oi>
-										<oi id="settlekindType_ph"> <input type="radio"
-											id="settleKind_ph" name="settleKind" value="ph"> <label
-											for="settleKind_ph" class="choice_s">휴대폰결제</label> </oi>
+										<oi id="payCard"> 
+											<input type="radio" id="payCardRadio" name="payRadio" value="card"> 
+											<label for="payCardRadio" class="choice_s">신용카드</label> 
+										</oi>
+										<oi id="payBank"> 
+											<input type="radio" id="payBankRadio" name="payRadio"> 
+											<label for="payBankRadio" class="choice_s">계좌이체</label>
+										</oi>
+										<oi id="payKakao">
+											<input type="radio" id="payKakaoRadio" name="payRadio" value="kakaopay">
+											<label for="payKakaoRadio" class="choice_s">카카오페이</label> 
+										</oi>
+										<oi id="payPhone">
+											<input type="radio" id="payPhoneRadio" name="payRadio">
+											<label for="payPhoneRadio" class="choice_s">휴대폰결제</label> 
+										</oi>
 									</ul>
 								</div>
 
@@ -258,15 +259,77 @@
 						
 						<div class="cart__mainbtns">
 							<button class="btn btn-back py-1">이전페이지</button>
-							<button type="button" class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
+							<button id="listpayment" type="button" class="btn btn-primary py-1" onclick="requestPay1()">결제하기</button>
 						</div>
 					</div>
 	</section>
 	</form>
 </div>
 <script>   
+$(document).ready(function(){
+	var proNoList = new Array();
+	var payQuantityList = new Array();
+	var productList = new Array();
+	
+	$("input:hidden[name='pno']").each(function(){
+		var proNo = $(this).val();
+		proNoList.push(proNo);
 
-function requestPay() {
+	});
+	$("input:hidden[name='pname']").each(function(){
+		var pname = $(this).val();
+	});
+	$("input:hidden[name='porderqtt']").each(function(){
+		var porderqtt = $(this).val();
+		payQuantityList.push(porderqtt);
+	});
+	
+	
+	
+	
+	<%--$('input[name=payRadio]:checked').each(function() {
+		var kakao = $(".choice_s").val();
+		
+		if($(this).val() == "kakaopay"){
+			$( "#listpayment" ).click(function(){
+				var IMP = window.IMP; // 생략 가능
+			    IMP.init("imp63887533"); // 예: imp00000000
+			    // IMP.request_pay(param, callback) 결제창 호출
+			    IMP.request_pay({ // param
+			        pg: "html5_inicis",
+			        pay_method: "kakaopay",
+			        merchant_uid:  new Date().getTime(),
+			        name: "${ productName }",
+			        amount: ${totalPrice},
+			        buyer_email: "${loginMember.m_email}",
+			        buyer_name: "${loginMember.m_name}",
+			        buyer_tel: "${loginMember.m_phone}",
+			        buyer_addr: "${loginMember.m_address} ${loginMember.m_detailAddress}",
+			        buyer_postcode: "${loginMember.m_postNum}"
+			    }, function (rsp) { // callback
+			        if (rsp.success) {
+			        	var msg = '결제가 완료되었습니다.';
+			            msg += '고유ID : ' + rsp.imp_uid;
+			            msg += '상점 거래ID : ' + rsp.merchant_uid;
+			            msg += '결제 금액 : ' + rsp.paid_amount;
+			            msg += '카드 승인번호 : ' + rsp.apply_num;
+			            
+			            document.getElementById('formid2').submit();
+						
+			        } else {
+			        	var msg = '결제에 실패하였습니다.';
+			            msg += '에러내용 : ' + rsp.error_msg;
+			        }
+			        alert(msg);
+			    });
+			});
+		} 
+	}); --%>
+
+});
+
+
+function requestPay1() {
 	var IMP = window.IMP; // 생략 가능
     IMP.init("imp63887533"); // 예: imp00000000
     // IMP.request_pay(param, callback) 결제창 호출
@@ -274,8 +337,8 @@ function requestPay() {
         pg: "html5_inicis",
         pay_method: "kakaopay",
         merchant_uid:  new Date().getTime(),
-        name: "${product.pname}",
-        amount: ${product.pprice},
+        name: "${productName}",
+        amount: ${totalPrice},
         buyer_email: "${loginMember.m_email}",
         buyer_name: "${loginMember.m_name}",
         buyer_tel: "${loginMember.m_phone}",
@@ -289,7 +352,7 @@ function requestPay() {
             msg += '결제 금액 : ' + rsp.paid_amount;
             msg += '카드 승인번호 : ' + rsp.apply_num;
             
-            document.getElementById('formid').submit();
+            document.getElementById('formid2').submit();
 			
         } else {
         	var msg = '결제에 실패하였습니다.';
@@ -298,6 +361,7 @@ function requestPay() {
         alert(msg);
     });
   }
+
 </script>
 <!-- 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
