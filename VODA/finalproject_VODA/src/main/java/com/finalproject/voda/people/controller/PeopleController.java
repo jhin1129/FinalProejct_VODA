@@ -127,7 +127,7 @@ public class PeopleController {
 		
 		if(result > 0) {
 			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
-//			model.addObject("location", "/people/people?people_no=" + people.getPeople_no());
+			model.addObject("location", "/people/people?people_no=" + people.getPeople_no());
 		} else {
 			model.addObject("msg", "게시글 등록을 실패하였습니다.");
 			model.addObject("location", "/admin/peopleEnroll");

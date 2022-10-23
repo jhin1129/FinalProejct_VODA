@@ -5,11 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>peopleUpdate</title>
+<title>VODA</title>
 
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -23,9 +19,6 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     
-    
-</head>
-<body>
 	<div class="wrapper" style="width: 800px" >
 		<form action="${ path }/admin/peopleUpdate" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="people_no" value="${ people.people_no }">
@@ -181,6 +174,3 @@
         }
     }
 </script>
-
-</body>
-</html>

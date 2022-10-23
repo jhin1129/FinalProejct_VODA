@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
+<title>VODA</title>
+
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
@@ -185,7 +187,7 @@
 $(document).ready(() => {
         $("#btnFindProduct").on("click", () => {
             let url ="peopleEnroll.html";
-            let status = "left=300px,top=0px,width=850px,height=800px";
+            let status = "left=300px,top=0px,width=1200px,height=800px";
 
             open(url,"",status);
         });
