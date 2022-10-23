@@ -165,10 +165,8 @@
             pointer-events: none;
         }
     </style>
-    
-        <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css"> 
    
     <title>컨텐츠 관리</title>
     

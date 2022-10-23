@@ -293,10 +293,20 @@
 	<!-- 회원관리테이블 전체 조회 정렬 -->
 	<select id="selectAllMember" resultMap="MemberResultMap">
 		SELECT M_NO, 
-			   M_ID, 
-			   M_JOINDATE, 
-			   M_STATUS,
-			   M_AUTHORIZATION
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE, 
+		    M_ADDRESS, 
+		    M_GENDER,
+		    M_BIRTH, 
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+		    M_DETAILADDRESS
 		FROM MEMBER
 	</select>
 	
@@ -723,17 +733,21 @@
 		<if test='searchType == "noticeTitle"'>
 		WHERE 
 			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
 		<if test='searchType == "noticeContent"'>
 		WHERE
 			N_CONTENT LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
 		<if test='searchType == "noticeTC"'>
 		WHERE
 			N_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			N_CONTENT LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
+		ORDER BY N_TOPTITLE DESC, N_NO DESC
 	</select>
 	
 	
