@@ -183,7 +183,7 @@
 	                                    <div class="item_poster">
 	                                        <div class="thumb_item" style="width: 187px; height: 273px;">
 	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'" style="position: absolute; z-index: 2;">
-	                                                <img style="cursor: pointer;" src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
+	                                                <img style="cursor: pointer;" src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
 	                                                <span class="txt_tag">
 	                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>

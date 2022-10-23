@@ -97,7 +97,7 @@
                             <div class="card-group">
                                 <!-- 첫번째 카드 -->
                                 <div class="card">
-                                    <img src="${path}/resources/img/mypage/member.png" class="card-img-top">
+                                    <img src="${path}/resources/img/mypage/pay.png" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">구매 정보</h5>
                                         <p class="card-text">
@@ -167,7 +167,7 @@
                                             	<div class="item_poster">
                                                     <div class="thumb_item" style="cursor:pointer; width: 187px; height: 273px;" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
                                                         <div class="poster_movie">
-                                                            <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg"
+                                                            <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
                                                                 class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
                                                             <span class="txt_tag">
                                                                 <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
