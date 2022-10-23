@@ -43,6 +43,10 @@
             border-color: #0b27db;
             color: #fff !important;
         }
+        
+        .btn-logoc:focus {
+        	box-shadow: none;
+        }
 
         .btn {
 

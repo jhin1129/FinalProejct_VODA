@@ -202,5 +202,28 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.updatetime(comments);
 	}
 
+	
+	
+	// 댓글 답변여부
+	@Override
+	public int answerstatus(HashMap<String, Object> comments) {
+		
+		int bno = (int)(comments.get("bno"));
+		
+		System.out.println(bno);
+		
+		return mapper.answerstatus(bno);
+	}
+
+	@Override
+	public int answerdelete(HashMap<String, Object> comments) {
+		
+		int bno = (int)(comments.get("bno"));
+		
+		System.out.println(bno);
+		
+		return mapper.answerdelete(bno);
+	}
+
 
 }

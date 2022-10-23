@@ -84,7 +84,7 @@ public class BoardController {
 		List<Search> search = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getBoardSearchCount(searchType, keyword), 10);
+		pageInfo = new PageInfo(page, 10, service.getBoardSearchCount(searchType, keyword), 15);
 		search = service.getBoardSearchList(pageInfo, searchType, keyword);
 		
 		model.addObject("search", search);
@@ -106,7 +106,7 @@ public class BoardController {
 		List<Search> search = null;
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getQnaSearchCount(searchType, keyword), 10);
+		pageInfo = new PageInfo(page, 10, service.getQnaSearchCount(searchType, keyword), 15);
 		search = service.getQnaSearchList(pageInfo, searchType, keyword);
 		
 		model.addObject("search", search);
@@ -639,7 +639,7 @@ public class BoardController {
 		return model;
 	}
 	
-	// 자유게시판 댓글 작성
+	// 게시판 댓글 작성
 	@RequestMapping("/commentswrite")
 	@ResponseBody
 	public Map<String, Object> commentswrite(@RequestBody HashMap<String, Object> comments) {
@@ -654,6 +654,8 @@ public class BoardController {
 		
 		if(result > 0 ) {
 			System.out.println("값: " + result);
+			result = service.answerstatus(comments);
+			
 			resultMap.put("comments", comments);
 		} else {
 			resultMap.put("data", "fail");
@@ -661,7 +663,7 @@ public class BoardController {
 		return comments;
 	}
 	
-	//	자유게시판 댓글 삭제
+	//	게시판 댓글 삭제
 	@RequestMapping("/commentsdelete")
 	@ResponseBody
 	public Map<String, Object> commentsdelete(@RequestBody HashMap<String, Object> comments) {
@@ -676,6 +678,7 @@ public class BoardController {
 		
 		if(result > 0 ) {
 			System.out.println("값: " + result);
+			int answerdelete = service.answerdelete(comments);
 			resultMap.put("comments", comments);
 		} else {
 			resultMap.put("data", "fail");
@@ -683,7 +686,7 @@ public class BoardController {
 		return comments;
 	}
 	
-	//	자유게시판 댓글 수정
+	//	게시판 댓글 수정
 	@RequestMapping("/commentsupdate")
 	@ResponseBody
 	public Map<String, Object> commentsupdate(@RequestBody HashMap<String, Object> comments) {

@@ -29,6 +29,12 @@ public interface BoardService {
 	// 댓글 작성
 	int commentswrite(HashMap<String, Object> comments);
 	
+	// 댓글 답변여부
+	int answerstatus(HashMap<String, Object> comments);
+	
+	// 댓글 답변삭제
+	int answerdelete(HashMap<String, Object> comments);
+	
 	// 댓글 삭제
 	int commentsdelete(HashMap<String, Object> comments);
 	
@@ -44,6 +50,8 @@ public interface BoardService {
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 	Notice findNoticeByNo(int no, boolean hasRead);
+
+
 
 
 
