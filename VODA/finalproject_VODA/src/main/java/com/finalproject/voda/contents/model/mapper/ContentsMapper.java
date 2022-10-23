@@ -75,4 +75,8 @@ public interface ContentsMapper {
 
 	List<Search> getPeopleSearchList(RowBounds rowBounds, @Param("keyword") String keyword);
 
+	int saveContents(Contents contents);
+
+	void saveContentsPeople(ContentsPeople contentspeople);
+
 }

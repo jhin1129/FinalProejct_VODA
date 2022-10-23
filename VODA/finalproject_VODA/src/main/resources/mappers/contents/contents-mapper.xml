@@ -43,6 +43,8 @@
 	</resultMap>
 	
 	<resultMap type="Contents" id="contentsDetailResultMap" extends="contentsListResultMap">
+		<result property="c_leftcolor" column="C_LEFTCOLOR"/>
+		<result property="c_rightcolor" column="C_RIGHTCOLOR"/>	
 		<collection property="rates" javaType="arraylist" resultMap="rateResultMap"/>
 	</resultMap>
 	
@@ -401,11 +403,66 @@
 		WHERE 
 			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
 	</select>
+	
 	<!-- 인물 검색 리스트 -->
 	<select id="getPeopleSearchList" resultMap="PeopleResultMap" parameterType="String">
 		SELECT * FROM PEOPLE
 		WHERE 
 			PEOPLE_NAME LIKE '%' || #{keyword} || '%'
 	</select>	
+
+	<insert id="saveContents" parameterType="Contents"
+		useGeneratedKeys="true" keyProperty="c_no" keyColumn="C_NO">
+		INSERT INTO CONTENTS ( 
+	        C_NO,
+	        C_TITLE,
+	        C_TYPE,
+	        C_GENRE,
+	        C_YEAR,
+	        C_NATION,
+	        C_AGE,
+	        C_INFO,
+	        C_SYNOP,
+	        C_OBIMG,
+	        C_BIMG,
+	        C_OPIMG,
+	        C_PIMG,
+	        C_VIDEO,
+	        C_DATE,
+	        C_STATUS,
+	        C_LEFTCOLOR,
+	        C_RIGHTCOLOR )
+        VALUES
+	        ( SEQ_CONTENTS_NO.NEXTVAL,
+	        #{ c_title },
+	        #{ c_type },
+	        #{ c_genre },
+	        #{ c_year },
+	        #{ c_nation },
+	        #{ c_age },
+	        #{ c_info },
+	        #{ c_synop },
+	        #{ c_obimg },
+	        #{ c_bimg },
+	        #{ c_opimg },
+	        #{ c_pimg },
+	        #{ c_video },
+	        SYSDATE,
+	       	'Y',
+	        #{ c_leftcolor },
+	        #{ c_rightcolor } )
+	</insert> 
+	
+	<insert id="saveContentsPeople" parameterType="ContentsPeople" >
+		INSERT INTO CONTENTSPEOPLE (
+		C_NO,
+		PEOPLE_NO,
+		CP_ROLE
+		) VALUES (
+		#{c_no},
+		#{people_no},
+		#{cp_role}		
+		)
+	</insert>
 		
 </mapper>

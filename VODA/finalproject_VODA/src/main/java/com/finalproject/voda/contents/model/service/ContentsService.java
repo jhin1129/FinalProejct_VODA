@@ -69,4 +69,8 @@ public interface ContentsService {
 
 	List<Search> getPeopleSearchList(PageInfo pageInfo, String keyword);
 
+	int saveContents(Contents contents);
+
+	void saveContentsPeople(ContentsPeople contentspeople);
+
 }

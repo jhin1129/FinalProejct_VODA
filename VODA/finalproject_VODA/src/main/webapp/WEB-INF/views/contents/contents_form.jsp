@@ -9,7 +9,46 @@
 <!-- contents_form CSS-->
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/contents/contents_form.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+<script type="text/javascript">
+var path = "${pageContext.request.contextPath }";
+    
+$(function(){
+    $("#resTb tbody").append($("#resInfoTr").html());
+
+});
+    
+function resOpenPopup(){
+   
+    var pop = window.open("${path}/contents/contents_peoplemodal","resPopup","width=1100,height=900, scrollbars=yes, resizable=yes"); 
+    pop.focus();
+}
+    
+function setResList(resArr){
+    if($("#noRes").length > 0) $("#noRes").remove();
+ 
+    for(var i=0; i<resArr.length; i++){
+            
+        var trCnt = $("#resTb tbody tr").length;
+        $("#resTb tbody").append($("#resTr").html());
+        var lastTr = $("#resTb tbody tr:last");
+        $(lastTr).attr("id","tr_"+resArr[i].rf_idx);         
+        $(lastTr).find("td[name='taxonIDName']").append(resArr[i].taxonIDName);
+        $(lastTr).find("input[name='people_name']").attr('value',resArr[i].taxonIDName);
+        $(lastTr).find("td[name='koreanName']").append(resArr[i].koreanName);
+        $(lastTr).find("input[name='people_job']").attr('value',resArr[i].koreanName);
+        $(lastTr).find("input[name='people_no']").attr('value',resArr[i].people_no);
+    }
+}
+
+function trRemove(ths){         
+    var $tr = $(ths).parents("tr");
+    $tr.remove(); 
+}
+
+</script>
+ 
 <table style="width: 100%;">
     <tr class="row" id="posterbg">
         <td class="col d-none d-lg-block p-0" style="background: var(--main-bg-color); height: 400px;"></td>
@@ -30,13 +69,13 @@
     <div class="profile" style="box-shadow: 2px 1px 10px 1px rgba(0,0,0,0.1);">
         <img id="preview" src="https://site.groupe-psa.com/content/uploads/sites/9/2016/12/white-background-2-768x450.jpg">
     </div>
-
-    <form class="form">
+    
+    <form class="form" action="${ path }/contents/contents_form" method="POST" enctype="multipart/form-data">
 
         <p class="purple" type="프로필 파일 업로드" style="margin-left: 280px;"></p>
         <!-- <label for="profileFile">업로드</label> -->
         <div class="filebox">
-            <input type="file" id="profileFile" style="margin-left: 280px; width:750px;" onchange="readURL(this);">
+            <input type="file" id="profileFile" name="upFile" style="margin-left: 280px; width:750px;" onchange="readURL(this);">
         </div>
 
         <p class="purple" type="배경 파일 업로드" style="margin-left: 280px;"></p>
@@ -52,49 +91,89 @@
             <tr>
                 <td style="width: 516px; padding-right: 10px;">
                     <p class="purple" type="왼쪽 배경 컬러 선택"></p>
-                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#495fe9" title="Choose your color" data-css-var="--main-bg-color">
+                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#495fe9" title="Choose your color" name="c_leftcolor" data-css-var="--main-bg-color">
                 </td>
                 <td style="width: 516px; padding-left: 10px;">
                     <p class="purple" type="오른쪽 배경 컬러 선택"></p>
-                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#495fe9" title="Choose your color" data-css-var="--right-bg-color">
+                    <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#495fe9" title="Choose your color" name="c_rightcolor" data-css-var="--right-bg-color">
                 </td>
             </tr>
         </table>
 
-        <p class="purple" type="제목"><input placeholder="컨텐츠의 제목을 작성하세요"></input></p>
+        <p class="purple" type="제목"><input name="c_title" placeholder="컨텐츠의 제목을 작성하세요"></input></p>
         <p class="purple" type="컨텐츠 타입">
-            <select class="select">
-                <option value="value1">MOVIE</option>
-                <option value="value1">TV</option>
-                <option value="value2">BOOK</option>
-                <option value="value3">WEBTOON</option>
+            <select class="select" name="c_type">
+                <option value="영화">MOVIE</option>
+                <option value="TV">TV</option>
+                <option value="도서">BOOK</option>
+                <option value="웹툰">WEBTOON</option>
             </select>
-        <p class="purple" type="컨텐츠 장르"><input placeholder="컨텐츠의 장르를 작성하세요"></input></p>
-        <p class="purple" type="컨텐츠 연도"><input placeholder="컨텐츠의 연도를 작성하세요"></input></p>
-        <p class="purple" type="컨텐츠 국적"><input placeholder="컨텐츠의 국적을 작성하세요"></input></p>
-        <p class="purple" type="컨텐츠 정보"><input placeholder="컨텐츠 기본정보 러닝타임/연재중/책페이지"></input></p>
+        <p class="purple" type="컨텐츠 장르"><input name="c_genre" placeholder="컨텐츠의 장르를 작성하세요"></input></p>
+        <p class="purple" type="컨텐츠 연도"><input name="c_year" placeholder="컨텐츠의 연도를 작성하세요"></input></p>
+        <p class="purple" type="컨텐츠 국적"><input name="c_nation" placeholder="컨텐츠의 국적을 작성하세요"></input></p>
+        <p class="purple" type="컨텐츠 정보"><input name="c_info" placeholder="컨텐츠 기본정보 러닝타임/연재중/책페이지"></input></p>
+        <p class="purple" type="컨텐츠 비디오"><input name="c_video" placeholder="관련 영상 주소를 작성하세요"></input></p>
         <p class="purple" type="컨텐츠 연령가">
-            <select class="select">
-                <option value="value1">전체 관람가</option>
-                <option value="value1">12세 관람가</option>
-                <option value="value2">15세 관람가</option>
-                <option value="value3">18세 관람가</option>
+            <select class="select" name="c_age">
+                <option value="0">전체 관람가</option>
+                <option value="12">12세 관람가</option>
+                <option value="15">15세 관람가</option>
+                <option value="18">18세 관람가</option>
             </select>
         <p class="purple" type="컨텐츠 줄거리"></p>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="c_synop" rows="4"></textarea>
 
         <p class="purple" type="컨텐츠 등장인물">
 
-         <button id="btnFindProduct" class="btn mt-3 terms-view" type="button" style="background-color: rgb(73,95,233); color: white;">
+         <button id="btnFindProduct" class="btn mt-3 terms-view" type="button" style="background-color: rgb(73,95,233); color: white;" onclick="resOpenPopup();return false;">
              컨텐츠 인물 등록 버튼
          </button>
-         <div>
-             <button type="submit" class="contentssubmit" style="float: right;">컨텐츠 등록</button>
+
+<div id="contAreaBox">
+    <div class="table">
+        <table id="resTb">
+            <thead>
+                <tr>
+                    <th>PEOPLE-NAME</th>
+                    <th>PEOPLE-JOB</th>
+                    <th>CONTENTSPEOPLE-ROLE</th>
+                    <th style="padding-right: 22px;">삭제</th>
+                </tr>
+            </thead> 
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+         
+<div class="table-responsive">
+    <table class="table" style="display:none;" id="testTable">        
+        <tbody id="resTr">
+            <tr>
+                <td name="taxonIDName"><input class="form-control" name="people_name" type="hidden"></td> 
+                <td name="koreanName"><input class="form-control"  name="people_job" type="hidden"></td>
+                <td><input class="form-control" type="text" name="cp_role" placeholder="역할 | 이름"><input class="form-control"  name="people_no" type="hidden"></td>
+                <td name="cancel"> <a href="javascript:void(0);" onclick="trRemove(this);return false;" class="btn del">삭제</a> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+ 
+<div class="table">
+    <table class="table table" style="display:none;">        
+        <tbody id="resInfoTr">
+            <tr id="noRes">
+                <td colspan="">팝업창에서 항목을 선택해주세요.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>      
+         <div style="height:125px;">
+             <button type="submit" class="contentssubmit" style="float:right;">컨텐츠 등록</button>
          </div>
     </form>
 </div>
-
-
 
 <script>
     $('input[type="color"]').on("change", function() {
@@ -110,7 +189,7 @@
 
 <script>
     var submit = document.getElementById('submitButton');
-    submit.onclick = showImage; //Submit 버튼 클릭시 이미지 보여주기
+    //submit.onclick = showImage; //Submit 버튼 클릭시 이미지 보여주기
 
     function showImage() {
         var newImage = document.getElementById('image-show').lastElementChild;
@@ -156,20 +235,6 @@
         }
     }
 </script>
-
-<script>
-    $(document).ready(() => {
-        $("#btnFindProduct").on("click", () => {
-            let url = "${path}/contents/contents_peoplemodal";
-            let status = "left=300px,top=0px,width=850px,height=800px";
-
-            open(url, "", status);
-        });
-    });
-</script>
-
-<div style="height: 5em;">
-</div>
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
