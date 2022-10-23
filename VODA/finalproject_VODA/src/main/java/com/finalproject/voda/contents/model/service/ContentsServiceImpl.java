@@ -7,9 +7,11 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.common.util.Search;
 import com.finalproject.voda.contents.model.mapper.ContentsMapper;
 import com.finalproject.voda.contents.model.vo.Contents;
 import com.finalproject.voda.contents.model.vo.ContentsPeople;
@@ -213,4 +215,38 @@ public class ContentsServiceImpl implements ContentsService {
 		return mapper.getPeopleCount();
 	}
 
-}
+	@Override
+	public int getPeopleSearchCount(String keyword) {
+		return mapper.getPeopleSearchCount(keyword);
+	}
+
+	@Override
+	public List<Search> getPeopleSearchList(PageInfo pageInfo, String keyword) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		return mapper.getPeopleSearchList(rowBounds, keyword);
+	}
+
+	@Override
+	public int saveContents(Contents contents) {
+		int result = 0;
+				
+		if(contents.getC_no() != 0) {
+			// update
+		} else {
+			// insert
+			mapper.saveContents(contents);
+			result=contents.getC_no();
+		}
+		
+		return result;
+		}
+
+	@Override
+	public void saveContentsPeople(ContentsPeople contentspeople) {
+		// TODO Auto-generated method stub
+		mapper.saveContentsPeople(contentspeople);
+	}
+	}

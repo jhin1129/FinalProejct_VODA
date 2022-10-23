@@ -33,9 +33,9 @@
             <td class="col d-none d-lg-block p-0" style="background-color:${ contents.c_leftcolor }"></td>
             <td class="p-0" style="width: 1140px;">
                 <div class="bg-black grabox">
-                    <div class="LeftGradient"></div>
-                    <div class="RightGradient"></div>
-                    <img id="graposter" src="https://i.pinimg.com/736x/14/90/6a/14906a3dbc5cae4d1f3a6a1f582936ae.jpg" class="" alt="..." />
+                    <div class="LeftGradient" style="background-image: linear-gradient( to right, ${ contents.c_leftcolor } 40%, ${ contents.c_leftcolor }00 100%);"></div>
+                    <div class="RightGradient" style="background-image: linear-gradient( to left, ${ contents.c_rightcolor } 40%, ${ contents.c_rightcolor }00 100%);"></div>
+                    <img id="graposter" src="${ path }/resources/uploadFiles/contents/${ contents.c_bimg }" class="" alt="..." />
                 </div>
             </td>
             <td class="col d-none d-lg-block p-0" style="background-color:${ contents.c_rightcolor }"></td>
@@ -44,7 +44,7 @@
 
     <div class="container" id="profilecontainer">
         <div class="profile">
-            <img src="https://blog.kakaocdn.net/dn/bVWNXg/btqBs0rlmaO/7z3GiCy6IS0HydFtKUKxMk/img.jpg" alt="">
+            <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }" alt="">
         </div>
         <div class="contentsdetail">
             <div class="profiletitle"> ${ contents.c_title } </div>

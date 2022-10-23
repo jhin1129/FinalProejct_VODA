@@ -227,7 +227,6 @@ $tr = $("#tr_"+organismID);
 
 resObj.taxonIDName = $tr.find("input[name='taxonIDName']").val();
 resObj.koreanName = $tr.find("input[name='koreanName']").val();
-resObj.people_no = $tr.find("input[name='people_no']").val();
 
 resArr.push(resObj);
 });
@@ -240,7 +239,7 @@ window.close();
 
 <table class="mt-5">
     <tr>
-        <td class="new-contents-info" style="width: 250px;">컨텐츠 인물 선택</td>
+        <td class="new-contents-info" style="width: 250px;">컨텐츠 인물 검색</td>
         <td style="width: 1150px;">
             <hr class="contents-line">
         </td>
@@ -265,10 +264,9 @@ window.close();
 	        	
 	            <input type="hidden" name="taxonIDName" value="${people.people_name}" />
 	            <input type="hidden" name="koreanName" value="${people.people_job}" />
-	            <input type="hidden" name="people_no" value="${people.people_no}" />
 	            
 	            <td><input type="checkbox" name="chk_res" value="${people.people_no}" /></td>
-	            <td class="people_no"><c:out value="${people.people_no}"/></td>
+	            <td><c:out value="${people.people_no}"/></td>
 	            <td class="taxonIDName"><c:out value="${people.people_name}"/></td>
 	            <td class="koreanName"><c:out value="${people.people_job}"/></td>
 	            <td class="scientificName"><c:out value="${people.people_birth}"/></td>
