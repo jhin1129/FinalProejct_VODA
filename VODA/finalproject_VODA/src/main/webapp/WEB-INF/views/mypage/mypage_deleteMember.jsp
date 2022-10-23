@@ -49,6 +49,10 @@
 	    border-color: #c3c3c4b7 !important;
 	    color: #000000 !important;
 	}
+	textarea {
+    	resize: none;
+    	outline: none;
+	}
     </style>  
     <div class="container p-0">
         <div class="row">

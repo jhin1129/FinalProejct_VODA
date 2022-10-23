@@ -50,6 +50,9 @@
 		    border-color: #c3c3c4b7 !important;
 		    color: #000000 !important;
 		}
+		input:focus {
+            outline: none;
+        }
 	</style>
 	
 <div class="container p-0">

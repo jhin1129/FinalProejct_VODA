@@ -23,6 +23,9 @@
 	.table_td > label{
 		font-size: 1.05em;
 	}
+	input:focus {
+            outline: none;
+    }
 	</style>
 	
 	<div class="container p-0">
