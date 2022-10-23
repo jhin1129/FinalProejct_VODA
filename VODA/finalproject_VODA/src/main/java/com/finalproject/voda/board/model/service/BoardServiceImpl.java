@@ -194,5 +194,13 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.commentsupdate(comments);
 	}
 
+	// 댓글 수정(시간)
+	@Override
+	public int updatetime(HashMap<String, Object> comments) {
+		System.out.println("댓글 시간 : " + comments);
+		
+		return mapper.updatetime(comments);
+	}
+
 
 }
