@@ -44,17 +44,27 @@ public class ContentsController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@GetMapping("/contents/contents_movie")
-	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	@GetMapping("/contents/contents")
+	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page,
+													  @RequestParam(value= "sort", defaultValue="new") String sort,
+													  @RequestParam String type) {
 		
 		List<Contents> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
-		list = service.getContentsList(pageInfo, "영화");
+		if(type.equals("movie")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
+			list = service.getContentsList(pageInfo, "영화"); 
+		} else if(type.equals("tv")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("TV"), 15);
+			list = service.getContentsList(pageInfo, "TV"); 	
+		} else {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("도서"), 15);
+			list = service.getContentsList(pageInfo, "도서"); 		
+		}	
 		
-		System.out.println(list);
-		
+		model.addObject("sort", sort);
+		model.addObject("type", type);
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_movie");

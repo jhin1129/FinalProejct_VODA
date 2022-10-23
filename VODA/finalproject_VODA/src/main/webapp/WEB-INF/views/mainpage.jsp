@@ -45,9 +45,9 @@
 	                  CONTENTS
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                  <li><a class="dropdown-item" href="${path}/contents/contents_movie">MOVIE</a></li>
-	                  <li><a class="dropdown-item" href="${path}/contents/contents_web">TV</a></li>
-	                  <li><a class="dropdown-item" href="${path}/contents/contents_book">BOOK</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=movie&sort=new">MOVIE</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=tv&sort=new">TV</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=book&sort=new">BOOK</a></li>
 	                  <li><a class="dropdown-item" href="${path}/contents/contents_webtoon">WEBTOON</a></li>
 	              </ul>
 	            </li>
