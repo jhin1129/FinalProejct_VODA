@@ -73,4 +73,8 @@ public interface ContentsService {
 
 	void saveContentsPeople(ContentsPeople contentspeople);
 
+	int findRate(Map<String, Object> map);
+
+	List<Rate> orderByMyRate(Map<String, Object> mymap);
+
 }

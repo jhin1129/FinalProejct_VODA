@@ -21,6 +21,7 @@ import com.finalproject.voda.people.model.vo.People;
 
 @Mapper
 public interface ContentsMapper {
+
 	int selectContentsCount(String type);
 
 	List<Contents> selectAll(RowBounds rowBounds, String type);
@@ -78,5 +79,9 @@ public interface ContentsMapper {
 	int saveContents(Contents contents);
 
 	void saveContentsPeople(ContentsPeople contentspeople);
+
+	int findRate(Map<String, Object> map);
+
+	List<Rate> orderByMyRate(Map<String, Object> mymap);
 
 }

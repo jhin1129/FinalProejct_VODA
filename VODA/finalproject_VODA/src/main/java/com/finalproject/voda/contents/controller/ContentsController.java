@@ -96,7 +96,17 @@ public class ContentsController {
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
-		rates = service.getCommentsList(pageInfo, no, sort);
+		if(sort.equals("me")) {
+			
+		Map<String, Object> mymap	= new HashMap<>();
+		
+		mymap.put("pageInfo", pageInfo);
+		mymap.put("m_no", loginMember.getM_no());
+		mymap.put("c_no", no);
+			
+		rates = service.orderByMyRate(mymap);	
+		} else {
+		rates = service.getCommentsList(pageInfo, no, sort); }
 		
 		model.addObject("no", no);
 		model.addObject("sort", sort);
@@ -117,6 +127,7 @@ public class ContentsController {
 		if(loginMember != null ) {
 			Likes likes = new Likes();
 			int confirmLike = 0; 
+			int confirmRate = 0;
 			
 			likes.setMNo(loginMember.getM_no());
 			likes.setCNo(no); 
@@ -127,6 +138,16 @@ public class ContentsController {
 			
 			System.out.println(confirmLike); 
 			
+			Map<String, Object> map	= new HashMap<>();
+			
+			map.put("m_no", loginMember.getM_no());
+			map.put("no", no);
+			
+			confirmRate = service.findRate(map);
+			
+			System.out.println("유저가 평가한 개수" + confirmRate);
+			
+			model.addObject("confirmRate", confirmRate);
 			model.addObject("likes", likes);
 			model.addObject("confirmLike", confirmLike);
 		}
@@ -442,5 +463,5 @@ public class ContentsController {
 		
 		return model;
 	}
-	
+
 }

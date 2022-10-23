@@ -22,11 +22,25 @@
 <c:if test="${ sort == 'like'}">        
 	<div class="sort" style="margin-right:5px;">인기순</div>
 	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=new'" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;">최신순</div>
+	<c:if test="${not empty loginMember}">
+	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=me'" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;">내가 작성한 댓글</div>
+	</c:if>
 </c:if>
 
 <c:if test="${ sort == 'new'}">
 	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=like'" style="margin-right:5px; background-color:rgba(235,236,246); color:gray;">인기순</div>
-	<div class="sort" style="margin-right:10px;">최신순</div>            	
+	<div class="sort" style="margin-right:10px;">최신순</div> 
+	<c:if test="${not empty loginMember}">
+	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=me'" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;">내가 작성한 댓글</div>
+	</c:if>
+</c:if>
+
+<c:if test="${not empty loginMember}">
+	<c:if test="${ sort == 'me'}">
+	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=like'" style="margin-right:5px; background-color:rgba(235,236,246); color:gray;">인기순</div>
+	<div class="sort" OnClick="location.href='${ path }/contents/contents_comments?no=${ no }&sort=new'" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;" >최신순</div>            	
+	<div class="sort" style="margin-right:10px;">내가 작성한 댓글</div>
+	</c:if>
 </c:if>
 
 </div>
@@ -106,7 +120,10 @@
 	            </c:when>
 	            <c:otherwise>
 		            <div class="li" style="margin:5px;">
-		                <div class="commentbox">
+		            <c:choose>
+		            <c:when test="${ not empty loginMember && loginMember.m_id == rate.m_id }"><div class="commentbox" style="border: 2px solid rgba(73,95,233,0.5);"></c:when>
+		            <c:otherwise><div class="commentbox"></c:otherwise>
+		            </c:choose>    
 		                    <div class="userimg"><img src="https://emojigraph.org/media/apple/dog-face_1f436.png" alt=""></div>
 		                    <div class="nickname">${ rate.m_id }</div>
 		                    <div class="commentstar">★ ${ rate.rate_star }</div>

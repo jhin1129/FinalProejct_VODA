@@ -246,7 +246,20 @@ public class ContentsServiceImpl implements ContentsService {
 
 	@Override
 	public void saveContentsPeople(ContentsPeople contentspeople) {
-		// TODO Auto-generated method stub
+		
 		mapper.saveContentsPeople(contentspeople);
 	}
+
+	@Override
+	public int findRate(Map<String, Object> map) {
+		
+		return mapper.findRate(map);
+	}
+
+	@Override
+	public List<Rate> orderByMyRate(Map<String, Object> mymap) {
+		
+		return mapper.orderByMyRate(mymap);
+	}
+	
 	}
