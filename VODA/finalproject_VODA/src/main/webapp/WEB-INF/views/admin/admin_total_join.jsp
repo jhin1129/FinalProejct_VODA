@@ -42,10 +42,12 @@
             <path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z"/>
           </svg> 통계 확인 
           <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
-            <option value="admin_total_views.html">조회수</option>
-            <option value="admin_total_sales.html">매출액</option>
-            <option value="admin_total_join.html" selected>가입자수</option>
+            <option value="${path}/admin/admin_total_views?no=00" selected>--</option>
+            <option value="${path}/admin/admin_total_views?no=00">조회수</option>
+            <option value="${path}/admin/admin_total_sales?no=00">매출액</option>
+            <option value="${path}/admin/admin_total_join?no=00">가입자수</option>
           </select>
+          </h1>
           <hr>
           <!-- 카드 리스트 Row -->
                 <!-- Begin Page Content -->
@@ -53,50 +55,54 @@
 
                   <!-- DataTales Example -->
 
-
                   <div class="card shadow mb-4 col-12">
-                      <div class="card-header py-3 total_table">
-                          <h6 class="m-0 font-weight-bold text-primary" style="line-height: 3rem;">가입자수           
-                            <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
-                            <option value="">--</option>
-                            <option value="">09월</option>
-                          </select>
-                        </h6>
+                      <div class="card-header py-3">
+                          <h6 class="m-0 font-weight-bold text-primary" style="line-height: 3rem;">가입자수
+                           <c:set var="no" value="no" />
+                            <select class="form-control" style="width: 15%; float: right;" onchange="if(this.value) location.href=(this.value);">
+                               <option value="${path}/admin/admin_total_join?no=00"selected="selected">--</option>
+							 <c:forEach var="monthlydata" items="${monthlydata}" varStatus="i">
+                               <option value="${path}/admin/admin_total_join?no=${monthlydata.monthdata}">${monthlydata.monthdata}</option>
+                             </c:forEach>
+                            </select>
+                          </h6>
                       </div>
                       <div class="card-body">
                           <div class="table">
                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                   <thead>
                                       <tr>
-                                          <th>번호</th>
                                           <th>날짜</th>
-                                          <th>가입자수</th>
+                                          <th>가입자수 (단위 : 명)</th>
                                       </tr>
                                   </thead>
-                                  <tfoot>
-                                      <tr>
-                                          <th colspan="2">총</th>
-                                          <th colspan="4">50</th>
-                                      </tr>
-                                  </tfoot>
                                   <tbody>
+ 	           						   <c:if test="${ empty list }">
+										<tr>
+											<td colspan="2" style="text-align: center;">
+												조회된 게시글이 없습니다.
+											</td>
+										</tr>	
+									 </c:if> 
+									 <c:if test="${ not empty list }"> 	
+                                    <c:forEach var="Totalview" items="${ list }"> 
                                       <tr>
-                                          <td>1</td>
-                                          <td>2022/09/20</td>
-                                          <td>20</td>
+                                          <td id="td"><fmt:formatDate value="${Totalview.joinDate}" type="date"></fmt:formatDate></td>
+                                          <td id="td">${Totalview.joinCount}</td> 
+                                          <c:set var="Total" value="${Total + Totalview.joinCount }" />
                                       </tr>
-                                      <tr>
-                                        <td>2</td>
-                                        <td>2022/09/21</td>
-                                        <td>30</td>
+                                    </c:forEach>
+
+                                       <tr>
+                                          <th>총</th>
+                                          <th><fmt:formatNumber type="number" value="${ Total }" groupingUsed="true"/></th>
                                       </tr>
+                                      </c:if>
                                   </tbody>
                               </table>
                           </div>
                       </div>
                   </div>
-
-
 
               </div>
               <!-- /.container-fluid -->
@@ -106,6 +112,7 @@
   </div>
 </div>
 <hr>
+
 
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
