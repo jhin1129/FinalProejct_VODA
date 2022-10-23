@@ -86,20 +86,6 @@ public interface AdminMapper {
 	int selectTotaljoinCount();
 	List<JoinMember> selectTotaljoinList(RowBounds rowBounds, String no);
 
-	Board selectQnaType();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

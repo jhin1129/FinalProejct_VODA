@@ -9,7 +9,6 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-    
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -21,9 +20,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
-
-
-    <style>
+        
+           <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
         * {
@@ -167,7 +165,9 @@
             pointer-events: none;
         }
     </style>
-
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css"> 
+   
     <title>공지사항</title>
 
 <body>
@@ -217,6 +217,29 @@
 				 </c:if> 
                   <c:if test="${ not empty search }"> 	 
 	                <c:forEach var="notice" items="${ search }">
+	                <c:choose> 
+	                
+                    <c:when test="${notice.noticeTopTitle == 1}">
+                    <tr style="text-align: center; background-color: #eeeeee; font-weight: bold;  cursor:pointer;">
+                        <td id="td">${ notice.noticeno }</td>
+						<td id="td" style="text-align: left;">
+							<a href="${ path }/admin/admin_notice_detail?no=${ notice.noticeno }">
+								${ notice.noticeTitle }
+							</a>
+							<c:if test="${ empty notice.noticeOriginalFileName }">
+								<span> - </span>
+							</c:if>
+							<c:if test="${ not empty notice.noticeRenamedFileName }">
+								<img src="${ path }/resources/img/community/attachment.png" width="20px" height="20px">
+							</c:if>
+						</td>
+						<td id="td">${ notice.noticeWriterId }</td>
+						<td id="td"><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
+						<td id="td">${ notice.noticeReadCount }</td>
+                    </tr>                       		
+                    </c:when>
+                    
+                    <c:when test="${notice.noticeTopTitle == 0}">
                     <tr style="text-align: center; cursor:pointer;">
                         <td id="td">${ notice.noticeno }</td>
 						<td id="td" style="text-align: left;">
@@ -233,8 +256,11 @@
 						<td id="td">${ notice.noticeWriterId }</td>
 						<td id="td"><fmt:formatDate value="${ notice.noticeCreateDate }" type="date"></fmt:formatDate>
 						<td id="td">${ notice.noticeReadCount }</td>
-                    </tr>
-                    </c:forEach>
+                    </tr>                    		
+                    </c:when>    
+                               
+                    </c:choose>
+                   </c:forEach>
 
                     <tr>
                         <td class="td-hr"></td>
@@ -288,8 +314,8 @@
 
         <div class="search1 row my-6">
    		  <form action="${ path }/admin/admin_notice_search" style="width: 100%;">
-            <div class="col-7 row">
-                <div class="col-xs-3 col-sm-3">
+            <div class="col-12 row">
+                <div>
 	                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
 	                        <option value="noticeTitle" selected>제목</option>
 	                        <option value="noticeContent" >내용</option>
