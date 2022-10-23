@@ -92,6 +92,7 @@
         .table td,
         .table th {
             padding: 0.60rem;
+            border-top: 0.2px solid #dee2e6 !important;
         }
 
         .id {
@@ -221,12 +222,12 @@
                     <div style="padding: 0px; margin:10px">
                         <strong style="color: #000000; font-size: 14.45px;">${comments.cmwriterid }</strong>
                         <span class="id"></span>
-                        <span name="cmdate" class="mt-1 col p-0" style="font-size: 11px; color: #000000;">${comments.cmdate }</span>
+                        <span id="cmdate" name="cmdate" class="mt-1 col p-0" style="font-size: 11px; color: #000000;">${comments.cmdate }</span>
                         <p  class="cmcontent" style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">${comments.cmcontent }</p>
                         <c:if test="${ loginMember.m_no == comments.cmwriterno || loginMember.m_authorization == 'M' }">
 	                        <div style="margin-top: 10px;">
 		                            <div style="float:right; margin-top: -33px;">
-		                                <button onclick="updateComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px; margin-right: 5px;">수정</button>
+		                                <button id="updatebutton" onclick="updateComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px; margin-right: 5px;">수정</button>
 		                                <button id="deletebutton" onclick="deleteComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
 		                            </div>
 	                        </div>
@@ -404,10 +405,10 @@
 		}
 		
 		function updateComments(event) {
-			$(event.target).parents(".comment").hide();
-			$(event.target).parents(".comment").next().show();
-			$(event.target).parents(".comment").next().find("#updateCommentsContent").val($(event.target).parent().parent().prev().text());
-			$(event.target).parents(".comment").next().find(".cmwriterid").text($(event.target).parent().parent().prev().prev().text());
+			$(event.target).parents("#comment").hide();
+			$(event.target).parents("#comment").next().show();
+			$(event.target).parents("#comment").next().find("#updateCommentsContent").val($(event.target).parent().parent().prev().text());
+			$(event.target).parents("#comment").next().find(".cmwriterid").text($(event.target).parent().parent().prev().prev().prev().prev().text());
 		}
 		
 		function updateCommentsCancel(event) {
@@ -416,11 +417,12 @@
 		}
 		
 		function updateCommentsCommit(event){
-			
+			var now = new Date();
 			var comments = {
-					"cmno" : $(event.target).parent().parent().parent().prev().find("#cmno").val(),
-					"cmcontent" : $(event.target).parent().parent().prev().find("#updateCommentsContent").val(),
-					"cmwriterno" : $(event.target).parent().parent().parent().prev().find("#cmwriterno").val()
+					"cmno" : $(event.target).parent().parent().prev().find("#cmno").val(),
+					"cmcontent" : $(event.target).parent().prev().find("#updateCommentsContent").val(),
+					"cmwriterno" : $(event.target).parent().parent().prev().find("#cmwriterno").val(),
+					"cmdate" : formatDate(now)
 				}
 			
 			$.ajax({
@@ -433,6 +435,7 @@
 					$(event.target).parent().parent().hide();
 					$(event.target).parent().parent().prev().show();
 					$(event.target).parent().parent().prev().find(".cmcontent").text($(event.target).parent().prev().find("#updateCommentsContent").val());
+					$(event.target).parent().parent().prev().find("#cmdate").text(formatDate(now));
 				},
 				error: (error) => {
 					alert("댓글 수정 실패");

@@ -35,12 +35,16 @@ public interface BoardService {
 	// 댓글 수정
 	int commentsupdate(HashMap<String, Object> comments);
 	
+	// 댓글 수정(시간)
+	int updatetime(HashMap<String, Object> comments);
+	
 	// 일반회원용 공지사항 페이지
 	int getNoticeCount();
 	List<Notice> getNoticeList(PageInfo pageInfo);
 	int getNoticeSearchCount(String searchType, String keyword);
 	List<Search> getNoticeSearchList(PageInfo pageInfo, String searchType, String keyword);
 	Notice findNoticeByNo(int no, boolean hasRead);
+
 
 
 

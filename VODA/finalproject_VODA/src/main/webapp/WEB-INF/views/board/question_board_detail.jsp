@@ -92,6 +92,7 @@
         .table td,
         .table th {
             padding: 0.60rem;
+            border-top: 0.2px solid #dee2e6 !important;
         }
 
         .id {
@@ -110,9 +111,7 @@
     </style>
 
     <!--BootStrap JS-->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+   	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
@@ -225,45 +224,68 @@
             
             
             <!-- 댓글 -->
-            <div class="px-3">
+            <div id="comment-container" class="px-3">
                 <strong class="p-1" style="color: #000000; font-size: 14.45px;">댓글</strong>
-
+					<hr>
+					<div id="comment-list">
+                	<c:forEach var="comments" items="${ board.comments }">
                 <div id="comment">
-                    <hr>
+                	    <input id="cmno" type="hidden" value="${ comments.cmno}">
+	                	<input id="cmwriterno" type="hidden" value="${comments.cmwriterno }" >
                     <div style="padding: 0px; margin:10px">
-                        <strong style="color: #000000; font-size: 14.45px;">admin</strong>
+                        <strong style="color: #000000; font-size: 14.45px;">${comments.cmwriterid }</strong>
                         <span class="id"></span>
-                        <span class="mt-1 col p-0" style="font-size: 11px; color: #000000;">2022.09.02 05:30</span>
-                        <div style="margin-top: 10px;">
-                            <p style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">답변드립니다~~
-                            <div style="float:right; margin-top: -33px;">
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">수정</button>
-                                <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
-                            </div>
-                            </p>
-                        </div>
+                        <span id="cmdate" name="cmdate" class="mt-1 col p-0" style="font-size: 11px; color: #000000;">${comments.cmdate }</span>
+                        <p  class="cmcontent" style="color: #000000; font-size: 14.45px; margin-bottom: 10px;">${comments.cmcontent }</p>
+                        <c:if test="${ loginMember.m_authorization == 'M' }">
+	                        <div style="margin-top: 10px;">
+		                            <div style="float:right; margin-top: -33px;">
+		                                <button id="updatebutton" onclick="updateComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px; margin-right: 5px;">수정</button>
+		                                <button id="deletebutton" onclick="deleteComments(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">삭제</button>
+		                            </div>
+	                        </div>
+                        </c:if>
                     </div>
+                    
                     <hr>
                 </div>
 
-                <div class="mb-3">
-                    <form action="">
+                <div class="mb-3 comment-editor" style="display:none;">
                         <div class="form-control" style="height: 105px; margin-top: 10px; margin-bottom: 5px;">
-                            <strong class="p-1" style="color: #000000; font-size: 14.45px;">user2</strong>
+                            <strong class="p-1 cmwriterid" style="color: #000000; font-size: 14.45px;"></strong>
                             <hr style="margin: 0px;">
-                            <textarea class="p-1"
+                            <textarea id="updateCommentsContent" class="p-1"
                                 style="border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;"
                                 placeholder="댓글을 작성해주세요"></textarea>
                         </div>
+
                         <div class="text-right mt-1">
-                            <button class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">등록</button>
+                            <button  onclick="updateCommentsCancel(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">취소</button>
+                            <button  onclick="updateCommentsCommit(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">작성</button>
                         </div>
-                    </form>
+                  </div>
+                        
+					
+					</c:forEach>
+                      </div>
 
-                </div>
-            </div>
-
-        </div>
+                   <div  id="comment-editor" class="mb-3">
+                        <div class="form-control" style="height: 105px; margin-top: 10px; margin-bottom: 5px;">
+                            <input id="loginno" type="hidden" value="${ loginMember.m_no }" >
+                            <strong id="loginId" value="${loginMember.m_id }" class="p-1 cmwriterid" style="color: #000000; font-size: 14.45px;">${loginMember.m_id }</strong>
+                            <hr style="margin: 0px;">
+                            <textarea id="cmcontent"  onfocus="loginCheck();"  class="p-1"
+                                style="border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;"
+                                placeholder="댓글을 작성해주세요"></textarea>
+                        </div>
+                        <c:if test="${ loginMember.m_authorization == 'M' }">
+                        <div class="text-right mt-1">
+                            <button  onclick="writeComments();" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">작성</button>
+                        </div>
+                        </c:if>
+            		</div>
+        		</div>
+      		</div>
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/board/question_board_list?type=QNA'">목록</button>
@@ -288,11 +310,152 @@
 			if(${ empty loginMember }) {
 				alert("로그인 후 이용해주세요");
 				
-				$("#commentsContent").blur();
+				$("#cmcontent").blur();
 			}
 		}	
 		
+		function formatDate(date) {
+
+		    var d = new Date(date),
+
+		    hours = ('0' + d.getHours()).slice(-2); 
+		    minutes = ('0' + d.getMinutes()).slice(-2);
+		    seconds = ('0' + d.getSeconds()).slice(-2); 
+
+		    timeString = hours + ':' + minutes  + ':' + seconds;
+
+		    console.log(timeString);
+
+		    month = '' + (d.getMonth() + 1) , 
+		    day = '' + d.getDate(), 
+		    year = d.getFullYear();
+
+		    if (month.length < 2) month = '0' + month; 
+		    if (day.length < 2) day = '0' + day; 
+
+		    return [year, month, day].join('-') + ' ' + timeString;
+
+		    }
 		
+		
+		function writeComments() {
+			
+			if($("#cmcontent").val().trim()==""){
+				alert("내용을 입력해주세요");
+			} else{
+				console.log(${loginMember.m_no});
+				console.log($("#loginno").attr("value"));
+				var now = new Date();
+				var comments = {
+					"bno" : ${board.bno},
+					"cmcontent" : $("#cmcontent").val(),
+					"cmwriterid" : $("#loginId").attr("value"),
+					"cmwriterno" : parseInt($("#loginno").attr("value")),
+					"cmdate" : formatDate(now)
+				}
+				
+				$.ajax({
+					url: "${path}/board/commentswrite",
+					type: "POST",
+					dataType: "json",
+					contentType : "application/json",
+					data: JSON.stringify(comments),
+					success: function(data) {
+						let html = "<div class='comment'>";
+						html += "<input id='cmno' type='hidden' value="+ data.cmno + ">";
+						html += "<input id='cmwriterno' type='hidden' value=" + data.cmwriterno +">";
+						html += "<div style='padding: 0px; margin:10px'>";
+						html += "<strong style='color: #000000; font-size: 14.45px;'>"+data.cmwriterid+"</strong>";
+						html += "<span class='id'></span>";
+						html += "<span class='mt-1 col p-0' style='font-size: 11px; color: #000000'>"+ data.cmdate + "</span>";
+						html += "<p  class='cmcontent' style='color: #000000; font-size: 14.45px; margin-bottom: 10px;''>"+data.cmcontent+"</p>";
+						html += "<div style='margin-top: 10px;'>";
+						html += "<div style='float:right; margin-top: -33px;'>";
+						html += "<button onclick='updateComments(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px; margin-right: 5px;'>수정</button>";
+						html += "<button onclick='deleteComments(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px;''>삭제</button></div></div></div><hr></div>";
+						html += "<div class='mb-3 comment-editor' style='display:none;'>";
+						html += "<div class='form-control'  style='height: 105px; margin-top: 10px; margin-bottom: 5px;'>";
+						html += "<strong class='p-1 cmwriterid' style='color: #000000; font-size: 14.45px;'></strong>";
+						html += "<hr style='margin: 0px;'>";
+						html += "<textarea id='updateCommentsContent' class='p-1' style='border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;' placeholder='댓글을 작성해주세요'></textarea>";
+						html += "</div>";
+						html += "<div class='text-right mt-1'>";
+						html += "<button  onclick='updateCommentsCancel(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px;'>취소</button>";
+						html += "<button  onclick='updateCommentsCommit(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px;'>작성</button>";
+						html += "</div></div>";
+						
+						$("#comment-list").append(html);
+						$("#cmcontent").val('');
+					},
+					error: (error) => {
+						alert("댓글 작성 실패");
+					}
+				});
+			}
+			
+		}
+		
+		function deleteComments(event) {
+			$("#deletebutton").attr("value", "N")
+			var comments = {
+					"cmno" : $(event.target).parent().parent().parent().siblings("#cmno").val(),
+					"cmwriterno" : $(event.target).parent().parent().parent().siblings("#cmwriterno").val(),
+					"cmstatus" : $("#deletebutton").attr("value")
+				}
+			$.ajax({
+				url: "${path}/board/commentsdelete",
+				type: "POST",
+				dataType: "json",
+				contentType : "application/json",
+				data: JSON.stringify(comments),
+				success: function() {
+					$(event.target).parents("#comment").remove();
+				},
+				error: (error) => {
+					alert("댓글 삭제 실패");
+				}
+			});
+		}
+		
+		function updateComments(event) {
+			$(event.target).parents("#comment").hide();
+			$(event.target).parents("#comment").next().show();
+			$(event.target).parents("#comment").next().find("#updateCommentsContent").val($(event.target).parent().parent().prev().text());
+			$(event.target).parents("#comment").next().find(".cmwriterid").text($(event.target).parent().parent().prev().prev().prev().prev().text());
+		}
+		
+		function updateCommentsCancel(event) {
+			$(event.target).parent().parent().hide();
+			$(event.target).parent().parent().prev().show();
+		}
+		
+		function updateCommentsCommit(event){
+			var now = new Date();
+			var comments = {
+					"cmno" : $(event.target).parent().parent().prev().find("#cmno").val(),
+					"cmcontent" : $(event.target).parent().prev().find("#updateCommentsContent").val(),
+					"cmwriterno" : $(event.target).parent().parent().prev().find("#cmwriterno").val(),
+					"cmdate" : formatDate(now)
+				}
+			
+			$.ajax({
+				url: "${path}/board/commentsupdate",
+				type: "POST",
+				dataType: "json",
+				contentType : "application/json",
+				data: JSON.stringify(comments),
+				success: function() {
+					$(event.target).parent().parent().hide();
+					$(event.target).parent().parent().prev().show();
+					$(event.target).parent().parent().prev().find(".cmcontent").text($(event.target).parent().prev().find("#updateCommentsContent").val());
+					$(event.target).parent().parent().prev().find("#cmdate").text(formatDate(now));
+				},
+				error: (error) => {
+					alert("댓글 수정 실패");
+				}
+				
+			});
+		}
 	</script>    
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>

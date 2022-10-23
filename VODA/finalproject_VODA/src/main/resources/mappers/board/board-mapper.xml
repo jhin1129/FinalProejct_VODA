@@ -337,7 +337,12 @@
 	
 	<!-- 댓글 수정 -->
 	<update id="commentsupdate" parameterType="map">
-		UPDATE COMMENTS SET CM_CONTENT = #{cmcontent} WHERE CM #{cmno}
+		UPDATE COMMENTS SET CM_CONTENT = #{cmcontent} WHERE CM_NO = #{cmno}
+	</update>
+	
+	<!-- 댓글 시간 -->
+	<update id="updatetime" parameterType="map">
+		UPDATE COMMENTS SET CM_DATE = #{cmdate} WHERE CM_NO = #{cmno}
 	</update>
 	
 	
