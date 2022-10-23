@@ -63,8 +63,7 @@
                                                 <div class="form-group">
                                                     <input type="password" name="m_password" class="form-control" id="user_password" placeholder="비밀번호를 입력해주세요" required>
                                                 </div>
-                                                <div class="check_font" id="password_check"
-                                                style="padding-bottom: 10px;"></div>
+                                                <div class="check_font" id="password_check"></div>
                                                 <p id="requiredPassword">10자 이상 입력</p>
                                                 <p id="requiredPassword">영문/숫자/특수문자만 허용하며, 2개 이상 조합</p>
                                         </tr>
@@ -147,7 +146,8 @@
                                                         </div>
                                                         <button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
                                                         <input name="m_address" id="sample6_address" readonly="readonly" type="text" class="form-control" style="margin-left: 16px; width: 235px !important;" required >
-                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" style="margin-left: 16px;margin-top: 3px; width: 235px !important;" required>
+                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" 
+                                                        style="margin-left: 16px;margin-top: 3px; width: 235px !important;" required>
                                                     </div>
                                                 </div>
                                             </td>
@@ -1478,7 +1478,7 @@ $(document).ready(function(){
 		//아이디 중복검사
 		if($("[name=idTest]").val() != "1"){
 			alert("아이디 중복 체크를 해주세요");
-			$("#m_id").focus();
+			$("#btn_duplicate").focus();
 			
 			return false;
 		}
@@ -1509,6 +1509,7 @@ $(document).ready(function(){
 		//이메일 중복검사
 		if($("[name=emailTest]").val() != "1"){
 			alert("이메일 중복 체크를 해주세요");
+			$("#user_email").focus();
 			
 			return false;
 		}
@@ -1523,7 +1524,7 @@ $(document).ready(function(){
 		}
 		
 		//주소 작성 여부
-		if($("#sample6_detailAddress").val = '') {
+		if($("#sample6_detailAddress").val == null) {
 			alert("주소를 검색하여 입력해주세요");
 			$("#sample6_detailAddress").focus();
 			

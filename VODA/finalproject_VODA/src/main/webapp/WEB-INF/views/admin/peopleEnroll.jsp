@@ -5,11 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>peopleEnroll</title>
+<title>VODA</title>
 
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -23,10 +19,6 @@
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
     
-    
-</head>
-<body>
-
 
 	<div class="wrapper" style="width: 800px" >
 		<form action="${ path }/admin/peopleEnroll" method="POST" enctype="multipart/form-data">
@@ -40,7 +32,7 @@
 		                            <img  class="bg_img" id="blah" src="#" alt="" />
 		                        </div>
 		                        <input type='file' id="imgInp" name="upfile" 
-		                        style="margin-top: 30px; width: 220px;" required/>
+		                        style="margin-top: 30px; width: 220px;"/>
 		                    </div>
 		                <div class="base_info_sec">
 		                    <table border="0" cellpadding="0" cellspacing="0" style="margin-left: 300px;">
@@ -133,7 +125,8 @@
 		                    <div class="footer" style="width: 400px; margin-top: 50px;">
 		                        <div class="text-right mt-2" >
 		                            <input type="submit" class="btn-logoc" style="width: 100px; height: 36px;" value="등록">
-		                            <button type="button" class="btn-greyc" style="width: 100px; height: 36px;">취소</button>
+		                            <button type="button" class="btn-greyc"  onClick='window.close()'
+		                            style="width: 100px; height: 36px;">취소</button>
 		                        </div> 
 		                    </div> 
 		                </div>
@@ -165,6 +158,3 @@
         }
     }
 </script>
-
-</body>
-</html>

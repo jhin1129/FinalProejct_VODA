@@ -145,7 +145,6 @@
     /*회원가입 버튼*/
     #btn_final_join {
         width: 40%;
-        height: 100%;
         margin: 0;
         padding: 10px;
         position: relative;
@@ -508,4 +507,13 @@
 
     .check_font, .mismatch-message {
         font-size: 14px;
+    }
+    
+    #password_check {
+    	padding-bottom: 10px;
+    }
+    
+    #phone_check {
+        padding-left: 20px;
+    	padding-top: 10px;
     }
