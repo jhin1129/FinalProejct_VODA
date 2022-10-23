@@ -43,7 +43,7 @@
 	
 	<resultMap type="Board" id="BoardDetailResultMap" extends="BoardResultMap">
 		<collection property="comments" javaType="arraylist" columnPrefix="CM_" resultMap="CommentsResultMap"/>
-	</resultMap>
+	</resultMap> 	
 	
 	<sql id="NoticeListSql">
 		SELECT
@@ -170,7 +170,7 @@
 			#{brenamedfilename},
 			#{bview},
 			#{bstatus},
-			#{banswerstatus},
+			DEFAULT,
 			#{bcategory},
 			CURRENT_DATE
 		)
@@ -205,22 +205,25 @@
 	
 		<!-- 자유게시판 전체 조회 (검색 총 개수) -->
 	<select id="getBoardSearchCount" resultType="_int" parameterType="String">
-		SELECT COUNT(*) FROM BOARD
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
 		
 		<if test='searchType == "btitle"'>
-		WHERE 
+		AND 
 			B_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "mid"'>
-		WHERE 
+		AND 
 			M_ID LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "bcontent"'>
-		WHERE 
+		AND 
 			B_CONTENT LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "boardtc"'>
-		WHERE
+		AND
 			B_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			B_CONTENT LIKE '%' || #{keyword} || '%'
@@ -229,21 +232,22 @@
 
 	<!-- 자유게시판 전체 조회 (검색 리스트) -->
 	<select id="getBoardSearchList" resultMap="BoardResultMap" parameterType="String">
-		SELECT * FROM BOARD
+		<include refid="BoardListSql"></include>
+		
 		<if test='searchType == "btitle"'>
-		WHERE 
+		AND 
 			B_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "mid"'>
-		WHERE 
+		AND 
 			M_ID LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "bcontent"'>
-		WHERE
+		AND
 			B_CONTENT LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "boardtc"'>
-		WHERE
+		AND
 			B_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			B_CONTENT LIKE '%' || #{keyword} || '%'
@@ -252,22 +256,25 @@
 	
 	<!-- 문의게시판 전체 조회 (검색 총 개수) -->
 	<select id="getQnaSearchCount" resultType="_int" parameterType="String">
-		SELECT COUNT(*) FROM BOARD
+		SELECT COUNT(*)
+		FROM BOARD B
+		JOIN MEMBER M ON (B.M_NO = M.M_NO)
+		WHERE B.B_STATUS = 'Y'
 		
 		<if test='searchType == "btitle"'>
-		WHERE 
+		AND 
 			B_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "mid"'>
-		WHERE 
+		AND 
 			M_ID LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "bcontent"'>
-		WHERE 
+		AND 
 			B_CONTENT LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "boardtc"'>
-		WHERE
+		AND
 			B_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			B_CONTENT LIKE '%' || #{keyword} || '%'
@@ -276,21 +283,22 @@
 
 	<!-- 문의게시판 전체 조회 (검색 리스트) -->
 	<select id="getQnaSearchList" resultMap="BoardResultMap" parameterType="String">
-		SELECT * FROM BOARD
+		<include refid="BoardListSql"></include>
+		
 		<if test='searchType == "btitle"'>
-		WHERE 
+		AND 
 			B_TITLE LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "mid"'>
-		WHERE 
+		AND 
 			M_ID LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "bcontent"'>
-		WHERE
+		AND
 			B_CONTENT LIKE '%' || #{keyword} || '%'
 		</if>
 		<if test='searchType == "boardtc"'>
-		WHERE
+		AND
 			B_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			B_CONTENT LIKE '%' || #{keyword} || '%'
@@ -345,7 +353,16 @@
 		UPDATE COMMENTS SET CM_DATE = #{cmdate} WHERE CM_NO = #{cmno}
 	</update>
 	
+	<!-- 댓글 답변여부 -->
+	<update id="answerstatus" parameterType="map">
+		UPDATE BOARD SET B_ANSWER_STATUS = 'Y' WHERE B_NO = #{bno}
+	</update>
 	
+	
+	<!-- 댓글 답변삭제 -->
+	<update id="answerdelete" parameterType="map">
+		UPDATE BOARD SET B_ANSWER_STATUS = 'N' WHERE B_NO = #{bno}
+	</update>
 	
 	
 	
