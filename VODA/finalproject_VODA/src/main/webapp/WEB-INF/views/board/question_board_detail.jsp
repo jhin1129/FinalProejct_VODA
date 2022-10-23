@@ -141,7 +141,7 @@
                             <th class="table-active" style="width: 20%;">카테고리</th>
                             <td style="width: 50%;">
                             <c:choose> 
-                                <c:when test="${board.bcategory== 'M'}">회원/정보관리</c:when>
+                                <c:when test="${board.bcategory == 'M'}">회원/정보관리</c:when>
                                 <c:when test="${board.bcategory == 'O'}">주문/결제</c:when>
                                 <c:when test="${board.bcategory == 'D'}">배송</c:when>
                                 <c:when test="${board.bcategory == 'R'}">환불</c:when>

@@ -27,6 +27,8 @@ public interface ContentsMapper {
 
 	Contents selectContentsByNo(int no);
 
+	int updateContentsView(Contents contents);
+
 	RateResult selectContentsRateByNo(int no);
 
 	List<ContentsPeople> selectContentsPeopleByNo(int no);
@@ -78,5 +80,6 @@ public interface ContentsMapper {
 	int saveContents(Contents contents);
 
 	void saveContentsPeople(ContentsPeople contentspeople);
+
 
 }

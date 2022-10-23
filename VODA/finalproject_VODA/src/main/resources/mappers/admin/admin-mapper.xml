@@ -70,6 +70,7 @@
 		    B.B_VIEW, 
 		    B.B_STATUS, 
 		    B.B_ANSWER_STATUS, 
+		    B.BCATEGORY,
 		    M.M_ID
 		FROM BOARD B
 		JOIN MEMBER M ON (B.M_NO = M.M_NO)
@@ -206,6 +207,7 @@
 		<result property="bview" column="B_VIEW"/>
 		<result property="banswerstatus" column="B_ANSWER_STATUS"/>
 		<result property="bstatus" column="B_STATUS"/>
+		<result property="bcategory" column="BCATEGORY"/>
 		<result property="mid" column="M_ID"/>
 	</resultMap>
 
@@ -293,10 +295,20 @@
 	<!-- 회원관리테이블 전체 조회 정렬 -->
 	<select id="selectAllMember" resultMap="MemberResultMap">
 		SELECT M_NO, 
-			   M_ID, 
-			   M_JOINDATE, 
-			   M_STATUS,
-			   M_AUTHORIZATION
+		    M_ID, 
+		    M_PW, 
+		    M_NAME, 
+		    M_EMAIL, 
+		    M_PHONE, 
+		    M_ADDRESS, 
+		    M_GENDER,
+		    M_BIRTH, 
+		    M_JOINDATE, 
+		    M_AUTHORIZATION,
+		    M_STATUS,
+		    M_JOINWAY,
+		    M_POSTNUM,
+		    M_DETAILADDRESS
 		FROM MEMBER
 	</select>
 	
@@ -644,6 +656,9 @@
 		<if test='searchType == "status"'>
 		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
+		<if test='searchType == "category"'>
+		AND	B.BCATEGORY LIKE '%' || #{keyword} || '%'
+		</if>
 	</select>
 
 	<!-- 문의게시판 전체 조회 (리스트) -->
@@ -664,6 +679,9 @@
 		<if test='searchType == "status"'>
 		AND	B.B_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
+		<if test='searchType == "category"'>
+		AND	B.BCATEGORY LIKE '%' || #{keyword} || '%'
+		</if>
 	</select>	
 
 	<!-- 문의게시판 게시글 비활성화 (STATUS = 토글)-->
@@ -676,15 +694,6 @@
 		SET B_STATUS = 'Y' WHERE B_NO = #{bno}
 		</if>
 	</update>
-	
-	<!-- 문의게시판 타입선택 조회 -->
-	<select id="selectQnaType" resultMap="BoardResultMap" parameterType="String">
-		SELECT * 
-		FROM BOARD B
-		JOIN MEMBER M ON (B.M_NO = M.M_NO)
-		WHERE B.B_TYPE = 'QNA' AND B.B_ANSWERSTATUS = 'Y'
-	</select>
-	
 	
 	<!-- 공지사항 전체 조회 -->
 	<select id="selectNoticeCount" resultType="_int">
@@ -723,17 +732,21 @@
 		<if test='searchType == "noticeTitle"'>
 		WHERE 
 			N_TITLE LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
 		<if test='searchType == "noticeContent"'>
 		WHERE
 			N_CONTENT LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
 		<if test='searchType == "noticeTC"'>
 		WHERE
 			N_TITLE LIKE '%' || #{keyword} || '%'
 			OR
 			N_CONTENT LIKE '%' || #{keyword} || '%'
+			OR N_TOPTITLE = 1
 		</if>
+		ORDER BY N_TOPTITLE DESC, N_NO DESC
 	</select>
 	
 	

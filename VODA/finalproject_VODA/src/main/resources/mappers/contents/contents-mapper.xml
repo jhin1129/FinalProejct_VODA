@@ -148,6 +148,13 @@
        ORDER BY RATE_LIKE DESC
 	</select>
 	
+	<update id="updateContentsView"  parameterType="Contents">
+		UPDATE CONTENTS 
+		SET C_VIEWCOUNT = C_VIEWCOUNT + 1 
+		WHERE C_NO = #{c_no}
+	</update>
+	
+	
 	<select id="selectContentsRateByNo" parameterType="int" resultMap="contentsRateResultMap">				
 		SELECT
 			COUNT(RATE_STAR) as "RATE_COUNT"

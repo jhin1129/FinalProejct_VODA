@@ -302,7 +302,7 @@
 
         <div class="search1 row my-6">
    		  <form action="${ path }/board/notice_search" style="width: 100%;">
-            <div class="col-7 row">
+            <div class="col-12 row">
                 <div>
 	                    <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
 	                        <option value="noticeTitle" selected>제목</option>

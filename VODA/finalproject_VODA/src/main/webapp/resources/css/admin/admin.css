@@ -24,7 +24,7 @@
     max-height: 100%;}
 
 /* 메뉴 호버 색상 */
-a:hover {color:#495FE9 ;}
+a:hover {color:#495FE9; text-decoration: none!important;}
 #admin_nav_subtitle:hover {color:#495FE9 ;}
 ul .card-body {padding: 0px;}
 
@@ -34,7 +34,7 @@ ul .card-body {padding: 0px;}
 
 /* 버튼 기본색상 */
 .btn-primary {background-color: #4e73df; border: #495FE9;}
-
+.text-style {color:#4e73df;}
 /* 네비게이션 줄높이 */
 .nav-item li {line-height: 21px;}
 ul{list-style:none; padding-left: 3rem; color:#495FE9 ;}

@@ -9,17 +9,10 @@
 
     <!-- Admin CSS -->
     <link rel="stylesheet" href="${path}/resources/css/admin/admin.css">
-    
     <!--BootStrap CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!-- common CSS-->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/common/headerfooter.css">
-    
-    <!-- btn CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
-    
     <!--BootStrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -28,9 +21,153 @@
         integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
         crossorigin="anonymous"></script>
         
-    <!-- Board CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/admin/board.css">
+           <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
+        * {
+            font-family: Pretendard,
+                -apple-system, BlinkMacSystemFont,
+                system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+        }
+
+        .page-link,
+        .form-control {
+
+            box-shadow: none !important;
+        }
+
+        input:focus {
+            outline: none !important;
+        }
+
+
+        .btn {
+
+            transition: background 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            /* 패딩은 주석하쇼 */
+            padding: 1px 0.38rem;
+
+
+        }
+
+        .btn-greyc {
+            background-color: rgb(235, 236, 240);
+            border: rgb(235, 236, 240);
+            color: #000000;
+
+        }
+
+        .btn-greyc:hover {
+            background-color: #c3c3c4b7 !important;
+            border-color: #c3c3c4b7 !important;
+            color: #000000 !important;
+
+
+
+        }
+
+        table * {
+            font-size: 14.45px;
+            color: #000000;
+        }
+
+        .table thead th {
+            border-bottom: 1px;
+        }
+
+        .table {
+            margin-bottom: 0rem;
+        }
+
+
+        .table td,
+        .table th {
+            padding: 0.60rem;
+        }
+
+        .page-link {
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* pagination */
+        #pagination {
+            margin: 0;
+            margin-top: 20px;
+            padding: 0;
+            text-align: center;
+
+        }
+
+        #pagination li {
+            display: inline
+        }
+
+        #pagination li a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 3px 7px;
+            color: #000000;
+            font-size: 14.45px;
+        }
+
+        /* Active and Hoverable Pagination */
+        #pagination li a {
+            border-radius: 5px;
+            -webkit-transition: background-color 0.3s;
+            transition: background-color 0.3s
+        }
+
+        #pagination li a.active {
+            background-color: rgb(73, 95, 233);
+            color: #fff
+        }
+
+        #pagination li a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        .display1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .display2 {
+            float: right;
+            margin-top: -90px;
+        }
+
+
+        /* 인풋, 폼태그 */
+        option {
+            font-size: 14.5px;
+        }
+
+        .form-control1 {
+            display: block;
+            height: 27.8px;
+            padding: 0.2rem 0.7rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
+        }
+
+
+        .td-hr {
+            pointer-events: none;
+        }
+    </style>
+    <!-- btn CSS -->
+    <link rel="stylesheet" href="${path}/resources/css/common/btn.css"> 
+   
     <title>문의게시판 관리</title>
 
 </head>
@@ -48,7 +185,16 @@
             <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
             <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
             <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
-          </svg> 문의게시판 관리
+          </svg> 문의게시판 관리                        
+          <select id="AnswerCategory" class="form-control1" style="width: 15%; float: right; font-size: 14.45px;" onchange="if(this.value) location.href=(this.value);">
+	                        	<option value="${path}/admin/admin_qna" selected>문의사항</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=M" >회원/정보관리</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=O" >주문/결제</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=D" >배송</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=R" >환불</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=C" >컨텐츠 요청</option>
+                                <option value="${path}/admin/admin_qna_search?searchType=category&keyword=E" >기타</option>
+                        </select>
         </h1>
     <!-- 내용 전체 컨테이너 -->
     <div class="container my-5">
@@ -58,16 +204,18 @@
         <div class="table">
             <table id="table_idd" class="table table-bordered" style="width:100%">
                 <thead>
-                    <tr style="text-align: center">
+                    <tr style="text-align: center ">
                         <th id="th" style="width: 10%;">번호</th>
-                        <th id="th" style="width: 40%;">제목</th>
+                        <th id="th" style="width: 40%; ">
+						<span style="display: inline; float: left;">제목</span>
+                        </th>
                         <th id="th" style="width: 10%;">날짜</th>
                         <th id="th" style="width: 15%;">작성자</th>
                         <th id="th" style="width: 10%;">
-                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;" onchange="if(this.value) location.href=(this.value);">
-	                        <option name="AnswerType" value="${path}/admin/admin_qna" selected>전체</option>
-	                        <option name="AnswerType" value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=N">미답변</option>
-	                        <option name="AnswerType" value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=Y">답변완료</option>
+                        <select id="AnswerType" class="form-control1" style="font-size: 14.45px;"onchange="if(this.value) location.href=(this.value);">
+	                        <option value="${path}/admin/admin_qna" selected>전체</option>
+	                        <option value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=N">미답변</option>
+	                        <option value="${path}/admin/admin_qna_search?searchType=Astatus&keyword=Y">답변완료</option>
                     	</select>
                         </th>
                         <th id="th" style="width: 10%;">삭제</th>
@@ -89,7 +237,14 @@
                         <td id="td">${ board.bno }</td>
 						<td id="td" style="text-align: left;">
 							<a href="${ path }/board/question_board_detail?no=${ board.bno }">
-								${ board.btitle }
+							<c:choose> 
+                                <c:when test="${board.bcategory== 'M'}">[회원/정보관리]</c:when>
+                                <c:when test="${board.bcategory == 'O'}">[주문/결제]</c:when>
+                                <c:when test="${board.bcategory == 'D'}">[배송]</c:when>
+                                <c:when test="${board.bcategory == 'R'}">[환불]</c:when>
+                                <c:when test="${board.bcategory == 'C'}">[컨텐츠 요청]</c:when>
+                                <c:when test="${board.bcategory == 'E'}">[기타]</c:when>
+                            </c:choose>${ board.btitle }
 							</a>
 						</td>
 						<td id="td">${ board.mid }</td>
@@ -98,12 +253,12 @@
                         <c:choose> 
                     		<c:when test="${ board.banswerstatus == 'Y'}"><button type="button" class="btn btn-greyC btn-sm">답변완료</button></c:when>
                     		<c:when test="${ board.banswerstatus == 'N'}"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/board/question_board_detail?no=${ board.bno }'">미답변</button></c:when>
-                    	</c:choose>
+                     	</c:choose>
                         </td>
                         <td id="td">
                    		<form action="${ path }/admin/admin_board_delete" style="width: 100%;">
                     	<input type="hidden" name="bno" value="${ board.bno }">
-                    	<input type="hidden" name="btype" value="QNA">
+		                <input type="hidden" name="btype" value="QNA">
                     	<c:choose> 
                     		<c:when test="${ board.bstatus == 'Y'}"><button type="submit" class="btn btn-logoC btn-sm" name="bstatus" value="Y">적용</button></c:when>
                     		<c:when test="${ board.bstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="bstatus" value="N">복구</button></c:when>
@@ -117,14 +272,15 @@
             </table>
         </div>
 
+
         <div class="col-4 text-right">
         </div>
 
 
         <div class="search1 row my-4">
           <form action="${ path }/admin/admin_qna_search" style="width: 100%;">
-            <div class="col-7 row">
-                <div class="col-xs-3 col-sm-3">
+            <div class="col-12 row">
+                <div>
                     <select name="searchType" class="form-control1" style="font-size: 14.45px; ">
                         <option value="title" selected>제목</option>
                         <option value="writer">작성자</option>

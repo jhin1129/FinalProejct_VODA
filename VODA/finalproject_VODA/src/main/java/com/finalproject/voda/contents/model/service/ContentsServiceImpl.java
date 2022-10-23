@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
@@ -42,9 +43,17 @@ public class ContentsServiceImpl implements ContentsService {
 		
 		return mapper.selectAll(rowBounds, type);
 	}
-
+	
+	@Transactional
 	@Override
-	public Contents findContentsByNo(int no) {
+	public Contents findContentsByNo(int no, boolean hasRead) {
+		Contents contents = null;
+		
+		contents = mapper.selectContentsByNo(no);
+		
+		if(contents != null && !hasRead) {
+			mapper.updateContentsView(contents);
+		}
 		
 		return mapper.selectContentsByNo(no);
 	}
