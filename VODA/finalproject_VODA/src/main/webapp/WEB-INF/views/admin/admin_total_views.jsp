@@ -41,11 +41,13 @@
             <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-12Z"/>
             <path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z"/>
           </svg> 통계 확인 
-          <select onchange="if(this.value) location.href=(this.valuez);" class="form-control" style="width: 15%; float: right;" >
-            <option value="admin_total_views" selected>조회수</option>
-            <option value="admin_total_sales">매출액</option>
-            <option value="admin_total_join">가입자수</option>
+          <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
+            <option value="${path}/admin/admin_total_views?no=00" selected>--</option>
+            <option value="${path}/admin/admin_total_views?no=00">조회수</option>
+            <option value="${path}/admin/admin_total_sales?no=00">매출액</option>
+            <option value="${path}/admin/admin_total_join?no=00">가입자수</option>
           </select>
+          </h1>
           <hr>
           <!-- 카드 리스트 Row -->
                 <!-- Begin Page Content -->
@@ -56,9 +58,11 @@
                   <div class="card shadow mb-4 col-12">
                       <div class="card-header py-3">
                           <h6 class="m-0 font-weight-bold text-primary" style="line-height: 3rem;">조회수
-                            <select name="viewmonth" class="form-control" style="width: 15%; float: right;">
+
+                            <select class="form-control" style="width: 15%; float: right;" onchange="if(this.value) location.href=(this.value);">
+                               <option value="${path}/admin/admin_total_views?no=00"selected="selected">--</option>
 							 <c:forEach var="monthlydata" items="${monthlydata}" varStatus="i">
-                               <option value="${monthlydata.monthdata}">${monthlydata.monthdata}</option>
+                               <option value="${path}/admin/admin_total_views?no=${monthlydata.monthdata}">${monthlydata.monthdata}</option>
                              </c:forEach>
                             </select>
                           </h6>
@@ -69,24 +73,32 @@
                                   <thead>
                                       <tr>
                                           <th>날짜</th>
-                                          <th>조회수</th>
+                                          <th>조회수 (단위 : 회)</th>
                                       </tr>
                                   </thead>
-
                                   <tbody>
+                                  
+ 	           						   <c:if test="${ empty list }">
+										<tr>
+											<td colspan="2" style="text-align: center;">
+												조회된 게시글이 없습니다.
+											</td>
+										</tr>	
+									 </c:if> 
+									 <c:if test="${ not empty list }"> 	
                                     <c:forEach var="Totalview" items="${ list }"> 
-<%--                                     <c:if test="${monthlydata.monthdata} = <fmt:formatDate pattern="MM" value="${Totalview.cviewdate}"></fmt:formatDate>"> --%>
                                       <tr>
                                           <td id="td"><fmt:formatDate value="${Totalview.cviewdate}" type="date"></fmt:formatDate></td>
                                           <td id="td">${Totalview.cviewcount}</td> 
                                           <c:set var="Total" value="${Total + Totalview.cviewcount }" />
                                       </tr>
-<%--                                       </c:if>
- --%>                                      </c:forEach>
+                                    </c:forEach>
+
                                        <tr>
-                                          <th>총</th>
-                                          <th>${ Total }</th>
+                                          <th>총 조회수</th>
+                                          <th><fmt:formatNumber type="number" value="${ Total }" groupingUsed="true"/></th>
                                       </tr>
+                                      </c:if>
                                   </tbody>
                               </table>
                           </div>

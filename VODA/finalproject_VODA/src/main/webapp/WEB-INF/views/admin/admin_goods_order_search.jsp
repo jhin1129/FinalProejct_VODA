@@ -94,11 +94,7 @@
 						<a href="#" data-toggle="modal" data-target="#Modal${Status.index}">
 	                        <label style="cursor: pointer;"> ${ order.productList[0].pname }
 	                            <c:if test="${fn:length(order.productList) > 1}">
-	                            
-	                            	<c:forEach begin="1" end="${fn:length(order.productList)}" step="1" varStatus="i">
-		                            	<c:set var="Count" value="${i.count}" />
-		                            	<c:out value="${order.productList[Count].pname}"/>
-	                            	</c:forEach>
+	                             외 ${fn:length(order.productList)}건
 	                            	
 	                            </c:if>
 	                        </label>
