@@ -25,6 +25,8 @@ public interface ContentsMapper {
 
 	Contents selectContentsByNo(int no);
 
+	int updateContentsView(Contents contents);
+
 	RateResult selectContentsRateByNo(int no);
 
 	List<ContentsPeople> selectContentsPeopleByNo(int no);
@@ -68,5 +70,6 @@ public interface ContentsMapper {
 	List<People> getPeopleList(PageInfo pageInfo);
 
 	int getPeopleCount();
+
 
 }

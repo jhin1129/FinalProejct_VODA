@@ -20,7 +20,7 @@ public interface ContentsService {
 
 	List<Contents> getContentsList(PageInfo pageInfo, String type);
 
-	Contents findContentsByNo(int no);
+	Contents findContentsByNo(int no, boolean hasRead);
 
 	RateResult getContentsRateByNo(int no);
 

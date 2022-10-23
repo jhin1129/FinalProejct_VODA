@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -101,11 +105,44 @@ public class ContentsController {
 	
 	@GetMapping("/contents/contents_detail")
 	public ModelAndView commentDetail(ModelAndView model, @RequestParam int no,
-									  @SessionAttribute(value = "loginMember", required = false) Member loginMember) {
+									  @SessionAttribute(value = "loginMember", required = false) Member loginMember,
+									  HttpServletRequest request, HttpServletResponse response) {
 		Contents contents = null;
 		RateResult rateResult = null;
 		List<ContentsPeople> contentsPeople = null;
 		
+    	// 조회수 쿠키 관련
+    	Cookie[] cookies = request.getCookies();
+    	String Contentsviewhistory = "";
+    	boolean hasRead = false;
+    	
+    	if(cookies != null) {
+    		String name = null;
+    		String value = null;
+    		for (Cookie cookie : cookies) {
+    			name = cookie.getName();
+				value = cookie.getValue();
+			
+			if(name.equals("viewhistory")) {
+				Contentsviewhistory = value;
+				
+				if(value.contains("|" + no + "|")) {
+					hasRead = true;
+					
+					break;
+					}
+				}
+    		}
+    	}
+
+    	if(!hasRead) {    		
+    		Cookie cookie = new Cookie("Contentsviewhistory" ,Contentsviewhistory +  "|" +  no + "|");
+    		
+    		cookie.setMaxAge(-1); 
+    		response.addCookie(cookie);
+    	}
+		
+    	
 		if(loginMember != null ) {
 			Likes likes = new Likes();
 			int confirmLike = 0; 
@@ -125,7 +162,7 @@ public class ContentsController {
 		
 		contentsPeople = service.getContentsPeopleByNo(no);
 		rateResult = service.getContentsRateByNo(no);
-		contents = service.findContentsByNo(no);
+		contents = service.findContentsByNo(no, hasRead);
 		
 		model.addObject("contentsPeople", contentsPeople);
 		model.addObject("rateResult", rateResult);
