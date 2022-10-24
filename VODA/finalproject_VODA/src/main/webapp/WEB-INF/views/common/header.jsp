@@ -58,7 +58,6 @@
 	                </a>
 	                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_all_list'">ALL GOODS</a></li>
-	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_popular_list'">POPULAR GOODS</a></li>
 	                    <li><a class="dropdown-item" href="#" onclick="location.href='${path}/product/product_cart'">CART</a></li>
 	                </ul>
             	</li>
@@ -111,7 +110,7 @@
 				</a>
 			</c:if>
 		  	<c:if test="${ loginMember.m_authorization == 'M' }">
-		        <a href="#" class="text-nowrap">
+		        <a href="${ path }/admin/admin_dashboard" class="text-nowrap">
 					관리자페이지
 				</a>
 			</c:if>
