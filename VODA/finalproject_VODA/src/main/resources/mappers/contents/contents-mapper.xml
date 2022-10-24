@@ -115,9 +115,10 @@
 			AND  C_TYPE = #{type}
 	</select>
 
-	<select id="selectAll" resultMap="contentsListResultMap">
+	<select id="selectAll" resultMap="contentsListResultMap" parameterType="java.util.Map">
 		SELECT
 			<include refid="contentsListSql"/>
+			,COUNT(R.RATE_NO)
 			,ROUND(AVG(RATE_STAR),1)
 			FROM CONTENTS C
 	        LEFT OUTER JOIN RATE R
@@ -126,7 +127,12 @@
 	        AND C.C_TYPE = #{type}
 	        GROUP BY 
 	        <include refid="contentsListSql"/>
-	        ORDER BY C.C_NO DESC
+	        <if test='sort == "like"'>
+			ORDER BY COUNT(RATE_NO) DESC
+			</if>
+			<if test='sort == "new"'>
+			ORDER BY C.C_DATE DESC
+			</if>
 	</select>
 	
 	 <select id="selectContentsByNo" parameterType="_int" resultMap="contentsDetailResultMap">
@@ -233,6 +239,24 @@
 		WHERE C_NO = #{ no }
 		ORDER BY RATE_DATE DESC
 		</if>	
+	</select>
+	
+	<select id="orderByMyRate" parameterType="java.util.Map" resultMap="contentsRate">
+		SELECT 
+			R.RATE_NO,
+			R.C_NO,
+			R.M_NO,
+			M.M_ID,
+			R.RATE_STAR,
+			R.RATE_COMMENT, 
+			R.RATE_DATE,
+			R.RATE_LIKE
+		FROM RATE R 
+        JOIN MEMBER M
+        ON R.M_NO = M.M_NO
+		WHERE C_NO = #{ c_no }
+		ORDER BY DECODE(M.M_NO, #{ m_no }, 1)
+		,RATE_LIKE DESC
 	</select>
 	
 	<select id="selectSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
@@ -471,5 +495,10 @@
 		#{cp_role}		
 		)
 	</insert>
+	
+	<select id="findRate" resultType="_int" parameterType="map">
+		SELECT COUNT(RATE_NO)
+		FROM RATE WHERE C_NO = #{no} AND M_NO = #{m_no}
+	</select>
 		
 </mapper>

@@ -19,7 +19,7 @@ public interface ContentsService {
 	
 	int getContentsCount(String type);
 
-	List<Contents> getContentsList(PageInfo pageInfo, String type);
+	List<Contents> getContentsList(PageInfo pageInfo, String type, String sort);
 
 	Contents findContentsByNo(int no, boolean hasRead);
 
@@ -72,5 +72,9 @@ public interface ContentsService {
 	int saveContents(Contents contents);
 
 	void saveContentsPeople(ContentsPeople contentspeople);
+
+	int findRate(Map<String, Object> map);
+
+	List<Rate> orderByMyRate(Map<String, Object> mymap);
 
 }

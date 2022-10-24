@@ -48,17 +48,27 @@ public class ContentsController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@GetMapping("/contents/contents_movie")
-	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	@GetMapping("/contents/contents")
+	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page,
+													  @RequestParam(value= "sort", defaultValue="new") String sort,
+													  @RequestParam String type) {
 		
 		List<Contents> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
-		list = service.getContentsList(pageInfo, "영화");
+		if(type.equals("movie")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
+			list = service.getContentsList(pageInfo, "영화", sort); 
+		} else if(type.equals("tv")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("TV"), 15);
+			list = service.getContentsList(pageInfo, "TV", sort); 	
+		} else {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("도서"), 15);
+			list = service.getContentsList(pageInfo, "도서", sort); 		
+		}	
 		
-		System.out.println(list);
-		
+		model.addObject("sort", sort);
+		model.addObject("type", type);
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_movie");
@@ -100,7 +110,17 @@ public class ContentsController {
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
-		rates = service.getCommentsList(pageInfo, no, sort);
+		if(sort.equals("me")) {
+			
+		Map<String, Object> mymap	= new HashMap<>();
+		
+		mymap.put("pageInfo", pageInfo);
+		mymap.put("m_no", loginMember.getM_no());
+		mymap.put("c_no", no);
+			
+		rates = service.orderByMyRate(mymap);	
+		} else {
+		rates = service.getCommentsList(pageInfo, no, sort); }
 		
 		model.addObject("no", no);
 		model.addObject("sort", sort);
@@ -154,6 +174,7 @@ public class ContentsController {
 		if(loginMember != null ) {
 			Likes likes = new Likes();
 			int confirmLike = 0; 
+			int confirmRate = 0;
 			
 			likes.setMNo(loginMember.getM_no());
 			likes.setCNo(no); 
@@ -164,6 +185,16 @@ public class ContentsController {
 			
 			System.out.println(confirmLike); 
 			
+			Map<String, Object> map	= new HashMap<>();
+			
+			map.put("m_no", loginMember.getM_no());
+			map.put("no", no);
+			
+			confirmRate = service.findRate(map);
+			
+			System.out.println("유저가 평가한 개수" + confirmRate);
+			
+			model.addObject("confirmRate", confirmRate);
 			model.addObject("likes", likes);
 			model.addObject("confirmLike", confirmLike);
 		}
@@ -479,5 +510,5 @@ public class ContentsController {
 		
 		return model;
 	}
-	
+
 }
