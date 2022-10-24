@@ -10,26 +10,61 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/contents/contents_movie.css">
 
     <article id="mainContent" class="kakao_article">
-
-        <table class="mt-5">
-            <tr>
-                <td class="new-contents-info" style="width: 250px;">MOVIE CONTENTS</td>
-                <td style="width: 1150px;">
-                    <hr class="contents-line">
-                </td>
-            </tr>
-        </table>
+		
+		<c:if test="${ type == 'movie'}">  
+	        <table class="mt-5">
+	            <tr>
+	                <td class="new-contents-info" style="width: 250px;">MOVIE CONTENTS</td>
+	                <td style="width: 1150px;">
+	                    <hr class="contents-line">
+	                </td>
+	            </tr>
+	        </table>
+    	</c:if>
+    	
+    	<c:if test="${ type == 'tv'}">  
+	        <table class="mt-5">
+	            <tr>
+	                <td class="new-contents-info" style="width: 250px;">TV CONTENTS</td>
+	                <td style="width: 1150px;">
+	                    <hr class="contents-line">
+	                </td>
+	            </tr>
+	        </table>
+    	</c:if>
+    	
+    	<c:if test="${ type == 'book'}">  
+	        <table class="mt-5">
+	            <tr>
+	                <td class="new-contents-info" style="width: 250px;">BOOK CONTENTS</td>
+	                <td style="width: 1150px;">
+	                    <hr class="contents-line">
+	                </td>
+	            </tr>
+	        </table>
+    	</c:if>
+    	
+    	<c:if test="${ sort == 'new'}">
+    	<div class="mainsort">최신순</div>
+		<div class="mainsort" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;" OnClick="location.href='${ path }/contents/contents?type=${ type }&sort=like'">인기순</div>
+    	</c:if>
+    	
+    	<c:if test="${ sort == 'like'}">
+    	<div class="mainsort" style="background-color:rgba(235,236,246); color:gray;" OnClick="location.href='${ path }/contents/contents?type=${ type }&sort=new'">최신순</div>
+		<div class="mainsort" style="margin-right:10px;">인기순</div>
+    	</c:if>
     
-        <div class="section_ranking">
+    	
+        <div class="section_ranking" style="clear:both;">
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
                 	<c:if test="${ not empty list }">
 	                	<c:forEach var="contents" items="${ list }">
 		                    <li>
-		                        <div class="item_poster">
+		                        <div class="item_poster" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 		                            <div class="thumb_item">
-		                                <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-		                                    <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="img_thumb">
+		                                <div class="poster_movie">
+		                                    <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }" class="img_thumb">
 		                                    <span class="txt_tag">
 		                                        <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
 		                                    </span>
@@ -482,11 +517,14 @@
                     </li> -->
                 </ol>
             </div>
+           <c:if test="${ loginMember.m_authorization == 'U' }">
+           		<div class="sort">컨텐츠 등록</div>
+           </c:if>
         </div>
     
         <!--Active and Hoverable Pagination-->
         <ul id="pagination">
-            <li><a href="${ path }/contents/contents_movie?page=1">«</a></li>
+            <li><a href="${ path }/contents/contents?type=${ type }&page=1">«</a></li>
             
             <!--  10개 페이지 목록 -->
 			<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -494,11 +532,11 @@
 					<li><a class="active">${ status.current }</a></li>
 				</c:if>
 				<c:if test="${ status.current != pageInfo.currentPage }">
-					<li><a href="${ path }/contents/contents_movie?page=${ status.current }">${ status.current }</a></li>
+					<li><a href="${ path }/contents/contents?type=${ type }&page=${ status.current }">${ status.current }</a></li>
 				</c:if>
 			</c:forEach>
             
-            <li><a href="${ path }/contents/contents_movie?page=${ pageInfo.maxPage }">»</a></li>
+            <li><a href="${ path }/contents/contents?type=${ type }&page=${ pageInfo.maxPage }">»</a></li>
         </ul>
         
     </article>

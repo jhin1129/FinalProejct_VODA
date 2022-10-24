@@ -28,6 +28,16 @@
 
     <!-- Ranking CSS-->
     <link rel="stylesheet" href="${path}/resources/css/ranking/ranking.css">
+    
+    
+    <!-- kakao JS-->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/${VERSION}/kakao.min.js" integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		Kakao.init('0e845b2075f4a9238f9c4b28eea0a665');
+		Kakao.isInitialized();
+	</script>
+
 
     <style>
         img {
@@ -49,8 +59,9 @@
         <h2 class="screen_out">영화 랭킹 본문</h2>
         <div class="section_ranking">
             <div class="head_section">
-                <h3 class="tit_section">${type} TOP 10<img src="${ path }/resources/img/ranking/kakao.png" alt=""
-                        style=" position: absolute; width: 45px; height: 45px; top: 25px; right: 0px; box-sizing: border-box; border-radius: 20%; box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;"></h3>
+                <h3 class="tit_section">${type} TOP 10<img src="${ path }/resources/img/ranking/kakao.png" onclick="js:kakaoShare()" alt=""
+                        style=" position: absolute; width: 45px; height: 45px; top: 25px; right: 0px; box-sizing: border-box; border-radius: 20%; box-shadow: rgb(0 0 0 / 20%) 0px 0px 4px 0px; cursor: pointer;">
+                </h3>
             </div>
 
             <div class="box_ranking" data-tiara-layer="list">
@@ -645,10 +656,47 @@
     </article>
     </main>
     <hr class="hide">
+    
+    
+<script type="text/javascript">
 
+  // SDK 초기화 여부를 판단합니다.
+  console.log(Kakao.isInitialized());
 
-    <!-- <script src="//t1.daumcdn.net/media/kraken/movie/272060b/PcRankingReservationRankBundle.merged.js"></script>
-<script src="//t1.daumcdn.net/media/kraken/movie/272060b/PcCommonEventBundle.merged.js"></script>     -->
+  function kakaoShare() {
+	    Kakao.Link.sendDefault({
+	      objectType: 'feed',
+	      content: {
+	        title: '오늘의 VODA 랭킹 보러가기',
+	        description: '영화, 드라마, 책, 웹툰 인기 순위를 보고싶으면?',
+	        imageUrl: 'https://occ-0-325-988.1.nflxso.net/dnm/api/v6/oQyw8Fv9eE41UPapt7zHvdUdzrE/AAAABbRLGW6za6NH1VixoN4Xillbebl6-TtXNqstWv3IFpxu45Sj6ggOtTUHHchY9E6HUh2-BrJia32IDFYFYO3hBxKTAdOsh9VR3Bx2TwqRpthLhOYfeAGOJi9NOhOHU0h_z6ndbA.jpg?r=170',
+	        link: {
+	          mobileWebUrl: 'http://localhost:8088/voda/ranking/ranking',
+	          webUrl: 'http://localhost:8088/voda/ranking/ranking',
+	        },
+	      },
+	      buttons: [
+	    	    {
+	    	        title: '웹으로 이동',
+	    	        link: {
+	    	          mobileWebUrl: 'http://localhost:8088/voda/ranking/ranking',
+	    	          webUrl: 'http://localhost:8088/voda/ranking/ranking',
+	    	        },
+	    	      },
+	    	      {
+	    	        title: '앱으로 이동',
+	    	        link: {
+	    	          mobileWebUrl: 'http://localhost:8088/voda/ranking/ranking',
+	    	          webUrl: 'http://localhost:8088/voda/ranking/ranking',
+	    	        },
+	    	      },
+	      ],
+	      // 카카오톡 미설치 시 카카오톡 설치 경로이동
+	      installTalk: true,
+	    })
+  }
+</script>
+
     </div>
 
 <!-- FOOTER -->

@@ -58,5 +58,28 @@ public class CartController {
 		
 		return model;
 	}
+	
+	@GetMapping("/cart_delete")
+	public ModelAndView cartDelete(ModelAndView model,
+						@ModelAttribute Cart cart,
+						@RequestParam("list") List<Integer> list,
+						@SessionAttribute("loginMember") Member loginMember) {
+		int result = 0;
+		cart.setMno(loginMember.getM_no());
+		
+		for(int pno : list ) {
+			result = cartService.cartDelete(pno, loginMember.getM_no());
+		}
+		if(result > 0) {
+			model.addObject("msg", "상품이 삭제되었습니다.");
+			model.addObject("location", "/product/product_cart");
+		} else {
+			model.addObject("msg", "삭제실패했따");
+			model.addObject("location", "/product/product_cart");
+		}
+		model.setViewName("common/msg");
 
+		
+		return model;
+	}
 }

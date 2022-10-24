@@ -231,10 +231,13 @@
                 
                 <!-- 테이블 내용 -->
                 <tbody>
-                 <c:forEach var="member" items="${ list }">
+                 <c:forEach var="member" items="${ list }" varStatus="Status">
                   <tr>             
                     <th scope="row">${ member.m_no }</th>
-                    <td>${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if></td>
+                    <td><a href="#" data-toggle="modal" data-target="#Modal${Status.index}">
+                    ${ member.m_id }<c:if test="${ member.m_authorization == 'M'}">[관리자]</c:if>
+                    </a>
+                    </td>
                     <td><fmt:formatDate value="${ member.m_joinDate }" type="date"/></td>
                     <td>
                     	<c:choose> 
@@ -253,6 +256,54 @@
                     </form>
                     </td>
                   </tr>
+						<!-- Modal -->
+						<div class="modal fade" id="Modal${Status.index}" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h3 class="modal-title" id="ModalLabel">
+						         <c:choose> 
+		                    		<c:when test="${ member.m_gender == 'M'}">🙍‍♂️ 회원 정보</c:when>
+		                    		<c:when test="${ member.m_gender == 'W'}">🙍‍ 회원 정보</c:when>
+		                    	</c:choose></h3>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">✖</span>
+						        </button>
+						      </div>
+						      <div class="modal-body">
+						        • 회원번호 : ${ member.m_no }<br>
+						        • 회원아이디 : ${ member.m_id }<br>
+						        • 회원이름 : ${fn:substring(member.m_name,0,1)} * ${fn:substring(member.m_name,2,4)}
+						        <br>
+						        • 회원이메일 : ${fn:substring(member.m_email,0,3)} *** ${fn:substring(member.m_email,6,99)}
+						        <br>
+						        • 회원연락처 : ${fn:substring(member.m_phone,0,3)} **** ${fn:substring(member.m_phone,7,99)}
+						        <br>
+						        • 회원생년월일 : <fmt:formatDate value="${ member.m_birth }" type="date"></fmt:formatDate> 
+						        <br>
+						        • 회원가입일자 : <fmt:formatDate value="${ member.m_joinDate }" type="date"></fmt:formatDate> 
+						        <br>
+						        • 가입경로 : 						         
+						        <c:choose> 
+		                    		<c:when test="${ member.m_joinWay eq 'MY'}">사이트 가입</c:when>
+		                    		<c:when test="${ member.m_joinWay eq 'SNS'}">SNS</c:when>
+		                    		<c:when test="${ member.m_joinWay eq 'KAKAO'}">카카오계정</c:when>
+		                    		<c:when test="${ member.m_joinWay eq 'NAVER'}">네이버계정</c:when>
+						        </c:choose>
+						        <br>
+						        • 회원상태 : 		
+						        <c:choose> 
+		                    		<c:when test="${ member.m_status == 'Y'}">정상</c:when>
+		                    		<c:when test="${ member.m_status == 'N'}">탈퇴</c:when>
+		                    	</c:choose>				         
+						        <br>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-logoC btn-sm" data-dismiss="modal">닫기</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
                   </c:forEach> 
                 </tbody>
               </table>

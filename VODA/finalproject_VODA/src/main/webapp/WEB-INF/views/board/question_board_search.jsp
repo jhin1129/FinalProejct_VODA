@@ -91,6 +91,7 @@
         .table td,
         .table th {
             padding: 0.60rem;
+            border-top: 0.2px solid #dee2e6 !important;
         }
 
         .page-link {
@@ -166,6 +167,10 @@
             transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
         }
+        
+        select.form-control1:focus {
+		    outline: none;
+		}
 
 
         .td-hr {

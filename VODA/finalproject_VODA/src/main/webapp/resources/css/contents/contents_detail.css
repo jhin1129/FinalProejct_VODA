@@ -122,16 +122,15 @@ position: absolute;
   top: 4px;
   left: 70px;
   margin-bottom: 15px;
-  width: 50px;
+  width: 200px;
   font-weight: 500; } 
 
 
 #commentpopup {
   position: absolute;
-  top: -2px;
   left: 70px;
   margin-bottom: 15px;
-  width: 50px;
+  width: 200px;
   font-weight: 500; } 
 
 #comment {
@@ -848,3 +847,5 @@ color: rgb(235, 236, 240);
   }    
 } 
 /* ---------- COMMENT END ----------  */
+
+

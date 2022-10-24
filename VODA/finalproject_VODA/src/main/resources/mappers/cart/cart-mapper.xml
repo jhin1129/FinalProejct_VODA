@@ -38,6 +38,11 @@
 	<insert id="insertCart" parameterType="Cart">
 	INSERT INTO CART VALUES (#{mno}, #{pno}, 'Y')
 	</insert>
+	
+	<delete id="cartDelete" parameterType="Cart">
+	DELETE CART
+	WHERE P_NO = #{pno} AND M_NO = #{mno}
+	</delete>
 
 
 </mapper>

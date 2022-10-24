@@ -37,6 +37,11 @@
             border-color: #495FE9;
             background-color: #495FE9;
         }
+        
+        .btn-logoc:focus {
+        	outline: none;
+        	box-shadow: none;
+        }
 
         .btn-logoc:hover {
             background-color: #0b27db !important;
@@ -216,7 +221,7 @@
 					<hr>
 					<div id="comment-list">
                 	<c:forEach var="comments" items="${ board.comments }">
-                <div id="comment">
+                <div class="comment">
                 	    <input id="cmno" type="hidden" value="${ comments.cmno}">
 	                	<input id="cmwriterno" type="hidden" value="${comments.cmwriterno }" >
                     <div style="padding: 0px; margin:10px">
@@ -396,7 +401,7 @@
 				contentType : "application/json",
 				data: JSON.stringify(comments),
 				success: function() {
-					$(event.target).parents("#comment").remove();
+					$(event.target).parents(".comment").remove();
 				},
 				error: (error) => {
 					alert("댓글 삭제 실패");
@@ -405,10 +410,10 @@
 		}
 		
 		function updateComments(event) {
-			$(event.target).parents("#comment").hide();
-			$(event.target).parents("#comment").next().show();
-			$(event.target).parents("#comment").next().find("#updateCommentsContent").val($(event.target).parent().parent().prev().text());
-			$(event.target).parents("#comment").next().find(".cmwriterid").text($(event.target).parent().parent().prev().prev().prev().prev().text());
+			$(event.target).parents(".comment").hide();
+			$(event.target).parents(".comment").next().show();
+			$(event.target).parents(".comment").next().find("#updateCommentsContent").val($(event.target).parent().parent().prev().text());
+			$(event.target).parents(".comment").next().find(".cmwriterid").text($(event.target).parent().parent().prev().prev().prev().prev().text());
 		}
 		
 		function updateCommentsCancel(event) {

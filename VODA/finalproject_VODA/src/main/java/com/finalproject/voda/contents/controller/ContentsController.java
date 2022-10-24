@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
@@ -44,17 +48,27 @@ public class ContentsController {
 	@Autowired
 	private ResourceLoader resourceLoader;
 	
-	@GetMapping("/contents/contents_movie")
-	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	@GetMapping("/contents/contents")
+	public ModelAndView movieList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page,
+													  @RequestParam(value= "sort", defaultValue="new") String sort,
+													  @RequestParam String type) {
 		
 		List<Contents> list = null;  
 		PageInfo pageInfo = null;
 		
-		pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
-		list = service.getContentsList(pageInfo, "영화");
+		if(type.equals("movie")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
+			list = service.getContentsList(pageInfo, "영화", sort); 
+		} else if(type.equals("tv")) {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("TV"), 15);
+			list = service.getContentsList(pageInfo, "TV", sort); 	
+		} else {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("도서"), 15);
+			list = service.getContentsList(pageInfo, "도서", sort); 		
+		}	
 		
-		System.out.println(list);
-		
+		model.addObject("sort", sort);
+		model.addObject("type", type);
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_movie");
@@ -96,7 +110,17 @@ public class ContentsController {
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
-		rates = service.getCommentsList(pageInfo, no, sort);
+		if(sort.equals("me")) {
+			
+		Map<String, Object> mymap	= new HashMap<>();
+		
+		mymap.put("pageInfo", pageInfo);
+		mymap.put("m_no", loginMember.getM_no());
+		mymap.put("c_no", no);
+			
+		rates = service.orderByMyRate(mymap);	
+		} else {
+		rates = service.getCommentsList(pageInfo, no, sort); }
 		
 		model.addObject("no", no);
 		model.addObject("sort", sort);
@@ -109,14 +133,48 @@ public class ContentsController {
 	
 	@GetMapping("/contents/contents_detail")
 	public ModelAndView commentDetail(ModelAndView model, @RequestParam int no,
-									  @SessionAttribute(value = "loginMember", required = false) Member loginMember) {
+									  @SessionAttribute(value = "loginMember", required = false) Member loginMember,
+									  HttpServletRequest request, HttpServletResponse response) {
 		Contents contents = null;
 		RateResult rateResult = null;
 		List<ContentsPeople> contentsPeople = null;
 		
+    	// 조회수 쿠키 관련
+    	Cookie[] cookies = request.getCookies();
+    	String Contentsviewhistory = "";
+    	boolean hasRead = false;
+    	
+    	if(cookies != null) {
+    		String name = null;
+    		String value = null;
+    		for (Cookie cookie : cookies) {
+    			name = cookie.getName();
+				value = cookie.getValue();
+			
+			if(name.equals("viewhistory")) {
+				Contentsviewhistory = value;
+				
+				if(value.contains("|" + no + "|")) {
+					hasRead = true;
+					
+					break;
+					}
+				}
+    		}
+    	}
+
+    	if(!hasRead) {    		
+    		Cookie cookie = new Cookie("Contentsviewhistory" ,Contentsviewhistory +  "|" +  no + "|");
+    		
+    		cookie.setMaxAge(-1); 
+    		response.addCookie(cookie);
+    	}
+		
+    	
 		if(loginMember != null ) {
 			Likes likes = new Likes();
 			int confirmLike = 0; 
+			int confirmRate = 0;
 			
 			likes.setMNo(loginMember.getM_no());
 			likes.setCNo(no); 
@@ -127,13 +185,23 @@ public class ContentsController {
 			
 			System.out.println(confirmLike); 
 			
+			Map<String, Object> map	= new HashMap<>();
+			
+			map.put("m_no", loginMember.getM_no());
+			map.put("no", no);
+			
+			confirmRate = service.findRate(map);
+			
+			System.out.println("유저가 평가한 개수" + confirmRate);
+			
+			model.addObject("confirmRate", confirmRate);
 			model.addObject("likes", likes);
 			model.addObject("confirmLike", confirmLike);
 		}
 		
 		contentsPeople = service.getContentsPeopleByNo(no);
 		rateResult = service.getContentsRateByNo(no);
-		contents = service.findContentsByNo(no);
+		contents = service.findContentsByNo(no, hasRead);
 		
 		model.addObject("contentsPeople", contentsPeople);
 		model.addObject("rateResult", rateResult);
@@ -442,5 +510,5 @@ public class ContentsController {
 		
 		return model;
 	}
-	
+
 }

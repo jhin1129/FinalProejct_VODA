@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.finalproject.voda.admin.model.vo.Notice;
 import com.finalproject.voda.board.model.vo.Board;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.common.util.Search;
@@ -35,16 +36,29 @@ public class ContentsServiceImpl implements ContentsService {
 	}
 
 	@Override
-	public List<Contents> getContentsList(PageInfo pageInfo, String type) {
+	public List<Contents> getContentsList(PageInfo pageInfo, String type, String sort) {
 		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
 		int limit = pageInfo.getListLimit();
 		RowBounds rowBounds = new RowBounds(offset, limit);			
 		
-		return mapper.selectAll(rowBounds, type);
+		Map<String, Object> map	= new HashMap<>();
+		
+		map.put("type", type);
+		map.put("sort", sort);
+		
+		return mapper.selectAll(rowBounds, map);
 	}
-
+	
+	@Transactional
 	@Override
-	public Contents findContentsByNo(int no) {
+	public Contents findContentsByNo(int no, boolean hasRead) {
+		Contents contents = null;
+		
+		contents = mapper.selectContentsByNo(no);
+		
+		if(contents != null && !hasRead) {
+			mapper.updateContentsView(contents);
+		}
 		
 		return mapper.selectContentsByNo(no);
 	}
@@ -246,7 +260,20 @@ public class ContentsServiceImpl implements ContentsService {
 
 	@Override
 	public void saveContentsPeople(ContentsPeople contentspeople) {
-		// TODO Auto-generated method stub
+		
 		mapper.saveContentsPeople(contentspeople);
 	}
+
+	@Override
+	public int findRate(Map<String, Object> map) {
+		
+		return mapper.findRate(map);
+	}
+
+	@Override
+	public List<Rate> orderByMyRate(Map<String, Object> mymap) {
+		
+		return mapper.orderByMyRate(mymap);
+	}
+	
 	}

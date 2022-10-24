@@ -30,6 +30,11 @@
 
         button:focus {
             box-shadow: none !important;
+            outline: none;
+        }
+        
+        .btn-logoc:focus {
+        	box-shadow: none;
         }
 
         .btn-logoc {

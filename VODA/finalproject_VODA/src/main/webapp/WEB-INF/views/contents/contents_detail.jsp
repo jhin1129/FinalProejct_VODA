@@ -59,26 +59,26 @@
                 <div class="col-5">
                     <div id="half-stars-example">
                         <div class="rating-group">
-                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                            <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio" onclick="return(false);">
                             <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
                             <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 0.5 }"> checked </c:if>>
                             <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 1 }"> checked </c:if>>
                             <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 1.4 }"> checked </c:if>>
                             <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 2 }"> checked </c:if>>
                             <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" checked>
+                            <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 2.4 }"> checked </c:if>>
                             <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 3 }"> checked </c:if>>
                             <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 3.4 }"> checked </c:if>>
                             <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 4 }"> checked </c:if>>
                             <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
+                            <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio" onclick="return(false);" <c:if test="${ rateResult.rate_avg >= 4.4 }"> checked </c:if>>
                             <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
                             <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
                         </div>
@@ -97,7 +97,7 @@
 	                    </button>
                 	</c:when>
                 	<c:otherwise>
-	                    <button class="bookmark hey">
+	                    <button class="bookmark hey" onclick="loginCheck()">
 	                        <svg viewBox="0 0 36 36">
 	                            <path class="filled" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
 	                            <path class="default" d="M26 6H10V18V30C10 30 17.9746 23.5 18 23.5C18.0254 23.5 26 30 26 30V18V6Z" />
@@ -106,15 +106,25 @@
 	                    </button>
                     </c:otherwise>
 				</c:choose>
+					<c:if test="${ not empty loginMember }">
                     <span id="bookmarktext" class="hey">북마크</span>
+                    </c:if>
+                    <c:if test="${ empty loginMember }">
+                    <span id="bookmarktext" class="hey" onclick="loginCheck()" >로그인하고 북마크</span>
+                    </c:if>
                 </div>
 			
                 <div class="col">
-                    <a id="comment" href="#${ path }/contents/comment_form?no=${ contents.c_no }">
+                    <a id="comment" href="#${ path }/contents/comment_form?no=${ contents.c_no }" onclick="rateCheck();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
                             <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
                         </svg>
+                        <c:if test="${ not empty loginMember }">
                         <span id="commentpopup">코멘트</span>
+                        </c:if>
+                        <c:if test="${ empty loginMember }">
+	                    <span id="commentpopup" onclick="loginCheck()">로그인 하고 코멘트</span>
+	                    </c:if>
                     </a>
                 </div>
 
@@ -191,23 +201,23 @@
                     <!--carousel page 1 start-->
                     <div class="row" id="inmul">
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="0" end="0">
-                        <div class="col-actor">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
 					</c:forEach>
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="1" end="1"> 	
-                        <div class="col-actor" style="padding-left: 0px">
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div> 
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
@@ -216,23 +226,23 @@
                     <hr style="margin: 0px;">
                     <div class="row" id="inmul">
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="2" end="2">
-                        <div class="col-actor">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
 					</c:forEach>
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="3" end="3">
-                        <div class="col-actor" style="padding-left: 0px">
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
@@ -241,23 +251,23 @@
                     <hr style="margin: 0px;">
                     <div class="row" id="inmul">
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="4" end="4">
-                        <div class="col-actor">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
                     </c:forEach>
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="5" end="5">
-                        <div class="col-actor" style="padding-left: 0px">
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
                             <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
@@ -267,73 +277,86 @@
                 
                 <!--carousel page 1 end-->
 
-                <div class="carousel-item">
-                    <!--carousel page 2 start-->
+                 <div class="carousel-item">
+                    <!--carousel page 1 start-->
                     <div class="row" id="inmul">
-                        <div class="col-actor">
+                    <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="6" end="6">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
-                            <div style="color:gray; font-size:0.9em;">감독</div>
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
-                        <div class="col-actor" style="padding-left: 0px">
+					</c:forEach>
+					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="7" end="7"> 	
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
+                        </div> 
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
-                            <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
-                        </div>
+                    </c:forEach>
                     </div>
                     <hr style="margin: 0px;">
                     <div class="row" id="inmul">
-                        <div class="col-actor">
+                    <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="8" end="8">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
-                            <div style="color:gray; font-size:0.9em;">감독</div>
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
-                        <div class="col-actor" style="padding-left: 0px">
+					</c:forEach>
+					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="9" end="9">
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
-                            <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
+                    </c:forEach>
                     </div>
                     <hr style="margin: 0px;">
                     <div class="row" id="inmul">
-                        <div class="col-actor">
+                    <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="10" end="10">
+                        <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">가이 리치</div>
-                            <div style="color:gray; font-size:0.9em;">감독</div>
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
-                        <div class="col-actor" style="padding-left: 0px">
+                    </c:forEach>
+                    <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="11" end="11">
+                        <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
                                 <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
                             </div>
                         </div>
-                        <div class="col-name">
-                            <div style="font-size:1em; margin-top: 5px;">윌 스미스</div>
-                            <div style="color:gray; font-size:0.9em;">주연 | 지니</div>
+                        <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
+                            <div style="font-size:1em; margin-top: 5px;">${ contentsPeople.people_name }</div>
+                            <div style="color:gray; font-size:0.9em;">${ contentsPeople.cp_role }</div>
                         </div>
+                    </c:forEach>
                     </div>
                 </div>
                 <!--carousel page 2 end-->
             </div>
+            <c:if test="${fn:length(contentsPeople) > 5}"> 
             <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -342,6 +365,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </button>
+            </c:if>
         </div>
         <!--carousel-->
 
@@ -563,6 +587,28 @@
 				}
 			})// 아작스 끝
 		})
+	}
+	</script>
+
+	<script>
+	function loginCheck() {
+		 if(${ empty loginMember }) {
+       		alert("로그인 후 이용해주세요");
+       		location.href = '${ path }/member/login';
+       	}
+	}
+	</script>
+	
+	<script>
+	function rateCheck() {
+		if(${ empty loginMember }) {
+       		alert("로그인 후 이용해주세요");
+       		location.href = '${ path }/member/login';
+       	} 
+		else if (${ confirmRate } > 0) {
+       		alert("이미 코멘트 하셨습니다");
+       		location.href = '${ path }/contents/contents_comments?no=${ contents.c_no }&sort=me'
+       	}
 	}
 	</script>
 

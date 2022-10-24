@@ -1338,3 +1338,29 @@ background: #ddd;
 
 .bi-caret-down-fill { color: rgb(73,95,233); }
 
+.sort {
+    float: right;
+    background: rgb(73,95,233);
+    border-radius: 15px;
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    color: white;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+.mainsort {
+    float: right;
+    background: rgb(73,95,233);
+    border-radius: 30px;
+    display: inline-block;
+    position: relative;
+    color: white;
+	padding-top: 7px;
+    padding-right: 12px;
+    padding-bottom: 7px;
+    padding-left: 12px;
+    font-size: 0.9em;
+}
+

@@ -33,7 +33,7 @@
 	<div class="container p-0">
 	  <nav class="navbar navbar-expand-lg navbar-light">
 	    <div class="container-fluid">
-	        <a class="navbar-brand mr-1" href="#"><img class="logoimg" src="${path}/resources/img/common/VODA.png"></a>
+	        <a class="navbar-brand mr-1" href="${path}"><img class="logoimg" src="${path}/resources/img/common/VODA.png"></a>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>
 	        </button>
@@ -45,10 +45,10 @@
 	                  CONTENTS
 	              </a>
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                  <li><a class="dropdown-item" href="#">MOVIE</a></li>
-	                  <li><a class="dropdown-item" href="#">TV</a></li>
-	                  <li><a class="dropdown-item" href="#">BOOK</a></li>
-	                  <li><a class="dropdown-item" href="#">WEBTOON</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=movie&sort=new">MOVIE</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=tv&sort=new">TV</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=book&sort=new">BOOK</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents_webtoon">WEBTOON</a></li>
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">
@@ -82,18 +82,16 @@
 	              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/notice_list'">NOTICE</a></li>
-	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/admin/admin_dashboard'">ADMINPAGE</a></li>
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/free_board_list'">FREE BOARD</a></li>
 	                  <li><a class="dropdown-item" href="#" onclick="location.href='${path}/board/question_board_list'">Q&A</a></li>
-	                  <li><a class="dropdown-item" href="#">CONTENT REQUEST</a></li>
 	              </ul>
 	            </li>
 	          </ul>
 	        </div>
-	
+
 	      <div class="search">
-	        <form class="d-flex">
-	          <input class="form-control me-sm-2" type="text" value="">
+	        <form class="d-flex" id="frm-foo" action= "${path}/contents/contents_search">
+	          <input class="form-control me-sm-2" type="text" name="keyword" id="searchInput">
 	        </form>
 	      </div>
 	      
