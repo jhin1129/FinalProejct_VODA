@@ -43,9 +43,11 @@ public class OrderController {
 			@RequestParam int pno,
 			@RequestParam int porderqtt) {
 		Product product = new Product();
+		
 		product = productService.findProductByNo(pno);
 		product.setPorderqtt(porderqtt);
 		product.setPprice(product.getPprice() * porderqtt);
+		
 		System.out.println(product);
 		System.out.println(porderqtt);
 		model.addObject("product", product);
@@ -62,15 +64,19 @@ public class OrderController {
 			@RequestParam List<Integer> porderqtt) {
 		List<Cart> cart = new ArrayList<Cart>();
 		String productName = null;
+		
 		cart = cartService.getCartList(loginMember.getM_no());
 		
 		for(int i=0; i<cart.size(); i++){
 			cart.get(i).setPorderqtt(porderqtt.get(i));
 			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
 			}
+		
 		int totalOqtt = cartService.getTotalOqtt(porderqtt);
 		int totalPrice = cartService.getTotalPrice(cart);
+		
 		productName = cart.get(0).getPname() + " 포함 총 " + totalOqtt + "개의 상품";
+		
 		model.addObject("cart", cart);
 		model.addObject("totalPrice", totalPrice);
 		model.addObject("productName", productName);

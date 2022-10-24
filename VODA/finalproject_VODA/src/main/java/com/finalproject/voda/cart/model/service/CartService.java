@@ -15,6 +15,9 @@ public interface CartService {
 
 	int getTotalOqtt(List<Integer> porderqtt);
 
+	int cartDelete(int pno, int m_no);
+
+
 	
 
 	

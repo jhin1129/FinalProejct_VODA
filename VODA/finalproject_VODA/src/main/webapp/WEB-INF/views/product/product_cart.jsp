@@ -60,8 +60,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="3">&nbsp;&nbsp;<button class="btn btn-primary2 py-1">선택상품 삭제</button>
-                                <button class="btn btn-primary2 py-1">전체상품 삭제</button>
+                            <td colspan="3">&nbsp;&nbsp;<button id="deleteCart" class="btn btn-primary2 py-1">선택상품 삭제</button>
                             </td>
                             <td></td>
                             <td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총 합계 금액 : </strong></td>
@@ -76,7 +75,7 @@
             </div>
         </section>
     </div>
-    <script>
+<script>
     var allCheck = document.querySelector(".allCheck");
     var list = document.querySelectorAll(".check");
     allCheck.onclick = () => {
@@ -155,6 +154,18 @@ $(document).ready(() => {
 		$(".totalPrice").text(totalPrice);
 	}
 	
+	$("#deleteCart").on("click", ()=> {
+		var arr = [];
+		$("input:checkbox[name='cartSno[]']:checked").each(function(){
+			var pno = $(this).val();
+			arr.push(pno);
+		});
+		if(arr.length !=0){
+			location.href="${path}/product/cart_delete?list="+arr;
+		}else{
+			alert("상품을 선택해주세요");
+		}
+	});
 	
 });
 </script>

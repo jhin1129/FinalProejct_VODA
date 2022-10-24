@@ -9,7 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -23,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.common.util.PageInfo;
+import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.service.ProductService;
 import com.finalproject.voda.product.model.vo.Product;
 
@@ -56,11 +60,11 @@ public class ProductController {
 	@GetMapping("/product_detail")
 	public ModelAndView view(ModelAndView model, @RequestParam int pno) {
 		Product product = null;
-		
 		product = service.findProductByNo(pno);
 		
 		List<String> imgList = new ArrayList<String>();
 		String[] splitImg = product.getPrenamefile().split(", ");
+		
 		for (int i = 0; i < splitImg.length; i++) {
 			imgList.add(splitImg[i]);
 		}
@@ -295,5 +299,21 @@ public class ProductController {
 		System.out.println(product);
 		return model;
 	}
+	
+	@GetMapping("/product_popular_list")
+	public ModelAndView popular_list(ModelAndView model) {
+		List<Product> product = null;
+		
+		
+		model.addObject("product", product);
+		model.setViewName("product/product_popular_list");
+		
+		return model;
+	}
+	
+	
+	
+	
+	
 	
 }

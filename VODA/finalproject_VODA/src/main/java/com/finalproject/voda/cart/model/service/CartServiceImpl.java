@@ -45,4 +45,11 @@ public class CartServiceImpl implements CartService {
 		return totalOqtt;
 	}
 
+	@Override
+	public int cartDelete(int pno, int m_no) {
+		// TODO Auto-generated method stub
+		return cartMapper.cartDelete(pno, m_no);
+	}
+
+
 }
