@@ -23,6 +23,8 @@ public interface ProductService {
 
 	List<Product> getProductSearchList(PageInfo pageInfo, String searchtype, String searchname);
 
+	Product findProductByNo(int pno, boolean hasRead);
+
 
 	
 }

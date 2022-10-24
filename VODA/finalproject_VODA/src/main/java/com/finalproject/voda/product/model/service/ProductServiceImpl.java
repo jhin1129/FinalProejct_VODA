@@ -73,6 +73,11 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.getProductSearchList(rowBounds, searchtype, searchname);
 	}
 
+	@Override
+	public Product findProductByNo(int pno, boolean hasRead) {
+		return productMapper.findProductByNo(pno);
+	}
+
 
 
 }

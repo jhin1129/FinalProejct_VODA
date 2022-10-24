@@ -25,6 +25,7 @@ public interface ProductMapper {
 
 	List<Product> getProductSearchList(RowBounds rowBounds,@Param("searchtype") String searchtype,@Param("searchname") String searchname);
 
+	int updateProductView(Product product);
 
 
 }
