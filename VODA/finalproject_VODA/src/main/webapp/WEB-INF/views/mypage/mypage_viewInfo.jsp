@@ -119,7 +119,17 @@
                                 <tbody>
                                     <tr>
                                         <th class="infotable_th" style="width: 27%; padding-top: 16px;">성별</th>
-                                        <td class="infotable_td" style="padding-top: 16px;">${ loginMember.m_gender }</td>
+                                        <td class="infotable_td" style="padding-top: 16px;">
+                                        	<c:if test="${loginMember.m_gender == 'W' }">
+                                        		여자
+                                        	</c:if>
+                                        	<c:if test="${loginMember.m_gender == 'M' }">
+                                        		남자
+                                        	</c:if>
+                                        	<c:if test="${loginMember.m_gender == 'N' }">
+                                        		비공개
+                                        	</c:if>
+                                        </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid lightgrey;">
                                         <th class="infotable_th" style="padding-top: 16px;">생년월일</th>

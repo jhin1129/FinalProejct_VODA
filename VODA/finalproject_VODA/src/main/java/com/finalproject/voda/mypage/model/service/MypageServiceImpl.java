@@ -241,6 +241,12 @@ public class MypageServiceImpl implements MypageService {
 		return mapper.selectCancelOrderList(m_no);
 	}
 
+	@Override
+	public int refundCancel(int payNo) {
+		// TODO Auto-generated method stub
+		return mapper.refundCancel(payNo);
+	}
+
 
 
 

@@ -130,7 +130,7 @@
 	                                    <td class="table_td">${ order.pay.patstatus }</td>
 	                                    <td class="table_td">
 	                                    	<c:if test="${order.pay.patstatus == '배송준비중' }">
-			                                    <button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 5px; height: 28px; onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+			                                    <button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 5px; height: 28px;" onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
 	                                    	</c:if>
 	                                    </td>
 	                                </tr>

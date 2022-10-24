@@ -70,5 +70,7 @@ public interface MypageService {
 
 	List<Order> getCancelOrderList(int m_no);
 
+	int refundCancel(int payNo);
+
 
 }

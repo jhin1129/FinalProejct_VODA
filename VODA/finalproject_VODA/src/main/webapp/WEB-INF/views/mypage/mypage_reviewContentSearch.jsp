@@ -193,9 +193,6 @@
 	                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
 	                                                </span>
 	                                            </div>
-	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 3;">
-	                                                <input type="checkbox" style="width: 17px; height: 17px;">
-	                                            </div>
 	                                        </div>
 	                                        <div class="thumb_cont">
 	                                            <strong class="tit_item">

@@ -497,4 +497,25 @@ public class MypageController {
 		
 		return model;
 	}
+	
+	@GetMapping("/refundCancel")
+	public ModelAndView refundCancel(ModelAndView model,
+			HttpServletRequest request,
+			@RequestParam(value = "payNo") int payNo) {
+		
+		String path = request.getHeader("Referer").substring(request.getHeader("Referer").indexOf(request.getContextPath()) + request.getContextPath().length());
+		int result = 0;
+		
+		result = service.refundCancel(payNo);
+		
+		if(result > 0) {
+			model.addObject("msg", "환불 취소 요청이 완료되었습니다.");
+		} else {
+			model.addObject("msg", "환불 취소 요청이 실패하였습니다.");
+		}
+		model.addObject("location", path);
+		model.setViewName("common/msg");
+		
+		return model;
+	}
 }
