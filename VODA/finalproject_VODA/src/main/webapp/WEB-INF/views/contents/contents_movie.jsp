@@ -61,9 +61,9 @@
                 	<c:if test="${ not empty list }">
 	                	<c:forEach var="contents" items="${ list }">
 		                    <li>
-		                        <div class="item_poster">
+		                        <div class="item_poster" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 		                            <div class="thumb_item">
-		                                <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
+		                                <div class="poster_movie">
 		                                    <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }" class="img_thumb">
 		                                    <span class="txt_tag">
 		                                        <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
