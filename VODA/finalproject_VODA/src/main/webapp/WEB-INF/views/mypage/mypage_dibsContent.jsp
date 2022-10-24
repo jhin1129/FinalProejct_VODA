@@ -185,16 +185,17 @@
                             		<li class="item">
 	                                    <div class="item_poster">
 	                                        <div class="thumb_item" style="width: 187px; height: 273px;">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'" style="position: absolute; z-index: 2;">
-	                                                <img style="cursor: pointer;" src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
+	                                            <div class="poster_movie" style="z-index: 2;">
+	                                                <img onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'" style="z-index:3; cursor: pointer;" src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" onerror=this.src="${path}/resources/img/common/noImage.png">
-	                                                <span class="txt_tag">
+	                                                <span style="z-index: 5; cursor: pointer;" class="txt_tag">
 	                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
 	                                                </span>
+		                                            <span class="mx-2 my-1" style="left:3px; top:5px; position: absolute; z-index: 4;">
+		                                                <input type="checkbox" value="${ contents.c_no }" name="contentsCheckBox" style="width: 17px; height: 17px;">
+		                                            </span>
 	                                            </div>
-	                                            <div class="mx-2 my-1" style="position: absolute; z-index: 3;">
-	                                                <input type="checkbox" value="${ contents.c_no }" name="contentsCheckBox" style="width: 17px; height: 17px;">
-	                                            </div>
+	                                            
 	                                        </div>
 	                                        <div class="thumb_cont">
 	                                            <strong class="tit_item">
