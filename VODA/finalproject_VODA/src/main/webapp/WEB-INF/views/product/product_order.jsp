@@ -42,7 +42,7 @@
 							<p>${product.pname}</p></td>
 						<td class="cart__list__option">
 							<p>상품 주문 수량: ${ product.porderqtt }개</p>
-							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
+							<button type="button" class="btn btn-primary1 py-1" onclick="history.go(-1)">주문조건 추가/변경</button>
 						</td>
 						<td><span class="price">${product.pprice}원</span><br></td>
 						<td>무료</td>
@@ -257,7 +257,7 @@
 
 						
 						<div class="cart__mainbtns">
-							<button class="btn btn-back py-1">이전페이지</button>
+							<button type="button" class="btn btn-back py-1" onclick="history.go(-1)">이전페이지</button>
 							<button type="button" class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
 						</div>
 					</div>

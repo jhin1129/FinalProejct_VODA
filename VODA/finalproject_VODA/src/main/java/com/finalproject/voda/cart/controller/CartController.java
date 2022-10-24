@@ -2,6 +2,8 @@ package com.finalproject.voda.cart.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +29,27 @@ public class CartController {
 	
 	@GetMapping("/product_cart")
 	public ModelAndView cart_list (ModelAndView model,
-			@SessionAttribute("loginMember") Member loginMember) {
+			HttpSession session) {
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
 		List<Cart> cart = null;
-		cart = cartService.getCartList(loginMember.getM_no());
-		System.out.println(cart);
-		model.addObject("cart", cart);
-		model.setViewName("product/product_cart");
+		
+		
+		
+		if(loginMember == null) {
+			model.addObject("msg", "로그인 후 이용해주세요.");
+			model.addObject("location", "/member/login");
+			model.setViewName("common/msg");
+		} else {
+			
+			cart = cartService.getCartList(loginMember.getM_no());
+			model.addObject("cart", cart);
+			model.addObject("location", "/product/product_cart");
+			
+		}
+		
+		
+		
 		
 		return model;
 	}

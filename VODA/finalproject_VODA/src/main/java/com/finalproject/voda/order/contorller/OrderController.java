@@ -2,6 +2,7 @@ package com.finalproject.voda.order.contorller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,7 @@ public class OrderController {
 		
 		model.addObject("cart", cart);
 		model.addObject("totalPrice", totalPrice);
+		model.addObject("totalOqtt", totalOqtt);
 		model.addObject("productName", productName);
 		model.setViewName("product/product_list_order");
 		
@@ -142,7 +144,15 @@ public class OrderController {
 		order.setMno(loginMember.getM_no());
 		order.setPayno(payno);
 		
-		result = orderService.insertOrder(order);
+		
+		for (int i = 0; i < cart.size(); i++) {
+			order.setPno(cart.get(i).getPno());
+			order.setOqtt(porderqtt.get(i));
+			
+			result = orderService.insertOrder(order);
+		}
+		
+		
 		
 
 		System.out.println();

@@ -212,7 +212,7 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-primary py-1" style="width: 100px">Post</button>
+                    <button class="btn btn-primary py-1" style="width: 100px" onclick="history.go(-1)">Post</button>
                     <button class="btn btn-light py-1" style="width: 100px; height: 36px;">Cancle</button>
                 </div>
             </div>

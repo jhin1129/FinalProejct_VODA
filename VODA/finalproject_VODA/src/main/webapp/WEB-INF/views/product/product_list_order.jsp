@@ -24,7 +24,7 @@
 						<td colspan="2">상품정보</td>
 						<td>옵션</td>
 						<td>상품금액</td>
-						<td>배송비${ productName }</td>
+						<td>배송비</td>
 					</tr>
 				</thead>
 				<tbody>
@@ -32,6 +32,7 @@
 				<c:set var="rename" value="${ cart.prenamefile }" />
 				<input type="hidden" name="pno" value="${ cart.pno }">
                 <input type="hidden" name="porderqtt" value="${ cart.porderqtt }">
+                <input type="hidden" name="oqtt" value="${ cart.porderqtt }">
                 <input type="hidden" name="pname" value="${ cart.pname }">
 					<tr class="cart__list__detail">
 						<td></td>
@@ -41,7 +42,7 @@
 							<p>[${cart.pcategory}]${cart.pname}</p></td>
 						<td class="cart__list__option">
 							<p>상품 주문 수량: ${ cart.porderqtt }개</p>
-							<button class="btn btn-primary1 py-1">주문조건 추가/변경</button>
+							<button type="button" class="btn btn-primary1 py-1" onclick="history.go(-1)">주문조건 추가/변경</button>
 						</td>
 						<td><span class="price">${cart.pprice}원</span><br></td>
 						<td>무료</td>
@@ -258,7 +259,7 @@
 
 						
 						<div class="cart__mainbtns">
-							<button class="btn btn-back py-1">이전페이지</button>
+							<button type="button" class="btn btn-back py-1" onclick="history.go(-1)">이전페이지</button>
 							<button id="listpayment" type="button" class="btn btn-primary py-1" onclick="requestPay1()">결제하기</button>
 						</div>
 					</div>
