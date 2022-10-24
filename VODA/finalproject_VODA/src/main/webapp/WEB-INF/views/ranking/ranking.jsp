@@ -79,10 +79,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster"  style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -165,10 +165,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster" style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -253,10 +253,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster"  style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -338,10 +338,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster"  style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -423,10 +423,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster"  style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -504,10 +504,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster" style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
@@ -586,10 +586,10 @@
 	                            	<div class="carousel-item">
 	                            </c:if>
 	                                <li>
-	                                    <div class="item_poster">
+	                                    <div class="item_poster"  style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
 	                                        <div class="thumb_item">
-	                                            <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
-	                                                <img src="https://img1.daumcdn.net/thumb/C408x596/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fmovie%2F36f22dea0e0a9e0e626c549ce689558160c46ed4"
+	                                            <div class="poster_movie">
+	                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }"
 	                                                    class="img_thumb" alt="${ contents.c_title }">
 	
 	                                                <span class="rank_num">${status.count }</span>
