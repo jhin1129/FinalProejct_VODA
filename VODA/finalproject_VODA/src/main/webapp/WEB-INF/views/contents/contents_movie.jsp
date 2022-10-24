@@ -46,11 +46,11 @@
     	
     	<c:if test="${ sort == 'new'}">
     	<div class="mainsort">최신순</div>
-		<div class="mainsort" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;">인기순</div>
+		<div class="mainsort" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;" OnClick="location.href='${ path }/contents/contents?type=${ type }&sort=like'">인기순</div>
     	</c:if>
     	
     	<c:if test="${ sort == 'like'}">
-    	<div class="mainsort" style="background-color:rgba(235,236,246); color:gray;">최신순</div>
+    	<div class="mainsort" style="background-color:rgba(235,236,246); color:gray;" OnClick="location.href='${ path }/contents/contents?type=${ type }&sort=new'">최신순</div>
 		<div class="mainsort" style="margin-right:10px;">인기순</div>
     	</c:if>
     

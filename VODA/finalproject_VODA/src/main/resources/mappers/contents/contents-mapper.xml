@@ -115,9 +115,10 @@
 			AND  C_TYPE = #{type}
 	</select>
 
-	<select id="selectAll" resultMap="contentsListResultMap">
+	<select id="selectAll" resultMap="contentsListResultMap" parameterType="java.util.Map">
 		SELECT
 			<include refid="contentsListSql"/>
+			,COUNT(R.RATE_NO)
 			,ROUND(AVG(RATE_STAR),1)
 			FROM CONTENTS C
 	        LEFT OUTER JOIN RATE R
@@ -126,7 +127,12 @@
 	        AND C.C_TYPE = #{type}
 	        GROUP BY 
 	        <include refid="contentsListSql"/>
-	        ORDER BY C.C_NO DESC
+	        <if test='sort == "like"'>
+			ORDER BY COUNT(RATE_NO) DESC
+			</if>
+			<if test='sort == "new"'>
+			ORDER BY C.C_DATE DESC
+			</if>
 	</select>
 	
 	 <select id="selectContentsByNo" parameterType="_int" resultMap="contentsDetailResultMap">

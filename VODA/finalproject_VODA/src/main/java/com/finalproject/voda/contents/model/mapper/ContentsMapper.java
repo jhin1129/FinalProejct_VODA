@@ -24,7 +24,7 @@ public interface ContentsMapper {
 
 	int selectContentsCount(String type);
 
-	List<Contents> selectAll(RowBounds rowBounds, String type);
+	List<Contents> selectAll(RowBounds rowBounds, Map<String, Object> map);
 
 	Contents selectContentsByNo(int no);
 

@@ -54,13 +54,13 @@ public class ContentsController {
 		
 		if(type.equals("movie")) {
 			pageInfo = new PageInfo(page, 10, service.getContentsCount("영화"), 15);
-			list = service.getContentsList(pageInfo, "영화"); 
+			list = service.getContentsList(pageInfo, "영화", sort); 
 		} else if(type.equals("tv")) {
 			pageInfo = new PageInfo(page, 10, service.getContentsCount("TV"), 15);
-			list = service.getContentsList(pageInfo, "TV"); 	
+			list = service.getContentsList(pageInfo, "TV", sort); 	
 		} else {
 			pageInfo = new PageInfo(page, 10, service.getContentsCount("도서"), 15);
-			list = service.getContentsList(pageInfo, "도서"); 		
+			list = service.getContentsList(pageInfo, "도서", sort); 		
 		}	
 		
 		model.addObject("sort", sort);

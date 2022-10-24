@@ -19,7 +19,7 @@ public interface ContentsService {
 	
 	int getContentsCount(String type);
 
-	List<Contents> getContentsList(PageInfo pageInfo, String type);
+	List<Contents> getContentsList(PageInfo pageInfo, String type, String sort);
 
 	Contents findContentsByNo(int no);
 

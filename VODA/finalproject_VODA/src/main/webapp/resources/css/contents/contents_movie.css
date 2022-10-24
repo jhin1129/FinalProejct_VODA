@@ -1357,9 +1357,10 @@ background: #ddd;
     display: inline-block;
     position: relative;
     color: white;
-    padding: 10px;
-    padding-top: 8px;
-    padding-botton: 8px;
+	padding-top: 7px;
+    padding-right: 12px;
+    padding-bottom: 7px;
+    padding-left: 12px;
     font-size: 0.9em;
 }
 
