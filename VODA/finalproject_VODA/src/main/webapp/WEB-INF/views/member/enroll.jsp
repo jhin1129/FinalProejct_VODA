@@ -148,8 +148,8 @@
                                                         <input name="m_address" id="sample6_address" readonly="readonly" type="text" class="form-control" style="margin-left: 16px; width: 235px !important;" required >
                                                         <div>
 	                                                        <input name="m_detailAddress" id="sample6_detailAddress" type="text" class="form-control" value=""
-	                                                        style="margin-left: 16px;margin-top: 3px; width: 235px !important;">
-                                                        <label for="" id="address_check"></label>
+	                                                        style="margin-left: 16px;margin-top: 3px; width: 235px !important; required">
+                                                       		<label for="" id="address_check"></label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1527,7 +1527,9 @@ $(document).ready(function(){
 		}
 		
 		//주소 작성 여부
-		if($("#address_check").val == '') {
+		var address = $("#address_check").val();
+		
+		if(address == '') {
 			alert("주소를 검색하여 입력해주세요");
 			$("#sample6_detailAddress").focus();
 			
