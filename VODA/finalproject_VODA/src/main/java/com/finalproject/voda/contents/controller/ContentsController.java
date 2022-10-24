@@ -112,11 +112,12 @@ public class ContentsController {
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
 		if(sort.equals("me")) {
 			
-		Map<String, Object> mymap	= new HashMap<>();
+		Map<String, Object> mymap = new HashMap<>();
 		
 		mymap.put("pageInfo", pageInfo);
 		mymap.put("m_no", loginMember.getM_no());
 		mymap.put("c_no", no);
+		mymap.put("sort", sort);
 			
 		rates = service.orderByMyRate(mymap);	
 		} else {
