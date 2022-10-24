@@ -194,7 +194,6 @@
                     <th scope="col" style="width: 5%">No</th>
                     <th scope="col" style="width: 20%">상품명</th>
                     <th scope="col">이미지</th>
-                    <th scope="col" style="width: 10%">리뷰</th>
                     <th scope="col" style="width: 10%">상태수정</th>
                     <th scope="col" style="width: 10%">비활성화</th>
                   </tr>
@@ -242,7 +241,6 @@
                           <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb">
                         </div>
                     </td>
-                    <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm">리뷰관리</button></td>
                     <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/product/product_update?pno=${ product.pno }'">수정</button></td>
                     <td class="align-middle">
                     <form action="${ path }/admin/admin_goods_delete" style="width: 100%;">

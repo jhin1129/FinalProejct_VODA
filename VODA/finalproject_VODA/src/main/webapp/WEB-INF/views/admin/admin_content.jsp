@@ -164,6 +164,8 @@
         .td-hr {
             pointer-events: none;
         }
+        .poster_movie img
+        { width: 45px; height: 45px;}
     </style>
     <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css"> 
@@ -240,7 +242,7 @@
                   <tr>                    
                     <th scope="row">${ content.c_no }</th>
                     <td><a href="${path}/contents/contents_detail?no=${ content.c_no }">${ content.c_title }</a></td>
-                    <td>${ content.c_pimg }</td>
+                    <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ contents.c_bimg }"/></td>
                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_comments?no=${ content.c_no }&sort=like'">관리</td>
                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_detail?no=${ content.c_no }'">수정</td>
                     <td>
