@@ -536,6 +536,11 @@
 		WHERE PAY_NO = #{payNo}
 	</update>
 	
+	<update id="refundCancel" parameterType="_int">
+		UPDATE PAY SET
+		PAY_STATUS = '배송준비중'
+		WHERE PAY_NO = #{payNo}
+	</update>
 	<delete id="deleteDibsContent">
 		DELETE FROM LIKES
 		WHERE M_NO = #{m_no}

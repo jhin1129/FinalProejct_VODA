@@ -74,4 +74,6 @@ public interface MypageMapper {
 
 	List<Order> selectCancelOrderList(int m_no);
 
+	int refundCancel(int payNo);
+
 }

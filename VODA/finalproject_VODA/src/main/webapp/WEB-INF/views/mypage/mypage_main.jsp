@@ -274,7 +274,10 @@
                                         <td class="paytable_td">${ order.pay.patstatus }</td>
                                         <td class="paytable_td">
                                         	<c:if test="${order.pay.patstatus == '배송준비중'}">
-	                                        	<button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 4px; height: 28px; onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+	                                        	<button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 4px; height: 28px;" onclick="location.href='${path}/mypage/payCancel?payNo=${order.payno}'">환불</button>
+                                        	</c:if>
+                                        	<c:if test="${order.pay.patstatus == '환불대기중'}">
+	                                        	<button class="btn btn-logoc" style="font-size: 0.95em; padding-top: 4px; height: 28px;" onclick="location.href='${path}/mypage/refundCancel?payNo=${order.payno}'">환불취소</button>
                                         	</c:if>
                                         </td>
                                     </tr>
@@ -314,6 +317,12 @@
 	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">
 												<a href="${ path }/board/free_board_detail?no=${ board.bno }">	                                        
 	                                        		${ board.btitle }
+	                                        		<c:if test="${ empty board.boriginalfilename }">
+														<span> </span>
+													</c:if>
+													<c:if test="${ not empty board.boriginalfilename }">
+															<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+													</c:if>
 	                                        	</a>
                                         	</td>
 	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>
@@ -352,6 +361,12 @@
 	                                        <td class="table_td" style="padding-left: 30px; text-align: left;">
 	                                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
 	                                        		${ board.btitle }
+	                                        		<c:if test="${ empty board.boriginalfilename }">
+														<span> </span>
+													</c:if>
+													<c:if test="${ not empty board.boriginalfilename }">
+															<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+													</c:if>
                                        		</a>
                                    		</td>
 	                                        <td class="table_td"><fmt:formatDate value="${ board.bcreatedate }" type="date" pattern="yyyy-MM-dd"></fmt:formatDate></td>

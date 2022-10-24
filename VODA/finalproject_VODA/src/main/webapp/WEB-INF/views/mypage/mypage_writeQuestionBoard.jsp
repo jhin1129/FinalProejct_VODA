@@ -132,10 +132,10 @@
                         <table class="table table-hover boardtable">
                             <thead>
                                 <tr  style="text-align: center">
-                                    <th id="th" style="width: 5%;">No.</th>
-                                    <th id="th" style="width: 55%;">Subject</th>
-                                    <th id="th" style="width: 15%;">Date</th>
-                                    <th id="th" style="width: 10%;">Answer</th>
+                                    <th id="th" style="width: 5%;">번호</th>
+                                    <th id="th" style="width: 55%;">제목</th>
+                                    <th id="th" style="width: 15%;">작성일</th>
+                                    <th id="th" style="width: 10%;">답변여부</th>
                                 </tr>
                             </thead>
             
@@ -146,6 +146,12 @@
 	                                    <td id="td" style="text-align: left">
 				                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
 												${ board.btitle }
+												<c:if test="${ empty board.boriginalfilename }">
+										<span> </span>
+								</c:if>
+								<c:if test="${ not empty board.boriginalfilename }">
+										<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
+								</c:if>
 											</a>
 										</td>
 	                                    <td id="td"><fmt:formatDate value="${ board.bcreatedate }" type="date"></fmt:formatDate></td>

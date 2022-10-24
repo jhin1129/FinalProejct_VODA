@@ -243,7 +243,9 @@
 						<td id="td"><fmt:formatNumber value="${ order.pay.payprice }" type="number" groupingUsed="true"/>
                         <td id="td">${ order.pay.patstatus }</td>
                         <td id="td">
-                        	<c:if test="${ order.pay.patstatus  eq '환불대기중'}"><button type="button" class="btn btn-logoC btn-sm" data-toggle="modal" data-target="#Modal">환불</button></c:if>
+                        	<c:if test="${ order.pay.patstatus  eq '환불대기중'}">
+                        	<a href="#" data-toggle="modal" data-target="#Modal${Status.index}"><button type="button" class="btn btn-logoC btn-sm" data-toggle="modal" data-target="#Modal${Status.index}">환불</button></a>
+                        	</c:if>
                         </td>
                     </tr>
 						<!-- Modal -->

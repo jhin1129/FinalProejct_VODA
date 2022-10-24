@@ -250,6 +250,8 @@ $(document).ready(function(){
 			alert("이메일 형식으로 입력해 주세요");
 			return;
 		} 
+		var email1 = '${loginMember.m_email}';
+		var email2 = $("#m_email").val().trim();
 		
 		$.ajax({
 			type: "POST",
@@ -262,7 +264,12 @@ $(document).ready(function(){
 				console.log(obj);
 				
 				if(obj.duplicate === true) {
-					alert("이미 사용중인 이메일 입니다.")
+					if(email1 == email2){
+						$("[name=emailTest]").val("1");
+						alert("사용 가능한 이메일 입니다.")
+					} else{
+						alert("이미 사용중인 이메일 입니다.")
+					}
 				} else {
 					$("[name=emailTest]").val("1");
 					alert("사용 가능한 이메일 입니다.")
@@ -289,13 +296,16 @@ $(document).ready(function(){
 			alert("이름을 다시 입력해주세요");
 			return false;
 		}
-		//이메일 중복검사
+	
+	    //이메일 중복검사
+	    
+		
 		if($("[name=emailTest]").val() != "1"){
 			alert("이메일 중복 체크를 해주세요");
 			
 			return false;
 		}
-
+		
 		if(phoneJ.test($("#m_phone").val())){
 		} else {
 			alert("휴대폰 번호를 다시 입력해주세요");
