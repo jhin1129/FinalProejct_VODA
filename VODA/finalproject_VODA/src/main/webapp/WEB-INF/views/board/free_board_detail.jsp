@@ -252,7 +252,7 @@
                         </div>
 
                         <div class="text-right mt-1">
-                            <button  onclick="updateCommentsCancel(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">취소</button>
+                            <button  onclick="updateCommentsCancel(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px; margin-right:5px">취소</button>
                             <button  onclick="updateCommentsCommit(event)" class="btn btn-greyc py-0" style="font-size: 13px; height: 23px;">작성</button>
                         </div>
                   </div>
@@ -372,7 +372,7 @@
 						html += "<textarea id='updateCommentsContent' class='p-1' style='border: none; resize: none; width: 100%; color: #000000; font-size: 14.45px;' placeholder='댓글을 작성해주세요'></textarea>";
 						html += "</div>";
 						html += "<div class='text-right mt-1'>";
-						html += "<button  onclick='updateCommentsCancel(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px;'>취소</button>";
+						html += "<button  onclick='updateCommentsCancel(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px; margin-right:5px'>취소</button>";
 						html += "<button  onclick='updateCommentsCommit(event)' class='btn btn-greyc py-0' style='font-size: 13px; height: 23px;'>작성</button>";
 						html += "</div></div>";
 						
@@ -390,6 +390,7 @@
 		function deleteComments(event) {
 			$("#deletebutton").attr("value", "N")
 			var comments = {
+					"bno" : ${board.bno},
 					"cmno" : $(event.target).parent().parent().parent().siblings("#cmno").val(),
 					"cmwriterno" : $(event.target).parent().parent().parent().siblings("#cmwriterno").val(),
 					"cmstatus" : $("#deletebutton").attr("value")
