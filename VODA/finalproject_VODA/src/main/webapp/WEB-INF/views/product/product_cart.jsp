@@ -124,7 +124,7 @@ $(document).ready(() => {
 			});
 			if(arr.length !=0){
 				<%-- location.href="${path}/product_list_order?list="+arr+"&pqtt="+quanarr; --%>
-				location.href="${path}/product_list_order?cart="+arr+"&porderqtt="+pqttarr;
+				location.href="${path}/product_list_order?pnolist="+arr+"&porderqtt="+pqttarr;
 				
 			}else{
 				alert("상품을 선택해주세요");

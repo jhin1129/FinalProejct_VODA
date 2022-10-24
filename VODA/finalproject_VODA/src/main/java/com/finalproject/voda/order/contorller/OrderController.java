@@ -62,13 +62,15 @@ public class OrderController {
 	public ModelAndView ProductListOrder (ModelAndView model,
 			@ModelAttribute Order order,
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam List<Integer> porderqtt) {
+			@RequestParam List<Integer> porderqtt,
+			@RequestParam List<Integer> pnolist) {
 		List<Cart> cart = new ArrayList<Cart>();
 		String productName = null;
 		
 		cart = cartService.getCartList(loginMember.getM_no());
 		
 		for(int i=0; i<cart.size(); i++){
+			cart.get(i).setPno(pnolist.get(i));
 			cart.get(i).setPorderqtt(porderqtt.get(i));
 			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
 			}

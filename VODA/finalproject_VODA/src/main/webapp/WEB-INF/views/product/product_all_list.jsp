@@ -8,7 +8,7 @@
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 <!-- goods_all_list CSS-->
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/product/product_all_list.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/product/product_all_list.css?ver=1">
  <style>
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 

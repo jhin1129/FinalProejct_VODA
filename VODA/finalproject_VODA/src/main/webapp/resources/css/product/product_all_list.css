@@ -79,12 +79,6 @@ button span {
 body {
   background: #fff; }
 
-body, th, td, input, select, textarea, button {
-  font-size: 14px;
-  line-height: 1.5;
-  font-family: 'SF Pro Display','AppleSDGothicNeo','Malgun Gothic','\B9D1\C740   \ACE0\B515','\B3CB\C6C0',dotum,sans-serif;
-  color: #000; }
-
 a {
   color: #000;
   text-decoration: none; }
@@ -106,7 +100,7 @@ strong {
   font-weight: 600; }
 
 #carouselExampleIndicators {
-  width: 73%;
+  width: 1100px;;
   margin: 0 auto;
   margin-top: 50px;
 
