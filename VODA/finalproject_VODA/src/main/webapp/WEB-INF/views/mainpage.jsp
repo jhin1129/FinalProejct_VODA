@@ -87,15 +87,13 @@
 	            </li>
 	          </ul>
 	        </div>
-	
+
 	      <div class="search">
-	        <form class="d-flex" id="frm-foo">
+	        <form class="d-flex" id="frm-foo" action= "${path}/contents/contents_search">
 	          <input class="form-control me-sm-2" type="text" name="keyword" id="searchInput">
-	        	<button type="button" id="searchBtn" >검색</button> 
 	        </form>
 	      </div>
 	
-
         <c:if test="${ empty loginMember }">
 	      <div class="right">
 	        <a class="text-nowrap" id="login" href="#"
@@ -328,21 +326,7 @@
 </div>
 <!--carousel-->
         
-        
-      
-
 <div style="height: 300px;"></div>
- 
-<script>
-$(document).ready(() => {
-	$("#searchBtn").on("click", () => {
-
-		var searchVal = $("#searchInput").val();
-		
-		location.href="${path}/contents/contents_search?keyword="+searchVal+"";
-	});
- });
-</script> 
  
 <!-- FOOTER -->
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
