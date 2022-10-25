@@ -227,7 +227,7 @@
 								${ notice.noticeTitle }
 							</a>
 							<c:if test="${ empty notice.noticeOriginalFileName }">
-								<span> - </span>
+								<span> </span>
 							</c:if>
 							<c:if test="${ not empty notice.noticeRenamedFileName }">
 								<img src="${ path }/resources/img/community/attachment.png" width="20px" height="20px">
@@ -247,7 +247,7 @@
 								${ notice.noticeTitle }
 							</a>
 							<c:if test="${ empty notice.noticeOriginalFileName }">
-								<span> - </span>
+								<span> </span>
 							</c:if>
 							<c:if test="${ not empty notice.noticeRenamedFileName }">
 								<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">

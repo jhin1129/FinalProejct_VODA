@@ -204,7 +204,6 @@
                     <th scope="col" style="width: 20%">제목</th>
                     <th scope="col">이미지</th>
                     <th scope="col" style="width: 10%">리뷰관리</th>
-                    <th scope="col" style="width: 10%">상태수정</th>
                     <th scope="col" style="width: 10%">비활성화</th>
                   </tr>
                 </thead>
@@ -244,7 +243,6 @@
                     <td><a href="${path}/contents/contents_detail?no=${ content.c_no }">${ content.c_title }</a></td>
                     <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ content.c_pimg }"/></td>
                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_comments?no=${ content.c_no }&sort=like'">관리</td>
-                    <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_detail?no=${ content.c_no }'">수정</td>
                     <td>
                     <form action="${ path }/admin/admin_content_delete" style="width: 100%;">
                     	<input type="hidden" name="cno" value="${ content.c_no }">

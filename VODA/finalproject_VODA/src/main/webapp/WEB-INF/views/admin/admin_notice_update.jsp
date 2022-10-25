@@ -97,6 +97,10 @@
                                      현재 파일 : ${ notice.noticeOriginalFileName }</label>
                             </td>
                         </tr>
+                         <tr>
+                            <th class="table-active">메인게시글 설정</th>
+                            <td style="margin-left: 10px; text-align: left;"><input type="checkbox" id="HeadCheck" name="noticeTopTitle" value=1></td>
+                        </tr>
                     </tbody>
 
                 </table>

@@ -823,6 +823,12 @@
 			<if test="noticeRenamedFileName != null">
 				N_RENAMED_FILENAME = #{noticeRenamedFileName},
 			</if>
+			<if test='noticeTopTitle == 1'>
+				N_TOPTITLE = #{noticeTopTitle}
+			</if>
+			<if test='noticeTopTitle == null'>
+				N_TOPTITLE = DEFAULT
+			</if>
 		</trim>
 		WHERE N_NO = #{noticeno}
 	</update>

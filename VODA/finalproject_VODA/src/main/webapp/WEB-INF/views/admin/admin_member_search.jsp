@@ -201,7 +201,7 @@
                 </thead>
                 <tfoot>
                   <tr>
-                      <th colspan="4">            
+                      <th colspan="5">            
 				        <div class="search1 row my-4">
 				          <form action="${ path }/admin/admin_member_search" style="width: 100%;">
 				            <div class="col-9 row">
