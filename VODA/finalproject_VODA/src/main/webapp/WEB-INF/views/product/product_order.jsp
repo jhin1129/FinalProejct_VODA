@@ -3,27 +3,30 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@page import="java.util.Date" %>
-<% Date now = new Date(); %>
+<%@page import="java.util.Date"%>
+<%
+Date now = new Date();
+%>
 <c:set var="path" value="${ pageContext.request.contextPath }" />
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/product/product_order.css">
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <div class="container">
-<form action="${ path }/order_insert" method="post" id="formid">
-<input type="hidden" name="pno" value="${ product.pno }">
-<input type="hidden" name="mno" value="${ loginMember.m_no }">
-<input type="hidden" name="oqtt" value="${ product.porderqtt }">
-<input type="hidden" name="porderqtt" value="${ product.porderqtt }">
-<input type="hidden" name="payprice" value="${ product.pprice }">
+	<form action="${ path }/order_insert" method="post" id="formid">
+		<input type="hidden" name="pno" value="${ product.pno }"> <input
+			type="hidden" name="mno" value="${ loginMember.m_no }"> <input
+			type="hidden" name="oqtt" value="${ product.porderqtt }"> <input
+			type="hidden" name="porderqtt" value="${ product.porderqtt }">
+		<input type="hidden" name="payprice" value="${ product.pprice }">
 
-	<section class="cart">
-		<table class="cart__list">
-			
-			<c:set var="rename" value="${ product.prenamefile }" />
+		<section class="cart">
+			<table class="cart__list">
+
+				<c:set var="rename" value="${ product.prenamefile }" />
 				<thead>
 					<tr>
 						<td></td>
@@ -42,227 +45,228 @@
 							<p>${product.pname}</p></td>
 						<td class="cart__list__option">
 							<p>상품 주문 수량: ${ product.porderqtt }개</p>
-							<button type="button" class="btn btn-primary1 py-1" onclick="history.go(-1)">주문조건 추가/변경</button>
+							<button type="button" class="btn btn-primary1 py-1"
+								onclick="history.go(-1)">주문조건 추가/변경</button>
 						</td>
 						<td><span class="price">${product.pprice}원</span><br></td>
 						<td>무료</td>
 					</tr>
 				</tbody>
-				
-			
-		</table>
-
-		<br>
-		<br>
-		<div class="order_info">
-			<div class="order_zone_tit">
-				<h4>주문자 정보</h4>
-			</div>
-			<div class="order_table_type">
-				<table class="table_left">
-					<colgroup>
-						<col style="width: 15%;">
-						<col style="width: 85%;">
-					</colgroup>
-					<tbody>
-						<tr>
-							<th scope="row"><span class="important">주문하시는 분</span></th>
-							<td><input type="text" name="orderName" 
-								value="${ loginMember.m_name }" data-pattern="gdEngKor" maxlength="20"></td>
-						</tr>
-						<tr>
-							<th scope="row"><span class="important">지역</span></th>
-							<td><input type="text" name="orderAddress" id="orderAddress"
-								value="${ loginMember.m_address }" data-pattern="gdEngKor" maxlength="300"></td>
-						</tr>
-						
-						<tr>
-							<th scope="row"><span class="important">휴대폰 번호</span></th>
-							<td><input type="text" id="mobileNum" name="orderCellPhone"
-								value="${ loginMember.m_phone }" maxlength="20"></td>
-						</tr>
-						<tr>
-							<th scope="row"><span class="important">이메일</span></th>
-							<td class="member_email"><input type="text"
-								name="orderEmail" value="${ loginMember.m_email }"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- //order_info -->
-		<br>
-		<br>
-		<div class="delivery_info">
-			<div class="order_zone_tit">
-				<h4>배송정보</h4>
-			</div>
-
-			<div class="order_table_type shipping_info">
-				<table class="table_left shipping_info_table">
-					<colgroup>
-						<col style="width: 15%;">
-						<col style="width: 85%;">
-					</colgroup>
-					<tbody>
-						<tr>
-							<th scope="row"><span class="important">받으실분</span></th>
-							<td><input type="text" name="oname" id="orderName"
-								data-pattern="gdEngKor" maxlength="20"></td>
-						</tr>
-						<tr>
-							<th scope="row"><span class="important">받으실 곳</span></th>
-							<td class="member_address">
-								<div class="address_postcode">
-									<input type="text" id="sample6_postcode" readonly="readonly" name="opostnum">
-									<input type="hidden" name="receiverZipcode"> 
-									<span id="receiverZipcodeText" class="old_post_code"></span>
-									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn btn-primary1 py-1" style="font-size: 13px; margin-top: -5px;">주소 검색</button>
-								</div>
-								<div class="address_input">
-									<input type="text" id="sample6_address" readonly="readonly" name="oadress">
-									<input type="text" id="sample6_detailAddress" name="oadressdetail">
-								</div>
-							</td>
-						</tr>
-						
-						<tr>
-							<th scope="row"><span class="important">휴대폰 번호</span></th>
-							<td><input type="text" id="oPhone"
-								name="ophone"></td>
-						</tr>
-						<tr>
-							<th scope="row">남기실 말씀</th>
-							<td class="td_last_say"><input type="text" name="omessage"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- //delivery_info -->
-
-		<!-- //addition_info -->
-		<br>
-		<br>
-		<div class="payment_info">
-			<div class="order_zone_tit">
-				<h4>결제정보</h4>
-			</div>
-
-			<div class="order_table_type">
-				<table class="table_left">
-					<colgroup>
-						<col style="width: 15%;">
-						<col style="width: 85%;">
-					</colgroup>
-					<tbody>
-						<tr>
-							<th scope="row">상품 합계 금액</th>
-							<td><strong id="totalGoodsPrice" class="order_payment_sum">${product.pprice}원</strong>
-							</td>
-						</tr>
-						<tr>
-							<th scope="row">배송비</th>
-							<td><span id="totalDeliveryCharge">0</span>원 <span
-								class="multi_shipping_text"></span></td>
-						</tr>
-						<tr>
-							<th scope="row">최종 결제 금액</th>
-							<td><input type="hidden" name="settlePrice"
-								value="1,490,000"> <input type="hidden"
-								name="overseasSettlePrice" value="0"> <input
-								type="hidden" name="overseasSettleCurrency" value="KRW">
-								<strong id="totalSettlePrice" class="order_payment_sum">${product.pprice}</strong>원
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<!-- //payment_info -->
-		<br>
-		<div class="payment_progress">
-			<div class="order_zone_tit">
-				<h4>결제수단 선택 / 결제</h4>
-			</div>
-
-			<div class="payment_progress_list">
-				<div class="js_pay_content">
 
 
-					<!-- N : 일반결제 시작 -->
-					<div id="settlekind_general" class="general_payment">
-						<dl>
-							<dt>일반결제</dt>
-							<dd>
+			</table>
+
+			<br> <br>
+			<div class="order_info">
+				<div class="order_zone_tit">
+					<h4>주문자 정보</h4>
+				</div>
+				<div class="order_table_type">
+					<table class="table_left">
+						<colgroup>
+							<col style="width: 15%;">
+							<col style="width: 85%;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row"><span class="important">주문하시는 분</span></th>
+								<td><input type="text" name="orderName"
+									value="${ loginMember.m_name }" data-pattern="gdEngKor"
+									maxlength="20"></td>
+							</tr>
+							<tr>
+								<th scope="row"><span class="important">지역</span></th>
+								<td><input type="text" name="orderAddress"
+									id="orderAddress" value="${ loginMember.m_address }"
+									data-pattern="gdEngKor" maxlength="300"></td>
+							</tr>
+
+							<tr>
+								<th scope="row"><span class="important">휴대폰 번호</span></th>
+								<td><input type="text" id="mobileNum" name="orderCellPhone"
+									value="${ loginMember.m_phone }" maxlength="20"></td>
+							</tr>
+							<tr>
+								<th scope="row"><span class="important">이메일</span></th>
+								<td class="member_email"><input type="text"
+									name="orderEmail" value="${ loginMember.m_email }"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- //order_info -->
+			<br> <br>
+			<div class="delivery_info">
+				<div class="order_zone_tit">
+					<h4>배송정보</h4>
+				</div>
+
+				<div class="order_table_type shipping_info">
+					<table class="table_left shipping_info_table">
+						<colgroup>
+							<col style="width: 15%;">
+							<col style="width: 85%;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row"><span class="important">받으실분</span></th>
+								<td><input type="text" name="oname" id="orderName"
+									data-pattern="gdEngKor" maxlength="20"></td>
+							</tr>
+							<tr>
+								<th scope="row"><span class="important">받으실 곳</span></th>
+								<td class="member_address">
+									<div class="address_postcode">
+										<input type="text" id="sample6_postcode" readonly="readonly"
+											name="opostnum"> <input type="hidden"
+											name="receiverZipcode"> <span
+											id="receiverZipcodeText" class="old_post_code"></span>
+										<button id="btn_address" onclick="sample6_execDaumPostcode()"
+											type="button" class="btn btn-primary1 py-1"
+											style="font-size: 13px; margin-top: -5px;">주소 검색</button>
+									</div>
+									<div class="address_input">
+										<input type="text" id="sample6_address" readonly="readonly"
+											name="oadress"> <input type="text"
+											id="sample6_detailAddress" name="oadressdetail">
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th scope="row"><span class="important">휴대폰 번호</span></th>
+								<td><input type="text" id="oPhone" name="ophone"></td>
+							</tr>
+							<tr>
+								<th scope="row">남기실 말씀</th>
+								<td class="td_last_say"><input type="text" name="omessage"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- //delivery_info -->
+
+			<!-- //addition_info -->
+			<br> <br>
+			<div class="payment_info">
+				<div class="order_zone_tit">
+					<h4>결제정보</h4>
+				</div>
+
+				<div class="order_table_type">
+					<table class="table_left">
+						<colgroup>
+							<col style="width: 15%;">
+							<col style="width: 85%;">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">상품 합계 금액</th>
+								<td><strong id="totalGoodsPrice" class="order_payment_sum">${product.pprice}원</strong>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">배송비</th>
+								<td><span id="totalDeliveryCharge">0</span>원 <span
+									class="multi_shipping_text"></span></td>
+							</tr>
+							<tr>
+								<th scope="row">최종 결제 금액</th>
+								<td><input type="hidden" name="settlePrice"
+									value="1,490,000"> <input type="hidden"
+									name="overseasSettlePrice" value="0"> <input
+									type="hidden" name="overseasSettleCurrency" value="KRW">
+									<strong id="totalSettlePrice" class="order_payment_sum">${product.pprice}</strong>원
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- //payment_info -->
+			<br>
+			<div class="payment_progress">
+				<div class="order_zone_tit">
+					<h4>결제수단 선택 / 결제</h4>
+				</div>
+
+				<div class="payment_progress_list">
+					<div class="js_pay_content">
+
+
+						<!-- N : 일반결제 시작 -->
+						<div id="settlekind_general" class="general_payment">
+							<dl>
+								<dt>일반결제</dt>
+								<dd>
+									<div class="form_element">
+										<ul class="payment_progress_select">
+											<oi id="payCard"> <input type="radio" id="payCardRadio"
+												name="payRadio" value="card" checked> <label
+												for="payCardRadio" class="choice_s">신용카드</label> </oi>
+											<oi id="payBank"> <input type="radio" id="payBankRadio"
+												name="payRadio" value="trans"> <label
+												for="payBankRadio" class="choice_s">계좌이체</label> </oi>
+											<oi id="payKakao"> <input type="radio"
+												id="payKakaoRadio" name="payRadio" value="kakaopay">
+											<label for="payKakaoRadio" class="choice_s">카카오페이</label> </oi>
+											<oi id="payPhone"> <input type="radio"
+												id="payPhoneRadio" name="payRadio" value="phone"> <label
+												for="payPhoneRadio" class="choice_s">휴대폰결제</label> </oi>
+											</oi>
+										</ul>
+									</div>
+
+									<!-- N : 무통장입금 -->
+
+									<!-- //pay_bankbook_box -->
+									<!-- 신용카드 컨텐츠 -->
+									<div class="card" id="settlekind_general_pc"
+										style="display: none;"></div>
+									<!-- //신용카드 컨텐츠 -->
+									<!-- 계좌이체 컨텐츠 -->
+									<div class="account-bank" id="settlekind_general_pb"
+										style="display: none;"></div>
+									<!-- //계좌이체 컨텐츠 -->
+									<!-- 가상계좌 컨텐츠 -->
+									<div class="virtual-bank" id="settlekind_general_pv"
+										style="display: none;"></div>
+									<!-- //가상계좌 컨텐츠 -->
+									<!-- 휴대폰 컨텐츠 -->
+									<div class="cellphone" id="settlekind_general_ph"
+										style="display: none;"></div>
+									<!-- //휴대폰 컨텐츠 -->
+								</dd>
+							</dl>
+						</div>
+						<!-- //general_payment -->
+						<!-- N : 일반결제 끝 -->
+						<!-- //payment_progress_list -->
+						<div class="payment_final">
+							<div class="payment_final_total">
+								<hr>
+
+							</div>
+							<div class="payment_final_check">
 								<div class="form_element">
-									<ul class="payment_progress_select">
-										<oi id="payCard"> 
-											<input type="radio" id="payCardRadio" name="payRadio" value="card" checked> 
-											<label for="payCardRadio" class="choice_s">신용카드</label> 
-										</oi>
-										<oi id="payBank"> 
-											<input type="radio" id="payBankRadio" name="payRadio" value="trans"> 
-											<label for="payBankRadio" class="choice_s">계좌이체</label>
-										</oi>
-										<oi id="payKakao">
-											<input type="radio" id="payKakaoRadio" name="payRadio" value="kakaopay">
-											<label for="payKakaoRadio" class="choice_s">카카오페이</label> 
-										</oi>
-										<oi id="payPhone">
-											<input type="radio" id="payPhoneRadio" name="payRadio" value="phone">
-											<label for="payPhoneRadio" class="choice_s">휴대폰결제</label> 
-										</oi>
-										</oi>
-									</ul>
+									<input type="checkbox" id="termAgree_orderCheck"
+										class="require" required="required"> <label
+										for="termAgree_orderCheck" class="check_s"><em><b>(필수)</b>
+											구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</em></label>
 								</div>
-
-								<!-- N : 무통장입금 -->
-
-								<!-- //pay_bankbook_box -->
-								<!-- 신용카드 컨텐츠 -->
-								<div class="card" id="settlekind_general_pc"
-									style="display: none;"></div>
-								<!-- //신용카드 컨텐츠 -->
-								<!-- 계좌이체 컨텐츠 -->
-								<div class="account-bank" id="settlekind_general_pb"
-									style="display: none;"></div>
-								<!-- //계좌이체 컨텐츠 -->
-								<!-- 가상계좌 컨텐츠 -->
-								<div class="virtual-bank" id="settlekind_general_pv"
-									style="display: none;"></div>
-								<!-- //가상계좌 컨텐츠 -->
-								<!-- 휴대폰 컨텐츠 -->
-								<div class="cellphone" id="settlekind_general_ph"
-									style="display: none;"></div>
-								<!-- //휴대폰 컨텐츠 -->
-							</dd>
-						</dl>
-					</div>
-					<!-- //general_payment -->
-					<!-- N : 일반결제 끝 -->
-					<!-- //payment_progress_list -->
-					<div class="payment_final">
-						<div class="payment_final_total">
+							</div>
 							<hr>
 
-						</div>
-						<div class="payment_final_check">
-							<div class="form_element">
-								<input type="checkbox" id="termAgree_orderCheck" class="require" required="required">
-								<label for="termAgree_orderCheck" class="check_s"><em><b>(필수)</b>
-										구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</em></label>
+
+							<div class="cart__mainbtns">
+								<button type="button" class="btn btn-back py-1"
+									onclick="history.go(-1)">이전페이지</button>
+								<button id="payment" type="button" class="btn btn-primary py-1">결제하기</button>
 							</div>
 						</div>
-						<hr>
-
-						
-						<div class="cart__mainbtns">
-							<button type="button" class="btn btn-back py-1" onclick="history.go(-1)">이전페이지</button>
-							<button id="payment" type="button" class="btn btn-primary py-1">결제하기</button>
-						</div>
-					</div>
-	</section>
+		</section>
 	</form>
 </div>
 <script>   
@@ -306,7 +310,8 @@ $("#payment").click(function(e){
 
 </script>
 <!-- 주소 API -->
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
