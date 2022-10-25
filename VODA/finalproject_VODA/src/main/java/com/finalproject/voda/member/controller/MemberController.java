@@ -62,7 +62,6 @@ public class MemberController {
 	}
 	
 
-
 	@GetMapping("/enroll") 
 	public String enroll() {
 		
@@ -79,12 +78,9 @@ public class MemberController {
 	
 
 	@PostMapping("/enroll")  // 회원가입
-	public ModelAndView enroll(ModelAndView model,
-								@ModelAttribute Member memeber)
-								{
+	public ModelAndView enroll(ModelAndView model, @ModelAttribute Member memeber){
 		
 		int result = 0;
-		
 		result = service.save(memeber);
 		
 		if(result > 0) {
@@ -93,10 +89,7 @@ public class MemberController {
 		} else {
 			model.addObject("msg", "회원가입을 실패하였습니다. 가입 페이지로 돌아갑니다.");
 			model.addObject("location", "/member/enroll");
-		}
-		
-		System.out.println(memeber);
-
+		}		
 		model.setViewName("common/msg");
 		
 		return model;
