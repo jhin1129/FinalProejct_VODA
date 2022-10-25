@@ -57,7 +57,8 @@
           	</svg>
             인물페이지 관리
                         <select id="PeopleType" class="form-control1" style="width: 15%; float: right; font-size: 14.45px;" onchange="if(this.value) location.href=(this.value);">
-	                        	<option value="${path}/admin/admin_people" selected>전체</option>
+	                        	<option value="#">직업별</option>
+	                        	<option value="${path}/admin/admin_people">전체</option>
 	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=배우">배우</option>
 	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=작가">작가</option>
 	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=감독">감독</option>
