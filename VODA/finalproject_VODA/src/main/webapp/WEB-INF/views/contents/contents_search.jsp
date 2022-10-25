@@ -23,17 +23,17 @@
         </table>
     
         <div class="section_ranking">
-            <div class="box_ranking"  data-tiara-layer="list">
+        <div class="box_ranking"  data-tiara-layer="list">
                 
-        <ol class="list_movieranking cont" id="one"  style="padding-top:30px;">
+        <ol class="list_movieranking cont" id="one" style="padding-top:30px;" >
 		    <c:if test="${ not empty searchResult }">
 		        <c:forEach var="searchResult" items="${ searchResult }">
 		            <c:if test="${ searchResult.c_type eq '영화' }">
-		            <li class="box">
+		            <li class="box" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
 		                <div class="item_poster">
 		                    <div class="thumb_item">
-		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_opimg }.jpg" class="img_thumb">
+		                        <div class="poster_movie">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }.jpg" class="img_thumb">
 		                        </div>
 		                        <div class="poster_info">
 		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
@@ -82,7 +82,7 @@
 		    <c:if test="${ not empty searchResult }">
 		        <c:forEach var="searchResult" items="${ searchResult }">
 		            <c:if test="${ searchResult.c_type eq 'TV' }">
-		            <li class="box">
+		            <li class="box" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
@@ -135,7 +135,7 @@
 		    <c:if test="${ not empty searchResult }">
 		        <c:forEach var="searchResult" items="${ searchResult }">
 		        	<c:if test="${ searchResult.c_type eq '책' }">
-		            <li class="box">
+		            <li class="box" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
@@ -188,7 +188,7 @@
 		    <c:if test="${ not empty searchResult }">
 		        <c:forEach var="searchResult" items="${ searchResult }">
 		        	<c:if test="${ searchResult.c_type eq '웹툰' }">
-		            <li class="box">
+		            <li class="box" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
 		                <div class="item_poster" style="height:212px;">
 		                    <div class="thumb_item" style="height:212px;">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
@@ -240,7 +240,7 @@
         <ol class="list_movieranking cont" id="five" style="padding-top:30px;">
 		    <c:if test="${ not empty searchPeople }">
 		        <c:forEach var="searchPeople" items="${ searchPeople }">
-		            <li class="box">
+		            <li class="box" OnClick="location.href='${ path }/people/people?people_no=${ searchPeople.people_no }'">
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchPeople.people_no }'">

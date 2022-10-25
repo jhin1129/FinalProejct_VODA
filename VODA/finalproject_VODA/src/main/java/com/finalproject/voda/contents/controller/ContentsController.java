@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -62,10 +61,13 @@ public class ContentsController {
 		} else if(type.equals("tv")) {
 			pageInfo = new PageInfo(page, 10, service.getContentsCount("TV"), 15);
 			list = service.getContentsList(pageInfo, "TV", sort); 	
-		} else {
+		} else if(type.equals("book")) {
 			pageInfo = new PageInfo(page, 10, service.getContentsCount("도서"), 15);
 			list = service.getContentsList(pageInfo, "도서", sort); 		
-		}	
+		} else {
+			pageInfo = new PageInfo(page, 10, service.getContentsCount("웹툰"), 15);
+			list = service.getContentsList(pageInfo, "웹툰", sort); 
+		}
 		
 		model.addObject("sort", sort);
 		model.addObject("type", type);
@@ -75,15 +77,7 @@ public class ContentsController {
 		
 		return model;
 	}
-	
-	@GetMapping("/contents/contents_webtoon")
-	public ModelAndView movieList(ModelAndView model) {
-		
-		model.setViewName("contents/contents_webtoon");
-		
-		return model;
-	}
-	
+
 	@GetMapping("/contents/contents_comments")
 	public ModelAndView commentList(ModelAndView model, @RequestParam(value = "page", defaultValue = "1") int page, 
 														@RequestParam int no, 
@@ -310,7 +304,18 @@ public class ContentsController {
 		PageInfo pageInfo = null;
 		
 		pageInfo = new PageInfo(page, 10, service.getCommentsCount(no), 12);
-		rates = service.getCommentsList(pageInfo, no, sort);
+		if(sort.equals("me")) {
+			
+		Map<String, Object> mymap = new HashMap<>();
+		
+		mymap.put("pageInfo", pageInfo);
+		mymap.put("m_no", loginMember.getM_no());
+		mymap.put("c_no", no);
+		mymap.put("sort", sort);
+			
+		rates = service.orderByMyRate(mymap);	
+		} else {
+		rates = service.getCommentsList(pageInfo, no, sort); }
 		
 		model.addObject("rateNo", rateNo);
 		model.addObject("no", no);
