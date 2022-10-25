@@ -44,6 +44,17 @@
 	        </table>
     	</c:if>
     	
+    	<c:if test="${ type == 'webtoon'}">  
+	        <table class="mt-5">
+	            <tr>
+	                <td class="new-contents-info" style="width: 300px;">WEBTOON CONTENTS</td>
+	                <td style="width: 1150px;">
+	                    <hr class="contents-line">
+	                </td>
+	            </tr>
+	        </table>
+    	</c:if>
+    	
     	<c:if test="${ sort == 'new'}">
     	<div class="mainsort">최신순</div>
 		<div class="mainsort" style="margin-right:10px; background-color:rgba(235,236,246); color:gray;" OnClick="location.href='${ path }/contents/contents?type=${ type }&sort=like'">인기순</div>
@@ -517,8 +528,8 @@
                     </li> -->
                 </ol>
             </div>
-           <c:if test="${ loginMember.m_authorization == 'U' }">
-           		<div class="sort">컨텐츠 등록</div>
+           <c:if test="${ loginMember.m_authorization == 'M' }">
+           		<div class="sort" OnClick="location.href='${ path }/contents/contents_form'">컨텐츠 등록</div>
            </c:if>
         </div>
     

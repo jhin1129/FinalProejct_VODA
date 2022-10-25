@@ -48,7 +48,7 @@
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=movie&sort=new">MOVIE</a></li>
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=tv&sort=new">TV</a></li>
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=book&sort=new">BOOK</a></li>
-	                  <li><a class="dropdown-item" href="${path}/contents/contents_webtoon">WEBTOON</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=webtoon&sort=new">WEBTOON</a></li>
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">

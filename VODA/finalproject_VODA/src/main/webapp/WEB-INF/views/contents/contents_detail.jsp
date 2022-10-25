@@ -385,17 +385,6 @@
             	<div class="bar" <c:if test="${ rateResult._4 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._4 }0"><span class="bar__name">4</span></div>
             	<div class="bar" <c:if test="${ rateResult._45 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._45 }0"><span class="bar__name"></span></div>
             	<div class="bar" <c:if test="${ rateResult._5 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._5 }0"><span class="bar__name">5</span></div>
-            	
-           <!-- <div class="bar" data-bar-value="${ rateResult._05 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._1 }0"><span class="bar__name">1</span></div>
-                <div class="bar" data-bar-value="${ rateResult._15 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._2 }0"><span class="bar__name">2</span></div>
-                <div class="bar" data-bar-value="${ rateResult._25 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._3 }0"><span class="bar__name">3</span></div>
-                <div class="bar" data-bar-value="${ rateResult._35 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._4 }0"><span class="bar__name">4</span></div>
-                <div class="bar" data-bar-value="${ rateResult._45 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._5 }0"><span class="bar__name">5</span></div> -->
             </div>
         </div>
         <hr style="margin-top: 30px; margin-bottom: 30px;">
@@ -405,8 +394,9 @@
         <span style="font-size: 1em; color: gray;">${ rateResult.rate_count }+</span>
 
         <span OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }&sort=like'" 
-        style="color: rgb(73,95,233); float: right; font-weight: 600; font-size:1.2em;">더보기</span>
-
+        style="color:rgb(73,95,233); float:right; font-weight:600; font-size:1.2em; cursor:pointer;">더보기</span>
+		
+        <c:if test="${ rateResult.rate_count > 0 }">
         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
             <!--carousel-->
             <div class="carousel-inner">
@@ -484,6 +474,7 @@
                             <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
+                        <div class="row bg-danger" style="height:300px;"></div>
                     </div>
                 </div>
                 <!--carousel page 2 end-->
@@ -541,6 +532,9 @@
                 </button>
             </div>
         </div>
+ 		</c:if>
+ 		<div style="height:280px; text-align:center; color:gray; padding-top:150px; font-size:1.1em;">등록된 코멘트가 없습니다</div>
+        
         <!--carousel-->
     </div>
     <!--회색 박스 끝 -->

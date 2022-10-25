@@ -241,6 +241,7 @@ textarea:focus, input:focus{ outline: none; }
   	 padding-top: 2.2px;
   	 color: white;
   	 font-size:0.9em;
+  	 cursor: pointer;
 }
 
 /* 페이지네이션 */

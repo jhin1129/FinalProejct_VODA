@@ -48,7 +48,7 @@
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=movie&sort=new">MOVIE</a></li>
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=tv&sort=new">TV</a></li>
 	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=book&sort=new">BOOK</a></li>
-	                  <li><a class="dropdown-item" href="${path}/contents/contents_webtoon">WEBTOON</a></li>
+	                  <li><a class="dropdown-item" href="${path}/contents/contents?type=webtoon&sort=new">WEBTOON</a></li>
 	              </ul>
 	            </li>
 	            <li class="nav-item dropdown">
@@ -144,20 +144,20 @@
         </div>
       </div>
       
-  
-  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false"
-                        data-interval="false">
+  <div class="container p-0"> 
+  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
 	<!--carousel-->
+
 	<div class="carousel-inner" style="height:500px; width:1200px; margin:auto;">
-	    <div class="carousel-item active">
-  		<!--carousel page 1 start-->
+	  <div class="carousel-item active">
+      <!--carousel page 1 start-->
   		
       <div class="container" style="padding: 0px;" id="rankcontainer">
         <div class="row rank-boxes">
   		<c:forEach var="contents" items="${ list }" begin="0" end="0">
           <div class="col mainrank ml-0">
             <div class="rankingnumber">1</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -170,7 +170,7 @@
   		<c:forEach var="contents" items="${ list }" begin="1" end="1">
           <div class="col mainrank">
             <div class="rankingnumber">2</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                	  분류 ${ contents.c_type }<br>
@@ -184,7 +184,7 @@
   		<c:forEach var="contents" items="${ list }" begin="2" end="2">
           <div class="col mainrank">
             <div class="rankingnumber">3</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -197,7 +197,7 @@
   		<c:forEach var="contents" items="${ list }" begin="3" end="3">
           <div class="col mainrank">
             <div class="rankingnumber">4</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -210,7 +210,7 @@
   		 <c:forEach var="contents" items="${ list }" begin="4" end="4">
           <div class="col mainrank mr-0">
             <div class="rankingnumber">5</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -219,17 +219,17 @@
                 </div>
           </div>
        	 </c:forEach>
-        
         </div>
-       
-      <div class="carousel-item">
+        </div>
+        </div>
+     <div class="carousel-item">
   		
 	<div class="container" style="padding: 0px;" id="rankcontainer">
         <div class="row rank-boxes">
   		<c:forEach var="contents" items="${ list }" begin="5" end="5">
           <div class="col mainrank ml-0">
             <div class="rankingnumber">1</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -242,7 +242,7 @@
   		<c:forEach var="contents" items="${ list }" begin="6" end="6">
           <div class="col mainrank">
             <div class="rankingnumber">2</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                	  분류 ${ contents.c_type }<br>
@@ -256,7 +256,7 @@
   		<c:forEach var="contents" items="${ list }" begin="7" end="7">
           <div class="col mainrank">
             <div class="rankingnumber">3</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -269,7 +269,7 @@
   		<c:forEach var="contents" items="${ list }" begin="8" end="8">
           <div class="col mainrank">
             <div class="rankingnumber">4</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -282,7 +282,7 @@
   		 <c:forEach var="contents" items="${ list }" begin="9" end="9">
           <div class="col mainrank mr-0">
             <div class="rankingnumber">5</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_opimg }.jpg" class="poster" alt="">
+              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
                 <div class="rankinginfo">
                   <p>제목 ${ contents.c_title }</p>
                   분류 ${ contents.c_type }<br>
@@ -294,11 +294,11 @@
          </div>
 	</div>
        <!--carousel page 2 end-->
-     
+    
       
         </div> <!-- 랭크 박스 끝 -->
    </div>
-   
+
    
    <!--carousel-inner end-->
    <c:if test="${fn:length(list) > 5}">
@@ -321,8 +321,10 @@
 	</c:if>
 	
    		</div> <!-- 컨테이너 끝 -->
+   		</div>
+   		</div> 
     </div> <!-- 비디오래퍼 끝 -->
-</div>
+
 <!--carousel-->
         
 <div style="height: 300px;"></div>

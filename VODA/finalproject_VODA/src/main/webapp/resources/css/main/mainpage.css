@@ -109,11 +109,10 @@ video[poster] {
 }
 
 #carouselExampleControlsNoTouching {
-	position: absolute;
+	/*position: absolute;*/
     top: 40%;
     left: 0%;
     height: 500px;
-    width: 100%;
 }
 
 .slide-button {
