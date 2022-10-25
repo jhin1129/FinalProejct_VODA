@@ -35,6 +35,10 @@
        	.btn-logoc:focus {
         	box-shadow: none;
         }
+        
+        .btn-greyc:focus {
+        	box-shadow: none;
+        }          
 
         .btn-logoc {
             color: #fff;

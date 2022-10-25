@@ -34,7 +34,11 @@
         
        	.btn-logoc:focus {
         	box-shadow: none;
-        }        
+        }   
+
+        .btn-greyc:focus {
+        	box-shadow: none;
+        }               
 
         .btn-logoc {
             color: #fff;
@@ -152,15 +156,72 @@
                         <tr>
                             <th class="table-active" style="width: 20%;">카테고리</th>
                             <td class="p-0" style="width: 80%;">
-                                <select name="bcategory" 
-                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
-                                    <option value="M" >회원/정보관리</option>
-                                    <option value="O" >주문/결제</option>
-                                    <option value="D" >배송</option>
-                                    <option value="R" >환불</option>
-                                    <option value="C" >컨텐츠 요청</option>
-                                    <option value="E" >기타</option>
-                                </select>
+ <c:choose>
+                                    <c:when test="${board.bcategory eq 'M'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M" selected="selected" >회원/정보관리</option>
+                                        <option value="O" >주문/결제</option>
+                                        <option value="D" >배송</option>
+                                        <option value="R" >환불</option>
+                                        <option value="C" >컨텐츠 요청</option>
+                                        <option value="E" >기타</option>
+                                    </select>
+                                    </c:when>
+                                    
+                                    <c:when test="${board.bcategory eq 'O'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M" >회원/정보관리</option>
+                                        <option value="O" selected="selected" >주문/결제</option>
+                                        <option value="D" >배송</option>
+                                        <option value="R" >환불</option>
+                                        <option value="C" >컨텐츠 요청</option>
+                                        <option value="E" >기타</option>
+                                    </select>
+                                    </c:when>
+                                    
+                                    <c:when test="${board.bcategory eq 'D'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M" >회원/정보관리</option>
+                                        <option value="O" >주문/결제</option>
+                                        <option value="D" selected="selected" >배송</option>
+                                        <option value="R" >환불</option>
+                                        <option value="C" >컨텐츠 요청</option>
+                                        <option value="E" >기타</option>
+                                    </select>
+                                    </c:when>   
+                                    
+                                    <c:when test="${board.bcategory eq 'R'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M">회원/정보관리</option>
+                                        <option value="O" >주문/결제</option>
+                                        <option value="D" >배송</option>
+                                        <option value="R" selected="selected" >환불</option>
+                                        <option value="C" >컨텐츠 요청</option>
+                                        <option value="E" >기타</option>
+                                    </select>
+                                    </c:when>
+                                    
+                                    <c:when test="${board.bcategory eq 'C'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M">회원/정보관리</option>
+                                        <option value="O" >주문/결제</option>
+                                        <option value="D" >배송</option>
+                                        <option value="R" >환불</option>
+                                        <option value="C" selected="selected" >컨텐츠 요청</option>
+                                        <option value="E" >기타</option>
+                                    </select>
+                                    </c:when>
+                                    <c:when test="${board.bcategory eq 'E'}">
+                                    <select name="bcategory" style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                        <option value="M">회원/정보관리</option>
+                                        <option value="O" >주문/결제</option>
+                                        <option value="D" >배송</option>
+                                        <option value="R" >환불</option>
+                                        <option value="C">컨텐츠 요청</option>
+                                        <option value="E" selected="selected" >기타</option>
+                                    </select>
+                                    </c:when>                                                                                                                                               
+</c:choose>
                             </td>
                         </tr>                    
                     </thead>
