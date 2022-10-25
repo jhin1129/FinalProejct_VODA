@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <table class="cart__list">
-                <form>
+                
                     <thead>
                         <tr>
                             <td>
@@ -27,7 +27,7 @@
                             <td colspan="2">상품정보</td>
                             <td>옵션</td>
                             <td>상품금액</td>
-                            <td>배송비</td>
+                            <td>상품금액 * 수량</td>
                         </tr>
                     </thead>
                    
@@ -47,7 +47,7 @@
                             </td>
                             <td class="cart__list__option" style="width: 27%;">
                                 <p>잔여 상품 수량: ${ cart.pqtt }개</p>
-                                <p>상품 주문 수량: <input id="quantitySelect" class="number_input" type="number" min="1" max="${ cart.pqtt }" value="1" name="proderqtt">개</p>
+                                <p>상품 주문 수량: <input class="quantitySelect" class="number_input" type="number" min="1" max="${ cart.pqtt }" value="1" name="proderqtt" style="height: 20px; width: 43px;">개</p>
                             </td>
                             <td style="width: 15%;">
                             	<strong class="proPrice">${ cart.pprice }</strong><br>
@@ -67,10 +67,10 @@
                             <td><strong class="totalPrice">0</strong></td>
                         </tr>
                     </tfoot>
-                </form>
+                
             </table>
             <div class="cart__mainbtns">
-                <button class="btn btn-back py-1">쇼핑 계속하기</button>
+                <button type="button" class="btn btn-back py-1" onclick="location.href='${path}/product/product_all_list'">쇼핑 계속하기</button>
                 <button class="btn btn-primary py-1" id="selectedProductPayment">주문하기</button>
             </div>
         </section>
@@ -91,8 +91,9 @@
     }
 </script>
 <script type="text/javascript">
+
 $(document).ready(() => {
-	$("#quantitySelect").on("change", (event) => {
+	$(".quantitySelect").on("change", (event) => {
 		var quantity = $(event.target).val();
 		var proPrice = $(event.target).parent().parent().next().find(".proPrice").text();
 		$(event.target).parent().parent().next().next().find(".sumPrice").text(quantity * proPrice);
@@ -117,13 +118,13 @@ $(document).ready(() => {
 			var pqttarr = [];
 			$("input:checkbox[name='cartSno[]']:checked").each(function(){
 				var pno = $(this).val();
-				var porderqtt = $(this).parent().next().next().next().find("#quantitySelect").val();
+				var porderqtt = $(this).parent().next().next().next().find(".quantitySelect").val();
 				arr.push(pno);
 				pqttarr.push(porderqtt);
 			});
 			if(arr.length !=0){
 				<%-- location.href="${path}/product_list_order?list="+arr+"&pqtt="+quanarr; --%>
-				location.href="${path}/product_list_order?cart="+arr+"&porderqtt="+pqttarr;
+				location.href="${path}/product_list_order?pnolist="+arr+"&porderqtt="+pqttarr;
 				
 			}else{
 				alert("상품을 선택해주세요");

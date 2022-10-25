@@ -162,13 +162,19 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
+        <a href="${path}/product/product_search?searchtype=pname&searchname=지브리">
             <img src="${path}/resources/img/product/가로자른배너1.png" class="d-block w-100" alt="..." id="crs">
+        </a>
         </div>
         <div class="carousel-item">
+        <a href="${path}/product/product_search?searchtype=pname&searchname=토토로">
             <img src="${path}/resources/img/product/가로자른배너2.png" class="d-block w-100" alt="..." id="crs">
+        </a>
         </div>
         <div class="carousel-item">
+        <a href="${path}/product/product_search?searchtype=pname&searchname=토토로">
             <img src="${path}/resources/img/product/가로자른배너3.png" class="d-block w-100" alt="..." id="crs">
+        </a>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
@@ -198,7 +204,7 @@
                                             <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="공조2: 인터내셔날">
                                     </div>
                                     <div class="poster_info">
-                                        <a href="/moviedb/main?movieId=147615" class="link_story" data-tiara-layer="poster">
+                                        <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_story" data-tiara-layer="poster">
                                             ${product.pcategory}
                                         </a>
                                     </div>
@@ -223,10 +229,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             	<!-- 맨 처음으로 -->
-                <li><a href="${ path }/product/product_all_list?page=1">«</a></li>
+                <li><a href="${ path }/product/product_search?page=1&searchtype=${searchtype}&searchname=${searchname}">«</a></li>
                 
                 <!-- 이전 페이지로 -->
-                <li><a href="${ path }/product/product_all_list?page=${ pageInfo.prevPage }">‹</a></li>
+                <li><a href="${ path }/product/product_search?page=${ pageInfo.prevPage }&searchtype=${searchtype}&searchname=${searchname}">‹</a></li>
                 
 				<!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -235,30 +241,30 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/product/product_all_list?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/product/product_search?page=${ status.current }&searchtype=${searchtype}&searchname=${searchname}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 				<!-- 다음 페이지로 -->
-					<li><a href="${ path }/product/product_all_list?page=${ pageInfo.nextPage }">›</a></li>  
+					<li><a href="${ path }/product/product_search?page=${ pageInfo.nextPage }&searchtype=${searchtype}&searchname=${searchname}">›</a></li>  
 				<!-- 맨 끝 페이지로 -->
-	                <li><a href="${ path }/product/product_all_list?page=${ pageInfo.maxPage }">»</a></li>
+	                <li><a href="${ path }/product/product_search?page=${ pageInfo.maxPage }&searchtype=${searchtype}&searchname=${searchname}">»</a></li>
             </ul>
             
-        </div>
-    
-    <div class="display2">
+    </div>
+    <c:if test="${ loginMember.m_authorization == 'M' }">
+    	<div class="display2" style="margin-right: 212px;">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"  onclick="location.href='${path}/product/product_create'"><img
                     src="${path}/resources/img/community/edit.png" style="height: 20px;"></button>
         </div>
-
+	</c:if>
         <div class="col-4 text-right">
     </div>
     
-    <div class="search1 row my-4">
-    <form action="${ path }/product/product_search">
-            <div class="col-6 row">
-                <div class="col-xs-3 col-sm-3">
+    <div class="search1 row my-4" style="margin: 0 auto; width: 1100px">
+    <form action="${ path }/product/product_search" style="width: 100%;">
+            <div class="col-6 row" style="width: 100%;">
+                <div class="col-xs-3 col-sm-3" style="padding-left: -15px;">
                     <select name="searchtype" class="form-control1" style="font-size: 14.45px; ">
                         <option value="pname" selected>상품명</option>
                         <option value="pcategory">영화명</option>
@@ -266,7 +272,7 @@
                 </div>
 
                 <div class="col-xs-7 col-sm-7 pl-0">
-                    <div class="input-group">
+                    <div class="input-group" style="margin-left: -10px;">
                         <input type="text" class="form-control1" style="font-size: 14.45px;" name="searchname">
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"

@@ -2,6 +2,8 @@ package com.finalproject.voda.cart.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import com.finalproject.voda.cart.model.vo.Cart;
 import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.service.ProductService;
+import com.finalproject.voda.product.model.vo.Product;
 
 @Controller
 @RequestMapping("/product")
@@ -25,14 +28,32 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	
+	@Autowired
+	private ProductService productService;
+	
 	@GetMapping("/product_cart")
 	public ModelAndView cart_list (ModelAndView model,
-			@SessionAttribute("loginMember") Member loginMember) {
+			HttpSession session) {
+		
+		Member loginMember = (Member) session.getAttribute("loginMember");
 		List<Cart> cart = null;
-		cart = cartService.getCartList(loginMember.getM_no());
-		System.out.println(cart);
-		model.addObject("cart", cart);
-		model.setViewName("product/product_cart");
+		
+		
+		
+		if(loginMember == null) {
+			model.addObject("msg", "로그인 후 이용해주세요.");
+			model.addObject("location", "/member/login");
+			model.setViewName("common/msg");
+		} else {
+			
+			cart = cartService.getCartList(loginMember.getM_no());
+			model.addObject("cart", cart);
+			model.addObject("location", "/product/product_cart");
+			
+		}
+		
+		
+		
 		
 		return model;
 	}
@@ -41,20 +62,33 @@ public class CartController {
 	public ModelAndView cartInsert(
 						ModelAndView model,
 						@ModelAttribute Cart cart,
-						@SessionAttribute("loginMember") Member loginMember) {
+						@ModelAttribute Product product,
+						HttpSession session) {
 		int result = 0;
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		int pno = product.getPno();
+		product = productService.findProductByNo(pno);
 		
-		cart.setMno(loginMember.getM_no());
-		result = cartService.insertCart(cart);
-		
-		if(result > 0) {
-			model.addObject("msg", "장바구니에 등록되었습니다.");
-			model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+		if(loginMember == null) {
+			model.addObject("msg", "로그인 후 이용해주세요.");
+			model.addObject("location", "/member/login");
+			model.setViewName("common/msg");
 		} else {
-			model.addObject("msg", "장바구니에 등록 실패!");
-			model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+			cart.setMno(loginMember.getM_no());
+			result = cartService.insertCart(cart);
+			
+			if(result > 0) {
+				model.addObject("msg", "장바구니에 등록되었습니다.");
+				model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+			} else {
+				model.addObject("msg", "장바구니에 등록 실패!");
+				model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+			}
+			model.setViewName("common/msg");
 		}
-		model.setViewName("common/msg");
+		
+		
+
 		
 		return model;
 	}
@@ -70,6 +104,9 @@ public class CartController {
 		for(int pno : list ) {
 			result = cartService.cartDelete(pno, loginMember.getM_no());
 		}
+		
+		System.out.println(result);
+		
 		if(result > 0) {
 			model.addObject("msg", "상품이 삭제되었습니다.");
 			model.addObject("location", "/product/product_cart");

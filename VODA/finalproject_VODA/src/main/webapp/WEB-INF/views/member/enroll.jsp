@@ -1527,7 +1527,7 @@ $(document).ready(function(){
 		}
 		
 		//주소 작성 여부
-		var address = $("#address_check").val();
+		var address = $("#sample6_detailAddress").val();
 		
 		if(address == '') {
 			alert("주소를 검색하여 입력해주세요");

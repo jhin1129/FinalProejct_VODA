@@ -294,6 +294,8 @@ public class ProductController {
 		product = service.getProductSearchList(pageInfo, searchtype, searchname);
 		
 		model.addObject("product", product);
+		model.addObject("searchtype", searchtype);
+		model.addObject("searchname", searchname);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("product/product_search");
 		System.out.println(product);

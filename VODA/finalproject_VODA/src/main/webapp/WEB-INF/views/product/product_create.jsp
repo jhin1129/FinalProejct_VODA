@@ -212,7 +212,7 @@
 
                 <div class="text-right mt-2">
                     <button class="btn btn-primary py-1" style="width: 100px">Post</button>
-                    <button class="btn btn-light py-1" style="width: 100px; height: 36px;">Cancle</button>
+                    <button type="button" class="btn btn-light py-1" style="width: 100px; height: 36px;" onclick="location.href='${path}/product/product_all_list'">Cancle</button>
                 </div>
             </div>
         </div>

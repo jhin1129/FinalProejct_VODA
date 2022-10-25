@@ -2,6 +2,7 @@ package com.finalproject.voda.order.contorller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,13 +62,15 @@ public class OrderController {
 	public ModelAndView ProductListOrder (ModelAndView model,
 			@ModelAttribute Order order,
 			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam List<Integer> porderqtt) {
+			@RequestParam List<Integer> porderqtt,
+			@RequestParam List<Integer> pnolist) {
 		List<Cart> cart = new ArrayList<Cart>();
 		String productName = null;
 		
 		cart = cartService.getCartList(loginMember.getM_no());
 		
 		for(int i=0; i<cart.size(); i++){
+			cart.get(i).setPno(pnolist.get(i));
 			cart.get(i).setPorderqtt(porderqtt.get(i));
 			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
 			}
@@ -79,6 +82,7 @@ public class OrderController {
 		
 		model.addObject("cart", cart);
 		model.addObject("totalPrice", totalPrice);
+		model.addObject("totalOqtt", totalOqtt);
 		model.addObject("productName", productName);
 		model.setViewName("product/product_list_order");
 		
@@ -142,7 +146,15 @@ public class OrderController {
 		order.setMno(loginMember.getM_no());
 		order.setPayno(payno);
 		
-		result = orderService.insertOrder(order);
+		
+		for (int i = 0; i < cart.size(); i++) {
+			order.setPno(cart.get(i).getPno());
+			order.setOqtt(porderqtt.get(i));
+			
+			result = orderService.insertOrder(order);
+		}
+		
+		
 		
 
 		System.out.println();
