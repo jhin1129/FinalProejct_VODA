@@ -27,7 +27,7 @@
                             <td colspan="2">상품정보</td>
                             <td>옵션</td>
                             <td>상품금액</td>
-                            <td>배송비</td>
+                            <td>상품금액 * 수량</td>
                         </tr>
                     </thead>
                    
