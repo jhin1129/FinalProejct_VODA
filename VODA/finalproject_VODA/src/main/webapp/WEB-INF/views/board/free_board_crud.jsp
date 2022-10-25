@@ -107,6 +107,10 @@
             display: none;
 
         }
+        
+        select:focus {
+		    outline: none;
+		}        
     </style>
 
 

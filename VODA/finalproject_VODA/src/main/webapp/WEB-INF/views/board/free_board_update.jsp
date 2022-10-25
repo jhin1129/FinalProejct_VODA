@@ -31,6 +31,10 @@
         button:focus {
             box-shadow: none !important;
         }
+        
+       	.btn-logoc:focus {
+        	box-shadow: none;
+        }
 
         .btn-logoc {
             color: #fff;
@@ -102,6 +106,10 @@
             display: none;
 
         }
+        
+        select:focus {
+		    outline: none;
+		}        
     </style>
 
 
@@ -114,8 +122,8 @@
         crossorigin="anonymous"></script>
 
     <!-- summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.js"></script>
 
     <title>free_brd_crud</title>
 

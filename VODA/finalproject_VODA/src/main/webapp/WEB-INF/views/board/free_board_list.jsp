@@ -172,6 +172,7 @@
 		select.form-control1:focus {
 		    outline: none;
 		}
+		
 
 
         .td-hr {
