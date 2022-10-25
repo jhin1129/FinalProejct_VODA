@@ -31,6 +31,10 @@
         button:focus {
             box-shadow: none !important;
         }
+        
+       	.btn-logoc:focus {
+        	box-shadow: none;
+        }        
 
         .btn-logoc {
             color: #fff;
@@ -105,7 +109,14 @@
         .dropdown-toggle::after {
             display: none;
 
-        }
+        }	
+
+        select:focus {
+		    outline: none;
+		}        
+        
+
+        
     </style>
 
 

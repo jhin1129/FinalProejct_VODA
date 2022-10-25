@@ -31,6 +31,10 @@
         button:focus {
             box-shadow: none !important;
         }
+        
+       	.btn-logoc:focus {
+        	box-shadow: none;
+        }        
 
         .btn-logoc {
             color: #fff;
@@ -102,6 +106,10 @@
             display: none;
 
         }
+        
+        select:focus {
+		    outline: none;
+		}
     </style>
 
 
@@ -142,15 +150,29 @@
                 <table class="table m-0">
                     <thead>
                         <tr>
+                            <th class="table-active" style="width: 20%;">카테고리</th>
+                            <td class="p-0" style="width: 80%;">
+                                <select name="bcategory" 
+                                    style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
+                                    <option value="M" >회원/정보관리</option>
+                                    <option value="O" >주문/결제</option>
+                                    <option value="D" >배송</option>
+                                    <option value="R" >환불</option>
+                                    <option value="C" >컨텐츠 요청</option>
+                                    <option value="E" >기타</option>
+                                </select>
+                            </td>
+                        </tr>                    
+                    </thead>
+
+                    <tbody>
+                        <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
                             <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" name="btitle"
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
                         </tr>
-                    </thead>
-
-                    <tbody>
                         <tr>
                             <th class="table-active">작성자</th>
                             <td style="margin-left: 10px;">${ board.mid }</td>
