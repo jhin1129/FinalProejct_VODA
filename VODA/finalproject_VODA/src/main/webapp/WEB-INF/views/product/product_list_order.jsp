@@ -68,7 +68,7 @@
 					<tbody>
 						<tr>
 							<th scope="row"><span class="important">주문하시는 분</span></th>
-							<td><input type="text" name="orderName" id="orderName"
+							<td><input type="text" name="orderName" 
 								value="${ loginMember.m_name }" data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
@@ -109,7 +109,7 @@
 					<tbody>
 						<tr>
 							<th scope="row"><span class="important">받으실분</span></th>
-							<td><input type="text" name="oname"
+							<td><input id="orderName" type="text" name="oname"
 								data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
@@ -119,7 +119,7 @@
 									<input type="text" id="sample6_postcode" readonly="readonly" name="opostnum">
 									<input type="hidden" name="receiverZipcode"> 
 									<span id="receiverZipcodeText" class="old_post_code"></span>
-									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
+									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button"  class="btn btn-primary1 py-1" style="font-size: 13px; margin-top: -5px;">주소 검색</button>
 								</div>
 								<div class="address_input">
 									<input type="text" id="sample6_address" readonly="readonly" name="oadress">
@@ -130,12 +130,12 @@
 						
 						<tr>
 							<th scope="row"><span class="important">휴대폰 번호</span></th>
-							<td><input type="text" id="receiverCellPhone"
+							<td><input type="text" id="oPhone"
 								name="ophone"></td>
 						</tr>
 						<tr>
 							<th scope="row">남기실 말씀</th>
-							<td class="td_last_say"><input type="text" name="omessage"></td>
+							<td class="td_last_say"><input id="" type="text" name="omessage"></td>
 						</tr>
 					</tbody>
 				</table>
@@ -200,11 +200,11 @@
 								<div class="form_element">
 									<ul class="payment_progress_select">
 										<oi id="payCard"> 
-											<input type="radio" id="payCardRadio" name="payRadio" value="card"> 
+											<input type="radio" id="payCardRadio" name="payRadio" value="card" checked> 
 											<label for="payCardRadio" class="choice_s">신용카드</label> 
 										</oi>
 										<oi id="payBank"> 
-											<input type="radio" id="payBankRadio" name="payRadio"> 
+											<input type="radio" id="payBankRadio" name="payRadio" value="trans"> 
 											<label for="payBankRadio" class="choice_s">계좌이체</label>
 										</oi>
 										<oi id="payKakao">
@@ -212,7 +212,7 @@
 											<label for="payKakaoRadio" class="choice_s">카카오페이</label> 
 										</oi>
 										<oi id="payPhone">
-											<input type="radio" id="payPhoneRadio" name="payRadio">
+											<input type="radio" id="payPhoneRadio" name="payRadio" value="phone">
 											<label for="payPhoneRadio" class="choice_s">휴대폰결제</label> 
 										</oi>
 									</ul>
@@ -260,7 +260,7 @@
 						
 						<div class="cart__mainbtns">
 							<button type="button" class="btn btn-back py-1" onclick="history.go(-1)">이전페이지</button>
-							<button id="listpayment" type="button" class="btn btn-primary py-1" onclick="requestPay1()">결제하기</button>
+							<button id="listpayment" type="button" class="btn btn-primary py-1">결제하기</button>
 						</div>
 					</div>
 	</section>
@@ -285,58 +285,26 @@ $(document).ready(function(){
 		payQuantityList.push(porderqtt);
 	});
 	
-	
-	
-	
-	<%--$('input[name=payRadio]:checked').each(function() {
-		var kakao = $(".choice_s").val();
-		
-		if($(this).val() == "kakaopay"){
-			$( "#listpayment" ).click(function(){
-				var IMP = window.IMP; // 생략 가능
-			    IMP.init("imp63887533"); // 예: imp00000000
-			    // IMP.request_pay(param, callback) 결제창 호출
-			    IMP.request_pay({ // param
-			        pg: "html5_inicis",
-			        pay_method: "kakaopay",
-			        merchant_uid:  new Date().getTime(),
-			        name: "${ productName }",
-			        amount: ${totalPrice},
-			        buyer_email: "${loginMember.m_email}",
-			        buyer_name: "${loginMember.m_name}",
-			        buyer_tel: "${loginMember.m_phone}",
-			        buyer_addr: "${loginMember.m_address} ${loginMember.m_detailAddress}",
-			        buyer_postcode: "${loginMember.m_postNum}"
-			    }, function (rsp) { // callback
-			        if (rsp.success) {
-			        	var msg = '결제가 완료되었습니다.';
-			            msg += '고유ID : ' + rsp.imp_uid;
-			            msg += '상점 거래ID : ' + rsp.merchant_uid;
-			            msg += '결제 금액 : ' + rsp.paid_amount;
-			            msg += '카드 승인번호 : ' + rsp.apply_num;
-			            
-			            document.getElementById('formid2').submit();
-						
-			        } else {
-			        	var msg = '결제에 실패하였습니다.';
-			            msg += '에러내용 : ' + rsp.error_msg;
-			        }
-			        alert(msg);
-			    });
-			});
-		} 
-	}); --%>
 
 });
 
 
-function requestPay1() {
+$("#listpayment").click(function(e){
+	if($("#orderName").val().length==0){alert("받으실 분 성함 을 입력하세요.");$("#orderName").focus();return false;}
+	if($("#sample6_address").val().length==0){alert("주문자 주소를 입력하세요.");$("#sample6_address").focus();return false;}
+	if($("#oPhone").val().length==0){alert("휴대폰번호를 입력하세요.");$("#oPhone").focus();return false;}
+	if($("#sample6_postcode").val().length==0){alert("우편번호를 검색해 주세요.");$("#sample6_postcode").focus();return false;}
+	if($("#sample6_detailAddress").val().length==0){alert("세부 주소를 입력하세요.");$("#sample6_detailAddress").focus();return false;}
+	if ($("#termAgree_orderCheck").length>0){if(!$('#termAgree_orderCheck').prop('checked')){pass = false;alert("필수 조건에 동의해 주세요.");$("#termsAgreeDiv").attr("tabindex",-1).focus();return false;}}
+	
+	var method = $('input[name=payRadio]:checked').val();
 	var IMP = window.IMP; // 생략 가능
     IMP.init("imp63887533"); // 예: imp00000000
     // IMP.request_pay(param, callback) 결제창 호출
+    
     IMP.request_pay({ // param
         pg: "html5_inicis",
-        pay_method: "kakaopay",
+        pay_method: method,
         merchant_uid:  new Date().getTime(),
         name: "${productName}",
         amount: ${totalPrice},
@@ -347,12 +315,7 @@ function requestPay1() {
         buyer_postcode: "${loginMember.m_postNum}"
     }, function (rsp) { // callback
         if (rsp.success) {
-        	var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-            
+        	var msg = '결제가 완료되었습니다. 마이페이지에서 주문 내역을 확인해주세요.';
             document.getElementById('formid2').submit();
 			
         } else {
@@ -361,7 +324,12 @@ function requestPay1() {
         }
         alert(msg);
     });
-  }
+	
+});
+
+
+
+
 
 </script>
 <!-- 주소 API -->

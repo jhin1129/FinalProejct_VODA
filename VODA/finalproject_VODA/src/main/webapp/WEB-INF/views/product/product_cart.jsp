@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <table class="cart__list">
-                <form>
+                
                     <thead>
                         <tr>
                             <td>
@@ -67,7 +67,7 @@
                             <td><strong class="totalPrice">0</strong></td>
                         </tr>
                     </tfoot>
-                </form>
+                
             </table>
             <div class="cart__mainbtns">
                 <button type="button" class="btn btn-back py-1" onclick="location.href='${path}/product/product_all_list'">쇼핑 계속하기</button>

@@ -104,6 +104,9 @@ public class CartController {
 		for(int pno : list ) {
 			result = cartService.cartDelete(pno, loginMember.getM_no());
 		}
+		
+		System.out.println(result);
+		
 		if(result > 0) {
 			model.addObject("msg", "상품이 삭제되었습니다.");
 			model.addObject("location", "/product/product_cart");

@@ -26,7 +26,7 @@
 			<c:set var="rename" value="${ product.prenamefile }" />
 				<thead>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td></td>
 						<td colspan="2">상품정보</td>
 						<td>옵션</td>
 						<td>상품금액</td>
@@ -35,7 +35,7 @@
 				</thead>
 				<tbody>
 					<tr class="cart__list__detail">
-						<td><input type="checkbox"></td>
+						<td></td>
 						<td><img
 							src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }"></td>
 						<td><a href="#">${product.pmadecompany}</a>
@@ -67,7 +67,7 @@
 					<tbody>
 						<tr>
 							<th scope="row"><span class="important">주문하시는 분</span></th>
-							<td><input type="text" name="orderName" id="orderName"
+							<td><input type="text" name="orderName" 
 								value="${ loginMember.m_name }" data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
@@ -107,7 +107,7 @@
 					<tbody>
 						<tr>
 							<th scope="row"><span class="important">받으실분</span></th>
-							<td><input type="text" name="oname"
+							<td><input type="text" name="oname" id="orderName"
 								data-pattern="gdEngKor" maxlength="20"></td>
 						</tr>
 						<tr>
@@ -117,7 +117,7 @@
 									<input type="text" id="sample6_postcode" readonly="readonly" name="opostnum">
 									<input type="hidden" name="receiverZipcode"> 
 									<span id="receiverZipcodeText" class="old_post_code"></span>
-									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn-logoc">주소 검색</button>
+									<button id="btn_address" onclick="sample6_execDaumPostcode()" type="button" class="btn btn-primary1 py-1" style="font-size: 13px; margin-top: -5px;">주소 검색</button>
 								</div>
 								<div class="address_input">
 									<input type="text" id="sample6_address" readonly="readonly" name="oadress">
@@ -128,7 +128,7 @@
 						
 						<tr>
 							<th scope="row"><span class="important">휴대폰 번호</span></th>
-							<td><input type="text" id="receiverCellPhone"
+							<td><input type="text" id="oPhone"
 								name="ophone"></td>
 						</tr>
 						<tr>
@@ -197,21 +197,22 @@
 							<dd>
 								<div class="form_element">
 									<ul class="payment_progress_select">
-
 										<oi id="payCard"> 
-											<input type="radio" id="payCardRadio" name="payRadio"> 
+											<input type="radio" id="payCardRadio" name="payRadio" value="card" checked> 
 											<label for="payCardRadio" class="choice_s">신용카드</label> 
 										</oi>
 										<oi id="payBank"> 
-											<input type="radio" id="payBankRadio" name="payRadio"> 
+											<input type="radio" id="payBankRadio" name="payRadio" value="trans"> 
 											<label for="payBankRadio" class="choice_s">계좌이체</label>
 										</oi>
 										<oi id="payKakao">
-											<input type="radio" id="payKakaoRadio" name="payRadio">
-											<label for="payKakaoRadio" class="choice_s">카카오페이</label> </oi>
+											<input type="radio" id="payKakaoRadio" name="payRadio" value="kakaopay">
+											<label for="payKakaoRadio" class="choice_s">카카오페이</label> 
+										</oi>
 										<oi id="payPhone">
-											<input type="radio" id="payPhoneRadio" name="payRadio">
+											<input type="radio" id="payPhoneRadio" name="payRadio" value="phone">
 											<label for="payPhoneRadio" class="choice_s">휴대폰결제</label> 
+										</oi>
 										</oi>
 									</ul>
 								</div>
@@ -248,7 +249,7 @@
 						</div>
 						<div class="payment_final_check">
 							<div class="form_element">
-								<input type="checkbox" id="termAgree_orderCheck" class="require">
+								<input type="checkbox" id="termAgree_orderCheck" class="require" required="required">
 								<label for="termAgree_orderCheck" class="check_s"><em><b>(필수)</b>
 										구매하실 상품의 결제정보를 확인하였으며, 구매진행에 동의합니다.</em></label>
 							</div>
@@ -258,21 +259,29 @@
 						
 						<div class="cart__mainbtns">
 							<button type="button" class="btn btn-back py-1" onclick="history.go(-1)">이전페이지</button>
-							<button type="button" class="btn btn-primary py-1" onclick="requestPay()">결제하기</button>
+							<button id="payment" type="button" class="btn btn-primary py-1">결제하기</button>
 						</div>
 					</div>
 	</section>
 	</form>
 </div>
 <script>   
-
-function requestPay() {
+$("#payment").click(function(e){
+	if($("#orderName").val().length==0){alert("받으실 분 성함 을 입력하세요.");$("#orderName").focus();return false;}
+	if($("#sample6_address").val().length==0){alert("주문자 주소를 입력하세요.");$("#sample6_address").focus();return false;}
+	if($("#oPhone").val().length==0){alert("휴대폰번호를 입력하세요.");$("#oPhone").focus();return false;}
+	if($("#sample6_postcode").val().length==0){alert("우편번호를 검색해 주세요.");$("#sample6_postcode").focus();return false;}
+	if($("#sample6_detailAddress").val().length==0){alert("세부 주소를 입력하세요.");$("#sample6_detailAddress").focus();return false;}
+	if ($("#termAgree_orderCheck").length>0){if(!$('#termAgree_orderCheck').prop('checked')){pass = false;alert("필수 조건에 동의해 주세요.");$("#termsAgreeDiv").attr("tabindex",-1).focus();return false;}}
+	
+	var method = $('input[name=payRadio]:checked').val();
 	var IMP = window.IMP; // 생략 가능
     IMP.init("imp63887533"); // 예: imp00000000
     // IMP.request_pay(param, callback) 결제창 호출
+    
     IMP.request_pay({ // param
         pg: "html5_inicis",
-        pay_method: "kakaopay",
+        pay_method: method,
         merchant_uid:  new Date().getTime(),
         name: "${product.pname}",
         amount: ${product.pprice},
@@ -283,12 +292,7 @@ function requestPay() {
         buyer_postcode: "${loginMember.m_postNum}"
     }, function (rsp) { // callback
         if (rsp.success) {
-        	var msg = '결제가 완료되었습니다.';
-            msg += '고유ID : ' + rsp.imp_uid;
-            msg += '상점 거래ID : ' + rsp.merchant_uid;
-            msg += '결제 금액 : ' + rsp.paid_amount;
-            msg += '카드 승인번호 : ' + rsp.apply_num;
-            
+        	var msg = '결제가 완료되었습니다. 마이페이지에서 주문 내역을 확인해주세요.';
             document.getElementById('formid').submit();
 			
         } else {
@@ -297,7 +301,9 @@ function requestPay() {
         }
         alert(msg);
     });
-  }
+	
+});
+
 </script>
 <!-- 주소 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
