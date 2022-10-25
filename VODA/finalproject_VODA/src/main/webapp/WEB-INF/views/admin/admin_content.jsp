@@ -242,7 +242,7 @@
                   <tr>                    
                     <th scope="row">${ content.c_no }</th>
                     <td><a href="${path}/contents/contents_detail?no=${ content.c_no }">${ content.c_title }</a></td>
-                    <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ contents.c_bimg }"/></td>
+                    <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ content.c_pimg }"/></td>
                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_comments?no=${ content.c_no }&sort=like'">관리</td>
                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_detail?no=${ content.c_no }'">수정</td>
                     <td>
