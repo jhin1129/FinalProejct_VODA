@@ -145,7 +145,7 @@
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
         
-        <form action="${ path }/board/free_board_update" method="POST" enctype="multipart/form-data">
+        <form action="${ path }/board/free_board_update" method="POST"  onsubmit="return submitCheck()" enctype="multipart/form-data">
 				<input type="hidden" name="bno" value="${ board.bno }">
 				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
 				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
@@ -155,7 +155,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" name="btitle"
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" id="title" name="btitle"
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
@@ -238,6 +238,14 @@
 			});	
 		
 		});
+		
+		function submitCheck() {
+			if($("#title").val().trim()==""){
+				alert("제목을 입력해주세요");
+				return false;
+			}
+		};
+	    
 		
 	</script>
 
