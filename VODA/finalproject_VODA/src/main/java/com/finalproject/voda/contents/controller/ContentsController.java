@@ -515,8 +515,8 @@ public class ContentsController {
 		model.addObject("list", list);
 		model.addObject("pageInfo", pageInfo);
 		model.setViewName("contents/contents_peoplemodal");
+		
 		return model;
-
 	}
 	
 	// 인물페이지 리스트 검색

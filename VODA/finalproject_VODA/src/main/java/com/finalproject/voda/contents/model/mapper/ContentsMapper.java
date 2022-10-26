@@ -70,7 +70,7 @@ public interface ContentsMapper {
 
 	int likeCount(int rate_no);
 
-	List<People> getPeopleList(PageInfo pageInfo);
+	List<People> getPeopleList(RowBounds rowBounds);
 
 	int getPeopleCount();
 	
