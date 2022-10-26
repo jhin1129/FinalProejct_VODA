@@ -79,7 +79,6 @@
 		<result property="people_no" column="PEOPLE_NO"/>
 		<result property="cp_role" column="CP_ROLE"/>
 		<result property="cp_img" column="CP_IMG"/>
-		<result property="cp_oimg" column="CP_OIMG"/>
 		<result property="people_name" column="PEOPLE_NAME"/>
 	</resultMap>
 	
@@ -184,8 +183,6 @@
 		   CP.C_NO,
 	       CP.PEOPLE_NO,
 	       CP.CP_ROLE,
-	       CP.CP_IMG,
-	       CP.CP_OIMG,
 	       P.PEOPLE_NAME
        FROM CONTENTSPEOPLE CP
        JOIN PEOPLE P

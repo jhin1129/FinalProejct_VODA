@@ -1540,17 +1540,17 @@ $(document).ready(function(){
 		if($("#flexCheckDefault1").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         
 		}else if($("#flexCheckDefault2").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         
 		}else if($("#flexCheckDefault4").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         }
 	});
 });

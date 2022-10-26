@@ -194,11 +194,11 @@
             <table class="table table-hover">
                 <thead>
                     <tr style="text-align: center">
-                        <th id="th" style="width: 5%;">번호</th>
-                        <th id="th" style="width: 55%;">제목</th>
-                        <th id="th" style="width: 15%;">작성자</th>
-                        <th id="th" style="width: 15%;">작성일</th>
-                        <th id="th" style="width: 10%;">조회수</th>
+                        <th id="th" style="width: 9%;">번호</th>
+                        <th id="th" style="width: 54%;">제목</th>
+                        <th id="th" style="width: 14%;">작성자</th>
+                        <th id="th" style="width: 14%;">작성일</th>
+                        <th id="th" style="width: 9%;">조회수</th>
                     </tr>
                 </thead>
 

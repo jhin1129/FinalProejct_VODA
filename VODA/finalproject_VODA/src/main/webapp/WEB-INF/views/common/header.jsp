@@ -31,8 +31,8 @@
 <body>
 	<!-- 헤더 시작 -->
 	<div class="container p-0">
-	  <nav class="navbar navbar-expand-lg navbar-light">
-	    <div class="container-fluid">
+	  <nav class="navbar navbar-expand-lg navbar-light pl-0 pr-0">
+	    <div class="container-fluid pl-0 pr-0">
 	        <a class="navbar-brand mr-1" href="${path}"><img class="logoimg" src="${path}/resources/img/common/VODA.png"></a>
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 	          <span class="navbar-toggler-icon"></span>

@@ -172,7 +172,7 @@
                     <td class="" id="contentinfo">
                         ${ contents.c_title } <br>
                         ${ contents.c_year } · ${ contents.c_nation } · ${ contents.c_genre } <br>
-                        ${ contents.c_info } · ${ contents.c_age } <br><br>
+                        ${ contents.c_info } · <c:if test ="${ contents.c_age > 0 }">${ contents.c_age }세 이용가</c:if><c:if test ="${ contents.c_age == 0 }">전체 이용가</c:if><br><br> 
                     </td>
                     <td class="" id="julgury">
                         <div id="julguryline">
