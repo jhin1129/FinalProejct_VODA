@@ -123,7 +123,6 @@ $(document).ready(() => {
 				pqttarr.push(porderqtt);
 			});
 			if(arr.length !=0){
-				alert(pqttarr);
 				location.href="${path}/product_list_order?pnolist="+arr+"&porderqtt="+pqttarr;
 				
 			}else{
