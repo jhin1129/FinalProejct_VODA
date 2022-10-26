@@ -68,7 +68,7 @@
                     <div class="row">
                         <div class="col-sm-12" style="margin-top: 40px;">
                             <form style="margin-bottom: 3px;">
-                                <h5 style="font-weight: 600; margin-bottom: 17px;">개인 정보 조회</h5>
+                                <h5 style="font-weight: 600; margin-bottom: 17px;">회원 정보 조회</h5>
                                 <hr>
                             </form>
                         </div>
