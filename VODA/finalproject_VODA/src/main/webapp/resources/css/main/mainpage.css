@@ -1,5 +1,5 @@
 /* 영상 자식요소 정보 */
-.info { position: absolute; top: 30%; width: 100%; }
+.info { position: absolute; top: 40%; width: 100%; }
 
 .title{ margin-top: -24px; font-size: 24px; color: #ffffff; }
 
@@ -109,9 +109,9 @@ video[poster] {
 }
 
 #carouselExampleControlsNoTouching {
-	/*position: absolute;*/
-    top: 40%;
-    left: 0%;
+	position: absolute;
+    top: 63%;
+    left: 12%;
     height: 500px;
 }
 
