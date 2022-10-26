@@ -27,211 +27,109 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
 	<title>Insert title here</title>
+	
+	 <style>
+        img {
+            display: inline-block;
+            overflow: hidden;
+            font-size: 0;
+            line-height: 0;
+            text-indent: -9999px;
+            vertical-align: top;
+            background-size: 500px auto;
+        }
+    </style>
+    
 </head>
 <body>
 <!-- HEADER -->
 <jsp:include page="/WEB-INF/views/common/headerclean.jsp"/>
     
  <div class="videowrapper">
-      <!-- autoplay 요소를 지우면 자동 재생이 되지 않음 -->
-      <video loop muted controls poster="${path}/resources/img/main/thumbnail.png">
+    <!-- autoplay 요소를 지우면 자동 재생이 되지 않음 -->
+    <video loop muted controls poster="${path}/resources/img/main/thumbnail.png">
         <source src="${path}/resources/img/main/trailer.mp4" type="">
-      </video>
-  
-      <div class="container p-0">
+    </video>
+
+    <div class="container p-0">
         <div class="info">
-          <p class="title">블레이드 러너 2049</p>
-          <div class="outline d-none d-lg-block">
-            핵전쟁 이후 혼돈으로 무질서로 휩싸인 2019년, 복제인간 ‘로이’를 포함한 <br>
-            ‘넥서스 6’이 오프월드에서 반란을 일으킨 후 지구로 잠입한다... <br>
-          </div>
-          <br>
-          <button type="button" class="btn btn-outline-light">리뷰 보러가기</button>
+            <p class="title">블레이드 러너 2049</p>
+            <div class="outline d-none d-lg-block">
+                핵전쟁 이후 혼돈으로 무질서로 휩싸인 2019년, 복제인간 ‘로이’를 포함한 <br>
+                ‘넥서스 6’이 오프월드에서 반란을 일으킨 후 지구로 잠입한다... <br>
+            </div>
+            <br>
+            <button type="button" class="btn btn-outline-light">리뷰 보러가기</button>
         </div>
-      </div>
-      
-  <div class="container p-0"> 
-  <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
-	<!--carousel-->
+    </div>
 
-	<div class="carousel-inner" style="height:500px; width:1200px; margin:auto;">
-	  <div class="carousel-item active">
-      <!--carousel page 1 start-->
-  		
-      <div class="container" style="padding: 0px;" id="rankcontainer">
-        <div class="row rank-boxes">
-  		<c:forEach var="contents" items="${ list }" begin="0" end="0">
-          <div class="col mainrank ml-0">
-            <div class="rankingnumber">1</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		 </c:forEach>
-  		
-  		<c:forEach var="contents" items="${ list }" begin="1" end="1">
-          <div class="col mainrank">
-            <div class="rankingnumber">2</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-               	  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		</c:forEach>
-  		
-  		
-  		<c:forEach var="contents" items="${ list }" begin="2" end="2">
-          <div class="col mainrank">
-            <div class="rankingnumber">3</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		</c:forEach>
-  		
-  		<c:forEach var="contents" items="${ list }" begin="3" end="3">
-          <div class="col mainrank">
-            <div class="rankingnumber">4</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		 </c:forEach>
-  		 
-  		 <c:forEach var="contents" items="${ list }" begin="4" end="4">
-          <div class="col mainrank mr-0">
-            <div class="rankingnumber">5</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-       	 </c:forEach>
-        </div>
-        </div>
-        </div>
-     <div class="carousel-item">
-  		
-	<div class="container" style="padding: 0px;" id="rankcontainer">
-        <div class="row rank-boxes">
-  		<c:forEach var="contents" items="${ list }" begin="5" end="5">
-          <div class="col mainrank ml-0">
-            <div class="rankingnumber">1</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		 </c:forEach>
-  		
-  		<c:forEach var="contents" items="${ list }" begin="6" end="6">
-          <div class="col mainrank">
-            <div class="rankingnumber">2</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-               	  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		</c:forEach>
-  		
-  		
-  		<c:forEach var="contents" items="${ list }" begin="7" end="7">
-          <div class="col mainrank">
-            <div class="rankingnumber">3</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		</c:forEach>
-  		
-  		<c:forEach var="contents" items="${ list }" begin="8" end="8">
-          <div class="col mainrank">
-            <div class="rankingnumber">4</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-  		 </c:forEach>
-  		 
-  		 <c:forEach var="contents" items="${ list }" begin="9" end="9">
-          <div class="col mainrank mr-0">
-            <div class="rankingnumber">5</div>
-              <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }.jpg" class="poster" alt="">
-                <div class="rankinginfo">
-                  <p>제목 ${ contents.c_title }</p>
-                  분류 ${ contents.c_type }<br>
-                  장르 ${ contents.c_genre }<br>
-                  등급 ${ contents.c_age }세 이용가<br>
-                </div>
-          </div>
-       	 </c:forEach>
-         </div>
-	</div>
-       <!--carousel page 2 end-->
-    
-      
-        </div> <!-- 랭크 박스 끝 -->
-   </div>
+	<div class="container p-0">
+    <article id="mainContent" class="kakao_article">
 
-   
-   <!--carousel-inner end-->
-   <c:if test="${fn:length(list) > 5}">
-	   <div style="width: 5%;" class="my-5">
-	       <button style="width: 5%; height:100px; margin-top:135px; margin-left:-7px; z-index: 6;"
-	           class="carousel-control-prev" type="button"
-	           data-target="#carouselExampleControlsNoTouching" data-slide="prev">
-	           <img src="${path}/resources/img/ranking/slide-left.png" alt="" class="slide-button"
-	               style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
-	           <span class="sr-only">Previous</span>
-	       </button>
-	       <button style="width: 5%; height:100px; margin-top:135px; margin-right:-7px; z-index: 6;"
-	           class="carousel-control-next" type="button"
-	           data-target="#carouselExampleControlsNoTouching" data-slide="next">
-	           <img src="${path}/resources/img/ranking/slide-right.png" alt="" class="slide-button"
-	               style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
-	            <span class="sr-only">Next</span>
-	        </button>
-	    </div>
-	</c:if>
-	
-   		</div> <!-- 컨테이너 끝 -->
-   		</div>
-   		</div> 
-    </div> <!-- 비디오래퍼 끝 -->
+        <div class="section_ranking">
 
-<!--carousel-->
+            <div class="box_ranking" data-tiara-layer="list">
+                <ol class="list_movieranking">
+                    <div id="carouselExampleControlsNoTouching2" class="carousel slide" data-touch="false" data-interval="false">
+                        <!--carousel-->
+                        <div class="carousel-inner">
+                            <c:forEach var="contents" items="${ list }" varStatus="status">
+                                <c:if test="${ status.first }">
+                                    <div class="carousel-item active">
+                                </c:if>
+                                <c:if test="${ status.count % 5 == 1 && !status.first }">
+                                    <div class="carousel-item">
+                                </c:if>
+                                <li>
+                                    <div class="item_poster" style="cursor:pointer" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
+                                        <div class="thumb_item">
+                                            <div class="poster_movie">
+                                                <img src="${ path }/resources/uploadFiles/contents/${ contents.c_pimg }" class="img_thumb" alt="${ contents.c_title }">
+
+                                                <span class="rank_num">${status.count }</span>
+                                                <span class="txt_tag">
+                                                    <span class="ico_movie ico_see see${ contents.c_age }">${ contents.c_age }세이상관람가</span>
+                                                </span>
+                                            </div>
+                                            <div class="poster_info">
+                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story" data-tiara-layer="poster">
+                                                    ${contents.c_synop }
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <c:if test="${ !status.last && status.count % 5 == 0 }">
+                        </div>
+                        </c:if>
+
+                        <c:if test="${ status.last }">
+                    </div>
+                    </c:if>
+                    </c:forEach>
+            </div>
+            <!--carousel-inner end-->
+
+            <div style="width: 5%;" class="my-5">
+                <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;" class="carousel-control-prev" type="button" data-target="#carouselExampleControlsNoTouching2" data-slide="prev">
+                    <img src="${ path }/resources/img/ranking/slide-left.png" alt="" style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;" class="carousel-control-next" type="button" data-target="#carouselExampleControlsNoTouching2" data-slide="next">
+                    <img src="${ path }/resources/img/ranking/slide-right.png" alt="" style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
+            </div>
+
+        </div>
+        <!--carousel-->
+        </ol>
+    </article>
+    </div>
+</div> <!-- 비디오래퍼 끝 -->
+
         
 <div style="height: 300px;"></div>
  
