@@ -5,9 +5,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 <!-- HEADER -->
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include page="/WEB-INF/views/common/headerclean.jsp"/>
 <!-- contents_comment CSS-->
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/contents/contents_comments.css">
+
+<table style="width: 100%;">
+	<tr class="row" id="posterbg" onclick="location.href='${path}/contents/contents_detail?no=${ contents.c_no }'">
+    	<td class="col d-none d-lg-block p-0" style="background-color:${ contents.c_leftcolor }"></td>
+	     	<td class="p-0" style="width: 1140px;">
+	         <div class="bg-black grabox">
+	             <div class="LeftGradient" style="background-image: linear-gradient( to right, ${ contents.c_leftcolor } 40%, ${ contents.c_leftcolor }00 100%);"></div>
+	             <div class="RightGradient" style="background-image: linear-gradient( to left, ${ contents.c_rightcolor } 40%, ${ contents.c_rightcolor }00 100%);"></div>
+	             <img id="graposter" src="${ path }/resources/uploadFiles/contents/${ contents.c_bimg }" class="" alt="..." />
+	         </div>
+	     	</td>
+     	<td class="col d-none d-lg-block p-0" style="background-color:${ contents.c_rightcolor }"></td>
+    </tr>
+</table>
 
 <div class="container p-0">
 	    <table class="mt-5">
@@ -433,7 +447,7 @@
 	           success : function(likeCheck) {
 	        	  console.log(likeCheck);
 				  // alert('성공');
-				   recCount(rate_no,event); 
+				  recCount(rate_no,event); 
 				  
 				  if(likeCheck == 0){
 	              		alert("추천완료");

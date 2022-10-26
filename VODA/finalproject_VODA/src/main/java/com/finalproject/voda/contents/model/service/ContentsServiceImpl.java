@@ -275,5 +275,11 @@ public class ContentsServiceImpl implements ContentsService {
 		
 		return mapper.orderByMyRate(mymap);
 	}
+
+	@Override
+	public Contents getBg(int no) {
+		
+		return mapper.getBg(no);
+	}
 	
 	}

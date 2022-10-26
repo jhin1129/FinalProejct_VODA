@@ -154,7 +154,8 @@ position: absolute;
 
 #julgury {
   border-left: rgb(166, 166, 166) solid 0.5px;
-  padding-left: 45px; }
+  padding-left: 45px; 
+  padding-right: 45px;}
 
 #contentinfo {
   width: 200px;

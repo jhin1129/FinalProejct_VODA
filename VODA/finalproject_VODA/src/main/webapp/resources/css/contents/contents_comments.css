@@ -341,3 +341,50 @@ textarea:focus, input:focus{ outline: none; }
     margin-bottom: 20px;
     font-weight: 500;
 }
+
+/* 댓글 배경 */
+#posterbg {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 400px;
+  background-color: #495057;
+  justify-content: center; }
+
+.grabox {
+  position: relative; }
+
+#graposter {
+  z-index: 1;
+  position: absolute;
+  height: 400px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  object-fit: cover; }
+
+.RightGradient {
+  position: absolute;
+  z-index: 2;
+  height: 400px;
+  display: block;
+  top: 0;
+  bottom: 0;
+  right: -2.5%;
+  /*background-image: linear-gradient( to left,    
+  rgba(26, 11, 73) 40%,
+  rgba(26, 11, 73, 0) 100%);*/
+  width: 200px; }
+
+.LeftGradient {
+  position: absolute;
+  z-index: 2;
+  height: 400px;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: -2.5%;
+  /*background-image: linear-gradient( to right,    
+  rgba(14, 8, 39) 40%,
+  rgba(14, 8, 39, 0) 100%);*/
+  width: 200px; }

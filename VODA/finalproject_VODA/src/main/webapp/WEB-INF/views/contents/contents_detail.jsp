@@ -6,7 +6,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 	
   <!-- HEADER -->
-  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/headerclean.jsp"/>
 
   <!-- Star Sating CDN-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -203,7 +203,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="0" end="0">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                             	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">	
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -214,7 +214,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="1" end="1"> 	
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div> 
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -228,7 +228,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="2" end="2">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -239,7 +239,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="3" end="3">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+								<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -253,7 +253,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="4" end="4">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -264,7 +264,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="5" end="5">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -283,7 +283,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="6" end="6">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -294,7 +294,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="7" end="7"> 	
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div> 
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -308,7 +308,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="8" end="8">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -319,7 +319,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="9" end="9">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -333,7 +333,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="10" end="10">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -344,7 +344,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="11" end="11">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -547,41 +547,31 @@
 	let mNo = '${ loginMember.m_no }';
 	let cNo = '${ contents.c_no }';
 	
-	let param = [{'mNo':'${ loginMember.m_no }','cNo':'${ contents.c_no }'}];
 	
-	if(likeval > 0){
-		console.log(likeval + "좋아요 누름");
-		$('.hey').click(function() {
-			$.ajax({
-				type :'post',
-				url : '<c:url value ="/contents/contents_detail/likeDown"/>',
-				//contentType: 'application/json',
-				data: { 
-					mNo : "${ loginMember.m_no }",
-					cNo : "${ contents.c_no }" 
-				},
-				success : function(data) {
-					alert('취소 성공');
-				}
-			})// 아작스 끝
-		})
+		
+	$('.hey').click(function() {
+		$.ajax({
+			type :'post',
+			url : '<c:url value ="/contents/contents_detail/likeUp"/>',
+			//contentType: 'application/json',
+			data: { 
+				mNo : "${ loginMember.m_no }",
+				cNo : "${ contents.c_no }" 
+			},
+			success : function(confirmLike) {
+				if(confirmLike == 0){
+	             		alert("북마크 완료");
+	                   
+	            }
+	            else if (confirmLike == 1){
+	             	alert("북마크 취소");
+	                  
+	            }
+			}
+		})// 아작스 끝
+	})
 
-	}else{
-		console.log(likeval + "좋아요 안누름")
-		console.log(mNo);
-		$('.hey').click(function() {
-			$.ajax({
-				type :'post',
-				url : '<c:url value ="/contents/contents_detail/likeUp"/>',
-				//contentType: 'application/json',
-				data: { mNo : "${ loginMember.m_no }",
-						cNo : "${ contents.c_no }" },
-				success : function(data) {
-					alert('성공염');
-				}
-			})// 아작스 끝
-		})
-	}
+	
 	</script>
 
 	<script>

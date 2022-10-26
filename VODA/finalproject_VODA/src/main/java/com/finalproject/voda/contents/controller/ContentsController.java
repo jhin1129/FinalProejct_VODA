@@ -99,6 +99,10 @@ public class ContentsController {
 			System.out.println(rateLikes);
 			model.addObject("rateLikes", rateLikes);
 		}
+
+		Contents contents = null;
+		
+		contents = service.getBg(no);
 		
 		List<Rate> rates = null;
 		PageInfo pageInfo = null;
@@ -117,6 +121,7 @@ public class ContentsController {
 		} else {
 		rates = service.getCommentsList(pageInfo, no, sort); }
 		
+		model.addObject("contents", contents);
 		model.addObject("no", no);
 		model.addObject("sort", sort);
 		model.addObject("rates", rates);
@@ -169,7 +174,7 @@ public class ContentsController {
 		if(loginMember != null ) {
 			Likes likes = new Likes();
 			int confirmLike = 0; 
-			int confirmRate = 0;
+			int confirmRate = 0; 
 			
 			likes.setMNo(loginMember.getM_no());
 			likes.setCNo(no); 
@@ -209,19 +214,36 @@ public class ContentsController {
 	@ResponseBody
 	@PostMapping("/contents/contents_detail/likeUp")
 	//@RequestMapping(value = "/contents/contents_detail/likeUp", method = { RequestMethod.POST })	
-	public void likeUp (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
+	public int likeUp (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
 		
-		service.likeUp(mNo, cNo);
+		Likes likes = new Likes();
+		int confirmLike = 0; 
+		
+		likes.setMNo(mNo);
+		likes.setCNo(cNo); 
+	
+		confirmLike = service.findLikes(likes);
+		if(confirmLike == 0) {
+			
+			service.likeUp(mNo, cNo);
+			
+		} else if(confirmLike == 1) {
+			
+			service.likeDown(mNo, cNo);
+		}
+		
+		return confirmLike;
+		
 	}
 	
-	@ResponseBody
-	@PostMapping("/contents/contents_detail/likeDown")
-	//@RequestMapping(value = "/contents/contents_detail/likeUp", method = { RequestMethod.POST })	
-	public void likeDown (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
-
-		
-		service.likeDown(mNo, cNo);
-	}
+//	@ResponseBody
+//	@PostMapping("/contents/contents_detail/likeDown")
+//	//@RequestMapping(value = "/contents/contents_detail/likeUp", method = { RequestMethod.POST })	
+//	public void likeDown (@RequestParam("mNo") int mNo, @RequestParam("cNo") int cNo) {
+//
+//		
+//		
+//	}
 	
 	@ResponseBody
 	@PostMapping("/contents/commentLike")

@@ -78,7 +78,7 @@
 		<result property="c_no" column="C_NO"/>
 		<result property="people_no" column="PEOPLE_NO"/>
 		<result property="cp_role" column="CP_ROLE"/>
-		<result property="cp_img" column="CP_IMG"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
 		<result property="people_name" column="PEOPLE_NAME"/>
 	</resultMap>
 	
@@ -183,7 +183,8 @@
 		   CP.C_NO,
 	       CP.PEOPLE_NO,
 	       CP.CP_ROLE,
-	       P.PEOPLE_NAME
+	       P.PEOPLE_NAME,
+	       P.PEOPLE_RENAMED_FILENAME
        FROM CONTENTSPEOPLE CP
        JOIN PEOPLE P
        ON CP.PEOPLE_NO = P.PEOPLE_NO
@@ -496,6 +497,10 @@
 	<select id="findRate" resultType="_int" parameterType="map">
 		SELECT COUNT(RATE_NO)
 		FROM RATE WHERE C_NO = #{no} AND M_NO = #{m_no}
+	</select>
+	
+	<select id="getBg" parameterType="Contents" resultMap="contentsDetailResultMap">
+		SELECT <include refid="contentsListSql"/> FROM CONTENTS C WHERE C_NO = #{ no }
 	</select>
 		
 </mapper>

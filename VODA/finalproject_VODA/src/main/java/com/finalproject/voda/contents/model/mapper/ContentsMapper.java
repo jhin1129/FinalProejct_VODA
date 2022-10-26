@@ -87,5 +87,7 @@ public interface ContentsMapper {
 
 	List<Rate> orderByMyRate(Map<String, Object> mymap);
 
+	Contents getBg(int no);
+
 
 }

@@ -14,6 +14,5 @@ public class ContentsPeople {
 	private int people_no;
 	private String people_name;
 	private String cp_role;
-	private String cp_img;
-	private String cp_oimg;	
+	private String people_renamed_filename;	
 }
