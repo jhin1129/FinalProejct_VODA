@@ -192,11 +192,12 @@
             <table class="table table-hover">
                 <thead>
                     <tr style="text-align: center">
-                        <th id="th" style="width: 5%;">번호</th>
-                        <th id="th" style="width: 45%;">제목</th>
+                        <th id="th" style="width: 9%;">번호</th>
+                        <th id="th" style="width: 11%;">카테고리</th>
+                        <th id="th" style="width: 42%;">제목</th>
                         <th id="th" style="width: 10%;">답변</th>
-                        <th id="th" style="width: 15%;">작성자</th>
-                        <th id="th" style="width: 15%;">작성일</th>
+                        <th id="th" style="width: 10%;">작성자</th>
+                        <th id="th" style="width: 13%;">작성일</th>
                     </tr>
                 </thead>
 
@@ -211,6 +212,16 @@
 					 <c:forEach var="board" items="${ list }">
 	                    <tr style="text-align: center; cursor:pointer;">
 	                        <td id="td">${ board.bno }</td>
+	                         <td id="td" style="text-align: left;">
+	                        <c:choose> 
+                                <c:when test="${board.bcategory == 'M'}">회원/정보관리</c:when>
+                                <c:when test="${board.bcategory == 'O'}">주문/결제</c:when>
+                                <c:when test="${board.bcategory == 'D'}">배송</c:when>
+                                <c:when test="${board.bcategory == 'R'}">환불</c:when>
+                                <c:when test="${board.bcategory == 'C'}">컨텐츠 요청</c:when>
+                                <c:when test="${board.bcategory == 'E'}">기타</c:when>
+                            </c:choose>
+	                         </td>
 	                           <td id="td" style="text-align: left;">
 		                        	<a href="${ path }/board/question_board_detail?no=${ board.bno }">
 										${ board.btitle }
@@ -222,6 +233,7 @@
 											<img src="${ path }/resources/img/community/attachment.png" width="15px" height="15px">
 									</c:if>
 	                        	</td>
+	                        	
 	                         <td id="td">
 								<c:choose> 
 	                                <c:when test="${board.banswerstatus== 'Y'}">[답변완료]</c:when>
@@ -233,6 +245,7 @@
 	                    </c:forEach>
 
                     <tr>
+                        <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>
                         <td class="td-hr"></td>

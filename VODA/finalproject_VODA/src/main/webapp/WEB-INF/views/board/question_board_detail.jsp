@@ -290,6 +290,7 @@
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/board/question_board_list?type=QNA'">목록</button>
+        	<c:if test="${ loginMember.m_authorization == 'M' }"><button type="button" class="btn btn-greyc btn-sm" onclick="location.href='${path}/admin/admin_qna'">관리자페이지</button></c:if>
         </div>
     </div>
     	<script>

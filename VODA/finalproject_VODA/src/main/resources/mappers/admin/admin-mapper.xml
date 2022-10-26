@@ -363,7 +363,8 @@
 		SELECT C_NO, 
 			   C_TITLE, 
 			   C_PIMG,  
-			   C_STATUS
+			   C_STATUS,
+			   C_DATE
 		FROM CONTENTS
 		ORDER BY C_NO DESC
 	</select>
