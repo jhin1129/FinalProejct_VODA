@@ -192,6 +192,9 @@
 			<if test="brenamedfilename != null">
 				B_RENAMED_FILENAME = #{brenamedfilename},
 			</if>
+			<if test="bcategory != null">
+				BCATEGORY = #{bcategory},
+			</if>
 		</trim>
 		WHERE B_NO = #{bno}
 	</update>

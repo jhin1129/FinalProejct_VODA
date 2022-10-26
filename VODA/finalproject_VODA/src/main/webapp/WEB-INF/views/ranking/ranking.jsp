@@ -241,7 +241,7 @@
 
             <div class="box_ranking" data-tiara-layer="list">
                 <ol class="list_movieranking">
-                    <div id="carouselExampleControlsNoTouching2" class="carousel slide" data-touch="false"
+                    <div id="carouselExampleControlsNoTouching3" class="carousel slide" data-touch="false"
                         data-interval="false">
                         <!--carousel-->
                         <div class="carousel-inner">
@@ -298,7 +298,7 @@
 	                        <div style="width: 5%;" class="my-5">
 	                            <button style="width: 5%; height:100px; margin-top:100px; margin-left: -22px;"
 	                                class="carousel-control-prev" type="button"
-	                                data-target="#carouselExampleControlsNoTouching2" data-slide="prev">
+	                                data-target="#carouselExampleControlsNoTouching3" data-slide="prev">
 	                                <img src="${ path }/resources/img/ranking/slide-left.png" alt=""
 	                                    style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
 	                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -306,7 +306,7 @@
 	                            </button>
 	                            <button style="width: 5%; height:100px; margin-top:100px; margin-right: -25px;"
 	                                class="carousel-control-next" type="button"
-	                                data-target="#carouselExampleControlsNoTouching2" data-slide="next">
+	                                data-target="#carouselExampleControlsNoTouching3" data-slide="next">
 	                                <img src="${ path }/resources/img/ranking/slide-right.png" alt=""
 	                                    style="box-sizing: border-box; border-radius: 50%; box-shadow: rgb(0 0 0 / 40%) 0px 0px 4px 0px;">
 	                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
