@@ -91,7 +91,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -177,7 +177,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -265,7 +265,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -350,7 +350,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -435,7 +435,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -516,7 +516,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
@@ -598,7 +598,7 @@
 	                                                </span>
 	                                            </div>
 	                                            <div class="poster_info">
-	                                                <a href="/moviedb/main?movieId=147615" class="link_story"
+	                                                <a href="${path}/contents/contents_detail?no=${ contents.c_no }" class="link_story"
 	                                                    data-tiara-layer="poster">
 	                                                    ${contents.c_synop }
 	                                                </a>
