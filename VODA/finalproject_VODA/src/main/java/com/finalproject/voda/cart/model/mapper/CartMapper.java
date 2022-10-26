@@ -15,4 +15,6 @@ public interface CartMapper {
 
 	int cartDelete(@Param("pno") int pno,@Param("mno") int m_no);
 
+	Cart selectCart(@Param("m_no")int m_no, @Param("p_no")int p_no);
+
 }

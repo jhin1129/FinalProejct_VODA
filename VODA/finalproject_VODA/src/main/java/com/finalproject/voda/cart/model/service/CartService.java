@@ -17,6 +17,8 @@ public interface CartService {
 
 	int cartDelete(int pno, int m_no);
 
+	Cart getCart(int m_no, int p_no);
+
 
 	
 
