@@ -153,10 +153,10 @@
             <!--Active and Hoverable Pagination-->
             <ul id="pagination">
             <!-- 맨 첫 페이지로 -->
-                <li><a href="${ path }/admin/admin_people?page=1">«</a></li>
+                <li><a href="${ path }/admin/admin_people_search?page=1&searchType=${searchType}&keyword=${keyword}">«</a></li>
 			
 			<!-- 이전 페이지로 -->
-				<li><a href="${ path }/admin/admin_people?page=${ pageInfo.prevPage }">‹</a></li>    
+				<li><a href="${ path }/admin/admin_people_search?page=${ pageInfo.prevPage }&searchType=${searchType}&keyword=${keyword}">‹</a></li>    
 				           
             <!--  10개 페이지 목록 -->
 				<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -165,14 +165,14 @@
 					</c:if>
 					
 					<c:if test="${ status.current != pageInfo.currentPage }">
-                		<li><a href="${ path }/admin/admin_people?page=${ status.current }">${ status.current }</a></li>
+                		<li><a href="${ path }/admin/admin_people_search?page=${ status.current }&searchType=${searchType}&keyword=${keyword}">${ status.current }</a></li>
 					</c:if>
 				</c:forEach>
 				
 			<!-- 다음 페이지로 -->
-				<li><a href="${ path }/admin/admin_people?page=${ pageInfo.nextPage }">›</a></li>  
+				<li><a href="${ path }/admin/admin_people_search?page=${ pageInfo.nextPage }&searchType=${searchType}&keyword=${keyword}">›</a></li>  
 			<!-- 맨 끝 페이지로 -->
-                <li><a href="${ path }/admin/admin_people?page=${ pageInfo.maxPage }">»</a></li>
+                <li><a href="${ path }/admin/admin_people_search?page=${ pageInfo.maxPage }&searchType=${searchType}&keyword=${keyword}">»</a></li>
             </ul>
         </div>
     </div>
