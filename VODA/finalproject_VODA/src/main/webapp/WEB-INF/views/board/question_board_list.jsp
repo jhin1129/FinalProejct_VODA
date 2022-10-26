@@ -271,11 +271,12 @@
             </ul>
             
         </div>
-
+		<c:if test="${ not empty loginMember.m_id || loginMember.m_authorization == 'M' }">
         <div class="display2">
             <button class="btn btn-greyc text-nowrap" style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
                     src="${path}/resources/img/community/edit.png" onclick="location.href='${path}/board/question_board_crud'" style="height: 20px;"></button>
         </div>
+        </c:if>
 
         <div class="col-4 text-right">
         </div>

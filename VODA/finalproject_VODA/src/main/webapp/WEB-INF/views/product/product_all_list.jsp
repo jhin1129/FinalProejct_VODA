@@ -201,7 +201,7 @@
                             <div class="item_poster">
                                 <div class="thumb_item">
                                     <div class="poster_movie">
-                                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="공조2: 인터내셔날">
+                                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="">
                                     </div>
                                     <div class="poster_info">
                                         <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_story" data-tiara-layer="poster">

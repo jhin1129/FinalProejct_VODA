@@ -223,10 +223,10 @@
                         <div class="col-4">
                             <ul id="pagination">
 				            	<!-- 맨 처음으로 -->
-				                <li><a href="${ path }/mypage/dibsContent?page=1">«</a></li>
+				                <li><a href="${ path }/mypage/dibsContent?page=1&type=${type}">«</a></li>
 				                
 				                <!-- 이전 페이지로 -->
-				                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.prevPage }">‹</a></li>
+				                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.prevPage }&type=${type}">‹</a></li>
 				                
 								<!--  10개 페이지 목록 -->
 								<c:forEach begin="${ pageInfo.startPage }" end="${ pageInfo.endPage }" varStatus="status">
@@ -235,14 +235,14 @@
 									</c:if>
 									
 									<c:if test="${ status.current != pageInfo.currentPage }">
-				                		<li><a href="${ path }/mypage/dibsContent?page=${ status.current }">${ status.current }</a></li>
+				                		<li><a href="${ path }/mypage/dibsContent?page=${ status.current }&type=${type}">${ status.current }</a></li>
 									</c:if>
 								</c:forEach>
 								
 								<!-- 다음 페이지로 -->
-									<li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.nextPage }">›</a></li>  
+									<li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.nextPage }&type=${type}">›</a></li>  
 								<!-- 맨 끝 페이지로 -->
-					                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.maxPage }">»</a></li>
+					                <li><a href="${ path }/mypage/dibsContent?page=${ pageInfo.maxPage }&type=${type}">»</a></li>
 				            </ul>
                         </div>
             			<div class="col-4 text-right">
