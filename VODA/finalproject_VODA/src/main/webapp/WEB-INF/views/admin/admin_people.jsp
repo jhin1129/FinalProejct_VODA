@@ -143,7 +143,7 @@
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                                     src="${path}/resources/img/community/search.png" style="height: 18px;"></button>
+                                     src="${path}/resources/img/community/search.png" style="height: 23px;"></button>
                         </span>
                     </div>
                 </div>     
