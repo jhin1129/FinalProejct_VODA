@@ -165,7 +165,7 @@
             pointer-events: none;
         }
         .poster_movie img
-        { width: 45px; height: 45px;}
+        { width: 60px; height: 60px;}
     </style>
       <!-- btn CSS -->
     <link rel="stylesheet" href="${path}/resources/css/common/btn.css">
@@ -192,8 +192,9 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" style="width: 5%">No</th>
-                    <th scope="col" style="width: 20%">상품명</th>
+                    <th scope="col" style="width: 50%;" >상품명</th>
                     <th scope="col">이미지</th>
+                    <th scope="col" style="width: 10%">가격</th>
                     <th scope="col" style="width: 10%">상태수정</th>
                     <th scope="col" style="width: 10%">비활성화</th>
                   </tr>
@@ -235,12 +236,12 @@
                   <c:set var="rename" value="${ product.prenamefile }" />
                   <tr>
                     <th scope="row" class="align-middle">${ product.pno }</th>
-                    <td class="align-middle">
-                    <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename">[${ product.pcategory }] ${ product.pname }</a>
+                    <td class="align-middle"  style="font-weight: bold; font-size: 30px;">
+                    <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_txt" data-tiara-layer="moviename" style="font-weight: bold; font-size: 30px;">[${ product.pcategory }] ${ product.pname }</a>
                     <td><div class="poster_movie">
                           <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb">
-                        </div>
-                    </td>
+                        </div></td>
+                    <td class="align-middle">￦<fmt:formatNumber type="number" value="${ product.pprice }" groupingUsed="true"/></td>
                     <td class="align-middle"><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/product/product_update?pno=${ product.pno }'">수정</button></td>
                     <td class="align-middle">
                     <form action="${ path }/admin/admin_goods_delete" style="width: 100%;">
@@ -250,6 +251,7 @@
                     		<c:when test="${ product.pstatus == 'N'}"><button type="submit" class="btn btn-greyC btn-sm" name="pstatus" value="N">복구</button></c:when>
                     	</c:choose>	
                   	</form>
+                  	</td>
                   </tr>
 				</c:forEach>
                 </tbody>
