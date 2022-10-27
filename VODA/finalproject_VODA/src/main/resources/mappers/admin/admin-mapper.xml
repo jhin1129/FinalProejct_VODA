@@ -427,6 +427,7 @@
 			   P_NAME, 
 			   P_RENAMEFILE, 
 			   P_STATUS,
+			   P_PRICE,
 			   P_CATEGORY
 		FROM PRODUCT
 		ORDER BY P_NO DESC
@@ -568,6 +569,7 @@
 		<if test='searchType == "status"'>
 		WHERE PA.PAY_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
+		ORDER BY O.O_DATE DESC
 	</select>
 	
 	<!-- 상품주문 환불처리 (STATUS = "N")-->

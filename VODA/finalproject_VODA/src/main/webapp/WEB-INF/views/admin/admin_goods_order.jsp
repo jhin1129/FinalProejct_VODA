@@ -192,10 +192,10 @@
                 <thead class="thead-light">
                     <tr style="text-align: center">
                         <th id="th" style="width: 10%;">주문번호</th>
-                        <th id="th" style="width: 20%;">주문일자</th>
-                        <th id="th" style="width: 20%;">상품명</th>
+                        <th id="th" style="width: 15%;">주문일자</th>
+                        <th id="th" style="width: 25%;">상품명</th>
                         <th id="th" style="width: 10%;">회원정보</th>
-                        <th id="th" style="width: 10%;">구매수량</th>
+                        <th id="th" style="width: 9%;">구매수량</th>
                         <th id="th" style="width: 10%;">주문금액</th>
                         <th id="th" style="width: 10%;">
 						<select class="form-control1" style="font-size: 14.45px;"onchange="if(this.value) location.href=(this.value);">
@@ -231,7 +231,7 @@
 						<a href="#" data-toggle="modal" data-target="#Modal${Status.index}">
 	                        ${ order.productList[0].pname }
 	                            <c:if test="${fn:length(order.productList) > 1}">
-	                            외 ${fn:length(order.productList)}건
+	                            외 ${fn:length(order.productList)-1}건
 	                            </c:if>
 						</a>
 
@@ -263,7 +263,15 @@
 						        • 상품명 : 
 						        <c:forEach begin="1" end="${fn:length(order.productList)}" step="1" varStatus="i">
 		                            	<c:set var="Count" value="${i.count-1}" />
-		                            	<c:out value="${order.productList[Count].pname}"/>
+		                            		                            	
+		                             	<c:if test="${i.current < fn:length(order.productList)}">
+		                             		<c:out value="${order.productList[Count].pname}"/>&nbsp;/&nbsp;
+		                             	</c:if>
+		                             	
+		                             	<c:if test="${i.current eq fn:length(order.productList)}">
+		                             		<c:out value="${order.productList[Count].pname}"/><br> &nbsp;&nbsp;&nbsp;‣ 총 ${i.count}개
+		                             	</c:if>
+		                             	
 	                            	</c:forEach><br>
 						        • 결제금액 : <fmt:formatNumber value="${ order.pay.payprice }" type="number" groupingUsed="true"/>원<br>
 						        • 결제수단 : ${ order.pay.paymethod }<br>
