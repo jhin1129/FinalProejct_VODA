@@ -538,7 +538,12 @@
         <!--carousel-->
     </div>
     <!--회색 박스 끝 -->
-
+    
+    <div class="container">
+    <button type="button" class="btn mt-3 mb-3"  onclick="location.href='${path}/contents/contents_update?no=${ contents.c_no }'"
+    style="float:right; background-color:rgb(73,95,233); color:white;">컨텐츠 수정</button>
+	</div>
+	
     <div style="height: 35px;"></div>
 	
 	<script>

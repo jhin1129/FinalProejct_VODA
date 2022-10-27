@@ -80,6 +80,7 @@
 		<result property="cp_role" column="CP_ROLE"/>
 		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
 		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_job" column="PEOPLE_JOB"/>
 	</resultMap>
 	
 	<resultMap type="Rate" id="contentsRate">
@@ -184,6 +185,7 @@
 	       CP.PEOPLE_NO,
 	       CP.CP_ROLE,
 	       P.PEOPLE_NAME,
+	       P.PEOPLE_JOB,
 	       P.PEOPLE_RENAMED_FILENAME
        FROM CONTENTSPEOPLE CP
        JOIN PEOPLE P

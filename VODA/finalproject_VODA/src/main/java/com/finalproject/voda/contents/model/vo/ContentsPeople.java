@@ -15,4 +15,5 @@ public class ContentsPeople {
 	private String people_name;
 	private String cp_role;
 	private String people_renamed_filename;	
+	private String people_job;
 }

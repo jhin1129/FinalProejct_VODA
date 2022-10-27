@@ -538,5 +538,108 @@ public class ContentsController {
 		
 		return model;
 	}
+	
+	@GetMapping("/contents/contents_update")
+	public ModelAndView contentsUpdate(ModelAndView model, @RequestParam int no ) {
+		Contents contents = null;
+		List<ContentsPeople> contentsPeople = null;
+		
+		contents = service.getBg(no);
+		contentsPeople = service.getContentsPeopleByNo(no);
+		
+		model.addObject("contentsPeople", contentsPeople);
+		model.addObject("contents", contents);
+		model.setViewName("contents/contents_update");
+		return model;
+	}
+	
+	@PostMapping("/contents/contents_update")
+	public ModelAndView contentsUpdatePost(ModelAndView model, @ModelAttribute Contents contents,
+															   @RequestParam("upFile") MultipartFile upFile,
+															   @RequestParam("chooseFile") MultipartFile chooseFile,
+															   @RequestParam("people_name") String people_name,
+															   @RequestParam("people_job") String people_job,
+															   @RequestParam("cp_role") String cp_role,
+														       @RequestParam("people_no") String people_no) {
+		int result = 0;
+		
+		log.info("UpFile is Empty : {}", upFile.isEmpty());
+		log.info("UpFile Name : {}", upFile.getOriginalFilename());
+		
+		log.info("chooseFile is Empty : {}", chooseFile.isEmpty());
+		log.info("chooseFile Name : {}", chooseFile.getOriginalFilename());
+	
+		// 1. 파일을 업로드 했는지 확인 후 파일을 저장
+		if(upFile != null && !upFile.isEmpty()) {
+			// 파일을 저장하는 로직 작성
+			String location = null;
+			String renamedFileName = null;
+			
+			try {
+				location = resourceLoader.getResource("resources/uploadFiles/contents").getFile().getPath();
+				renamedFileName = MultipartFileUtil.save(upFile, location);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(renamedFileName != null) {
+				contents.setC_opimg(upFile.getOriginalFilename());
+				contents.setC_pimg(renamedFileName);
+			}
+		}
+		
+		if(chooseFile != null && !chooseFile.isEmpty()) {
+			// 파일을 저장하는 로직 작성
+			String location = null;
+			String renamedFileName = null;
+			
+			try {
+				location = resourceLoader.getResource("resources/uploadFiles/contents").getFile().getPath();
+				renamedFileName = MultipartFileUtil.save(chooseFile, location);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			if(renamedFileName != null) {
+				contents.setC_obimg(chooseFile.getOriginalFilename());
+				contents.setC_bimg(renamedFileName);
+			}
+		}
+		
+		// 2. 작성한 게시글 데이터를 데이터 베이스에 저장
+		result = service.saveContents(contents);
+		
+		ContentsPeople contentspeople = new ContentsPeople();
+		
+		String[] peopleNoList = people_no.split(",");
+		
+		String[] peopleRoleList = cp_role.split(",");
+		for(int i=0; i < peopleRoleList.length; i++){
+			 
+			System.out.println(peopleRoleList[i]);
+			contentspeople.setC_no(result);
+			contentspeople.setCp_role(peopleRoleList[i]);
+			contentspeople.setPeople_no(Integer.parseInt(peopleNoList[i]));
+			
+			service.saveContentsPeople(contentspeople);
+		}
+		
+		
+		if(result > 0) {
+			model.addObject("msg", "게시글이 정상적으로 등록되었습니다.");
+			model.addObject("location", "/contents/contents_detail?no=" + result );
+		} else {
+			model.addObject("msg", "게시글 등록을 실패하였습니다.");
+			model.addObject("location", "/contents/contents_form");
+		}
+				
+		model.setViewName("common/msg");
+		
+		return model;
+		
 
+	}
+	
+
+	
 }
