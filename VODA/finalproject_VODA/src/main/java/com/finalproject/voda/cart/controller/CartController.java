@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.finalproject.voda.cart.model.service.CartService;
 import com.finalproject.voda.cart.model.vo.Cart;
-import com.finalproject.voda.common.util.PageInfo;
 import com.finalproject.voda.member.model.vo.Member;
 import com.finalproject.voda.product.model.service.ProductService;
 import com.finalproject.voda.product.model.vo.Product;
@@ -74,21 +73,26 @@ public class CartController {
 			model.addObject("location", "/member/login");
 			model.setViewName("common/msg");
 		} else {
-			cart.setMno(loginMember.getM_no());
-			result = cartService.insertCart(cart);
-			
-			if(result > 0) {
-				model.addObject("msg", "장바구니에 등록되었습니다.");
+			Cart cart1 = null;
+			cart1 = cartService.getCart(loginMember.getM_no(), pno);
+			if(cart1 != null) {
+				model.addObject("msg", "이미 등록된 상품입니다.");
 				model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
-			} else {
-				model.addObject("msg", "장바구니에 등록 실패!");
-				model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+			}
+			else {
+				cart.setMno(loginMember.getM_no());
+				result = cartService.insertCart(cart);
+				
+				if(result > 0) {
+					model.addObject("msg", "장바구니에 등록되었습니다.");
+					model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+				} else {
+					model.addObject("msg", "장바구니에 등록 실패!");
+					model.addObject("location", "/product/product_detail?pno=" + cart.getPno());
+				}
 			}
 			model.setViewName("common/msg");
 		}
-		
-		
-
 		
 		return model;
 	}

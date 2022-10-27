@@ -35,6 +35,12 @@
 		ORDER BY C.P_NO DESC 
 	</select>
 	
+	<select id="selectCart" resultMap="CartListResultMap">
+		<include refid="getCartListSql" />
+		WHERE C.C_STATUS = 'Y' AND C.M_NO = #{m_no} AND C.P_NO = #{p_no}
+	</select>
+	
+	
 	<insert id="insertCart" parameterType="Cart">
 	INSERT INTO CART VALUES (#{mno}, #{pno}, 'Y')
 	</insert>
