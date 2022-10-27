@@ -270,17 +270,17 @@
 			C.C_PIMG,
 			C.C_YEAR,
 			C.C_NATION,
+			C.C_SYNOP,
 			P.PEOPLE_NO,
 			P.PEOPLE_NAME,
 			P.PEOPLE_ORIGINAL_FILENAME,
 			P.PEOPLE_RENAMED_FILENAME
 		FROM CONTENTS C
-			left outer JOIN CONTENTSPEOPLE CP 
+			LEFT OUTER JOIN CONTENTSPEOPLE CP 
 			ON C.C_NO=CP.C_NO
-			left outer JOIN PEOPLE P ON 
+			LEFT OUTER JOIN PEOPLE P ON 
 			CP.PEOPLE_NO = P.PEOPLE_NO
-			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
-			OR C_TITLE LIKE '%' || '${ keyword }' || '%'
+			WHERE C_TITLE LIKE '%' || '${ keyword }' || '%'
 	</select>
 	
 	<select id="selectPeopleSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">

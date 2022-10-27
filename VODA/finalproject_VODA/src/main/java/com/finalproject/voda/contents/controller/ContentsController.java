@@ -339,6 +339,10 @@ public class ContentsController {
 		} else {
 		rates = service.getCommentsList(pageInfo, no, sort); }
 		
+		Contents contents = null;
+		contents = service.getBg(no);
+		
+		model.addObject("contents", contents);
 		model.addObject("rateNo", rateNo);
 		model.addObject("no", no);
 		model.addObject("sort", sort);

@@ -26,7 +26,7 @@
 	<!-- 제이쿼리 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-	<title>Insert title here</title>
+	<title>보다 - 컨텐츠 리뷰 & 쇼핑몰</title>
 	
 	 <style>
         img {

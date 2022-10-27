@@ -18,6 +18,7 @@ public class SearchResult {
  	private String c_pimg;
  	private String c_opimg;
  	private String c_nation;
+	private String c_synop;
  	private int c_year;
  	private int people_no;
  	private String people_name;

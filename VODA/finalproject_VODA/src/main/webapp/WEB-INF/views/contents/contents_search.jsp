@@ -33,10 +33,11 @@
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }.jpg" class="img_thumb">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }" class="img_thumb">
 		                        </div>
 		                        <div class="poster_info">
 		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
+		                            	 ${ searchResult.c_synop }
 		                            </a>
 		                        </div>
 		                    </div>
@@ -86,10 +87,11 @@
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_opimg }.jpg" class="img_thumb">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }" class="img_thumb">
 		                        </div>
 		                        <div class="poster_info">
 		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
+		                            	 ${ searchResult.c_synop }
 		                            </a>
 		                        </div>
 		                    </div>
@@ -139,10 +141,11 @@
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_opimg }.jpg" class="img_thumb">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }" class="img_thumb">
 		                        </div>
 		                        <div class="poster_info">
 		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
+		                            	 ${ searchResult.c_synop }
 		                            </a>
 		                        </div>
 		                    </div>
@@ -192,10 +195,11 @@
 		                <div class="item_poster" style="height:212px;">
 		                    <div class="thumb_item" style="height:212px;">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchResult.c_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_opimg }.jpg" class="img_thumb">
+		                            <img src="${ path }/resources/uploadFiles/contents/${ searchResult.c_pimg }" class="img_thumb">
 		                        </div>
-		                        <div class="poster_info">
+		                    	<div class="poster_info">
 		                            <a href="${path}/contents/contents_detail?no=${ searchResult.c_no }" class="link_story" data-tiara-layer="poster">
+		                            	 ${ searchResult.c_synop }
 		                            </a>
 		                        </div>
 		                    </div>
@@ -244,10 +248,10 @@
 		                <div class="item_poster">
 		                    <div class="thumb_item">
 		                        <div class="poster_movie" onclick="location.href='${path}/contents/contents_detail?no=${ searchPeople.people_no }'">
-		                            <img src="${ path }/resources/uploadFiles/contents/${ searchPeople.people_no }.jpg" class="img_thumb">
+		                           <img src="${ path }/resources/upload/people/${ searchPeople.people_renamed_filename }" alt="">	
 		                        </div>
 		                        <div class="poster_info">
-		                            <a href="${path}/contents/contents_detail?no=${ searchPeople.people_no }" class="link_story" data-tiara-layer="poster">
+		                            <a href="${ path }/people/people?people_no=${ searchPeople.people_no }" class="link_story" data-tiara-layer="poster">
 		                            </a>
 		                        </div>
 		                    </div>
