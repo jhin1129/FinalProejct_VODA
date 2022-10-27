@@ -26,7 +26,7 @@
     
     
 	
-	<title>Insert title here</title>
+	<title>VODA - 컨텐츠 리뷰 및 쇼핑몰</title>
 </head>
 <body>
 	<!-- 헤더 시작 -->
