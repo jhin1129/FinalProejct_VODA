@@ -78,8 +78,10 @@ public class OrderController {
 		for(int i = 0; i < pnolist.size(); i++) {	                      //>>그렇다면 먼저 반복문의 범위를 전체 카트개수가 아닌 체크된 상품리스트 pnolist를 사용해야겠지
 			Cart cart1 = cartService.getCart(loginMember.getM_no(), (int)pnolist.get(i)); //>>그리고 카트객체를 하나 만들어서 pno에 해당하는 상품정보를 가져와
 			cart1.setPorderqtt(porderqtt.get(i));                                         //>>가져온 상품카트에 구매수량만 set해주면 상품 하나 완성 사실 porderqtt는 구매수량이 아니라 보유수량인데 아닌가?
+			cart1.setPprice(porderqtt.get(i) * cart1.getPprice());                          										//>>가져온 상품카트에 구매수량만 set해주면 상품 하나 완성 사실 porderqtt는 구매수량이 아니라 보유수량인데 아닌가?
 			
 			cart.add(cart1);                                                              //>>완성된 카트 하나를 카트리스트에 추가, 이걸 반복돌려서 카트리스트를 넘겨주면 되는거야
+			
 		}
 	
 		
