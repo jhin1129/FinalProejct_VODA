@@ -31,6 +31,14 @@
         button:focus {
             box-shadow: none !important;
         }
+        
+       	.btn-logoc:focus {
+        	box-shadow: none;
+        }
+        
+        .btn-greyc:focus {
+        	box-shadow: none;
+        }          
 
         .btn-logoc {
             color: #fff;
@@ -102,6 +110,10 @@
             display: none;
 
         }
+        
+        select:focus {
+		    outline: none;
+		}        
     </style>
 
 
@@ -114,8 +126,8 @@
         crossorigin="anonymous"></script>
 
     <!-- summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.js"></script>
 
     <title>free_brd_crud</title>
 
@@ -128,12 +140,12 @@
     <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">자유게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${path }/board/free_board_list?type=FREE">자유 게시판</a></h3>
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
         
-        <form action="${ path }/board/free_board_update" method="POST" enctype="multipart/form-data">
+        <form action="${ path }/board/free_board_update" method="POST"  onsubmit="return submitCheck()" enctype="multipart/form-data">
 				<input type="hidden" name="bno" value="${ board.bno }">
 				<input type="hidden" name="originalFileName" value="${ board.boriginalfilename }">
 				<input type="hidden" name="renamedFileName" value="${ board.brenamedfilename }">
@@ -143,7 +155,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">제목</th>
-                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" name="btitle"
+                            <td class="p-0" style="width: 80%;"><input type="text" value="${ board.btitle }" id="title" name="btitle"
                                     style="width: 98%; height: 25px; font-size: 14.45px; margin-top: 8.4px; margin: 8px;">
                             </td>
 
@@ -226,6 +238,14 @@
 			});	
 		
 		});
+		
+		function submitCheck() {
+			if($("#title").val().trim()==""){
+				alert("제목을 입력해주세요");
+				return false;
+			}
+		};
+	    
 		
 	</script>
 

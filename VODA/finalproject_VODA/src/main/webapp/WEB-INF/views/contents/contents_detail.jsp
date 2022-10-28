@@ -6,7 +6,7 @@
 <c:set var="path" value="${ pageContext.request.contextPath }"/>
 	
   <!-- HEADER -->
-  <jsp:include page="/WEB-INF/views/common/header.jsp"/>
+  <jsp:include page="/WEB-INF/views/common/headerclean.jsp"/>
 
   <!-- Star Sating CDN-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -133,8 +133,8 @@
                     <div class="popup-content">
                         <a href="#" class="close">&times;</a>
                         <div class="gamsang">COMMENT</div>
-                        <form action="${ path }/contents/comment_write?no=${ contents.c_no }" method="post" "background-color: rgb(235,236,246);">
-                            <div class="staraverage" style="text-align: center; height: 110px;">
+                        <form action="${ path }/contents/comment_write?no=${ contents.c_no }" method="post">
+                            <div class="staraverage" style="text-align: center; height: 110px; background-color: rgb(235,236,246);">
                                 <fieldset class="rate">
                                     <input type="radio" id="rating10" name="rate_star" value="5" /><label for="rating10" title="5 stars"></label>
                                     <input type="radio" id="rating9" name="rate_star" value="4.5" /><label class="half" for="rating9" title="4 1/2 stars"></label>
@@ -172,7 +172,7 @@
                     <td class="" id="contentinfo">
                         ${ contents.c_title } <br>
                         ${ contents.c_year } · ${ contents.c_nation } · ${ contents.c_genre } <br>
-                        ${ contents.c_info } · ${ contents.c_age } <br><br>
+                        ${ contents.c_info } · <c:if test ="${ contents.c_age > 0 }">${ contents.c_age }세 이용가</c:if><c:if test ="${ contents.c_age == 0 }">전체 이용가</c:if><br><br> 
                     </td>
                     <td class="" id="julgury">
                         <div id="julguryline">
@@ -203,7 +203,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="0" end="0">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                             	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">	
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -214,7 +214,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="1" end="1"> 	
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div> 
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -228,7 +228,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="2" end="2">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -239,7 +239,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="3" end="3">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+								<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -253,7 +253,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="4" end="4">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -264,7 +264,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="5" end="5">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -283,7 +283,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="6" end="6">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -294,7 +294,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="7" end="7"> 	
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div> 
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -308,7 +308,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="8" end="8">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -319,7 +319,7 @@
 					<c:forEach var="contentsPeople" items="${ contentsPeople }" begin="9" end="9">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -333,7 +333,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="10" end="10">
                         <div class="col-actor" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                                <img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -344,7 +344,7 @@
                     <c:forEach var="contentsPeople" items="${ contentsPeople }" begin="11" end="11">
                         <div class="col-actor" style="padding-left: 0px" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
                             <div class="sajin">
-                                <img src="https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800" alt="">
+                            	<img src="${ path }/resources/upload/people/${ contentsPeople.people_renamed_filename }" alt="">
                             </div>
                         </div>
                         <div class="col-name" OnClick="location.href='${ path }/people/people?people_no=${ contentsPeople.people_no }'">
@@ -385,17 +385,6 @@
             	<div class="bar" <c:if test="${ rateResult._4 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._4 }0"><span class="bar__name">4</span></div>
             	<div class="bar" <c:if test="${ rateResult._45 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._45 }0"><span class="bar__name"></span></div>
             	<div class="bar" <c:if test="${ rateResult._5 == 0 }">data-bar-value="1"</c:if> data-bar-value="${ rateResult._5 }0"><span class="bar__name">5</span></div>
-            	
-           <!-- <div class="bar" data-bar-value="${ rateResult._05 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._1 }0"><span class="bar__name">1</span></div>
-                <div class="bar" data-bar-value="${ rateResult._15 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._2 }0"><span class="bar__name">2</span></div>
-                <div class="bar" data-bar-value="${ rateResult._25 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._3 }0"><span class="bar__name">3</span></div>
-                <div class="bar" data-bar-value="${ rateResult._35 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._4 }0"><span class="bar__name">4</span></div>
-                <div class="bar" data-bar-value="${ rateResult._45 }0"><span class="bar__name"></span></div>
-                <div class="bar" data-bar-value="${ rateResult._5 }0"><span class="bar__name">5</span></div> -->
             </div>
         </div>
         <hr style="margin-top: 30px; margin-bottom: 30px;">
@@ -405,8 +394,9 @@
         <span style="font-size: 1em; color: gray;">${ rateResult.rate_count }+</span>
 
         <span OnClick="location.href='${ path }/contents/contents_comments?no=${ contents.c_no }&sort=like'" 
-        style="color: rgb(73,95,233); float: right; font-weight: 600; font-size:1.2em;">더보기</span>
-
+        style="color:rgb(73,95,233); float:right; font-weight:600; font-size:1.2em; cursor:pointer;">더보기</span>
+		
+        <c:if test="${ rateResult.rate_count > 0 }">
         <div id="carouselExampleControlsNoTouching" class="carousel slide" data-touch="false" data-interval="false">
             <!--carousel-->
             <div class="carousel-inner">
@@ -426,7 +416,6 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
                         <c:forEach var="rate" items="${ contents.rates }" begin="3" end="3">
@@ -442,7 +431,6 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
                     </div>
@@ -465,7 +453,6 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
                         <c:forEach var="rate" items="${ contents.rates }" begin="6" end="6">
@@ -481,9 +468,9 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
+                        <div class="row bg-danger" style="height:300px;"></div>
                     </div>
                 </div>
                 <!--carousel page 2 end-->
@@ -504,7 +491,6 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
                         <c:forEach var="rate" items="${ contents.rates }" begin="9" end="9">
@@ -520,7 +506,6 @@
                                     <path d="M320 1344q0-26-19-45t-45-19q-27 0-45.5 19t-18.5 45q0 27 18.5 45.5t45.5 18.5q26 0 45-18.5t19-45.5zm160-512v640q0 26-19 45t-45 19h-288q-26 0-45-19t-19-45v-640q0-26 19-45t45-19h288q26 0 45 19t19 45zm1184 0q0 86-55 149 15 44 15 76 3 76-43 137 17 56 0 117-15 57-54 94 9 112-49 181-64 76-197 78h-129q-66 0-144-15.5t-121.5-29-120.5-39.5q-123-43-158-44-26-1-45-19.5t-19-44.5v-641q0-25 18-43.5t43-20.5q24-2 76-59t101-121q68-87 101-120 18-18 31-48t17.5-48.5 13.5-60.5q7-39 12.5-61t19.5-52 34-50q19-19 45-19 46 0 82.5 10.5t60 26 40 40.5 24 45 12 50 5 45 .5 39q0 38-9.5 76t-19 60-27.5 56q-3 6-10 18t-11 22-8 24h277q78 0 135 57t57 135z" /></svg>
                             </a>
                             <div class="likecount"><c:out value="${ rate.rate_like }"/></div>
-                            <a class="delete">삭제</a>
                         </div>
                         </c:forEach>
                     </div>
@@ -541,10 +526,18 @@
                 </button>
             </div>
         </div>
+ 		</c:if>
+ 		<div style="height:280px; text-align:center; color:gray; padding-top:150px; font-size:1.1em;">등록된 코멘트가 없습니다</div>
+        
         <!--carousel-->
     </div>
     <!--회색 박스 끝 -->
-
+    
+    <div class="container">
+    <button type="button" class="btn mt-3 mb-3"  onclick="location.href='${path}/contents/contents_update?no=${ contents.c_no }'"
+    style="float:right; background-color:rgb(73,95,233); color:white;">컨텐츠 수정</button>
+	</div>
+	
     <div style="height: 35px;"></div>
 	
 	<script>
@@ -553,41 +546,31 @@
 	let mNo = '${ loginMember.m_no }';
 	let cNo = '${ contents.c_no }';
 	
-	let param = [{'mNo':'${ loginMember.m_no }','cNo':'${ contents.c_no }'}];
 	
-	if(likeval > 0){
-		console.log(likeval + "좋아요 누름");
-		$('.hey').click(function() {
-			$.ajax({
-				type :'post',
-				url : '<c:url value ="/contents/contents_detail/likeDown"/>',
-				//contentType: 'application/json',
-				data: { 
-					mNo : "${ loginMember.m_no }",
-					cNo : "${ contents.c_no }" 
-				},
-				success : function(data) {
-					alert('취소 성공');
-				}
-			})// 아작스 끝
-		})
+		
+	$('.hey').click(function() {
+		$.ajax({
+			type :'post',
+			url : '<c:url value ="/contents/contents_detail/likeUp"/>',
+			//contentType: 'application/json',
+			data: { 
+				mNo : "${ loginMember.m_no }",
+				cNo : "${ contents.c_no }" 
+			},
+			success : function(confirmLike) {
+				if(confirmLike == 0){
+	             		alert("북마크 완료");
+	                   
+	            }
+	            else if (confirmLike == 1){
+	             	alert("북마크 취소");
+	                  
+	            }
+			}
+		})// 아작스 끝
+	})
 
-	}else{
-		console.log(likeval + "좋아요 안누름")
-		console.log(mNo);
-		$('.hey').click(function() {
-			$.ajax({
-				type :'post',
-				url : '<c:url value ="/contents/contents_detail/likeUp"/>',
-				//contentType: 'application/json',
-				data: { mNo : "${ loginMember.m_no }",
-						cNo : "${ contents.c_no }" },
-				success : function(data) {
-					alert('성공염');
-				}
-			})// 아작스 끝
-		})
-	}
+	
 	</script>
 
 	<script>

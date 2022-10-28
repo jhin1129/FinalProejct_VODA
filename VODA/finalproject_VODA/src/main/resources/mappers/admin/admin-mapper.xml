@@ -363,7 +363,8 @@
 		SELECT C_NO, 
 			   C_TITLE, 
 			   C_PIMG,  
-			   C_STATUS
+			   C_STATUS,
+			   C_DATE
 		FROM CONTENTS
 		ORDER BY C_NO DESC
 	</select>
@@ -426,6 +427,7 @@
 			   P_NAME, 
 			   P_RENAMEFILE, 
 			   P_STATUS,
+			   P_PRICE,
 			   P_CATEGORY
 		FROM PRODUCT
 		ORDER BY P_NO DESC
@@ -567,6 +569,7 @@
 		<if test='searchType == "status"'>
 		WHERE PA.PAY_STATUS LIKE '%' || #{keyword} || '%'
 		</if>
+		ORDER BY O.O_DATE DESC
 	</select>
 	
 	<!-- 상품주문 환불처리 (STATUS = "N")-->
@@ -822,6 +825,12 @@
 			</if>
 			<if test="noticeRenamedFileName != null">
 				N_RENAMED_FILENAME = #{noticeRenamedFileName},
+			</if>
+			<if test='noticeTopTitle == 1'>
+				N_TOPTITLE = #{noticeTopTitle}
+			</if>
+			<if test='noticeTopTitle == null'>
+				N_TOPTITLE = DEFAULT
 			</if>
 		</trim>
 		WHERE N_NO = #{noticeno}

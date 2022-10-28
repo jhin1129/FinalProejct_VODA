@@ -42,7 +42,7 @@
             <path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1Z"/>
           </svg> 통계 확인 
           <select onchange="if(this.value) location.href=(this.value);" class="form-control" style="width: 15%; float: right;" >
-            <option value="${path}/admin/admin_total_views?no=00" selected>--</option>
+            <option value="${path}/admin/admin_total_views?no=00" selected>데이터별</option>
             <option value="${path}/admin/admin_total_views?no=00">조회수</option>
             <option value="${path}/admin/admin_total_sales?no=00">매출액</option>
             <option value="${path}/admin/admin_total_join?no=00">가입자수</option>
@@ -60,7 +60,7 @@
                           <h6 class="m-0 font-weight-bold text-primary" style="line-height: 3rem;">조회수
 
                             <select class="form-control" style="width: 15%; float: right;" onchange="if(this.value) location.href=(this.value);">
-                               <option value="${path}/admin/admin_total_views?no=00"selected="selected">--</option>
+                               <option value="${path}/admin/admin_total_views?no=00"selected="selected">월별</option>
 							 <c:forEach var="monthlydata" items="${monthlydata}" varStatus="i">
                                <option value="${path}/admin/admin_total_views?no=${monthlydata.monthdata}">${monthlydata.monthdata}</option>
                              </c:forEach>

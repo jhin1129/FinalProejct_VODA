@@ -78,9 +78,9 @@
 		<result property="c_no" column="C_NO"/>
 		<result property="people_no" column="PEOPLE_NO"/>
 		<result property="cp_role" column="CP_ROLE"/>
-		<result property="cp_img" column="CP_IMG"/>
-		<result property="cp_oimg" column="CP_OIMG"/>
+		<result property="people_renamed_filename" column="PEOPLE_RENAMED_FILENAME"/>
 		<result property="people_name" column="PEOPLE_NAME"/>
+		<result property="people_job" column="PEOPLE_JOB"/>
 	</resultMap>
 	
 	<resultMap type="Rate" id="contentsRate">
@@ -184,9 +184,9 @@
 		   CP.C_NO,
 	       CP.PEOPLE_NO,
 	       CP.CP_ROLE,
-	       CP.CP_IMG,
-	       CP.CP_OIMG,
-	       P.PEOPLE_NAME
+	       P.PEOPLE_NAME,
+	       P.PEOPLE_JOB,
+	       P.PEOPLE_RENAMED_FILENAME
        FROM CONTENTSPEOPLE CP
        JOIN PEOPLE P
        ON CP.PEOPLE_NO = P.PEOPLE_NO
@@ -270,17 +270,17 @@
 			C.C_PIMG,
 			C.C_YEAR,
 			C.C_NATION,
+			C.C_SYNOP,
 			P.PEOPLE_NO,
 			P.PEOPLE_NAME,
 			P.PEOPLE_ORIGINAL_FILENAME,
 			P.PEOPLE_RENAMED_FILENAME
 		FROM CONTENTS C
-			left outer JOIN CONTENTSPEOPLE CP 
+			LEFT OUTER JOIN CONTENTSPEOPLE CP 
 			ON C.C_NO=CP.C_NO
-			left outer JOIN PEOPLE P ON 
+			LEFT OUTER JOIN PEOPLE P ON 
 			CP.PEOPLE_NO = P.PEOPLE_NO
-			WHERE PEOPLE_NAME LIKE '%' || '${ keyword }' || '%'
-			OR C_TITLE LIKE '%' || '${ keyword }' || '%'
+			WHERE C_TITLE LIKE '%' || '${ keyword }' || '%'
 	</select>
 	
 	<select id="selectPeopleSearchByKeyword" parameterType="String" resultMap="searchByKeywordResultMap">
@@ -499,6 +499,10 @@
 	<select id="findRate" resultType="_int" parameterType="map">
 		SELECT COUNT(RATE_NO)
 		FROM RATE WHERE C_NO = #{no} AND M_NO = #{m_no}
+	</select>
+	
+	<select id="getBg" parameterType="Contents" resultMap="contentsDetailResultMap">
+		SELECT <include refid="contentsListSql"/> FROM CONTENTS C WHERE C_NO = #{ no }
 	</select>
 		
 </mapper>

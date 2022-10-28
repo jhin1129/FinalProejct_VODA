@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   height: 400px;
-  background-color:  rgba(43, 1, 103, 1);
+  background-color: #495057;
   justify-content: center; }
 
 .grabox {
@@ -154,7 +154,8 @@ position: absolute;
 
 #julgury {
   border-left: rgb(166, 166, 166) solid 0.5px;
-  padding-left: 45px; }
+  padding-left: 45px; 
+  padding-right: 45px;}
 
 #contentinfo {
   width: 200px;

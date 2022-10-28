@@ -165,7 +165,7 @@
             pointer-events: none;
         }
         .poster_movie img
-        { width: 45px; height: 45px;}
+        { width: 80px; height: 120px;}
     </style>
     
         <!-- btn CSS -->
@@ -187,7 +187,8 @@
           <h1 class="h3 mb-2 text-gray-800"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             컨텐츠 관리
 		  <select onchange="if(this.value) location.href=(this.value);" class="form-control1" style="width: 15%; float: right; font-size: 14.45px;" >
-            <option value="${path}/admin/admin_total_views?no=00" selected>--</option>
+            <option value="${path}/admin/admin_content" selected>컨텐츠 종류</option>
+            <option value="${path}/admin/admin_content">전체</option>
             <option value="${path}/admin/admin_content_search?searchType=type&keyword=영화">영화</option>
             <option value="${path}/admin/admin_content_search?searchType=type&keyword=TV">TV</option>
             <option value="${path}/admin/admin_content_search?searchType=type&keyword=웹툰">웹툰</option>
@@ -201,15 +202,16 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col" style="width: 5%">No</th>
-                    <th scope="col" style="width: 20%">제목</th>
-                    <th scope="col">이미지</th>
-                    <th scope="col" style="width: 10%">상태수정</th>
-                    <th scope="col" style="width: 10%">비활성화</th>
+                    <th scope="col" style="width: 30%">제목</th>
+                    <th scope="col" style="width: 30%">이미지</th>
+                    <th scope="col" style="width: 15%">업로드날짜</th>
+                    <th scope="col" style="width: 10%">리뷰관리</th>
+                    <th scope="col" style="width: 20%">비활성화</th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                      <th colspan="5">            
+                      <th colspan="6">            
 				        <div class="search1 row my-4">
 				          <form action="${ path }/admin/admin_content_search" style="width: 100%;">
 				            <div class="col-12 row">
@@ -238,11 +240,12 @@
                 </tfoot>
                 <tbody>
                 <c:forEach var="content" items="${ search }">
-                  <tr>                    
+                  <tr style="line-height: 120px;">                    
                     <th scope="row">${ content.c_no }</th>
-                    <td><a href="${path}/contents/contents_detail?no=${ content.c_no }">${ content.c_title }</a></td>
-                    <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ contents.c_bimg }"/></td>
-                    <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_comments?no=${ content.c_no }&sort=like'">관리</td>
+                    <td style="font-weight: bold; font-size: 30px;"><a style="font-size: 18px;"  href="${path}/contents/contents_detail?no=${ content.c_no }">${ content.c_title }</a></td>
+                  <td class="poster_movie"><img id="graposter" class="img_thumb" src="${ path }/resources/uploadFiles/contents/${ content.c_pimg }"/></td>
+                     <td><fmt:formatDate value="${content.c_date }" type="date"></fmt:formatDate></td>
+                     <td><button type="button" class="btn btn-logoC btn-sm" onclick="location.href='${path}/contents/contents_comments?no=${ content.c_no }&sort=like'">관리</td>
                     <td>
                     <form action="${ path }/admin/admin_content_delete" style="width: 100%;">
                     	<input type="hidden" name="cno" value="${ content.c_no }">

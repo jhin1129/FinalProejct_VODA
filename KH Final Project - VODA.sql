@@ -299,7 +299,7 @@ CREATE TABLE CONTENTS (
 	C_NO	NUMBER		NOT NULL,
 	C_TITLE	VARCHAR2(300)		NULL,
 	C_TYPE	VARCHAR2(20)		NULL,
-	C_GENRE	VARCHAR2(20)		NULL,
+	C_GENRE	VARCHAR2(60)		NULL,
 	C_YEAR	NUMBER		NULL,
 	C_NATION	VARCHAR2(20)		NULL,
     C_AGE   NUMBER      NULL,
@@ -1590,7 +1590,7 @@ DBMS_SCHEDULER.CREATE_JOB (
             COMMENTS => '매출액 테이블 데이터 증가 (1시간에 1번)');
 END;
 
--- CONTENTSTYPE 컨텐츠 타입별 데이터 생성 스케쥴러 ( 매 10분에 한번씩 )
+-- CONTENTSTYPE 컨텐츠 타입별 데이터 생성 스케쥴러 ( 매 1시간에 한번씩 )
 BEGIN
 DBMS_SCHEDULER.CREATE_JOB (
             JOB_NAME => 'JOB_UPDATE_CONTENTSTYPE',
@@ -1598,16 +1598,13 @@ DBMS_SCHEDULER.CREATE_JOB (
             JOB_ACTION => 'UPDATE_CONTENTSTYPE',
             NUMBER_OF_ARGUMENTS => 0,
             START_DATE => CURRENT_TIMESTAMP,
-            REPEAT_INTERVAL => 'FREQ=MINUTELY ;INTERVAL=10',
+            REPEAT_INTERVAL => 'FREQ=MINUTELY ;INTERVAL=30',
             END_DATE => NULL,
             ENABLED => TRUE,
             AUTO_DROP => FALSE,
-            COMMENTS => '컨텐츠 타입별 테이블 삽입 (10분에 한번씩 수행)');
+            COMMENTS => '컨텐츠 타입별 테이블 삽입 (1시간에 한번씩 수행)');
 END;
-		SELECT CV_NO,
-			   TO_CHAR(CV_DATE, 'MM'),
-			   CV_COUNT
-		FROM CVIEW;
+
 -- CONTENTS 컨텐츠 테이블 매일 현재날짜 변경 및 조회수 초기화( 매일 00시00분10초에 UPDATE )
 BEGIN
 DBMS_SCHEDULER.CREATE_JOB (
@@ -1660,7 +1657,7 @@ SELECT * FROM USER_SCHEDULER_JOB_RUN_DETAILS;
 
 -- 스케쥴러 삭제
 BEGIN
-    DBMS_SCHEDULER.DROP_JOB(JOB_NAME => 'JOB_INSERT_D_TEST',
+    DBMS_SCHEDULER.DROP_JOB(JOB_NAME => 'JOB_UPDATE_CVIEW',
                                 DEFER => FALSE,
                                 FORCE => FALSE);
 END;

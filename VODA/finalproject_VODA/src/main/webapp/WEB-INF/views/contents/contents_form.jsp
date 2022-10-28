@@ -118,16 +118,21 @@ function trRemove(ths){
                 <option value="0">전체 관람가</option>
                 <option value="12">12세 관람가</option>
                 <option value="15">15세 관람가</option>
-                <option value="18">18세 관람가</option>
+                <option value="19">19세 관람가</option>
             </select>
         <p class="purple" type="컨텐츠 줄거리"></p>
         <textarea class="form-control" id="exampleFormControlTextarea1" name="c_synop" rows="4"></textarea>
 
         <p class="purple" type="컨텐츠 등장인물">
 
-         <button id="btnFindProduct" class="btn mt-3 terms-view" type="button" style="background-color: rgb(73,95,233); color: white;" onclick="resOpenPopup();return false;">
+         <button id="btnFindProduct" class="btn mt-3 mr-3 terms-view" type="button" style="background-color: rgb(73,95,233); color: white;" onclick="resOpenPopup();return false;">
              컨텐츠 인물 등록 버튼
          </button>
+         
+         <button id="btnRegisterProduct" class="btn mt-3 terms-view" type="button" style="background-color: rgb(73,95,233); color: white;">
+             인물 등록 버튼
+         </button>
+         
 
 <div id="contAreaBox">
     <div class="table">
@@ -212,11 +217,6 @@ function trRemove(ths){
 
         newImage.src = URL.createObjectURL(file);
 
-        // newImage.style.width = "100%";
-        // newImage.style.height = "100%";
-        // newImage.style.visibility = "visible";   //버튼을 누르기 전까지는 이미지 숨기기
-        // newImage.style.objectFit = "contain";
-
         var container = document.getElementById('image-show');
         container.appendChild(newImage);
     };
@@ -234,6 +234,18 @@ function trRemove(ths){
             document.getElementById('preview').src = "";
         }
     }
+</script>
+
+<!-- 인물 등록 -->
+<script>
+	$(document).ready(() => {
+        $("#btnRegisterProduct").on("click", () => {
+            let url ="peopleEnroll.html";
+            let status = "left=300px,top=0px,width=1200px,height=800px";
+
+            open(url,"",status);
+        });
+	}); 
 </script>
 
 <!-- FOOTER -->

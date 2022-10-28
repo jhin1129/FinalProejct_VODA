@@ -219,8 +219,11 @@ public class ContentsServiceImpl implements ContentsService {
 
 	@Override
 	public List<People> getPeopleList(PageInfo pageInfo) {
+		int offset = (pageInfo.getCurrentPage() - 1) * pageInfo.getListLimit();
+		int limit = pageInfo.getListLimit();
+		RowBounds rowBounds = new RowBounds(offset, limit);	
 		
-		return mapper.getPeopleList(pageInfo);
+		return mapper.getPeopleList(rowBounds);
 	}
 
 	@Override
@@ -274,6 +277,12 @@ public class ContentsServiceImpl implements ContentsService {
 	public List<Rate> orderByMyRate(Map<String, Object> mymap) {
 		
 		return mapper.orderByMyRate(mymap);
+	}
+
+	@Override
+	public Contents getBg(int no) {
+		
+		return mapper.getBg(no);
 	}
 	
 	}

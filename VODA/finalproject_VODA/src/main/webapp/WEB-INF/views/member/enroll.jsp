@@ -1527,7 +1527,7 @@ $(document).ready(function(){
 		}
 		
 		//주소 작성 여부
-		var address = $("#address_check").val();
+		var address = $("#sample6_detailAddress").val();
 		
 		if(address == '') {
 			alert("주소를 검색하여 입력해주세요");
@@ -1540,17 +1540,17 @@ $(document).ready(function(){
 		if($("#flexCheckDefault1").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         
 		}else if($("#flexCheckDefault2").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         
 		}else if($("#flexCheckDefault4").is(":checked") == false){
             alert("필수 이용 약관을 동의해 주세요.");
             
-            return;
+            return false;
         }
 	});
 });

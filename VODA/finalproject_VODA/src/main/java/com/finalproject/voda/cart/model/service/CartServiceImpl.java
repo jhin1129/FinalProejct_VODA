@@ -51,5 +51,12 @@ public class CartServiceImpl implements CartService {
 		return cartMapper.cartDelete(pno, m_no);
 	}
 
+	@Override
+	public Cart getCart(int m_no, int p_no) {
+		// TODO Auto-generated method stub
+		return cartMapper.selectCart(m_no, p_no);
+	}
+
+
 
 }

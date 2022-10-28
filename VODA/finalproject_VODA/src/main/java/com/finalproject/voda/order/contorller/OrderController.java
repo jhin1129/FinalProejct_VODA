@@ -67,13 +67,23 @@ public class OrderController {
 		List<Cart> cart = new ArrayList<Cart>();
 		String productName = null;
 		
-		cart = cartService.getCartList(loginMember.getM_no());
+//		cart = cartService.getCartList(loginMember.getM_no()); 오류가 나는 이유 >> cart리스트를 만들어서 한 계정의 카트 리스트를 가져오면 카트리스트에는 그 계정의 모든 상품이 들어오게 돼
+//		
+//		for(int i=0; i<cart.size(); i++){                                   >> 그럼 카트의 사이즈는 db에 저장된, 즉 그 계정의 전체 상품의 갯수가 되는거야 그렇다면 너가 전체 상품을 선택한다면 문제가 없지만
+//			cart.get(i).setPno(pnolist.get(i));                             >> 전체 상품을 선택하지 않는다면 jsp에서 가져온 pnolist의 갯수가 카트의 사이즈보다 작아서 index범위를 벗어났나는 에러가 발생해
+//			cart.get(i).setPorderqtt(porderqtt.get(i));
+//			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
+//		}
 		
-		for(int i=0; i<cart.size(); i++){
-			cart.get(i).setPno(pnolist.get(i));
-			cart.get(i).setPorderqtt(porderqtt.get(i));
-			cart.get(i).setPprice(porderqtt.get(i) * cart.get(i).getPprice());
-			}
+		for(int i = 0; i < pnolist.size(); i++) {	                      //>>그렇다면 먼저 반복문의 범위를 전체 카트개수가 아닌 체크된 상품리스트 pnolist를 사용해야겠지
+			Cart cart1 = cartService.getCart(loginMember.getM_no(), (int)pnolist.get(i)); //>>그리고 카트객체를 하나 만들어서 pno에 해당하는 상품정보를 가져와
+			cart1.setPorderqtt(porderqtt.get(i));                                         //>>가져온 상품카트에 구매수량만 set해주면 상품 하나 완성 사실 porderqtt는 구매수량이 아니라 보유수량인데 아닌가?
+			cart1.setPprice(porderqtt.get(i) * cart1.getPprice());                          										//>>가져온 상품카트에 구매수량만 set해주면 상품 하나 완성 사실 porderqtt는 구매수량이 아니라 보유수량인데 아닌가?
+			
+			cart.add(cart1);                                                              //>>완성된 카트 하나를 카트리스트에 추가, 이걸 반복돌려서 카트리스트를 넘겨주면 되는거야
+			
+		}
+	
 		
 		int totalOqtt = cartService.getTotalOqtt(porderqtt);
 		int totalPrice = cartService.getTotalPrice(cart);

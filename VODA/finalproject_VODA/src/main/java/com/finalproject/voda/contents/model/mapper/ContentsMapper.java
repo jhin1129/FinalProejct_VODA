@@ -70,7 +70,7 @@ public interface ContentsMapper {
 
 	int likeCount(int rate_no);
 
-	List<People> getPeopleList(PageInfo pageInfo);
+	List<People> getPeopleList(RowBounds rowBounds);
 
 	int getPeopleCount();
 	
@@ -86,6 +86,8 @@ public interface ContentsMapper {
 	int findRate(Map<String, Object> map);
 
 	List<Rate> orderByMyRate(Map<String, Object> mymap);
+
+	Contents getBg(int no);
 
 
 }

@@ -129,7 +129,7 @@
     <div class="container mt-5">
 
         <div>
-            <h3 style="text-align: center;  color: #000000; font-size: 17px;">문의게시판</h3>
+            <h3 style="text-align: center;  color: #000000; font-size: 17px;"><a style="text-decoration-line: none;" href="${path }/board/question_board_list?type=QNA">문의 게시판</a></h3>
         </div>
         <!-- 후기글 전체 -->
         <div class="mt-4" style="border: 1px solid rgb(238, 233, 233);">
@@ -290,6 +290,7 @@
         <!-- 목록버튼 -->
         <div class="text-center mt-3 mb-5">
             <button class="btn btn-greyc py-0" style="width: 80px; height: 29.05px; font-size: 0.85em;" onclick="location.href='${path}/board/question_board_list?type=QNA'">목록</button>
+        	<c:if test="${ loginMember.m_authorization == 'M' }"><button type="button" class="btn btn-greyc btn-sm" onclick="location.href='${path}/admin/admin_qna'">관리자페이지</button></c:if>
         </div>
     </div>
     	<script>

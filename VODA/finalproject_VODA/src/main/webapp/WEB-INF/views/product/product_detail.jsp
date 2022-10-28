@@ -174,7 +174,7 @@
                                     </td>
                                     <td>
                                     
-                                        <input id="quantitySelect" class="mt-2" type="number" min="1" max="${ product.pqtt }" value="1" name="porderqtt">
+                                        <input id="quantitySelect" class="mt-2" type="number" min=1 max=${ product.pqtt } value=1 name="porderqtt">
                                     </td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(0,0,0,.1);">
@@ -350,13 +350,13 @@ $(document).ready(() => {
 		if(${empty loginMember}){
 			alert("로그인이 필요합니다.");
 		} else{
-			var value = $("#quantitySelect").val();
-			var min = $("#quantitySelect").attr("min");
-			var max = $("#quantitySelect").attr("max");
-			if(value >= min && value <= max){
+			var value = parseInt($("#quantitySelect").val());
+			var min = parseInt($("#quantitySelect").attr("min"));
+			var max = parseInt($("#quantitySelect").attr("max"));
+			if(value <= max && value >= min){
 				location.href="${path}/product_order?pno=${product.pno}&porderqtt=" + $("#quantitySelect").val();
 			} else {
-				alert("구매 수량을 적절하게 입력해주세요.");
+				alert("구매수량을 다시 입력해주세요");
 			}
 		}
 	});

@@ -58,6 +58,13 @@
           			<polyline points="10 9 9 9 8 9"></polyline>
           	</svg>
             인물페이지 관리
+                      <select id="PeopleType" class="form-control1" style="width: 15%; float: right; font-size: 14.45px;" onchange="if(this.value) location.href=(this.value);">
+	                        	<option value="#">직업별</option>
+	                        	<option value="${path}/admin/admin_people">전체</option>
+	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=배우">배우</option>
+	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=작가">작가</option>
+	                        	<option value="${path}/admin/admin_people_search?searchType=type&keyword=감독">감독</option>
+                        </select>
            </h1>
            <hr>
 		<c:if test="${ empty list }">
@@ -100,7 +107,7 @@
                              <div class="thumb_cont">
                               <strong class="tit_item">
                                   <a href="${ path }/people/people?people_no=${ people.people_no }" class="link_txt" data-tiara-layer="moviename">
-                                  	${ people.people_name }
+                                  	[${people.people_job}]${ people.people_name }
                                   </a>
                               </strong>
                           	</div>
@@ -136,7 +143,7 @@
                         <span class="input-group-btn">
                             <button id="searchBtn" class="btn btn-greyc text-nowrap"
                                 style="box-shadow: rgb(0 0 0 / 30%) 0px 0px 4px 0px;"><img
-                                     src="${path}/resources/img/community/search.png" style="height: 18px;"></button>
+                                     src="${path}/resources/img/community/search.png" style="height: 23px;"></button>
                         </span>
                     </div>
                 </div>     

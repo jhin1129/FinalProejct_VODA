@@ -162,12 +162,12 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <a href="${path}/product/product_search?searchtype=pname&searchname=지브리">
+        <a href="${path}/product/product_search?searchtype=pcategory&searchname=지브리">
             <img src="${path}/resources/img/product/가로자른배너1.png" class="d-block w-100" alt="..." id="crs">
         </a>
         </div>
         <div class="carousel-item">
-        <a href="${path}/product/product_search?searchtype=pname&searchname=토토로">
+        <a href="${path}/product/product_search?searchtype=pcategory&searchname=지브리">
             <img src="${path}/resources/img/product/가로자른배너2.png" class="d-block w-100" alt="..." id="crs">
         </a>
         </div>
@@ -201,7 +201,7 @@
                             <div class="item_poster">
                                 <div class="thumb_item">
                                     <div class="poster_movie">
-                                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="공조2: 인터내셔날">
+                                            <img src="${ path }/resources/uploadFiles/${ fn:substring(rename,0,22) }" class="img_thumb" alt="">
                                     </div>
                                     <div class="poster_info">
                                         <a href="${ path }/product/product_detail?pno=${product.pno}" class="link_story" data-tiara-layer="poster">

@@ -162,12 +162,12 @@
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <a href="${path}/product/product_search?searchtype=pname&searchname=지브리">
+        <a href="${path}/product/product_search?searchtype=pcategory&searchname=지브리">
             <img src="${path}/resources/img/product/가로자른배너1.png" class="d-block w-100" alt="..." id="crs">
         </a>
         </div>
         <div class="carousel-item">
-        <a href="${path}/product/product_search?searchtype=pname&searchname=토토로">
+        <a href="${path}/product/product_search?searchtype=pcategory&searchname=지브리">
             <img src="${path}/resources/img/product/가로자른배너2.png" class="d-block w-100" alt="..." id="crs">
         </a>
         </div>

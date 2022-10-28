@@ -1341,13 +1341,14 @@ background: #ddd;
 .sort {
     float: right;
     background: rgb(73,95,233);
-    border-radius: 15px;
+    border-radius: 8px;
     display: inline-block;
     position: relative;
     margin-top: 20px;
     color: white;
     padding: 10px;
     font-size: 0.9em;
+    cursor: pointer;
 }
 
 .mainsort {
@@ -1362,5 +1363,6 @@ background: #ddd;
     padding-bottom: 7px;
     padding-left: 12px;
     font-size: 0.9em;
+    cursor: pointer;
 }
 

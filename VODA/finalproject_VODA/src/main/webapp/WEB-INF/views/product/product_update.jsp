@@ -143,7 +143,7 @@
                     <thead>
                         <tr>
                             <th class="table-active" style="width: 20%;">상품명</th>
-                            <td style="width: 80%;"><input type="text" name="pname" style="width: 80%;" value="${ product.pcategory }">
+                            <td style="width: 80%;"><input type="text" name="pname" style="width: 80%;" value="${ product.pname }">
                             </td>
                         </tr>
                     </thead>
@@ -154,11 +154,11 @@
                         </tr>
                         <tr>
                             <th class="table-active">제조사</th>
-                            <td><input type="text" name="pmadecompany" style="width: 50%;" value="${ product.pcategory }"></td>
+                            <td><input type="text" name="pmadecompany" style="width: 50%;" value="${ product.pmadecompany }"></td>
                         </tr>
                         <tr>
                             <th class="table-active">원산지</th>
-                            <td><input type="text" name="pmadelocal" style="width: 50%;" value="${ product.pcategory }"></td>
+                            <td><input type="text" name="pmadelocal" style="width: 50%;" value="${ product.pmadelocal }"></td>
                         </tr>
                         <tr>
                             <th class="table-active">상품 전체 수량</th>
@@ -212,8 +212,8 @@
                 </script>
 
                 <div class="text-right mt-2">
-                    <button class="btn btn-primary py-1" style="width: 100px" onclick="history.go(-1)">Post</button>
-                    <button class="btn btn-light py-1" style="width: 100px; height: 36px;">Cancle</button>
+                    <button class="btn btn-primary py-1" style="width: 100px">Post</button>
+                    <button class="btn btn-light py-1" style="width: 100px; height: 36px;" onclick="history.go(-1)">Cancle</button>
                 </div>
             </div>
         </div>
